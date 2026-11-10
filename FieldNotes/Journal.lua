@@ -5,6 +5,8 @@ local _, ns = ...
 local WIDTH, HEIGHT = 800, 560
 local INDEX_W, PAGE_W = 172, 512  -- text widths inside the two panes
 local NOTES_H = 86
+local MAP_W = PAGE_W
+local MAP_H = math.floor(PAGE_W * 668 / 1002 + 0.5)
 
 local INK = { 0.20, 0.12, 0.05 }
 local FADED = { 0.45, 0.34, 0.20 }
@@ -14,7 +16,8 @@ local DONE = "|TInterface\\RaidFrame\\ReadyCheck-Ready:12|t "
 local OPEN = "|TInterface\\RaidFrame\\ReadyCheck-Waiting:12|t "
 
 local frame, index, page, notes
-local sel = {}         -- inst (instanceID), kind ("overview" | "boss" | "bestiary" | "spoils"), key
+local canvas          -- the map sheet, a child of the page's scroll area
+local sel = {}         -- inst (instanceID), kind ("overview" | "boss" | "map" | "bestiary" | "spoils"), key
 local shownKey         -- the page last drawn, to reset scrolling when it changes
 local Refresh
 
@@ -26,7 +29,8 @@ end
 -- A scrolling list of lines. list:Set({ line, ... }); a line is a table:
 --   text, font, color, indent, gap (space above), rule (underline),
 --   icon, iconSize, selected, click = fn, link = item link,
---   spell = spell ID (tooltip), tip = tooltip text
+--   spell = spell ID (tooltip), tip = tooltip text,
+--   space = extra empty height below the text (the map sheet sits there)
 ---------------------------------------------------------------------------
 local function RowEnter(self)
 	local l = self.line
@@ -113,7 +117,7 @@ local function ListSet(list, lines)
 		row.text:SetPoint("TOPLEFT", tx, -2)
 		row.text:SetWidth(list.width - tx)
 		row.text:SetText(line.text or "")
-		local h = math.max(row.text:GetStringHeight() or 0, size) + 4 + (line.rule and 3 or 0)
+		local h = math.max(row.text:GetStringHeight() or 0, size) + 4 + (line.rule and 3 or 0) + (line.space or 0)
 		row:ClearAllPoints()
 		row:SetPoint("TOPLEFT", 0, -y)
 		row:SetSize(list.width, h)
@@ -364,6 +368,97 @@ local function BestiaryPage(lines, inst)
 	if not any then Body(lines, "\nNo creatures noted yet.") end
 end
 
+---------------------------------------------------------------------------
+-- The map: blank parchment, with each recorded area's piece of the drawing
+-- laid over it. Once every area of a sheet is found the complete sheet shows.
+---------------------------------------------------------------------------
+local function CreateCanvas()
+	canvas = CreateFrame("Frame", nil, page.child)
+	canvas:SetSize(MAP_W, MAP_H)
+	canvas.sheet = canvas:CreateTexture(nil, "BACKGROUND")
+	canvas.sheet:SetAllPoints()
+	canvas.pieces = {}
+end
+
+local function DrawMap(sheet)
+	canvas.sheet:SetTexture(sheet.complete and sheet.full or ns.MAP_BLANK)
+	local pieces = sheet.complete and {} or sheet.pieces
+	local sx, sy = MAP_W / ns.MAP_REF_W, MAP_H / ns.MAP_REF_H
+	for i, p in ipairs(pieces) do
+		local t = canvas.pieces[i]
+		if not t then
+			t = canvas:CreateTexture(nil, "ARTWORK")
+			canvas.pieces[i] = t
+		end
+		t:SetTexture(p.tex)
+		t:SetTexCoord(0, p.u, 0, p.v)
+		t:ClearAllPoints()
+		t:SetPoint("TOPLEFT", canvas, "TOPLEFT", p.x * sx, -p.y * sy)
+		t:SetSize(p.w * sx, p.h * sy)
+		t:Show()
+	end
+	for i = #pieces + 1, #canvas.pieces do canvas.pieces[i]:Hide() end
+end
+
+local SHEET = { "First sheet", "Second sheet", "Third sheet", "Fourth sheet", "Fifth sheet", "Sixth sheet" }
+
+local function MapPage(lines, id, inst)
+	H1(lines, "Map")
+	Faded(lines, "What you have charted of " .. inst.name .. ".")
+
+	-- the pieces found on each floor, and areas the map has no place for
+	local floors = ns.Maps[id]
+	local sheets, placed = {}, {}
+	for f, floor in ipairs(floors) do
+		local pieces, seen, found = {}, {}, 0
+		if floor.decor then pieces[#pieces + 1] = floor.decor end
+		if floor.start then pieces[#pieces + 1] = floor.start end
+		for _, a in ipairs(inst.areas) do
+			local piece = floor.areas[ns:AreaKey(a.name)]
+			if piece then
+				placed[a.name] = true
+				if not seen[piece] then
+					seen[piece] = true
+					found = found + 1
+					pieces[#pieces + 1] = piece
+				end
+			end
+		end
+		if floor.start or found > 0 then
+			sheets[#sheets + 1] = { f = f, full = floor.full, pieces = pieces, complete = found >= floor.count }
+		end
+	end
+
+	local shown
+	for _, sh in ipairs(sheets) do
+		if sh.f == sel.key then shown = sh end
+	end
+	shown = shown or sheets[1]
+	if not shown then
+		Body(lines, "\nNothing charted yet.")
+		return
+	end
+	sel.key = shown.f
+	if #sheets > 1 then
+		for _, sh in ipairs(sheets) do
+			lines[#lines + 1] = {
+				text = SHEET[sh.f] or ("Sheet " .. sh.f), font = "GameFontNormalSmall",
+				selected = sh == shown, gap = sh == sheets[1] and 6 or 0,
+				click = function() Select(id, "map", sh.f) end,
+			}
+		end
+	end
+	lines[#lines + 1] = { text = "", gap = 6, space = MAP_H, map = shown }
+
+	local loose = {}
+	for _, a in ipairs(inst.areas) do
+		if not placed[a.name] then loose[#loose + 1] = a.name end
+	end
+	if #loose > 0 then
+		Faded(lines, "Visited, but not yet placed on the map: " .. table.concat(loose, ", ") .. ".")
+	end
+end
+
 local function SpoilsPage(lines, inst)
 	H1(lines, "Spoils")
 	Faded(lines, "What has been found in " .. inst.name .. ". Shift-click to link an item.")
@@ -409,6 +504,12 @@ local function IndexLines()
 					text = (b.kills > 0 and DONE or OPEN) .. b.name, font = "GameFontNormalSmall", indent = 10,
 					selected = sel.kind == "boss" and sel.key == eid,
 					click = function() Select(id, "boss", eid) end,
+				}
+			end
+			if ns.Maps[id] then
+				lines[#lines + 1] = {
+					text = "Map", font = "GameFontNormalSmall", indent = 10, selected = sel.kind == "map",
+					click = function() Select(id, "map") end,
 				}
 			end
 			lines[#lines + 1] = {
@@ -502,6 +603,8 @@ Refresh = function()
 		sel.inst, sel.kind, sel.key = nil, nil, nil
 	elseif sel.kind == "boss" and not inst.bosses[sel.key] then
 		sel.kind, sel.key = "overview", nil
+	elseif sel.kind == "map" and not ns.Maps[sel.inst] then
+		sel.kind, sel.key = "overview", nil
 	end
 
 	index:Set(IndexLines())
@@ -511,6 +614,8 @@ Refresh = function()
 		BlankPage(lines)
 	elseif sel.kind == "boss" then
 		BossPage(lines, inst, sel.key)
+	elseif sel.kind == "map" then
+		MapPage(lines, sel.inst, inst)
 	elseif sel.kind == "bestiary" then
 		BestiaryPage(lines, inst)
 	elseif sel.kind == "spoils" then
@@ -519,6 +624,20 @@ Refresh = function()
 		OverviewPage(lines, sel.inst, inst)
 	end
 	page:Set(lines)
+
+	-- the map sheet sits in the space its line reserved
+	local sheet
+	for i, line in ipairs(lines) do
+		if line.map then
+			sheet = line.map
+			if not canvas then CreateCanvas() end
+			canvas:ClearAllPoints()
+			canvas:SetPoint("TOPLEFT", page.rows[i], "TOPLEFT", 0, -4)
+			DrawMap(sheet)
+			canvas:Show()
+		end
+	end
+	if canvas and not sheet then canvas:Hide() end
 
 	local key = tostring(sel.inst) .. ":" .. tostring(sel.kind) .. ":" .. tostring(sel.key)
 	if key ~= shownKey then
