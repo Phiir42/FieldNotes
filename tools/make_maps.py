@@ -1,23 +1,26 @@
-"""Builds the journal's map textures and FieldNotes/Maps.lua from the retail
+"""Builds the journal's map masks and FieldNotes/Maps.lua from the retail
 reference maps in refs/ and the area definitions in map_defs.py.
 
-    python tools/make_maps.py            # textures + Maps.lua
+    python tools/make_maps.py            # masks + Maps.lua
     python tools/make_maps.py --preview  # also refs/preview/<floor>.png
 
-How a map is split up:
+The addon ships no map art: it draws the game's own map tiles (by file ID)
+and only needs to know which part of the sheet each area covers. That part
+is a small alpha mask per area, made like this:
   1. The blank parchment is the per-pixel median of every reference map: the
      drawings sit in different places, so the median has none of them.
   2. Whatever differs from the blank on one map is that map's drawing.
   3. Drawing pixels inside a floor's decor boxes, or far from every seed, are
      decoration; the rest go to the area with the nearest seed point.
-  4. Each area becomes one texture: the original pixels, transparent outside
-     the area, to be laid over the blank parchment when the area is found.
+  4. Each area's share of the drawing is saved as a mask. In game the map
+     tiles are shown through it, over the blank parchment.
 """
 import glob, os, sys
 
 import numpy as np
 from PIL import Image, ImageFilter
 
+from fetch_maps import table
 from map_defs import MAPS
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,13 +28,13 @@ REFS = os.path.join(ROOT, "refs")
 OUT = os.path.join(ROOT, "FieldNotes", "Maps")
 LUA = os.path.join(ROOT, "FieldNotes", "Maps.lua")
 W, H = 1002, 668
-SCALE = 0.5          # textures are stored at this fraction of the reference size
-FULL = (512, 256)    # whole-sheet textures are squeezed to a power of two
-REACH = 150          # px: drawing further than this from every seed is decoration
+BLANK = (512, 256)   # the parchment texture, squeezed to a power of two
+MASK_SCALE = 0.25    # masks are stored at this fraction of the reference size
 THRESHOLD = 26       # colour difference from the blank that counts as drawing
 GROW = 9             # px the drawing mask is grown, to keep soft shadows
 OVERLAP = 5          # px a piece reaches into its neighbours, so no seam shows
 FEATHER = 3          # px blur on piece edges
+REACH = 150          # px: drawing further than this from every seed is decoration
 
 
 def load(name):
@@ -45,7 +48,6 @@ def blank_parchment():
 
 
 def grow(mask, px):
-    """mask: float array 0..1 -> grown by px, as float 0..1."""
     im = Image.fromarray((mask * 255).astype(np.uint8))
     return np.asarray(im.filter(ImageFilter.MaxFilter(2 * px + 1))).astype(np.float32) / 255
 
@@ -60,6 +62,15 @@ def pow2(n):
     while p < n:
         p *= 2
     return p
+
+
+def tiles(ui_map):
+    """The floor's map tile file IDs, row by row, and the number of columns."""
+    art = next(r["UiMapArtID"] for r in table("UiMapXMapArt") if r["UiMapID"] == str(ui_map))
+    rows = [r for r in table("UiMapArtTile") if r["UiMapArtID"] == art and r["LayerIndex"] == "0"]
+    rows.sort(key=lambda r: (int(r["RowIndex"]), int(r["ColIndex"])))
+    cols = 1 + max(int(r["ColIndex"]) for r in rows)
+    return [int(r["FileDataID"]) for r in rows], cols
 
 
 def split(floor, blank):
@@ -96,28 +107,63 @@ def split(floor, blank):
     return img.astype(np.uint8), pieces
 
 
-def save_piece(img, alpha, path):
-    """Crop to the piece, scale, pad to power-of-two, save. -> (x, y, w, h, u, v) or None."""
+def save_mask(alpha, path):
+    """Save the piece's alpha, stretched onto a small power-of-two texture.
+    -> ((x, y, w, h) on the sheet, the alpha as the game will see it) or None."""
     rows, cols = np.where(alpha > 0.01)
     if len(rows) == 0:
         return None
-    x0, x1 = max(cols.min() - 2, 0), min(cols.max() + 3, W)
-    y0, y1 = max(rows.min() - 2, 0), min(rows.max() + 3, H)
-    crop = np.dstack([img[y0:y1, x0:x1], (alpha[y0:y1, x0:x1] * 255).astype(np.uint8)])
-    w, h = max(1, round((x1 - x0) * SCALE)), max(1, round((y1 - y0) * SCALE))
-    crop = np.asarray(Image.fromarray(crop).resize((w, h), Image.LANCZOS))
-    tw, th = pow2(w), pow2(h)
-    rgba = np.zeros((th, tw, 4), np.uint8)
-    rgba[:h, :w] = crop
-    # repeat edge colours into the padding so filtering never pulls in black
-    rgba[:h, w:, :3] = rgba[:h, w - 1:w, :3]
-    rgba[h:, :, :3] = rgba[h - 1:h, :, :3]
-    Image.fromarray(rgba).save(path)
-    return x0, y0, x1 - x0, y1 - y0, w / tw, h / th
+    x0, x1 = max(cols.min() - 4, 0), min(cols.max() + 5, W)
+    y0, y1 = max(rows.min() - 4, 0), min(rows.max() + 5, H)
+    w, h = x1 - x0, y1 - y0
+    size = (pow2(round(w * MASK_SCALE)), pow2(round(h * MASK_SCALE)))
+    small = Image.fromarray((alpha[y0:y1, x0:x1] * 255).astype(np.uint8)).resize(size, Image.LANCZOS)
+    rgba = Image.new("RGBA", size, (255, 255, 255, 0))
+    rgba.putalpha(small)
+    rgba.save(path)
+    seen = np.zeros((H, W), np.float32)
+    seen[y0:y1, x0:x1] = np.asarray(small.resize((w, h), Image.BILINEAR)).astype(np.float32) / 255
+    return (x0, y0, w, h), seen
 
 
 def lua_piece(tex, box):
-    return '{ tex = DIR .. "%s", x = %d, y = %d, w = %d, h = %d, u = %.5f, v = %.5f }' % ((tex,) + box)
+    return '{ mask = DIR .. "%s", x = %d, y = %d, w = %d, h = %d }' % ((tex,) + box)
+
+
+def lua_str(s):
+    return '"' + s.replace("\\", "\\\\").replace('"', '\\"') + '"'
+
+
+HEADER = """-- Dungeon maps. GENERATED by tools/make_maps.py from tools/map_defs.py: edit those.
+--
+-- The addon ships no map art. It draws the game's own map tiles (the client
+-- has them, though it shows no map inside dungeons) through a small mask per
+-- area, over blank parchment, so each area's part of the drawing appears when
+-- the journal records that area (see CheckArea in Record.lua).
+--
+-- ns.Maps[instanceID] = { floor, ... }, a floor being
+--   tiles  the sheet's map tile file IDs, row by row; cols tiles per row
+--   decor  the title banner and illustration, always shown
+--   start  the part visible on arrival (the entrance), if on this floor
+--   areas  { [ns:AreaKey(name)] = piece }
+--   count  how many different area pieces the floor has
+-- A piece is { mask, x, y, w, h }: a mask texture and its place on the
+-- %dx%d sheet.
+local _, ns = ...
+
+local DIR = "Interface\\\\AddOns\\\\FieldNotes\\\\Maps\\\\"
+ns.MAP_REF_W, ns.MAP_REF_H, ns.MAP_TILE = %d, %d, 256
+ns.MAP_BLANK = DIR .. "parchment"
+
+-- Area names are matched ignoring case, punctuation and a leading "The".
+function ns:AreaKey(name)
+	return (name:lower():gsub("^the ", ""):gsub("[^%%w]", ""))
+end
+
+local function key(name) return ns:AreaKey(name) end
+
+ns.Maps = {}
+""" % (W, H, W, H)
 
 
 def main():
@@ -126,64 +172,36 @@ def main():
     for old in glob.glob(os.path.join(OUT, "*.tga")):
         os.remove(old)
     blank, count = blank_parchment()
-    Image.fromarray(blank.astype(np.uint8)).resize(FULL, Image.LANCZOS).save(os.path.join(OUT, "parchment.tga"))
+    Image.fromarray(blank.astype(np.uint8)).resize(BLANK, Image.LANCZOS).save(os.path.join(OUT, "parchment.tga"))
     print(f"parchment.tga from {count} reference maps")
 
-    out = [
-        "-- Dungeon maps. GENERATED by tools/make_maps.py from tools/map_defs.py: edit those.",
-        "--",
-        "-- Unlike everything else in the journal the maps ship with the addon, because",
-        "-- the game gives addons no position inside instances to draw from. A map still",
-        "-- starts as blank parchment: each area's piece of the drawing is laid on it",
-        "-- when the journal records that area (see CheckArea in Record.lua).",
-        "--",
-        "-- ns.Maps[instanceID] = { floor, ... }, a floor being",
-        "--   full   the complete sheet, shown once every area is found",
-        "--   decor  the title banner and illustration, always shown",
-        "--   start  the part visible on arrival (the entrance), if on this floor",
-        "--   areas  { [ns:AreaKey(name)] = piece }",
-        "--   count  how many different area pieces the floor has",
-        "-- A piece is { tex, x, y, w, h, u, v }: its place on the %dx%d sheet and" % (W, H),
-        "-- how much of its (power-of-two) texture is used.",
-        "local _, ns = ...",
-        "",
-        'local DIR = "Interface\\\\AddOns\\\\FieldNotes\\\\Maps\\\\"',
-        "ns.MAP_REF_W, ns.MAP_REF_H = %d, %d" % (W, H),
-        'ns.MAP_BLANK = DIR .. "parchment"',
-        "",
-        "-- Area names are matched ignoring case, punctuation and a leading \"The\".",
-        "function ns:AreaKey(name)",
-        '\treturn (name:lower():gsub("^the ", ""):gsub("[^%w]", ""))',
-        "end",
-        "",
-        "local function key(name) return ns:AreaKey(name) end",
-        "",
-        "ns.Maps = {}",
-    ]
+    out = [HEADER]
     for dungeon in MAPS:
         slug = dungeon["slug"]
-        out.append("")
         out.append("-- " + slug)
         out.append("ns.Maps[%d] = {}" % dungeon["instance"])
         for f, floor in enumerate(dungeon["floors"], 1):
             img, pieces = split(floor, blank)
             base = f"{slug}-{f}"
-            Image.fromarray(img).resize(FULL, Image.LANCZOS).save(os.path.join(OUT, base + ".tga"))
+            ids, cols = tiles(floor["uimap"])
             out.append("do")
-            out.append('\tlocal floor = { full = DIR .. "%s", areas = {}, count = 0 }' % base)
-            n = 0
+            out.append("\tlocal floor = { cols = %d, tiles = { %s }, areas = {}, count = 0 }"
+                       % (cols, ", ".join(map(str, ids))))
+            n, seen = 0, []
             for name, alpha in pieces:
-                if name in ("decor", "start"):
-                    tex = f"{base}-{name}"
-                    box = save_piece(img, alpha, os.path.join(OUT, tex + ".tga"))
-                    if box:
-                        out.append("\tfloor.%s = %s" % (name, lua_piece(tex, box)))
+                special = name in ("decor", "start")
+                if not special:
+                    n += 1
+                tex = f"{base}-{name}" if special else f"{base}-{n:02d}"
+                saved = save_mask(alpha, os.path.join(OUT, tex + ".tga"))
+                if not saved:
+                    if not special:
+                        print("  !! no drawing found for", name)
                     continue
-                n += 1
-                tex = f"{base}-{n:02d}"
-                box = save_piece(img, alpha, os.path.join(OUT, tex + ".tga"))
-                if not box:
-                    print("  !! no drawing found for", name)
+                box, as_seen = saved
+                seen.append((name, as_seen))
+                if special:
+                    out.append("\tfloor.%s = %s" % (name, lua_piece(tex, box)))
                     continue
                 out.append("\tfloor.areas[key(%s)] = %s" % (lua_str(name), lua_piece(tex, box)))
                 out.append("\tfloor.count = floor.count + 1")
@@ -192,17 +210,13 @@ def main():
                         out.append("\tfloor.areas[key(%s)] = floor.areas[key(%s)]" % (lua_str(alias), lua_str(name)))
             out.append("\tns.Maps[%d][%d] = floor" % (dungeon["instance"], f))
             out.append("end")
-            print(f"{base}: {n} areas")
+            print(f"{base}: {n} areas, {len(ids)} tiles")
             if preview:
-                write_preview(base, img, blank, pieces)
+                write_preview(base, img, blank, seen)
     with open(LUA, "w", encoding="utf-8", newline="\n") as fh:
         fh.write("\n".join(out) + "\n")
-    size = sum(os.path.getsize(p) for p in glob.glob(os.path.join(OUT, "*.tga")))
-    print(f"wrote Maps.lua and {len(glob.glob(os.path.join(OUT, '*.tga')))} textures, {size / 1e6:.1f} MB")
-
-
-def lua_str(s):
-    return '"' + s.replace("\\", "\\\\").replace('"', '\\"') + '"'
+    files = glob.glob(os.path.join(OUT, "*.tga"))
+    print(f"wrote Maps.lua and {len(files)} textures, {sum(map(os.path.getsize, files)) / 1e6:.2f} MB")
 
 
 def compose(img, blank, pieces, shown):
@@ -215,7 +229,8 @@ def compose(img, blank, pieces, shown):
 
 
 def write_preview(base, img, blank, pieces):
-    """Three stages side by side: arrival, half explored, everything found."""
+    """Three stages side by side: arrival, half explored, every area found
+    (still drawn through the masks; in game the last stage shows the plain tiles)."""
     names = [n for n, _ in pieces if n not in ("decor", "start")]
     stages = [{"decor", "start"}, {"decor", "start", *names[: (len(names) + 1) // 2]}, {"decor", "start", *names}]
     sheet = Image.new("RGB", (W * 3 + 24, H), "white")

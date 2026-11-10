@@ -118,6 +118,8 @@ SlashCmdList["FIELDNOTES"] = function(msg)
 		s.button = not s.button
 		ns:UpdateMinimapButton()
 		ns:Print("minimap button %s.", s.button and "shown" or "hidden")
+	elseif cmd == "maptest" then
+		ns:MapTest(arg ~= "" and arg or nil)
 	elseif cmd == "quality" and tonumber(arg) then
 		s.minQuality = math.max(0, math.min(5, math.floor(tonumber(arg))))
 		ns:Print("noting items of quality %d and better (1 common, 2 uncommon, 3 rare, 4 epic).", s.minQuality)
@@ -127,5 +129,6 @@ SlashCmdList["FIELDNOTES"] = function(msg)
 		print("  /fn announce  -  chat lines when something new is written down")
 		print("  /fn quality <0-5>  -  lowest item quality worth noting")
 		print("  /fn button  -  show or hide the minimap button")
+		print("  /fn maptest [off]  -  preview a map, three more areas each time")
 	end
 end

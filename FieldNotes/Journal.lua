@@ -369,35 +369,83 @@ local function BestiaryPage(lines, inst)
 end
 
 ---------------------------------------------------------------------------
--- The map: blank parchment, with each recorded area's piece of the drawing
--- laid over it. Once every area of a sheet is found the complete sheet shows.
+-- The map: blank parchment, with each recorded area's part of the game's own
+-- map tiles shown through that area's mask. Once every area of a sheet is
+-- found, the plain tiles show instead.
 ---------------------------------------------------------------------------
 local function CreateCanvas()
 	canvas = CreateFrame("Frame", nil, page.child)
 	canvas:SetSize(MAP_W, MAP_H)
-	canvas.sheet = canvas:CreateTexture(nil, "BACKGROUND")
-	canvas.sheet:SetAllPoints()
-	canvas.pieces = {}
+	local blank = canvas:CreateTexture(nil, "BACKGROUND")
+	blank:SetAllPoints()
+	blank:SetTexture(ns.MAP_BLANK)
+	canvas.cache = {}  -- [piece or floor] = { texture, ... }, made on first use
+	canvas.shown = {}
+end
+
+-- One texture per map tile that overlaps the box (in sheet pixels), cropped to it.
+local function TileTextures(floor, x, y, w, h, mask)
+	local list = {}
+	local T = ns.MAP_TILE
+	local sx, sy = MAP_W / ns.MAP_REF_W, MAP_H / ns.MAP_REF_H
+	local rows = math.ceil(#floor.tiles / floor.cols)
+	for row = 0, rows - 1 do
+		for col = 0, floor.cols - 1 do
+			local l, t = math.max(x, col * T), math.max(y, row * T)
+			local r = math.min(x + w, (col + 1) * T, ns.MAP_REF_W)
+			local b = math.min(y + h, (row + 1) * T, ns.MAP_REF_H)
+			if r > l and b > t then
+				local tex = canvas:CreateTexture(nil, "ARTWORK")
+				tex:SetTexture(floor.tiles[row * floor.cols + col + 1])
+				tex:SetTexCoord((l - col * T) / T, (r - col * T) / T, (t - row * T) / T, (b - row * T) / T)
+				tex:SetPoint("TOPLEFT", canvas, "TOPLEFT", l * sx, -t * sy)
+				tex:SetSize((r - l) * sx, (b - t) * sy)
+				if mask then tex:AddMaskTexture(mask) end
+				tex:Hide()
+				list[#list + 1] = tex
+			end
+		end
+	end
+	return list
+end
+
+local function PieceTextures(floor, piece)
+	local list = canvas.cache[piece]
+	if not list then
+		local mask
+		-- without mask textures the area shows as a plain rectangle
+		if canvas.CreateMaskTexture then
+			local sx, sy = MAP_W / ns.MAP_REF_W, MAP_H / ns.MAP_REF_H
+			mask = canvas:CreateMaskTexture()
+			mask:SetTexture(piece.mask, "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
+			mask:SetPoint("TOPLEFT", canvas, "TOPLEFT", piece.x * sx, -piece.y * sy)
+			mask:SetSize(piece.w * sx, piece.h * sy)
+		end
+		list = TileTextures(floor, piece.x, piece.y, piece.w, piece.h, mask)
+		canvas.cache[piece] = list
+	end
+	return list
 end
 
 local function DrawMap(sheet)
-	canvas.sheet:SetTexture(sheet.complete and sheet.full or ns.MAP_BLANK)
-	local pieces = sheet.complete and {} or sheet.pieces
-	local sx, sy = MAP_W / ns.MAP_REF_W, MAP_H / ns.MAP_REF_H
-	for i, p in ipairs(pieces) do
-		local t = canvas.pieces[i]
-		if not t then
-			t = canvas:CreateTexture(nil, "ARTWORK")
-			canvas.pieces[i] = t
+	for _, tex in ipairs(canvas.shown) do tex:Hide() end
+	local shown = {}
+	local function Show(list)
+		for _, tex in ipairs(list) do
+			tex:Show()
+			shown[#shown + 1] = tex
 		end
-		t:SetTexture(p.tex)
-		t:SetTexCoord(0, p.u, 0, p.v)
-		t:ClearAllPoints()
-		t:SetPoint("TOPLEFT", canvas, "TOPLEFT", p.x * sx, -p.y * sy)
-		t:SetSize(p.w * sx, p.h * sy)
-		t:Show()
 	end
-	for i = #pieces + 1, #canvas.pieces do canvas.pieces[i]:Hide() end
+	local floor = sheet.floor
+	if sheet.complete then
+		if not canvas.cache[floor] then
+			canvas.cache[floor] = TileTextures(floor, 0, 0, ns.MAP_REF_W, ns.MAP_REF_H)
+		end
+		Show(canvas.cache[floor])
+	else
+		for _, piece in ipairs(sheet.pieces) do Show(PieceTextures(floor, piece)) end
+	end
+	canvas.shown = shown
 end
 
 local SHEET = { "First sheet", "Second sheet", "Third sheet", "Fourth sheet", "Fifth sheet", "Sixth sheet" }
@@ -425,7 +473,7 @@ local function MapPage(lines, id, inst)
 			end
 		end
 		if floor.start or found > 0 then
-			sheets[#sheets + 1] = { f = f, full = floor.full, pieces = pieces, complete = found >= floor.count }
+			sheets[#sheets + 1] = { f = f, floor = floor, pieces = pieces, complete = found >= floor.count }
 		end
 	end
 
@@ -483,7 +531,7 @@ local function IndexLines()
 	table.sort(ids, function(a, b)
 		local ia, ib = ns.db.instances[a], ns.db.instances[b]
 		if (ia.last or 0) ~= (ib.last or 0) then return (ia.last or 0) > (ib.last or 0) end
-		return a < b
+		return tostring(a) < tostring(b)
 	end)
 	if #ids == 0 then
 		lines[1] = { text = "No pages yet.", color = FADED, font = "GameFontNormalSmall" }
@@ -708,3 +756,53 @@ function ns:ToggleJournal()
 end
 
 ns:On("FN_DATA", function() Refresh() end)
+
+---------------------------------------------------------------------------
+-- /fn maptest: look at a shipped map without visiting the dungeon. Makes a
+-- throwaway "Map test" page and uncovers three more areas each time it is
+-- run; "/fn maptest off" (or tearing the page out) removes it.
+---------------------------------------------------------------------------
+local TEST = "maptest"
+
+function ns:MapTest(arg)
+	local id = tonumber(arg) or 230
+	local inst = self.db.instances[TEST]
+	if arg == "off" or not self.Maps[id] then
+		self.Maps[TEST] = nil
+		self:Forget(TEST)
+		if arg ~= "off" then self:Print("no map for instance %d.", id) end
+		return
+	end
+	if not inst or inst.testOf ~= id then
+		inst = {
+			name = "Map test", kind = "party", first = time(), last = time(), visits = 1, testOf = id,
+			areas = {}, bosses = {}, bossOrder = {}, mobs = {}, mobOrder = {}, loot = {}, lootOrder = {}, log = {},
+		}
+		self.db.instances[TEST] = inst
+	else
+		-- every area name on every floor, in a stable order; add the next three
+		local names, have = {}, {}
+		for _, floor in ipairs(self.Maps[id]) do
+			for key in pairs(floor.areas) do names[#names + 1] = key end
+		end
+		table.sort(names)
+		for _, a in ipairs(inst.areas) do have[a.name] = true end
+		local added = 0
+		for _, name in ipairs(names) do
+			if not have[name] and added < 3 then
+				inst.areas[#inst.areas + 1] = { name = name, t = time() }
+				added = added + 1
+			end
+		end
+	end
+	self.Maps[TEST] = self.Maps[id]
+	if not frame then CreateJournal() end
+	sel.inst, sel.kind = TEST, "map"
+	frame:Show()
+	Refresh()
+end
+
+-- the test page never outlives the session
+ns:On("PLAYER_LOGOUT", function()
+	if ns.db then ns.db.instances[TEST] = nil end
+end)

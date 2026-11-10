@@ -4,6 +4,7 @@ All coordinates are pixels of the 1002x668 reference image in refs/.
 
 A floor has:
   ref     the reference image name in refs/ (without .png)
+  uimap   the floor's retail uiMapID, to look up its map tile file IDs
   decor   boxes (left, top, right, bottom) of page decoration that is always
           shown: the title banner and the illustration
   start   seed points of the part visible on arrival (the entrance)
@@ -22,6 +23,7 @@ MAPS = [
         "floors": [
             {
                 "ref": "blackrock-depths-1",
+                "uimap": 242,
                 "decor": [(230, 25, 790, 78), (230, 78, 330, 100), (690, 78, 790, 100), (775, 150, 1002, 560)],
                 "start": [(330, 560), (345, 500), (375, 470)],
                 "areas": {
@@ -35,6 +37,7 @@ MAPS = [
             },
             {
                 "ref": "blackrock-depths-2",
+                "uimap": 243,
                 "decor": [(25, 20, 575, 100), (20, 100, 310, 500), (20, 500, 265, 540)],
                 "areas": {
                     "The Lyceum": [(665, 75), (600, 130)],
