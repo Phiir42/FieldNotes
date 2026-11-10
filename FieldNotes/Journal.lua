@@ -480,9 +480,16 @@ local function MapPage(lines, id, inst)
 			end
 		end
 		if floor.start or found > 0 then
-			sheets[#sheets + 1] = { f = f, floor = floor, pieces = pieces, complete = found >= floor.count }
+			sheets[#sheets + 1] = { f = f, floor = floor, pieces = pieces, found = found, complete = found >= floor.count }
 		end
 	end
+	-- An instance with several entrances has an entrance on several sheets.
+	-- Once something is found, keep only the sheets you have been on.
+	local explored = {}
+	for _, sh in ipairs(sheets) do
+		if sh.found > 0 then explored[#explored + 1] = sh end
+	end
+	if #explored > 0 then sheets = explored end
 
 	local shown
 	for _, sh in ipairs(sheets) do

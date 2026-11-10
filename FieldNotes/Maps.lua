@@ -43,7 +43,7 @@ do
 	floor.count = floor.count + 1
 	floor.areas[key("Murkshallow Snapclaw")] = floor.areas[key("Ghamoo-ra")]
 	floor.areas[key("Aku'mai Fisher")] = floor.areas[key("Ghamoo-ra")]
-	floor.areas[key("The Pool of Ask'ar")] = { mask = DIR .. "blackfathom-deeps-1-03", x = 140, y = 218, w = 374, h = 448 }
+	floor.areas[key("The Pool of Ask'ar")] = { mask = DIR .. "blackfathom-deeps-1-03", x = 140, y = 218, w = 375, h = 448 }
 	floor.count = floor.count + 1
 	floor.areas[key("Pool of Ask'ar")] = floor.areas[key("The Pool of Ask'ar")]
 	floor.areas[key("Blackfathom Sea Witch")] = floor.areas[key("The Pool of Ask'ar")]
@@ -67,14 +67,14 @@ end
 do
 	local floor = { cols = 4, tiles = { 447590, 447594, 447595, 447596, 447597, 447598, 447599, 447600, 447601, 447591, 447592, 447593 }, areas = {}, count = 0 }
 	floor.decor = { mask = DIR .. "blackfathom-deeps-2-decor", x = 212, y = 5, w = 779, h = 524 }
-	floor.areas[key("Fallenroot Satyr")] = { mask = DIR .. "blackfathom-deeps-2-01", x = 216, y = 5, w = 338, h = 425 }
+	floor.areas[key("Fallenroot Satyr")] = { mask = DIR .. "blackfathom-deeps-2-01", x = 216, y = 5, w = 278, h = 425 }
 	floor.count = floor.count + 1
 	floor.areas[key("Fallenroot Rogue")] = floor.areas[key("Fallenroot Satyr")]
 	floor.areas[key("Fallenroot Shadowstalker")] = floor.areas[key("Fallenroot Satyr")]
 	floor.areas[key("Fallenroot Hellcaller")] = floor.areas[key("Fallenroot Satyr")]
 	floor.areas[key("Twilight Acolyte")] = floor.areas[key("Fallenroot Satyr")]
 	floor.areas[key("Twilight Reaver")] = floor.areas[key("Fallenroot Satyr")]
-	floor.areas[key("Moonshrine Ruins")] = { mask = DIR .. "blackfathom-deeps-2-02", x = 249, y = 327, w = 282, h = 307 }
+	floor.areas[key("Moonshrine Ruins")] = { mask = DIR .. "blackfathom-deeps-2-02", x = 249, y = 327, w = 274, h = 307 }
 	floor.count = floor.count + 1
 	floor.areas[key("Lorgus Jett")] = floor.areas[key("Moonshrine Ruins")]
 	floor.areas[key("Twilight Aquamancer")] = floor.areas[key("Moonshrine Ruins")]
@@ -83,7 +83,7 @@ do
 	floor.areas[key("Twilight Elementalist")] = floor.areas[key("Moonshrine Ruins")]
 	floor.areas[key("Aku'mai Snapjaw")] = floor.areas[key("Moonshrine Ruins")]
 	floor.areas[key("Barbed Crustacean")] = floor.areas[key("Moonshrine Ruins")]
-	floor.areas[key("Moonshrine Sanctum")] = { mask = DIR .. "blackfathom-deeps-2-03", x = 437, y = 376, w = 186, h = 256 }
+	floor.areas[key("Moonshrine Sanctum")] = { mask = DIR .. "blackfathom-deeps-2-03", x = 437, y = 407, w = 186, h = 225 }
 	floor.count = floor.count + 1
 	floor.areas[key("Twilight Lord Kelris")] = floor.areas[key("Moonshrine Sanctum")]
 	floor.areas[key("Kelris")] = floor.areas[key("Moonshrine Sanctum")]
@@ -99,7 +99,7 @@ end
 do
 	local floor = { cols = 4, tiles = { 447602, 447606, 447607, 447608, 447609, 447610, 447611, 447612, 447613, 447603, 447604, 447605 }, areas = {}, count = 0 }
 	floor.decor = { mask = DIR .. "blackfathom-deeps-3-decor", x = 212, y = 5, w = 589, h = 102 }
-	floor.areas[key("The Forgotten Pool")] = { mask = DIR .. "blackfathom-deeps-3-01", x = 183, y = 5, w = 619, h = 663 }
+	floor.areas[key("The Forgotten Pool")] = { mask = DIR .. "blackfathom-deeps-3-01", x = 181, y = 5, w = 622, h = 663 }
 	floor.count = floor.count + 1
 	floor.areas[key("Forgotten Pool")] = floor.areas[key("The Forgotten Pool")]
 	floor.areas[key("Old Serra'kis")] = floor.areas[key("The Forgotten Pool")]
@@ -122,7 +122,7 @@ do
 	floor.count = floor.count + 1
 	floor.areas[key("Shadowforge City")] = { mask = DIR .. "blackrock-depths-1-04", x = 297, y = 62, w = 494, h = 371 }
 	floor.count = floor.count + 1
-	floor.areas[key("Hall of Crafting")] = { mask = DIR .. "blackrock-depths-1-05", x = 500, y = 5, w = 302, h = 234 }
+	floor.areas[key("Hall of Crafting")] = { mask = DIR .. "blackrock-depths-1-05", x = 500, y = 5, w = 303, h = 234 }
 	floor.count = floor.count + 1
 	ns.Maps[230][1] = floor
 end
@@ -133,7 +133,7 @@ do
 	floor.count = floor.count + 1
 	floor.areas[key("The Imperial Seat")] = { mask = DIR .. "blackrock-depths-2-02", x = 717, y = 3, w = 253, h = 166 }
 	floor.count = floor.count + 1
-	floor.areas[key("Summoners' Tomb")] = { mask = DIR .. "blackrock-depths-2-03", x = 362, y = 5, w = 240, h = 231 }
+	floor.areas[key("Summoners' Tomb")] = { mask = DIR .. "blackrock-depths-2-03", x = 364, y = 5, w = 238, h = 231 }
 	floor.count = floor.count + 1
 	floor.areas[key("Mold Foundry")] = { mask = DIR .. "blackrock-depths-2-04", x = 294, y = 85, w = 270, h = 238 }
 	floor.count = floor.count + 1
@@ -141,7 +141,7 @@ do
 	floor.count = floor.count + 1
 	floor.areas[key("Shadowforge City")] = { mask = DIR .. "blackrock-depths-2-06", x = 361, y = 262, w = 394, h = 292 }
 	floor.count = floor.count + 1
-	floor.areas[key("The Grim Guzzler")] = { mask = DIR .. "blackrock-depths-2-07", x = 383, y = 322, w = 174, h = 160 }
+	floor.areas[key("The Grim Guzzler")] = { mask = DIR .. "blackrock-depths-2-07", x = 383, y = 322, w = 174, h = 161 }
 	floor.count = floor.count + 1
 	floor.areas[key("The Domicile")] = { mask = DIR .. "blackrock-depths-2-08", x = 466, y = 409, w = 146, h = 128 }
 	floor.count = floor.count + 1
@@ -253,7 +253,7 @@ end
 do
 	local floor = { cols = 4, tiles = { 447698, 447702, 447703, 447704, 447705, 447706, 447707, 447708, 447709, 447699, 447700, 447701 }, areas = {}, count = 0 }
 	floor.decor = { mask = DIR .. "blackrock-spire-4-decor", x = 197, y = 0, w = 763, h = 518 }
-	floor.start = { mask = DIR .. "blackrock-spire-4-start", x = 321, y = 223, w = 100, h = 108 }
+	floor.start = { mask = DIR .. "blackrock-spire-4-start", x = 319, y = 223, w = 103, h = 108 }
 	floor.areas[key("Hall of Blackhand")] = { mask = DIR .. "blackrock-spire-4-01", x = 202, y = 75, w = 240, h = 394 }
 	floor.count = floor.count + 1
 	floor.areas[key("Scarshield Legionnaire")] = floor.areas[key("Hall of Blackhand")]
@@ -369,6 +369,166 @@ do
 	floor.areas[key("Rage Talon Fire Tongue")] = floor.areas[key("Chamber of Battle")]
 	ns.Maps[229][6] = floor
 end
+-- blackwing-lair
+ns.Maps[469] = {}
+do
+	local floor = { cols = 4, tiles = { 447770, 447774, 447775, 447776, 447777, 447778, 447779, 447780, 447781, 447771, 447772, 447773 }, areas = {}, count = 0 }
+	floor.decor = { mask = DIR .. "blackwing-lair-1-decor", x = 221, y = 0, w = 760, h = 668 }
+	floor.start = { mask = DIR .. "blackwing-lair-1-start", x = 407, y = 459, w = 158, h = 197 }
+	floor.areas[key("Dragonmaw Garrison")] = { mask = DIR .. "blackwing-lair-1-01", x = 249, y = 208, w = 367, h = 447 }
+	floor.count = floor.count + 1
+	floor.areas[key("Razorgore the Untamed")] = floor.areas[key("Dragonmaw Garrison")]
+	floor.areas[key("Grethok the Controller")] = floor.areas[key("Dragonmaw Garrison")]
+	floor.areas[key("Blackwing Guardsman")] = floor.areas[key("Dragonmaw Garrison")]
+	floor.areas[key("Blackwing Legionnaire")] = floor.areas[key("Dragonmaw Garrison")]
+	floor.areas[key("Blackwing Mage")] = floor.areas[key("Dragonmaw Garrison")]
+	floor.areas[key("Death Talon Dragonspawn")] = floor.areas[key("Dragonmaw Garrison")]
+	floor.areas[key("Shadow Wing Lair")] = { mask = DIR .. "blackwing-lair-1-02", x = 182, y = 2, w = 339, h = 350 }
+	floor.count = floor.count + 1
+	floor.areas[key("Vaelastrasz the Corrupt")] = floor.areas[key("Shadow Wing Lair")]
+	floor.areas[key("Shadowwing Lair")] = floor.areas[key("Shadow Wing Lair")]
+	ns.Maps[469][1] = floor
+end
+do
+	local floor = { cols = 4, tiles = { 447782, 447786, 447787, 447788, 447789, 447790, 447791, 447792, 447793, 447783, 447784, 447785 }, areas = {}, count = 0 }
+	floor.decor = { mask = DIR .. "blackwing-lair-2-decor", x = 213, y = 0, w = 754, h = 609 }
+	floor.areas[key("Shadow Wing Lair")] = { mask = DIR .. "blackwing-lair-2-01", x = 247, y = 82, w = 331, h = 297 }
+	floor.count = floor.count + 1
+	floor.areas[key("Vaelastrasz the Corrupt")] = floor.areas[key("Shadow Wing Lair")]
+	floor.areas[key("Halls of Strife")] = { mask = DIR .. "blackwing-lair-2-02", x = 181, y = 201, w = 323, h = 420 }
+	floor.count = floor.count + 1
+	floor.areas[key("Suppression Room")] = floor.areas[key("Halls of Strife")]
+	floor.areas[key("Corrupted Red Whelp")] = floor.areas[key("Halls of Strife")]
+	floor.areas[key("Corrupted Green Whelp")] = floor.areas[key("Halls of Strife")]
+	floor.areas[key("Corrupted Blue Whelp")] = floor.areas[key("Halls of Strife")]
+	floor.areas[key("Corrupted Bronze Whelp")] = floor.areas[key("Halls of Strife")]
+	floor.areas[key("Blackwing Taskmaster")] = floor.areas[key("Halls of Strife")]
+	floor.areas[key("Death Talon Hatcher")] = { mask = DIR .. "blackwing-lair-2-03", x = 400, y = 260, w = 265, h = 356 }
+	floor.count = floor.count + 1
+	floor.areas[key("Broodlord Lashlayer")] = floor.areas[key("Death Talon Hatcher")]
+	ns.Maps[469][2] = floor
+end
+do
+	local floor = { cols = 4, tiles = { 447794, 447798, 447799, 447800, 447801, 447802, 447803, 447804, 447805, 447795, 447796, 447797 }, areas = {}, count = 0 }
+	floor.decor = { mask = DIR .. "blackwing-lair-3-decor", x = 221, y = 0, w = 740, h = 588 }
+	floor.areas[key("Halls of Strife")] = { mask = DIR .. "blackwing-lair-3-01", x = 296, y = 365, w = 370, h = 287 }
+	floor.count = floor.count + 1
+	floor.areas[key("Suppression Room")] = floor.areas[key("Halls of Strife")]
+	floor.areas[key("Corrupted Red Whelp")] = floor.areas[key("Halls of Strife")]
+	floor.areas[key("Corrupted Green Whelp")] = floor.areas[key("Halls of Strife")]
+	floor.areas[key("Corrupted Blue Whelp")] = floor.areas[key("Halls of Strife")]
+	floor.areas[key("Corrupted Bronze Whelp")] = floor.areas[key("Halls of Strife")]
+	floor.areas[key("Blackwing Taskmaster")] = floor.areas[key("Halls of Strife")]
+	floor.areas[key("Death Talon Hatcher")] = floor.areas[key("Halls of Strife")]
+	floor.areas[key("Broodlord Lashlayer")] = { mask = DIR .. "blackwing-lair-3-02", x = 386, y = 314, w = 268, h = 182 }
+	floor.count = floor.count + 1
+	floor.areas[key("Firemaw")] = { mask = DIR .. "blackwing-lair-3-03", x = 349, y = 144, w = 222, h = 254 }
+	floor.count = floor.count + 1
+	floor.areas[key("Death Talon Wyrmguard")] = floor.areas[key("Firemaw")]
+	floor.areas[key("Crimson Laboratories")] = { mask = DIR .. "blackwing-lair-3-04", x = 172, y = 145, w = 229, h = 198 }
+	floor.count = floor.count + 1
+	floor.areas[key("Blackwing Technician")] = floor.areas[key("Crimson Laboratories")]
+	floor.areas[key("Blackwing Warlock")] = floor.areas[key("Crimson Laboratories")]
+	floor.areas[key("Blackwing Spellbinder")] = floor.areas[key("Crimson Laboratories")]
+	floor.areas[key("Death Talon Overseer")] = floor.areas[key("Crimson Laboratories")]
+	floor.areas[key("Death Talon Flamescale")] = floor.areas[key("Crimson Laboratories")]
+	floor.areas[key("Death Talon Seether")] = floor.areas[key("Crimson Laboratories")]
+	floor.areas[key("Death Talon Wyrmkin")] = floor.areas[key("Crimson Laboratories")]
+	floor.areas[key("Death Talon Captain")] = floor.areas[key("Crimson Laboratories")]
+	floor.areas[key("Master Elemental Shaper Krixix")] = floor.areas[key("Crimson Laboratories")]
+	floor.areas[key("Ebonroc")] = { mask = DIR .. "blackwing-lair-3-05", x = 213, y = 37, w = 249, h = 205 }
+	floor.count = floor.count + 1
+	ns.Maps[469][3] = floor
+end
+do
+	local floor = { cols = 4, tiles = { 447806, 447810, 447811, 447812, 447813, 447814, 447815, 447816, 447817, 447807, 447808, 447809 }, areas = {}, count = 0 }
+	floor.decor = { mask = DIR .. "blackwing-lair-4-decor", x = 212, y = 8, w = 749, h = 381 }
+	floor.areas[key("Crimson Laboratories")] = { mask = DIR .. "blackwing-lair-4-01", x = 101, y = 236, w = 261, h = 236 }
+	floor.count = floor.count + 1
+	floor.areas[key("Blackwing Technician")] = floor.areas[key("Crimson Laboratories")]
+	floor.areas[key("Blackwing Warlock")] = floor.areas[key("Crimson Laboratories")]
+	floor.areas[key("Blackwing Spellbinder")] = floor.areas[key("Crimson Laboratories")]
+	floor.areas[key("Death Talon Overseer")] = floor.areas[key("Crimson Laboratories")]
+	floor.areas[key("Death Talon Flamescale")] = floor.areas[key("Crimson Laboratories")]
+	floor.areas[key("Death Talon Seether")] = floor.areas[key("Crimson Laboratories")]
+	floor.areas[key("Death Talon Wyrmkin")] = floor.areas[key("Crimson Laboratories")]
+	floor.areas[key("Death Talon Captain")] = floor.areas[key("Crimson Laboratories")]
+	floor.areas[key("Master Elemental Shaper Krixix")] = floor.areas[key("Crimson Laboratories")]
+	floor.areas[key("Flamegor")] = { mask = DIR .. "blackwing-lair-4-02", x = 212, y = 76, w = 309, h = 335 }
+	floor.count = floor.count + 1
+	floor.areas[key("Chromaggus")] = { mask = DIR .. "blackwing-lair-4-03", x = 337, y = 306, w = 288, h = 239 }
+	floor.count = floor.count + 1
+	floor.areas[key("Chromaggus' Lair")] = floor.areas[key("Chromaggus")]
+	floor.areas[key("Nefarian's Lair")] = { mask = DIR .. "blackwing-lair-4-04", x = 517, y = 320, w = 352, h = 334 }
+	floor.count = floor.count + 1
+	floor.areas[key("Nefarian")] = floor.areas[key("Nefarian's Lair")]
+	floor.areas[key("Lord Victor Nefarius")] = floor.areas[key("Nefarian's Lair")]
+	floor.areas[key("Nefarians Lair")] = floor.areas[key("Nefarian's Lair")]
+	floor.areas[key("Black Drakonid")] = floor.areas[key("Nefarian's Lair")]
+	floor.areas[key("Red Drakonid")] = floor.areas[key("Nefarian's Lair")]
+	floor.areas[key("Blue Drakonid")] = floor.areas[key("Nefarian's Lair")]
+	floor.areas[key("Green Drakonid")] = floor.areas[key("Nefarian's Lair")]
+	floor.areas[key("Bronze Drakonid")] = floor.areas[key("Nefarian's Lair")]
+	floor.areas[key("Chromatic Drakonid")] = floor.areas[key("Nefarian's Lair")]
+	floor.areas[key("Bone Construct")] = floor.areas[key("Nefarian's Lair")]
+	ns.Maps[469][4] = floor
+end
+-- deadmines
+ns.Maps[36] = {}
+do
+	local floor = { cols = 4, tiles = { 449591, 449595, 449596, 449597, 449598, 449599, 449600, 449601, 449602, 449592, 449593, 449594 }, areas = {}, count = 0 }
+	floor.decor = { mask = DIR .. "deadmines-1-decor", x = 328, y = 5, w = 655, h = 445 }
+	floor.start = { mask = DIR .. "deadmines-1-start", x = 207, y = 45, w = 240, h = 100 }
+	floor.areas[key("Defias Miner")] = { mask = DIR .. "deadmines-1-01", x = 163, y = 88, w = 252, h = 320 }
+	floor.count = floor.count + 1
+	floor.areas[key("Defias Overseer")] = floor.areas[key("Defias Miner")]
+	floor.areas[key("Defias Evoker")] = floor.areas[key("Defias Miner")]
+	floor.areas[key("Rhahk'Zor")] = { mask = DIR .. "deadmines-1-02", x = 265, y = 313, w = 187, h = 184 }
+	floor.count = floor.count + 1
+	floor.areas[key("Defias Watchman")] = { mask = DIR .. "deadmines-1-03", x = 378, y = 294, w = 211, h = 287 }
+	floor.count = floor.count + 1
+	floor.areas[key("Miner Johnson")] = floor.areas[key("Defias Watchman")]
+	floor.areas[key("Mast Room")] = { mask = DIR .. "deadmines-1-04", x = 312, y = 511, w = 253, h = 143 }
+	floor.count = floor.count + 1
+	floor.areas[key("Sneed's Shredder")] = floor.areas[key("Mast Room")]
+	floor.areas[key("Sneed")] = floor.areas[key("Mast Room")]
+	floor.areas[key("Goblin Woodcarver")] = floor.areas[key("Mast Room")]
+	floor.areas[key("Defias Taskmaster")] = floor.areas[key("Mast Room")]
+	floor.areas[key("Defias Wizard")] = floor.areas[key("Mast Room")]
+	floor.areas[key("Defias Strip Miner")] = floor.areas[key("Mast Room")]
+	floor.areas[key("Goblin Foundry")] = { mask = DIR .. "deadmines-1-05", x = 499, y = 317, w = 206, h = 335 }
+	floor.count = floor.count + 1
+	floor.areas[key("Gilnid")] = floor.areas[key("Goblin Foundry")]
+	floor.areas[key("Goblin Craftsman")] = floor.areas[key("Goblin Foundry")]
+	floor.areas[key("Goblin Engineer")] = floor.areas[key("Goblin Foundry")]
+	floor.areas[key("Remote-Controlled Golem")] = floor.areas[key("Goblin Foundry")]
+	ns.Maps[36][1] = floor
+end
+do
+	local floor = { cols = 4, tiles = { 449603, 449607, 449608, 449609, 449610, 449611, 449612, 449613, 449614, 449604, 449605, 449606 }, areas = {}, count = 0 }
+	floor.decor = { mask = DIR .. "deadmines-2-decor", x = 301, y = 5, w = 701, h = 663 }
+	floor.areas[key("Goblin Foundry")] = { mask = DIR .. "deadmines-2-01", x = 24, y = 334, w = 268, h = 310 }
+	floor.count = floor.count + 1
+	floor.areas[key("Gilnid")] = floor.areas[key("Goblin Foundry")]
+	floor.areas[key("Goblin Craftsman")] = floor.areas[key("Goblin Foundry")]
+	floor.areas[key("Goblin Engineer")] = floor.areas[key("Goblin Foundry")]
+	floor.areas[key("Remote-Controlled Golem")] = floor.areas[key("Goblin Foundry")]
+	floor.areas[key("Ironclad Cove")] = { mask = DIR .. "deadmines-2-02", x = 167, y = 5, w = 774, h = 663 }
+	floor.count = floor.count + 1
+	floor.areas[key("Defias Pirate")] = floor.areas[key("Ironclad Cove")]
+	floor.areas[key("Defias Squallshaper")] = floor.areas[key("Ironclad Cove")]
+	floor.areas[key("Defias Henchman")] = floor.areas[key("Ironclad Cove")]
+	floor.areas[key("Defias Companion")] = floor.areas[key("Ironclad Cove")]
+	floor.areas[key("Mr. Smite")] = { mask = DIR .. "deadmines-2-03", x = 473, y = 89, w = 129, h = 343 }
+	floor.count = floor.count + 1
+	floor.areas[key("Captain Greenskin")] = { mask = DIR .. "deadmines-2-04", x = 564, y = 5, w = 252, h = 439 }
+	floor.count = floor.count + 1
+	floor.areas[key("Cookie")] = floor.areas[key("Captain Greenskin")]
+	floor.areas[key("Edwin VanCleef")] = { mask = DIR .. "deadmines-2-05", x = 547, y = 179, w = 127, h = 184 }
+	floor.count = floor.count + 1
+	floor.areas[key("Defias Blackguard")] = floor.areas[key("Edwin VanCleef")]
+	ns.Maps[36][2] = floor
+end
 -- dire-maul
 ns.Maps[429] = {}
 do
@@ -394,7 +554,7 @@ do
 	floor.count = floor.count + 1
 	floor.areas[key("Guard Slip'kik")] = floor.areas[key("Halls of Destruction")]
 	floor.areas[key("Wandering Eye of Kilrogg")] = floor.areas[key("Halls of Destruction")]
-	floor.areas[key("Captain Kromcrush")] = { mask = DIR .. "dire-maul-1-04", x = 249, y = 277, w = 140, h = 173 }
+	floor.areas[key("Captain Kromcrush")] = { mask = DIR .. "dire-maul-1-04", x = 249, y = 277, w = 139, h = 173 }
 	floor.count = floor.count + 1
 	floor.areas[key("Gordok Captain")] = floor.areas[key("Captain Kromcrush")]
 	floor.areas[key("Gordok's Seat")] = { mask = DIR .. "dire-maul-1-05", x = 196, y = 10, w = 362, h = 336 }
@@ -431,11 +591,11 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 449532, 449536, 449537, 449538, 449539, 449540, 449541, 449542, 449543, 449533, 449534, 449535 }, areas = {}, count = 0 }
-	floor.decor = { mask = DIR .. "dire-maul-3-decor", x = 221, y = 0, w = 582, h = 99 }
-	floor.areas[key("Illyanna Ravenoak")] = { mask = DIR .. "dire-maul-3-01", x = 239, y = 155, w = 230, h = 319 }
+	floor.decor = { mask = DIR .. "dire-maul-3-decor", x = 221, y = 0, w = 583, h = 98 }
+	floor.areas[key("Illyanna Ravenoak")] = { mask = DIR .. "dire-maul-3-01", x = 239, y = 156, w = 230, h = 318 }
 	floor.count = floor.count + 1
 	floor.areas[key("Ferra")] = floor.areas[key("Illyanna Ravenoak")]
-	floor.areas[key("Court of the Highborne")] = { mask = DIR .. "dire-maul-3-02", x = 213, y = 25, w = 550, h = 615 }
+	floor.areas[key("Court of the Highborne")] = { mask = DIR .. "dire-maul-3-02", x = 213, y = 25, w = 549, h = 615 }
 	floor.count = floor.count + 1
 	floor.areas[key("Eldreth Apparition")] = floor.areas[key("Court of the Highborne")]
 	floor.areas[key("Eldreth Spectre")] = floor.areas[key("Court of the Highborne")]
@@ -450,14 +610,14 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 449544, 449548, 449549, 449550, 449551, 449552, 449553, 449554, 449555, 449545, 449546, 449547 }, areas = {}, count = 0 }
-	floor.decor = { mask = DIR .. "dire-maul-4-decor", x = 226, y = 12, w = 584, h = 656 }
-	floor.areas[key("Prison of Immol'thar")] = { mask = DIR .. "dire-maul-4-01", x = 83, y = 15, w = 558, h = 652 }
+	floor.decor = { mask = DIR .. "dire-maul-4-decor", x = 226, y = 32, w = 584, h = 636 }
+	floor.areas[key("Prison of Immol'thar")] = { mask = DIR .. "dire-maul-4-01", x = 83, y = 60, w = 558, h = 607 }
 	floor.count = floor.count + 1
 	floor.areas[key("Immol'thar")] = floor.areas[key("Prison of Immol'thar")]
 	floor.areas[key("Immolthar")] = floor.areas[key("Prison of Immol'thar")]
 	floor.areas[key("Eye of Immol'thar")] = floor.areas[key("Prison of Immol'thar")]
 	floor.areas[key("Arcane Aberration")] = floor.areas[key("Prison of Immol'thar")]
-	floor.areas[key("Athenaeum")] = { mask = DIR .. "dire-maul-4-02", x = 471, y = 12, w = 427, h = 282 }
+	floor.areas[key("Athenaeum")] = { mask = DIR .. "dire-maul-4-02", x = 498, y = 23, w = 400, h = 271 }
 	floor.count = floor.count + 1
 	floor.areas[key("Prince Tortheldrin")] = floor.areas[key("Athenaeum")]
 	floor.areas[key("Mana Remnant")] = { mask = DIR .. "dire-maul-4-03", x = 573, y = 177, w = 246, h = 327 }
@@ -468,9 +628,9 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 449556, 449560, 449561, 449562, 449563, 449564, 449565, 449566, 449567, 449557, 449558, 449559 }, areas = {}, count = 0 }
-	floor.decor = { mask = DIR .. "dire-maul-5-decor", x = 321, y = 12, w = 661, h = 648 }
+	floor.decor = { mask = DIR .. "dire-maul-5-decor", x = 321, y = 14, w = 661, h = 646 }
 	floor.start = { mask = DIR .. "dire-maul-5-start", x = 26, y = 184, w = 196, h = 444 }
-	floor.areas[key("Warpwood Quarter")] = { mask = DIR .. "dire-maul-5-01", x = 37, y = 15, w = 373, h = 613 }
+	floor.areas[key("Warpwood Quarter")] = { mask = DIR .. "dire-maul-5-01", x = 37, y = 85, w = 373, h = 543 }
 	floor.count = floor.count + 1
 	floor.areas[key("Pusillin")] = floor.areas[key("Warpwood Quarter")]
 	floor.areas[key("Warpwood Treant")] = floor.areas[key("Warpwood Quarter")]
@@ -479,7 +639,7 @@ do
 	floor.areas[key("Warpwood Crusher")] = floor.areas[key("Warpwood Quarter")]
 	floor.areas[key("Whip Lasher")] = floor.areas[key("Warpwood Quarter")]
 	floor.areas[key("Phase Lasher")] = floor.areas[key("Warpwood Quarter")]
-	floor.areas[key("Lethtendris")] = { mask = DIR .. "dire-maul-5-02", x = 314, y = 157, w = 249, h = 375 }
+	floor.areas[key("Lethtendris")] = { mask = DIR .. "dire-maul-5-02", x = 314, y = 157, w = 247, h = 375 }
 	floor.count = floor.count + 1
 	floor.areas[key("Pimgib")] = floor.areas[key("Lethtendris")]
 	floor.areas[key("Wildspawn Imp")] = floor.areas[key("Lethtendris")]
@@ -503,11 +663,11 @@ do
 	floor.areas[key("Fel Lash")] = floor.areas[key("Conservatory")]
 	floor.areas[key("Old Ironbark")] = floor.areas[key("Conservatory")]
 	floor.areas[key("Ironbark the Redeemed")] = floor.areas[key("Conservatory")]
-	floor.areas[key("Zevrim Thornhoof")] = { mask = DIR .. "dire-maul-6-02", x = 458, y = 275, w = 229, h = 386 }
+	floor.areas[key("Zevrim Thornhoof")] = { mask = DIR .. "dire-maul-6-02", x = 458, y = 278, w = 230, h = 383 }
 	floor.count = floor.count + 1
 	floor.areas[key("Hydrospawn")] = floor.areas[key("Zevrim Thornhoof")]
 	floor.areas[key("Massive Geyser")] = floor.areas[key("Zevrim Thornhoof")]
-	floor.areas[key("Shrine of Eldretharr")] = { mask = DIR .. "dire-maul-6-03", x = 273, y = 28, w = 589, h = 316 }
+	floor.areas[key("Shrine of Eldretharr")] = { mask = DIR .. "dire-maul-6-03", x = 273, y = 28, w = 589, h = 315 }
 	floor.count = floor.count + 1
 	floor.areas[key("Alzzin the Wildshaper")] = floor.areas[key("Shrine of Eldretharr")]
 	floor.areas[key("Alzzin's Minion")] = floor.areas[key("Shrine of Eldretharr")]
@@ -535,7 +695,7 @@ do
 	floor.areas[key("Caverndeep Invader")] = floor.areas[key("Grubbis")]
 	floor.areas[key("Caverndeep Pillager")] = floor.areas[key("Grubbis")]
 	floor.areas[key("Caverndeep Reaver")] = floor.areas[key("Grubbis")]
-	floor.areas[key("The Clean Zone")] = { mask = DIR .. "gnomeregan-1-04", x = 267, y = 354, w = 202, h = 175 }
+	floor.areas[key("The Clean Zone")] = { mask = DIR .. "gnomeregan-1-04", x = 267, y = 344, w = 202, h = 185 }
 	floor.count = floor.count + 1
 	floor.areas[key("Clean Zone")] = floor.areas[key("The Clean Zone")]
 	floor.areas[key("Clean Room")] = floor.areas[key("The Clean Zone")]
@@ -560,7 +720,7 @@ do
 	floor.areas[key("Irradiated Invader")] = floor.areas[key("Viscous Fallout")]
 	floor.areas[key("Irradiated Pillager")] = floor.areas[key("Viscous Fallout")]
 	floor.areas[key("Corrosive Lurker")] = floor.areas[key("Viscous Fallout")]
-	floor.areas[key("The Dormitory")] = { mask = DIR .. "gnomeregan-2-02", x = 567, y = 343, w = 326, h = 237 }
+	floor.areas[key("The Dormitory")] = { mask = DIR .. "gnomeregan-2-02", x = 567, y = 342, w = 326, h = 238 }
 	floor.count = floor.count + 1
 	floor.areas[key("Dormitory")] = floor.areas[key("The Dormitory")]
 	floor.areas[key("Leprous Technician")] = floor.areas[key("The Dormitory")]
@@ -574,7 +734,7 @@ do
 	floor.areas[key("Mechanized Sentry")] = floor.areas[key("Mobile Alert System")]
 	floor.areas[key("Leprous Assistant")] = floor.areas[key("Mobile Alert System")]
 	floor.areas[key("Leprous Machinesmith")] = floor.areas[key("Mobile Alert System")]
-	floor.areas[key("Launch Bay")] = { mask = DIR .. "gnomeregan-2-04", x = 73, y = 281, w = 419, h = 353 }
+	floor.areas[key("Launch Bay")] = { mask = DIR .. "gnomeregan-2-04", x = 73, y = 281, w = 420, h = 353 }
 	floor.count = floor.count + 1
 	floor.areas[key("Mechanized Guardian")] = floor.areas[key("Launch Bay")]
 	floor.areas[key("Mechano-Tank")] = floor.areas[key("Launch Bay")]
@@ -586,21 +746,21 @@ end
 do
 	local floor = { cols = 4, tiles = { 449640, 449644, 449645, 449646, 449647, 449648, 449649, 449650, 449651, 449641, 449642, 449643 }, areas = {}, count = 0 }
 	floor.decor = { mask = DIR .. "gnomeregan-3-decor", x = 296, y = 5, w = 422, h = 397 }
-	floor.areas[key("Launch Bay")] = { mask = DIR .. "gnomeregan-3-01", x = 156, y = 40, w = 267, h = 344 }
+	floor.areas[key("Launch Bay")] = { mask = DIR .. "gnomeregan-3-01", x = 156, y = 58, w = 267, h = 327 }
 	floor.count = floor.count + 1
 	floor.areas[key("Mechanized Guardian")] = floor.areas[key("Launch Bay")]
-	floor.areas[key("Mechano-Flamewalker")] = { mask = DIR .. "gnomeregan-3-02", x = 258, y = 229, w = 306, h = 236 }
+	floor.areas[key("Mechano-Flamewalker")] = { mask = DIR .. "gnomeregan-3-02", x = 258, y = 229, w = 298, h = 236 }
 	floor.count = floor.count + 1
 	floor.areas[key("Mechano-Frostwalker")] = floor.areas[key("Mechano-Flamewalker")]
 	floor.areas[key("Arcane Nullifier X-21")] = floor.areas[key("Mechano-Flamewalker")]
-	floor.areas[key("Engineering Labs")] = { mask = DIR .. "gnomeregan-3-03", x = 326, y = 354, w = 255, h = 275 }
+	floor.areas[key("Engineering Labs")] = { mask = DIR .. "gnomeregan-3-03", x = 326, y = 358, w = 255, h = 271 }
 	floor.count = floor.count + 1
 	floor.areas[key("Mechano-Tank")] = floor.areas[key("Engineering Labs")]
 	floor.areas[key("Peacekeeper Security Suit")] = floor.areas[key("Engineering Labs")]
 	floor.areas[key("Crowd Pummeler 9-60")] = { mask = DIR .. "gnomeregan-3-04", x = 386, y = 531, w = 112, h = 99 }
 	floor.count = floor.count + 1
 	floor.areas[key("Crowd Pummeler")] = floor.areas[key("Crowd Pummeler 9-60")]
-	floor.areas[key("Dark Iron Ambassador")] = { mask = DIR .. "gnomeregan-3-05", x = 501, y = 282, w = 403, h = 242 }
+	floor.areas[key("Dark Iron Ambassador")] = { mask = DIR .. "gnomeregan-3-05", x = 512, y = 287, w = 392, h = 237 }
 	floor.count = floor.count + 1
 	floor.areas[key("Leprous Machinesmith")] = floor.areas[key("Dark Iron Ambassador")]
 	floor.areas[key("Mobile Alert System")] = floor.areas[key("Dark Iron Ambassador")]
@@ -609,15 +769,15 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 449652, 449656, 449657, 449658, 449659, 449660, 449661, 449662, 449663, 449653, 449654, 449655 }, areas = {}, count = 0 }
-	floor.decor = { mask = DIR .. "gnomeregan-4-decor", x = 296, y = 5, w = 677, h = 454 }
-	floor.areas[key("Tinkers' Court")] = { mask = DIR .. "gnomeregan-4-01", x = 190, y = 7, w = 250, h = 347 }
+	floor.decor = { mask = DIR .. "gnomeregan-4-decor", x = 296, y = 5, w = 677, h = 444 }
+	floor.areas[key("Tinkers' Court")] = { mask = DIR .. "gnomeregan-4-01", x = 189, y = 7, w = 251, h = 348 }
 	floor.count = floor.count + 1
 	floor.areas[key("Mekgineer Thermaplugg")] = floor.areas[key("Tinkers' Court")]
 	floor.areas[key("Tinker's Court")] = floor.areas[key("Tinkers' Court")]
 	floor.areas[key("Walking Bomb")] = floor.areas[key("Tinkers' Court")]
 	floor.areas[key("Dark Iron Agent")] = { mask = DIR .. "gnomeregan-4-02", x = 221, y = 266, w = 417, h = 334 }
 	floor.count = floor.count + 1
-	floor.areas[key("Engineering Labs")] = { mask = DIR .. "gnomeregan-4-03", x = 559, y = 400, w = 258, h = 242 }
+	floor.areas[key("Engineering Labs")] = { mask = DIR .. "gnomeregan-4-03", x = 564, y = 400, w = 253, h = 242 }
 	floor.count = floor.count + 1
 	floor.areas[key("Mechano-Tank")] = floor.areas[key("Engineering Labs")]
 	floor.areas[key("Mechano-Flamewalker")] = floor.areas[key("Engineering Labs")]
@@ -690,7 +850,7 @@ do
 	floor.areas[key("Theradrim Guardian")] = { mask = DIR .. "maraudon-2-04", x = 74, y = 135, w = 175, h = 257 }
 	floor.count = floor.count + 1
 	floor.areas[key("Theradrim Shardling")] = floor.areas[key("Theradrim Guardian")]
-	floor.areas[key("Primordial Behemoth")] = { mask = DIR .. "maraudon-2-05", x = 323, y = 266, w = 274, h = 259 }
+	floor.areas[key("Primordial Behemoth")] = { mask = DIR .. "maraudon-2-05", x = 323, y = 224, w = 291, h = 301 }
 	floor.count = floor.count + 1
 	floor.areas[key("Rock Worm")] = floor.areas[key("Primordial Behemoth")]
 	floor.areas[key("Rock Borer")] = floor.areas[key("Primordial Behemoth")]
@@ -704,18 +864,347 @@ do
 	floor.areas[key("Zaetar's Spirit")] = floor.areas[key("Zaetar's Grave")]
 	ns.Maps[349][2] = floor
 end
+-- molten-core
+ns.Maps[409] = {}
+do
+	local floor = { cols = 4, tiles = { 448058, 448062, 448063, 448064, 448065, 448066, 448067, 448068, 448069, 448059, 448060, 448061 }, areas = {}, count = 0 }
+	floor.decor = { mask = DIR .. "molten-core-1-decor", x = 25, y = 21, w = 977, h = 617 }
+	floor.start = { mask = DIR .. "molten-core-1-start", x = 88, y = 2, w = 289, h = 217 }
+	floor.areas[key("Molten Giant")] = { mask = DIR .. "molten-core-1-01", x = 299, y = 0, w = 342, h = 273 }
+	floor.count = floor.count + 1
+	floor.areas[key("Molten Destroyer")] = floor.areas[key("Molten Giant")]
+	floor.areas[key("Magmadar Cavern")] = { mask = DIR .. "molten-core-1-02", x = 466, y = 20, w = 396, h = 321 }
+	floor.count = floor.count + 1
+	floor.areas[key("Lucifron")] = floor.areas[key("Magmadar Cavern")]
+	floor.areas[key("Magmadar")] = floor.areas[key("Magmadar Cavern")]
+	floor.areas[key("Flamewaker Protector")] = floor.areas[key("Magmadar Cavern")]
+	floor.areas[key("Core Hound")] = floor.areas[key("Magmadar Cavern")]
+	floor.areas[key("Ancient Core Hound")] = floor.areas[key("Magmadar Cavern")]
+	floor.areas[key("Gehennas")] = { mask = DIR .. "molten-core-1-03", x = 284, y = 210, w = 182, h = 210 }
+	floor.count = floor.count + 1
+	floor.areas[key("Flamewaker")] = floor.areas[key("Gehennas")]
+	floor.areas[key("Garr")] = { mask = DIR .. "molten-core-1-04", x = 234, y = 358, w = 233, h = 193 }
+	floor.count = floor.count + 1
+	floor.areas[key("Firesworn")] = floor.areas[key("Garr")]
+	floor.areas[key("Lava Surger")] = floor.areas[key("Garr")]
+	floor.areas[key("Shazzrah")] = { mask = DIR .. "molten-core-1-05", x = 317, y = 414, w = 327, h = 253 }
+	floor.count = floor.count + 1
+	floor.areas[key("Majordomo Executus")] = floor.areas[key("Shazzrah")]
+	floor.areas[key("Flamewaker Healer")] = floor.areas[key("Shazzrah")]
+	floor.areas[key("Flamewaker Elite")] = floor.areas[key("Shazzrah")]
+	floor.areas[key("Baron Geddon")] = { mask = DIR .. "molten-core-1-06", x = 565, y = 268, w = 256, h = 279 }
+	floor.count = floor.count + 1
+	floor.areas[key("Golemagg the Incinerator")] = { mask = DIR .. "molten-core-1-07", x = 735, y = 332, w = 181, h = 199 }
+	floor.count = floor.count + 1
+	floor.areas[key("Core Rager")] = floor.areas[key("Golemagg the Incinerator")]
+	floor.areas[key("Golemagg")] = floor.areas[key("Golemagg the Incinerator")]
+	floor.areas[key("Sulfuron Harbinger")] = { mask = DIR .. "molten-core-1-08", x = 603, y = 470, w = 277, h = 174 }
+	floor.count = floor.count + 1
+	floor.areas[key("Flamewaker Priest")] = floor.areas[key("Sulfuron Harbinger")]
+	floor.areas[key("Sulfuron")] = floor.areas[key("Sulfuron Harbinger")]
+	floor.areas[key("Ragnaros' Lair")] = { mask = DIR .. "molten-core-1-09", x = 385, y = 187, w = 283, h = 307 }
+	floor.count = floor.count + 1
+	floor.areas[key("Ragnaros")] = floor.areas[key("Ragnaros' Lair")]
+	floor.areas[key("Ragnaros Lair")] = floor.areas[key("Ragnaros' Lair")]
+	floor.areas[key("Son of Flame")] = floor.areas[key("Ragnaros' Lair")]
+	ns.Maps[409][1] = floor
+end
+-- naxxramas
+ns.Maps[533] = {}
+do
+	local floor = { cols = 4, tiles = { 252466, 252470, 252471, 252472, 252473, 252474, 252475, 252476, 252477, 252467, 252468, 252469 }, areas = {}, count = 0 }
+	floor.decor = { mask = DIR .. "naxxramas-1-decor", x = 0, y = 0, w = 1002, h = 668 }
+	floor.areas[key("The Construct Quarter")] = { mask = DIR .. "naxxramas-1-01", x = 337, y = 333, w = 583, h = 335 }
+	floor.count = floor.count + 1
+	floor.areas[key("Construct Quarter")] = floor.areas[key("The Construct Quarter")]
+	floor.areas[key("Patchwork Golem")] = floor.areas[key("The Construct Quarter")]
+	floor.areas[key("Bile Retcher")] = floor.areas[key("The Construct Quarter")]
+	floor.areas[key("Sludge Belcher")] = floor.areas[key("The Construct Quarter")]
+	floor.areas[key("Embalming Slime")] = floor.areas[key("The Construct Quarter")]
+	floor.areas[key("Patchwerk")] = { mask = DIR .. "naxxramas-1-02", x = 393, y = 173, w = 204, h = 335 }
+	floor.count = floor.count + 1
+	floor.areas[key("Living Monstrosity")] = floor.areas[key("Patchwerk")]
+	floor.areas[key("Mad Scientist")] = floor.areas[key("Patchwerk")]
+	floor.areas[key("Surgical Assistant")] = floor.areas[key("Patchwerk")]
+	floor.areas[key("Grobbulus")] = { mask = DIR .. "naxxramas-1-03", x = 533, y = 169, w = 194, h = 264 }
+	floor.count = floor.count + 1
+	floor.areas[key("Stitched Spewer")] = floor.areas[key("Grobbulus")]
+	floor.areas[key("Fallout Slime")] = floor.areas[key("Grobbulus")]
+	floor.areas[key("Grobbulus Cloud")] = floor.areas[key("Grobbulus")]
+	floor.areas[key("Gluth")] = { mask = DIR .. "naxxramas-1-04", x = 359, y = 184, w = 177, h = 204 }
+	floor.count = floor.count + 1
+	floor.areas[key("Toxic Tunnel")] = floor.areas[key("Gluth")]
+	floor.areas[key("Zombie Chow")] = floor.areas[key("Gluth")]
+	floor.areas[key("Thaddius")] = { mask = DIR .. "naxxramas-1-05", x = 62, y = 0, w = 810, h = 668 }
+	floor.count = floor.count + 1
+	floor.areas[key("Stalagg")] = floor.areas[key("Thaddius")]
+	floor.areas[key("Feugen")] = floor.areas[key("Thaddius")]
+	floor.areas[key("The Halls of Reanimation")] = floor.areas[key("Thaddius")]
+	floor.areas[key("Halls of Reanimation")] = floor.areas[key("Thaddius")]
+	ns.Maps[533][1] = floor
+end
+do
+	local floor = { cols = 4, tiles = { 252478, 252482, 252483, 252484, 252485, 252486, 252487, 252488, 252489, 252479, 252480, 252481 }, areas = {}, count = 0 }
+	floor.decor = { mask = DIR .. "naxxramas-2-decor", x = 0, y = 0, w = 1002, h = 668 }
+	floor.areas[key("The Arachnid Quarter")] = { mask = DIR .. "naxxramas-2-01", x = 127, y = 301, w = 369, h = 367 }
+	floor.count = floor.count + 1
+	floor.areas[key("Arachnid Quarter")] = floor.areas[key("The Arachnid Quarter")]
+	floor.areas[key("Carrion Spinner")] = floor.areas[key("The Arachnid Quarter")]
+	floor.areas[key("Dread Creeper")] = floor.areas[key("The Arachnid Quarter")]
+	floor.areas[key("Venom Stalker")] = floor.areas[key("The Arachnid Quarter")]
+	floor.areas[key("Poisonous Skitterer")] = floor.areas[key("The Arachnid Quarter")]
+	floor.areas[key("Anub'Rekhan")] = { mask = DIR .. "naxxramas-2-02", x = 224, y = 185, w = 171, h = 232 }
+	floor.count = floor.count + 1
+	floor.areas[key("Crypt Guard")] = floor.areas[key("Anub'Rekhan")]
+	floor.areas[key("Anub'Rekhan's Lair")] = floor.areas[key("Anub'Rekhan")]
+	floor.areas[key("Grand Widow Faerlina")] = { mask = DIR .. "naxxramas-2-03", x = 351, y = 157, w = 310, h = 427 }
+	floor.count = floor.count + 1
+	floor.areas[key("Naxxramas Cultist")] = floor.areas[key("Grand Widow Faerlina")]
+	floor.areas[key("Naxxramas Acolyte")] = floor.areas[key("Grand Widow Faerlina")]
+	floor.areas[key("Naxxramas Worshipper")] = floor.areas[key("Grand Widow Faerlina")]
+	floor.areas[key("Naxxramas Follower")] = floor.areas[key("Grand Widow Faerlina")]
+	floor.areas[key("Necro Stalker")] = floor.areas[key("Grand Widow Faerlina")]
+	floor.areas[key("Tomb Horror")] = floor.areas[key("Grand Widow Faerlina")]
+	floor.areas[key("Maexxna")] = { mask = DIR .. "naxxramas-2-04", x = 34, y = 0, w = 898, h = 668 }
+	floor.count = floor.count + 1
+	floor.areas[key("Maexxna's Nest")] = floor.areas[key("Maexxna")]
+	floor.areas[key("Maexxna Spiderling")] = floor.areas[key("Maexxna")]
+	floor.areas[key("Crypt Reaver")] = floor.areas[key("Maexxna")]
+	floor.areas[key("Infectious Skitterer")] = floor.areas[key("Maexxna")]
+	ns.Maps[533][2] = floor
+end
+do
+	local floor = { cols = 4, tiles = { 252490, 252494, 252495, 252496, 252497, 252498, 252499, 252500, 252501, 252491, 252492, 252493 }, areas = {}, count = 0 }
+	floor.decor = { mask = DIR .. "naxxramas-3-decor", x = 0, y = 0, w = 1002, h = 668 }
+	floor.areas[key("The Military Quarter")] = { mask = DIR .. "naxxramas-3-01", x = 438, y = 0, w = 415, h = 282 }
+	floor.count = floor.count + 1
+	floor.areas[key("Military Quarter")] = floor.areas[key("The Military Quarter")]
+	floor.areas[key("Deathknight")] = floor.areas[key("The Military Quarter")]
+	floor.areas[key("Deathknight Captain")] = floor.areas[key("The Military Quarter")]
+	floor.areas[key("Risen Deathknight")] = floor.areas[key("The Military Quarter")]
+	floor.areas[key("Dark Touched Warrior")] = floor.areas[key("The Military Quarter")]
+	floor.areas[key("Death Touched Warrior")] = floor.areas[key("The Military Quarter")]
+	floor.areas[key("Doom Touched Warrior")] = floor.areas[key("The Military Quarter")]
+	floor.areas[key("Instructor Razuvious")] = { mask = DIR .. "naxxramas-3-02", x = 348, y = 156, w = 138, h = 262 }
+	floor.count = floor.count + 1
+	floor.areas[key("Deathknight Understudy")] = floor.areas[key("Instructor Razuvious")]
+	floor.areas[key("Gothik the Harvester")] = { mask = DIR .. "naxxramas-3-03", x = 434, y = 208, w = 300, h = 254 }
+	floor.count = floor.count + 1
+	floor.areas[key("Shade of Naxxramas")] = floor.areas[key("Gothik the Harvester")]
+	floor.areas[key("Necro Knight")] = floor.areas[key("Gothik the Harvester")]
+	floor.areas[key("Skeletal Smith")] = floor.areas[key("Gothik the Harvester")]
+	floor.areas[key("Bony Construct")] = floor.areas[key("Gothik the Harvester")]
+	floor.areas[key("Unrelenting Trainee")] = floor.areas[key("Gothik the Harvester")]
+	floor.areas[key("Unrelenting Deathknight")] = floor.areas[key("Gothik the Harvester")]
+	floor.areas[key("Unrelenting Rider")] = floor.areas[key("Gothik the Harvester")]
+	floor.areas[key("Spectral Trainee")] = floor.areas[key("Gothik the Harvester")]
+	floor.areas[key("Spectral Deathknight")] = floor.areas[key("Gothik the Harvester")]
+	floor.areas[key("Spectral Rider")] = floor.areas[key("Gothik the Harvester")]
+	floor.areas[key("Spectral Horse")] = floor.areas[key("Gothik the Harvester")]
+	floor.areas[key("The Four Horsemen")] = { mask = DIR .. "naxxramas-3-04", x = 132, y = 0, w = 791, h = 668 }
+	floor.count = floor.count + 1
+	floor.areas[key("Four Horsemen")] = floor.areas[key("The Four Horsemen")]
+	floor.areas[key("Highlord Mograine")] = floor.areas[key("The Four Horsemen")]
+	floor.areas[key("Thane Korth'azz")] = floor.areas[key("The Four Horsemen")]
+	floor.areas[key("Lady Blaumeux")] = floor.areas[key("The Four Horsemen")]
+	floor.areas[key("Sir Zeliek")] = floor.areas[key("The Four Horsemen")]
+	floor.areas[key("The Horsemen's Assembly")] = floor.areas[key("The Four Horsemen")]
+	floor.areas[key("Deathknight Cavalier")] = floor.areas[key("The Four Horsemen")]
+	floor.areas[key("Death Lord")] = floor.areas[key("The Four Horsemen")]
+	ns.Maps[533][3] = floor
+end
+do
+	local floor = { cols = 4, tiles = { 252502, 252506, 252507, 252508, 252509, 252510, 252511, 252512, 252513, 252503, 252504, 252505 }, areas = {}, count = 0 }
+	floor.decor = { mask = DIR .. "naxxramas-4-decor", x = 0, y = 0, w = 1002, h = 668 }
+	floor.areas[key("The Plague Quarter")] = { mask = DIR .. "naxxramas-4-01", x = 160, y = 0, w = 275, h = 364 }
+	floor.count = floor.count + 1
+	floor.areas[key("Plague Quarter")] = floor.areas[key("The Plague Quarter")]
+	floor.areas[key("Infectious Ghoul")] = floor.areas[key("The Plague Quarter")]
+	floor.areas[key("Stoneskin Gargoyle")] = floor.areas[key("The Plague Quarter")]
+	floor.areas[key("Plague Slime")] = floor.areas[key("The Plague Quarter")]
+	floor.areas[key("Noth the Plaguebringer")] = { mask = DIR .. "naxxramas-4-02", x = 273, y = 298, w = 163, h = 169 }
+	floor.count = floor.count + 1
+	floor.areas[key("Plagued Warrior")] = floor.areas[key("Noth the Plaguebringer")]
+	floor.areas[key("Plagued Champion")] = floor.areas[key("Noth the Plaguebringer")]
+	floor.areas[key("Plagued Guardian")] = floor.areas[key("Noth the Plaguebringer")]
+	floor.areas[key("Heigan the Unclean")] = { mask = DIR .. "naxxramas-4-03", x = 358, y = 49, w = 203, h = 397 }
+	floor.count = floor.count + 1
+	floor.areas[key("Mutated Grub")] = floor.areas[key("Heigan the Unclean")]
+	floor.areas[key("Plague Beast")] = floor.areas[key("Heigan the Unclean")]
+	floor.areas[key("Plagued Bat")] = floor.areas[key("Heigan the Unclean")]
+	floor.areas[key("Frenzied Bat")] = floor.areas[key("Heigan the Unclean")]
+	floor.areas[key("Loatheb")] = { mask = DIR .. "naxxramas-4-04", x = 122, y = 0, w = 723, h = 653 }
+	floor.count = floor.count + 1
+	floor.areas[key("Eye Stalk")] = floor.areas[key("Loatheb")]
+	floor.areas[key("Rotting Maggot")] = floor.areas[key("Loatheb")]
+	floor.areas[key("Diseased Maggot")] = floor.areas[key("Loatheb")]
+	floor.areas[key("Spore")] = floor.areas[key("Loatheb")]
+	floor.areas[key("The Necrotic Vault")] = floor.areas[key("Loatheb")]
+	floor.areas[key("Necrotic Vault")] = floor.areas[key("Loatheb")]
+	ns.Maps[533][4] = floor
+end
+do
+	local floor = { cols = 4, tiles = { 252514, 252518, 252519, 252520, 252521, 252522, 252523, 252524, 252525, 252515, 252516, 252517 }, areas = {}, count = 0 }
+	floor.decor = { mask = DIR .. "naxxramas-5-decor", x = 0, y = 0, w = 1002, h = 668 }
+	floor.start = { mask = DIR .. "naxxramas-5-start", x = 439, y = 242, w = 182, h = 181 }
+	floor.areas[key("The Construct Quarter")] = { mask = DIR .. "naxxramas-5-01", x = 15, y = 27, w = 519, h = 356 }
+	floor.count = floor.count + 1
+	floor.areas[key("Construct Quarter")] = floor.areas[key("The Construct Quarter")]
+	floor.areas[key("Patchwork Golem")] = floor.areas[key("The Construct Quarter")]
+	floor.areas[key("Bile Retcher")] = floor.areas[key("The Construct Quarter")]
+	floor.areas[key("Sludge Belcher")] = floor.areas[key("The Construct Quarter")]
+	floor.areas[key("Embalming Slime")] = floor.areas[key("The Construct Quarter")]
+	floor.areas[key("Patchwerk")] = { mask = DIR .. "naxxramas-5-02", x = 331, y = 109, w = 148, h = 169 }
+	floor.count = floor.count + 1
+	floor.areas[key("Living Monstrosity")] = floor.areas[key("Patchwerk")]
+	floor.areas[key("Mad Scientist")] = floor.areas[key("Patchwerk")]
+	floor.areas[key("Surgical Assistant")] = floor.areas[key("Patchwerk")]
+	floor.areas[key("Grobbulus")] = { mask = DIR .. "naxxramas-5-03", x = 431, y = 129, w = 126, h = 151 }
+	floor.count = floor.count + 1
+	floor.areas[key("Stitched Spewer")] = floor.areas[key("Grobbulus")]
+	floor.areas[key("Fallout Slime")] = floor.areas[key("Grobbulus")]
+	floor.areas[key("Grobbulus Cloud")] = floor.areas[key("Grobbulus")]
+	floor.areas[key("Gluth")] = { mask = DIR .. "naxxramas-5-04", x = 331, y = 125, w = 99, h = 122 }
+	floor.count = floor.count + 1
+	floor.areas[key("Toxic Tunnel")] = floor.areas[key("Gluth")]
+	floor.areas[key("Zombie Chow")] = floor.areas[key("Gluth")]
+	floor.areas[key("Thaddius")] = { mask = DIR .. "naxxramas-5-05", x = 147, y = 0, w = 300, h = 348 }
+	floor.count = floor.count + 1
+	floor.areas[key("Stalagg")] = floor.areas[key("Thaddius")]
+	floor.areas[key("Feugen")] = floor.areas[key("Thaddius")]
+	floor.areas[key("The Halls of Reanimation")] = floor.areas[key("Thaddius")]
+	floor.areas[key("Halls of Reanimation")] = floor.areas[key("Thaddius")]
+	floor.areas[key("The Arachnid Quarter")] = { mask = DIR .. "naxxramas-5-06", x = 520, y = 96, w = 482, h = 240 }
+	floor.count = floor.count + 1
+	floor.areas[key("Arachnid Quarter")] = floor.areas[key("The Arachnid Quarter")]
+	floor.areas[key("Carrion Spinner")] = floor.areas[key("The Arachnid Quarter")]
+	floor.areas[key("Dread Creeper")] = floor.areas[key("The Arachnid Quarter")]
+	floor.areas[key("Venom Stalker")] = floor.areas[key("The Arachnid Quarter")]
+	floor.areas[key("Poisonous Skitterer")] = floor.areas[key("The Arachnid Quarter")]
+	floor.areas[key("Anub'Rekhan")] = { mask = DIR .. "naxxramas-5-07", x = 498, y = 122, w = 119, h = 140 }
+	floor.count = floor.count + 1
+	floor.areas[key("Crypt Guard")] = floor.areas[key("Anub'Rekhan")]
+	floor.areas[key("Anub'Rekhan's Lair")] = floor.areas[key("Anub'Rekhan")]
+	floor.areas[key("Grand Widow Faerlina")] = { mask = DIR .. "naxxramas-5-08", x = 565, y = 89, w = 214, h = 229 }
+	floor.count = floor.count + 1
+	floor.areas[key("Naxxramas Cultist")] = floor.areas[key("Grand Widow Faerlina")]
+	floor.areas[key("Naxxramas Acolyte")] = floor.areas[key("Grand Widow Faerlina")]
+	floor.areas[key("Naxxramas Worshipper")] = floor.areas[key("Grand Widow Faerlina")]
+	floor.areas[key("Naxxramas Follower")] = floor.areas[key("Grand Widow Faerlina")]
+	floor.areas[key("Necro Stalker")] = floor.areas[key("Grand Widow Faerlina")]
+	floor.areas[key("Tomb Horror")] = floor.areas[key("Grand Widow Faerlina")]
+	floor.areas[key("Maexxna")] = { mask = DIR .. "naxxramas-5-09", x = 415, y = 0, w = 486, h = 347 }
+	floor.count = floor.count + 1
+	floor.areas[key("Maexxna's Nest")] = floor.areas[key("Maexxna")]
+	floor.areas[key("Maexxna Spiderling")] = floor.areas[key("Maexxna")]
+	floor.areas[key("Crypt Reaver")] = floor.areas[key("Maexxna")]
+	floor.areas[key("Infectious Skitterer")] = floor.areas[key("Maexxna")]
+	floor.areas[key("The Military Quarter")] = { mask = DIR .. "naxxramas-5-10", x = 108, y = 315, w = 424, h = 353 }
+	floor.count = floor.count + 1
+	floor.areas[key("Military Quarter")] = floor.areas[key("The Military Quarter")]
+	floor.areas[key("Deathknight")] = floor.areas[key("The Military Quarter")]
+	floor.areas[key("Deathknight Captain")] = floor.areas[key("The Military Quarter")]
+	floor.areas[key("Risen Deathknight")] = floor.areas[key("The Military Quarter")]
+	floor.areas[key("Dark Touched Warrior")] = floor.areas[key("The Military Quarter")]
+	floor.areas[key("Death Touched Warrior")] = floor.areas[key("The Military Quarter")]
+	floor.areas[key("Doom Touched Warrior")] = floor.areas[key("The Military Quarter")]
+	floor.areas[key("Instructor Razuvious")] = { mask = DIR .. "naxxramas-5-11", x = 302, y = 378, w = 116, h = 141 }
+	floor.count = floor.count + 1
+	floor.areas[key("Deathknight Understudy")] = floor.areas[key("Instructor Razuvious")]
+	floor.areas[key("Gothik the Harvester")] = { mask = DIR .. "naxxramas-5-12", x = 380, y = 394, w = 175, h = 152 }
+	floor.count = floor.count + 1
+	floor.areas[key("Shade of Naxxramas")] = floor.areas[key("Gothik the Harvester")]
+	floor.areas[key("Necro Knight")] = floor.areas[key("Gothik the Harvester")]
+	floor.areas[key("Skeletal Smith")] = floor.areas[key("Gothik the Harvester")]
+	floor.areas[key("Bony Construct")] = floor.areas[key("Gothik the Harvester")]
+	floor.areas[key("Unrelenting Trainee")] = floor.areas[key("Gothik the Harvester")]
+	floor.areas[key("Unrelenting Deathknight")] = floor.areas[key("Gothik the Harvester")]
+	floor.areas[key("Unrelenting Rider")] = floor.areas[key("Gothik the Harvester")]
+	floor.areas[key("Spectral Trainee")] = floor.areas[key("Gothik the Harvester")]
+	floor.areas[key("Spectral Deathknight")] = floor.areas[key("Gothik the Harvester")]
+	floor.areas[key("Spectral Rider")] = floor.areas[key("Gothik the Harvester")]
+	floor.areas[key("Spectral Horse")] = floor.areas[key("Gothik the Harvester")]
+	floor.areas[key("The Four Horsemen")] = { mask = DIR .. "naxxramas-5-13", x = 146, y = 314, w = 402, h = 354 }
+	floor.count = floor.count + 1
+	floor.areas[key("Four Horsemen")] = floor.areas[key("The Four Horsemen")]
+	floor.areas[key("Highlord Mograine")] = floor.areas[key("The Four Horsemen")]
+	floor.areas[key("Thane Korth'azz")] = floor.areas[key("The Four Horsemen")]
+	floor.areas[key("Lady Blaumeux")] = floor.areas[key("The Four Horsemen")]
+	floor.areas[key("Sir Zeliek")] = floor.areas[key("The Four Horsemen")]
+	floor.areas[key("The Horsemen's Assembly")] = floor.areas[key("The Four Horsemen")]
+	floor.areas[key("Deathknight Cavalier")] = floor.areas[key("The Four Horsemen")]
+	floor.areas[key("Death Lord")] = floor.areas[key("The Four Horsemen")]
+	floor.areas[key("The Plague Quarter")] = { mask = DIR .. "naxxramas-5-14", x = 496, y = 339, w = 479, h = 329 }
+	floor.count = floor.count + 1
+	floor.areas[key("Plague Quarter")] = floor.areas[key("The Plague Quarter")]
+	floor.areas[key("Infectious Ghoul")] = floor.areas[key("The Plague Quarter")]
+	floor.areas[key("Stoneskin Gargoyle")] = floor.areas[key("The Plague Quarter")]
+	floor.areas[key("Plague Slime")] = floor.areas[key("The Plague Quarter")]
+	floor.areas[key("Noth the Plaguebringer")] = { mask = DIR .. "naxxramas-5-15", x = 519, y = 443, w = 136, h = 99 }
+	floor.count = floor.count + 1
+	floor.areas[key("Plagued Warrior")] = floor.areas[key("Noth the Plaguebringer")]
+	floor.areas[key("Plagued Champion")] = floor.areas[key("Noth the Plaguebringer")]
+	floor.areas[key("Plagued Guardian")] = floor.areas[key("Noth the Plaguebringer")]
+	floor.areas[key("Heigan the Unclean")] = { mask = DIR .. "naxxramas-5-16", x = 577, y = 348, w = 137, h = 178 }
+	floor.count = floor.count + 1
+	floor.areas[key("Mutated Grub")] = floor.areas[key("Heigan the Unclean")]
+	floor.areas[key("Plague Beast")] = floor.areas[key("Heigan the Unclean")]
+	floor.areas[key("Plagued Bat")] = floor.areas[key("Heigan the Unclean")]
+	floor.areas[key("Frenzied Bat")] = floor.areas[key("Heigan the Unclean")]
+	floor.areas[key("Loatheb")] = { mask = DIR .. "naxxramas-5-17", x = 509, y = 300, w = 370, h = 368 }
+	floor.count = floor.count + 1
+	floor.areas[key("Eye Stalk")] = floor.areas[key("Loatheb")]
+	floor.areas[key("Rotting Maggot")] = floor.areas[key("Loatheb")]
+	floor.areas[key("Diseased Maggot")] = floor.areas[key("Loatheb")]
+	floor.areas[key("Spore")] = floor.areas[key("Loatheb")]
+	floor.areas[key("The Necrotic Vault")] = floor.areas[key("Loatheb")]
+	floor.areas[key("Necrotic Vault")] = floor.areas[key("Loatheb")]
+	ns.Maps[533][5] = floor
+end
+do
+	local floor = { cols = 4, tiles = { 255178, 255182, 255183, 255184, 255185, 255186, 255187, 255188, 255189, 255179, 255180, 255181 }, areas = {}, count = 0 }
+	floor.decor = { mask = DIR .. "naxxramas-6-decor", x = 0, y = 0, w = 1002, h = 668 }
+	floor.areas[key("Sapphiron")] = { mask = DIR .. "naxxramas-6-01", x = 306, y = 161, w = 523, h = 507 }
+	floor.count = floor.count + 1
+	floor.areas[key("Sapphiron's Lair")] = floor.areas[key("Sapphiron")]
+	floor.areas[key("Frostwyrm Lair")] = floor.areas[key("Sapphiron")]
+	floor.areas[key("Kel'Thuzad")] = { mask = DIR .. "naxxramas-6-02", x = 152, y = 0, w = 494, h = 399 }
+	floor.count = floor.count + 1
+	floor.areas[key("Kel'Thuzad's Chamber")] = floor.areas[key("Kel'Thuzad")]
+	floor.areas[key("Soldier of the Frozen Wastes")] = floor.areas[key("Kel'Thuzad")]
+	floor.areas[key("Unstoppable Abomination")] = floor.areas[key("Kel'Thuzad")]
+	floor.areas[key("Soul Weaver")] = floor.areas[key("Kel'Thuzad")]
+	floor.areas[key("Guardian of Icecrown")] = floor.areas[key("Kel'Thuzad")]
+	ns.Maps[533][6] = floor
+end
+-- onyxias-lair
+ns.Maps[249] = {}
+do
+	local floor = { cols = 4, tiles = { 448070, 448074, 448075, 448076, 448077, 448078, 448079, 448080, 448081, 448071, 448072, 448073 }, areas = {}, count = 0 }
+	floor.decor = { mask = DIR .. "onyxias-lair-1-decor", x = 14, y = 0, w = 789, h = 641 }
+	floor.start = { mask = DIR .. "onyxias-lair-1-start", x = 154, y = 36, w = 429, h = 235 }
+	floor.areas[key("Onyxian Warder")] = { mask = DIR .. "onyxias-lair-1-01", x = 348, y = 170, w = 423, h = 498 }
+	floor.count = floor.count + 1
+	floor.areas[key("Onyxia")] = { mask = DIR .. "onyxias-lair-1-02", x = 490, y = 41, w = 359, h = 466 }
+	floor.count = floor.count + 1
+	floor.areas[key("Onyxia's Lair")] = floor.areas[key("Onyxia")]
+	floor.areas[key("Onyxian Whelp")] = floor.areas[key("Onyxia")]
+	floor.areas[key("Onyxian Lair Guard")] = floor.areas[key("Onyxia")]
+	floor.areas[key("Onyxia Whelp")] = floor.areas[key("Onyxia")]
+	ns.Maps[249][1] = floor
+end
 -- ragefire-chasm
 ns.Maps[389] = {}
 do
 	local floor = { cols = 4, tiles = { 449736, 449740, 449741, 449742, 449743, 449744, 449745, 449746, 449747, 449737, 449738, 449739 }, areas = {}, count = 0 }
-	floor.decor = { mask = DIR .. "ragefire-chasm-1-decor", x = 1, y = 11, w = 603, h = 634 }
-	floor.start = { mask = DIR .. "ragefire-chasm-1-start", x = 455, y = 10, w = 263, h = 117 }
-	floor.areas[key("Ragefire Trogg")] = { mask = DIR .. "ragefire-chasm-1-01", x = 553, y = 23, w = 194, h = 226 }
+	floor.decor = { mask = DIR .. "ragefire-chasm-1-decor", x = 1, y = 13, w = 603, h = 632 }
+	floor.start = { mask = DIR .. "ragefire-chasm-1-start", x = 462, y = 10, w = 256, h = 117 }
+	floor.areas[key("Ragefire Trogg")] = { mask = DIR .. "ragefire-chasm-1-01", x = 553, y = 24, w = 194, h = 225 }
 	floor.count = floor.count + 1
 	floor.areas[key("Ragefire Shaman")] = floor.areas[key("Ragefire Trogg")]
 	floor.areas[key("Earthborer")] = { mask = DIR .. "ragefire-chasm-1-02", x = 533, y = 210, w = 254, h = 299 }
 	floor.count = floor.count + 1
-	floor.areas[key("Oggleflint")] = { mask = DIR .. "ragefire-chasm-1-03", x = 505, y = 145, w = 149, h = 307 }
+	floor.areas[key("Oggleflint")] = { mask = DIR .. "ragefire-chasm-1-03", x = 505, y = 145, w = 149, h = 301 }
 	floor.count = floor.count + 1
 	floor.areas[key("Molten Elemental")] = { mask = DIR .. "ragefire-chasm-1-04", x = 438, y = 106, w = 157, h = 276 }
 	floor.count = floor.count + 1
@@ -738,7 +1227,7 @@ do
 	local floor = { cols = 4, tiles = { 448094, 448098, 448099, 448100, 448101, 448102, 448103, 448104, 448105, 448095, 448096, 448097 }, areas = {}, count = 0 }
 	floor.decor = { mask = DIR .. "razorfen-downs-1-decor", x = 236, y = 6, w = 706, h = 657 }
 	floor.start = { mask = DIR .. "razorfen-downs-1-start", x = 203, y = 11, w = 122, h = 219 }
-	floor.areas[key("Death's Head Geomancer")] = { mask = DIR .. "razorfen-downs-1-01", x = 204, y = 5, w = 359, h = 380 }
+	floor.areas[key("Death's Head Geomancer")] = { mask = DIR .. "razorfen-downs-1-01", x = 204, y = 5, w = 358, h = 380 }
 	floor.count = floor.count + 1
 	floor.areas[key("Withered Warrior")] = floor.areas[key("Death's Head Geomancer")]
 	floor.areas[key("Withered Battle Boar")] = floor.areas[key("Death's Head Geomancer")]
@@ -751,7 +1240,7 @@ do
 	floor.areas[key("Tuten'kash")] = floor.areas[key("The Caller's Chamber")]
 	floor.areas[key("Tomb Fiend")] = floor.areas[key("The Caller's Chamber")]
 	floor.areas[key("Tomb Reaver")] = floor.areas[key("The Caller's Chamber")]
-	floor.areas[key("The Murder Pens")] = { mask = DIR .. "razorfen-downs-1-03", x = 607, y = 5, w = 304, h = 307 }
+	floor.areas[key("The Murder Pens")] = { mask = DIR .. "razorfen-downs-1-03", x = 605, y = 5, w = 306, h = 307 }
 	floor.count = floor.count + 1
 	floor.areas[key("Plaguemaw the Rotting")] = floor.areas[key("The Murder Pens")]
 	floor.areas[key("Belnistrasz")] = floor.areas[key("The Murder Pens")]
@@ -832,12 +1321,270 @@ do
 	floor.areas[key("Greater Kraul Bat")] = floor.areas[key("Blind Hunter")]
 	ns.Maps[47][1] = floor
 end
+-- ruins-of-ahnqiraj
+ns.Maps[509] = {}
+do
+	local floor = { cols = 4, tiles = { 449748, 449752, 449753, 449754, 449755, 449756, 449757, 449758, 449759, 449749, 449750, 449751 }, areas = {}, count = 0 }
+	floor.decor = { mask = DIR .. "ruins-of-ahnqiraj-1-decor", x = 0, y = 0, w = 962, h = 668 }
+	floor.start = { mask = DIR .. "ruins-of-ahnqiraj-1-start", x = 530, y = 46, w = 175, h = 111 }
+	floor.areas[key("Scarab Terrace")] = { mask = DIR .. "ruins-of-ahnqiraj-1-01", x = 451, y = 0, w = 364, h = 318 }
+	floor.count = floor.count + 1
+	floor.areas[key("Kurinnaxx")] = floor.areas[key("Scarab Terrace")]
+	floor.areas[key("Qiraji Swarmguard")] = floor.areas[key("Scarab Terrace")]
+	floor.areas[key("Ahn'Qiraj Terrace")] = floor.areas[key("Scarab Terrace")]
+	floor.areas[key("General's Terrace")] = { mask = DIR .. "ruins-of-ahnqiraj-1-02", x = 454, y = 234, w = 277, h = 240 }
+	floor.count = floor.count + 1
+	floor.areas[key("General Rajaxx")] = floor.areas[key("General's Terrace")]
+	floor.areas[key("Generals Terrace")] = floor.areas[key("General's Terrace")]
+	floor.areas[key("Lieutenant General Andorov")] = floor.areas[key("General's Terrace")]
+	floor.areas[key("Kaldorei Elite")] = floor.areas[key("General's Terrace")]
+	floor.areas[key("Captain Qeez")] = floor.areas[key("General's Terrace")]
+	floor.areas[key("Captain Tuubid")] = floor.areas[key("General's Terrace")]
+	floor.areas[key("Captain Drenn")] = floor.areas[key("General's Terrace")]
+	floor.areas[key("Captain Xurrem")] = floor.areas[key("General's Terrace")]
+	floor.areas[key("Major Yeggeth")] = floor.areas[key("General's Terrace")]
+	floor.areas[key("Major Pakkon")] = floor.areas[key("General's Terrace")]
+	floor.areas[key("Colonel Zerran")] = floor.areas[key("General's Terrace")]
+	floor.areas[key("Qiraji Warrior")] = floor.areas[key("General's Terrace")]
+	floor.areas[key("Swarmguard Needler")] = floor.areas[key("General's Terrace")]
+	floor.areas[key("The Reservoir")] = { mask = DIR .. "ruins-of-ahnqiraj-1-03", x = 246, y = 156, w = 277, h = 283 }
+	floor.count = floor.count + 1
+	floor.areas[key("Reservoir")] = floor.areas[key("The Reservoir")]
+	floor.areas[key("Moam")] = floor.areas[key("The Reservoir")]
+	floor.areas[key("Mana Fiend")] = floor.areas[key("The Reservoir")]
+	floor.areas[key("Obsidian Destroyer")] = floor.areas[key("The Reservoir")]
+	floor.areas[key("Canal Frenzy")] = floor.areas[key("The Reservoir")]
+	floor.areas[key("Shrieker Scarab")] = floor.areas[key("The Reservoir")]
+	floor.areas[key("Spitting Scarab")] = floor.areas[key("The Reservoir")]
+	floor.areas[key("Watchers' Terrace")] = { mask = DIR .. "ruins-of-ahnqiraj-1-04", x = 280, y = 304, w = 311, h = 364 }
+	floor.count = floor.count + 1
+	floor.areas[key("Watcher's Terrace")] = floor.areas[key("Watchers' Terrace")]
+	floor.areas[key("Ossirian the Unscarred")] = floor.areas[key("Watchers' Terrace")]
+	floor.areas[key("Anubisath Guardian")] = floor.areas[key("Watchers' Terrace")]
+	floor.areas[key("Anubisath Swarmguard")] = floor.areas[key("Watchers' Terrace")]
+	floor.areas[key("Anubisath Warrior")] = floor.areas[key("Watchers' Terrace")]
+	floor.areas[key("Ossirian Crystal")] = floor.areas[key("Watchers' Terrace")]
+	floor.areas[key("The Hatchery")] = { mask = DIR .. "ruins-of-ahnqiraj-1-05", x = 586, y = 242, w = 265, h = 299 }
+	floor.count = floor.count + 1
+	floor.areas[key("Buru the Gorger")] = floor.areas[key("The Hatchery")]
+	floor.areas[key("Buru Egg")] = floor.areas[key("The Hatchery")]
+	floor.areas[key("Hive'Zara Hatchling")] = floor.areas[key("The Hatchery")]
+	floor.areas[key("Hive'Zara Sandstalker")] = floor.areas[key("The Hatchery")]
+	floor.areas[key("Hive'Zara Soldier")] = floor.areas[key("The Hatchery")]
+	floor.areas[key("The Comb")] = { mask = DIR .. "ruins-of-ahnqiraj-1-06", x = 443, y = 428, w = 377, h = 240 }
+	floor.count = floor.count + 1
+	floor.areas[key("Ayamiss the Hunter")] = floor.areas[key("The Comb")]
+	floor.areas[key("Hive'Zara Larva")] = floor.areas[key("The Comb")]
+	floor.areas[key("Hive'Zara Swarmer")] = floor.areas[key("The Comb")]
+	floor.areas[key("Hive'Zara Collector")] = floor.areas[key("The Comb")]
+	floor.areas[key("Hive'Zara Drone")] = floor.areas[key("The Comb")]
+	floor.areas[key("Hive'Zara Tail Lasher")] = floor.areas[key("The Comb")]
+	floor.areas[key("Hive'Zara Buzzer")] = floor.areas[key("The Comb")]
+	floor.areas[key("Silicate Feeder")] = floor.areas[key("The Comb")]
+	ns.Maps[509][1] = floor
+end
+-- scarlet-monastery
+ns.Maps[189] = {}
+do
+	local floor = { cols = 4, tiles = { 449760, 449764, 449765, 449766, 449767, 449768, 449769, 449770, 449771, 449761, 449762, 449763 }, areas = {}, count = 0 }
+	floor.decor = { mask = DIR .. "scarlet-monastery-1-decor", x = 64, y = 5, w = 892, h = 524 }
+	floor.start = { mask = DIR .. "scarlet-monastery-1-start", x = 708, y = 394, w = 223, h = 194 }
+	floor.areas[key("Chamber of Atonement")] = { mask = DIR .. "scarlet-monastery-1-01", x = 606, y = 299, w = 264, h = 188 }
+	floor.count = floor.count + 1
+	floor.areas[key("Interrogator Vishas")] = floor.areas[key("Chamber of Atonement")]
+	floor.areas[key("Scarlet Torturer")] = floor.areas[key("Chamber of Atonement")]
+	floor.areas[key("Scarlet Scryer")] = floor.areas[key("Chamber of Atonement")]
+	floor.areas[key("Scarlet Preserver")] = floor.areas[key("Chamber of Atonement")]
+	floor.areas[key("Forlorn Cloister")] = { mask = DIR .. "scarlet-monastery-1-02", x = 195, y = 180, w = 455, h = 326 }
+	floor.count = floor.count + 1
+	floor.areas[key("Haunting Phantasm")] = floor.areas[key("Forlorn Cloister")]
+	floor.areas[key("Unfettered Spirit")] = floor.areas[key("Forlorn Cloister")]
+	floor.areas[key("Anguished Dead")] = floor.areas[key("Forlorn Cloister")]
+	floor.areas[key("Fallen Champion")] = floor.areas[key("Forlorn Cloister")]
+	floor.areas[key("Azshir the Sleepless")] = floor.areas[key("Forlorn Cloister")]
+	floor.areas[key("Ironspine")] = floor.areas[key("Forlorn Cloister")]
+	floor.areas[key("Honor's Tomb")] = { mask = DIR .. "scarlet-monastery-1-03", x = 93, y = 308, w = 236, h = 146 }
+	floor.count = floor.count + 1
+	floor.areas[key("Bloodmage Thalnos")] = floor.areas[key("Honor's Tomb")]
+	floor.areas[key("Honors Tomb")] = floor.areas[key("Honor's Tomb")]
+	ns.Maps[189][1] = floor
+end
+do
+	local floor = { cols = 4, tiles = { 449772, 449776, 449777, 449778, 449779, 449780, 449781, 449782, 449783, 449773, 449774, 449775 }, areas = {}, count = 0 }
+	floor.decor = { mask = DIR .. "scarlet-monastery-2-decor", x = 81, y = 0, w = 691, h = 610 }
+	floor.start = { mask = DIR .. "scarlet-monastery-2-start", x = 66, y = 29, w = 282, h = 218 }
+	floor.areas[key("Huntsman's Cloister")] = { mask = DIR .. "scarlet-monastery-2-01", x = 157, y = 215, w = 301, h = 341 }
+	floor.count = floor.count + 1
+	floor.areas[key("Huntsmans Cloister")] = floor.areas[key("Huntsman's Cloister")]
+	floor.areas[key("Scarlet Beastmaster")] = floor.areas[key("Huntsman's Cloister")]
+	floor.areas[key("Houndmaster Loksey")] = { mask = DIR .. "scarlet-monastery-2-02", x = 224, y = 436, w = 146, h = 201 }
+	floor.count = floor.count + 1
+	floor.areas[key("Scarlet Tracking Hound")] = floor.areas[key("Houndmaster Loksey")]
+	floor.areas[key("Gallery of Treasures")] = { mask = DIR .. "scarlet-monastery-2-03", x = 311, y = 66, w = 306, h = 425 }
+	floor.count = floor.count + 1
+	floor.areas[key("Scarlet Gallant")] = floor.areas[key("Gallery of Treasures")]
+	floor.areas[key("Scarlet Adept")] = floor.areas[key("Gallery of Treasures")]
+	floor.areas[key("Athenaeum")] = { mask = DIR .. "scarlet-monastery-2-04", x = 557, y = 36, w = 429, h = 386 }
+	floor.count = floor.count + 1
+	floor.areas[key("Scarlet Diviner")] = floor.areas[key("Athenaeum")]
+	floor.areas[key("The Athenaeum")] = floor.areas[key("Athenaeum")]
+	floor.areas[key("Arcanist Doan")] = { mask = DIR .. "scarlet-monastery-2-05", x = 711, y = 384, w = 221, h = 226 }
+	floor.count = floor.count + 1
+	ns.Maps[189][2] = floor
+end
+do
+	local floor = { cols = 4, tiles = { 449784, 449788, 449789, 449790, 449791, 449792, 449793, 449794, 449795, 449785, 449786, 449787 }, areas = {}, count = 0 }
+	floor.decor = { mask = DIR .. "scarlet-monastery-3-decor", x = 42, y = 6, w = 682, h = 658 }
+	floor.start = { mask = DIR .. "scarlet-monastery-3-start", x = 575, y = 543, w = 112, h = 125 }
+	floor.areas[key("Training Grounds")] = { mask = DIR .. "scarlet-monastery-3-01", x = 600, y = 454, w = 207, h = 196 }
+	floor.count = floor.count + 1
+	floor.areas[key("Scarlet Soldier")] = floor.areas[key("Training Grounds")]
+	floor.areas[key("Scarlet Conjuror")] = floor.areas[key("Training Grounds")]
+	floor.areas[key("Footman's Armory")] = { mask = DIR .. "scarlet-monastery-3-02", x = 591, y = 282, w = 225, h = 223 }
+	floor.count = floor.count + 1
+	floor.areas[key("Footmans Armory")] = floor.areas[key("Footman's Armory")]
+	floor.areas[key("Scarlet Evoker")] = floor.areas[key("Footman's Armory")]
+	floor.areas[key("Crusader's Armory")] = { mask = DIR .. "scarlet-monastery-3-03", x = 637, y = 124, w = 244, h = 253 }
+	floor.count = floor.count + 1
+	floor.areas[key("Crusaders Armory")] = floor.areas[key("Crusader's Armory")]
+	floor.areas[key("Scarlet Protector")] = floor.areas[key("Crusader's Armory")]
+	floor.areas[key("Scarlet Guardsman")] = floor.areas[key("Crusader's Armory")]
+	floor.areas[key("Hall of Champions")] = { mask = DIR .. "scarlet-monastery-3-04", x = 566, y = 2, w = 373, h = 186 }
+	floor.count = floor.count + 1
+	floor.areas[key("Herod")] = floor.areas[key("Hall of Champions")]
+	floor.areas[key("Scarlet Trainee")] = floor.areas[key("Hall of Champions")]
+	ns.Maps[189][3] = floor
+end
+do
+	local floor = { cols = 4, tiles = { 449796, 449800, 449801, 449802, 449803, 449804, 449805, 449806, 449807, 449797, 449798, 449799 }, areas = {}, count = 0 }
+	floor.decor = { mask = DIR .. "scarlet-monastery-4-decor", x = 5, y = 0, w = 799, h = 668 }
+	floor.start = { mask = DIR .. "scarlet-monastery-4-start", x = 379, y = 532, w = 278, h = 129 }
+	floor.areas[key("Chapel Gardens")] = { mask = DIR .. "scarlet-monastery-4-01", x = 372, y = 251, w = 342, h = 414 }
+	floor.count = floor.count + 1
+	floor.areas[key("Scarlet Sorcerer")] = floor.areas[key("Chapel Gardens")]
+	floor.areas[key("Scarlet Centurion")] = floor.areas[key("Chapel Gardens")]
+	floor.areas[key("Scarlet Wizard")] = floor.areas[key("Chapel Gardens")]
+	floor.areas[key("Crusader's Chapel")] = { mask = DIR .. "scarlet-monastery-4-02", x = 300, y = 96, w = 312, h = 215 }
+	floor.count = floor.count + 1
+	floor.areas[key("Crusaders Chapel")] = floor.areas[key("Crusader's Chapel")]
+	floor.areas[key("Scarlet Commander Mograine")] = floor.areas[key("Crusader's Chapel")]
+	floor.areas[key("Scarlet Abbot")] = floor.areas[key("Crusader's Chapel")]
+	floor.areas[key("Scarlet Champion")] = floor.areas[key("Crusader's Chapel")]
+	floor.areas[key("High Inquisitor Fairbanks")] = { mask = DIR .. "scarlet-monastery-4-03", x = 506, y = 96, w = 141, h = 118 }
+	floor.count = floor.count + 1
+	floor.areas[key("High Inquisitor Whitemane")] = { mask = DIR .. "scarlet-monastery-4-04", x = 417, y = 74, w = 142, h = 102 }
+	floor.count = floor.count + 1
+	ns.Maps[189][4] = floor
+end
+-- scholomance
+ns.Maps[289] = {}
+do
+	local floor = { cols = 4, tiles = { 448178, 448182, 448183, 448184, 448185, 448186, 448187, 448188, 448189, 448179, 448180, 448181 }, areas = {}, count = 0 }
+	floor.decor = { mask = DIR .. "scholomance-1-decor", x = 224, y = 16, w = 590, h = 120 }
+	floor.start = { mask = DIR .. "scholomance-1-start", x = 196, y = 242, w = 456, h = 259 }
+	floor.areas[key("The Reliquary")] = { mask = DIR .. "scholomance-1-01", x = 550, y = 94, w = 345, h = 439 }
+	floor.count = floor.count + 1
+	floor.areas[key("Risen Guard")] = floor.areas[key("The Reliquary")]
+	floor.areas[key("Scholomance Neophyte")] = floor.areas[key("The Reliquary")]
+	floor.areas[key("Scholomance Acolyte")] = floor.areas[key("The Reliquary")]
+	ns.Maps[289][1] = floor
+end
+do
+	local floor = { cols = 4, tiles = { 448190, 448194, 448195, 448196, 448197, 448198, 448199, 448200, 448201, 448191, 448192, 448193 }, areas = {}, count = 0 }
+	floor.decor = { mask = DIR .. "scholomance-2-decor", x = 451, y = 76, w = 538, h = 586 }
+	floor.areas[key("Chamber of Summoning")] = { mask = DIR .. "scholomance-2-01", x = 334, y = 29, w = 332, h = 251 }
+	floor.count = floor.count + 1
+	floor.areas[key("Scholomance Adept")] = floor.areas[key("Chamber of Summoning")]
+	floor.areas[key("Scholomance Dark Summoner")] = floor.areas[key("Chamber of Summoning")]
+	floor.areas[key("Scholomance Necromancer")] = floor.areas[key("Chamber of Summoning")]
+	floor.areas[key("Kirtonos the Herald")] = { mask = DIR .. "scholomance-2-02", x = 442, y = 0, w = 140, h = 134 }
+	floor.count = floor.count + 1
+	floor.areas[key("Blood Steward of Kirtonos")] = floor.areas[key("Kirtonos the Herald")]
+	floor.areas[key("Risen Aberration")] = { mask = DIR .. "scholomance-2-03", x = 217, y = 64, w = 375, h = 391 }
+	floor.count = floor.count + 1
+	floor.areas[key("Scholomance Necrolyte")] = floor.areas[key("Risen Aberration")]
+	floor.areas[key("Risen Warrior")] = floor.areas[key("Risen Aberration")]
+	floor.areas[key("The Great Ossuary")] = { mask = DIR .. "scholomance-2-04", x = 144, y = 355, w = 288, h = 313 }
+	floor.count = floor.count + 1
+	floor.areas[key("Rattlegore")] = floor.areas[key("The Great Ossuary")]
+	floor.areas[key("Risen Construct")] = floor.areas[key("The Great Ossuary")]
+	floor.areas[key("Reanimated Corpse")] = floor.areas[key("The Great Ossuary")]
+	floor.areas[key("Unstable Corpse")] = floor.areas[key("The Great Ossuary")]
+	floor.areas[key("The Viewing Room")] = { mask = DIR .. "scholomance-2-05", x = 367, y = 247, w = 417, h = 421 }
+	floor.count = floor.count + 1
+	floor.areas[key("Viewing Room")] = floor.areas[key("The Viewing Room")]
+	floor.areas[key("Marduk Blackpool")] = floor.areas[key("The Viewing Room")]
+	floor.areas[key("Vectus")] = floor.areas[key("The Viewing Room")]
+	floor.areas[key("Scholomance Student")] = floor.areas[key("The Viewing Room")]
+	floor.areas[key("Scholomance Handler")] = floor.areas[key("The Viewing Room")]
+	floor.areas[key("Plagued Hatchling")] = floor.areas[key("The Viewing Room")]
+	ns.Maps[289][2] = floor
+end
+do
+	local floor = { cols = 4, tiles = { 448202, 448206, 448207, 448208, 448209, 448210, 448211, 448212, 448213, 448203, 448204, 448205 }, areas = {}, count = 0 }
+	floor.decor = { mask = DIR .. "scholomance-3-decor", x = 137, y = 1, w = 567, h = 368 }
+	floor.areas[key("Jandice Barov")] = { mask = DIR .. "scholomance-3-01", x = 151, y = 0, w = 499, h = 231 }
+	floor.count = floor.count + 1
+	floor.areas[key("Illusion of Jandice Barov")] = floor.areas[key("Jandice Barov")]
+	floor.areas[key("Risen Guardian")] = floor.areas[key("Jandice Barov")]
+	floor.areas[key("The Great Ossuary")] = { mask = DIR .. "scholomance-3-02", x = 199, y = 295, w = 290, h = 351 }
+	floor.count = floor.count + 1
+	floor.areas[key("Rattlegore")] = floor.areas[key("The Great Ossuary")]
+	floor.areas[key("Risen Construct")] = floor.areas[key("The Great Ossuary")]
+	floor.areas[key("Reanimated Corpse")] = floor.areas[key("The Great Ossuary")]
+	floor.areas[key("Unstable Corpse")] = floor.areas[key("The Great Ossuary")]
+	floor.areas[key("Headmaster's Study")] = { mask = DIR .. "scholomance-3-03", x = 454, y = 156, w = 392, h = 308 }
+	floor.count = floor.count + 1
+	floor.areas[key("The Headmaster's Study")] = floor.areas[key("Headmaster's Study")]
+	floor.areas[key("Darkmaster Gandling")] = floor.areas[key("Headmaster's Study")]
+	floor.areas[key("Risen Protector")] = floor.areas[key("Headmaster's Study")]
+	floor.areas[key("Hall of Secrets")] = { mask = DIR .. "scholomance-3-04", x = 616, y = 2, w = 210, h = 273 }
+	floor.count = floor.count + 1
+	floor.areas[key("Instructor Malicia")] = floor.areas[key("Hall of Secrets")]
+	floor.areas[key("Spectral Teacher")] = floor.areas[key("Hall of Secrets")]
+	floor.areas[key("Hall of the Damned")] = { mask = DIR .. "scholomance-3-05", x = 762, y = 220, w = 234, h = 197 }
+	floor.count = floor.count + 1
+	floor.areas[key("Doctor Theolen Krastinov")] = floor.areas[key("Hall of the Damned")]
+	floor.areas[key("The Coven")] = { mask = DIR .. "scholomance-3-06", x = 591, y = 350, w = 195, h = 231 }
+	floor.count = floor.count + 1
+	floor.areas[key("Lorekeeper Polkelt")] = floor.areas[key("The Coven")]
+	floor.areas[key("Diseased Ghoul")] = floor.areas[key("The Coven")]
+	ns.Maps[289][3] = floor
+end
+do
+	local floor = { cols = 4, tiles = { 448214, 448218, 448219, 448220, 448221, 448222, 448223, 448224, 448225, 448215, 448216, 448217 }, areas = {}, count = 0 }
+	floor.decor = { mask = DIR .. "scholomance-4-decor", x = 34, y = 8, w = 610, h = 552 }
+	floor.areas[key("Headmaster's Study")] = { mask = DIR .. "scholomance-4-01", x = 540, y = 94, w = 223, h = 192 }
+	floor.count = floor.count + 1
+	floor.areas[key("The Headmaster's Study")] = floor.areas[key("Headmaster's Study")]
+	floor.areas[key("Darkmaster Gandling")] = floor.areas[key("Headmaster's Study")]
+	floor.areas[key("Risen Protector")] = floor.areas[key("Headmaster's Study")]
+	floor.areas[key("The Shadow Vault")] = { mask = DIR .. "scholomance-4-02", x = 512, y = 2, w = 298, h = 180 }
+	floor.count = floor.count + 1
+	floor.areas[key("Lady Illucia Barov")] = floor.areas[key("The Shadow Vault")]
+	floor.areas[key("Barov Family Vault")] = { mask = DIR .. "scholomance-4-03", x = 697, y = 129, w = 215, h = 156 }
+	floor.count = floor.count + 1
+	floor.areas[key("Lord Alexei Barov")] = floor.areas[key("Barov Family Vault")]
+	floor.areas[key("Vault of the Ravenian")] = { mask = DIR .. "scholomance-4-04", x = 487, y = 206, w = 264, h = 193 }
+	floor.count = floor.count + 1
+	floor.areas[key("The Ravenian")] = floor.areas[key("Vault of the Ravenian")]
+	floor.areas[key("The Laboratory")] = { mask = DIR .. "scholomance-4-05", x = 240, y = 296, w = 326, h = 372 }
+	floor.count = floor.count + 1
+	floor.areas[key("Ras Frostwhisper")] = floor.areas[key("The Laboratory")]
+	floor.areas[key("Laboratory")] = floor.areas[key("The Laboratory")]
+	floor.areas[key("Spectral Researcher")] = floor.areas[key("The Laboratory")]
+	floor.areas[key("Spectral Tutor")] = floor.areas[key("The Laboratory")]
+	floor.areas[key("Scholomance Occultist")] = floor.areas[key("The Laboratory")]
+	floor.areas[key("Dark Shade")] = floor.areas[key("The Laboratory")]
+	floor.areas[key("Splintered Skeleton")] = floor.areas[key("The Laboratory")]
+	ns.Maps[289][4] = floor
+end
 -- shadowfang-keep
 ns.Maps[33] = {}
 do
 	local floor = { cols = 4, tiles = { 448226, 448230, 448231, 448232, 448233, 448234, 448235, 448236, 448237, 448227, 448228, 448229 }, areas = {}, count = 0 }
 	floor.decor = { mask = DIR .. "shadowfang-keep-1-decor", x = 216, y = 8, w = 782, h = 590 }
-	floor.start = { mask = DIR .. "shadowfang-keep-1-start", x = 552, y = 206, w = 219, h = 280 }
+	floor.start = { mask = DIR .. "shadowfang-keep-1-start", x = 552, y = 205, w = 219, h = 281 }
 	floor.areas[key("Rethilgore")] = { mask = DIR .. "shadowfang-keep-1-01", x = 524, y = 333, w = 247, h = 227 }
 	floor.count = floor.count + 1
 	floor.areas[key("Rethilgore the Cell Keeper")] = floor.areas[key("Rethilgore")]
@@ -852,7 +1599,7 @@ do
 	floor.areas[key("Bleak Worg")] = floor.areas[key("The Courtyard")]
 	floor.areas[key("Slavering Worg")] = floor.areas[key("The Courtyard")]
 	floor.areas[key("Deathstalker Vincent")] = floor.areas[key("The Courtyard")]
-	floor.areas[key("Fel Steed")] = { mask = DIR .. "shadowfang-keep-1-03", x = 192, y = 104, w = 254, h = 249 }
+	floor.areas[key("Fel Steed")] = { mask = DIR .. "shadowfang-keep-1-03", x = 192, y = 104, w = 254, h = 250 }
 	floor.count = floor.count + 1
 	floor.areas[key("Shadow Charger")] = floor.areas[key("Fel Steed")]
 	floor.areas[key("Shadowfang Wolfguard")] = floor.areas[key("Fel Steed")]
@@ -863,7 +1610,7 @@ do
 	floor.count = floor.count + 1
 	floor.areas[key("Razorclaw")] = floor.areas[key("Razorclaw the Butcher")]
 	floor.areas[key("The Kitchen")] = floor.areas[key("Razorclaw the Butcher")]
-	floor.areas[key("Commander Springvale")] = { mask = DIR .. "shadowfang-keep-1-05", x = 198, y = 331, w = 166, h = 216 }
+	floor.areas[key("Commander Springvale")] = { mask = DIR .. "shadowfang-keep-1-05", x = 198, y = 331, w = 167, h = 216 }
 	floor.count = floor.count + 1
 	floor.areas[key("Tormented Officer")] = { mask = DIR .. "shadowfang-keep-1-06", x = 40, y = 245, w = 259, h = 415 }
 	floor.count = floor.count + 1
@@ -874,15 +1621,15 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 448238, 448242, 448243, 448244, 448245, 448246, 448247, 448248, 448249, 448239, 448240, 448241 }, areas = {}, count = 0 }
-	floor.decor = { mask = DIR .. "shadowfang-keep-2-decor", x = 221, y = 12, w = 779, h = 653 }
-	floor.areas[key("Shadowfang Glutton")] = { mask = DIR .. "shadowfang-keep-2-01", x = 245, y = 212, w = 256, h = 255 }
+	floor.decor = { mask = DIR .. "shadowfang-keep-2-decor", x = 221, y = 32, w = 779, h = 633 }
+	floor.areas[key("Shadowfang Glutton")] = { mask = DIR .. "shadowfang-keep-2-01", x = 245, y = 212, w = 244, h = 255 }
 	floor.count = floor.count + 1
 	floor.areas[key("Dining Hall")] = floor.areas[key("Shadowfang Glutton")]
 	floor.areas[key("The Dining Hall")] = floor.areas[key("Shadowfang Glutton")]
 	floor.areas[key("Razorclaw the Butcher")] = floor.areas[key("Shadowfang Glutton")]
 	floor.areas[key("Baron Silverlaine")] = { mask = DIR .. "shadowfang-keep-2-02", x = 211, y = 401, w = 281, h = 264 }
 	floor.count = floor.count + 1
-	floor.areas[key("Haunted Servitor")] = { mask = DIR .. "shadowfang-keep-2-03", x = 329, y = 12, w = 338, h = 395 }
+	floor.areas[key("Haunted Servitor")] = { mask = DIR .. "shadowfang-keep-2-03", x = 331, y = 22, w = 327, h = 373 }
 	floor.count = floor.count + 1
 	floor.areas[key("Commander Springvale")] = floor.areas[key("Haunted Servitor")]
 	floor.areas[key("Wailing Guardsman")] = floor.areas[key("Haunted Servitor")]
@@ -894,7 +1641,7 @@ do
 	floor.decor = { mask = DIR .. "shadowfang-keep-3-decor", x = 0, y = 1, w = 804, h = 651 }
 	floor.areas[key("Son of Arugal")] = { mask = DIR .. "shadowfang-keep-3-01", x = 504, y = 1, w = 303, h = 553 }
 	floor.count = floor.count + 1
-	floor.areas[key("Fenrus the Devourer")] = { mask = DIR .. "shadowfang-keep-3-02", x = 408, y = 117, w = 245, h = 220 }
+	floor.areas[key("Fenrus the Devourer")] = { mask = DIR .. "shadowfang-keep-3-02", x = 408, y = 117, w = 243, h = 220 }
 	floor.count = floor.count + 1
 	floor.areas[key("Arugal's Voidwalker")] = floor.areas[key("Fenrus the Devourer")]
 	floor.areas[key("Wolf Master Nandos")] = { mask = DIR .. "shadowfang-keep-3-03", x = 355, y = 265, w = 267, h = 267 }
@@ -909,7 +1656,7 @@ end
 do
 	local floor = { cols = 4, tiles = { 448262, 448266, 448267, 448268, 448269, 448270, 448271, 448272, 448273, 448263, 448264, 448265 }, areas = {}, count = 0 }
 	floor.decor = { mask = DIR .. "shadowfang-keep-4-decor", x = 7, y = 1, w = 800, h = 642 }
-	floor.areas[key("Son of Arugal")] = { mask = DIR .. "shadowfang-keep-4-01", x = 295, y = 95, w = 469, h = 549 }
+	floor.areas[key("Son of Arugal")] = { mask = DIR .. "shadowfang-keep-4-01", x = 292, y = 95, w = 472, h = 549 }
 	floor.count = floor.count + 1
 	floor.areas[key("Lower Observatory")] = floor.areas[key("Son of Arugal")]
 	floor.areas[key("Wolf Master Nandos")] = floor.areas[key("Son of Arugal")]
@@ -923,7 +1670,7 @@ end
 do
 	local floor = { cols = 4, tiles = { 448274, 448278, 448279, 448280, 448281, 448282, 448283, 448284, 448285, 448275, 448276, 448277 }, areas = {}, count = 0 }
 	floor.decor = { mask = DIR .. "shadowfang-keep-5-decor", x = 216, y = 1, w = 747, h = 407 }
-	floor.areas[key("Son of Arugal")] = { mask = DIR .. "shadowfang-keep-5-01", x = 295, y = 95, w = 416, h = 485 }
+	floor.areas[key("Son of Arugal")] = { mask = DIR .. "shadowfang-keep-5-01", x = 292, y = 95, w = 419, h = 485 }
 	floor.count = floor.count + 1
 	floor.areas[key("Upper Observatory")] = floor.areas[key("Son of Arugal")]
 	floor.areas[key("Wolf Master Nandos")] = floor.areas[key("Son of Arugal")]
@@ -937,7 +1684,7 @@ end
 do
 	local floor = { cols = 4, tiles = { 448286, 448290, 448291, 448292, 448293, 448294, 448295, 448296, 448297, 448287, 448288, 448289 }, areas = {}, count = 0 }
 	floor.decor = { mask = DIR .. "shadowfang-keep-6-decor", x = 39, y = 1, w = 765, h = 530 }
-	floor.areas[key("Fenrus the Devourer")] = { mask = DIR .. "shadowfang-keep-6-01", x = 495, y = 1, w = 366, h = 417 }
+	floor.areas[key("Fenrus the Devourer")] = { mask = DIR .. "shadowfang-keep-6-01", x = 506, y = 1, w = 355, h = 417 }
 	floor.count = floor.count + 1
 	floor.areas[key("Fenrus")] = floor.areas[key("Fenrus the Devourer")]
 	floor.areas[key("Arugal's Voidwalker")] = floor.areas[key("Fenrus the Devourer")]
@@ -958,11 +1705,11 @@ do
 	floor.count = floor.count + 1
 	floor.areas[key("Commander Springvale")] = floor.areas[key("Tormented Officer")]
 	floor.areas[key("Shadowfang Ragetooth")] = floor.areas[key("Tormented Officer")]
-	floor.areas[key("Lupine Horror")] = { mask = DIR .. "shadowfang-keep-7-02", x = 378, y = 192, w = 446, h = 339 }
+	floor.areas[key("Lupine Horror")] = { mask = DIR .. "shadowfang-keep-7-02", x = 377, y = 192, w = 447, h = 339 }
 	floor.count = floor.count + 1
 	floor.areas[key("Wall Walk")] = floor.areas[key("Lupine Horror")]
 	floor.areas[key("The Wall Walk")] = floor.areas[key("Lupine Horror")]
-	floor.areas[key("Odo the Blindwatcher")] = { mask = DIR .. "shadowfang-keep-7-03", x = 451, y = 322, w = 301, h = 346 }
+	floor.areas[key("Odo the Blindwatcher")] = { mask = DIR .. "shadowfang-keep-7-03", x = 450, y = 322, w = 302, h = 346 }
 	floor.count = floor.count + 1
 	floor.areas[key("Vile Bat")] = floor.areas[key("Odo the Blindwatcher")]
 	floor.areas[key("Blood Seeker")] = floor.areas[key("Odo the Blindwatcher")]
@@ -976,7 +1723,7 @@ end
 ns.Maps[329] = {}
 do
 	local floor = { cols = 4, tiles = { 448322, 448326, 448327, 448328, 448329, 448330, 448331, 448332, 448333, 448323, 448324, 448325 }, areas = {}, count = 0 }
-	floor.decor = { mask = DIR .. "stratholme-1-decor", x = 281, y = 6, w = 448, h = 546 }
+	floor.decor = { mask = DIR .. "stratholme-1-decor", x = 281, y = 5, w = 448, h = 547 }
 	floor.start = { mask = DIR .. "stratholme-1-start", x = 386, y = 465, w = 508, h = 203 }
 	floor.areas[key("King's Square")] = { mask = DIR .. "stratholme-1-01", x = 457, y = 138, w = 403, h = 400 }
 	floor.count = floor.count + 1
@@ -984,13 +1731,13 @@ do
 	floor.areas[key("Skul")] = floor.areas[key("King's Square")]
 	floor.areas[key("Fras Siabi")] = floor.areas[key("King's Square")]
 	floor.areas[key("Stratholme Courier")] = floor.areas[key("King's Square")]
-	floor.areas[key("Market Row")] = { mask = DIR .. "stratholme-1-02", x = 444, y = 8, w = 256, h = 234 }
+	floor.areas[key("Market Row")] = { mask = DIR .. "stratholme-1-02", x = 444, y = 6, w = 256, h = 236 }
 	floor.count = floor.count + 1
 	floor.areas[key("Postmaster Malown")] = floor.areas[key("Market Row")]
 	floor.areas[key("The Unforgiven")] = floor.areas[key("Market Row")]
 	floor.areas[key("Vengeful Phantom")] = floor.areas[key("Market Row")]
 	floor.areas[key("Undead Postman")] = floor.areas[key("Market Row")]
-	floor.areas[key("Crusaders' Square")] = { mask = DIR .. "stratholme-1-03", x = 239, y = 16, w = 304, h = 350 }
+	floor.areas[key("Crusaders' Square")] = { mask = DIR .. "stratholme-1-03", x = 239, y = 34, w = 304, h = 332 }
 	floor.count = floor.count + 1
 	floor.areas[key("Crusader's Square")] = floor.areas[key("Crusaders' Square")]
 	floor.areas[key("Timmy the Cruel")] = floor.areas[key("Crusaders' Square")]
@@ -1055,10 +1802,10 @@ do
 	floor.areas[key("Baroness Anastari")] = { mask = DIR .. "stratholme-2-04", x = 682, y = 189, w = 177, h = 233 }
 	floor.count = floor.count + 1
 	floor.areas[key("Baroness Anastari's Ziggurat")] = floor.areas[key("Baroness Anastari")]
-	floor.areas[key("Maleki the Pallid")] = { mask = DIR .. "stratholme-2-05", x = 594, y = 22, w = 203, h = 204 }
+	floor.areas[key("Maleki the Pallid")] = { mask = DIR .. "stratholme-2-05", x = 598, y = 35, w = 199, h = 191 }
 	floor.count = floor.count + 1
 	floor.areas[key("Maleki")] = floor.areas[key("Maleki the Pallid")]
-	floor.areas[key("Slaughter Square")] = { mask = DIR .. "stratholme-2-06", x = 346, y = 2, w = 309, h = 253 }
+	floor.areas[key("Slaughter Square")] = { mask = DIR .. "stratholme-2-06", x = 353, y = 2, w = 302, h = 253 }
 	floor.count = floor.count + 1
 	floor.areas[key("Ramstein the Gorger")] = floor.areas[key("Slaughter Square")]
 	floor.areas[key("Venom Belcher")] = floor.areas[key("Slaughter Square")]
@@ -1066,12 +1813,102 @@ do
 	floor.areas[key("Bile Slime")] = floor.areas[key("Slaughter Square")]
 	floor.areas[key("Black Guard Sentry")] = floor.areas[key("Slaughter Square")]
 	floor.areas[key("Mindless Undead")] = floor.areas[key("Slaughter Square")]
-	floor.areas[key("The Slaughter House")] = { mask = DIR .. "stratholme-2-07", x = 271, y = 15, w = 216, h = 281 }
+	floor.areas[key("The Slaughter House")] = { mask = DIR .. "stratholme-2-07", x = 271, y = 23, w = 216, h = 273 }
 	floor.count = floor.count + 1
 	floor.areas[key("Slaughter House")] = floor.areas[key("The Slaughter House")]
 	floor.areas[key("Baron Rivendare")] = floor.areas[key("The Slaughter House")]
 	floor.areas[key("Lord Aurius Rivendare")] = floor.areas[key("The Slaughter House")]
 	ns.Maps[329][2] = floor
+end
+-- temple-of-ahnqiraj
+ns.Maps[531] = {}
+do
+	local floor = { cols = 4, tiles = { 450110, 450114, 450115, 450116, 450117, 450118, 450119, 450120, 450121, 450111, 450112, 450113 }, areas = {}, count = 0 }
+	floor.decor = { mask = DIR .. "temple-of-ahnqiraj-1-decor", x = 212, y = 5, w = 587, h = 112 }
+	floor.areas[key("The Hive Undergrounds")] = { mask = DIR .. "temple-of-ahnqiraj-1-01", x = 476, y = 149, w = 190, h = 205 }
+	floor.count = floor.count + 1
+	floor.areas[key("Hive Undergrounds")] = floor.areas[key("The Hive Undergrounds")]
+	floor.areas[key("Vekniss Guardian")] = floor.areas[key("The Hive Undergrounds")]
+	floor.areas[key("Qiraji Brainwasher")] = floor.areas[key("The Hive Undergrounds")]
+	floor.areas[key("Lord Kri")] = { mask = DIR .. "temple-of-ahnqiraj-1-02", x = 635, y = 6, w = 168, h = 191 }
+	floor.count = floor.count + 1
+	floor.areas[key("Princess Yauj")] = floor.areas[key("Lord Kri")]
+	floor.areas[key("Vem")] = floor.areas[key("Lord Kri")]
+	floor.areas[key("Yauj Brood")] = floor.areas[key("Lord Kri")]
+	floor.areas[key("Bug Trio")] = floor.areas[key("Lord Kri")]
+	floor.areas[key("Silithid Royalty")] = floor.areas[key("Lord Kri")]
+	floor.areas[key("Battleguard Sartura")] = { mask = DIR .. "temple-of-ahnqiraj-1-03", x = 480, y = 7, w = 204, h = 207 }
+	floor.count = floor.count + 1
+	floor.areas[key("Sartura's Royal Guard")] = floor.areas[key("Battleguard Sartura")]
+	floor.areas[key("Vekniss Warrior")] = floor.areas[key("Battleguard Sartura")]
+	floor.areas[key("Vekniss Drone")] = floor.areas[key("Battleguard Sartura")]
+	floor.areas[key("Vekniss Soldier")] = floor.areas[key("Battleguard Sartura")]
+	floor.areas[key("Fankriss the Unyielding")] = { mask = DIR .. "temple-of-ahnqiraj-1-04", x = 262, y = 6, w = 283, h = 314 }
+	floor.count = floor.count + 1
+	floor.areas[key("Fankriss")] = floor.areas[key("Fankriss the Unyielding")]
+	floor.areas[key("Spawn of Fankriss")] = floor.areas[key("Fankriss the Unyielding")]
+	floor.areas[key("Vekniss Hatchling")] = floor.areas[key("Fankriss the Unyielding")]
+	floor.areas[key("Vekniss Borer")] = floor.areas[key("Fankriss the Unyielding")]
+	floor.areas[key("Viscidus")] = { mask = DIR .. "temple-of-ahnqiraj-1-05", x = 233, y = 262, w = 168, h = 130 }
+	floor.count = floor.count + 1
+	floor.areas[key("Glob of Viscidus")] = floor.areas[key("Viscidus")]
+	floor.areas[key("Qiraji Lasher")] = floor.areas[key("Viscidus")]
+	floor.areas[key("Princess Huhuran")] = { mask = DIR .. "temple-of-ahnqiraj-1-06", x = 367, y = 259, w = 253, h = 189 }
+	floor.count = floor.count + 1
+	floor.areas[key("Huhuran")] = floor.areas[key("Princess Huhuran")]
+	floor.areas[key("Vekniss Wasp")] = floor.areas[key("Princess Huhuran")]
+	floor.areas[key("Vekniss Stinger")] = floor.areas[key("Princess Huhuran")]
+	floor.areas[key("Vekniss Hive Crawler")] = floor.areas[key("Princess Huhuran")]
+	floor.areas[key("Vekniss Tunneler")] = floor.areas[key("Princess Huhuran")]
+	floor.areas[key("Emperor Vek'lor")] = { mask = DIR .. "temple-of-ahnqiraj-1-07", x = 440, y = 344, w = 239, h = 202 }
+	floor.count = floor.count + 1
+	floor.areas[key("Emperor Vek'nilash")] = floor.areas[key("Emperor Vek'lor")]
+	floor.areas[key("Twin Emperors")] = floor.areas[key("Emperor Vek'lor")]
+	floor.areas[key("Anubisath Defender")] = floor.areas[key("Emperor Vek'lor")]
+	floor.areas[key("Ouro")] = { mask = DIR .. "temple-of-ahnqiraj-1-08", x = 225, y = 349, w = 382, h = 286 }
+	floor.count = floor.count + 1
+	floor.areas[key("Ouro Scarab")] = floor.areas[key("Ouro")]
+	floor.areas[key("Dirt Mound")] = floor.areas[key("Ouro")]
+	floor.areas[key("Anubisath Warder")] = floor.areas[key("Ouro")]
+	floor.areas[key("Obsidian Nullifier")] = floor.areas[key("Ouro")]
+	floor.areas[key("Qiraji Champion")] = floor.areas[key("Ouro")]
+	floor.areas[key("Qiraji Slayer")] = floor.areas[key("Ouro")]
+	floor.areas[key("Qiraji Mindslayer")] = floor.areas[key("Ouro")]
+	ns.Maps[531][1] = floor
+end
+do
+	local floor = { cols = 4, tiles = { 450122, 450126, 450127, 450128, 450129, 450130, 450131, 450132, 450133, 450123, 450124, 450125 }, areas = {}, count = 0 }
+	floor.decor = { mask = DIR .. "temple-of-ahnqiraj-2-decor", x = 0, y = 5, w = 803, h = 632 }
+	floor.start = { mask = DIR .. "temple-of-ahnqiraj-2-start", x = 389, y = 62, w = 362, h = 195 }
+	floor.areas[key("The Temple Gates")] = { mask = DIR .. "temple-of-ahnqiraj-2-01", x = 176, y = 6, w = 462, h = 525 }
+	floor.count = floor.count + 1
+	floor.areas[key("Temple Gates")] = floor.areas[key("The Temple Gates")]
+	floor.areas[key("Obsidian Eradicator")] = floor.areas[key("The Temple Gates")]
+	floor.areas[key("The Prophet Skeram")] = { mask = DIR .. "temple-of-ahnqiraj-2-02", x = 365, y = 213, w = 302, h = 300 }
+	floor.count = floor.count + 1
+	floor.areas[key("Prophet Skeram")] = floor.areas[key("The Prophet Skeram")]
+	floor.areas[key("Anubisath Sentinel")] = { mask = DIR .. "temple-of-ahnqiraj-2-03", x = 286, y = 76, w = 625, h = 592 }
+	floor.count = floor.count + 1
+	floor.areas[key("Anubisath Swarmguard")] = floor.areas[key("Anubisath Sentinel")]
+	floor.areas[key("Anubisath Warrior")] = floor.areas[key("Anubisath Sentinel")]
+	ns.Maps[531][2] = floor
+end
+do
+	local floor = { cols = 4, tiles = { 450134, 450138, 450139, 450140, 450141, 450142, 450143, 450144, 450145, 450135, 450136, 450137 }, areas = {}, count = 0 }
+	floor.decor = { mask = DIR .. "temple-of-ahnqiraj-3-decor", x = 39, y = 5, w = 764, h = 587 }
+	floor.areas[key("Vault of C'Thun")] = { mask = DIR .. "temple-of-ahnqiraj-3-01", x = 274, y = 6, w = 464, h = 379 }
+	floor.count = floor.count + 1
+	floor.areas[key("The Vault of C'Thun")] = floor.areas[key("Vault of C'Thun")]
+	floor.areas[key("Eye of C'Thun")] = { mask = DIR .. "temple-of-ahnqiraj-3-02", x = 350, y = 244, w = 422, h = 410 }
+	floor.count = floor.count + 1
+	floor.areas[key("Eye Tentacle")] = floor.areas[key("Eye of C'Thun")]
+	floor.areas[key("Claw Tentacle")] = floor.areas[key("Eye of C'Thun")]
+	floor.areas[key("C'Thun")] = { mask = DIR .. "temple-of-ahnqiraj-3-03", x = 482, y = 342, w = 184, h = 203 }
+	floor.count = floor.count + 1
+	floor.areas[key("Giant Eye Tentacle")] = floor.areas[key("C'Thun")]
+	floor.areas[key("Giant Claw Tentacle")] = floor.areas[key("C'Thun")]
+	floor.areas[key("Flesh Tentacle")] = floor.areas[key("C'Thun")]
+	ns.Maps[531][3] = floor
 end
 -- the-stockade
 ns.Maps[34] = {}
@@ -1079,7 +1916,7 @@ do
 	local floor = { cols = 4, tiles = { 455959, 455963, 455964, 455965, 455966, 455967, 455968, 455969, 455970, 455960, 455961, 455962 }, areas = {}, count = 0 }
 	floor.decor = { mask = DIR .. "the-stockade-1-decor", x = 296, y = 5, w = 420, h = 109 }
 	floor.start = { mask = DIR .. "the-stockade-1-start", x = 388, y = 394, w = 228, h = 236 }
-	floor.areas[key("Defias Prisoner")] = { mask = DIR .. "the-stockade-1-01", x = 378, y = 181, w = 245, h = 267 }
+	floor.areas[key("Defias Prisoner")] = { mask = DIR .. "the-stockade-1-01", x = 378, y = 181, w = 245, h = 252 }
 	floor.count = floor.count + 1
 	floor.areas[key("Defias Captive")] = floor.areas[key("Defias Prisoner")]
 	floor.areas[key("Targorr the Dread")] = { mask = DIR .. "the-stockade-1-02", x = 446, y = 7, w = 108, h = 232 }
@@ -1087,13 +1924,13 @@ do
 	floor.areas[key("Defias Insurgent")] = { mask = DIR .. "the-stockade-1-03", x = 244, y = 94, w = 196, h = 277 }
 	floor.count = floor.count + 1
 	floor.areas[key("Defias Convict")] = floor.areas[key("Defias Insurgent")]
-	floor.areas[key("Dextren Ward")] = { mask = DIR .. "the-stockade-1-04", x = 80, y = 40, w = 258, h = 276 }
+	floor.areas[key("Dextren Ward")] = { mask = DIR .. "the-stockade-1-04", x = 80, y = 41, w = 258, h = 275 }
 	floor.count = floor.count + 1
-	floor.areas[key("Kam Deepfury")] = { mask = DIR .. "the-stockade-1-05", x = 567, y = 46, w = 217, h = 333 }
+	floor.areas[key("Kam Deepfury")] = { mask = DIR .. "the-stockade-1-05", x = 567, y = 44, w = 217, h = 335 }
 	floor.count = floor.count + 1
 	floor.areas[key("Defias Inmate")] = floor.areas[key("Kam Deepfury")]
 	floor.areas[key("Bruegal Ironknuckle")] = floor.areas[key("Kam Deepfury")]
-	floor.areas[key("Hamhock")] = { mask = DIR .. "the-stockade-1-06", x = 679, y = 168, w = 244, h = 275 }
+	floor.areas[key("Hamhock")] = { mask = DIR .. "the-stockade-1-06", x = 672, y = 168, w = 251, h = 276 }
 	floor.count = floor.count + 1
 	floor.areas[key("Bazil Thredd")] = floor.areas[key("Hamhock")]
 	ns.Maps[34][1] = floor
@@ -1109,7 +1946,7 @@ do
 	floor.areas[key("Revelosh")] = floor.areas[key("Hall of the Keepers")]
 	floor.areas[key("Stonevault Ambusher")] = floor.areas[key("Hall of the Keepers")]
 	floor.areas[key("Stonevault Pillager")] = floor.areas[key("Hall of the Keepers")]
-	floor.areas[key("Dig Two")] = { mask = DIR .. "uldaman-1-02", x = 472, y = 537, w = 194, h = 131 }
+	floor.areas[key("Dig Two")] = { mask = DIR .. "uldaman-1-02", x = 473, y = 537, w = 193, h = 131 }
 	floor.count = floor.count + 1
 	floor.areas[key("Baelog")] = floor.areas[key("Dig Two")]
 	floor.areas[key("Eric \"The Swift\"")] = floor.areas[key("Dig Two")]
@@ -1119,7 +1956,7 @@ do
 	floor.count = floor.count + 1
 	floor.areas[key("Ironaya")] = floor.areas[key("Map Chamber")]
 	floor.areas[key("The Map Chamber")] = floor.areas[key("Map Chamber")]
-	floor.areas[key("Stonevault Cave Lurker")] = { mask = DIR .. "uldaman-1-04", x = 304, y = 292, w = 250, h = 204 }
+	floor.areas[key("Stonevault Cave Lurker")] = { mask = DIR .. "uldaman-1-04", x = 304, y = 292, w = 244, h = 204 }
 	floor.count = floor.count + 1
 	floor.areas[key("Stonevault Rockchewer")] = floor.areas[key("Stonevault Cave Lurker")]
 	floor.areas[key("Stonevault Cave Hunter")] = floor.areas[key("Stonevault Cave Lurker")]
@@ -1132,12 +1969,12 @@ do
 	floor.areas[key("Obsidian Sentinel")] = floor.areas[key("Echomok Cavern")]
 	floor.areas[key("Obsidian Shard")] = floor.areas[key("Echomok Cavern")]
 	floor.areas[key("Shadowforge Relic Hunter")] = floor.areas[key("Echomok Cavern")]
-	floor.areas[key("Temple Hall")] = { mask = DIR .. "uldaman-1-06", x = 333, y = 206, w = 231, h = 173 }
+	floor.areas[key("Temple Hall")] = { mask = DIR .. "uldaman-1-06", x = 333, y = 206, w = 228, h = 173 }
 	floor.count = floor.count + 1
 	floor.areas[key("Ancient Stone Keeper")] = floor.areas[key("Temple Hall")]
 	floor.areas[key("Earthen Rocksmasher")] = floor.areas[key("Temple Hall")]
 	floor.areas[key("Earthen Sculptor")] = floor.areas[key("Temple Hall")]
-	floor.areas[key("Dig Three")] = { mask = DIR .. "uldaman-1-07", x = 202, y = 164, w = 253, h = 155 }
+	floor.areas[key("Dig Three")] = { mask = DIR .. "uldaman-1-07", x = 202, y = 164, w = 253, h = 156 }
 	floor.count = floor.count + 1
 	floor.areas[key("Galgann Firehammer")] = floor.areas[key("Dig Three")]
 	floor.areas[key("Shadowforge Archaeologist")] = floor.areas[key("Dig Three")]
@@ -1146,13 +1983,13 @@ do
 	floor.areas[key("Shadowforge Geologist")] = floor.areas[key("Dig Three")]
 	floor.areas[key("Deadly Cleft Scorpid")] = floor.areas[key("Dig Three")]
 	floor.areas[key("Shrike Bat")] = floor.areas[key("Dig Three")]
-	floor.areas[key("The Stone Vault")] = { mask = DIR .. "uldaman-1-08", x = 179, y = 29, w = 218, h = 193 }
+	floor.areas[key("The Stone Vault")] = { mask = DIR .. "uldaman-1-08", x = 179, y = 64, w = 218, h = 158 }
 	floor.count = floor.count + 1
 	floor.areas[key("Grimlok")] = floor.areas[key("The Stone Vault")]
 	floor.areas[key("Stonevault Brawler")] = floor.areas[key("The Stone Vault")]
 	floor.areas[key("Stonevault Geomancer")] = floor.areas[key("The Stone Vault")]
 	floor.areas[key("Jadespine Basilisk")] = floor.areas[key("The Stone Vault")]
-	floor.areas[key("Hall of the Crafters")] = { mask = DIR .. "uldaman-1-09", x = 322, y = 1, w = 364, h = 261 }
+	floor.areas[key("Hall of the Crafters")] = { mask = DIR .. "uldaman-1-09", x = 334, y = 1, w = 352, h = 261 }
 	floor.count = floor.count + 1
 	floor.areas[key("Stone Steward")] = floor.areas[key("Hall of the Crafters")]
 	floor.areas[key("Earthen Stonebreaker")] = floor.areas[key("Hall of the Crafters")]
@@ -1163,7 +2000,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 448442, 448446, 448447, 448448, 448449, 448450, 448451, 448452, 448453, 448443, 448444, 448445 }, areas = {}, count = 0 }
-	floor.decor = { mask = DIR .. "uldaman-2-decor", x = 7, y = 12, w = 944, h = 632 }
+	floor.decor = { mask = DIR .. "uldaman-2-decor", x = 7, y = 30, w = 944, h = 614 }
 	floor.areas[key("Hall of the Crafters")] = { mask = DIR .. "uldaman-2-01", x = 439, y = 214, w = 304, h = 305 }
 	floor.count = floor.count + 1
 	floor.areas[key("Stone Steward")] = floor.areas[key("Hall of the Crafters")]
@@ -1185,8 +2022,8 @@ ns.Maps[43] = {}
 do
 	local floor = { cols = 4, tiles = { 448454, 448458, 448459, 448460, 448461, 448462, 448463, 448464, 448465, 448455, 448456, 448457 }, areas = {}, count = 0 }
 	floor.decor = { mask = DIR .. "wailing-caverns-1-decor", x = 71, y = 14, w = 931, h = 654 }
-	floor.start = { mask = DIR .. "wailing-caverns-1-start", x = 375, y = 299, w = 156, h = 160 }
-	floor.areas[key("Screaming Gully")] = { mask = DIR .. "wailing-caverns-1-01", x = 213, y = 109, w = 385, h = 350 }
+	floor.start = { mask = DIR .. "wailing-caverns-1-start", x = 374, y = 299, w = 157, h = 160 }
+	floor.areas[key("Screaming Gully")] = { mask = DIR .. "wailing-caverns-1-01", x = 213, y = 109, w = 385, h = 351 }
 	floor.count = floor.count + 1
 	floor.areas[key("Lady Anacondra")] = floor.areas[key("Screaming Gully")]
 	floor.areas[key("Deviate Ravager")] = floor.areas[key("Screaming Gully")]
@@ -1201,7 +2038,7 @@ do
 	floor.areas[key("Lord Cobrahn")] = { mask = DIR .. "wailing-caverns-1-04", x = 77, y = 154, w = 173, h = 162 }
 	floor.count = floor.count + 1
 	floor.areas[key("Deviate Python")] = floor.areas[key("Lord Cobrahn")]
-	floor.areas[key("Lord Pythas")] = { mask = DIR .. "wailing-caverns-1-05", x = 49, y = 284, w = 237, h = 177 }
+	floor.areas[key("Lord Pythas")] = { mask = DIR .. "wailing-caverns-1-05", x = 49, y = 284, w = 240, h = 177 }
 	floor.count = floor.count + 1
 	floor.areas[key("Dreamer's Rock")] = { mask = DIR .. "wailing-caverns-1-06", x = 230, y = 0, w = 320, h = 233 }
 	floor.count = floor.count + 1
@@ -1209,7 +2046,7 @@ do
 	floor.areas[key("Naralex")] = floor.areas[key("Dreamer's Rock")]
 	floor.areas[key("Deviate Moccasin")] = floor.areas[key("Dreamer's Rock")]
 	floor.areas[key("Nightmare Ectoplasm")] = floor.areas[key("Dreamer's Rock")]
-	floor.areas[key("Winding Chasm")] = { mask = DIR .. "wailing-caverns-1-07", x = 473, y = 226, w = 223, h = 230 }
+	floor.areas[key("Winding Chasm")] = { mask = DIR .. "wailing-caverns-1-07", x = 473, y = 225, w = 223, h = 231 }
 	floor.count = floor.count + 1
 	floor.areas[key("Skum")] = floor.areas[key("Winding Chasm")]
 	floor.areas[key("Deviate Dreadfang")] = floor.areas[key("Winding Chasm")]
@@ -1243,7 +2080,7 @@ do
 	floor.areas[key("Servant of Antu'sul")] = floor.areas[key("Antu'sul")]
 	floor.areas[key("Sul'lithuz Abomination")] = floor.areas[key("Antu'sul")]
 	floor.areas[key("Sul'lithuz Broodling")] = floor.areas[key("Antu'sul")]
-	floor.areas[key("Theka the Martyr")] = { mask = DIR .. "zul-farrak-1-03", x = 441, y = 21, w = 237, h = 350 }
+	floor.areas[key("Theka the Martyr")] = { mask = DIR .. "zul-farrak-1-03", x = 441, y = 22, w = 237, h = 349 }
 	floor.count = floor.count + 1
 	floor.areas[key("Scarab")] = floor.areas[key("Theka the Martyr")]
 	floor.areas[key("Zerillis")] = floor.areas[key("Theka the Martyr")]
@@ -1257,7 +2094,7 @@ do
 	floor.areas[key("Ruuzlu")] = floor.areas[key("Chief Ukorz Sandscalp")]
 	floor.areas[key("Dustwraith")] = floor.areas[key("Chief Ukorz Sandscalp")]
 	floor.areas[key("Sandfury Guardian")] = floor.areas[key("Chief Ukorz Sandscalp")]
-	floor.areas[key("Gahz'rilla")] = { mask = DIR .. "zul-farrak-1-06", x = 364, y = 0, w = 252, h = 198 }
+	floor.areas[key("Gahz'rilla")] = { mask = DIR .. "zul-farrak-1-06", x = 364, y = 0, w = 251, h = 198 }
 	floor.count = floor.count + 1
 	floor.areas[key("Hydromancer Velratha")] = floor.areas[key("Gahz'rilla")]
 	floor.areas[key("Sandfury Soul Eater")] = floor.areas[key("Gahz'rilla")]
@@ -1273,4 +2110,84 @@ do
 	floor.areas[key("Sandfury Acolyte")] = floor.areas[key("Nekrum Gutchewer")]
 	floor.areas[key("Sandfury Zealot")] = floor.areas[key("Nekrum Gutchewer")]
 	ns.Maps[209][1] = floor
+end
+-- zul-gurub
+ns.Maps[309] = {}
+do
+	local floor = { cols = 4, tiles = { 515607, 515611, 515612, 515613, 515614, 515615, 515616, 515617, 515618, 515608, 515609, 515610 }, areas = {}, count = 0 }
+	floor.decor = { mask = DIR .. "zul-gurub-1-decor", x = 0, y = 0, w = 1002, h = 668 }
+	floor.start = { mask = DIR .. "zul-gurub-1-start", x = 99, y = 157, w = 275, h = 370 }
+	floor.areas[key("Altar of Hir'eek")] = { mask = DIR .. "zul-gurub-1-01", x = 205, y = 310, w = 262, h = 349 }
+	floor.count = floor.count + 1
+	floor.areas[key("High Priestess Jeklik")] = floor.areas[key("Altar of Hir'eek")]
+	floor.areas[key("Gurubashi Bat Rider")] = floor.areas[key("Altar of Hir'eek")]
+	floor.areas[key("Frenzied Bloodseeker Bat")] = floor.areas[key("Altar of Hir'eek")]
+	floor.areas[key("Bloodseeker Bat")] = floor.areas[key("Altar of Hir'eek")]
+	floor.areas[key("The Coil")] = { mask = DIR .. "zul-gurub-1-02", x = 415, y = 277, w = 170, h = 199 }
+	floor.count = floor.count + 1
+	floor.areas[key("High Priest Venoxis")] = floor.areas[key("The Coil")]
+	floor.areas[key("Razzashi Cobra")] = floor.areas[key("The Coil")]
+	floor.areas[key("Razzashi Serpent")] = floor.areas[key("The Coil")]
+	floor.areas[key("Razzashi Adder")] = floor.areas[key("The Coil")]
+	floor.areas[key("Shadra'zaar")] = { mask = DIR .. "zul-gurub-1-03", x = 375, y = 380, w = 193, h = 276 }
+	floor.count = floor.count + 1
+	floor.areas[key("High Priestess Mar'li")] = floor.areas[key("Shadra'zaar")]
+	floor.areas[key("Spawn of Mar'li")] = floor.areas[key("Shadra'zaar")]
+	floor.areas[key("Razzashi Broodwidow")] = floor.areas[key("Shadra'zaar")]
+	floor.areas[key("Razzashi Venombrood")] = floor.areas[key("Shadra'zaar")]
+	floor.areas[key("Witherbark Speaker")] = floor.areas[key("Shadra'zaar")]
+	floor.areas[key("Hakkari Grounds")] = { mask = DIR .. "zul-gurub-1-04", x = 503, y = 387, w = 299, h = 269 }
+	floor.count = floor.count + 1
+	floor.areas[key("Bloodlord Mandokir")] = floor.areas[key("Hakkari Grounds")]
+	floor.areas[key("Ohgan")] = floor.areas[key("Hakkari Grounds")]
+	floor.areas[key("Razzashi Raptor")] = floor.areas[key("Hakkari Grounds")]
+	floor.areas[key("Vilebranch Speaker")] = floor.areas[key("Hakkari Grounds")]
+	floor.areas[key("Mandokir's Domain")] = floor.areas[key("Hakkari Grounds")]
+	floor.areas[key("Zanza's Rise")] = { mask = DIR .. "zul-gurub-1-05", x = 543, y = 306, w = 249, h = 126 }
+	floor.count = floor.count + 1
+	floor.areas[key("Zanza the Restless")] = floor.areas[key("Zanza's Rise")]
+	floor.areas[key("Edge of Madness")] = { mask = DIR .. "zul-gurub-1-06", x = 523, y = 119, w = 314, h = 267 }
+	floor.count = floor.count + 1
+	floor.areas[key("The Edge of Madness")] = floor.areas[key("Edge of Madness")]
+	floor.areas[key("The Cache of Madness")] = floor.areas[key("Edge of Madness")]
+	floor.areas[key("Gri'lek")] = floor.areas[key("Edge of Madness")]
+	floor.areas[key("Hazza'rah")] = floor.areas[key("Edge of Madness")]
+	floor.areas[key("Renataki")] = floor.areas[key("Edge of Madness")]
+	floor.areas[key("Wushoolay")] = floor.areas[key("Edge of Madness")]
+	floor.areas[key("Naze of Shirvallah")] = { mask = DIR .. "zul-gurub-1-07", x = 544, y = 5, w = 222, h = 295 }
+	floor.count = floor.count + 1
+	floor.areas[key("High Priest Thekal")] = floor.areas[key("Naze of Shirvallah")]
+	floor.areas[key("Zealot Zath")] = floor.areas[key("Naze of Shirvallah")]
+	floor.areas[key("Zealot Lor'Khan")] = floor.areas[key("Naze of Shirvallah")]
+	floor.areas[key("Zulian Tiger")] = floor.areas[key("Naze of Shirvallah")]
+	floor.areas[key("Zulian Cub")] = floor.areas[key("Naze of Shirvallah")]
+	floor.areas[key("Zulian Guardian")] = floor.areas[key("Naze of Shirvallah")]
+	floor.areas[key("Temple of Bethekk")] = { mask = DIR .. "zul-gurub-1-08", x = 363, y = 6, w = 230, h = 225 }
+	floor.count = floor.count + 1
+	floor.areas[key("High Priestess Arlokk")] = floor.areas[key("Temple of Bethekk")]
+	floor.areas[key("Zulian Prowler")] = floor.areas[key("Temple of Bethekk")]
+	floor.areas[key("Zulian Panther")] = floor.areas[key("Temple of Bethekk")]
+	floor.areas[key("Zulian Stalker")] = floor.areas[key("Temple of Bethekk")]
+	floor.areas[key("Bloodfire Pit")] = { mask = DIR .. "zul-gurub-1-09", x = 124, y = 1, w = 290, h = 239 }
+	floor.count = floor.count + 1
+	floor.areas[key("Jin'do the Hexxer")] = floor.areas[key("Bloodfire Pit")]
+	floor.areas[key("The Bloodfire Pit")] = floor.areas[key("Bloodfire Pit")]
+	floor.areas[key("The Devil's Terrace")] = floor.areas[key("Bloodfire Pit")]
+	floor.areas[key("Shade of Jin'do")] = floor.areas[key("Bloodfire Pit")]
+	floor.areas[key("Sacrificed Troll")] = floor.areas[key("Bloodfire Pit")]
+	floor.areas[key("Sandfury Speaker")] = floor.areas[key("Bloodfire Pit")]
+	floor.areas[key("Withered Mistress")] = floor.areas[key("Bloodfire Pit")]
+	floor.areas[key("Voodoo Slave")] = floor.areas[key("Bloodfire Pit")]
+	floor.areas[key("Pagle's Pointe")] = { mask = DIR .. "zul-gurub-1-10", x = 140, y = 157, w = 332, h = 190 }
+	floor.count = floor.count + 1
+	floor.areas[key("Gahz'ranka")] = floor.areas[key("Pagle's Pointe")]
+	floor.areas[key("Hooktooth Frenzy")] = floor.areas[key("Pagle's Pointe")]
+	floor.areas[key("Zulian Crocolisk")] = floor.areas[key("Pagle's Pointe")]
+	floor.areas[key("Altar of the Blood God")] = { mask = DIR .. "zul-gurub-1-11", x = 392, y = 177, w = 218, h = 185 }
+	floor.count = floor.count + 1
+	floor.areas[key("Hakkar")] = floor.areas[key("Altar of the Blood God")]
+	floor.areas[key("Hakkar the Soulflayer")] = floor.areas[key("Altar of the Blood God")]
+	floor.areas[key("Son of Hakkar")] = floor.areas[key("Altar of the Blood God")]
+	floor.areas[key("Soulflayer")] = floor.areas[key("Altar of the Blood God")]
+	ns.Maps[309][1] = floor
 end
