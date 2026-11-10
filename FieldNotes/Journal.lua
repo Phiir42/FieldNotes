@@ -1,0 +1,591 @@
+-- The journal window: a contents list on the left, the selected page on the
+-- right, and a box for your own notes under it. Built on first open.
+local _, ns = ...
+
+local WIDTH, HEIGHT = 800, 560
+local INDEX_W, PAGE_W = 172, 512  -- text widths inside the two panes
+local NOTES_H = 86
+
+local INK = { 0.20, 0.12, 0.05 }
+local FADED = { 0.45, 0.34, 0.20 }
+local FADED_HEX = "|cff735733"
+local QUESTION = "Interface\\Icons\\INV_Misc_QuestionMark"
+local DONE = "|TInterface\\RaidFrame\\ReadyCheck-Ready:12|t "
+local OPEN = "|TInterface\\RaidFrame\\ReadyCheck-Waiting:12|t "
+
+local frame, index, page, notes
+local sel = {}         -- inst (instanceID), kind ("overview" | "boss" | "bestiary" | "spoils"), key
+local shownKey         -- the page last drawn, to reset scrolling when it changes
+local Refresh
+
+local function Font(name)
+	return _G[name] or GameFontNormal
+end
+
+---------------------------------------------------------------------------
+-- A scrolling list of lines. list:Set({ line, ... }); a line is a table:
+--   text, font, color, indent, gap (space above), rule (underline),
+--   icon, iconSize, selected, click = fn, link = item link,
+--   spell = spell ID (tooltip), tip = tooltip text
+---------------------------------------------------------------------------
+local function RowEnter(self)
+	local l = self.line
+	if not (l.link or l.spell or l.tip) then return end
+	GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+	local ok
+	if l.link then
+		ok = pcall(GameTooltip.SetHyperlink, GameTooltip, l.link)
+	elseif type(l.spell) == "number" and GameTooltip.SetSpellByID then
+		ok = pcall(GameTooltip.SetSpellByID, GameTooltip, l.spell)
+	end
+	if not ok or GameTooltip:NumLines() == 0 then
+		GameTooltip:ClearLines()
+		GameTooltip:AddLine(l.tip or l.name or "")
+	end
+	GameTooltip:Show()
+end
+
+local function RowLeave()
+	GameTooltip:Hide()
+end
+
+local function RowClick(self)
+	local l = self.line
+	if l.link and IsModifiedClick and IsModifiedClick("CHATLINK") then
+		local insert = (ChatFrameUtil and ChatFrameUtil.InsertLink) or ChatEdit_InsertLink
+		if insert then insert(l.link) end
+	elseif l.click then
+		l.click()
+	end
+end
+
+local function NewRow(list)
+	local row = CreateFrame("Button", nil, list.child)
+	row.mark = row:CreateTexture(nil, "BACKGROUND")
+	row.mark:SetAllPoints()
+	row.mark:SetColorTexture(0.35, 0.22, 0.08, 0.20)
+	row.icon = row:CreateTexture(nil, "ARTWORK")
+	row.icon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+	row.text = row:CreateFontString(nil, "ARTWORK", "GameFontNormal")
+	row.text:SetJustifyH("LEFT")
+	row.text:SetJustifyV("TOP")
+	row.text:SetWordWrap(true)
+	row.rule = row:CreateTexture(nil, "ARTWORK")
+	row.rule:SetColorTexture(0.35, 0.24, 0.12, 0.55)
+	row.rule:SetHeight(1)
+	row.rule:SetPoint("BOTTOMLEFT")
+	row.rule:SetPoint("BOTTOMRIGHT")
+	local hl = row:CreateTexture(nil, "HIGHLIGHT")
+	hl:SetAllPoints()
+	hl:SetColorTexture(0.35, 0.22, 0.08, 0.12)
+	row:SetScript("OnEnter", RowEnter)
+	row:SetScript("OnLeave", RowLeave)
+	row:SetScript("OnClick", RowClick)
+	return row
+end
+
+local function ListSet(list, lines)
+	local y = 0
+	for i, line in ipairs(lines) do
+		local row = list.rows[i]
+		if not row then
+			row = NewRow(list)
+			list.rows[i] = row
+		end
+		row.line = line
+		y = y + (line.gap or 0)
+		local indent = line.indent or 0
+		local size = line.icon and (line.iconSize or 18) or 0
+		if line.icon then
+			row.icon:SetTexture(line.icon)
+			row.icon:SetSize(size, size)
+			row.icon:ClearAllPoints()
+			row.icon:SetPoint("TOPLEFT", indent, -2)
+			row.icon:Show()
+		else
+			row.icon:Hide()
+		end
+		local tx = indent + (size > 0 and size + 6 or 0)
+		local c = line.color or INK
+		row.text:SetFontObject(Font(line.font or "QuestFont"))
+		row.text:SetTextColor(c[1], c[2], c[3])
+		row.text:ClearAllPoints()
+		row.text:SetPoint("TOPLEFT", tx, -2)
+		row.text:SetWidth(list.width - tx)
+		row.text:SetText(line.text or "")
+		local h = math.max(row.text:GetStringHeight() or 0, size) + 4 + (line.rule and 3 or 0)
+		row:ClearAllPoints()
+		row:SetPoint("TOPLEFT", 0, -y)
+		row:SetSize(list.width, h)
+		if line.rule then row.rule:Show() else row.rule:Hide() end
+		if line.selected then row.mark:Show() else row.mark:Hide() end
+		row:EnableMouse((line.click or line.link or line.spell or line.tip) and true or false)
+		row:Show()
+		y = y + h
+	end
+	for i = #lines + 1, #list.rows do list.rows[i]:Hide() end
+	list.child:SetHeight(math.max(y, 1))
+end
+
+local function Paper(parent, shade)
+	local t = parent:CreateTexture(nil, "BACKGROUND")
+	t:SetAllPoints()
+	t:SetColorTexture(0.90 * shade, 0.83 * shade, 0.68 * shade, 1)
+end
+
+-- A parchment pane with a scrolling list inside it.
+local function CreateList(name, width)
+	local pane = CreateFrame("Frame", nil, frame)
+	local sf = CreateFrame("ScrollFrame", name, pane, "UIPanelScrollFrameTemplate")
+	sf:SetPoint("TOPLEFT", 10, -8)
+	sf:SetPoint("BOTTOMRIGHT", -28, 8) -- the template's scroll bar sits outside, to the right
+	local child = CreateFrame("Frame", nil, sf)
+	child:SetSize(width, 1)
+	sf:SetScrollChild(child)
+	return { pane = pane, sf = sf, child = child, rows = {}, width = width, Set = ListSet }
+end
+
+---------------------------------------------------------------------------
+-- Page text
+---------------------------------------------------------------------------
+local SCHOOL = { [1] = "physical", [2] = "holy", [4] = "fire", [8] = "nature", [16] = "frost", [32] = "shadow", [64] = "arcane" }
+local RANK = { elite = "Elite", rareelite = "Rare elite", rare = "Rare", worldboss = "Boss" }
+
+local function H1(lines, text)
+	lines[#lines + 1] = { text = text, font = "QuestTitleFont" }
+end
+
+local function H2(lines, text)
+	lines[#lines + 1] = { text = text, font = "GameFontNormalLarge", rule = true, gap = 14 }
+end
+
+local function Body(lines, text, indent)
+	lines[#lines + 1] = { text = text, indent = indent }
+end
+
+local function Faded(lines, text, indent)
+	lines[#lines + 1] = { text = text, color = FADED, font = "GameFontNormalSmall", indent = indent }
+end
+
+local function Plural(n, one, many)
+	return n .. " " .. (n == 1 and one or many)
+end
+
+local function SpellIcon(id)
+	local tex
+	if type(id) == "number" then
+		if C_Spell and C_Spell.GetSpellTexture then tex = C_Spell.GetSpellTexture(id) end
+		if not tex and GetSpellTexture then tex = GetSpellTexture(id) end
+	end
+	return tex or QUESTION
+end
+
+local function ItemIcon(id)
+	local tex
+	if C_Item and C_Item.GetItemIconByID then tex = C_Item.GetItemIconByID(id) end
+	if not tex and GetItemIcon then tex = GetItemIcon(id) end
+	return tex or QUESTION
+end
+
+-- What has been observed about a spell, as a sentence.
+local function Remark(s)
+	local t = {}
+	if s.cast then t[#t + 1] = "has a cast time" end
+	if s.dmg then
+		local school = SCHOOL[s.school or 0]
+		t[#t + 1] = ("struck for up to %d%s"):format(s.dmg, school and (" " .. school) or "")
+	end
+	if s.tick then t[#t + 1] = ("burns for up to %d a tick"):format(s.tick) end
+	if s.debuff then t[#t + 1] = "leaves an affliction" end
+	if s.buff then t[#t + 1] = "empowers the enemy" end
+	if s.heal then t[#t + 1] = "heals" end
+	if s.summon then t[#t + 1] = "summons " .. s.summon end
+	if s.kick then t[#t + 1] = "can be interrupted" end
+	if #t == 0 then return "Seen used." end
+	local text = table.concat(t, ", ")
+	return text:sub(1, 1):upper() .. text:sub(2) .. "."
+end
+
+local function MobTag(m)
+	local t = {}
+	local rank = RANK[m.cls]
+	if rank and m.type then
+		t[#t + 1] = rank .. " " .. m.type:lower()
+	elseif rank or m.type then
+		t[#t + 1] = rank or m.type
+	end
+	if m.skull then
+		t[#t + 1] = "level ??"
+	elseif m.lo then
+		t[#t + 1] = m.lo == m.hi and ("level " .. m.lo) or ("level " .. m.lo .. "-" .. m.hi)
+	end
+	if m.kills then t[#t + 1] = "slain " .. m.kills end
+	return table.concat(t, ", ")
+end
+
+local function MobLines(lines, m, showName)
+	if showName then
+		lines[#lines + 1] = { text = m.name, font = "GameFontNormal", gap = 10 }
+	end
+	local tag = MobTag(m)
+	if tag ~= "" then Faded(lines, tag) end
+	if not m.fought then
+		Faded(lines, "Seen, but not yet fought.")
+		return
+	end
+	if m.melee then Body(lines, ("Its blows land for up to %d."):format(m.melee), 8) end
+	for _, key in ipairs(m.order) do
+		local s = m.spells[key]
+		lines[#lines + 1] = {
+			text = s.name .. "\n" .. FADED_HEX .. Remark(s) .. "|r",
+			icon = SpellIcon(key), iconSize = 26, indent = 8, gap = 4,
+			spell = key, name = s.name,
+		}
+	end
+	if #m.order == 0 and not m.melee then Faded(lines, "Fought, but nothing of note observed.") end
+end
+
+local function LootLines(lines, inst, filter)
+	local any
+	for _, id in ipairs(inst.lootOrder) do
+		local it = inst.loot[id]
+		if not filter or filter(it) then
+			any = true
+			local from
+			if not filter then
+				local m = it.npc and inst.mobs[it.npc]
+				local b = (m and m.enc and inst.bosses[m.enc]) or (it.enc and inst.bosses[it.enc])
+				from = (b and b.name) or (m and m.name)
+			end
+			local sub = (from and ("From " .. from .. ", ") or "") .. "found " .. (it.n == 1 and "once" or (it.n .. " times")) .. "."
+			if from then sub = sub:sub(1, 1):upper() .. sub:sub(2) else sub = "F" .. sub:sub(2) end
+			lines[#lines + 1] = {
+				text = it.link .. "\n" .. FADED_HEX .. sub .. "|r",
+				icon = ItemIcon(id), iconSize = 26, indent = 8, gap = 4, link = it.link,
+			}
+		end
+	end
+	return any
+end
+
+local function Select(inst, kind, key)
+	sel.inst, sel.kind, sel.key = inst, kind, key
+	Refresh()
+end
+
+local function BlankPage(lines)
+	H1(lines, "Field Notes")
+	Body(lines, "\nThese pages are blank.\n\nNothing is written here until you have seen it yourself. Step into a dungeon or raid and the journal fills in as you go: the halls you walk, the creatures you meet, what they do to you, who leads them, and what they carry.")
+end
+
+local function OverviewPage(lines, id, inst)
+	H1(lines, inst.name)
+	Faded(lines, ("%s. First entered %s, %s."):format(inst.kind == "raid" and "Raid" or "Dungeon",
+		ns:Day(inst.first), Plural(inst.visits, "visit", "visits")))
+
+	H2(lines, "Halls and chambers")
+	if #inst.areas == 0 then Faded(lines, "Nothing noted yet.") end
+	for _, a in ipairs(inst.areas) do Body(lines, a.name, 8) end
+
+	H2(lines, "Adversaries")
+	if #inst.bossOrder == 0 then Faded(lines, "No one of note encountered yet.") end
+	for _, eid in ipairs(inst.bossOrder) do
+		local b = inst.bosses[eid]
+		lines[#lines + 1] = {
+			text = (b.kills > 0 and DONE or OPEN) .. b.name .. FADED_HEX ..
+				(b.kills > 0 and ("  defeated " .. (b.kills == 1 and "once" or (b.kills .. " times"))) or "  not yet defeated") .. "|r",
+			indent = 8, click = function() Select(id, "boss", eid) end,
+		}
+	end
+
+	H2(lines, "Diary")
+	local day
+	local log = inst.log
+	for i = #log, math.max(1, #log - 59), -1 do
+		local t, text = log[i][1], log[i][2]
+		local d = ns:Day(t)
+		if d ~= day then
+			day = d
+			lines[#lines + 1] = { text = d, font = "GameFontNormalSmall", color = FADED, gap = 6 }
+		end
+		Body(lines, FADED_HEX .. date("%H:%M", t) .. "|r  " .. text, 8)
+	end
+
+	lines[#lines + 1] = {
+		text = "Tear these pages out", font = "GameFontNormalSmall", color = FADED, gap = 24,
+		tip = "Erase everything noted about " .. inst.name .. ".",
+		click = function() StaticPopup_Show("FIELDNOTES_TEAR", inst.name, nil, id) end,
+	}
+end
+
+local function BossPage(lines, inst, eid)
+	local b = inst.bosses[eid]
+	H1(lines, b.name)
+	local t = { "First faced " .. ns:Day(b.first), Plural(b.pulls, "attempt", "attempts") }
+	if b.kills > 0 then t[#t + 1] = Plural(b.kills, "victory", "victories") end
+	if b.wipes > 0 then t[#t + 1] = Plural(b.wipes, "defeat", "defeats") end
+	if b.best then t[#t + 1] = "swiftest victory " .. ns:Clock(b.best) end
+	Faded(lines, table.concat(t, ", ") .. ".")
+	if b.kills == 0 then Body(lines, "Not yet defeated.") end
+
+	-- everything fought in this encounter, the boss itself first
+	local mobs = {}
+	for _, npc in ipairs(inst.mobOrder) do
+		local m = inst.mobs[npc]
+		if m.enc == eid then
+			if m.name == b.name then table.insert(mobs, 1, m) else mobs[#mobs + 1] = m end
+		end
+	end
+	H2(lines, "Observed in battle")
+	if #mobs == 0 then Faded(lines, "Nothing observed yet.") end
+	for i, m in ipairs(mobs) do
+		MobLines(lines, m, #mobs > 1 or m.name ~= b.name)
+	end
+
+	H2(lines, "Spoils")
+	local any = LootLines(lines, inst, function(it)
+		local m = it.npc and inst.mobs[it.npc]
+		return it.enc == eid or (m and m.enc == eid)
+	end)
+	if not any then Faded(lines, "Nothing found yet.") end
+end
+
+local function BestiaryPage(lines, inst)
+	H1(lines, "Bestiary")
+	Faded(lines, "The creatures of " .. inst.name .. ".")
+	local any
+	for _, npc in ipairs(inst.mobOrder) do
+		local m = inst.mobs[npc]
+		if not m.enc then
+			any = true
+			MobLines(lines, m, true)
+		end
+	end
+	if not any then Body(lines, "\nNo creatures noted yet.") end
+end
+
+local function SpoilsPage(lines, inst)
+	H1(lines, "Spoils")
+	Faded(lines, "What has been found in " .. inst.name .. ". Shift-click to link an item.")
+	if not LootLines(lines, inst) then Body(lines, "\nNothing found yet.") end
+end
+
+---------------------------------------------------------------------------
+-- Contents list
+---------------------------------------------------------------------------
+local function Count(t, skip)
+	local n = 0
+	for _, v in pairs(t) do
+		if not (skip and skip(v)) then n = n + 1 end
+	end
+	return n
+end
+
+local function IndexLines()
+	local lines = {}
+	local ids = {}
+	for id in pairs(ns.db.instances) do ids[#ids + 1] = id end
+	table.sort(ids, function(a, b)
+		local ia, ib = ns.db.instances[a], ns.db.instances[b]
+		if (ia.last or 0) ~= (ib.last or 0) then return (ia.last or 0) > (ib.last or 0) end
+		return a < b
+	end)
+	if #ids == 0 then
+		lines[1] = { text = "No pages yet.", color = FADED, font = "GameFontNormalSmall" }
+		return lines
+	end
+	for _, id in ipairs(ids) do
+		local inst = ns.db.instances[id]
+		local open = sel.inst == id
+		lines[#lines + 1] = {
+			text = inst.name, font = "GameFontNormal", gap = 4,
+			selected = open and sel.kind == "overview",
+			click = function() Select(id, "overview") end,
+		}
+		if open then
+			for _, eid in ipairs(inst.bossOrder) do
+				local b = inst.bosses[eid]
+				lines[#lines + 1] = {
+					text = (b.kills > 0 and DONE or OPEN) .. b.name, font = "GameFontNormalSmall", indent = 10,
+					selected = sel.kind == "boss" and sel.key == eid,
+					click = function() Select(id, "boss", eid) end,
+				}
+			end
+			lines[#lines + 1] = {
+				text = ("Bestiary (%d)"):format(Count(inst.mobs, function(m) return m.enc end)),
+				font = "GameFontNormalSmall", indent = 10, selected = sel.kind == "bestiary",
+				click = function() Select(id, "bestiary") end,
+			}
+			lines[#lines + 1] = {
+				text = ("Spoils (%d)"):format(#inst.lootOrder),
+				font = "GameFontNormalSmall", indent = 10, selected = sel.kind == "spoils",
+				click = function() Select(id, "spoils") end,
+			}
+		end
+	end
+	return lines
+end
+
+---------------------------------------------------------------------------
+-- Your own notes: on the boss when a boss page is open, else on the instance.
+---------------------------------------------------------------------------
+local function NotesTarget(inst)
+	if not inst then return end
+	local b = sel.kind == "boss" and inst.bosses[sel.key]
+	if b then return b, b.name end
+	return inst, inst.name
+end
+
+local function CreateNotes(parent)
+	local box = CreateFrame("Frame", nil, parent)
+	box:SetHeight(NOTES_H)
+	local line = box:CreateTexture(nil, "ARTWORK")
+	line:SetColorTexture(0.35, 0.24, 0.12, 0.55)
+	line:SetHeight(1)
+	line:SetPoint("TOPLEFT")
+	line:SetPoint("TOPRIGHT")
+	box.label = box:CreateFontString(nil, "ARTWORK", "GameFontNormalSmall")
+	box.label:SetPoint("TOPLEFT", 0, -5)
+	box.label:SetTextColor(FADED[1], FADED[2], FADED[3])
+
+	local sf = CreateFrame("ScrollFrame", nil, box)
+	sf:SetPoint("TOPLEFT", 0, -20)
+	sf:SetPoint("BOTTOMRIGHT", 0, 2)
+	local edit = CreateFrame("EditBox", nil, sf)
+	edit:SetMultiLine(true)
+	edit:SetAutoFocus(false)
+	edit:SetMaxLetters(1000)
+	edit:SetFontObject(Font("QuestFont"))
+	edit:SetTextColor(INK[1], INK[2], INK[3])
+	edit:SetWidth(PAGE_W)
+	edit:SetHeight(NOTES_H - 22)
+	sf:SetScrollChild(edit)
+	edit:SetScript("OnEscapePressed", edit.ClearFocus)
+	edit:SetScript("OnTextChanged", function(self, user)
+		if user and box.target then
+			local text = self:GetText()
+			box.target.note = text ~= "" and text or nil
+		end
+	end)
+	-- keep the cursor line in view
+	edit:SetScript("OnCursorChanged", function(_, _, y, _, h)
+		local top, view = sf:GetVerticalScroll(), sf:GetHeight()
+		if -y < top then
+			sf:SetVerticalScroll(-y)
+		elseif -y + h > top + view then
+			sf:SetVerticalScroll(-y + h - view)
+		end
+	end)
+	sf:EnableMouse(true)
+	sf:SetScript("OnMouseDown", function() edit:SetFocus() end)
+	box.edit = edit
+	return box
+end
+
+---------------------------------------------------------------------------
+-- Window
+---------------------------------------------------------------------------
+StaticPopupDialogs["FIELDNOTES_TEAR"] = {
+	text = "Tear the pages on %s out of your journal? Everything noted there is lost.",
+	button1 = YES,
+	button2 = NO,
+	OnAccept = function(_, id) ns:Forget(id) end,
+	timeout = 0,
+	whileDead = true,
+	hideOnEscape = true,
+}
+
+Refresh = function()
+	if not (frame and frame:IsShown()) then return end
+	local inst = sel.inst and ns.db.instances[sel.inst]
+	if not inst then
+		sel.inst, sel.kind, sel.key = nil, nil, nil
+	elseif sel.kind == "boss" and not inst.bosses[sel.key] then
+		sel.kind, sel.key = "overview", nil
+	end
+
+	index:Set(IndexLines())
+
+	local lines = {}
+	if not inst then
+		BlankPage(lines)
+	elseif sel.kind == "boss" then
+		BossPage(lines, inst, sel.key)
+	elseif sel.kind == "bestiary" then
+		BestiaryPage(lines, inst)
+	elseif sel.kind == "spoils" then
+		SpoilsPage(lines, inst)
+	else
+		OverviewPage(lines, sel.inst, inst)
+	end
+	page:Set(lines)
+
+	local key = tostring(sel.inst) .. ":" .. tostring(sel.kind) .. ":" .. tostring(sel.key)
+	if key ~= shownKey then
+		shownKey = key
+		page.sf:SetVerticalScroll(0)
+	end
+
+	-- only touch the notes box when its subject changes, never while typing
+	local target, name = NotesTarget(inst)
+	if target ~= notes.target then
+		notes.edit:ClearFocus()
+		notes.target = target
+		notes.edit:SetText(target and target.note or "")
+		notes.label:SetText(target and ("My notes on " .. name) or "")
+	end
+	if target then notes:Show() else notes:Hide() end
+end
+
+local function CreateJournal()
+	frame = CreateFrame("Frame", "FieldNotesJournal", UIParent, "BasicFrameTemplateWithInset")
+	frame:SetSize(WIDTH, HEIGHT)
+	frame:SetPoint("CENTER")
+	frame:SetFrameStrata("HIGH")
+	frame:SetToplevel(true)
+	frame:SetClampedToScreen(true)
+	frame:SetMovable(true)
+	frame:EnableMouse(true)
+	frame:RegisterForDrag("LeftButton")
+	frame:SetScript("OnDragStart", frame.StartMoving)
+	frame:SetScript("OnDragStop", frame.StopMovingOrSizing)
+	frame:Hide()
+	tinsert(UISpecialFrames, "FieldNotesJournal") -- Esc closes it
+
+	local title = frame.TitleText or frame:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
+	if not frame.TitleText then title:SetPoint("TOP", 0, -5) end
+	title:SetText("Field Notes")
+
+	index = CreateList("FieldNotesJournalIndex", INDEX_W)
+	index.pane:SetPoint("TOPLEFT", 10, -28)
+	index.pane:SetPoint("BOTTOMLEFT", 10, 10)
+	index.pane:SetWidth(INDEX_W + 38)
+	Paper(index.pane, 0.93)
+
+	page = CreateList("FieldNotesJournalPage", PAGE_W)
+	page.pane:SetPoint("TOPLEFT", index.pane, "TOPRIGHT", 6, 0)
+	page.pane:SetPoint("BOTTOMRIGHT", -10, 10)
+	Paper(page.pane, 1)
+	page.sf:SetPoint("BOTTOMRIGHT", -28, NOTES_H + 14)
+
+	notes = CreateNotes(page.pane)
+	notes:SetPoint("BOTTOMLEFT", 10, 6)
+	notes:SetPoint("BOTTOMRIGHT", -28, 6)
+
+	frame:SetScript("OnShow", Refresh)
+end
+
+function ns:ToggleJournal()
+	if not frame then CreateJournal() end
+	if frame:IsShown() then
+		frame:Hide()
+		return
+	end
+	-- open on the dungeon you are standing in
+	if self.currentID and (not sel.inst or sel.inst ~= self.currentID) then
+		sel.inst, sel.kind, sel.key = self.currentID, "overview", nil
+	end
+	frame:Show()
+end
+
+ns:On("FN_DATA", function() Refresh() end)

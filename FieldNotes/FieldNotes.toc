@@ -1,0 +1,14 @@
+## Interface: 16001
+## Title: Field Notes
+## Notes: A dungeon journal that starts blank and fills in as you explore: the halls you walk, the creatures you fight, what they do to you and what they drop.
+## Version: 0.1.0
+## SavedVariables: FieldNotesDB
+## IconTexture: Interface\Icons\INV_Misc_Book_09
+## AddonCompartmentFunc: FieldNotes_OnCompartmentClick
+## AddonCompartmentFuncOnEnter: FieldNotes_OnCompartmentEnter
+## AddonCompartmentFuncOnLeave: FieldNotes_OnCompartmentLeave
+
+Core.lua
+Record.lua
+Journal.lua
+Buttons.lua
