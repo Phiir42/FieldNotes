@@ -386,7 +386,7 @@ end
 -- One texture per map tile that overlaps the box (in sheet pixels), cropped to it.
 local function TileTextures(floor, x, y, w, h, mask)
 	local list = {}
-	local T = ns.MAP_TILE
+	local T = floor.tile or ns.MAP_TILE
 	local sx, sy = MAP_W / ns.MAP_REF_W, MAP_H / ns.MAP_REF_H
 	local rows = math.ceil(#floor.tiles / floor.cols)
 	for row = 0, rows - 1 do

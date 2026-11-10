@@ -6,7 +6,9 @@
 -- the journal records that area (see CheckArea in Record.lua).
 --
 -- ns.Maps[instanceID] = { floor, ... }, a floor being
---   tiles  the sheet's map tile file IDs, row by row; cols tiles per row
+--   tiles  the sheet's map tiles, row by row; cols tiles per row. File IDs of
+--          the game's own tiles, or paths of shipped ones for the few sheets
+--          the game lacks (then tile = their size in sheet pixels)
 --   decor  the title banner and illustration, always shown
 --   start  the part visible on arrival (the entrance), if on this floor
 --   areas  { [ns:AreaKey(name)] = piece }
@@ -1819,6 +1821,62 @@ do
 	floor.areas[key("Baron Rivendare")] = floor.areas[key("The Slaughter House")]
 	floor.areas[key("Lord Aurius Rivendare")] = floor.areas[key("The Slaughter House")]
 	ns.Maps[329][2] = floor
+end
+-- sunken-temple
+ns.Maps[109] = {}
+do
+	local floor = { cols = 4, tiles = { 452514, 452518, 452519, 452520, 452521, 452522, 452523, 452524, 452525, 452515, 452516, 452517 }, areas = {}, count = 0 }
+	floor.decor = { mask = DIR .. "sunken-temple-1-decor", x = 211, y = 0, w = 606, h = 94 }
+	floor.start = { mask = DIR .. "sunken-temple-1-start", x = 341, y = 42, w = 390, h = 177 }
+	floor.areas[key("Pit of Sacrifice")] = { mask = DIR .. "sunken-temple-1-01", x = 369, y = 179, w = 268, h = 255 }
+	floor.count = floor.count + 1
+	floor.areas[key("The Pit of Sacrifice")] = floor.areas[key("Pit of Sacrifice")]
+	floor.areas[key("Dreamscythe")] = floor.areas[key("Pit of Sacrifice")]
+	floor.areas[key("Weaver")] = floor.areas[key("Pit of Sacrifice")]
+	floor.areas[key("Gasher")] = floor.areas[key("Pit of Sacrifice")]
+	floor.areas[key("Loro")] = floor.areas[key("Pit of Sacrifice")]
+	floor.areas[key("Hukku")] = floor.areas[key("Pit of Sacrifice")]
+	floor.areas[key("Zolo")] = floor.areas[key("Pit of Sacrifice")]
+	floor.areas[key("Zul'Lor")] = floor.areas[key("Pit of Sacrifice")]
+	floor.areas[key("Mijan")] = floor.areas[key("Pit of Sacrifice")]
+	floor.areas[key("Sanctum of the Fallen God")] = { mask = DIR .. "sunken-temple-1-02", x = 145, y = 30, w = 277, h = 457 }
+	floor.count = floor.count + 1
+	floor.areas[key("Avatar of Hakkar")] = floor.areas[key("Sanctum of the Fallen God")]
+	floor.areas[key("Shade of Hakkar")] = floor.areas[key("Sanctum of the Fallen God")]
+	floor.areas[key("Hakkari Bloodkeeper")] = floor.areas[key("Sanctum of the Fallen God")]
+	floor.areas[key("Hakkari Minion")] = floor.areas[key("Sanctum of the Fallen God")]
+	floor.areas[key("Nightmare Suppressor")] = floor.areas[key("Sanctum of the Fallen God")]
+	floor.areas[key("Lair of the Chosen")] = { mask = DIR .. "sunken-temple-1-03", x = 583, y = 55, w = 274, h = 467 }
+	floor.count = floor.count + 1
+	floor.areas[key("Jammal'an the Prophet")] = floor.areas[key("Lair of the Chosen")]
+	floor.areas[key("Ogom the Wretched")] = floor.areas[key("Lair of the Chosen")]
+	floor.areas[key("Atal'ai High Priest")] = floor.areas[key("Lair of the Chosen")]
+	floor.areas[key("Mummified Atal'ai")] = floor.areas[key("Lair of the Chosen")]
+	floor.areas[key("Chamber of the Dreamer")] = { mask = DIR .. "sunken-temple-1-04", x = 393, y = 390, w = 359, h = 261 }
+	floor.count = floor.count + 1
+	floor.areas[key("Morphaz")] = floor.areas[key("Chamber of the Dreamer")]
+	floor.areas[key("Hazzas")] = floor.areas[key("Chamber of the Dreamer")]
+	floor.areas[key("Shade of Eranikus")] = { mask = DIR .. "sunken-temple-1-05", x = 515, y = 490, w = 253, h = 178 }
+	floor.count = floor.count + 1
+	ns.Maps[109][1] = floor
+end
+do
+	local floor = { cols = 2, tile = 512, tiles = { DIR .. "sunken-temple-2-t1", DIR .. "sunken-temple-2-t2", DIR .. "sunken-temple-2-t3", DIR .. "sunken-temple-2-t4" }, areas = {}, count = 0 }
+	floor.decor = { mask = DIR .. "sunken-temple-2-decor", x = 0, y = 0, w = 1002, h = 668 }
+	floor.areas[key("Murk Slitherer")] = { mask = DIR .. "sunken-temple-2-01", x = 240, y = 36, w = 497, h = 632 }
+	floor.count = floor.count + 1
+	floor.areas[key("Murk Worm")] = floor.areas[key("Murk Slitherer")]
+	floor.areas[key("Murk Spitter")] = floor.areas[key("Murk Slitherer")]
+	floor.areas[key("Deep Lurker")] = floor.areas[key("Murk Slitherer")]
+	floor.areas[key("Saturated Ooze")] = floor.areas[key("Murk Slitherer")]
+	floor.areas[key("Cursed Atal'ai")] = floor.areas[key("Murk Slitherer")]
+	floor.areas[key("Unliving Atal'ai")] = floor.areas[key("Murk Slitherer")]
+	floor.areas[key("Hall of Serpents")] = floor.areas[key("Murk Slitherer")]
+	floor.areas[key("Atal'alarion")] = { mask = DIR .. "sunken-temple-2-02", x = 351, y = 247, w = 303, h = 305 }
+	floor.count = floor.count + 1
+	floor.areas[key("The Pit of Refuse")] = floor.areas[key("Atal'alarion")]
+	floor.areas[key("Pit of Refuse")] = floor.areas[key("Atal'alarion")]
+	ns.Maps[109][2] = floor
 end
 -- temple-of-ahnqiraj
 ns.Maps[531] = {}
