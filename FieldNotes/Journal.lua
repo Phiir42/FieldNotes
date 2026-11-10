@@ -455,16 +455,23 @@ local function MapPage(lines, id, inst)
 	Faded(lines, "What you have charted of " .. inst.name .. ".")
 
 	-- the pieces found on each floor, and areas the map has no place for
+	-- a piece is found by walking into its area, or by fighting someone who lives there
 	local floors = ns.Maps[id]
+	local known = {}
+	for _, a in ipairs(inst.areas) do known[#known + 1] = a.name end
+	for _, b in pairs(inst.bosses) do known[#known + 1] = b.name end
+	for _, m in pairs(inst.mobs) do
+		if m.fought then known[#known + 1] = m.name end
+	end
 	local sheets, placed = {}, {}
 	for f, floor in ipairs(floors) do
 		local pieces, seen, found = {}, {}, 0
 		if floor.decor then pieces[#pieces + 1] = floor.decor end
 		if floor.start then pieces[#pieces + 1] = floor.start end
-		for _, a in ipairs(inst.areas) do
-			local piece = floor.areas[ns:AreaKey(a.name)]
+		for _, name in ipairs(known) do
+			local piece = floor.areas[ns:AreaKey(name)]
 			if piece then
-				placed[a.name] = true
+				placed[name] = true
 				if not seen[piece] then
 					seen[piece] = true
 					found = found + 1

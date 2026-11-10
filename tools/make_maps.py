@@ -1,8 +1,27 @@
 """Builds the journal's map masks and FieldNotes/Maps.lua from the retail
-reference maps in refs/ and the area definitions in map_defs.py.
+reference maps in refs/ and the area definitions in tools/defs/.
 
-    python tools/make_maps.py            # masks + Maps.lua
-    python tools/make_maps.py --preview  # also refs/preview/<floor>.png
+    python tools/make_maps.py                    # masks + Maps.lua
+    python tools/make_maps.py --preview          # also refs/preview/<floor>.png
+    python tools/make_maps.py --only <slug>      # previews for one dungeon only;
+                                                 # writes nothing into the addon
+
+A definition is tools/defs/<name>.py holding MAP = { "instance": the dungeon's
+instance map ID (8th return of GetInstanceInfo), "slug": file name stem,
+"floors": [floor, ...] }. All coordinates are pixels of the 1002x668 reference
+image in refs/ (tools/grid.py draws one with a coordinate grid). A floor has:
+  ref      the reference image name in refs/ (without .png)
+  uimap    the floor's retail uiMapID, to look up its map tile file IDs
+  decor    boxes (left, top, right, bottom) of page decoration that is always
+           shown: the title banner and the illustration
+  start    seed points of the part visible on arrival (the entrance)
+  areas    { "Name": [seed points] }
+  aliases  { "Other name": "Name" }
+A name is anything the journal records in the dungeon: a sub-zone, a boss or
+a creature fought. Meeting any of an area's names uncovers it. Every drawn
+pixel outside the decor boxes belongs to the area with the nearest seed, so
+seeds go on the area's rooms and on its label; add seeds to pull a corridor
+or label towards the right area.
 
 The addon ships no map art: it draws the game's own map tiles (by file ID)
 and only needs to know which part of the sheet each area covers. That part
@@ -15,13 +34,12 @@ is a small alpha mask per area, made like this:
   4. Each area's share of the drawing is saved as a mask. In game the map
      tiles are shown through it, over the blank parchment.
 """
-import glob, os, sys
+import glob, importlib.util, os, sys
 
 import numpy as np
 from PIL import Image, ImageFilter
 
 from fetch_maps import table
-from map_defs import MAPS
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REFS = os.path.join(ROOT, "refs")
@@ -29,12 +47,22 @@ OUT = os.path.join(ROOT, "FieldNotes", "Maps")
 LUA = os.path.join(ROOT, "FieldNotes", "Maps.lua")
 W, H = 1002, 668
 BLANK = (512, 256)   # the parchment texture, squeezed to a power of two
-MASK_SCALE = 0.25    # masks are stored at this fraction of the reference size
+MASK_SCALE = 0.125   # masks are stored at this fraction of the reference size
 THRESHOLD = 26       # colour difference from the blank that counts as drawing
 GROW = 9             # px the drawing mask is grown, to keep soft shadows
 OVERLAP = 5          # px a piece reaches into its neighbours, so no seam shows
 FEATHER = 3          # px blur on piece edges
 REACH = 150          # px: drawing further than this from every seed is decoration
+
+
+def definitions():
+    maps = []
+    for path in sorted(glob.glob(os.path.join(ROOT, "tools", "defs", "*.py"))):
+        spec = importlib.util.spec_from_file_location("mapdef", path)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        maps.append(module.MAP)
+    return maps
 
 
 def load(name):
@@ -118,9 +146,10 @@ def save_mask(alpha, path):
     w, h = x1 - x0, y1 - y0
     size = (pow2(round(w * MASK_SCALE)), pow2(round(h * MASK_SCALE)))
     small = Image.fromarray((alpha[y0:y1, x0:x1] * 255).astype(np.uint8)).resize(size, Image.LANCZOS)
-    rgba = Image.new("RGBA", size, (255, 255, 255, 0))
-    rgba.putalpha(small)
-    rgba.save(path)
+    if path:
+        rgba = Image.new("RGBA", size, (255, 255, 255, 0))
+        rgba.putalpha(small)
+        rgba.save(path)
     seen = np.zeros((H, W), np.float32)
     seen[y0:y1, x0:x1] = np.asarray(small.resize((w, h), Image.BILINEAR)).astype(np.float32) / 255
     return (x0, y0, w, h), seen
@@ -168,16 +197,21 @@ ns.Maps = {}
 
 def main():
     preview = "--preview" in sys.argv
-    os.makedirs(OUT, exist_ok=True)
-    for old in glob.glob(os.path.join(OUT, "*.tga")):
-        os.remove(old)
+    only = sys.argv[sys.argv.index("--only") + 1] if "--only" in sys.argv else None
+    write = not only
     blank, count = blank_parchment()
-    Image.fromarray(blank.astype(np.uint8)).resize(BLANK, Image.LANCZOS).save(os.path.join(OUT, "parchment.tga"))
-    print(f"parchment.tga from {count} reference maps")
+    if write:
+        os.makedirs(OUT, exist_ok=True)
+        for old in glob.glob(os.path.join(OUT, "*.tga")):
+            os.remove(old)
+        Image.fromarray(blank.astype(np.uint8)).resize(BLANK, Image.LANCZOS).save(os.path.join(OUT, "parchment.tga"))
+        print(f"parchment.tga from {count} reference maps")
 
     out = [HEADER]
-    for dungeon in MAPS:
+    for dungeon in definitions():
         slug = dungeon["slug"]
+        if only and slug != only:
+            continue
         out.append("-- " + slug)
         out.append("ns.Maps[%d] = {}" % dungeon["instance"])
         for f, floor in enumerate(dungeon["floors"], 1):
@@ -193,7 +227,7 @@ def main():
                 if not special:
                     n += 1
                 tex = f"{base}-{name}" if special else f"{base}-{n:02d}"
-                saved = save_mask(alpha, os.path.join(OUT, tex + ".tga"))
+                saved = save_mask(alpha, os.path.join(OUT, tex + ".tga") if write else None)
                 if not saved:
                     if not special:
                         print("  !! no drawing found for", name)
@@ -208,15 +242,51 @@ def main():
                 for alias, target in floor.get("aliases", {}).items():
                     if target == name:
                         out.append("\tfloor.areas[key(%s)] = floor.areas[key(%s)]" % (lua_str(alias), lua_str(name)))
+            for alias, target in floor.get("aliases", {}).items():
+                if target not in floor["areas"]:
+                    print(f"  !! alias {alias!r} points at unknown area {target!r}")
             out.append("\tns.Maps[%d][%d] = floor" % (dungeon["instance"], f))
             out.append("end")
             print(f"{base}: {n} areas, {len(ids)} tiles")
-            if preview:
+            if preview or only:
                 write_preview(base, img, blank, seen)
+                write_cells(base, img, floor, seen)
+    if not write:
+        return
     with open(LUA, "w", encoding="utf-8", newline="\n") as fh:
         fh.write("\n".join(out) + "\n")
     files = glob.glob(os.path.join(OUT, "*.tga"))
     print(f"wrote Maps.lua and {len(files)} textures, {sum(map(os.path.getsize, files)) / 1e6:.2f} MB")
+
+
+def write_cells(base, img, floor, pieces):
+    """refs/preview/<base>-cells.png: the reference with every piece tinted its
+    own colour and each seed marked with its area's number (listed top left)."""
+    from PIL import ImageDraw
+    rng = np.random.default_rng(7)
+    canvas = img.astype(np.float32)
+    names = [n for n, _ in pieces]
+    colours = {n: rng.integers(40, 256, 3) for n in names}
+    colours["decor"] = np.array([90, 90, 90])
+    for name, alpha in pieces:
+        a = alpha[..., None] * 0.55
+        canvas = canvas * (1 - a) + colours[name] * a
+    im = Image.fromarray(canvas.astype(np.uint8))
+    d = ImageDraw.Draw(im)
+    order = [n for n in names if n != "decor"]
+    seeds = [("start", floor.get("start", []))] + list(floor["areas"].items())
+    for name, pts in seeds:
+        if name not in order:
+            continue
+        num = str(order.index(name))
+        for x, y in pts:
+            d.ellipse((x - 3, y - 3, x + 3, y + 3), fill=(255, 255, 255), outline=(0, 0, 0))
+            d.text((x + 5, y - 6), num, fill=(255, 255, 255), stroke_width=2, stroke_fill=(0, 0, 0))
+    for i, name in enumerate(order):
+        d.text((8, 6 + i * 13), f"{i} {name}", fill=tuple(int(c) for c in colours[name]),
+               stroke_width=2, stroke_fill=(0, 0, 0))
+    os.makedirs(os.path.join(REFS, "preview"), exist_ok=True)
+    im.save(os.path.join(REFS, "preview", base + "-cells.png"))
 
 
 def compose(img, blank, pieces, shown):
