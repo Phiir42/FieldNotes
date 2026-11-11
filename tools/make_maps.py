@@ -277,6 +277,7 @@ def main():
                     out.append("\tfloor.%s = %s" % (name, lua_piece(tex, box)))
                     continue
                 out.append("\tfloor.areas[key(%s)] = %s" % (lua_str(name), lua_piece(tex, box)))
+                out.append("\tfloor.areas[key(%s)].n = %d" % (lua_str(name), n))
                 out.append("\tfloor.count = floor.count + 1")
                 for alias, target in floor.get("aliases", {}).items():
                     if target == name:
@@ -284,6 +285,8 @@ def main():
             for alias, target in floor.get("aliases", {}).items():
                 if target not in floor["areas"]:
                     print(f"  !! alias {alias!r} points at unknown area {target!r}")
+            if dungeon.get("path"):
+                out.append("\tfloor.path = true")
             out.append("\tns.Maps[%d][%d] = floor" % (dungeon["instance"], f))
             out.append("end")
             print(f"{base}: {n} areas, {len(ids)} tiles")

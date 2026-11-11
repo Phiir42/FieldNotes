@@ -34,11 +34,42 @@ local function NpcID(guid)
 	if kind == "Creature" or kind == "Vehicle" then return tonumber(id) end
 end
 
+-- Counts of what the game let the journal read and what it hid, kept in the
+-- saved data (FieldNotesDB.debug) so a run can be looked at afterwards.
+local function Tally(what)
+	local d = ns.db.debug
+	if not d then d = {}; ns.db.debug = d end
+	d[what] = (d[what] or 0) + 1
+end
+
 ---------------------------------------------------------------------------
 -- Creatures and their abilities
 ---------------------------------------------------------------------------
+-- A creature is filed under its NPC id. When the game hides the id but shows
+-- the name, it is filed under "n:<name>" until the id turns up (on its corpse).
 local function Mob(id, name)
 	local m = cur.mobs[id]
+	if not m and name then
+		local other = type(id) == "number" and ("n:" .. name) or nil
+		if other and cur.mobs[other] then
+			-- met by name before: move that entry under the id
+			m = cur.mobs[other]
+			cur.mobs[other], cur.mobs[id] = nil, m
+			for i, key in ipairs(cur.mobOrder) do
+				if key == other then cur.mobOrder[i] = id end
+			end
+			for _, it in pairs(cur.loot) do
+				if it.npc == other then it.npc = id end
+			end
+			ns:Changed()
+			return m
+		elseif not other then
+			-- no id this time: the same creature may already be filed under one
+			for _, known in pairs(cur.mobs) do
+				if known.name == name then return known end
+			end
+		end
+	end
 	if not m then
 		if not name or name == "" or name == UNKNOWN or name == UNKNOWNOBJECT then return end
 		m = { name = name, first = time(), spells = {}, order = {} }
@@ -67,11 +98,21 @@ local function Spell(m, id, name)
 	return s
 end
 
--- A corpse seen or looted: count the kill once.
+-- A creature's name from its GUID alone, as the game's tooltip gives it.
+local function NameOf(guid)
+	if not (C_TooltipInfo and C_TooltipInfo.GetHyperlink) then return end
+	local ok, data = pcall(C_TooltipInfo.GetHyperlink, "unit:" .. guid)
+	local line = ok and type(data) == "table" and data.lines and data.lines[1]
+	local text = line and line.leftText
+	if type(text) == "string" and not issecret(text) and text ~= "" then return text end
+end
+
+-- A corpse seen or looted: count the kill once. A corpse is often the first
+-- time the game shows who a creature was, so this can also start its entry.
 local function Slain(guid)
 	if not guid or issecret(guid) or slain[guid] then return end
 	local id = NpcID(guid)
-	local m = id and cur.mobs[id]
+	local m = id and (cur.mobs[id] or Mob(id, NameOf(guid)))
 	if not m then return end
 	slain[guid] = true
 	Fought(m)
@@ -90,10 +131,13 @@ end
 local function Creature(unit)
 	if not cur or not Plain(UnitExists(unit)) then return end
 	local guid, name = UnitGUID(unit), UnitName(unit)
-	if issecret(guid) or issecret(name) then return end
+	local when = InCombatLockdown() and " in combat" or " at rest"
+	if issecret(guid) then Tally("unit id hidden" .. when); guid = nil else Tally("unit id shown" .. when) end
+	if issecret(name) then Tally("unit name hidden" .. when); name = nil else Tally("unit name shown" .. when) end
+	if not guid and not name then return end
 	if Plain(UnitIsPlayer(unit)) ~= false or Plain(UnitPlayerControlled(unit)) ~= false then return end
 	if not Plain(UnitCanAttack("player", unit)) then return end
-	local id = NpcID(guid)
+	local id = NpcID(guid) or (not guid and name and ("n:" .. name))
 	local m = id and Mob(id, name)
 	if not m then return end
 
@@ -115,7 +159,7 @@ local function Creature(unit)
 	if changed then ns:Changed() end
 
 	if Plain(UnitIsDead(unit)) then
-		Slain(guid)
+		if guid then Slain(guid) else Fought(m) end
 	elseif Plain(UnitAffectingCombat(unit)) then
 		Fought(m)
 	end
@@ -135,11 +179,14 @@ ns:On("UNIT_THREAT_LIST_UPDATE", See)
 
 -- A spell a creature is seen casting. how: "cast", "channel" or nil (instant).
 local function Cast(how, unit, _, spellID)
-	if not cur or type(unit) ~= "string" or issecret(spellID) or type(spellID) ~= "number" then return end
+	if not cur or type(unit) ~= "string" then return end
+	if issecret(spellID) then Tally("cast spell hidden") return end
+	if type(spellID) ~= "number" then return end
 	if not (unit == "target" or unit == "focus" or unit == "mouseover"
 		or unit:find("^nameplate") or unit:find("^boss")) then return end
 	local m = Creature(unit)
 	if not m then return end
+	Tally("cast spell shown")
 	local name = C_Spell and C_Spell.GetSpellName and C_Spell.GetSpellName(spellID)
 	if not name and GetSpellInfo then name = GetSpellInfo(spellID) end
 	if not name or issecret(name) or name == "" then return end
@@ -261,6 +308,7 @@ ns:On("LOOT_OPENED", function()
 	for slot = 1, GetNumLootItems() do
 		local link = GetLootSlotLink(slot)
 		local guid = GetLootSourceInfo and GetLootSourceInfo(slot) or nil
+		if guid then Tally(issecret(guid) and "corpse id hidden" or "corpse id shown") end
 		if link then AddLoot(link, guid) end
 		Slain(guid) -- an opened corpse is a kill, whether or not it held anything of note
 	end
@@ -280,7 +328,7 @@ local function CheckArea()
 	if not cur then return end
 	local name = GetSubZoneText()
 	if not name or name == "" then name = GetMinimapZoneText() end
-	if not name or name == "" or name == cur.name then return end
+	if not name or name == "" or ns:AreaKey(name) == ns:AreaKey(cur.name) then return end
 	for _, a in ipairs(cur.areas) do
 		if a.name == name then return end
 	end

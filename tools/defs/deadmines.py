@@ -1,6 +1,7 @@
 MAP = {
     "instance": 36,
     "slug": "deadmines",
+    "path": True,  # one road: areas are listed in the order you pass through them
     "floors": [
         {
             "ref": "deadmines-1",

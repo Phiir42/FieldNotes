@@ -357,8 +357,8 @@ local function BossPage(lines, inst, eid)
 			if m.name == b.name then table.insert(mobs, 1, m) else mobs[#mobs + 1] = m end
 		end
 	end
-	H2(lines, "Observed in battle")
-	if #mobs == 0 then Faded(lines, "Nothing observed yet.") end
+	-- the game hides most of a fight from addons: say nothing rather than "nothing"
+	if #mobs > 0 then H2(lines, "Observed in battle") end
 	for i, m in ipairs(mobs) do
 		MobLines(lines, m, #mobs > 1 or m.name ~= b.name)
 	end
@@ -510,20 +510,41 @@ local function MapPage(lines, id, inst)
 		if m.fought then known[#known + 1] = m.name end
 	end
 	local sheets, placed = {}, {}
+	local seenOn = {}
 	for f, floor in ipairs(floors) do
-		local pieces, seen, found = {}, {}, 0
-		if floor.decor then pieces[#pieces + 1] = floor.decor end
-		if floor.start then pieces[#pieces + 1] = floor.start end
+		local seen = {}
+		seenOn[f] = seen
 		for _, name in ipairs(known) do
 			local piece = floor.areas[ns:AreaKey(name)]
 			if piece then
 				placed[name] = true
-				if not seen[piece] then
-					seen[piece] = true
-					found = found + 1
-					pieces[#pieces + 1] = piece
-				end
+				seen[piece] = true
 			end
+		end
+	end
+	-- Where a dungeon is one road (floor.path), reaching an area means having
+	-- come through every area before it, and through every earlier sheet.
+	local beyond
+	for f = #floors, 1, -1 do
+		local floor, seen = floors[f], seenOn[f]
+		if floor.path then
+			local reach = beyond and math.huge or 0
+			for piece in pairs(seen) do
+				if piece.n > reach then reach = piece.n end
+			end
+			for _, piece in pairs(floor.areas) do
+				if piece.n <= reach then seen[piece] = true end
+			end
+		end
+		if next(seen) then beyond = true end
+	end
+	for f, floor in ipairs(floors) do
+		local pieces, found = {}, 0
+		if floor.decor then pieces[#pieces + 1] = floor.decor end
+		if floor.start then pieces[#pieces + 1] = floor.start end
+		for piece in pairs(seenOn[f]) do
+			found = found + 1
+			pieces[#pieces + 1] = piece
 		end
 		if floor.start or found > 0 then
 			sheets[#sheets + 1] = { f = f, floor = floor, pieces = pieces, found = found, complete = found >= floor.count }
@@ -802,17 +823,31 @@ local function CreateJournal()
 	frame:SetScript("OnShow", Refresh)
 end
 
-function ns:ToggleJournal()
+-- page: open on this page of the dungeon you are standing in ("map").
+function ns:ToggleJournal(page)
 	if not frame then CreateJournal() end
 	if frame:IsShown() then
 		frame:Hide()
 		return
 	end
 	-- open on the dungeon you are standing in
-	if self.currentID and (not sel.inst or sel.inst ~= self.currentID) then
-		sel.inst, sel.kind, sel.key = self.currentID, "overview", nil
+	if self.currentID and (page or not sel.inst or sel.inst ~= self.currentID) then
+		sel.inst, sel.kind, sel.key = self.currentID, page or "overview", nil
 	end
 	frame:Show()
+end
+
+-- Inside a dungeon the game's own map has nothing to show, so the map key
+-- opens the journal's map of the dungeon instead ("/fn mapkey" turns this off).
+if type(ToggleWorldMap) == "function" then
+	hooksecurefunc("ToggleWorldMap", function()
+		if not (ns.db and ns.db.settings.mapKey and ns.currentID) then return end
+		if WorldMapFrame and WorldMapFrame:IsShown() then
+			if InCombatLockdown() then return end -- leave the game's panels alone mid-fight
+			HideUIPanel(WorldMapFrame)
+		end
+		ns:ToggleJournal(ns.Maps[ns.currentID] and "map" or nil)
+	end)
 end
 
 ns:On("FN_DATA", function() Refresh() end)

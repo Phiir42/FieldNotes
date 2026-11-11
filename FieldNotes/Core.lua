@@ -26,6 +26,7 @@ ns.DEFAULTS = {
 	minQuality = 2,    -- lowest item quality worth noting (2 = uncommon)
 	button = true,     -- minimap button
 	buttonAngle = 200,
+	mapKey = true,     -- inside a dungeon, the map key opens the journal's map
 }
 
 ---------------------------------------------------------------------------

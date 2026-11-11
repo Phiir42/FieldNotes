@@ -69,3 +69,11 @@ not touch the WoW install.
 
 For each instance: floors done, the area keys with their aliases, which names
 you are unsure about, and any mismatch between the retail map and vanilla.
+
+## One-road dungeons
+
+Add `"path": True` to MAP when the dungeon is a single road and the areas of
+each floor are listed in the order a player passes through them (floors in
+order too). Then reaching an area also uncovers every area before it, which
+matters because the game hides most creature names from addons, so often
+only boss kills uncover anything. Leave it out for dungeons with branches.
