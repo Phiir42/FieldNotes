@@ -195,6 +195,7 @@ end
 local function Remark(s)
 	local t = {}
 	if s.cast then t[#t + 1] = "has a cast time" end
+	if s.channel then t[#t + 1] = "is channelled" end
 	if s.dmg then
 		local school = SCHOOL[s.school or 0]
 		t[#t + 1] = ("struck for up to %d%s"):format(s.dmg, school and (" " .. school) or "")

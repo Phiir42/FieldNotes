@@ -1,17 +1,20 @@
 -- Recording: everything the journal knows is written here, from what the
 -- character witnesses inside a dungeon or raid.
 --   areas      sub-zone changes
---   creatures  anything hostile you mouse over, target, see a nameplate of or fight
---   abilities  the combat log, for spells used by hostile creatures
+--   creatures  anything hostile you mouse over, target or see a nameplate of
+--   abilities  spells those creatures are seen casting
 --   bosses     ENCOUNTER_START / ENCOUNTER_END
 --   loot       corpses you open, and loot messages from your group
+--
+-- The Forever client restricts combat data like Retail does: addons may not
+-- register COMBAT_LOG_EVENT_UNFILTERED, and during instance combat a unit's
+-- GUID, name and spells can be "secret" values that error when used. So
+-- nothing here reads the combat log, every value from a unit is checked with
+-- issecretvalue before use, and whatever is secret is simply not recorded;
+-- most of a creature's entry is written when it is seen out of combat.
 local _, ns = ...
 
-local band = bit.band
-local HOSTILE = COMBATLOG_OBJECT_REACTION_HOSTILE or 0x40
-local CONTROL_NPC = COMBATLOG_OBJECT_CONTROL_NPC or 0x200
-local CONTROL_PLAYER = COMBATLOG_OBJECT_CONTROL_PLAYER or 0x100
-local TYPE_PLAYER = COMBATLOG_OBJECT_TYPE_PLAYER or 0x400
+local issecret = issecretvalue or function() return false end
 
 local ENGAGE_GRACE = 5     -- s: creatures first fought this soon before a boss pull belong to it
 local BOSS_LOOT_WINDOW = 180 -- s after a boss dies in which unattributed group loot counts as its
@@ -23,11 +26,10 @@ local encounter  -- { id = encounterID, t = GetTime() } while a boss fight runs
 local lastKill   -- { id = encounterID, t = GetTime() }
 local lootSeen = {}  -- [corpseGUID .. itemID] = true: counted this session
 local lootTime = {}  -- [itemID] = GetTime() it was last counted
-
-local combatLog = CreateFrame("Frame")
+local slain = {}     -- [corpseGUID] = true: kill counted this session
 
 local function NpcID(guid)
-	if not guid then return end
+	if not guid or issecret(guid) then return end
 	local kind, _, _, _, _, id = strsplit("-", guid)
 	if kind == "Creature" or kind == "Vehicle" then return tonumber(id) end
 end
@@ -54,125 +56,104 @@ local function Fought(m)
 	ns:Changed()
 end
 
-local function Spell(m, id, name, school)
-	local key = (type(id) == "number" and id > 0) and id or name
-	if not key then return end
-	local s = m.spells[key]
+local function Spell(m, id, name)
+	local s = m.spells[id]
 	if not s then
-		s = { name = name or UNKNOWN, first = time(), school = school }
-		m.spells[key] = s
-		m.order[#m.order + 1] = key
+		s = { name = name, first = time() }
+		m.spells[id] = s
+		m.order[#m.order + 1] = id
 		ns:Changed()
 	end
 	return s
 end
 
--- Set a fact about a spell once; raise a number only when it grows.
-local function Learn(s, key, value)
-	local old = s[key]
-	if old == value then return end
-	if type(value) == "number" and type(old) == "number" and value <= old then return end
-	s[key] = value
+-- A corpse seen or looted: count the kill once.
+local function Slain(guid)
+	if not guid or issecret(guid) or slain[guid] then return end
+	local id = NpcID(guid)
+	local m = id and cur.mobs[id]
+	if not m then return end
+	slain[guid] = true
+	Fought(m)
+	m.kills = (m.kills or 0) + 1
 	ns:Changed()
 end
 
-local function OnCombatLog()
-	if not cur then return end
-	local _, sub, _, sGUID, sName, sFlags, _, dGUID, dName, dFlags, _, a1, a2, a3, a4, a5 = CombatLogGetCurrentEventInfo()
-	sFlags, dFlags = sFlags or 0, dFlags or 0
-
-	if sub == "UNIT_DIED" then
-		local id = band(dFlags, HOSTILE) ~= 0 and band(dFlags, CONTROL_NPC) ~= 0 and NpcID(dGUID)
-		local m = id and Mob(id, dName)
-		if m then
-			m.kills = (m.kills or 0) + 1
-			ns:Changed()
-		end
-		return
-	end
-
-	-- a hostile creature doing something
-	if band(sFlags, HOSTILE) ~= 0 and band(sFlags, CONTROL_NPC) ~= 0 then
-		local id = NpcID(sGUID)
-		local m = id and Mob(id, sName)
-		if not m then return end
-		Fought(m)
-		local onPlayer = band(dFlags, TYPE_PLAYER) ~= 0
-		if sub == "SWING_DAMAGE" then
-			if onPlayer and type(a1) == "number" and a1 > (m.melee or 0) then
-				m.melee = a1
-				ns:Changed()
-			end
-		elseif sub == "SPELL_CAST_START" then
-			local s = Spell(m, a1, a2, a3)
-			if s then Learn(s, "cast", true) end
-		elseif sub == "SPELL_CAST_SUCCESS" or sub == "SPELL_MISSED" then
-			Spell(m, a1, a2, a3)
-		elseif sub == "SPELL_DAMAGE" or sub == "RANGE_DAMAGE" then
-			local s = Spell(m, a1, a2, a3)
-			if s and onPlayer and type(a4) == "number" then Learn(s, "dmg", a4) end
-		elseif sub == "SPELL_PERIODIC_DAMAGE" then
-			local s = Spell(m, a1, a2, a3)
-			if s and onPlayer and type(a4) == "number" then Learn(s, "tick", a4) end
-		elseif sub == "SPELL_AURA_APPLIED" then
-			local s = Spell(m, a1, a2, a3)
-			if s then
-				if a4 == "DEBUFF" and onPlayer then
-					Learn(s, "debuff", true)
-				elseif a4 == "BUFF" and band(dFlags, HOSTILE) ~= 0 then
-					Learn(s, "buff", true)
-				end
-			end
-		elseif sub == "SPELL_HEAL" or sub == "SPELL_PERIODIC_HEAL" then
-			local s = Spell(m, a1, a2, a3)
-			if s then Learn(s, "heal", true) end
-		elseif sub == "SPELL_SUMMON" then
-			local s = Spell(m, a1, a2, a3)
-			if s and dName then Learn(s, "summon", dName) end
-		end
-		return
-	end
-
-	-- a player (or pet) doing something to a hostile creature
-	if band(dFlags, HOSTILE) ~= 0 and band(dFlags, CONTROL_NPC) ~= 0 and band(sFlags, CONTROL_PLAYER) ~= 0 then
-		local id = NpcID(dGUID)
-		local m = id and Mob(id, dName)
-		if not m then return end
-		Fought(m)
-		if sub == "SPELL_INTERRUPT" then
-			local s = Spell(m, a4, a5)
-			if s then Learn(s, "kick", true) end
-		end
-	end
+-- true / false, or nil when the game hides the answer
+local function Plain(v)
+	if issecret(v) then return nil end
+	return v
 end
-combatLog:SetScript("OnEvent", OnCombatLog)
 
--- What a unit token shows about a creature: level, rank and kind.
-local function See(unit)
-	if not cur or not UnitExists(unit) or UnitIsPlayer(unit) or UnitPlayerControlled(unit) then return end
-	if not UnitCanAttack("player", unit) then return end
-	local id = NpcID(UnitGUID(unit))
-	local m = id and Mob(id, UnitName(unit))
+-- The journal entry for a hostile creature behind a unit token, with what the
+-- token shows about it. nil for anything else, or while its identity is secret.
+local function Creature(unit)
+	if not cur or not Plain(UnitExists(unit)) then return end
+	local guid, name = UnitGUID(unit), UnitName(unit)
+	if issecret(guid) or issecret(name) then return end
+	if Plain(UnitIsPlayer(unit)) ~= false or Plain(UnitPlayerControlled(unit)) ~= false then return end
+	if not Plain(UnitCanAttack("player", unit)) then return end
+	local id = NpcID(guid)
+	local m = id and Mob(id, name)
 	if not m then return end
+
 	local changed
-	local level = UnitLevel(unit)
-	if level and level > 0 then
-		if not m.lo or level < m.lo then m.lo = level; changed = true end
-		if not m.hi or level > m.hi then m.hi = level; changed = true end
-	elseif level == -1 and not m.skull then
-		m.skull = true
-		changed = true
+	local level = Plain(UnitLevel(unit))
+	if type(level) == "number" then
+		if level > 0 then
+			if not m.lo or level < m.lo then m.lo = level; changed = true end
+			if not m.hi or level > m.hi then m.hi = level; changed = true end
+		elseif level == -1 and not m.skull then
+			m.skull = true
+			changed = true
+		end
 	end
-	local cls = UnitClassification(unit)
+	local cls = Plain(UnitClassification(unit))
 	if cls and cls ~= m.cls then m.cls = cls; changed = true end
-	local kind = UnitCreatureType(unit)
+	local kind = Plain(UnitCreatureType(unit))
 	if kind and kind ~= m.type then m.type = kind; changed = true end
 	if changed then ns:Changed() end
+
+	if Plain(UnitIsDead(unit)) then
+		Slain(guid)
+	elseif Plain(UnitAffectingCombat(unit)) then
+		Fought(m)
+	end
+	return m
+end
+
+-- pcall: should the game hide something this code does not expect, skip the
+-- sighting instead of raising an error in the middle of a fight
+local function See(unit)
+	if cur and type(unit) == "string" then pcall(Creature, unit) end
 end
 
 ns:On("UPDATE_MOUSEOVER_UNIT", function() See("mouseover") end)
 ns:On("PLAYER_TARGET_CHANGED", function() See("target") end)
-ns:On("NAME_PLATE_UNIT_ADDED", function(unit) if unit then See(unit) end end)
+ns:On("NAME_PLATE_UNIT_ADDED", See)
+ns:On("UNIT_THREAT_LIST_UPDATE", See)
+
+-- A spell a creature is seen casting. how: "cast", "channel" or nil (instant).
+local function Cast(how, unit, _, spellID)
+	if not cur or type(unit) ~= "string" or issecret(spellID) or type(spellID) ~= "number" then return end
+	if not (unit == "target" or unit == "focus" or unit == "mouseover"
+		or unit:find("^nameplate") or unit:find("^boss")) then return end
+	local m = Creature(unit)
+	if not m then return end
+	local name = C_Spell and C_Spell.GetSpellName and C_Spell.GetSpellName(spellID)
+	if not name and GetSpellInfo then name = GetSpellInfo(spellID) end
+	if not name or issecret(name) or name == "" then return end
+	Fought(m)
+	local s = Spell(m, spellID, name)
+	if how and not s[how] then
+		s[how] = true
+		ns:Changed()
+	end
+end
+
+ns:On("UNIT_SPELLCAST_START", function(...) pcall(Cast, "cast", ...) end)
+ns:On("UNIT_SPELLCAST_CHANNEL_START", function(...) pcall(Cast, "channel", ...) end)
+ns:On("UNIT_SPELLCAST_SUCCEEDED", function(...) pcall(Cast, nil, ...) end)
 
 ---------------------------------------------------------------------------
 -- Bosses
@@ -246,6 +227,7 @@ local function AddLoot(link, guid)
 	if not q or q < ns.db.settings.minQuality then return end
 
 	local now = GetTime()
+	if issecret(guid) then guid = nil end
 	if guid then
 		local key = guid .. id
 		if lootSeen[key] then return end
@@ -278,9 +260,9 @@ ns:On("LOOT_OPENED", function()
 	if not cur then return end
 	for slot = 1, GetNumLootItems() do
 		local link = GetLootSlotLink(slot)
-		if link then
-			AddLoot(link, GetLootSourceInfo and GetLootSourceInfo(slot) or nil)
-		end
+		local guid = GetLootSourceInfo and GetLootSourceInfo(slot) or nil
+		if link then AddLoot(link, guid) end
+		Slain(guid) -- an opened corpse is a kill, whether or not it held anything of note
 	end
 end)
 
@@ -330,7 +312,6 @@ local function CheckInstance()
 					or ("Returned to %s."):format(name))
 			end
 			inst.last = now
-			combatLog:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
 			ns:Changed()
 		end
 		CheckArea()
@@ -338,7 +319,6 @@ local function CheckInstance()
 		cur.last = time()
 		cur, ns.current, ns.currentID = nil, nil, nil
 		encounter = nil
-		combatLog:UnregisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
 		ns:Changed()
 	end
 end
