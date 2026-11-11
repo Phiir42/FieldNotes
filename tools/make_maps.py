@@ -207,7 +207,11 @@ def boss_points(dungeon, splits):
     an area on a sheet named after the boss; the level whose journal-pinned
     bosses stand at the nearest height; the sheet with a room drawn at that
     spot (splits: each floor's (image, pieces)). A boss with no usable spawn
-    sits on the first seed of the area named after it."""
+    sits on the middle seed of the area named after it.
+
+    MAP["bosses"] in a definition overrules all of that, per boss:
+    (sheet, x, y) pins it, "Other Boss" puts it where that boss is, None
+    leaves it off the map."""
     global _boss_data
     if _boss_data is None:
         from make_abilities import ALIASES, table as forever_table, FOREVER
@@ -242,11 +246,29 @@ def boss_points(dungeon, splits):
     out = [[] for _ in floors]
     sheet_of = {floor.get("uimap"): f for f, floor in enumerate(floors) if floor.get("uimap")}
     todo, heights = [], {}  # heights: [floor] = heights of the bosses the journal pins there
+    fixed = dungeon.get("bosses", {})
+
+    def on_drawing(f, x, y):
+        return max((float(alpha[y - 4:y + 5, x - 4:x + 5].mean()) for n, alpha in splits[f][1]
+                    if n != "decor"), default=0) > 0.3
+
+    def middle(seeds):
+        cx, cy = sum(x for x, _ in seeds) / len(seeds), sum(y for _, y in seeds) / len(seeds)
+        return min(seeds, key=lambda p: (p[0] - cx) ** 2 + (p[1] - cy) ** 2)
+
     for name in names.get(inst, []):
+        if name in fixed:
+            if isinstance(fixed[name], tuple):
+                f, x, y = fixed[name]
+                out[f - 1].append((name, x, y))
+            continue
         k = area_key(name)
         spot = next((spawns[(area_key(n), inst)] for n in [name] + aliases.get(name, [])
                      if (area_key(n), inst) in spawns), None)
         pin = next((j for j in journal.get(k, []) if j[0] in sheet_of), None)
+        # a pin that lands on bare parchment is for some other version of the dungeon
+        if pin and not on_drawing(sheet_of[pin[0]], round(pin[1] * W), round(pin[2] * H)):
+            pin = None
         if pin:
             f = sheet_of[pin[0]]
             out[f].append((name, round(pin[1] * W), round(pin[2] * H)))
@@ -261,7 +283,7 @@ def boss_points(dungeon, splits):
             target = next((t for a, t in floor.get("aliases", {}).items() if area_key(a) == k), None)
             area = next((a for a in floor["areas"] if area_key(a) == k), target)
             if area in floor["areas"]:
-                own[f] = floor["areas"][area][0]
+                own[f] = middle(floor["areas"][area])
         placed = None
         if spot:
             hits = {}
@@ -294,6 +316,13 @@ def boss_points(dungeon, splits):
             placed = (f, own[f])
         if placed:
             out[placed[0]].append((name, placed[1][0], placed[1][1]))
+    for name, other in fixed.items():
+        if isinstance(other, str):
+            for f, marks in enumerate(out):
+                spot = next((m for m in marks if m[0] == other), None)
+                if spot:
+                    marks.append((name, spot[1], spot[2]))
+                    break
     return out
 
 

@@ -6,6 +6,14 @@
 MAP = {
     "instance": 109,
     "slug": "sunken-temple",
+    # encounters of several creatures, and Festering Rotslime in the ring corridor below
+    "bosses": {
+        "Dreamscythe and Weaver": "Dreamscythe",
+        "Morphaz and Hazzas": "Morphaz",
+        "Jammal'an and Ogom": (1, 760, 300),
+        "Atal'ai Defenders": (1, 500, 235),
+        "Festering Rotslime": (2, 502, 215),
+    },
     "floors": [
         {
             "ref": "sunken-temple-1",

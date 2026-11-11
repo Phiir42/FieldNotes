@@ -1,6 +1,14 @@
 MAP = {
     "instance": 289,
     "slug": "scholomance",
+    # bosses the data cannot place: Kirtonos on his balcony, Ras Frostwhisper in
+    # the Laboratory (Kormok is summoned in the same room), Gandling in his study
+    "bosses": {
+        "Kirtonos": (2, 497, 60),
+        "Ras Frostwhisperer": (4, 405, 540),
+        "Kormok": (4, 405, 470),
+        "Darkmaster Gandling": (4, 670, 195),
+    },
     "floors": [
         {
             "ref": "scholomance-1",

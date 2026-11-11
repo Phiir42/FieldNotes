@@ -1,6 +1,8 @@
 MAP = {
     "instance": 429,
     "slug": "dire-maul",
+    # summoned in the Prison of Immol'thar
+    "bosses": {"Lord Hel'nurath": "Immol'thar"},
     "floors": [
         {   # Gordok Commons (Dire Maul North)
             "ref": "dire-maul-1",
