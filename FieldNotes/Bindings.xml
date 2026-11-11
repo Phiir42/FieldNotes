@@ -1,0 +1,5 @@
+<Bindings>
+	<Binding name="FIELDNOTES_TOGGLE" category="ADDONS">
+		FieldNotes:ToggleJournal()
+	</Binding>
+</Bindings>

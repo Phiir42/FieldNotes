@@ -19,6 +19,9 @@ local ADDON, ns = ...
 FieldNotes = ns
 
 local DB_VERSION = 1
+
+local metadata = (C_AddOns and C_AddOns.GetAddOnMetadata) or GetAddOnMetadata
+ns.VERSION = (metadata and metadata(ADDON, "Version")) or "?"
 local LOG_MAX = 200
 
 ns.DEFAULTS = {
@@ -37,9 +40,43 @@ ns.DEFAULTS = {
 ---------------------------------------------------------------------------
 local handlers = {}
 local frame = CreateFrame("Frame")
-frame:SetScript("OnEvent", function(_, event, ...)
-	for _, fn in ipairs(handlers[event]) do fn(...) end
-end)
+
+-- A mistake in the journal must never interrupt play. Errors are caught, kept
+-- in the saved data (FieldNotesDB.errors, shown by "/fn errors") and mentioned
+-- in chat once a session, so they can be reported.
+local ERRORS_MAX = 20
+local told
+local function Failed(event, err)
+	err = tostring(err)
+	local db = ns.db or FieldNotesDB
+	if type(db) == "table" then
+		db.errors = db.errors or {}
+		local found
+		for _, e in ipairs(db.errors) do
+			if e.msg == err then e.n, e.t, found = e.n + 1, time(), true end
+		end
+		if not found then
+			db.errors[#db.errors + 1] = { msg = err, event = event, t = time(), n = 1, version = ns.VERSION }
+			if #db.errors > ERRORS_MAX then table.remove(db.errors, 1) end
+		end
+	end
+	if not told then
+		told = true
+		DEFAULT_CHAT_FRAME:AddMessage("|cffc8a878Field Notes|r: something went wrong while taking notes. "
+			.. "\"/fn errors\" shows what; please pass it on to the author.")
+	end
+end
+
+local function Dispatch(event, ...)
+	local list = handlers[event]
+	if not list then return end
+	for _, fn in ipairs(list) do
+		local ok, err = pcall(fn, ...)
+		if not ok then Failed(event, err) end
+	end
+end
+
+frame:SetScript("OnEvent", function(_, event, ...) Dispatch(event, ...) end)
 
 function ns:On(event, fn)
 	local list = handlers[event]
@@ -53,10 +90,7 @@ function ns:On(event, fn)
 end
 
 function ns:Fire(event, ...)
-	local list = handlers[event]
-	if list then
-		for _, fn in ipairs(list) do fn(...) end
-	end
+	Dispatch(event, ...)
 end
 
 -- Combat can write many things in one moment; redraw at most a few times a second.
@@ -85,6 +119,11 @@ ns:On("ADDON_LOADED", function(name)
 	db.version = DB_VERSION
 	ns.db = db
 	ns:Fire("FN_LOADED")
+	if not db.welcomed then
+		db.welcomed = true
+		ns:Print("a blank journal is in your pack. It fills in as you explore dungeons and raids. "
+			.. "\"/fn\" opens it, \"/fn help\" lists what else it can do.")
+	end
 end)
 
 ---------------------------------------------------------------------------

@@ -321,6 +321,7 @@ end
 local function BlankPage(lines)
 	H1(lines, "Field Notes")
 	Body(lines, "\nThese pages are blank.\n\nNothing is written here until you have seen it yourself. Step into a dungeon or raid and the journal fills in as you go: the halls you walk, the creatures you meet, what they do to you, who leads them, and what they carry.")
+	Faded(lines, "\nInside a dungeon the map key opens the journal's map of it. \"/fn help\" lists the commands.")
 end
 
 local function OverviewPage(lines, id, inst)
@@ -425,14 +426,26 @@ local function BossPage(lines, inst, eid)
 	if not any then Faded(lines, "Nothing found yet.") end
 end
 
+-- Bosses have pages of their own and stay out of the bestiary: creatures
+-- first fought in an encounter, anything named like a boss you have faced, and
+-- the bosses the addon knows of.
+local function IsBoss(inst, m)
+	if m.enc then return true end
+	local key = ns:AreaKey(m.name)
+	if ns.AbilitiesByName[key] then return true end
+	for _, b in pairs(inst.bosses) do
+		if ns:AreaKey(b.name) == key then return true end
+	end
+	return false
+end
+
 local function BestiaryPage(lines, inst)
 	H1(lines, "Bestiary")
 	Faded(lines, "The creatures of " .. inst.name .. ".")
 	local any
 	for _, npc in ipairs(inst.mobOrder) do
 		local m = inst.mobs[npc]
-		-- bosses have pages of their own
-		if not m.enc and not ns.AbilitiesByName[ns:AreaKey(m.name)] then
+		if not IsBoss(inst, m) then
 			any = true
 			MobLines(lines, m, true, true)
 		end
@@ -723,7 +736,7 @@ local function IndexLines()
 				}
 			end
 			lines[#lines + 1] = {
-				text = ("Bestiary (%d)"):format(Count(inst.mobs, function(m) return m.enc or ns.AbilitiesByName[ns:AreaKey(m.name)] end)),
+				text = ("Bestiary (%d)"):format(Count(inst.mobs, function(m) return IsBoss(inst, m) end)),
 				font = "GameFontNormalSmall", indent = 10, selected = sel.kind == "bestiary",
 				click = function() Select(id, "bestiary") end,
 			}
@@ -959,7 +972,10 @@ function ns:MapTest(arg)
 		-- every area name on every floor, in a stable order; add the next three
 		local names, have = {}, {}
 		for _, floor in ipairs(self.Maps[id]) do
-			for key in pairs(floor.areas) do names[#names + 1] = key end
+			-- "#n" keys are second names for the same pieces
+			for key in pairs(floor.areas) do
+				if key:sub(1, 1) ~= "#" then names[#names + 1] = key end
+			end
 		end
 		table.sort(names)
 		for _, a in ipairs(inst.areas) do have[a.name] = true end

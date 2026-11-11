@@ -104,6 +104,9 @@ end
 ---------------------------------------------------------------------------
 -- /fn
 ---------------------------------------------------------------------------
+BINDING_HEADER_FIELDNOTES = "Field Notes"
+BINDING_NAME_FIELDNOTES_TOGGLE = "Open or close the journal"
+
 SLASH_FIELDNOTES1 = "/fn"
 SLASH_FIELDNOTES2 = "/fieldnotes"
 SlashCmdList["FIELDNOTES"] = function(msg)
@@ -120,6 +123,22 @@ SlashCmdList["FIELDNOTES"] = function(msg)
 		ns:Print("minimap button %s.", s.button and "shown" or "hidden")
 	elseif cmd == "debug" then
 		ns:DebugReport()
+	elseif cmd == "errors" then
+		local list = ns.db.errors or {}
+		if arg == "clear" then
+			ns.db.errors = nil
+			ns:Print("error list cleared.")
+		elseif #list == 0 then
+			ns:Print("no errors noted.")
+		else
+			ns:Print("%d %s noted (version %s). \"/fn errors clear\" empties the list.", #list,
+				#list == 1 and "error" or "errors", ns.VERSION)
+			for _, e in ipairs(list) do
+				print(("  %s  x%d  [%s]  %s"):format(date("%d %b %H:%M", e.t), e.n, tostring(e.event), e.msg))
+			end
+		end
+	elseif cmd == "version" then
+		ns:Print("version %s.", ns.VERSION)
 	elseif cmd == "mapkey" then
 		s.mapKey = not s.mapKey
 		ns:Print("the map key %s inside dungeons.", s.mapKey and "opens the journal" or "opens the game's map")
@@ -129,13 +148,14 @@ SlashCmdList["FIELDNOTES"] = function(msg)
 		s.minQuality = math.max(0, math.min(5, math.floor(tonumber(arg))))
 		ns:Print("noting items of quality %d and better (1 common, 2 uncommon, 3 rare, 4 epic).", s.minQuality)
 	else
-		ns:Print("commands:")
+		ns:Print("version %s. Commands:", ns.VERSION)
 		print("  /fn  -  open or close the journal")
 		print("  /fn announce  -  chat lines when something new is written down")
 		print("  /fn quality <0-5>  -  lowest item quality worth noting")
 		print("  /fn button  -  show or hide the minimap button")
 		print("  /fn debug  -  what the game has let the journal read, and what it hid")
 		print("  /fn mapkey  -  whether the map key opens the journal inside dungeons")
-		print("  /fn maptest [off]  -  preview a map, three more areas each time")
+		print("  /fn maptest [instance id | off]  -  preview a map, three more areas each time")
+		print("  /fn errors  -  anything that went wrong, for reporting")
 	end
 end

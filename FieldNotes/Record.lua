@@ -16,7 +16,6 @@ local _, ns = ...
 
 local issecret = issecretvalue or function() return false end
 
-local ENGAGE_GRACE = 5     -- s: creatures first fought this soon before a boss pull belong to it
 local BOSS_LOOT_WINDOW = 30 -- s after a boss dies in which loot seen only in chat counts as its
 local LOOT_REPEAT = 300    -- s: one item is counted once per this window from chat messages
 local VISIT_GAP = 1800     -- s away before coming back counts as a new visit
@@ -273,12 +272,12 @@ ns:On("ENCOUNTER_START", function(id, name)
 	local b = Boss(id, name)
 	b.pulls = b.pulls + 1
 	encounter = { id = id, t = GetTime() }
-	-- the pull itself usually lands in the combat log just before this event
+	-- Creatures first fought during the fight are filed with it (see Fought).
+	-- Not those met just before: a kill is only heard of once the creature is
+	-- dead, so anything already known is the trash on the way in.
 	local now = time()
 	for _, m in pairs(cur.mobs) do
-		if m.name == b.name or (not m.enc and m.fought and now - m.fought <= ENGAGE_GRACE) then
-			m.enc = id
-		end
+		if m.name == b.name then m.enc = id end
 	end
 	cur.last = now
 	ns:Changed()
