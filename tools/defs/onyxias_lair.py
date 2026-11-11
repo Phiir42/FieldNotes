@@ -1,6 +1,7 @@
 ﻿MAP = {
     "instance": 249,
     "slug": "onyxias-lair",
+    "path": True,  # one road: areas are listed in the order you pass through them
     "floors": [
         {
             "ref": "onyxias-lair-1",

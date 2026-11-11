@@ -1,6 +1,7 @@
 MAP = {
     "instance": 48,
     "slug": "blackfathom-deeps",
+    "path": "sheets",  # each sheet is one road of its own, areas in the order you pass through them
     "floors": [
         {
             "ref": "blackfathom-deeps-1",

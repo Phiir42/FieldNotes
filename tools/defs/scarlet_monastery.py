@@ -1,6 +1,7 @@
 MAP = {
     "instance": 189,
     "slug": "scarlet-monastery",
+    "path": "sheets",  # each sheet is one road of its own, areas in the order you pass through them
     "floors": [
         {   # Graveyard
             "ref": "scarlet-monastery-1",

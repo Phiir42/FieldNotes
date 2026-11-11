@@ -247,6 +247,7 @@ def boss_points(dungeon, splits):
     sheet_of = {floor.get("uimap"): f for f, floor in enumerate(floors) if floor.get("uimap")}
     todo, heights = [], {}  # heights: [floor] = heights of the bosses the journal pins there
     fixed = dungeon.get("bosses", {})
+    guessed = dungeon.setdefault("_guessed", set())  # (floor index, boss): placed from its area, not from data
 
     def on_drawing(f, x, y):
         return max((float(alpha[y - 4:y + 5, x - 4:x + 5].mean()) for n, alpha in splits[f][1]
@@ -314,6 +315,7 @@ def boss_points(dungeon, splits):
         if not placed and own:
             f = next(iter(own))
             placed = (f, own[f])
+            guessed.add((f, name))
         if placed:
             out[placed[0]].append((name, placed[1][0], placed[1][1]))
     for name, other in fixed.items():
@@ -402,7 +404,7 @@ def main():
                 ids, cols = tiles(floor["uimap"])
                 out.append("\tlocal floor = { cols = %d, tiles = { %s }, areas = {}, count = 0 }"
                            % (cols, ", ".join(map(str, ids))))
-            n, seen = 0, []
+            n, seen, numbers = 0, [], {}
             for name, alpha in pieces:
                 special = name in ("decor", "start")
                 if not special:
@@ -420,6 +422,9 @@ def main():
                     continue
                 out.append("\tfloor.areas[key(%s)] = %s" % (lua_str(name), lua_piece(tex, box)))
                 out.append("\tfloor.areas[key(%s)].n = %d" % (lua_str(name), n))
+                # also under its number, so it stays reachable if its name is given to another piece
+                out.append("\tfloor.areas[\"#%d\"] = floor.areas[key(%s)]" % (n, lua_str(name)))
+                numbers[name] = n
                 out.append("\tfloor.count = floor.count + 1")
                 for alias, target in floor.get("aliases", {}).items():
                     if target == name:
@@ -427,11 +432,28 @@ def main():
             for alias, target in floor.get("aliases", {}).items():
                 if target not in floor["areas"]:
                     print(f"  !! alias {alias!r} points at unknown area {target!r}")
+            # A boss uncovers the room it stands in, whatever the definition
+            # guessed: where a boss is known from data, its name is pointed at
+            # the piece under its mark.
+            keys = {area_key(a): a for a in floor["areas"]}
+            keys.update({area_key(a): t for a, t in floor.get("aliases", {}).items()})
+            for name, x, y in floor["bosses"]:
+                if (f - 1, name) in dungeon.get("_guessed", ()):
+                    continue
+                at = max(((float(alpha[y - 3:y + 4, x - 3:x + 4].mean()), n) for n, alpha in pieces
+                          if n not in ("decor", "start")), default=(0, None))
+                room = at[1] if at[0] > 0.3 else None
+                if room and keys.get(area_key(name)) != room:
+                    was = keys.get(area_key(name))
+                    print(f"  {name}: uncovers {room!r}" + (f" (definition said {was!r})" if was else ""))
+                    out.append("\tfloor.areas[key(%s)] = floor.areas[\"#%d\"]" % (lua_str(name), numbers[room]))
             if floor["bosses"]:
                 out.append("\tfloor.bosses = { %s }" % ", ".join(
                     "{ name = %s, x = %d, y = %d }" % (lua_str(n), x, y) for n, x, y in floor["bosses"]))
             if dungeon.get("path"):
                 out.append("\tfloor.path = true")
+                if dungeon["path"] == "sheets":
+                    out.append("\tfloor.alone = true")
             out.append("\tns.Maps[%d][%d] = floor" % (dungeon["instance"], f))
             out.append("end")
             print(f"{base}: {n} areas, {len(ids)} tiles")

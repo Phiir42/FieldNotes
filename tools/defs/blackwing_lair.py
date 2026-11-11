@@ -25,6 +25,7 @@ LABS = {
 MAP = {
     "instance": 469,
     "slug": "blackwing-lair",
+    "path": True,  # one road: areas are listed in the order you pass through them
     "floors": [
         {
             "ref": "blackwing-lair-1",

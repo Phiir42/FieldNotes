@@ -589,7 +589,8 @@ local function MapPage(lines, id, inst)
 	for f = #floors, 1, -1 do
 		local floor, seen = floors[f], seenOn[f]
 		if floor.path then
-			local reach = beyond and math.huge or 0
+			-- floor.alone: each sheet is a road of its own (separate wings)
+			local reach = (beyond and not floor.alone) and math.huge or 0
 			for piece in pairs(seen) do
 				if piece.n > reach then reach = piece.n end
 			end

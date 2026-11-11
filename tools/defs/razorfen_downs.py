@@ -1,6 +1,7 @@
 MAP = {
     "instance": 129,
     "slug": "razorfen-downs",
+    "path": True,  # one road: areas are listed in the order you pass through them
     "floors": [
         {
             "ref": "razorfen-downs-1",

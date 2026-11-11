@@ -1,6 +1,7 @@
 MAP = {
     "instance": 47,
     "slug": "razorfen-kraul",
+    "path": True,  # one road: areas are listed in the order you pass through them
     "floors": [
         {
             "ref": "razorfen-kraul-1",
@@ -12,9 +13,10 @@ MAP = {
                 "Charlga Razorflank": [(877, 277), (800, 240), (740, 215), (840, 220)],
                 "Aggem Thorncurse": [(573, 205), (620, 190), (680, 260), (640, 300), (700, 340), (570, 330), (600, 380), (650, 230)],
                 "Death Speaker Jargba": [(470, 240), (430, 290), (500, 300), (440, 380), (490, 410), (420, 440), (520, 240)],
-                "Overlord Ramtusk": [(220, 205), (290, 210), (360, 215), (270, 290), (260, 400), (310, 430), (350, 280), (370, 400), (300, 330)],
                 "Agathelos the Raging": [(110, 215), (160, 250), (80, 280), (150, 300), (100, 350), (170, 375), (130, 330)],
                 "Blind Hunter": [(80, 455), (55, 420), (110, 480)],
+                # this piece is listed last: Charlga Razorflank, the last boss, stands on it
+                "Overlord Ramtusk": [(220, 205), (290, 210), (360, 215), (270, 290), (260, 400), (310, 430), (350, 280), (370, 400), (300, 330)],
             },
             "aliases": {
                 "Razorfen Warrior": "Roogug",
