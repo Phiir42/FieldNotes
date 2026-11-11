@@ -77,3 +77,9 @@ each floor are listed in the order a player passes through them (floors in
 order too). Then reaching an area also uncovers every area before it, which
 matters because the game hides most creature names from addons, so often
 only boss kills uncover anything. Leave it out for dungeons with branches.
+
+`"path": "sheets"` does the same for each sheet on its own, for instances
+whose sheets are separate wings. A floor can also list `"roads"`: lists of
+area names that are roads of their own on that sheet (a side branch, the
+quarters around a hub); areas in no list belong to the first road. Check the
+order with `python tools/check_routes.py <slug>`.

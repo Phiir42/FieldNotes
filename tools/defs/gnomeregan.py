@@ -1,17 +1,20 @@
 MAP = {
     "instance": 90,
     "slug": "gnomeregan",
+    "path": "sheets",  # each sheet is a road of its own, areas in the order you pass through them
     "floors": [
         {
             "ref": "gnomeregan-1",
             "uimap": 226,
             "decor": [(385, 8, 625, 68), (300, 8, 455, 113), (625, 8, 712, 62), (640, 62, 665, 80), (665, 62, 712, 106), (5, 110, 283, 640)],
             "start": [(643, 185), (645, 140), (620, 205)],
+            # the Clean Zone and Grubbis are a side branch off the main road
+            "roads": [["The Clockwerk Run", "The Hall of Gears", "The Dormitory"], ["The Clean Zone", "Grubbis"]],
             "areas": {
                 "The Clockwerk Run": [(490, 82), (560, 88), (620, 100), (590, 240), (570, 255)],
                 "The Hall of Gears": [(495, 280), (495, 340), (410, 330), (590, 330), (500, 420), (430, 260), (560, 395), (440, 395), (540, 250)],
-                "Grubbis": [(780, 440), (770, 390), (790, 510), (720, 465), (650, 460), (610, 425)],
                 "The Clean Zone": [(318, 450), (360, 420), (385, 455), (350, 480), (400, 430)],
+                "Grubbis": [(780, 440), (770, 390), (790, 510), (720, 465), (650, 460), (610, 425)],
                 "The Dormitory": [(465, 545), (470, 585), (535, 600), (400, 575), (345, 520), (425, 600)],
             },
             "aliases": {
@@ -96,9 +99,10 @@ MAP = {
             "uimap": 229,
             "decor": [(300, 8, 712, 92), (345, 92, 712, 110), (585, 100, 965, 445), (494, 283, 562, 398), (540, 420, 575, 455)],
             "areas": {
-                "Tinkers' Court": [(312, 262), (313, 195), (250, 180), (380, 180), (260, 240), (370, 240), (310, 130), (290, 290)],
-                "Dark Iron Agent": [(265, 340), (270, 410), (350, 445), (430, 440), (470, 380), (480, 500), (530, 535), (580, 540)],
+                # walked from the Engineering Labs through the Dark Iron tunnel to Thermaplugg
                 "Engineering Labs": [(675, 548), (650, 510), (710, 560), (620, 580), (680, 590)],
+                "Dark Iron Agent": [(265, 340), (270, 410), (350, 445), (430, 440), (470, 380), (480, 500), (530, 535), (580, 540)],
+                "Tinkers' Court": [(312, 262), (313, 195), (250, 180), (380, 180), (260, 240), (370, 240), (310, 130), (290, 290)],
             },
             "aliases": {
                 "Mekgineer Thermaplugg": "Tinkers' Court",

@@ -107,6 +107,7 @@ for group in (CONSTRUCT, ARACHNID, MILITARY, PLAGUE):
 MAP = {
     "instance": 533,
     "slug": "naxxramas",
+    "path": "sheets",  # each sheet (and each quarter on the hub sheet) is a road of its own
     "floors": [
         {   # The Construct Quarter
             "ref": "naxxramas-1",
@@ -177,6 +178,11 @@ MAP = {
             "uimap": 166,
             "decor": BANNER,
             "start": [(530, 330), (505, 305), (555, 305), (505, 355), (555, 355)],
+            # the hub: each quarter is a road of its own
+            "roads": [["The Construct Quarter", "Patchwerk", "Grobbulus", "Gluth", "Thaddius"],
+                      ["The Arachnid Quarter", "Anub'Rekhan", "Grand Widow Faerlina", "Maexxna"],
+                      ["The Military Quarter", "Instructor Razuvious", "Gothik the Harvester", "The Four Horsemen"],
+                      ["The Plague Quarter", "Noth the Plaguebringer", "Heigan the Unclean", "Loatheb"]],
             "areas": {
                 "The Construct Quarter": [(475, 270), (420, 285), (395, 320), (365, 295), (180, 190)],
                 "Patchwerk": [(410, 228), (432, 180)],

@@ -589,13 +589,17 @@ local function MapPage(lines, id, inst)
 	for f = #floors, 1, -1 do
 		local floor, seen = floors[f], seenOn[f]
 		if floor.path then
-			-- floor.alone: each sheet is a road of its own (separate wings)
-			local reach = (beyond and not floor.alone) and math.huge or 0
+			-- floor.alone: each sheet is a road of its own (separate wings).
+			-- piece.g: a sheet can hold several roads (a side branch, the
+			-- quarters of a hub); reaching an area only tells of its own road.
+			local all = beyond and not floor.alone
+			local reach = {}
 			for piece in pairs(seen) do
-				if piece.n > reach then reach = piece.n end
+				local g = piece.g or 1
+				if piece.n > (reach[g] or 0) then reach[g] = piece.n end
 			end
 			for _, piece in pairs(floor.areas) do
-				if piece.n <= reach then seen[piece] = true end
+				if all or piece.n <= (reach[piece.g or 1] or 0) then seen[piece] = true end
 			end
 		end
 		if next(seen) then beyond = true end

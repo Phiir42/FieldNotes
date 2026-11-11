@@ -425,6 +425,9 @@ def main():
                 # also under its number, so it stays reachable if its name is given to another piece
                 out.append("\tfloor.areas[\"#%d\"] = floor.areas[key(%s)]" % (n, lua_str(name)))
                 numbers[name] = n
+                road = next((i for i, r in enumerate(floor.get("roads", []), 1) if name in r), 1)
+                if road > 1:
+                    out.append("\tfloor.areas[key(%s)].g = %d" % (lua_str(name), road))
                 out.append("\tfloor.count = floor.count + 1")
                 for alias, target in floor.get("aliases", {}).items():
                     if target == name:
