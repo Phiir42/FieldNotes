@@ -30,6 +30,23 @@ local function key(name) return ns:AreaKey(name) end
 
 ns.Maps = {}
 
+-- alcaz-prison
+ns.Maps[2994] = {}
+do
+	local floor = { cols = 2, tile = 512, tiles = { DIR .. "alcaz-prison-1-t1", DIR .. "alcaz-prison-1-t2", DIR .. "alcaz-prison-1-t3", DIR .. "alcaz-prison-1-t4" }, areas = {}, count = 0 }
+	floor.start = { mask = DIR .. "alcaz-prison-1-start", x = 363, y = 208, w = 431, h = 168 }
+	floor.areas[key("Overseer Wrex")] = { mask = DIR .. "alcaz-prison-1-01", x = 341, y = 61, w = 341, h = 222 }
+	floor.count = floor.count + 1
+	floor.areas[key("Tidemistress Ca'zass")] = { mask = DIR .. "alcaz-prison-1-02", x = 415, y = 297, w = 237, h = 175 }
+	floor.count = floor.count + 1
+	floor.areas[key("Katerina the Cleaner")] = { mask = DIR .. "alcaz-prison-1-03", x = 411, y = 417, w = 251, h = 204 }
+	floor.count = floor.count + 1
+	floor.areas[key("The Questioner")] = { mask = DIR .. "alcaz-prison-1-04", x = 207, y = 139, w = 256, h = 322 }
+	floor.count = floor.count + 1
+	floor.areas[key("Blazeroar")] = { mask = DIR .. "alcaz-prison-1-05", x = 232, y = 389, w = 219, h = 232 }
+	floor.count = floor.count + 1
+	ns.Maps[2994][1] = floor
+end
 -- blackfathom-deeps
 ns.Maps[48] = {}
 do
