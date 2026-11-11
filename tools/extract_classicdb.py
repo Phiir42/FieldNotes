@@ -6,7 +6,7 @@ Full_DB/ClassicDB_1_12_1_z*.sql.gz to refs/classicdb/ClassicDB.sql.gz).
 
 Writes refs/classicdb/creatures.json:
   { "<creature entry>": { "name", "rank", "lo", "hi", "type", "spells": [spell IDs],
-                          "spawns": [[map, x, y], ...] } }
+                          "spawns": [[map, x, y, z], ...] } }
 Spells come from the creature's spell list, its template spells and the
 casts in its AI scripts. Only creatures that spawn in an instance map or
 have spells are kept.
@@ -122,7 +122,8 @@ def main():
         c = creatures.get(num(r[col(t, "id")]))
         m = num(r[col(t, "map")])
         if c and m > 1:  # instances only; 0 and 1 are the two continents
-            c["spawns"].append([m, round(float(r[col(t, "position_x")]), 1), round(float(r[col(t, "position_y")]), 1)])
+            c["spawns"].append([m, round(float(r[col(t, "position_x")]), 1), round(float(r[col(t, "position_y")]), 1),
+                                round(float(r[col(t, "position_z")]), 1)])
 
     kept = {}
     for entry, c in creatures.items():

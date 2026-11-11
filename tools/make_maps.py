@@ -201,11 +201,13 @@ def boss_points(dungeon, splits):
     The Forever client's encounter list names the bosses. A boss is placed from
     its spawn point in the classic database (refs/classicdb/creatures.json, see
     tools/extract_classicdb.py), turned into sheet px with the retail map's
-    world bounds (UiMapAssignment). Sheets of one instance overlap, so a boss
-    goes on the sheet that has an area named after it, or else on the sheet
-    that has a room drawn at that spot (splits: each floor's (image, pieces)).
-    A boss with no usable spawn sits on the first seed of the area named
-    after it."""
+    world bounds (UiMapAssignment). Sheets of one instance overlap (they are
+    levels of one building), so which sheet a boss goes on is decided by, in
+    order: retail's dungeon journal, which pins a boss to a sheet and a spot;
+    an area on a sheet named after the boss; the level whose journal-pinned
+    bosses stand at the nearest height; the sheet with a room drawn at that
+    spot (splits: each floor's (image, pieces)). A boss with no usable spawn
+    sits on the first seed of the area named after it."""
     global _boss_data
     if _boss_data is None:
         from make_abilities import ALIASES, table as forever_table, FOREVER
@@ -214,8 +216,8 @@ def boss_points(dungeon, splits):
         if os.path.exists(path):
             with open(path, encoding="utf-8") as f:
                 for c in json.load(f).values():
-                    for m, x, y in c["spawns"]:
-                        spawns.setdefault((area_key(c["name"]), m), (x, y))
+                    for m, x, y, z in c["spawns"]:
+                        spawns.setdefault((area_key(c["name"]), m), (x, y, z))
         bounds = {}
         for r in table("UiMapAssignment"):
             lo_x, lo_y, hi_x, hi_y = (float(r[k]) for k in ("Region_0", "Region_1", "Region_3", "Region_4"))
@@ -226,12 +228,33 @@ def boss_points(dungeon, splits):
             names.setdefault(int(r["MapID"]), [])
             if r["Name_lang"] not in names[int(r["MapID"])]:
                 names[int(r["MapID"])].append(r["Name_lang"])
-        _boss_data = (ALIASES, spawns, bounds, names)
-    aliases, spawns, bounds, names = _boss_data
+        # retail's dungeon journal pins many of the same bosses to a sheet and a spot on it
+        journal = {}
+        pins = {r["JournalEncounterID"]: r for r in table("JournalEncounterXMapLoc")}
+        for r in table("JournalEncounter"):
+            pin = pins.get(r["ID"], r)
+            if pin["UiMapID"] not in ("", "0"):
+                journal.setdefault(area_key(r["Name_lang"]), []).append(
+                    (int(pin["UiMapID"]), float(pin["Map_0"]), float(pin["Map_1"])))
+        _boss_data = (ALIASES, spawns, bounds, names, journal)
+    aliases, spawns, bounds, names, journal = _boss_data
     inst, floors = dungeon["instance"], dungeon["floors"]
     out = [[] for _ in floors]
+    sheet_of = {floor.get("uimap"): f for f, floor in enumerate(floors) if floor.get("uimap")}
+    todo, heights = [], {}  # heights: [floor] = heights of the bosses the journal pins there
     for name in names.get(inst, []):
         k = area_key(name)
+        spot = next((spawns[(area_key(n), inst)] for n in [name] + aliases.get(name, [])
+                     if (area_key(n), inst) in spawns), None)
+        pin = next((j for j in journal.get(k, []) if j[0] in sheet_of), None)
+        if pin:
+            f = sheet_of[pin[0]]
+            out[f].append((name, round(pin[1] * W), round(pin[2] * H)))
+            if spot:
+                heights.setdefault(f, []).append(spot[2])
+        else:
+            todo.append((name, k, spot))
+    for name, k, spot in todo:
         # the sheets with an area this boss uncovers, and that area's first seed
         own = {}
         for f, floor in enumerate(floors):
@@ -239,8 +262,6 @@ def boss_points(dungeon, splits):
             area = next((a for a in floor["areas"] if area_key(a) == k), target)
             if area in floor["areas"]:
                 own[f] = floor["areas"][area][0]
-        spot = next((spawns[(area_key(n), inst)] for n in [name] + aliases.get(name, [])
-                     if (area_key(n), inst) in spawns), None)
         placed = None
         if spot:
             hits = {}
@@ -251,15 +272,21 @@ def boss_points(dungeon, splits):
                     y = (b[2] - spot[0]) / (b[2] - b[0]) * H
                     if 0 < x < W and 0 < y < H:
                         hits[f] = (round(x), round(y))
+
+            def drawn(f):
+                x, y = hits[f]
+                return max((float(alpha[y - 4:y + 5, x - 4:x + 5].mean()) for n, alpha in splits[f][1]
+                            if n != "decor"), default=0)
+
             f = next((f for f in hits if f in own), None)
             if f is None and not own and hits:
-                def drawn(f):
-                    x, y = hits[f]
-                    return max((float(alpha[y - 4:y + 5, x - 4:x + 5].mean()) for n, alpha in splits[f][1]
-                                if n != "decor"), default=0)
-                best = max(hits, key=drawn)
-                if drawn(best) > 0.3:
-                    f = best
+                level = [f for f in hits if f in heights and drawn(f) > 0.3]
+                if level:
+                    f = min(level, key=lambda f: min(abs(spot[2] - z) for z in heights[f]))
+                else:
+                    best = max(hits, key=drawn)
+                    if drawn(best) > 0.3:
+                        f = best
             if f is not None:
                 placed = (f, hits[f])
         if not placed and own:
