@@ -815,6 +815,7 @@ StaticPopupDialogs["FIELDNOTES_TEAR"] = {
 	button2 = NO,
 	OnAccept = function(_, id) ns:Forget(id) end,
 	timeout = 0,
+	preferredIndex = 3,
 	whileDead = true,
 	hideOnEscape = true,
 }
@@ -945,6 +946,8 @@ if type(ToggleWorldMap) == "function" then
 end
 
 ns:On("FN_DATA", function() Refresh() end)
+-- spell descriptions arrive a moment after they are first asked for
+ns:On("SPELL_TEXT_UPDATE", function() if frame and frame:IsShown() then ns:Changed() end end)
 
 ---------------------------------------------------------------------------
 -- /fn maptest: look at a shipped map without visiting the dungeon. Makes a

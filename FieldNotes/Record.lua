@@ -28,7 +28,7 @@ local lootTime = {}  -- [itemID] = GetTime() it was last counted
 local slain = {}     -- [corpseGUID] = true: kill counted this session
 
 local function NpcID(guid)
-	if not guid or issecret(guid) then return end
+	if issecret(guid) or not guid then return end
 	local kind, _, _, _, _, id = strsplit("-", guid)
 	if kind == "Creature" or kind == "Vehicle" then return tonumber(id) end
 end
@@ -109,7 +109,7 @@ end
 -- A corpse seen or looted: count the kill once. A corpse is often the first
 -- time the game shows who a creature was, so this can also start its entry.
 local function Slain(guid)
-	if not guid or issecret(guid) or slain[guid] then return end
+	if issecret(guid) or not guid or slain[guid] then return end
 	local id = NpcID(guid)
 	local m = id and (cur.mobs[id] or Mob(id, NameOf(guid) or ns.CreatureNames[id]))
 	if not m then return end
@@ -268,7 +268,8 @@ local function Boss(id, name)
 end
 
 ns:On("ENCOUNTER_START", function(id, name)
-	if not cur or not id then return end
+	if not cur or issecret(id) or not id then return end
+	if issecret(name) then name = nil end
 	local b = Boss(id, name)
 	b.pulls = b.pulls + 1
 	encounter = { id = id, t = GetTime() }
@@ -284,7 +285,9 @@ ns:On("ENCOUNTER_START", function(id, name)
 end)
 
 ns:On("ENCOUNTER_END", function(id, name, _, _, success)
-	if not cur or not id then return end
+	if not cur or issecret(id) or not id then return end
+	if issecret(name) then name = nil end
+	if issecret(success) then success = nil end
 	local b = Boss(id, name)
 	local started = encounter and encounter.id == id and encounter.t
 	encounter = nil
@@ -373,8 +376,16 @@ ns:On("LOOT_OPENED", function()
 	if not cur then return end
 	for slot = 1, GetNumLootItems() do
 		local link = GetLootSlotLink(slot)
-		local guid = GetLootSourceInfo and GetLootSourceInfo(slot) or nil
-		if guid then Tally(issecret(guid) and "corpse id hidden" or "corpse id shown") end
+		-- a secret value may not even be tested for truth: ask issecret first
+		local guid
+		if GetLootSourceInfo then guid = GetLootSourceInfo(slot) end
+		if issecret(guid) then
+			Tally("corpse id hidden")
+			guid = nil
+		elseif guid then
+			Tally("corpse id shown")
+		end
+		if issecret(link) then link = nil end
 		Slain(guid) -- an opened corpse is a kill, whether or not it held anything of note
 		if link then AddLoot(link, guid) end
 	end
@@ -382,8 +393,10 @@ end)
 
 -- Works in any client language: only the item link is read.
 ns:On("CHAT_MSG_LOOT", function(msg)
-	if not cur or type(msg) ~= "string" then return end
-	local link = msg:match("|c.-|Hitem:.-|h.-|h|r")
+	if not cur then return end
+	if issecret(msg) then Tally("loot message hidden") return end
+	if type(msg) ~= "string" then return end
+	local link = msg:match("|c[^|]*|Hitem:.-|h.-|h|r")
 	if link then AddLoot(link) end
 end)
 
@@ -393,7 +406,9 @@ end)
 local function CheckArea()
 	if not cur then return end
 	local name = GetSubZoneText()
+	if issecret(name) then return end
 	if not name or name == "" then name = GetMinimapZoneText() end
+	if issecret(name) then return end
 	if not name or name == "" or ns:AreaKey(name) == ns:AreaKey(cur.name) then return end
 	for _, a in ipairs(cur.areas) do
 		if a.name == name then return end
@@ -418,7 +433,7 @@ local function CheckInstance()
 		end
 		if cur ~= inst then
 			cur, ns.current, ns.currentID = inst, inst, id
-			encounter = nil
+			encounter, lastKill = nil, nil
 			local now = time()
 			if now - (inst.last or 0) > VISIT_GAP then
 				inst.visits = inst.visits + 1
