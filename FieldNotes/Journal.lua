@@ -227,24 +227,34 @@ local function Remark(s)
 	return text:sub(1, 1):upper() .. text:sub(2) .. "."
 end
 
+-- What is known of a creature from elsewhere (ns.Creatures in Abilities.lua):
+-- the game hides nearly everything about a dungeon's creatures from addons.
+local function Lore(m)
+	return ns.Creatures and ns.Creatures[ns:AreaKey(m.name)]
+end
+
 local function MobTag(m)
 	local t = {}
-	local rank = RANK[m.cls]
-	if rank and m.type then
-		t[#t + 1] = rank .. " " .. m.type:lower()
-	elseif rank or m.type then
-		t[#t + 1] = rank or m.type
+	local k = Lore(m) or {}
+	local rank, kind = RANK[m.cls or k.cls], m.type or k.type
+	if rank and kind then
+		t[#t + 1] = rank .. " " .. kind:lower()
+	elseif rank or kind then
+		t[#t + 1] = rank or kind
 	end
+	local lo, hi = m.lo or k.lo, m.hi or k.hi
 	if m.skull then
 		t[#t + 1] = "level ??"
-	elseif m.lo then
-		t[#t + 1] = m.lo == m.hi and ("level " .. m.lo) or ("level " .. m.lo .. "-" .. m.hi)
+	elseif lo then
+		t[#t + 1] = lo == hi and ("level " .. lo) or ("level " .. lo .. "-" .. hi)
 	end
 	if m.kills then t[#t + 1] = "slain " .. m.kills end
 	return table.concat(t, ", ")
 end
 
-local function MobLines(lines, m, showName)
+-- lore: also write in what is known of it from elsewhere (not on a boss's
+-- page, which has its own list).
+local function MobLines(lines, m, showName, lore)
 	if showName then
 		lines[#lines + 1] = { text = m.name, font = "GameFontNormal", gap = 10 }
 	end
@@ -263,7 +273,21 @@ local function MobLines(lines, m, showName)
 			spell = key, name = s.name,
 		}
 	end
-	if #m.order == 0 and not m.melee then Faded(lines, "Fought, but nothing of note observed.") end
+	local any = #m.order > 0 or m.melee
+	local k = lore and Lore(m)
+	for _, id in ipairs(k and k.spells or {}) do
+		local name = not m.spells[id] and SpellName(id)
+		if name then
+			any = true
+			local text = SpellText(id)
+			lines[#lines + 1] = {
+				text = name .. (text and ("\n" .. FADED_HEX .. text .. "|r") or ""),
+				icon = SpellIcon(id), iconSize = 26, indent = 8, gap = 4,
+				spell = id, name = name,
+			}
+		end
+	end
+	if not any then Faded(lines, "Fought, but nothing of note observed.") end
 end
 
 local function LootLines(lines, inst, filter)
@@ -353,7 +377,8 @@ local function BossPage(lines, inst, eid)
 	local mobs = {}
 	for _, npc in ipairs(inst.mobOrder) do
 		local m = inst.mobs[npc]
-		if m.enc == eid then
+		-- the boss itself only when something of it was observed
+		if m.enc == eid and (m.name ~= b.name or #m.order > 0 or m.melee) then
 			if m.name == b.name then table.insert(mobs, 1, m) else mobs[#mobs + 1] = m end
 		end
 	end
@@ -408,7 +433,7 @@ local function BestiaryPage(lines, inst)
 		local m = inst.mobs[npc]
 		if not m.enc then
 			any = true
-			MobLines(lines, m, true)
+			MobLines(lines, m, true, true)
 		end
 	end
 	if not any then Body(lines, "\nNo creatures noted yet.") end

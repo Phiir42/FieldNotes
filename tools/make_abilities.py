@@ -107,6 +107,50 @@ def classicdb_spells():
     return by_name
 
 
+RANKS = {1: "elite", 2: "rareelite", 3: "worldboss", 4: "rare"}
+TYPES = {1: "Beast", 2: "Dragonkin", 3: "Demon", 4: "Elemental", 5: "Giant", 6: "Undead", 7: "Humanoid",
+         8: "Critter", 9: "Mechanical"}
+MAX_CREATURE_SPELLS = 6
+
+
+def creature_lines(names, boss_keys):
+    """Lua lines for ns.Creatures: level, rank, kind and spells of every creature
+    that lives in an instance, from the classic database. Bosses' spells are
+    left to the boss lists."""
+    path = os.path.join(ROOT, "refs", "classicdb", "creatures.json")
+    if not os.path.exists(path):
+        return []
+    merged = {}
+    with open(path, encoding="utf-8") as f:
+        for c in json.load(f).values():
+            if not c["spawns"] or not c["name"]:
+                continue
+            m = merged.setdefault(key(c["name"]), {"name": c["name"], "lo": c["lo"], "hi": c["hi"],
+                                                    "rank": 0, "type": c["type"], "spells": []})
+            m["lo"], m["hi"] = min(m["lo"], c["lo"]), max(m["hi"], c["hi"])
+            m["rank"] = max(m["rank"], c["rank"] if c["rank"] in RANKS else 0)
+            m["spells"] += c["spells"]
+    out = []
+    for k in sorted(merged):
+        m = merged[k]
+        spells, used = [], set()
+        for sp in ([] if k in boss_keys else m["spells"]):
+            label = names.get(sp)
+            if label and label not in used and "(OLD)" not in label and "DND" not in label:
+                used.add(label)
+                spells.append(sp)
+        fields = []
+        if m["lo"] > 0:
+            fields.append("lo = %d, hi = %d" % (m["lo"], m["hi"]))
+        if m["rank"]:
+            fields.append('cls = "%s"' % RANKS[m["rank"]])
+        if m["type"] in TYPES:
+            fields.append('type = "%s"' % TYPES[m["type"]])
+        fields.append("spells = { %s }" % ", ".join(map(str, spells[:MAX_CREATURE_SPELLS])))
+        out.append('C["%s"] = { %s } -- %s' % (k, ", ".join(fields), m["name"]))
+    return out
+
+
 def main():
     names = {int(r["ID"]): r["Name_lang"] for r in table("SpellName", FOREVER)}
     mod_id, mod_name = boss_mod_spells()
@@ -154,13 +198,17 @@ def main():
         "-- Only spell IDs are stored; the game supplies names, icons and descriptions.",
         "--   ns.Abilities[encounterID] = { spellID, ... }",
         "--   ns.AbilitiesByName[ns:AreaKey(boss name)] = the same list",
+        "--   ns.Creatures[ns:AreaKey(creature name)] = { lo, hi, cls, type, spells }: what is",
+        "--     known of the creatures that live in instances, shown on their bestiary entries",
         "local _, ns = ...",
         "",
-        "local A, N = {}, {}",
-        "ns.Abilities, ns.AbilitiesByName = A, N",
+        "local A, N, C = {}, {}, {}",
+        "ns.Abilities, ns.AbilitiesByName, ns.Creatures = A, N, C",
     ]
     with open(LUA, "w", encoding="utf-8", newline="\n") as f:
-        f.write("\n".join(header + out) + "\n")
+        creatures = creature_lines(names, seen_keys)
+        f.write("\n".join(header + out + ["", "-- Creatures"] + creatures) + "\n")
+    print(len(creatures), "creatures")
     print(f"{with_data} of {total} Forever encounters have abilities; wrote {LUA}")
     missing = {}
     for e in encounters:

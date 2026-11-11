@@ -5,7 +5,7 @@ Full_DB/ClassicDB_1_12_1_z*.sql.gz to refs/classicdb/ClassicDB.sql.gz).
     python tools/extract_classicdb.py
 
 Writes refs/classicdb/creatures.json:
-  { "<creature entry>": { "name", "rank", "spells": [spell IDs],
+  { "<creature entry>": { "name", "rank", "lo", "hi", "type", "spells": [spell IDs],
                           "spawns": [[map, x, y], ...] } }
 Spells come from the creature's spell list, its template spells and the
 casts in its AI scripts. Only creatures that spawn in an instance map or
@@ -88,7 +88,9 @@ def main():
     sl = col(t, "SpellList") if "SpellList" in cols[t] else None
     spell_list_of = {}
     for r in data[t]:
-        creatures[num(r[e])] = {"name": r[nm], "rank": num(r[rk]), "spells": [], "spawns": []}
+        creatures[num(r[e])] = {"name": r[nm], "rank": num(r[rk]), "lo": num(r[col(t, "MinLevel")]),
+                                "hi": num(r[col(t, "MaxLevel")]), "type": num(r[col(t, "CreatureType")]),
+                                "spells": [], "spawns": []}
         if sl is not None and num(r[sl]):
             spell_list_of[num(r[e])] = num(r[sl])
 

@@ -116,7 +116,8 @@ local function Slain(guid)
 	if not m then return end
 	slain[guid] = true
 	Fought(m)
-	m.kills = (m.kills or 0) + 1
+	-- kills are counted from experience messages when those name the creature
+	if not m.xp then m.kills = (m.kills or 0) + 1 end
 	ns:Changed()
 end
 
@@ -193,6 +194,30 @@ local function Heard(_, sender)
 	if m then Fought(m) end
 end
 ns:On("CHAT_MSG_MONSTER_EMOTE", Heard)
+
+-- "Goblin Craftsman dies, you gain 85 experience." names what was just slain:
+-- the one dependable account of a kill the game gives an addon in a dungeon.
+local xpPattern
+ns:On("CHAT_MSG_COMBAT_XP_GAIN", function(msg)
+	if not cur then return end
+	if issecret(msg) then Tally("experience message hidden") return end
+	if type(msg) ~= "string" then return end
+	if not xpPattern then
+		-- the client's own wording, up to the amount: "%s dies, you gain "
+		local fmt = (COMBATLOG_XPGAIN_FIRSTPERSON or "%s dies, you gain %d experience."):gsub("%%1%$s", "%%s")
+		local head = fmt:match("^(.-)%%%d?%$?d") or fmt
+		xpPattern = "^" .. head:gsub("([%(%)%.%+%-%*%?%[%]%^%$])", "%%%1"):gsub("%%s", "(.-)")
+	end
+	local name = msg:match(xpPattern)
+	if not name or name == "" then Tally("experience message without a name") return end
+	Tally("experience message names the kill")
+	local m = Mob("n:" .. name, name)
+	if not m then return end
+	Fought(m)
+	m.xp = true
+	m.kills = (m.kills or 0) + 1
+	ns:Changed()
+end)
 ns:On("CHAT_MSG_MONSTER_YELL", Heard)
 ns:On("CHAT_MSG_MONSTER_SAY", Heard)
 
