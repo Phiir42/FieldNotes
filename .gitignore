@@ -1,3 +1,4 @@
 refs/
+dist/
 __pycache__/
 *.pyc

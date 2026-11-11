@@ -1,0 +1,39 @@
+# Changelog
+
+## 0.2.0-beta.1 – first public test build
+
+Everything is new to testers; this lists what the build contains and what
+changed since the private 0.1.0.
+
+### The journal
+- Pages per dungeon: overview with diary, bosses, map, bestiary, spoils, and
+  your own notes on each dungeon and boss.
+- Maps for 27 instances, uncovered area by area; single-road dungeons fill in
+  behind you; raid wings and hub sheets are handled per wing.
+- Boss markers on the maps (253 of 256 bosses placed), clickable.
+- Shipped lore: abilities for 299 boss encounters and level, type and
+  abilities for 1,131 dungeon creatures, shown only after you have met them.
+- The map key opens the journal's map inside dungeons (`/fn mapkey`).
+
+### Since 0.1.0
+- The bestiary works on the Forever client: creatures are recorded from
+  experience messages, looted corpses and what they say in combat, since the
+  game hides their names and ids from addons.
+- Loot is credited to the corpse it came from; trash drops no longer land on
+  boss pages.
+- Bosses stay out of the bestiary, including ones the addon has no data for.
+- Creatures killed just before a boss pull are no longer filed under the boss.
+- Errors are caught instead of interrupting play, kept, and shown by
+  `/fn errors`.
+- A key binding (Keybindings → AddOns), `/fn version`, a first-run chat line.
+
+### Known gaps
+- No maps yet for eight of the new Forever dungeons (Blackmaw Hold, The
+  Drowned City, The Hall of Thanes, City of Dalaran, Ruins of Lordaeron,
+  Kroldok Stronghold, The Shaper's Terrace, Excavation Site).
+- Three bosses have no map marker (Mechanical Menagerie, The Molten Core
+  encounter, Ezra Grimm).
+- Boss marker positions for Alcaz Prison and upper Shadowfang Keep are guesses.
+- Only played in the Deadmines so far; everything else is checked by an
+  offline simulation, not in the game.
+- English client only.
