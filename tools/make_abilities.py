@@ -11,10 +11,12 @@ Sources, merged per encounter:
   1. The BigWigs / LittleWigs classic boss modules installed in the retail
      client's AddOns folder (the spells each module tracks).
   2. Retail's dungeon journal tables from wago.tools (cached in refs/tables).
+  3. The cmangos classic database (see tools/extract_classicdb.py): the
+     spells each creature of the boss's name casts.
 Only spells that exist in the Forever client (refs/tables/wowf/SpellName.csv)
 are kept, and only encounters the Forever client has (DungeonEncounter.csv).
 """
-import csv, glob, os, re, urllib.request
+import csv, glob, json, os, re, urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TABLES = os.path.join(ROOT, "refs", "tables")
@@ -80,10 +82,36 @@ def journal_spells():
     return by_id, by_name
 
 
+# Encounters whose name is not the name of the creature(s) fought.
+ALIASES = {
+    "Geilhast": ["Gelihast"],
+    "The Lost Dwarves": ["Baelog", 'Eric "The Swift"', "Olaf"],
+    "Ring of Law": ["Gorosh the Dervish", "Grizzle", "Eviscerator", "Ok'thor the Breaker", "Anub'shiah", "Hedrum the Creeper"],
+    "The Vault": ["Warder Stilgiss", "Verek"],
+    "The Seven": ["Doom'rel", "Seeth'rel", "Gloom'rel", "Dope'rel", "Hate'rel", "Vile'rel", "Anger'rel"],
+    "Kirtonos": ["Kirtonos the Herald"],
+    "Ras Frostwhisperer": ["Ras Frostwhisper"],
+}
+
+
+def classicdb_spells():
+    """-> {name key: [spellID]} from the cmangos classic database
+    (refs/classicdb/creatures.json, written by tools/extract_classicdb.py)."""
+    path = os.path.join(ROOT, "refs", "classicdb", "creatures.json")
+    by_name = {}
+    if os.path.exists(path):
+        with open(path, encoding="utf-8") as f:
+            for c in json.load(f).values():
+                if c["spells"]:
+                    by_name.setdefault(key(c["name"]), []).extend(c["spells"])
+    return by_name
+
+
 def main():
     names = {int(r["ID"]): r["Name_lang"] for r in table("SpellName", FOREVER)}
     mod_id, mod_name = boss_mod_spells()
     jrn_id, jrn_name = journal_spells()
+    cdb_name = classicdb_spells()
     maps = {r["ID"]: r["MapName_lang"] for r in table("Map", FOREVER)}
 
     out, total, with_data = [], 0, 0
@@ -94,7 +122,9 @@ def main():
         eid, name = int(e["ID"]), e["Name_lang"]
         total += 1
         k = key(name)
-        raw = mod_id.get(eid, []) + mod_name.get(k, []) + jrn_id.get(eid, []) + jrn_name.get(k, [])
+        raw = mod_id.get(eid, []) + mod_name.get(k, []) + jrn_id.get(eid, []) + jrn_name.get(k, []) + cdb_name.get(k, [])
+        for alias in ALIASES.get(name, []):
+            raw += cdb_name.get(key(alias), [])
         spells, used = [], set()
         for sp in raw:
             label = names.get(sp)
@@ -132,6 +162,12 @@ def main():
     with open(LUA, "w", encoding="utf-8", newline="\n") as f:
         f.write("\n".join(header + out) + "\n")
     print(f"{with_data} of {total} Forever encounters have abilities; wrote {LUA}")
+    missing = {}
+    for e in encounters:
+        if ("A[%d] = " % int(e["ID"])) not in "\n".join(out):
+            missing.setdefault(maps.get(e["MapID"], e["MapID"]), []).append(e["Name_lang"])
+    for m, bosses in missing.items():
+        print(f"  {m}: {', '.join(bosses)}")
 
 
 if __name__ == "__main__":
