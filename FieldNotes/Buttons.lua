@@ -118,6 +118,8 @@ SlashCmdList["FIELDNOTES"] = function(msg)
 		s.button = not s.button
 		ns:UpdateMinimapButton()
 		ns:Print("minimap button %s.", s.button and "shown" or "hidden")
+	elseif cmd == "debug" then
+		ns:DebugReport()
 	elseif cmd == "mapkey" then
 		s.mapKey = not s.mapKey
 		ns:Print("the map key %s inside dungeons.", s.mapKey and "opens the journal" or "opens the game's map")
@@ -132,6 +134,7 @@ SlashCmdList["FIELDNOTES"] = function(msg)
 		print("  /fn announce  -  chat lines when something new is written down")
 		print("  /fn quality <0-5>  -  lowest item quality worth noting")
 		print("  /fn button  -  show or hide the minimap button")
+		print("  /fn debug  -  what the game has let the journal read, and what it hid")
 		print("  /fn mapkey  -  whether the map key opens the journal inside dungeons")
 		print("  /fn maptest [off]  -  preview a map, three more areas each time")
 	end

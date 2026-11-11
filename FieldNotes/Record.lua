@@ -134,6 +134,16 @@ local function Creature(unit)
 	local when = InCombatLockdown() and " in combat" or " at rest"
 	if issecret(guid) then Tally("unit id hidden" .. when); guid = nil else Tally("unit id shown" .. when) end
 	if issecret(name) then Tally("unit name hidden" .. when); name = nil else Tally("unit name shown" .. when) end
+	if not name and unit == "mouseover" and GameTooltipTextLeft1 then
+		-- the tooltip under the cursor names it too
+		local text = GameTooltipTextLeft1:GetText()
+		if issecret(text) then
+			Tally("tooltip name hidden" .. when)
+		elseif type(text) == "string" and text ~= "" then
+			Tally("tooltip name shown" .. when)
+			name = text:gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", "")
+		end
+	end
 	if not guid and not name then return end
 	if Plain(UnitIsPlayer(unit)) ~= false or Plain(UnitPlayerControlled(unit)) ~= false then return end
 	if not Plain(UnitCanAttack("player", unit)) then return end
@@ -171,6 +181,20 @@ end
 local function See(unit)
 	if cur and type(unit) == "string" then pcall(Creature, unit) end
 end
+
+-- Creatures name themselves when they shout, speak or emote ("... attempts to
+-- run away in fear!"); inside a dungeon that is nearly always something fought.
+local function Heard(_, sender)
+	if not cur then return end
+	if issecret(sender) then Tally("speaker name hidden") return end
+	if type(sender) ~= "string" or sender == "" then return end
+	Tally("speaker name shown")
+	local m = Mob("n:" .. sender, sender)
+	if m then Fought(m) end
+end
+ns:On("CHAT_MSG_MONSTER_EMOTE", Heard)
+ns:On("CHAT_MSG_MONSTER_YELL", Heard)
+ns:On("CHAT_MSG_MONSTER_SAY", Heard)
 
 ns:On("UPDATE_MOUSEOVER_UNIT", function() See("mouseover") end)
 ns:On("PLAYER_TARGET_CHANGED", function() See("target") end)
@@ -381,6 +405,16 @@ ns:On("PLAYER_ENTERING_WORLD", CheckSoon)
 ns:On("ZONE_CHANGED_NEW_AREA", CheckSoon)
 ns:On("ZONE_CHANGED", CheckArea)
 ns:On("ZONE_CHANGED_INDOORS", CheckArea)
+
+-- /fn debug: what the game has shown and hidden so far.
+function ns:DebugReport()
+	local d, keys = self.db.debug or {}, {}
+	for k in pairs(d) do keys[#keys + 1] = k end
+	table.sort(keys)
+	self:Print("what the game has shown and hidden (%s):", cur and ("in " .. cur.name) or "not in a dungeon")
+	if #keys == 0 then print("  nothing counted yet") end
+	for _, k in ipairs(keys) do print(("  %s: %d"):format(k, d[k])) end
+end
 
 -- Tear an instance's pages out of the journal.
 function ns:Forget(id)
