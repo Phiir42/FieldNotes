@@ -1,0 +1,36 @@
+# Excavation Site: Wetlands (a Forever dungeon). The game has no map sheet for it, so the sheet
+# is tools/art/excavation-site-wetlands.png, drawn by tools/draw_minimap_sheet.py from the
+# instance's minimap. Areas are keyed by the instance's sub-zone names, with bosses as aliases.
+# WHERE each name sits on the sheet is a GUESS from the terrain and the
+# encounter order: check in game and move the seeds.
+MAP = {'instance': 2998,
+ 'slug': 'excavation-site-wetlands',
+ 'floors': [{'art': 'excavation-site-wetlands',
+             'decor': [],
+             'areas': {'Lost Marsh': [(350, 130),
+                                      (500, 150),
+                                      (250, 200),
+                                      (580, 300),
+                                      (600, 420),
+                                      (250, 90),
+                                      (480, 60),
+                                      (700, 80),
+                                      (880, 120)],
+                       "Stalker's Thicket": [(300, 300),
+                                             (200, 350),
+                                             (400, 400),
+                                             (120, 420),
+                                             (300, 430),
+                                             (430, 280),
+                                             (100, 280)],
+                       'Lost Dig Site': [(790, 360), (700, 300), (880, 400), (800, 250), (900, 280), (930, 200)],
+                       'Site of the Guardian': [(560, 560),
+                                                (470, 590),
+                                                (650, 500),
+                                                (760, 560),
+                                                (880, 560),
+                                                (700, 620)]},
+             'aliases': {'Saltspine': 'Lost Marsh',
+                         'Shadetooth': "Stalker's Thicket",
+                         'Highland Horror': 'Lost Dig Site',
+                         'Relic Guardian': 'Site of the Guardian'}}]}

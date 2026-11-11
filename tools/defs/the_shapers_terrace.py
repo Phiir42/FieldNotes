@@ -1,0 +1,38 @@
+# The Shaper's Terrace (a Forever dungeon). The game has no map sheet for it, so the sheet
+# is tools/art/the-shapers-terrace.png, drawn by tools/draw_minimap_sheet.py from the
+# instance's minimap. Areas are keyed by the instance's sub-zone names; the bosses are not placed.
+# WHERE each name sits on the sheet is a GUESS from the terrain and the
+# encounter order: check in game and move the seeds.
+MAP = {'instance': 3001,
+ 'slug': 'the-shapers-terrace',
+ 'floors': [{'art': 'the-shapers-terrace',
+             'decor': [],
+             'areas': {'Lost Tar Pits': [(600, 500),
+                                         (450, 450),
+                                         (750, 520),
+                                         (400, 560),
+                                         (850, 470),
+                                         (350, 600),
+                                         (700, 600),
+                                         (900, 580),
+                                         (550, 600)],
+                       'Ruby Spring': [(160, 130), (130, 60), (320, 110), (330, 180), (230, 170)],
+                       "Shaper's Plateau": [(75, 270), (110, 210), (90, 330)],
+                       'Crystalline Highlands': [(200, 330),
+                                                 (300, 300),
+                                                 (250, 420),
+                                                 (130, 420),
+                                                 (200, 520),
+                                                 (130, 600)],
+                       'Pillar of Assimilation': [(310, 235), (350, 60), (400, 70)],
+                       'The Verdant Plains': [(450, 150), (520, 90), (480, 230), (420, 250)],
+                       'Walk of Communion': [(590, 190), (560, 270), (640, 260), (620, 110)],
+                       'Botanical Grounds': [(720, 220), (700, 160), (760, 270), (790, 130)],
+                       "Watcher's Overlook": [(860, 230), (900, 150), (880, 330), (900, 60)],
+                       'The Highlands Causeway': [(450, 340),
+                                                  (600, 350),
+                                                  (750, 360),
+                                                  (520, 400),
+                                                  (850, 400),
+                                                  (380, 380)]},
+             'aliases': {}}]}
