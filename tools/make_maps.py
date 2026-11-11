@@ -37,7 +37,7 @@ is a small alpha mask per area, made like this:
   4. Each area's share of the drawing is saved as a mask. In game the map
      tiles are shown through it, over the blank parchment.
 """
-import glob, importlib.util, os, sys
+import glob, importlib.util, json, os, re, sys
 
 import numpy as np
 from PIL import Image, ImageFilter
@@ -187,6 +187,89 @@ def save_mask(alpha, path):
     return (x0, y0, w, h), seen
 
 
+def area_key(name):
+    """Same normalisation as ns:AreaKey in the addon."""
+    return re.sub(r"[^a-z0-9]", "", re.sub(r"^the ", "", name.lower()))
+
+
+_boss_data = None
+
+
+def boss_points(dungeon, splits):
+    """Where each boss stands on the dungeon's sheets -> [[(name, x, y), ...] per floor].
+
+    The Forever client's encounter list names the bosses. A boss is placed from
+    its spawn point in the classic database (refs/classicdb/creatures.json, see
+    tools/extract_classicdb.py), turned into sheet px with the retail map's
+    world bounds (UiMapAssignment). Sheets of one instance overlap, so a boss
+    goes on the sheet that has an area named after it, or else on the sheet
+    that has a room drawn at that spot (splits: each floor's (image, pieces)).
+    A boss with no usable spawn sits on the first seed of the area named
+    after it."""
+    global _boss_data
+    if _boss_data is None:
+        from make_abilities import ALIASES, table as forever_table, FOREVER
+        spawns = {}
+        path = os.path.join(REFS, "classicdb", "creatures.json")
+        if os.path.exists(path):
+            with open(path, encoding="utf-8") as f:
+                for c in json.load(f).values():
+                    for m, x, y in c["spawns"]:
+                        spawns.setdefault((area_key(c["name"]), m), (x, y))
+        bounds = {}
+        for r in table("UiMapAssignment"):
+            lo_x, lo_y, hi_x, hi_y = (float(r[k]) for k in ("Region_0", "Region_1", "Region_3", "Region_4"))
+            if hi_x - lo_x < 20000:  # not the catch-all row
+                bounds.setdefault((int(r["UiMapID"]), int(r["MapID"])), (lo_x, lo_y, hi_x, hi_y))
+        names = {}
+        for r in forever_table("DungeonEncounter", FOREVER):
+            names.setdefault(int(r["MapID"]), [])
+            if r["Name_lang"] not in names[int(r["MapID"])]:
+                names[int(r["MapID"])].append(r["Name_lang"])
+        _boss_data = (ALIASES, spawns, bounds, names)
+    aliases, spawns, bounds, names = _boss_data
+    inst, floors = dungeon["instance"], dungeon["floors"]
+    out = [[] for _ in floors]
+    for name in names.get(inst, []):
+        k = area_key(name)
+        # the sheets with an area this boss uncovers, and that area's first seed
+        own = {}
+        for f, floor in enumerate(floors):
+            target = next((t for a, t in floor.get("aliases", {}).items() if area_key(a) == k), None)
+            area = next((a for a in floor["areas"] if area_key(a) == k), target)
+            if area in floor["areas"]:
+                own[f] = floor["areas"][area][0]
+        spot = next((spawns[(area_key(n), inst)] for n in [name] + aliases.get(name, [])
+                     if (area_key(n), inst) in spawns), None)
+        placed = None
+        if spot:
+            hits = {}
+            for f, floor in enumerate(floors):
+                b = bounds.get((floor.get("uimap"), inst))
+                if b:
+                    x = (b[3] - spot[1]) / (b[3] - b[1]) * W
+                    y = (b[2] - spot[0]) / (b[2] - b[0]) * H
+                    if 0 < x < W and 0 < y < H:
+                        hits[f] = (round(x), round(y))
+            f = next((f for f in hits if f in own), None)
+            if f is None and not own and hits:
+                def drawn(f):
+                    x, y = hits[f]
+                    return max((float(alpha[y - 4:y + 5, x - 4:x + 5].mean()) for n, alpha in splits[f][1]
+                                if n != "decor"), default=0)
+                best = max(hits, key=drawn)
+                if drawn(best) > 0.3:
+                    f = best
+            if f is not None:
+                placed = (f, hits[f])
+        if not placed and own:
+            f = next(iter(own))
+            placed = (f, own[f])
+        if placed:
+            out[placed[0]].append((name, placed[1][0], placed[1][1]))
+    return out
+
+
 def lua_piece(tex, box):
     return '{ mask = DIR .. "%s", x = %d, y = %d, w = %d, h = %d }' % ((tex,) + box)
 
@@ -248,8 +331,11 @@ def main():
             continue
         out.append("-- " + slug)
         out.append("ns.Maps[%d] = {}" % dungeon["instance"])
+        splits = [split(floor, blank) for floor in dungeon["floors"]]
+        bosses = boss_points(dungeon, splits)
         for f, floor in enumerate(dungeon["floors"], 1):
-            img, pieces = split(floor, blank)
+            floor["bosses"] = bosses[f - 1]
+            img, pieces = splits[f - 1]
             base = f"{slug}-{f}"
             out.append("do")
             if "art" in floor:
@@ -285,6 +371,9 @@ def main():
             for alias, target in floor.get("aliases", {}).items():
                 if target not in floor["areas"]:
                     print(f"  !! alias {alias!r} points at unknown area {target!r}")
+            if floor["bosses"]:
+                out.append("\tfloor.bosses = { %s }" % ", ".join(
+                    "{ name = %s, x = %d, y = %d }" % (lua_str(n), x, y) for n, x, y in floor["bosses"]))
             if dungeon.get("path"):
                 out.append("\tfloor.path = true")
             out.append("\tns.Maps[%d][%d] = floor" % (dungeon["instance"], f))
@@ -324,6 +413,10 @@ def write_cells(base, img, floor, pieces):
         for x, y in pts:
             d.ellipse((x - 3, y - 3, x + 3, y + 3), fill=(255, 255, 255), outline=(0, 0, 0))
             d.text((x + 5, y - 6), num, fill=(255, 255, 255), stroke_width=2, stroke_fill=(0, 0, 0))
+    for name, x, y in floor.get("bosses", []):
+        d.line((x - 7, y - 7, x + 7, y + 7), fill=(255, 0, 0), width=3)
+        d.line((x - 7, y + 7, x + 7, y - 7), fill=(255, 0, 0), width=3)
+        d.text((x + 9, y - 6), name, fill=(255, 60, 60), stroke_width=2, stroke_fill=(0, 0, 0))
     for i, name in enumerate(order):
         d.text((8, 6 + i * 13), f"{i} {name}", fill=tuple(int(c) for c in colours[name]),
                stroke_width=2, stroke_fill=(0, 0, 0))

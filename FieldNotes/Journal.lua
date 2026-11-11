@@ -453,6 +453,31 @@ local function CreateCanvas()
 	blank:SetTexture(ns.MAP_BLANK)
 	canvas.cache = {}  -- [piece or floor] = { texture, ... }, made on first use
 	canvas.shown = {}
+	canvas.marks = {}  -- boss markers, reused
+end
+
+-- A skull where a boss you have faced stands; click it for the boss's page.
+local function Mark(i)
+	local b = canvas.marks[i]
+	if not b then
+		b = CreateFrame("Button", nil, canvas)
+		b:SetSize(18, 18)
+		b:SetFrameLevel(canvas:GetFrameLevel() + 5)
+		local icon = b:CreateTexture(nil, "OVERLAY")
+		icon:SetAllPoints()
+		icon:SetTexture("Interface\\TargetingFrame\\UI-TargetingFrame-Skull")
+		b:SetHighlightTexture("Interface\\Minimap\\UI-Minimap-ZoomButton-Highlight", "ADD")
+		b:SetScript("OnEnter", function(self)
+			GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+			GameTooltip:SetText(self.name, 1, 1, 1)
+			GameTooltip:AddLine(self.note, nil, nil, nil, true)
+			GameTooltip:Show()
+		end)
+		b:SetScript("OnLeave", function() GameTooltip:Hide() end)
+		b:SetScript("OnClick", function(self) self.go() end)
+		canvas.marks[i] = b
+	end
+	return b
 end
 
 -- One texture per map tile that overlaps the box (in sheet pixels), cropped to it.
@@ -518,6 +543,16 @@ local function DrawMap(sheet)
 		for _, piece in ipairs(sheet.pieces) do Show(PieceTextures(floor, piece)) end
 	end
 	canvas.shown = shown
+
+	local sx, sy = MAP_W / ns.MAP_REF_W, MAP_H / ns.MAP_REF_H
+	for i, mark in ipairs(sheet.marks or {}) do
+		local b = Mark(i)
+		b.name, b.note, b.go = mark.name, mark.note, mark.go
+		b:ClearAllPoints()
+		b:SetPoint("CENTER", canvas, "TOPLEFT", mark.x * sx, -mark.y * sy)
+		b:Show()
+	end
+	for i = #(sheet.marks or {}) + 1, #canvas.marks do canvas.marks[i]:Hide() end
 end
 
 local SHEET = { "First sheet", "Second sheet", "Third sheet", "Fourth sheet", "Fifth sheet", "Sixth sheet" }
@@ -601,6 +636,21 @@ local function MapPage(lines, id, inst)
 				selected = sh == shown, gap = sh == sheets[1] and 6 or 0,
 				click = function() Select(id, "map", sh.f) end,
 			}
+		end
+	end
+	-- the bosses you have faced, marked where they stand
+	shown.marks = {}
+	for _, spot in ipairs(shown.floor.bosses or {}) do
+		local key = ns:AreaKey(spot.name)
+		for eid, b in pairs(inst.bosses) do
+			if ns:AreaKey(b.name) == key then
+				shown.marks[#shown.marks + 1] = {
+					x = spot.x, y = spot.y, name = b.name,
+					note = b.kills > 0 and "Defeated. Click for its page." or "Faced, not yet defeated. Click for its page.",
+					go = function() Select(id, "boss", eid) end,
+				}
+				break
+			end
 		end
 	end
 	lines[#lines + 1] = { text = "", gap = 6, space = MAP_H, map = shown }
