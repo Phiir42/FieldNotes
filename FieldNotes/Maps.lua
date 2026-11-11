@@ -1630,6 +1630,7 @@ do
 	floor.areas[key("Spore")] = floor.areas[key("Loatheb")]
 	floor.areas[key("The Necrotic Vault")] = floor.areas[key("Loatheb")]
 	floor.areas[key("Necrotic Vault")] = floor.areas[key("Loatheb")]
+	floor.bosses = { { name = "Anub'Rekhan", x = 555, y = 181 }, { name = "Gluth", x = 400, y = 198 }, { name = "Gothik the Harvester", x = 512, y = 508 }, { name = "Grand Widow Faerlina", x = 624, y = 164 }, { name = "Grobbulus", x = 475, y = 212 }, { name = "Heigan the Unclean", x = 667, y = 434 }, { name = "Instructor Razuvious", x = 372, y = 453 }, { name = "Loatheb", x = 808, y = 378 }, { name = "Maexxna", x = 769, y = 91 }, { name = "Noth the Plaguebringer", x = 559, y = 490 }, { name = "Patchwerk", x = 437, y = 185 }, { name = "Thaddius", x = 291, y = 89 }, { name = "The Four Horsemen", x = 310, y = 480 } }
 	floor.path = true
 	floor.alone = true
 	ns.Maps[533][5] = floor

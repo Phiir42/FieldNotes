@@ -175,6 +175,7 @@ MAP = {
         },
         {   # The lower necropolis: the hub and all four quarters
             "ref": "naxxramas-5",
+            "hub": True,  # the whole necropolis: mark every boss here too
             "uimap": 166,
             "decor": BANNER,
             "start": [(530, 330), (505, 305), (555, 305), (505, 355), (555, 355)],

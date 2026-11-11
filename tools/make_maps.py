@@ -318,6 +318,31 @@ def boss_points(dungeon, splits):
             guessed.add((f, name))
         if placed:
             out[placed[0]].append((name, placed[1][0], placed[1][1]))
+    # A hub sheet ("hub": True on the floor) shows the whole instance, so every
+    # boss is marked on it as well as on its own sheet: at its spawn point if
+    # that falls on the drawing, else on the area named after it.
+    for f, floor in enumerate(floors):
+        if not floor.get("hub"):
+            continue
+        b = bounds.get((floor.get("uimap"), inst))
+        for name in names.get(inst, []):
+            if any(mark[0] == name for mark in out[f]) or fixed.get(name, 0) is None:
+                continue
+            k = area_key(name)
+            spot = next((spawns[(area_key(n), inst)] for n in [name] + aliases.get(name, [])
+                         if (area_key(n), inst) in spawns), None)
+            if spot and b:
+                x = round((b[3] - spot[1]) / (b[3] - b[1]) * W)
+                y = round((b[2] - spot[0]) / (b[2] - b[0]) * H)
+                if 0 < x < W and 0 < y < H and on_drawing(f, x, y):
+                    out[f].append((name, x, y))
+                    continue
+            area = next((a for a in floor["areas"] if area_key(a) == k),
+                        next((t for a, t in floor.get("aliases", {}).items() if area_key(a) == k), None))
+            if area in floor["areas"]:
+                x, y = middle(floor["areas"][area])
+                out[f].append((name, x, y))
+                guessed.add((f, name))
     for name, other in fixed.items():
         if isinstance(other, str):
             for f, marks in enumerate(out):
