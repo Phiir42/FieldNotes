@@ -11,5 +11,6 @@
 Core.lua
 Record.lua
 Maps.lua
+Abilities.lua
 Journal.lua
 Buttons.lua

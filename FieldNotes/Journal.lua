@@ -184,6 +184,22 @@ local function SpellIcon(id)
 	return tex or QUESTION
 end
 
+local function SpellName(id)
+	local name = C_Spell and C_Spell.GetSpellName and C_Spell.GetSpellName(id)
+	if not name and GetSpellInfo then name = GetSpellInfo(id) end
+	if name and name ~= "" then return name end
+end
+
+-- The spell's own description, shortened; nil until the client has it loaded.
+local function SpellText(id)
+	local text = C_Spell and C_Spell.GetSpellDescription and C_Spell.GetSpellDescription(id)
+	if not text and GetSpellDescription then text = GetSpellDescription(id) end
+	if not text or text == "" then return end
+	text = text:gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", ""):gsub("%s+", " ")
+	if #text > 170 then text = text:sub(1, 167):gsub("%s+%S*$", "") .. "..." end
+	return text
+end
+
 local function ItemIcon(id)
 	local tex
 	if C_Item and C_Item.GetItemIconByID then tex = C_Item.GetItemIconByID(id) end
@@ -345,6 +361,35 @@ local function BossPage(lines, inst, eid)
 	if #mobs == 0 then Faded(lines, "Nothing observed yet.") end
 	for i, m in ipairs(mobs) do
 		MobLines(lines, m, #mobs > 1 or m.name ~= b.name)
+	end
+
+	-- What is known of the boss from elsewhere (Abilities.lua), written in once
+	-- it is defeated: the game hides most of a fight from addons.
+	local known = ns.Abilities[eid] or ns.AbilitiesByName[ns:AreaKey(b.name)]
+	if known then
+		H2(lines, "Known abilities")
+		if b.kills == 0 then
+			Faded(lines, "To be written down once it is defeated.")
+		else
+			local observed = {}
+			for _, m in ipairs(mobs) do
+				for id in pairs(m.spells) do observed[id] = true end
+			end
+			local any
+			for _, id in ipairs(known) do
+				local name = not observed[id] and SpellName(id)
+				if name then
+					any = true
+					local text = SpellText(id)
+					lines[#lines + 1] = {
+						text = name .. (text and ("\n" .. FADED_HEX .. text .. "|r") or ""),
+						icon = SpellIcon(id), iconSize = 26, indent = 8, gap = 4,
+						spell = id, name = name,
+					}
+				end
+			end
+			if not any then Faded(lines, "Nothing beyond what was observed.") end
+		end
 	end
 
 	H2(lines, "Spoils")
