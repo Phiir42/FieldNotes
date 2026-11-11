@@ -17,7 +17,7 @@ local _, ns = ...
 local issecret = issecretvalue or function() return false end
 
 local ENGAGE_GRACE = 5     -- s: creatures first fought this soon before a boss pull belong to it
-local BOSS_LOOT_WINDOW = 180 -- s after a boss dies in which unattributed group loot counts as its
+local BOSS_LOOT_WINDOW = 30 -- s after a boss dies in which loot seen only in chat counts as its
 local LOOT_REPEAT = 300    -- s: one item is counted once per this window from chat messages
 local VISIT_GAP = 1800     -- s away before coming back counts as a new visit
 
@@ -344,13 +344,28 @@ local function AddLoot(link, guid)
 		ns:Log(cur, ("Found %s."):format(link))
 	end
 	it.n = it.n + 1
-	if not it.npc and not it.enc then
-		local npc = NpcID(guid)
-		if npc and cur.mobs[npc] then
-			it.npc = npc
-		elseif lastKill and now - lastKill.t < BOSS_LOOT_WINDOW then
-			it.enc = lastKill.id
+	local npc = NpcID(guid)
+	if npc then
+		-- An opened corpse says exactly whose the item was, and overrules any
+		-- earlier guess: a boss's if the corpse is a boss (by name) or was part
+		-- of its fight, otherwise that creature's.
+		local m = cur.mobs[npc]
+		local name = (m and m.name) or ns.CreatureNames[npc]
+		local boss = m and m.enc
+		if name then
+			local key = ns:AreaKey(name)
+			for id, b in pairs(cur.bosses) do
+				if ns:AreaKey(b.name) == key then boss = id end
+			end
 		end
+		if boss then
+			it.enc, it.npc = boss, nil
+		else
+			it.enc, it.npc = nil, m and npc or nil
+		end
+	elseif not it.npc and not it.enc and lastKill and now - lastKill.t < BOSS_LOOT_WINDOW then
+		-- seen only in chat (someone else looted it), just after a boss fell
+		it.enc = lastKill.id
 	end
 	ns:Changed()
 end
@@ -361,8 +376,8 @@ ns:On("LOOT_OPENED", function()
 		local link = GetLootSlotLink(slot)
 		local guid = GetLootSourceInfo and GetLootSourceInfo(slot) or nil
 		if guid then Tally(issecret(guid) and "corpse id hidden" or "corpse id shown") end
-		if link then AddLoot(link, guid) end
 		Slain(guid) -- an opened corpse is a kill, whether or not it held anything of note
+		if link then AddLoot(link, guid) end
 	end
 end)
 
