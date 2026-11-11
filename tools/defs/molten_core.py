@@ -1,6 +1,7 @@
 ﻿MAP = {
     "instance": 409,
     "slug": "molten-core",
+    "path": True,  # one road: areas are listed in the order you pass through them
     "floors": [
         {
             "ref": "molten-core-1",

@@ -71,29 +71,23 @@ do
 	floor.areas[key("Drowned Sacellum")] = floor.areas[key("The Drowned Sacellum")]
 	floor.areas[key("Skittering Crustacean")] = floor.areas[key("The Drowned Sacellum")]
 	floor.areas[key("Snapping Crustacean")] = floor.areas[key("The Drowned Sacellum")]
-	floor.areas[key("Ghamoo-ra")] = { mask = DIR .. "blackfathom-deeps-1-02", x = 442, y = 293, w = 256, h = 364 }
-	floor.areas[key("Ghamoo-ra")].n = 2
-	floor.areas["#2"] = floor.areas[key("Ghamoo-ra")]
-	floor.count = floor.count + 1
-	floor.areas[key("Murkshallow Snapclaw")] = floor.areas[key("Ghamoo-ra")]
-	floor.areas[key("Aku'mai Fisher")] = floor.areas[key("Ghamoo-ra")]
-	floor.areas[key("The Pool of Ask'ar")] = { mask = DIR .. "blackfathom-deeps-1-03", x = 140, y = 218, w = 375, h = 448 }
-	floor.areas[key("The Pool of Ask'ar")].n = 3
-	floor.areas["#3"] = floor.areas[key("The Pool of Ask'ar")]
+	floor.areas[key("The Pool of Ask'ar")] = { mask = DIR .. "blackfathom-deeps-1-02", x = 140, y = 218, w = 375, h = 448 }
+	floor.areas[key("The Pool of Ask'ar")].n = 2
+	floor.areas["#2"] = floor.areas[key("The Pool of Ask'ar")]
 	floor.count = floor.count + 1
 	floor.areas[key("Pool of Ask'ar")] = floor.areas[key("The Pool of Ask'ar")]
 	floor.areas[key("Blackfathom Sea Witch")] = floor.areas[key("The Pool of Ask'ar")]
 	floor.areas[key("Blackfathom Myrmidon")] = floor.areas[key("The Pool of Ask'ar")]
 	floor.areas[key("Blackfathom Tide Priestess")] = floor.areas[key("The Pool of Ask'ar")]
 	floor.areas[key("Blackfathom Oracle")] = floor.areas[key("The Pool of Ask'ar")]
-	floor.areas[key("Lady Sarevess")] = { mask = DIR .. "blackfathom-deeps-1-04", x = 255, y = 329, w = 161, h = 161 }
-	floor.areas[key("Lady Sarevess")].n = 4
-	floor.areas["#4"] = floor.areas[key("Lady Sarevess")]
+	floor.areas[key("Lady Sarevess")] = { mask = DIR .. "blackfathom-deeps-1-03", x = 255, y = 329, w = 161, h = 161 }
+	floor.areas[key("Lady Sarevess")].n = 3
+	floor.areas["#3"] = floor.areas[key("Lady Sarevess")]
 	floor.count = floor.count + 1
 	floor.areas[key("Domina")] = floor.areas[key("Lady Sarevess")]
-	floor.areas[key("Gelihast")] = { mask = DIR .. "blackfathom-deeps-1-05", x = 65, y = 200, w = 213, h = 153 }
-	floor.areas[key("Gelihast")].n = 5
-	floor.areas["#5"] = floor.areas[key("Gelihast")]
+	floor.areas[key("Gelihast")] = { mask = DIR .. "blackfathom-deeps-1-04", x = 65, y = 200, w = 213, h = 153 }
+	floor.areas[key("Gelihast")].n = 4
+	floor.areas["#4"] = floor.areas[key("Gelihast")]
 	floor.count = floor.count + 1
 	floor.areas[key("Shrine of Gelihast")] = floor.areas[key("Gelihast")]
 	floor.areas[key("Baron Aquanis")] = floor.areas[key("Gelihast")]
@@ -102,10 +96,16 @@ do
 	floor.areas[key("Blindlight Muckdweller")] = floor.areas[key("Gelihast")]
 	floor.areas[key("Blindlight Oracle")] = floor.areas[key("Gelihast")]
 	floor.areas[key("Subjugator Kor'ul")] = floor.areas[key("Gelihast")]
-	floor.areas[key("Ghamoo-ra")] = floor.areas["#4"]
-	floor.areas[key("Lady Sarevess")] = floor.areas["#5"]
-	floor.areas[key("Gelihast")] = floor.areas["#2"]
-	floor.areas[key("Geilhast")] = floor.areas["#2"]
+	floor.areas[key("Ghamoo-ra")] = { mask = DIR .. "blackfathom-deeps-1-05", x = 442, y = 293, w = 256, h = 364 }
+	floor.areas[key("Ghamoo-ra")].n = 5
+	floor.areas["#5"] = floor.areas[key("Ghamoo-ra")]
+	floor.count = floor.count + 1
+	floor.areas[key("Murkshallow Snapclaw")] = floor.areas[key("Ghamoo-ra")]
+	floor.areas[key("Aku'mai Fisher")] = floor.areas[key("Ghamoo-ra")]
+	floor.areas[key("Ghamoo-ra")] = floor.areas["#3"]
+	floor.areas[key("Lady Sarevess")] = floor.areas["#4"]
+	floor.areas[key("Gelihast")] = floor.areas["#5"]
+	floor.areas[key("Geilhast")] = floor.areas["#5"]
 	floor.bosses = { { name = "Ghamoo-ra", x = 334, y = 405 }, { name = "Baron Aquanis", x = 170, y = 290 }, { name = "Lady Sarevess", x = 101, y = 241 }, { name = "Gelihast", x = 524, y = 368 }, { name = "Geilhast", x = 524, y = 368 } }
 	floor.path = true
 	floor.alone = true
@@ -1275,6 +1275,7 @@ do
 	floor.areas[key("Golemagg the Incinerator")] = floor.areas["#6"]
 	floor.areas[key("Majordomo Executus")] = floor.areas["#7"]
 	floor.bosses = { { name = "Lucifron", x = 660, y = 250 }, { name = "Magmadar", x = 696, y = 158 }, { name = "Gehennas", x = 332, y = 324 }, { name = "Garr", x = 316, y = 461 }, { name = "Shazzrah", x = 560, y = 570 }, { name = "Baron Geddon", x = 525, y = 519 }, { name = "Sulfuron Harbinger", x = 830, y = 551 }, { name = "Golemagg the Incinerator", x = 690, y = 385 }, { name = "Majordomo Executus", x = 843, y = 436 }, { name = "Ragnaros", x = 563, y = 357 } }
+	floor.path = true
 	ns.Maps[409][1] = floor
 end
 -- naxxramas
@@ -2842,6 +2843,7 @@ do
 	floor.areas[key("Stonevault Flameweaver")] = floor.areas[key("Hall of the Crafters")]
 	floor.areas[key("Stonevault Mauler")] = floor.areas[key("Hall of the Crafters")]
 	floor.bosses = { { name = "Revelosh", x = 535, y = 485 }, { name = "The Lost Dwarves", x = 586, y = 615 }, { name = "Ironaya", x = 374, y = 494 }, { name = "Ancient Stone Keeper", x = 476, y = 294 }, { name = "Galgann Firehammer", x = 268, y = 219 }, { name = "Grimlok", x = 220, y = 171 }, { name = "Obsidian Sentinel", x = 290, y = 399 } }
+	floor.path = true
 	ns.Maps[70][1] = floor
 end
 do
@@ -2866,6 +2868,7 @@ do
 	floor.areas[key("Earthen Hallshaper")] = floor.areas[key("Khaz'Goroth's Seat")]
 	floor.areas[key("Vault Warder")] = floor.areas[key("Khaz'Goroth's Seat")]
 	floor.bosses = { { name = "Archaedas", x = 554, y = 337 } }
+	floor.path = true
 	ns.Maps[70][2] = floor
 end
 -- wailing-caverns
