@@ -120,11 +120,12 @@ def creature_lines(names, boss_keys):
     path = os.path.join(ROOT, "refs", "classicdb", "creatures.json")
     if not os.path.exists(path):
         return []
-    merged = {}
+    merged, ids = {}, []
     with open(path, encoding="utf-8") as f:
-        for c in json.load(f).values():
+        for entry, c in json.load(f).items():
             if not c["spawns"] or not c["name"]:
                 continue
+            ids.append((int(entry), c["name"]))
             m = merged.setdefault(key(c["name"]), {"name": c["name"], "lo": c["lo"], "hi": c["hi"],
                                                     "rank": 0, "type": c["type"], "spells": []})
             m["lo"], m["hi"] = min(m["lo"], c["lo"]), max(m["hi"], c["hi"])
@@ -148,6 +149,8 @@ def creature_lines(names, boss_keys):
             fields.append('type = "%s"' % TYPES[m["type"]])
         fields.append("spells = { %s }" % ", ".join(map(str, spells[:MAX_CREATURE_SPELLS])))
         out.append('C["%s"] = { %s } -- %s' % (k, ", ".join(fields), m["name"]))
+    out += ["", "-- Creature names by NPC id: a looted corpse shows its id but not its name"]
+    out += ['I[%d] = "%s"' % (entry, name.replace("\\", "").replace('"', '\\"')) for entry, name in sorted(ids)]
     return out
 
 
@@ -202,8 +205,8 @@ def main():
         "--     known of the creatures that live in instances, shown on their bestiary entries",
         "local _, ns = ...",
         "",
-        "local A, N, C = {}, {}, {}",
-        "ns.Abilities, ns.AbilitiesByName, ns.Creatures = A, N, C",
+        "local A, N, C, I = {}, {}, {}, {}",
+        "ns.Abilities, ns.AbilitiesByName, ns.Creatures, ns.CreatureNames = A, N, C, I",
     ]
     with open(LUA, "w", encoding="utf-8", newline="\n") as f:
         creatures = creature_lines(names, seen_keys)

@@ -112,7 +112,7 @@ end
 local function Slain(guid)
 	if not guid or issecret(guid) or slain[guid] then return end
 	local id = NpcID(guid)
-	local m = id and (cur.mobs[id] or Mob(id, NameOf(guid)))
+	local m = id and (cur.mobs[id] or Mob(id, NameOf(guid) or ns.CreatureNames[id]))
 	if not m then return end
 	slain[guid] = true
 	Fought(m)
@@ -184,12 +184,15 @@ local function See(unit)
 end
 
 -- Creatures name themselves when they shout, speak or emote ("... attempts to
--- run away in fear!"); inside a dungeon that is nearly always something fought.
+-- run away in fear!"). Only while fighting: a boss calling out across the room
+-- has not been met yet. Bosses get their own pages, not a bestiary entry.
 local function Heard(_, sender)
 	if not cur then return end
 	if issecret(sender) then Tally("speaker name hidden") return end
 	if type(sender) ~= "string" or sender == "" then return end
 	Tally("speaker name shown")
+	if not (encounter or InCombatLockdown()) then return end
+	if ns.AbilitiesByName[ns:AreaKey(sender)] then return end
 	local m = Mob("n:" .. sender, sender)
 	if m then Fought(m) end
 end

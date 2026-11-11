@@ -431,7 +431,8 @@ local function BestiaryPage(lines, inst)
 	local any
 	for _, npc in ipairs(inst.mobOrder) do
 		local m = inst.mobs[npc]
-		if not m.enc then
+		-- bosses have pages of their own
+		if not m.enc and not ns.AbilitiesByName[ns:AreaKey(m.name)] then
 			any = true
 			MobLines(lines, m, true, true)
 		end
@@ -667,7 +668,7 @@ local function IndexLines()
 				}
 			end
 			lines[#lines + 1] = {
-				text = ("Bestiary (%d)"):format(Count(inst.mobs, function(m) return m.enc end)),
+				text = ("Bestiary (%d)"):format(Count(inst.mobs, function(m) return m.enc or ns.AbilitiesByName[ns:AreaKey(m.name)] end)),
 				font = "GameFontNormalSmall", indent = 10, selected = sel.kind == "bestiary",
 				click = function() Select(id, "bestiary") end,
 			}
