@@ -64,6 +64,10 @@ step("slash commands", function()
 		"quality x", "mapkey", "mapkey", "debug", "nonsense", "version", "reset" }) do
 		M.slash(cmd)
 	end
+	local said = #M.chat
+	M.slash("quality")
+	check("/fn quality alone says the current setting", ns.db.settings.minQuality == 2 and #M.chat == said + 1
+		and M.chat[#M.chat]:find("quality 2 and better", 1, true))
 end)
 
 step("events outside a dungeon are ignored", function()

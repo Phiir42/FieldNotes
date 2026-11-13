@@ -123,6 +123,8 @@
 - Baron Aquanis in Blackfathom Deeps (summoned at the Fathom Stone, with no
   encounter of the game's) lists his own Frost Nova and Frostbolt, not the
   Depth Charge and Bubble Beam of the Season of Discovery raid's Baron.
+- "/fn quality" alone says which items are being noted, instead of listing
+  every command.
 
 ## 0.2.0-beta.9
 
