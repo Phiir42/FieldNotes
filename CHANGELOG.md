@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.0-beta.3 – not yet released
+## 0.2.0-beta.3
 
 - A Preferences page at the bottom of the journal's contents (`/fn settings`,
   or right-click the minimap button): every option by clicking, plus the size
