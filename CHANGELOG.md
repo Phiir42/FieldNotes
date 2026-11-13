@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.0-beta.5 – not yet released
+## 0.2.0-beta.5
 
 - Portraits: each boss page and bestiary entry shows the creature, drawn from
   the game's own model as a sepia sketch or in true colour, animated or held
