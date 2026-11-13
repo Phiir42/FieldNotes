@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.0-beta.8 – not yet released
+## 0.2.0-beta.8
 
 - Portraits for the bosses of the dungeons new to Forever (82 of them),
   drawn from the creature itself by its id.
