@@ -564,7 +564,7 @@ local function LootLines(lines, inst, filter, showFrom, victories)
 				local m = it.npc and inst.mobs[it.npc]
 				from = m and m.name
 			end
-			local sub = (from and ("From " .. from .. ", ") or "") .. "found " .. Times(it.n)
+			local sub = (from and ("From " .. ns:The(from) .. ", ") or "") .. "found " .. Times(it.n)
 				.. ((victories or 0) > 1 and (" in " .. victories .. " victories") or "") .. "."
 			if from then sub = sub:sub(1, 1):upper() .. sub:sub(2) else sub = "F" .. sub:sub(2) end
 			lines[#lines + 1] = {

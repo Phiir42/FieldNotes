@@ -80,7 +80,7 @@ function ns:FoundLines(item)
 			break
 		end
 		local from = Source(f.inst, f.it)
-		out[#out + 1] = "found in " .. ns:The(f.inst.name) .. (from and (", from " .. from) or "")
+		out[#out + 1] = "found in " .. ns:The(f.inst.name) .. (from and (", from " .. ns:The(from)) or "")
 			.. (f.it.n == 2 and ", twice" or f.it.n > 2 and (", " .. f.it.n .. " times") or "") .. "."
 	end
 	-- and the quests that give it
