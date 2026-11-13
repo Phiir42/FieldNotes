@@ -85,8 +85,18 @@
   The Questioner, Blazeroar), the Butcher and the Lordaeron Captain in the
   Ruins of Lordaeron, Impaan the Imprisoner and Elder Shaman Bloodmane in
   Blackmaw Hold, and Dalaran's Mana Wraith. The Mana Echoes, Phantasms,
-  Arcane Elementals, Remnants and Fragmented Sentries of Dalaran have
-  theirs in the bestiary.
+  Arcane Elementals, Remnants and Fragmented Sentries of Dalaran, and
+  Blackmaw Hold's Berserkers, Legashi and Felfire Imps, have theirs in the
+  bestiary.
+- Twenty more quests say whom to look for, where what they ask for is
+  carried by many: Hearts of Zeal (Scarlet Myrmidons, Monks...), Deviate
+  Hides, Red Silk Bandanas, Troll Temper, Dark Iron Fanny Packs, Ogre
+  Warbeads and more, the likeliest carriers first; the map marks where they
+  live.
+- A creature in the bestiary names the quests you carry before the others
+  that want it.
+- "Find OOX-17/TN!" and "Crystal in the Mountains" are no longer listed
+  under Zul'Farrak and Razorfen Downs: what begins them drops all over.
 - Creatures called up as pets (BFD's Voidwalker Minions) no longer show
   the level of a namesake elsewhere.
 - Places read as they are said: "errands that lead into the Deadmines",
