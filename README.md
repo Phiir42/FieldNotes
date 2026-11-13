@@ -15,19 +15,23 @@ you walk, the creatures you fight, the bosses you face and what they drop.
   faced are marked with a skull; click one for its page. Inside a dungeon the
   map key (`M`) opens this map instead of the game's empty one.
 - **Bosses** – a page per boss: attempts, victories, defeats, your fastest
-  kill, its abilities (written in once you have beaten it) and its loot.
-- **Bestiary** – the creatures you have killed, with level, type and the
-  abilities they are known to use.
+  kill, its abilities (written in once you have beaten it), the quests that
+  send you after it, and its loot set against your victories.
+- **Bestiary** – the creatures you have killed, with level, type, the
+  abilities they are known to use, and the quests that want them.
 - **Quests** – the errands that lead into each dungeon: who gives them, what
   to look for, what they pay, and how far along yours are. The map marks
   where each one takes you, where one is handed out inside, and where a
-  finished one is handed in.
+  finished one is handed in. Quests you carry come first, those done last.
 - **Spoils** – every item of note found in the dungeon and who carried it.
   Shift-click a line to link the item in chat. An item's tooltip, wherever
   you see it, says where the journal noted it.
 - **Diary** – a dated log of each visit, the quests taken up and handed in,
   a summary of every visit (how long, at what level, what came of it), and
-  a box on every page for notes of your own.
+  a box on every page for notes of your own (click a creature, find, hall or
+  quest to write on that alone).
+- **Contents** – the first page lists every place written about;
+  `/fn find <words>` searches the whole journal.
 
 Maps ship for the 26 classic dungeons and raids (Ragefire Chasm to Naxxramas)
 and for the nine new Forever dungeons. The new dungeons' maps are painted from
