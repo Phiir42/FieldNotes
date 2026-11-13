@@ -14,7 +14,11 @@ local function Tooltip(owner, extra)
 	if inst then
 		local faced, beaten = ns:Foes(inst)
 		local t = {}
-		if faced > 0 then t[#t + 1] = ("%d of %d %s faced defeated"):format(beaten, faced, faced == 1 and "foe" or "foes") end
+		-- (as the contents page says it)
+		if faced > 0 then
+			local foes = faced .. (faced == 1 and " foe" or " foes") .. " of note"
+			t[#t + 1] = beaten == faced and (foes .. " defeated") or (foes .. " faced, " .. beaten .. " defeated")
+		end
 		if #inst.lootOrder > 0 then t[#t + 1] = #inst.lootOrder .. (#inst.lootOrder == 1 and " find" or " finds") end
 		GameTooltip:AddLine(inst.name .. (#t > 0 and (": " .. table.concat(t, ", ")) or ""), 0.86, 0.78, 0.62, true)
 	end

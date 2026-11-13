@@ -719,7 +719,7 @@ step("minimap button and compartment", function()
 	local b = FieldNotesMinimapButton
 	GameTooltip:ClearLines()
 	b.__scripts.OnEnter(b)
-	check("the button's tooltip tells of the place you are in", table.concat(GameTooltip.__lines, "\n"):find("The Deadmines: %d+ of %d+ foes faced defeated"))
+	check("the button's tooltip tells of the place you are in", table.concat(GameTooltip.__lines, "\n"):find("The Deadmines: %d+ foes? of note [fd]"))
 	b.__scripts.OnLeave(b)
 	b.__scripts.OnDragStart(b)
 	if b.__scripts.OnUpdate then b.__scripts.OnUpdate(b, 0.1) end
