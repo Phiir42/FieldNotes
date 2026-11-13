@@ -379,6 +379,16 @@ step("every page of the journal", function()
 	check("quests show whether you carry or finished them", pageText():find("level 22, in your quest log", 1, true)
 		and pageText():find("level 17, done", 1, true))
 	check("the other side's quests are left out", #ns.Quests[43] > 0 and not pageText():find("Hamuul Runetotem", 1, true))
+	do -- grouped: those you carry, those to take up, those done
+		M.units.player = { name = "Me", guid = "Player-1-0002", level = 15, player = true }
+		open("The Deadmines") open("Quests (")
+		local text = pageText()
+		local a, b, c = text:find("In your quest log", 1, true), text:find("To be taken up", 1, true), text:find("\nDone", 1, true)
+		check("quests are grouped by how you stand with them", a and b and c and a < b and b < c)
+		check("a quest you are too young for says so", text:find("Can be taken up from level 16.", 1, true)
+			and not text:find("Can be taken up from level 15.", 1, true))
+		M.units.player = nil
+	end
 	check("spoils opens", open("Spoils"))
 	check("spoils lists loot", pageText():find("Stonemason Cloak", 1, true))
 	check("the notes box went back to the dungeon on turning the page", pageText():find("My notes on The Deadmines", 1, true))
@@ -585,6 +595,19 @@ step("leave and return", function()
 	M.fire("ZONE_CHANGED_NEW_AREA")
 	M.wait(3)
 	check("no current instance outside", ns.currentID == nil)
+	-- a dungeon's quest handed in away from it goes in its diary, quietly
+	do
+		local said, log = #M.chat, #inst.log
+		M.fire("QUEST_TURNED_IN", 166, 1000, 500)
+		check("a quest handed in is in its dungeon's diary", #inst.log == log + 1
+			and inst.log[#inst.log][2] == "Handed in \"The Defias Brotherhood\".")
+		check("away from the dungeon, without a chat line", #M.chat == said)
+		M.fire("QUEST_ACCEPTED", 3, 168) -- clients that give the log index first
+		check("a quest taken up is too", inst.log[#inst.log][2] == "Took up the quest \"Collecting Memories\".")
+		M.fire("QUEST_ACCEPTED", 999999)
+		M.fire("QUEST_TURNED_IN", M.Secret())
+		check("quests the journal does not know of are not written", #inst.log == log + 2)
+	end
 	M.slash("")
 	check("journal still shows the dungeon", pageText():find("The Deadmines", 1, true))
 	check("the contents page lists every place", open("Contents") and pageText():find("1 place written about", 1, true)
@@ -596,6 +619,10 @@ step("leave and return", function()
 	M.fire("PLAYER_ENTERING_WORLD")
 	M.wait(3)
 	check("second visit counted", inst.visits == 2)
+	local said = #M.chat
+	M.fire("QUEST_ACCEPTED", 2040)
+	check("inside the dungeon a quest taken up is announced", #M.chat == said + 1
+		and inst.log[#inst.log][2]:find("Underground Assault", 1, true))
 end)
 
 step("every shipped map draws, area by area", function()

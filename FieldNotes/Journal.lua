@@ -943,6 +943,48 @@ ns:On("QUEST_LOG_UPDATE", function()
 	if changed then ns:Changed() end
 end)
 
+-- Taking up or handing in one of a dungeon's quests is part of its story: it
+-- goes in the diary of each dungeon with a page that the quest leads into.
+-- Away from the dungeon it is written quietly, without a chat line or slip.
+local homes -- [quest id] = { instance id, ... }, from Quests.lua
+local function QuestDiary(id, how)
+	if issecretvalue and issecretvalue(id) then return end
+	if type(id) ~= "number" or not ns.db then return end
+	if not homes then
+		homes = {}
+		for inst, list in pairs(ns.Quests or {}) do
+			for _, q in ipairs(list) do
+				homes[q[1]] = homes[q[1]] or {}
+				table.insert(homes[q[1]], inst)
+			end
+		end
+	end
+	local where = {}
+	for _, inst in ipairs(homes[id] or {}) do where[inst] = true end
+	for inst, rec in pairs(ns.db.instances) do
+		if rec.quests and rec.quests[id] then where[inst] = true end
+	end
+	for inst in pairs(where) do
+		local rec = ns.db.instances[inst]
+		if rec and rec.log then
+			local title = C_QuestLog and C_QuestLog.GetTitleForQuestID and C_QuestLog.GetTitleForQuestID(id)
+			if (issecretvalue and issecretvalue(title)) or type(title) ~= "string" or title == "" then
+				title = nil
+				for _, q in ipairs(ns.Quests and ns.Quests[inst] or {}) do
+					if q[1] == id then title = q[2] end
+				end
+				title = title or (rec.quests and rec.quests[id] and rec.quests[id].title)
+			end
+			if title then ns:Log(rec, (how):format(title), ns.currentID ~= inst) end
+		end
+	end
+end
+-- (the quest's id comes second on clients that also give its place in the log)
+ns:On("QUEST_ACCEPTED", function(a, b)
+	QuestDiary(type(b) == "number" and b > 0 and b or a, "Took up the quest \"%s\".")
+end)
+ns:On("QUEST_TURNED_IN", function(id) QuestDiary(id, "Handed in \"%s\".") end)
+
 local askedFor = {} -- [item id] = true once the game has been asked to load it
 local function QuestsPage(lines, id, inst)
 	H1(lines, "Quests")
@@ -952,12 +994,37 @@ local function QuestsPage(lines, id, inst)
 		return
 	end
 	Faded(lines, "Errands that lead into " .. inst.name .. ". The map marks where each one takes you.")
-	for _, q in ipairs(quests) do
+	-- those you carry first (ready to hand in before the rest), then those to
+	-- be taken up (yours to take before those you are too young for), and the
+	-- ones done last; otherwise in the order of their level
+	local level = UnitLevel and UnitLevel("player")
+	if type(level) ~= "number" or level < 1 then level = nil end
+	local rows = {}
+	for i, q in ipairs(quests) do
 		local state = QuestState(q[1])
-		local tag = {}
-		if q[3] > 0 then tag[#tag + 1] = "level " .. q[3] end
 		local progress, ready = {}, false
 		if state == "log" then progress, ready = QuestProgress(q[1]) end
+		local early = not state and level and (q[4] or 0) > level
+		local rank = state == "log" and (ready and 1 or 2) or state == "done" and 5 or early and 4 or 3
+		rows[#rows + 1] = { q = q, state = state, progress = progress, ready = ready, early = early, rank = rank, i = i }
+	end
+	table.sort(rows, function(a, b)
+		if a.rank ~= b.rank then return a.rank < b.rank end
+		return a.i < b.i
+	end)
+	local GROUPS = { "In your quest log", "In your quest log", "To be taken up", "To be taken up", "Done" }
+	local groups = {}
+	for _, r in ipairs(rows) do groups[GROUPS[r.rank]] = true end
+	local heading
+	for _, r in ipairs(rows) do
+		local q, state, progress, ready = r.q, r.state, r.progress, r.ready
+		-- a heading for each kind, where there is more than one kind
+		if next(groups, next(groups)) and GROUPS[r.rank] ~= heading then
+			heading = GROUPS[r.rank]
+			H2(lines, heading)
+		end
+		local tag = {}
+		if q[3] > 0 then tag[#tag + 1] = "level " .. q[3] end
 		if state == "done" then
 			tag[#tag + 1] = "done"
 		elseif state == "log" then
@@ -967,6 +1034,7 @@ local function QuestsPage(lines, id, inst)
 			text = (state == "done" and DONE or OPEN) .. q[2] .. FADED_HEX .. "  " .. table.concat(tag, ", ") .. "|r",
 			font = "GameFontNormal", gap = 10,
 		}
+		if r.early then Faded(lines, ("Can be taken up from level %d."):format(q[4]), 8) end
 		if q[6] ~= "" then Body(lines, q[6], 8) end
 		if #progress > 0 then Faded(lines, "So far: " .. table.concat(progress, "; ") .. ".", 8) end
 		if ready and q.to then Faded(lines, "Hand it in to " .. q.to .. ", inside.", 8) end

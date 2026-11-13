@@ -149,14 +149,17 @@ function ns:Print(msg, ...)
 end
 
 -- A line in the instance's diary, and in chat when announcements are on.
-function ns:Log(inst, text)
+-- quiet: in the diary only (something that happened away from the place).
+function ns:Log(inst, text, quiet)
 	local log = inst.log
 	log[#log + 1] = { time(), text }
 	if #log > LOG_MAX then table.remove(log, 1) end
-	if self.db.settings.announce then
-		DEFAULT_CHAT_FRAME:AddMessage(PREFIX .. text, 0.86, 0.78, 0.62)
+	if not quiet then
+		if self.db.settings.announce then
+			DEFAULT_CHAT_FRAME:AddMessage(PREFIX .. text, 0.86, 0.78, 0.62)
+		end
+		if self.Notice then self:Notice(text) end
 	end
-	if self.Notice then self:Notice(text) end
 	self:Changed()
 end
 

@@ -26,6 +26,12 @@
   ("Field Notes: found in The Deadmines, from Cookie, 2 times"), in your
   bags, chat links and loot rolls alike. Preferences → "Finds on item
   tooltips" turns it off.
+- Taking up or handing in a quest that leads into a dungeon goes in that
+  dungeon's diary (quietly, when you are elsewhere).
+- The Quests page puts the quests you carry first, those ready to hand in
+  at the top, then those still to be taken up, and those done last, each
+  under its own heading. A quest you are too young for says from what
+  level it can be taken up.
 
 ## 0.2.0-beta.9
 
