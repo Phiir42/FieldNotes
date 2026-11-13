@@ -24,8 +24,8 @@ you walk, the creatures you fight, the bosses you face and what they drop.
   your own.
 
 Maps ship for the 26 classic dungeons and raids (Ragefire Chasm to Naxxramas)
-and for Alcaz Prison. The other new Forever dungeons work too – bosses,
-bestiary, spoils and diary – but have no map yet.
+and for the nine new Forever dungeons. The new dungeons' maps are painted from
+their minimaps, and which room is which on them is a first guess.
 
 ## Installing
 
@@ -53,6 +53,7 @@ opens straight to the map.
 | Command | |
 | --- | --- |
 | `/fn` | open or close the journal |
+| `/fn full` | the journal fills the screen, or goes back to its usual size (you can also drag its bottom right corner) |
 | `/fn settings` | the Preferences page, where everything below can be clicked (also: right-click the minimap button) |
 | `/fn announce` | chat lines when something new is written down, on/off |
 | `/fn quality <0-5>` | lowest item quality worth noting (default 2, uncommon) |

@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.2.0-beta.4 – not yet released
+
+- Maps for the eight new Forever dungeons that had none: Blackmaw Hold, The
+  Drowned City, The Hall of Thanes, City of Dalaran, Ruins of Lordaeron,
+  Kroldok Stronghold, The Shaper's Terrace and the Excavation Site, painted in
+  the game's map style from their minimaps. Room and boss placements on these
+  are first guesses.
+- The journal can be resized by dragging its bottom right corner, or made to
+  fill the screen (the button beside the close button, `/fn full`, or
+  Preferences).
+- Dusts, essences and shards from disenchanting are no longer noted as loot.
+- Blackfathom Deeps, Scarlet Monastery and Naxxramas: creatures are filed by
+  where they really stand, as in the single-road dungeons.
+
 ## 0.2.0-beta.3
 
 - A Preferences page at the bottom of the journal's contents (`/fn settings`,

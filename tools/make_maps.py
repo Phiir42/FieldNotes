@@ -74,10 +74,21 @@ def load(name):
     return np.asarray(Image.open(os.path.join(REFS, name + ".png")).convert("RGB")).astype(np.int16)
 
 
+ART_MASKS = {}  # [art name] = where a settled painting's dungeon is, 0..1
+
+
 def load_art(name, blank):
     """A drawn sheet, with everything but its drawing replaced by the real
     blank parchment so it sits on exactly the same page as the game's sheets."""
     art = np.asarray(Image.open(os.path.join(ROOT, "tools", "art", name + ".png")).convert("RGB")).astype(np.int16)
+    # a painted sheet settled onto the blank page (tools/settle_sheet.py) says
+    # itself where its dungeon is, pale floors included
+    known = os.path.join(ROOT, "tools", "art", name + "-mask.png")
+    if os.path.exists(known):
+        m = np.asarray(Image.open(known).convert("L")).astype(np.float32) / 255
+        ART_MASKS[name] = m
+        m = m[..., None]
+        return (blank * (1 - m) + art * m).astype(np.int16)
     m = (np.abs(art - blank).max(axis=2) > 45).astype(np.float32)
     m = m * (blur(m, 4) > 0.3)
     m = blur(grow(m, 8), 4)[..., None]
@@ -138,6 +149,8 @@ def split(floor, blank):
     img = load_art(floor["art"], blank) if "art" in floor else load(floor["ref"])
     drawing = (np.abs(img - blank).max(axis=2) > THRESHOLD).astype(np.float32)
     drawing = drawing * (blur(drawing, 4) > 0.18)  # drop stray specks of noise
+    if floor.get("art") in ART_MASKS:
+        drawing = np.maximum(drawing, (ART_MASKS[floor["art"]] > 0.5).astype(np.float32))
     drawing = blur(grow(drawing, GROW), FEATHER)
 
     decor = np.zeros((H, W), bool)
