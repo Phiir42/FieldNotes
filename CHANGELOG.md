@@ -14,6 +14,9 @@
   when you reach it, as on a real run.
 - Naxxramas: spiders, maggots and bats no longer uncover the quarters they
   do not live in.
+- Molten Core: beating Sulfuron no longer uncovers Golemagg's and
+  Majordomo's halls (nor Lucifron's cavern the halls past Gehennas); its
+  wings are taken in any order, and each is uncovered on its own.
 - The journal opened outside a dungeon no longer says its pages are blank
   when they are not: it opens on a contents page listing every place
   written about, with how far each has got. "Contents" at the top of the

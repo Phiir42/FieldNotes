@@ -8,6 +8,12 @@
             "uimap": 232,
             "decor": [(600, 25, 995, 110), (548, 55, 600, 108), (15, 290, 250, 650), (250, 535, 340, 650), (340, 575, 455, 650)],
             "start": [(265, 150), (290, 178), (310, 135), (200, 110)],
+            # not one road: Lucifron and Magmadar's cavern is a dead end, and
+            # beyond Geddon and Shazzrah the rest are taken in any order
+            # (Golemagg's hall is the one named for Geddon, Majordomo's the
+            # one named for Golemagg: bosses go where they stand)
+            "roads": [["Molten Giant", "Gehennas", "Garr", "Shazzrah"], ["Magmadar Cavern"], ["Baron Geddon"],
+                      ["Golemagg the Incinerator"], ["Sulfuron Harbinger"], ["Ragnaros' Lair"]],
             "areas": {
                 "Molten Giant": [(380, 110), (450, 90), (500, 135), (420, 170), (520, 80), (400, 215)],
                 "Magmadar Cavern": [(690, 158), (657, 252), (700, 120), (635, 285), (722, 215), (590, 215), (550, 195)],

@@ -1448,6 +1448,7 @@ do
 	floor.areas[key("Magmadar Cavern")] = { mask = DIR .. "molten-core-1-02", x = 466, y = 20, w = 396, h = 321 }
 	floor.areas[key("Magmadar Cavern")].n = 2
 	floor.areas["#2"] = floor.areas[key("Magmadar Cavern")]
+	floor.areas[key("Magmadar Cavern")].g = 2
 	floor.count = floor.count + 1
 	floor.areas[key("Lucifron")] = floor.areas[key("Magmadar Cavern")]
 	floor.areas[key("Magmadar")] = floor.areas[key("Magmadar Cavern")]
@@ -1475,22 +1476,26 @@ do
 	floor.areas[key("Baron Geddon")] = { mask = DIR .. "molten-core-1-06", x = 565, y = 268, w = 256, h = 279 }
 	floor.areas[key("Baron Geddon")].n = 6
 	floor.areas["#6"] = floor.areas[key("Baron Geddon")]
+	floor.areas[key("Baron Geddon")].g = 3
 	floor.count = floor.count + 1
 	floor.areas[key("Golemagg the Incinerator")] = { mask = DIR .. "molten-core-1-07", x = 735, y = 332, w = 181, h = 199 }
 	floor.areas[key("Golemagg the Incinerator")].n = 7
 	floor.areas["#7"] = floor.areas[key("Golemagg the Incinerator")]
+	floor.areas[key("Golemagg the Incinerator")].g = 4
 	floor.count = floor.count + 1
 	floor.areas[key("Core Rager")] = floor.areas[key("Golemagg the Incinerator")]
 	floor.areas[key("Golemagg")] = floor.areas[key("Golemagg the Incinerator")]
 	floor.areas[key("Sulfuron Harbinger")] = { mask = DIR .. "molten-core-1-08", x = 603, y = 470, w = 277, h = 174 }
 	floor.areas[key("Sulfuron Harbinger")].n = 8
 	floor.areas["#8"] = floor.areas[key("Sulfuron Harbinger")]
+	floor.areas[key("Sulfuron Harbinger")].g = 5
 	floor.count = floor.count + 1
 	floor.areas[key("Flamewaker Priest")] = floor.areas[key("Sulfuron Harbinger")]
 	floor.areas[key("Sulfuron")] = floor.areas[key("Sulfuron Harbinger")]
 	floor.areas[key("Ragnaros' Lair")] = { mask = DIR .. "molten-core-1-09", x = 385, y = 187, w = 283, h = 307 }
 	floor.areas[key("Ragnaros' Lair")].n = 9
 	floor.areas["#9"] = floor.areas[key("Ragnaros' Lair")]
+	floor.areas[key("Ragnaros' Lair")].g = 6
 	floor.count = floor.count + 1
 	floor.areas[key("Ragnaros")] = floor.areas[key("Ragnaros' Lair")]
 	floor.areas[key("Ragnaros Lair")] = floor.areas[key("Ragnaros' Lair")]
