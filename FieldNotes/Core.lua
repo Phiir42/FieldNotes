@@ -17,6 +17,7 @@
 --   log       = { { t, text }, ... }                 the diary, oldest first
 --   runs      = { { t, last, who, level, kills, deaths, finds }, ... }   each visit, oldest first
 --   quests    = { [questID] = { title, level } }     quests learned from the quest log
+--   questNotes = { [questID] = { note } }            your own notes on its quests
 --   charted   = { [id] = true }                      what has been sketched or inked in already
 --   deaths, note
 -- }

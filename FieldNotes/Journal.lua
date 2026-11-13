@@ -1161,10 +1161,20 @@ local function QuestsPage(lines, id, inst)
 		elseif state == "log" then
 			tag[#tag + 1] = ready and "ready to hand in" or "in your quest log"
 		end
+		-- a note of your own on it, kept with the dungeon (inst.questNotes)
+		local mine = inst.questNotes and inst.questNotes[q[1]]
+		local qid, title = q[1], q[2]
 		lines[#lines + 1] = {
 			text = (state == "done" and DONE or OPEN) .. q[2] .. FADED_HEX .. "  " .. table.concat(tag, ", ") .. "|r",
-			font = "GameFontNormal", gap = 10,
+			font = "GameFontNormal", gap = 10, tip = NOTE_TIP,
+			selected = mine and noteOn and noteOn.entry == mine,
+			click = function()
+				inst.questNotes = inst.questNotes or {}
+				inst.questNotes[qid] = inst.questNotes[qid] or {}
+				WriteOn(inst.questNotes[qid], title)
+			end,
 		}
+		if mine then NoteLine(lines, mine) end
 		if r.early then Faded(lines, ("Can be taken up from level %d."):format(q[4]), 8) end
 		if q[6] ~= "" then Body(lines, q[6], 8) end
 		if #progress > 0 then Faded(lines, "So far: " .. table.concat(progress, "; ") .. ".", 8) end
@@ -1871,6 +1881,7 @@ local function SearchPage(lines, query)
 		end
 		for _, q in ipairs(QuestsOf(id)) do
 			if Has(q[2]) then Hit(q[2], "a quest of " .. place, Go("quests")) end
+			Note(inst.questNotes and inst.questNotes[q[1]] and inst.questNotes[q[1]].note, q[2], place, Go("quests"))
 		end
 	end
 	if n == 0 then

@@ -46,6 +46,7 @@
   from its page.
 - The minimap button's tooltip says how far the place you are in has got.
 - A long diary shows its latest 60 entries and a line to read the rest.
+- Notes of your own on quests: click a quest's title on the Quests page.
 - A raid or dungeon you are saved to says so on its first page: until
   when, and how many of its foes are down, as the game's raid information
   has it.

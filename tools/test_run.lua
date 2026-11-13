@@ -391,6 +391,13 @@ step("every page of the journal", function()
 	end
 	check("quests show what they pay", pageText():find("Reward, one of:", 1, true) and pageText():find("Item 6087", 1, true))
 	check("quests say who gives them", pageText():find("Given by Wilder Thistlenettle", 1, true))
+	check("clicking a quest turns the notes box to it", open("Collecting Memories") and pageText():find("My notes on Collecting Memories", 1, true))
+	inst.questNotes[168].note = "Cards drop from the miners."
+	open("The Deadmines") open("Quests (")
+	check("the note shows under the quest", pageText():find("My note:|r Cards drop from the miners.", 1, true))
+	M.slash("find from the miners")
+	check("and is found by a search", pageText():find("your note on Collecting Memories", 1, true))
+	open("The Deadmines") open("Quests (")
 	check("but not for one you hold", not pageText():find("Given by Gryan Stoutmantle", 1, true))
 	check("a quest in the log shows how far along it is", pageText():find("So far: 0/1 Head of VanCleef.", 1, true))
 	check("a quest the log files under the dungeon is written down", pageText():find("A New Errand", 1, true)
