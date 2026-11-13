@@ -54,7 +54,7 @@ Q[43] = {
 	{ 1486, "Deviate Hides", 17, 13, nil, "Nalpak in the Wailing Caverns wants 20 Deviate Hides.", { "Deviate Ravager", "Deviate Guardian", "Deviate Shambler", "Deviate Dreadfang" }, from = "Nalpak", pick = { 6480, 918 } },
 	{ 962, "Serpentbloom", 18, 14, "H", "Apothecary Zamah in Thunder Bluff wants you to collect 10 Serpentbloom.", { "Serpentbloom" }, from = "Apothecary Zamah", get = { 10919 } },
 	{ 1491, "Smart Drinks", 18, 13, nil, "Bring 6 portions of Wailing Essence to Mebok Mizzyrix in Ratchet.", { "Evolving Ectoplasm" }, from = "Mebok Mizzyrix", after = "Raptor Horns" },
-	{ 959, "Trouble at the Docks", 18, 14, nil, "Crane Operator Bigglefuzz in Ratchet wants you to retrieve the bottle of 99-Year-Old Port from Mad Magglish who is hiding in the Wailing Caverns.", nil, from = "Crane Operator Bigglefuzz" },
+	{ 959, "Trouble at the Docks", 18, 14, nil, "Crane Operator Bigglefuzz in Ratchet wants you to retrieve the bottle of 99-Year-Old Port from Mad Magglish who is hiding in the Wailing Caverns.", nil, from = "Crane Operator Bigglefuzz", note = "Look for Mad Magglish outside, near the way in." },
 	{ 1487, "Deviate Eradication", 21, 15, nil, "Ebru in the Wailing Caverns wants you to kill 7 Deviate Ravagers, 7 Deviate Vipers, 7 Deviate Shamblers and 7 Deviate Dreadfangs.", { "Deviate Ravager", "Deviate Viper", "Deviate Shambler", "Deviate Dreadfang" }, from = "Ebru", pick = { 6476, 8071, 6481 } },
 	{ 914, "Leaders of the Fang", 22, 11, "H", "Bring the Gems of Cobrahn, Anacondra, Pythas and Serpentis to Nara Wildmane in Thunder Bluff.", { "Lord Cobrahn", "Lady Anacondra", "Lord Pythas", "Lord Serpentis" }, from = "Nara Wildmane", after = "Nara Wildmane", pick = { 6505, 6504 } },
 	{ 6981, "The Glowing Shard", 26, 15, nil, "Travel to Ratchet to find someone that can tell you more about the glowing shard. Then, deliver the shard as you are directed.", { "Mutanus the Devourer" }, item = "Glowing Shard" },
@@ -75,9 +75,9 @@ Q[47] = {
 
 -- Blackfathom Deeps
 Q[48] = {
-	{ 6564, "Allegiance to the Old Gods", 22, 17, "H", "Bring the Damp Note to Je'neu Sancrea in Ashenvale.", nil, item = "Damp Note" },
+	{ 6564, "Allegiance to the Old Gods", 22, 17, "H", "Bring the Damp Note to Je'neu Sancrea in Ashenvale.", nil, item = "Damp Note", note = "Look for Blackfathom Tide Priestess outside, near the way in." },
 	{ 1442, "Seeking the Kor Gem", 22, 20, "A", "Bring a Kor Gem to Thundris Windweaver in Darkshore.", { "Blackfathom Sea Witch" }, from = "Thundris Windweaver", after = "The Test of Righteousness", class = 2, get = { 7083 } },
-	{ 6563, "The Essence of Aku'Mai", 22, 17, "H", "Bring 20 Sapphires of Aku'Mai to Je'neu Sancrea in Ashenvale.", nil, from = "Je'neu Sancrea", after = "Trouble in the Deeps" },
+	{ 6563, "The Essence of Aku'Mai", 22, 17, "H", "Bring 20 Sapphires of Aku'Mai to Je'neu Sancrea in Ashenvale.", nil, from = "Je'neu Sancrea", after = "Trouble in the Deeps", note = "Look for Sapphire of Aku'Mai outside, near the way in." },
 	{ 6562, "Trouble in the Deeps", 22, 17, "H", "Speak to Je'neu Sancrea in Ashenvale.", nil, from = "Tsunaman" },
 	{ 971, "Knowledge in the Deeps", 23, 10, "A", "Bring the Lorgalis Manuscript to Gerrig Bonegrip in the Forlorn Cavern in Ironforge.", { "Pitted Iron Chest" }, from = "Gerrig Bonegrip", get = { 6743 } },
 	{ 1198, "In Search of Thaelrid", 24, 18, "A", "Seek out Argent Guard Thaelrid in Blackfathom Deeps.", nil, from = "Dawnwatcher Shaedlass", to = "Argent Guard Thaelrid" },
@@ -97,11 +97,11 @@ Q[48] = {
 Q[70] = {
 	{ 721, "A Sign of Hope", 35, 35, "A", "Find Hammertoe Grez in Uldaman.", nil, from = "Prospector Ryedol" },
 	{ 2418, "Power Stones", 36, 30, nil, "Bring 8 Dentrium Power Stones and 8 An'Alleum Power Stones to Rigglefuzz in the Badlands.", { "Shadowforge Sharpshooter", "Shadowforge Geologist", "Shadowforge Archaeologist", "Shadowforge Darkcaster" }, from = "Rigglefuzz", pick = { 9522, 10358, 10359 } },
-	{ 704, "Agmond's Fate", 38, 30, "A", "Bring 4 Carved Stone Urns to Prospector Ironband in Loch Modan.", nil, from = "Prospector Ironband", after = "Murdaloc", get = { 4980 } },
+	{ 704, "Agmond's Fate", 38, 30, "A", "Bring 4 Carved Stone Urns to Prospector Ironband in Loch Modan.", nil, from = "Prospector Ironband", after = "Murdaloc", note = "Look for Carved Stone Urn outside, near the way in.", get = { 4980 } },
 	{ 1108, "Indurium", 39, 28, nil, "Bring 10 Indurium Flakes to Martek the Exiled in the Badlands.", { "Stonevault Rockchewer" }, from = "Martek the Exiled", after = "Martek the Exiled" },
-	{ 722, "Amulet of Secrets", 40, 35, "A", "Find Hammertoe's Amulet and return it to him in Uldaman.", nil, from = "Hammertoe Grez", after = "A Sign of Hope" },
+	{ 722, "Amulet of Secrets", 40, 35, "A", "Find Hammertoe's Amulet and return it to him in Uldaman.", nil, from = "Hammertoe Grez", after = "A Sign of Hope", note = "Look for Magregan Deepshadow outside, near the way in." },
 	{ 1956, "Power in Uldaman", 40, 35, nil, "Retrieve an Obsidian Power Source and bring it to Tabetha in Dustwallow Marsh.", { "Obsidian Sentinel" }, from = "Tabetha", after = "The Exorcism", class = 128 },
-	{ 709, "Solution to Doom", 40, 30, nil, "Bring the Tablet of Ryun'eh to Theldurin the Lost.", nil, from = "Theldurin the Lost", get = { 4746 } },
+	{ 709, "Solution to Doom", 40, 30, nil, "Bring the Tablet of Ryun'eh to Theldurin the Lost.", nil, from = "Theldurin the Lost", note = "Look for Ancient Chest outside, near the way in.", get = { 4746 } },
 	{ 2240, "The Hidden Chamber", 40, 35, "A", "Read Baelog's Journal, explore the hidden chamber, then report to Prospector Stormpike.", nil, from = "Baelog", after = "The Lost Dwarves", inside = true, pick = { 9626, 9627 } },
 	{ 2398, "The Lost Dwarves", 40, 35, "A", "Find Baelog in Uldaman.", nil, from = "Prospector Stormpike", to = "Baelog" },
 	{ 2199, "Lore for a Price", 41, 37, "A", "Bring five silver bars to Talvash del Kissel in Ironforge.", nil, from = "Talvash del Kissel", after = "The Shattered Necklace" },
@@ -114,8 +114,8 @@ Q[70] = {
 	{ 17, "Uldaman Reagent Run", 42, 36, "A", "Bring 12 Magenta Fungus Caps to Ghak Healtouch in Thelsamar.", { "Magenta Cap Clusters" }, from = "Ghak Healtouch", after = "Badlands Reagent Run", get = { 9030 } },
 	{ 2202, "Uldaman Reagent Run", 42, 36, "H", "Bring 12 Magenta Fungus Caps to Jarkal Mossmeld in Kargath.", { "Magenta Cap Clusters" }, from = "Jarkal Mossmeld", after = "Badlands Reagent Run", get = { 9030 } },
 	{ 2201, "Find the Gems", 43, 40, "A", "Find the ruby, sapphire, and topaz that are scattered throughout Uldaman. Once acquired, contact Talvash del Kissel remotely by using the Phial of Scrying he previously gave you. From the journal, you know... * The ruby has been stashed in a barricaded Shadowforge area. * The topaz has been hidden in an urn in one of the Trogg areas, near some Alliance dwarves. * The sapphire has been claimed by Grimlok, the trogg leader.", { "Shadowforge Cache", "Grimlok", "Conspicuous Urn" }, from = "Remains of a Paladin", after = "Back to Uldaman", inside = true },
-	{ 1360, "Reclaimed Treasures", 43, 33, "A", "Get Krom Stoutarm's treasured possession from his chest in the North Common Hall of Uldaman, and bring it to him in Ironforge.", nil, from = "Krom Stoutarm" },
-	{ 2342, "Reclaimed Treasures", 43, 33, "H", "Get Patrick Garrett's family treasure from their family chest in the South Common Hall of Uldaman, and bring it to him in the Undercity.", nil, from = "Patrick Garrett" },
+	{ 1360, "Reclaimed Treasures", 43, 33, "A", "Get Krom Stoutarm's treasured possession from his chest in the North Common Hall of Uldaman, and bring it to him in Ironforge.", nil, from = "Krom Stoutarm", note = "Look for Krom Stoutarm's Chest outside, near the way in." },
+	{ 2342, "Reclaimed Treasures", 43, 33, "H", "Get Patrick Garrett's family treasure from their family chest in the South Common Hall of Uldaman, and bring it to him in the Undercity.", nil, from = "Patrick Garrett", note = "Look for Garrett Family Chest outside, near the way in." },
 	{ 2340, "Deliver the Gems", 44, 37, "H", "Deliver the Necklace and Gem Salvage to Dran Droffers in Orgrimmar.", nil, from = "Jarkal Mossmeld", after = "Find the Gems and Power Source" },
 	{ 2339, "Find the Gems and Power Source", 44, 37, "H", "Recover all three gems and a power source for the necklace from Uldaman, and then bring them to Jarkal Mossmeld in Kargath. Jarkal believes a power source might be found on the strongest construct present in Uldaman. From the journal, you know... * The ruby has been stashed in a barricaded Shadowforge area. * The topaz has been hidden in an urn in one of the Trogg areas, near some Alliance dwarves. * The sapphire has been claimed by Grimlok, the trogg leader.", { "Shadowforge Cache", "Grimlok", "Conspicuous Urn", "Archaedas" }, from = "Jarkal Mossmeld", after = "Translating the Journal" },
 	{ 2341, "Necklace Recovery, Take 3", 44, 40, "H", "Visit Jarkal Mossmeld in Kargath to see if he was successful.", nil, from = "Dran Droffers", after = "Deliver the Gems", get = { 7888 } },
@@ -130,7 +130,7 @@ Q[70] = {
 
 -- Gnomeregan
 Q[90] = {
-	{ 2922, "Save Techbot's Brain!", 26, 20, "A", "Bring Techbot's Memory Core to Tinkmaster Overspark in Ironforge.", nil, from = "Tinkmaster Overspark" },
+	{ 2922, "Save Techbot's Brain!", 26, 20, "A", "Bring Techbot's Memory Core to Tinkmaster Overspark in Ironforge.", nil, from = "Tinkmaster Overspark", note = "Look for Techbot outside, near the way in." },
 	{ 2923, "Tinkmaster Overspark", 26, 20, "A", "Speak with Tinkmaster Overspark in Ironforge.", nil, from = "Brother Sarno" },
 	{ 2926, "Gnogaine", 27, 20, "A", "Use the Empty Leaden Collection Phial on Irradiated Invaders or Irradiated Pillagers to collect radioactive fallout. Once it is full, take it back to Ozzie Togglevolt in Kharanos.", nil, from = "Ozzie Togglevolt", after = "The Day After" },
 	{ 2927, "The Day After", 27, 20, "A", "Speak with Ozzie Togglevolt in Kharanos.", nil, from = "Gnoarn" },
@@ -417,8 +417,8 @@ Q[329] = {
 -- Maraudon
 Q[349] = {
 	{ 771, "Rite of Vision", 7, 3, "H", "Collect 2 Well Stones and 2 Ambercorn and bring them back to Zarlman Two-Moons in Bloodhoof Village.", { "Razorlash" }, from = "Zarlman Two-Moons" },
-	{ 7068, "Shadowshard Fragments", 42, 38, "H", "Collect 10 Shadowshard Fragments from Maraudon and return them to Uthel'nay in Orgrimmar.", nil, from = "Uthel'nay", pick = { 17772, 17773 } },
-	{ 7070, "Shadowshard Fragments", 42, 38, "A", "Collect 10 Shadowshard Fragments from Maraudon and return them to Archmage Tervosh in Theramore on the coast of Dustwallow Marsh.", nil, from = "Archmage Tervosh", pick = { 17772, 17773 } },
+	{ 7068, "Shadowshard Fragments", 42, 38, "H", "Collect 10 Shadowshard Fragments from Maraudon and return them to Uthel'nay in Orgrimmar.", nil, from = "Uthel'nay", note = "Look for Shadowshard Rumbler and Shadowshard Smasher outside, near the way in.", pick = { 17772, 17773 } },
+	{ 7070, "Shadowshard Fragments", 42, 38, "A", "Collect 10 Shadowshard Fragments from Maraudon and return them to Archmage Tervosh in Theramore on the coast of Dustwallow Marsh.", nil, from = "Archmage Tervosh", note = "Look for Shadowshard Rumbler and Shadowshard Smasher outside, near the way in.", pick = { 17772, 17773 } },
 	{ 7028, "Twisted Evils", 47, 41, nil, "Collect 15 Theradric Crystal Carvings for Willow in Desolace.", { "Vile Larva", "Constrictor Vine", "Poison Sprite", "Noxious Slime" }, from = "Willow", pick = { 17775, 17776, 17777, 17779 } },
 	{ 7029, "Vyletongue Corruption", 47, 41, "H", "Fill the Coated Cerulean Vial at the orange crystal pool in Maraudon. Use the Filled Cerulean Vial on the Vylestem Vines to force the corrupted Noxxious Scion to emerge. Heal 8 plants by killing these Noxxious Scion, then return to Vark Battlescar in Shadowprey Village.", nil, from = "Vark Battlescar", pick = { 17768, 17778, 17770 } },
 	{ 7041, "Vyletongue Corruption", 47, 41, "A", "Fill the Coated Cerulean Vial at the orange crystal pool in Maraudon. Use the Filled Cerulean Vial on the Vylestem Vines to force the corrupted Noxxious Scion to emerge. Heal 8 plants by killing these Noxxious Scion, then return to Talendria in Nijel's Point.", nil, from = "Talendria", pick = { 17768, 17778, 17770 } },

@@ -11,6 +11,7 @@ published guides ({ map name: [ { id, title, side, level, min, text, who } ] }).
 """
 import gzip
 import json
+import math
 import os
 import re
 import sys
@@ -24,6 +25,8 @@ EXTRA = os.path.join(m.ROOT, "tools", "data", "forever_quests.json")
 ALLIANCE, HORDE = 77, 178  # race masks
 WIDE_CHANCE = 1.0  # per cent: a creature that seldom carries a widely carried item is not worth naming
 QUEST_ITEM = 12  # item class
+CONTINENTS = (0, 1)
+OUTSIDE = 260  # yards from where a dungeon's way out puts you: what stands that near is outside, on the way in
 JUNK = re.compile(r"UNUSED|DEPRECATED|<NYI>|<TXT>|\bTEST\b|^zz|REUSE|\bOLD\b")  # in capitals: not "Old Gods"
 TAB = chr(9)
 # What the database cannot say about a quest, by quest id.
@@ -104,9 +107,26 @@ def main():
     tables = read_tables(("quest_template", "creature_loot_template", "gameobject_template", "gameobject",
                           "gameobject_loot_template", "creature_questrelation", "gameobject_questrelation",
                           "item_template", "creature_template", "creature_involvedrelation",
-                          "gameobject_involvedrelation"))
+                          "gameobject_involvedrelation", "creature", "areatrigger_teleport"))
     cols, data = tables["quest_template"]
     col = cols.index
+    # where every creature stands, outdoors too (creatures.json keeps only the
+    # instances), and where each instance's way out puts you: just outside its
+    # way in
+    ccols, cdata = tables["creature"]
+    outdoors = {}
+    for r in cdata:
+        outdoors.setdefault(x.num(r[ccols.index("id")]), []).append(
+            [x.num(r[ccols.index("map")])] + [float(r[ccols.index("position_" + a)]) for a in "xyz"])
+    acols, adata = tables["areatrigger_teleport"]
+    doors = {}
+    for r in adata:
+        to, name = x.num(r[acols.index("target_map")]), norm(r[acols.index("name")])
+        if to not in CONTINENTS or " to " in r[acols.index("name")]:  # (not a teleporter to elsewhere)
+            continue
+        for mp in instance:
+            if norm(maps[mp]["MapName_lang"]) in name:
+                doors.setdefault(mp, []).append([to] + [float(r[acols.index("target_position_" + a)]) for a in "xyz"])
     # who to look for: the creatures a quest asks you to kill, and those that
     # carry what it asks you to bring; only ones that live in that instance
     with open(os.path.join(m.ROOT, "refs", "classicdb", "creatures.json"), encoding="utf-8") as f:
@@ -282,6 +302,33 @@ def main():
             return [mp]
         return homes(r)  # filed under the quest giver's zone, but its quarry lives in a dungeon
 
+    def outside(r, mp):
+        """-> the names of the things a quest asks for, if every one stands
+        outside the instance near its way in (Techbot, Krom Stoutarm's Chest)."""
+        names, pts = [], []
+        for i in (1, 2, 3, 4):
+            who, item = x.num(r[col("ReqCreatureOrGOId%d" % i)]), x.num(r[col("ReqItemId%d" % i)])
+            found = []
+            if who > 0:
+                found.append((names_of.get(who), outdoors.get(who, [])))
+            elif who < 0 and -who in objects:
+                found.append((objects[-who]["name"], objects[-who]["spawns"]))
+            if item and len(carriers.get(item, [])) <= 12:
+                found += [(names_of.get(c), outdoors.get(c, [])) for c in carriers.get(item, [])]
+            for lootid in holds.get(item, ()) if item else ():
+                found += [(objects[e]["name"], objects[e]["spawns"]) for e in chests.get(lootid, [])]
+            for name, spawns in found:
+                if name and spawns:
+                    names += [] if name in names else [name]
+                    pts += spawns
+
+        def near(p):
+            return any(p[0] == d[0] and math.dist(p[1:], d[1:]) <= OUTSIDE for d in doors.get(mp, []))
+        return names if pts and all(near(p) for p in pts) else []
+
+    def listed(names):
+        return names[0] if len(names) == 1 else ", ".join(names[:-1]) + " and " + names[-1]
+
     by_map = {}
     def named(mp):
         """A place's name mid-sentence, as ns:The (Core.lua) writes it."""
@@ -323,6 +370,8 @@ def main():
         elif len(every) > 1:
             rest = [named(m) for m in every if m != mp]
             q["note"] = "The rest of what it asks for is found in %s." % " and ".join(rest)
+        elif not q["who"] and outside(r, mp):
+            q["note"] = "Look for %s outside, near the way in." % listed(outside(r, mp)[:3])
         giver = givers.get(q["id"])
         if q["id"] in starts:
             q["item"] = starts[q["id"]]
