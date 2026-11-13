@@ -4,8 +4,10 @@ a dungeon run through it (tools/test_run.lua). No game needed.
     pip install lupa
     python tools/test_addon.py [-v]
 """
+import glob
 import io
 import os
+import re
 import sys
 
 try:
@@ -58,6 +60,30 @@ hook(GameTooltip)
 '''
 
 
+# the value tested for truth, compared, measured or joined to text (not a field
+# of the same name: "a.name")
+USE = (r"(?:\bnot\s+{v}\b|(?<![\w.]){v}\s*(?:==|~=|<|>|\.\.|:)|#\s*{v}\b"
+       r"|(?:==|~=|<|>|\.\.)\s*{v}(?![\w.(]))")
+
+
+def secret_order():
+    """Lines that use a value before asking whether the game hides it: a hidden
+    value may not be compared, tested for truth or joined to text, so the
+    issecret test has to come first. The mock cannot catch this (its hidden
+    values are tables, which Lua always counts as true), so it is read off
+    the source."""
+    found = []
+    for path in sorted(glob.glob(os.path.join(ROOT, "FieldNotes", "*.lua"))):
+        for n, line in enumerate(read(path).splitlines(), 1):
+            code = line.split("--", 1)[0]
+            for hit in re.finditer(r"issecret(?:value)?\((\w+)\)", code):
+                v = hit.group(1)
+                if re.search(USE.format(v=re.escape(v)), code[:hit.start()]):
+                    found.append("%s:%d: %s is used before it is asked whether it is hidden" % (
+                        os.path.basename(path), n, v))
+    return found
+
+
 def main():
     lua, load, mock, ns = client()
     checks, fails, missing, chat = load(read(os.path.join(ROOT, "tools", "test_run.lua")), "@test_run.lua")(mock, ns)
@@ -66,6 +92,9 @@ def main():
     checks += 1
     if problem:
         fails[len(fails) + 1] = "older client's item tooltips: " + problem
+    checks += 1
+    for problem in secret_order():
+        fails[len(fails) + 1] = problem
     if "-v" in sys.argv:
         for line in chat.values():
             print("   ", line.encode("ascii", "replace").decode())
