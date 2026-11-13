@@ -8,6 +8,12 @@
   Dalaran, Tunk's moulding and more).
 - A Moon-Kissed Blade is listed under each dungeon one of its pieces comes
   from: the Deadmines, Shadowfang Keep and Blackfathom Deeps.
+- Blackfathom Deeps' map no longer runs ahead: the naga and satyrs of the
+  first sheet uncovered part of the second, and the Moonshrine's cultists
+  the whole of the third, long before you got there. Each sheet now opens
+  when you reach it, as on a real run.
+- Naxxramas: spiders, maggots and bats no longer uncover the quarters they
+  do not live in.
 
 ## 0.2.0-beta.9
 

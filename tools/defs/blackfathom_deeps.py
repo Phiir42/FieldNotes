@@ -3,6 +3,10 @@ MAP = {
     "slug": "blackfathom-deeps",
     "path": "sheets",  # each sheet is one road of its own, areas in the order you pass through them
     "creatures": "auto",  # file creatures by their spawn points (see make_maps.creature_rooms)
+    # The sheets are met one after another (a real run went 1, 2, 3), so a
+    # creature that lives on more than one is filed on the earliest only:
+    # naga and satyrs met on the first sheet used to uncover the second.
+    "in_order": True,
     # Baron Aquanis stands nowhere: he rises where the Fathom Core is taken from
     # the Fathom Stone (the stone's own spot on the second sheet).
     "bosses": {"Baron Aquanis": (2, 415, 504)},
@@ -39,6 +43,9 @@ MAP = {
                 "Blindlight Muckdweller": "Gelihast",
                 "Blindlight Oracle": "Gelihast",
                 "Subjugator Kor'ul": "Gelihast",
+                # met in the tunnel before Gelihast on a real run, though the
+                # classic spawn points have the acolytes in the Moonshrine only
+                "Twilight Acolyte": "Ghamoo-ra",
             },
         },
         {
@@ -55,7 +62,6 @@ MAP = {
                 "Fallenroot Rogue": "Fallenroot Satyr",
                 "Fallenroot Shadowstalker": "Fallenroot Satyr",
                 "Fallenroot Hellcaller": "Fallenroot Satyr",
-                "Twilight Acolyte": "Fallenroot Satyr",
                 "Twilight Reaver": "Fallenroot Satyr",
                 "Lorgus Jett": "Moonshrine Ruins",
                 "Twilight Aquamancer": "Moonshrine Ruins",

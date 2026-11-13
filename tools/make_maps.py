@@ -363,6 +363,15 @@ def boss_points(dungeon, splits):
                 if spot:
                     marks.append((name, spot[1], spot[2]))
                     break
+    # the height each sheet's bosses stand at, which tells the levels of one
+    # building apart (see creature_rooms)
+    levels = dungeon["_levels"] = {}
+    for f, marks in enumerate(out):
+        for name, _x, _y in marks:
+            spot = next((spawns[(area_key(n), inst)] for n in [name] + aliases.get(name, [])
+                         if (area_key(n), inst) in spawns), None)
+            if spot:
+                levels.setdefault(f, []).append(spot[2])
     return out
 
 
@@ -424,7 +433,12 @@ def creature_rooms(dungeon, splits, per_sheet=False):
 
     per_sheet: for dungeons whose sheets are roads of their own ("path":
     "sheets" with "creatures": "auto"): the earliest room on each sheet the
-    creature stands on.
+    creature stands on. Where sheets are levels lying over one another, a
+    spawn point that falls on the drawing of several is on the one whose
+    bosses stand nearest its height. With "in_order": True the sheets are met
+    one after another, so a creature living on several (by its spawn points
+    or by the definition) is met first on the earliest, and filed there only:
+    otherwise meeting it would uncover a level not yet reached.
     """
     global _creature_spawns
     inst, floors = dungeon["instance"], dungeon["floors"]
@@ -440,10 +454,23 @@ def creature_rooms(dungeon, splits, per_sheet=False):
     for n in names.get(inst, []):
         bosses.update(area_key(a) for a in aliases.get(n, []))
     order = [list(f["areas"]) for f in floors]
+    hubs = {f for f, floor in enumerate(floors) if floor.get("hub")}
+    levels = dungeon.get("_levels", {})
+
+    def level_of(mine, z):
+        # A point on the drawing of several levels is on the level whose bosses
+        # stand nearest its height; a hub sheet, showing the whole place, keeps
+        # it as well. Where a level's height is unknown, every sheet keeps it.
+        flat = [h for h in mine if h[0] not in hubs]
+        if len(flat) < 2 or not all(h[0] in levels for h in flat):
+            return mine
+        near = min(flat, key=lambda h: (min(abs(z - bz) for bz in levels[h[0]]), h[0]))
+        return [h for h in mine if h[0] in hubs] + [near]
 
     def rooms(pts):
         hits = {}
-        for _, wx, wy, _z in pts:
+        for _, wx, wy, z in pts:
+            mine = []
             for f, floor in enumerate(floors):
                 b = bounds.get((floor.get("uimap"), inst))
                 if not b:
@@ -455,8 +482,11 @@ def creature_rooms(dungeon, splits, per_sheet=False):
                 best = max(((float(a[y - 3:y + 4, x - 3:x + 4].mean()), n) for n, a in splits[f][1]
                             if n in floor["areas"]), default=(0, None))
                 if best[0] > 0.3:
-                    k = (f, order[f].index(best[1]) + 1)
-                    hits[k] = hits.get(k, 0) + 1
+                    mine.append((f, order[f].index(best[1]) + 1))
+            if per_sheet:
+                mine = level_of(mine, z)
+            for k in mine:
+                hits[k] = hits.get(k, 0) + 1
         return hits
 
     out = {f: [] for f in range(len(floors))}
@@ -497,6 +527,15 @@ def creature_rooms(dungeon, splits, per_sheet=False):
                                      next((t for a, t in floors[g].get("aliases", {}).items() if area_key(a) == k), None))
                         was = order[g].index(keyed) + 1 if keyed in floors[g]["areas"] else None
                         want[g] = min(mine[0], was) if was else mine[0]
+                if dungeon.get("in_order"):
+                    for g in range(len(floors)):
+                        keyed = next((a for a in floors[g]["areas"] if area_key(a) == k),
+                                     next((t for a, t in floors[g].get("aliases", {}).items() if area_key(a) == k), None))
+                        if keyed in floors[g]["areas"]:
+                            want.setdefault(g, order[g].index(keyed) + 1)
+                    if want:
+                        first_sheet = min(want)
+                        want = {first_sheet: want[first_sheet]}
             # A later sheet too, only when the earlier one ends in the same room
             # (the room drawn on both): otherwise finding it "on the later
             # sheet" would wrongly complete the earlier one.
