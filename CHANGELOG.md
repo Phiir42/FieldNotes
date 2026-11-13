@@ -2,7 +2,7 @@
 
 ## 0.2.0-beta.7 – not yet released
 
-- Known abilities for the bosses of the dungeons new to Forever: all of
+- Known abilities for the bosses of the dungeons new to Forever: most of
   Dalaran, the Ruins of Lordaeron, the Hall of Thanes, the Wetlands
   Excavation Site, the Drowned City and Krol'dok Stronghold, and some of
   Blackmaw Hold. Taken from the Warcraft Wiki's boss pages and published
