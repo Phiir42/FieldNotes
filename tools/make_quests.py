@@ -122,13 +122,15 @@ def main():
     for r in rdata:
         who = x.num(r[rcols.index("id")])
         if names_of.get(who):
-            stands = {sp[0] for sp in creatures.get(who, {}).get("spawns", [])}
-            givers.setdefault(x.num(r[rcols.index("quest")]), (names_of[who], stands))
+            spawns = creatures.get(who, {}).get("spawns", [])
+            givers.setdefault(x.num(r[rcols.index("quest")]),
+                              (names_of[who], {sp[0] for sp in spawns}, [sp[1:] for sp in spawns]))
     rcols, rdata = tables["gameobject_questrelation"]
     for r in rdata:
         o = objects.get(x.num(r[rcols.index("id")]))
         if o and o["name"]:
-            givers.setdefault(x.num(r[rcols.index("quest")]), (o["name"], {sp[0] for sp in o["spawns"]}))
+            givers.setdefault(x.num(r[rcols.index("quest")]),
+                              (o["name"], {sp[0] for sp in o["spawns"]}, [sp[1:] for sp in o["spawns"]]))
     icols, idata = tables["item_template"]
     starts = {}
     for r in idata:
@@ -200,6 +202,11 @@ def main():
             q["item"] = starts[q["id"]]
         elif giver:
             q["from"], q["inside"] = plain(giver[0]), mp in giver[1]
+            if q["inside"]:  # where they stand, for the map
+                spots.setdefault(mp, {}).setdefault(giver[0], []).extend(giver[2])
+        # what it pays: the items you choose one of, and those you get regardless
+        q["pick"] = [i for i in (x.num(r[col("RewChoiceItemId%d" % n)]) for n in range(1, 7)) if i]
+        q["get"] = [i for i in (x.num(r[col("RewItemId%d" % n)]) for n in range(1, 5)) if i]
         before = titles.get(x.num(r[col("PrevQuestId")]))
         if before and before != q["title"] and not JUNK.search(before):
             q["after"] = before
@@ -220,6 +227,7 @@ def main():
         "--   who: the creatures and objects to look for (to kill, or that hold what is asked for)",
         "--   from: who hands the quest out (inside = true: they stand in the dungeon itself);",
         "--   item: the item that begins it instead; after: the quest it follows",
+        "--   pick: item ids of the rewards you choose one of; get: those you are given regardless",
         "local _, ns = ...",
         "",
         "local Q = {}",
@@ -241,6 +249,11 @@ def main():
                     who += ", %s = %s" % (k, lua_string(q[k]))
             if q.get("inside"):
                 who += ", inside = true"
+            for k in ("pick", "get"):
+                if q.get(k):
+                    if not who:
+                        who = ", nil"
+                    who += ", %s = { %s }" % (k, ", ".join(map(str, q[k])))
             out.append(TAB + "{ %d, %s, %d, %d, %s, %s%s }," % (
                 q["id"], lua_string(q["title"]), q.get("level") or 0, q.get("min") or 0,
                 ('"%s"' % q["side"]) if q.get("side") else "nil", lua_string(q.get("text") or ""), who))

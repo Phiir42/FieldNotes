@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.0-beta.9 – not yet released
+
+- Quests show what they pay: the items to choose from and those given
+  regardless, with their tooltips.
+- A quest handed out inside a dungeon marks its giver on the map until you
+  take it up.
+- The quests of the dungeons new to Forever say who gives them.
+
 ## 0.2.0-beta.8
 
 - Portraits for the bosses of the dungeons new to Forever (82 of them),

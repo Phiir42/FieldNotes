@@ -879,6 +879,19 @@ local function QuestsPage(lines, id, inst)
 			end
 			if q.after then how = how and (how .. "; follows " .. q.after) or ("Follows " .. q.after) end
 			if how then Faded(lines, how .. ".", 8) end
+			-- and what it pays
+			local function Rewards(ids, label)
+				if not ids then return end
+				Faded(lines, label, 8)
+				for _, item in ipairs(ids) do
+					local ok, name, link = pcall(GetItemInfo, item)
+					lines[#lines + 1] = {
+						text = ok and (link or name) or "Something not yet seen",
+						icon = ItemIcon(item), iconSize = 18, indent = 16, link = "item:" .. item,
+					}				end
+			end
+			Rewards(q.pick, #(q.pick or {}) > 1 and "Reward, one of:" or "Reward:")
+			Rewards(q.get, q.pick and "And:" or "Reward:")
 		end
 	end
 end
@@ -916,6 +929,15 @@ local function QuestMarks(id, floor, marks)
 				table.insert(s.seen[q[1]].who, who)
 				if state == "log" then s.log = true end
 			end
+		end
+		-- a quest not yet taken up, handed out inside: where its giver stands
+		local giver = not state and q.inside and q.from and floor.places and floor.places[ns:AreaKey(q.from)]
+		if giver then
+			marks[#marks + 1] = {
+				x = giver[1], y = giver[2], dx = -10, dy = 10, icon = QUEST_ICON, alpha = 0.65,
+				name = "A quest is given here", note = q[2] .. ": given by " .. q.from .. ".",
+				go = function() Select(id, "quests") end,
+			}
 		end
 	end
 	for _, s in ipairs(order) do
