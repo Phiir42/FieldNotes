@@ -765,9 +765,11 @@ local function BossPage(lines, id, inst, eid)
 	if (b.deaths or 0) > 0 then t[#t + 1] = "fallen to it " .. (b.deaths == 1 and "once" or (b.deaths .. " times")) end
 	Faded(lines, table.concat(t, ", ") .. ".")
 	-- the boss's own creature: by name, or a boss known by another name than
-	-- the fight's (Gelihast, whose fight the game calls "Geilhast")
+	-- the fight's (Gelihast, whose fight the game calls "Geilhast"); not one
+	-- of a company (Dreamscythe, in "Dreamscythe and Weaver")
+	local alone = not ns.Company[ns:AreaKey(b.name)]
 	local function Self(m)
-		return m.name == b.name or (m.enc == eid and ns.AbilitiesByName[ns:AreaKey(m.name)] ~= nil)
+		return m.name == b.name or (alone and m.enc == eid and ns.AbilitiesByName[ns:AreaKey(m.name)] ~= nil)
 	end
 	local own
 	for _, npc in ipairs(inst.mobOrder) do

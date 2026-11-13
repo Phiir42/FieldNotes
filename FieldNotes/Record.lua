@@ -81,7 +81,10 @@ local function Company()
 			r.with = r.with or {}
 			local known
 			for _, w in ipairs(r.with) do known = known or w == name end
-			if not known and #r.with < WITH_MAX then r.with[#r.with + 1] = name end
+			if not known and #r.with < WITH_MAX then
+				r.with[#r.with + 1] = name
+				ns:Changed()
+			end
 		end
 	end
 end
