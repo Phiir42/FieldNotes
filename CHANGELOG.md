@@ -84,7 +84,9 @@
   of the game: Alcaz Prison's four (Overseer Wrex, Tidemistress Ca'zass,
   The Questioner, Blazeroar), the Butcher and the Lordaeron Captain in the
   Ruins of Lordaeron, Impaan the Imprisoner and Elder Shaman Bloodmane in
-  Blackmaw Hold, and Dalaran's Mana Wraith.
+  Blackmaw Hold, and Dalaran's Mana Wraith. The Mana Echoes, Phantasms,
+  Arcane Elementals, Remnants and Fragmented Sentries of Dalaran have
+  theirs in the bestiary.
 - Creatures called up as pets (BFD's Voidwalker Minions) no longer show
   the level of a namesake elsewhere.
 - Places read as they are said: "errands that lead into the Deadmines",

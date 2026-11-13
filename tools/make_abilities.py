@@ -275,7 +275,8 @@ def creature_lines(names, boss_keys):
             m["spells"] += c["spells"]
     # creatures new to Forever, which the classic database never heard of:
     # what Wowhead lists for them (tools/data/forever_creatures.json:
-    # { name: { npc, lo, hi, rank, type } }, rank and type numbered as above)
+    # { name: { npc, lo, hi, rank, type, spells } }, rank and type numbered as
+    # above, spells the NPC's datamined abilities)
     extra = os.path.join(ROOT, "tools", "data", "forever_creatures.json")
     if os.path.exists(extra):
         with open(extra, encoding="utf-8") as f:
@@ -283,7 +284,8 @@ def creature_lines(names, boss_keys):
                 if key(name) in merged:
                     continue
                 ids.append((c["npc"], name))
-                merged[key(name)] = {"name": name, "lo": c.get("lo", 0), "hi": c.get("hi", 0), "spells": [],
+                merged[key(name)] = {"name": name, "lo": c.get("lo", 0), "hi": c.get("hi", 0),
+                                     "spells": c.get("spells", []),
                                      "rank": c.get("rank", 0) if c.get("rank") in RANKS else 0,
                                      "type": c.get("type", 0), "friend": False, "model": 0, "npc": c["npc"]}
     out = []

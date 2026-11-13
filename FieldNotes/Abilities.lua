@@ -867,8 +867,8 @@ C["arathiminer"] = { lo = 5, hi = 5, spells = {  }, model = 15183 } -- Arathi Mi
 C["arathistablehand"] = { lo = 5, hi = 5, spells = {  }, model = 15192 } -- Arathi Stablehand
 C["arcaneaberration"] = { lo = 59, hi = 60, cls = "elite", type = "Elemental", spells = { 22936, 15979 }, model = 14253 } -- Arcane Aberration
 C["arcaneanomaly"] = { cls = "elite", type = "Elemental", spells = {  }, npc = 245999 } -- Arcane Anomaly
-C["arcaneecho"] = { cls = "elite", type = "Elemental", spells = {  }, npc = 246992 } -- Arcane Echo
-C["arcaneelemental"] = { cls = "elite", type = "Elemental", spells = {  }, npc = 246888 } -- Arcane Elemental
+C["arcaneecho"] = { cls = "elite", type = "Elemental", spells = { 1303458, 1293451 }, npc = 246992 } -- Arcane Echo
+C["arcaneelemental"] = { cls = "elite", type = "Elemental", spells = { 1303499, 1303458 }, npc = 246888 } -- Arcane Elemental
 C["arcanefeedback"] = { lo = 59, hi = 60, type = "Elemental", spells = { 15507 }, model = 5490 } -- Arcane Feedback
 C["arcanemanaling"] = { cls = "elite", type = "Elemental", spells = {  }, npc = 246893 } -- Arcane Manaling
 C["arcanenullifierx21"] = { lo = 32, hi = 33, cls = "elite", type = "Mechanical", spells = { 10831, 10832 }, model = 6889 } -- Arcane Nullifier X-21
@@ -1431,7 +1431,7 @@ C["forsakenhorse"] = { lo = 1, hi = 2, spells = {  }, model = 10671 } -- Forsake
 C["forsakenlumberjack"] = { lo = 5, hi = 5, spells = {  }, model = 15206 } -- Forsaken Lumberjack
 C["forsakenminer"] = { lo = 5, hi = 5, spells = {  }, model = 15187 } -- Forsaken Miner
 C["forsakenstablehand"] = { lo = 5, hi = 5, spells = {  }, model = 15196 } -- Forsaken Stablehand
-C["fragmentedsentry"] = { cls = "elite", type = "Mechanical", spells = {  }, npc = 246664 } -- Fragmented Sentry
+C["fragmentedsentry"] = { cls = "elite", type = "Mechanical", spells = { 3391, 8374 }, npc = 246664 } -- Fragmented Sentry
 C["frailskeleton"] = { type = "Undead", spells = {  }, model = 7550 } -- Frail Skeleton
 C["fraxinus"] = { lo = 60, hi = 60, cls = "elite", spells = {  }, npc = 248366 } -- Fraxinus
 C["freedsoul"] = { lo = 1, hi = 1, spells = { 16249, 16143, 16449 }, model = 1825 } -- Freed Soul
@@ -1804,7 +1804,7 @@ C["malgenlongspear"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spe
 C["malorthezealous"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = {  }, model = 10458 } -- Malor the Zealous
 C["manaburst"] = { lo = 59, hi = 60, type = "Elemental", spells = { 22938 }, model = 14273 } -- Mana Burst
 C["manadevourer"] = { cls = "elite", type = "Demon", spells = {  }, npc = 246008 } -- Mana Devourer
-C["manaecho"] = { cls = "elite", type = "Elemental", spells = {  }, npc = 246600 } -- Mana Echo
+C["manaecho"] = { cls = "elite", type = "Elemental", spells = { 1303458, 1303551 }, npc = 246600 } -- Mana Echo
 C["manafiend"] = { lo = 60, hi = 60, cls = "elite", type = "Elemental", spells = { 25679, 15122 }, model = 15547 } -- Mana Fiend
 C["manaremnant"] = { lo = 57, hi = 59, cls = "elite", type = "Elemental", spells = { 14514, 15659 }, model = 14272 } -- Mana Remnant
 C["manarichfrenzy"] = { cls = "elite", type = "Beast", spells = {  }, npc = 268462 } -- Mana-Rich Frenzy
@@ -1959,7 +1959,7 @@ C["peacekeepersecuritysuit"] = { lo = 30, hi = 31, cls = "elite", type = "Mechan
 C["petrifiedguardian"] = { lo = 57, hi = 59, cls = "elite", type = "Elemental", spells = { 22695, 22696 }, model = 5848 } -- Petrified Guardian
 C["petrifiedtreant"] = { lo = 57, hi = 59, cls = "elite", type = "Elemental", spells = { 22693 }, model = 2078 } -- Petrified Treant
 C["phalanx"] = { lo = 55, hi = 55, cls = "elite", type = "Elemental", spells = {  }, model = 8177, friend = true } -- Phalanx
-C["phantasm"] = { cls = "elite", type = "Elemental", spells = {  }, npc = 246990 } -- Phantasm
+C["phantasm"] = { cls = "elite", type = "Elemental", spells = { 1303458, 1293451 }, npc = 246990 } -- Phantasm
 C["phaselasher"] = { lo = 54, hi = 55, cls = "elite", type = "Elemental", spells = { 17228, 15285, 21749, 22356, 22519 }, model = 13109 } -- Phase Lasher
 C["pherryleftee"] = { lo = 61, hi = 61, cls = "elite", type = "Humanoid", spells = {  }, npc = 263644 } -- Pherry Leftee
 C["pimgib"] = { lo = 56, hi = 56, cls = "elite", type = "Humanoid", spells = { 15744, 15228, 22713 }, model = 14380 } -- Pimgib
@@ -2152,7 +2152,7 @@ C["sandvortex"] = { lo = 60, hi = 60, type = "Elemental", spells = { 25160 }, mo
 C["sapphiron"] = { lo = 63, hi = 63, cls = "worldboss", type = "Undead", spells = {  }, model = 16033 } -- Sapphiron
 C["sarturasroyalguard"] = { lo = 61, hi = 61, cls = "elite", spells = { 26038, 26027, 21727 }, model = 15465 } -- Sartura's Royal Guard
 C["saturatedooze"] = { lo = 47, hi = 48, cls = "elite", spells = { 7992, 12018 }, model = 682 } -- Saturated Ooze
-C["saturatedremnant"] = { cls = "elite", type = "Elemental", spells = {  }, npc = 247001 } -- Saturated Remnant
+C["saturatedremnant"] = { cls = "elite", type = "Elemental", spells = { 1303503, 1303458 }, npc = 247001 } -- Saturated Remnant
 C["savagefelhound"] = { cls = "elite", type = "Demon", spells = {  }, npc = 268787 } -- Savage Felhound
 C["scarab"] = { lo = 44, hi = 46, type = "Beast", spells = { 3256 }, model = 7470 } -- Scarab
 C["scarletabbot"] = { lo = 39, hi = 40, cls = "elite", type = "Humanoid", spells = { 1006, 6064, 8362, 8269 }, model = 2492 } -- Scarlet Abbot
@@ -2208,7 +2208,7 @@ C["seasonedcoldmineexplorer"] = { lo = 56, hi = 57, type = "Humanoid", spells = 
 C["seasonedcommando"] = { lo = 59, hi = 59, cls = "elite", type = "Humanoid", spells = {  }, model = 13654 } -- Seasoned Commando
 C["seasoneddefender"] = { lo = 59, hi = 59, type = "Humanoid", spells = { 19130, 12169 }, model = 13262 } -- Seasoned Defender
 C["seasonedguardian"] = { lo = 59, hi = 59, type = "Humanoid", spells = { 19130, 12169 }, model = 13278 } -- Seasoned Guardian
-C["seekingremnant"] = { cls = "elite", type = "Elemental", spells = {  }, npc = 247003 } -- Seeking Remnant
+C["seekingremnant"] = { cls = "elite", type = "Elemental", spells = { 3391, 1303458 }, npc = 247003 } -- Seeking Remnant
 C["seepingslime"] = { cls = "elite", spells = {  }, npc = 262684 } -- Seeping Slime
 C["seethrel"] = { lo = 56, hi = 56, cls = "elite", type = "Undead", spells = { 12544, 8364, 12675, 15044, 15244, 12674 }, model = 8691, friend = true } -- Seeth'rel
 C["sergeantbly"] = { lo = 45, hi = 45, cls = "elite", type = "Humanoid", spells = { 11972, 12170 }, model = 6433, friend = true } -- Sergeant Bly

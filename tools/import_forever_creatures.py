@@ -23,9 +23,32 @@ them by). Wowhead does not know where they stand, so they are taken by name.
    rank: 1 elite (the default), 2 rare elite, 4 rare, 0 normal.
 
 Merges into tools/data/forever_creatures.json ({ name: { npc, rank, type, lo,
-hi } }, Wowhead's creature type numbers); names already there are kept.
-tools/make_abilities.py writes them into ns.Creatures where the classic
+hi, spells } }, Wowhead's creature type numbers); names already there are
+kept. tools/make_abilities.py writes them into ns.Creatures where the classic
 database has no creature of the name.
+
+3. Their abilities: on any Wowhead Forever page, with ids the json's npc
+   numbers, run
+
+     const ids = [...], out = {};
+     for (const id of ids) {
+       const t = await (await fetch('/forever/npc=' + id)).text();
+       const i = t.indexOf("id: 'abilities'"), s = [];
+       if (i >= 0) {
+         const re = /\\{"cat":-?\\d+,"displayName":"(?:[^"\\\\]|\\\\.)*","id":(\\d+)/g;
+         const seg = t.slice(i, t.indexOf('new Listview', i) >>> 0); let m;
+         while ((m = re.exec(seg))) if (+m[1] !== 1604 && !s.includes(+m[1])) s.push(+m[1]);
+       }
+       out[id] = s;
+       await new Promise(r => setTimeout(r, 5000));  // Wowhead turns away bursts
+     }
+     copy(JSON.stringify(out));
+
+   (1604 is the Dazed every melee creature carries), paste into a file and run
+
+     python tools/import_forever_creatures.py --spells <file>
+
+   which sets each creature's spells from { npc id: [spell ids] }.
 """
 import json
 import os
@@ -38,7 +61,25 @@ JUNK = re.compile(r"stalker|trigger|dnt|\[|s0\d|bunny|credit|test|dummy|invisibl
                   r"|^translocation$|^gear adjustment$|^battery$|^glaive$|^plunder$", re.I)
 
 
+def spells(src):
+    with open(OUT, encoding="utf-8") as f:
+        data = json.load(f)
+    with open(src, encoding="utf-8") as f:
+        found = {int(k): v for k, v in json.load(f).items() if isinstance(v, list)}
+    n = 0
+    for c in data.values():
+        if c["npc"] in found:
+            c["spells"] = found[c["npc"]]
+            n += bool(c["spells"])
+    with open(OUT, "w", encoding="utf-8", newline="\n") as f:
+        json.dump(data, f, indent=1, ensure_ascii=False, sort_keys=True)
+        f.write("\n")
+    print(n, "creatures with abilities in", OUT)
+
+
 def main():
+    if sys.argv[1] == "--spells":
+        return spells(sys.argv[2])
     src = sys.argv[1]
     rank = int(sys.argv[2]) if len(sys.argv) > 2 else 1
     data = {}

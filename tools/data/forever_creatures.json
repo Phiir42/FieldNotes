@@ -75,21 +75,35 @@
  "Arcane Anomaly": {
   "npc": 245999,
   "rank": 1,
+  "spells": [
+   1240682,
+   1241501,
+   1241514
+  ],
   "type": 4
  },
  "Arcane Echo": {
   "npc": 246992,
   "rank": 1,
+  "spells": [
+   1303458,
+   1293451
+  ],
   "type": 4
  },
  "Arcane Elemental": {
   "npc": 246888,
   "rank": 1,
+  "spells": [
+   1303499,
+   1303458
+  ],
   "type": 4
  },
  "Arcane Manaling": {
   "npc": 246893,
   "rank": 1,
+  "spells": [],
   "type": 4
  },
  "Arcane Sentry": {
@@ -112,6 +126,11 @@
  "Arcanic Enigma": {
   "npc": 246016,
   "rank": 1,
+  "spells": [
+   8988,
+   1240869,
+   1304455
+  ],
   "type": 4
  },
  "Ardin Grassman": {
@@ -122,6 +141,13 @@
  "Atrexis the Grave Knight": {
   "npc": 247126,
   "rank": 1,
+  "spells": [
+   3391,
+   6713,
+   12057,
+   1303264,
+   1303266
+  ],
   "type": 7
  },
  "Awakened Fel Ash Slime": {
@@ -176,6 +202,7 @@
  "Blackmaw Behemoth": {
   "npc": 247207,
   "rank": 1,
+  "spells": [],
   "type": 1
  },
  "Blackmaw Berserker": {
@@ -288,6 +315,11 @@
  "Bonesnout the Unbroken": {
   "npc": 247198,
   "rank": 1,
+  "spells": [
+   5568,
+   1244416,
+   1277406
+  ],
   "type": 6
  },
  "Borook Gallfist": {
@@ -753,6 +785,11 @@
  "Elder Shaman Bloodmane": {
   "npc": 247209,
   "rank": 1,
+  "spells": [
+   1245324,
+   1245338,
+   1245883
+  ],
   "type": 1
  },
  "Elmpaw": {
@@ -842,6 +879,12 @@
  "Fel Ancient": {
   "npc": 246003,
   "rank": 1,
+  "spells": [
+   1240687,
+   1240688,
+   1240692,
+   1240694
+  ],
   "type": 5
  },
  "Felfire Imp": {
@@ -872,6 +915,10 @@
  "Fragmented Sentry": {
   "npc": 246664,
   "rank": 1,
+  "spells": [
+   3391,
+   8374
+  ],
   "type": 9
  },
  "Fraxinus": {
@@ -1083,6 +1130,11 @@
  "Impaan the Imprisoner": {
   "npc": 247206,
   "rank": 1,
+  "spells": [
+   1243067,
+   1243089,
+   1243312
+  ],
   "type": 3
  },
  "Infernal": {
@@ -1237,6 +1289,7 @@
   "lo": 61,
   "npc": 245070,
   "rank": 1,
+  "spells": [],
   "type": 2
  },
  "Living Blaze": {
@@ -1290,16 +1343,28 @@
  "Mana Devourer": {
   "npc": 246008,
   "rank": 1,
+  "spells": [
+   1240738,
+   1240750
+  ],
   "type": 3
  },
  "Mana Echo": {
   "npc": 246600,
   "rank": 1,
+  "spells": [
+   1303458,
+   1303551
+  ],
   "type": 4
  },
  "Mana Wraith": {
   "npc": 246931,
   "rank": 1,
+  "spells": [
+   1303458,
+   1293451
+  ],
   "type": 4
  },
  "Mana-Rich Frenzy": {
@@ -1540,6 +1605,11 @@
  "Phantasm": {
   "npc": 246990,
   "rank": 1,
+  "spells": [
+   1303458,
+   1303459,
+   1293451
+  ],
   "type": 4
  },
  "Pherry Leftee": {
@@ -1777,6 +1847,10 @@
  "Saturated Remnant": {
   "npc": 247001,
   "rank": 1,
+  "spells": [
+   1303503,
+   1303458
+  ],
   "type": 4
  },
  "Savage Felhound": {
@@ -1787,6 +1861,7 @@
  "Scarlet Commander Mograine": {
   "npc": 245507,
   "rank": 1,
+  "spells": [],
   "type": 7
  },
  "Scorching Elemental": {
@@ -1811,6 +1886,10 @@
  "Seeking Remnant": {
   "npc": 247003,
   "rank": 1,
+  "spells": [
+   3391,
+   1303458
+  ],
   "type": 4
  },
  "Seeping Slime": {
@@ -1835,11 +1914,21 @@
   "lo": 61,
   "npc": 245490,
   "rank": 1,
+  "spells": [],
   "type": 6
  },
  "Shade of the Archmage": {
   "npc": 246020,
   "rank": 1,
+  "spells": [
+   1241506,
+   1241515,
+   1241523,
+   1303350,
+   1303598,
+   1303599,
+   1304398
+  ],
   "type": 4
  },
  "Shadetooth": {
@@ -2024,6 +2113,7 @@
  "Suffused Treant": {
   "npc": 247016,
   "rank": 1,
+  "spells": [],
   "type": 4
  },
  "Sunderbark": {
@@ -2244,6 +2334,11 @@
  "Unbound Spirit": {
   "npc": 247231,
   "rank": 1,
+  "spells": [
+   1247169,
+   1248008,
+   1248131
+  ],
   "type": 4
  },
  "Undying Offering": {
@@ -2259,6 +2354,11 @@
  "Unstable Sentinel": {
   "npc": 246017,
   "rank": 1,
+  "spells": [
+   16169,
+   1241325,
+   1241329
+  ],
   "type": 4
  },
  "Valiant Watcher": {
@@ -2286,6 +2386,7 @@
  "Vek'zol": {
   "npc": 247015,
   "rank": 1,
+  "spells": [],
   "type": 3
  },
  "Venom Lurker": {
@@ -2394,6 +2495,12 @@
  "Withermaw": {
   "npc": 247195,
   "rank": 1,
+  "spells": [
+   1242884,
+   1242907,
+   1302780,
+   1302783
+  ],
   "type": 1
  },
  "Woodpaw Alpha": {
