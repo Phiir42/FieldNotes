@@ -144,6 +144,8 @@ def main():
     # carry what it asks you to bring; only ones that live in that instance
     with open(os.path.join(m.ROOT, "refs", "classicdb", "creatures.json"), encoding="utf-8") as f:
         creatures = {int(k): v for k, v in json.load(f).items()}
+    for k, v in creatures.items():
+        v.setdefault("id", k)
     lcols, loot = tables["creature_loot_template"]
     carriers, chance = {}, {}
     for r in loot:
@@ -297,6 +299,14 @@ def main():
             # creatures only: a chest of the same name stands in many places
             if maps_of and maps_of <= instance and name in creature_names:
                 found |= maps_of
+        # not where most of what carries it lives outside (the Loch Modan
+        # crocolisks' meat and skins, which a Deviate Crocolisk carries too)
+        inn = out = 0
+        for c in (c for group in wants(r) for c in group if "id" in c):
+            for sp in outdoors.get(c["id"], []):
+                inn, out = inn + (sp[0] in instance), out + (sp[0] not in instance)
+        if out > 2 * inn:  # (the Kor Gem's naga, half of them outside, still lead in)
+            return None
         return found.pop() if len(found) == 1 else None
 
     def homes(r):

@@ -885,16 +885,16 @@ step("creatures a quest wants", function()
 	M.wait(3)
 	M.questsOn[1487] = true
 	M.fire("CHAT_MSG_COMBAT_XP_GAIN", "Deviate Ravager dies, you gain 85 experience.")
-	M.fire("CHAT_MSG_COMBAT_XP_GAIN", "Deviate Crocolisk dies, you gain 85 experience.")
+	M.fire("CHAT_MSG_COMBAT_XP_GAIN", "Evolving Ectoplasm dies, you gain 85 experience.")
 	M.wait(1)
 	M.slash("")
 	open("Bestiary")
 	check("a creature says which quests want it", pageText():find("Wanted for Deviate Eradication (in your quest log), Deviate Hides.", 1, true)
-		and pageText():find("Wanted for Crocolisk Hunting.", 1, true))
-	M.questsDone[385] = true
+		and pageText():find("Wanted for Smart Drinks.", 1, true))
+	M.questsDone[1491] = true
 	open("Spoils") open("Bestiary")
-	check("but not for quests done", not pageText():find("Wanted for Crocolisk Hunting", 1, true))
-	M.questsOn[1487], M.questsDone[385] = nil, nil
+	check("but not for quests done", not pageText():find("Wanted for Smart Drinks", 1, true))
+	M.questsOn[1487], M.questsDone[1491] = nil, nil
 	M.slash("")
 end)
 

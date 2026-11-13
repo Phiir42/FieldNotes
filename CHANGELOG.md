@@ -6,6 +6,11 @@
   is wanted, or where it lies, for 31 quests that only named the errand
   (the Kor Gem's naga, the Crest of Lordaeron's hiding places, the book in
   Dalaran, Tunk's moulding and more).
+- Errands done mostly out in the world are no longer listed under a
+  dungeon because a creature inside carries the same thing: Crocolisk
+  Hunting (Loch Modan's crocolisks) under the Wailing Caverns, the Thick
+  Leather turn-ins, Metzen the Reindeer, Indurium, An Earnest Proposition
+  and some ten more.
 - A Moon-Kissed Blade is listed under each dungeon one of its pieces comes
   from: the Deadmines, Shadowfang Keep and Blackfathom Deeps.
 - Blackfathom Deeps' map no longer runs ahead: the naga and satyrs of the
