@@ -1199,7 +1199,7 @@ local function QuestsPage(lines, id, inst)
 		if r.early then Faded(lines, ("Can be taken up from level %d."):format(q[4]), 8) end
 		if q[6] ~= "" then Body(lines, q[6], 8) end
 		if #progress > 0 then Faded(lines, "So far: " .. table.concat(progress, "; ") .. ".", 8) end
-		if ready and q.to then Faded(lines, "Hand it in to " .. q.to .. ", inside.", 8) end
+		if ready and q.to then Faded(lines, "Hand it in to " .. ns:The(q.to) .. ", inside.", 8) end
 		if q[7] and not ready then Faded(lines, "Look for " .. table.concat(q[7], ", ") .. ".", 8) end
 		-- where it comes from, until it is done
 		if state ~= "done" then
@@ -1209,7 +1209,7 @@ local function QuestsPage(lines, id, inst)
 			elseif q.item then
 				how = "Begins with " .. q.item
 			elseif q.from then
-				how = "Given by " .. q.from .. (q.inside and ", inside" or "")
+				how = "Given by " .. ns:The(q.from) .. (q.inside and ", inside" or "")
 			end
 			if q.after and state ~= "log" then how = how and (how .. "; follows " .. q.after) or ("Follows " .. q.after) end
 			if how then Faded(lines, how .. ".", 8) end
@@ -1301,7 +1301,7 @@ local function QuestMarks(id, floor, marks)
 			local dx, dy = Beside(giver[1], giver[2], -1)
 			marks[#marks + 1] = {
 				x = giver[1], y = giver[2], dx = dx, dy = dy, icon = QUEST_ICON, alpha = 0.65,
-				name = "A quest is given here", note = q[2] .. ": given by " .. q.from .. ".", go = Open,
+				name = "A quest is given here", note = q[2] .. ": given by " .. ns:The(q.from) .. ".", go = Open,
 			}
 		end
 		-- and one that is ready, handed in inside: where to take it
@@ -1310,7 +1310,7 @@ local function QuestMarks(id, floor, marks)
 			local dx, dy = Beside(taker[1], taker[2], -1)
 			marks[#marks + 1] = {
 				x = taker[1], y = taker[2], dx = dx, dy = dy, icon = TURNIN_ICON,
-				name = "A quest is handed in here", note = q[2] .. ": hand it in to " .. q.to .. ".", go = Open,
+				name = "A quest is handed in here", note = q[2] .. ": hand it in to " .. ns:The(q.to) .. ".", go = Open,
 			}
 		end
 	end
