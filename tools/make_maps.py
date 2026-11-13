@@ -395,6 +395,84 @@ ns.Maps = {}
 """ % (W, H, W, H)
 
 
+_creature_spawns = None
+ROOM_SHARE = 0.10  # a room counts as a creature's if this share of its spawn points are in it
+
+
+def creature_rooms(dungeon, splits):
+    """Where each creature named in a one-road definition really stands, from
+    its spawn points in the classic database (boss_points must have run).
+
+    On a one-road map, meeting a creature uncovers its room and every room
+    before it, so a creature must be filed under the EARLIEST room it lives in
+    or the map is uncovered too soon. Returns {floor index: [(name, n or None)]}:
+    the room number the name should point at on that floor, None to take the
+    name off that floor. Names the database knows nothing of are left alone.
+    """
+    global _creature_spawns
+    inst, floors = dungeon["instance"], dungeon["floors"]
+    if _creature_spawns is None:
+        path = os.path.join(ROOT, "refs", "classicdb", "creatures.json")
+        _creature_spawns = {}
+        if os.path.exists(path):
+            for c in json.load(open(path, encoding="utf-8")).values():
+                for sp in c.get("spawns", []):
+                    _creature_spawns.setdefault((area_key(c["name"]), sp[0]), []).append(sp)
+    aliases, _, bounds, names, _ = _boss_data
+    bosses = {area_key(n) for n in names.get(inst, [])}
+    for n in names.get(inst, []):
+        bosses.update(area_key(a) for a in aliases.get(n, []))
+    order = [list(f["areas"]) for f in floors]
+
+    def rooms(pts):
+        hits = {}
+        for _, wx, wy, _z in pts:
+            for f, floor in enumerate(floors):
+                b = bounds.get((floor.get("uimap"), inst))
+                if not b:
+                    continue
+                x = round((b[3] - wy) / (b[3] - b[1]) * W)
+                y = round((b[2] - wx) / (b[2] - b[0]) * H)
+                if not (3 < x < W - 3 and 3 < y < H - 3):
+                    continue
+                best = max(((float(a[y - 3:y + 4, x - 3:x + 4].mean()), n) for n, a in splits[f][1]
+                            if n in floor["areas"]), default=(0, None))
+                if best[0] > 0.3:
+                    k = (f, order[f].index(best[1]) + 1)
+                    hits[k] = hits.get(k, 0) + 1
+        return hits
+
+    out = {f: [] for f in range(len(floors))}
+    done = set()
+    for f, floor in enumerate(floors):
+        for name in list(floor["areas"]) + list(floor.get("aliases", {})):
+            k = area_key(name)
+            pts = _creature_spawns.get((k, inst))
+            if k in done or k in bosses or not pts:
+                continue
+            done.add(k)
+            hits = rooms(pts)
+            total = sum(hits.values())
+            real = sorted(r for r, v in hits.items() if v >= max(1, ROOM_SHARE * total))
+            if not real:
+                continue
+            first = real[0]
+            want = {first[0]: first[1]}
+            # A later sheet too, only when the earlier one ends in the same room
+            # (the room drawn on both): otherwise finding it "on the later
+            # sheet" would wrongly complete the earlier one.
+            if all(r[1] == len(order[r[0]]) for r in real if r[0] == first[0]):
+                for r in real:
+                    want.setdefault(r[0], r[1])
+            for g, other in enumerate(floors):
+                keyed = next((a for a in other["areas"] if area_key(a) == k),
+                             next((t for a, t in other.get("aliases", {}).items() if area_key(a) == k), None))
+                now = order[g].index(keyed) + 1 if keyed in other["areas"] else None
+                if want.get(g) != now:
+                    out[g].append((name, want.get(g)))
+    return out
+
+
 def main():
     preview = "--preview" in sys.argv
     only = sys.argv[sys.argv.index("--only") + 1] if "--only" in sys.argv else None
@@ -416,6 +494,7 @@ def main():
         out.append("ns.Maps[%d] = {}" % dungeon["instance"])
         splits = [split(floor, blank) for floor in dungeon["floors"]]
         bosses = boss_points(dungeon, splits)
+        moved = creature_rooms(dungeon, splits) if dungeon.get("path") is True else {}
         for f, floor in enumerate(dungeon["floors"], 1):
             floor["bosses"] = bosses[f - 1]
             img, pieces = splits[f - 1]
@@ -460,6 +539,15 @@ def main():
             for alias, target in floor.get("aliases", {}).items():
                 if target not in floor["areas"]:
                     print(f"  !! alias {alias!r} points at unknown area {target!r}")
+            # One-road dungeons: creatures are filed under the earliest room they
+            # really stand in (see creature_rooms), whatever the definition says.
+            for name, room in moved.get(f - 1, ()):
+                if room and room in numbers.values():
+                    out.append("	floor.areas[key(%s)] = floor.areas[\"#%d\"]" % (lua_str(name), room))
+                    print(f"  {name}: filed under room {room}")
+                else:
+                    out.append("	floor.areas[key(%s)] = nil" % lua_str(name))
+                    print(f"  {name}: taken off sheet {f}")
             # A boss uncovers the room it stands in, whatever the definition
             # guessed: where a boss is known from data, its name is pointed at
             # the piece under its mark.

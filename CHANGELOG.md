@@ -7,7 +7,8 @@
   of the journal window.
 - Spoils are listed under the boss that carried them, then the rest.
 - The journal remembers where you dragged it.
-- Shadowfang Keep no longer uncovers rooms before you reach them.
+- Shadowfang Keep no longer uncovers rooms before you reach them, and in the
+  other single-road dungeons creatures are filed by where they really stand.
 - The map opens on the sheet you were last on, so boss marks on later sheets
   are not missed.
 - A darker parchment look: the pages use the same sheet as the maps, with
