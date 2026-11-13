@@ -388,6 +388,12 @@ step("every page of the journal", function()
 		local paladin, shown = 0, 0
 		for _, q in ipairs(ns.Quests[48]) do if q.class == 2 then paladin = paladin + 1 end end
 		check("class quests are in the data", paladin >= 1)
+		local function Has(id, quest)
+			for _, q in ipairs(ns.Quests[id]) do if q[1] == quest then return q end end
+		end
+		local sfk = Has(33, 1654)
+		check("a quest whose pieces lie in two dungeons is under both", Has(36, 1654) and sfk
+			and sfk.note == "The rest of what it asks for is found in the Deadmines.")
 	end
 	check("quests show what they pay", pageText():find("Reward, one of:", 1, true) and pageText():find("Item 6087", 1, true))
 	check("quests say who gives them", pageText():find("Given by Wilder Thistlenettle", 1, true))

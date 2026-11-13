@@ -166,29 +166,36 @@ def main():
     titles = {x.num(r[col("entry")]): plain(r[col("Title")]) for r in data}
     spots = {}  # {map: {name: [[x, y, z], ...]}}: where each thing named stands, for the map marks
 
-    def sources(r):
-        """-> [(name, spawns)] of the creatures and objects a quest sends you to."""
-        found = []
+    def wants(r):
+        """-> [[creature or object, ...], ...]: for each thing a quest asks for,
+        the creatures and objects that are it or hold it."""
+        groups = []
         for i in (1, 2, 3, 4):
             who = x.num(r[col("ReqCreatureOrGOId%d" % i)])
             if who > 0 and who in creatures:
-                found.append(creatures[who])
+                groups.append([creatures[who]])
             elif who < 0 and -who in objects:
-                found.append(objects[-who])
+                groups.append([objects[-who]])
             item = x.num(r[col("ReqItemId%d" % i)])
             if not item:
                 continue
+            found = []
             has = carriers.get(item, [])
             if len(has) <= 12:  # more than that is a drop of the whole place, or the whole world
                 found += [creatures[c] for c in has if c in creatures]
             for lootid in holds.get(item, ()):
                 found += [objects[e] for e in chests.get(lootid, [])]
+            groups.append(found)
         # ...and whoever drops the item that begins it
         begun_by = start_item.get(x.num(r[col("entry")]))
         if begun_by:
-            found += [creatures[c] for c in carriers.get(begun_by, [])[:12] if c in creatures]
+            groups.append([creatures[c] for c in carriers.get(begun_by, [])[:12] if c in creatures])
+        return groups
+
+    def sources(r):
+        """-> [(name, spawns)] of the creatures and objects a quest sends you to."""
         out = []
-        for c in found:
+        for c in (c for group in wants(r) for c in group):
             if not c["name"]:
                 continue
             spawns = c["spawns"]
@@ -218,14 +225,38 @@ def main():
                 found |= maps_of
         return found.pop() if len(found) == 1 else None
 
-    by_map = {}
-    for r in data:
+    def homes(r):
+        """The instances a quest filed elsewhere really sends you into: the
+        one, or each of a few where every piece it asks for comes from one
+        instance alone (The Test of Righteousness: the lumber from the
+        Deadmines, the hammer from Shadowfang Keep)."""
+        found = set()
+        for group in wants(r):
+            inside = {sp[0] for c in group for sp in c["spawns"]} & instance
+            if len(inside) > 1:  # a piece found in several: no telling which
+                found = set()
+                break
+            found |= inside  # (it may also be had outside, like the Kor Gem)
+        if 2 <= len(found) <= 3:
+            return sorted(found)
+        one = home(r)
+        return [one] if one else []
+
+    def places(r):
         zone = x.num(r[col("ZoneOrSort")])
         mp = area_map.get(zone) if zone > 0 else None
-        if mp not in instance:
-            mp = home(r)  # filed under the quest giver's zone, but its quarry lives in a dungeon
+        if mp in instance:
+            return [mp]
+        return homes(r)  # filed under the quest giver's zone, but its quarry lives in a dungeon
+
+    by_map = {}
+    def named(mp):
+        name = maps[mp]["MapName_lang"]
+        return ("the " + name) if name in ("Deadmines",) else name
+
+    for r, mp, every in ((r, mp, every) for r in data for every in [places(r)] for mp in every):
         title = r[col("Title")]
-        if mp not in instance or not title or JUNK.search(title):
+        if not title or JUNK.search(title):
             continue
         # not the class sets, profession recipes and turn-ins done over and over
         if x.num(r[col("RequiredSkill")]) or x.num(r[col("SpecialFlags")]) & 1:
@@ -246,6 +277,9 @@ def main():
             q["class"] = classes
         if q["id"] in NOTES:
             q["note"] = NOTES[q["id"]]
+        elif len(every) > 1:
+            rest = [named(m) for m in every if m != mp]
+            q["note"] = "The rest of what it asks for is found in %s." % " and ".join(rest)
         giver = givers.get(q["id"])
         if q["id"] in starts:
             q["item"] = starts[q["id"]]

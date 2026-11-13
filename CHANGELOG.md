@@ -61,6 +61,10 @@
 - Each visit notes who went along: the names of your group, including
   those who joined on the way ("with Brann and Thrall"). "/fn find" finds
   them too.
+- A quest whose pieces are gathered in two or three dungeons is listed
+  under each, with a word on where the rest is found: The Test of
+  Righteousness (the Deadmines and Shadowfang Keep), the Orb of Soran'ruk,
+  Three Kings of Flame, Atiesh and some 20 more.
 
 ## 0.2.0-beta.9
 
