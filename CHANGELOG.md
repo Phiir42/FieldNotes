@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.0-beta.7 – not yet released
+## 0.2.0-beta.7
 
 - Known abilities for the bosses of the dungeons new to Forever: most of
   Dalaran, the Ruins of Lordaeron, the Hall of Thanes, the Wetlands
