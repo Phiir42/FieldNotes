@@ -129,7 +129,8 @@
   encounter of the game's) lists his own Frost Nova and Frostbolt, not the
   Depth Charge and Bubble Beam of the Season of Discovery raid's Baron.
 - "/fn find" also searches the diaries ("/fn find fell": every time you fell
-  in battle, and where), after everything else it finds.
+  in battle, and where), after everything else it finds; and the known
+  abilities of the bosses you have beaten ("/fn find frostbolt").
 - "/fn find <words>" typed before the journal had been opened once since
   logging in raised a Lua error; it opens the search page now.
 - Known abilities no longer list a fight's hidden workings: "Kirtonos

@@ -772,6 +772,8 @@ step("leave and return", function()
 	check("a search finds who went with you", pageText():find("went with you into the Deadmines", 1, true))
 	M.slash("find set foot")
 	check("a search finds the diary's lines", pageText():find("in the diary of the Deadmines", 1, true))
+	M.slash("find spell " .. ns.Abilities[2741][1])
+	check("a search finds a defeated boss's abilities", pageText():find("an ability of Rhahk'Zor", 1, true))
 	M.slash("")
 	local said = #M.chat
 	M.fire("QUEST_ACCEPTED", 2040)

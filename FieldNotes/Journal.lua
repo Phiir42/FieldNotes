@@ -1922,6 +1922,12 @@ local function SearchPage(lines, query)
 			if Has(b.name) then
 				Hit(b.name, "a foe of note in " .. ns:The(place) .. (b.kills > 0 and ", defeated" or ""), Go("boss", eid))
 			end
+			-- its known abilities, once written in (on its defeat)
+			local known = b.kills > 0 and (ns.Abilities[eid] or ns.AbilitiesByName[ns:AreaKey(b.name)])
+			for _, spell in ipairs(known or {}) do
+				local name = SpellName(spell)
+				if Has(name) then Hit(name, "an ability of " .. ns:The(b.name) .. ", " .. ns:The(place), Go("boss", eid)) end
+			end
 			Note(b.note, b.name, place, Go("boss", eid))
 		end
 		for _, npc in ipairs(inst.mobOrder) do
