@@ -66,7 +66,7 @@ opens straight to the map.
 | --- | --- |
 | `/fn` | open or close the journal |
 | `/fn full` | the journal fills the screen, or goes back to its usual size (you can also drag its bottom right corner) |
-| `/fn find <words>` | every boss, creature, find, hall, quest and note of yours that holds the words, each leading to its page |
+| `/fn find <words>` | every boss, creature, find, hall, quest, ability, diary line and note of yours that holds the words, each leading to its page |
 | `/fn settings` | the Preferences page, where everything below can be clicked (also: right-click the minimap button) |
 | `/fn announce` | chat lines when something new is written down, on/off |
 | `/fn quality <0-5>` | lowest item quality worth noting (default 2, uncommon) |
