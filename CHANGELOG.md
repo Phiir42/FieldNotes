@@ -128,6 +128,8 @@
 - A dungeon whose halls the game never names (Shadowfang Keep) no longer
   says "Nothing noted yet" under "Halls and chambers" once you have been
   through it: it says the map is charted by the foes you meet.
+- The contents page no longer says "all 3 foes of note defeated" of the
+  Wailing Caverns, which has eight: just "3 foes of note defeated".
 - A boss's page counts the times you fell to it from before this version
   too, read from the diary ("fallen to it once" on Arugal, say).
 

@@ -618,7 +618,8 @@ local function TitlePage(lines)
 		faced, beaten, kinds, finds = faced + f, beaten + k, kinds + mobs, finds + #inst.lootOrder
 		local t = {}
 		if f > 0 then
-			t[#t + 1] = (k == f and (f == 1 and "its foe of note defeated" or ("all " .. f .. " foes of note defeated")))
+			-- (not "all": the journal cannot tell how many more there are)
+			t[#t + 1] = (k == f and (Plural(f, "foe", "foes") .. " of note defeated"))
 				or (Plural(f, "foe", "foes") .. " of note faced, " .. k .. " defeated")
 		end
 		if mobs > 0 then t[#t + 1] = Plural(mobs, "kind of creature", "kinds of creature") end
