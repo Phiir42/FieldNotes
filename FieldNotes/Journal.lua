@@ -1927,7 +1927,9 @@ local function SearchPage(lines, query)
 		if Has(place) then Hit(place, inst.kind == "raid" and "a raid" or "a dungeon", Go("overview")) end
 		Note(inst.note, place, nil, Go("overview"))
 		for _, a in ipairs(inst.areas) do
-			if Has(a.name) then Hit(a.name, "a hall of " .. ns:The(place), Go("overview")) end
+			if Has(a.name) then
+				Hit(a.name, "a hall of " .. ns:The(place) .. (type(a.t) == "number" and (", first reached " .. ns:Day(a.t)) or ""), Go("overview"))
+			end
 			Note(a.note, a.name, place, Go("overview"))
 		end
 		for _, eid in ipairs(inst.bossOrder) do
