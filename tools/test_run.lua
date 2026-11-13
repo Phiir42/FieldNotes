@@ -867,6 +867,26 @@ step("where a quest's quarry is", function()
 	check("quarry outside the portal is said to be there", text:find("Look for Mad Magglish outside, near the way in.", 1, true))
 	check("a widely carried quest item names its likeliest carriers",
 		text:find("Look for Deviate Ravager, Deviate Guardian", 1, true))
+	check("who gives a quest reads well mid-sentence", ns:The("The Sparklematic 5200") == "the Sparklematic 5200")
+	M.slash("")
+end)
+
+step("a creature new to Forever", function()
+	M.instance = { name = "Blackmaw Hold", kind = "party", id = 2974 }
+	M.fire("PLAYER_ENTERING_WORLD")
+	M.wait(3)
+	M.fire("CHAT_MSG_COMBAT_XP_GAIN", "Blackmaw Berserker dies, you gain 300 experience.")
+	M.wait(1)
+	M.slash("")
+	open("Bestiary")
+	local keys = {}
+	for _, f in ipairs(M.frames) do
+		if rawget(f, "tint") and rawget(f, "row") then keys[#keys + 1] = tostring(f.key) end
+	end
+	keys = table.concat(keys, " ")
+	check("is drawn by its NPC id", keys:find("n247237", 1, true))
+	check("with its kind", pageText():find("Elite humanoid", 1, true))
+	check("and the abilities Wowhead lists for it", pageText():find("Spell 8269", 1, true))
 	M.slash("")
 end)
 
