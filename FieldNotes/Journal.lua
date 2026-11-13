@@ -623,7 +623,12 @@ local function BossPage(lines, inst, eid)
 	for _, other in ipairs(ns.Company[ns:AreaKey(b.name)] or {}) do
 		local with = PictureOf(other)
 		if with then
-			lines[#lines + 1] = { text = other, font = "GameFontNormal", picture = with, iconSize = PORTRAIT, gap = 6 }
+			-- an entry like any creature's: what it is, beside its portrait
+			local tag = MobTag({ name = other })
+			lines[#lines + 1] = {
+				text = other .. (tag ~= "" and ("\n" .. FADED_HEX .. tag .. "|r") or ""),
+				font = "GameFontNormal", picture = with, iconSize = PORTRAIT, gap = 6,
+			}
 		end
 	end
 
