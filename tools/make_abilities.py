@@ -96,33 +96,78 @@ ALIASES = {
 }
 
 # The dungeons new to Forever have no journal, boss module or classic database
-# behind them. What is listed here is attested one of two ways: the client's
-# own spell text names the boss ("...healing Min'loth every..."), or a
-# published guide names the ability and the client has a spell of that name
-# among the new dungeon's spells. Short lists, but nothing guessed.
-FOREVER_KNOWN = {
+# behind them. What is listed here is attested: by the Warcraft Wiki's boss
+# pages (datamined, with spell ids) agreeing with at least one published guide
+# (Method, Warcraft Tavern, Fextralife...), or by the client's own spell text
+# naming the boss ("...healing Min'loth every..."). Every id was checked to
+# exist in the client under the name the sources give. Nothing is guessed:
+# where sources disagree on which copy of a stock spell is cast, the wiki's is
+# used. Sources and method: see CHANGELOG 0.2.0-beta.7.
+ATTESTED = {
+    # City of Dalaran
+    "Arcane Anomaly": [1241501, 1240682],                # Focal Blast, Arcane Bolt
+    "Fel Ancient": [1240692, 1240688, 1240687],          # Fel Timbers, Entangle, Trample
+    "Mana Devourer": [1240750, 1240738],                 # Debilitate, Drain Vitality
+    "Unstable Sentinel": [1241329, 16169],               # Malfunction, Arcing Smash
+    "Lyn the Ignored": [1304473, 17228, 1303266],        # Curse of Thorns, Shadow Bolt Volley, Raise Dead
+    "Atrexis the Grave Knight": [1303266, 1303264, 6713, 3391, 12057],  # Raise Dead, Unholy Frenzy, Disarm, Thrash, Strike
+    "Shade of the Archmage": [1241523, 1303598, 1303599, 1241506, 1304398, 1303350],  # Bounding Mana, Mass Polymorph, Evocation, Arcane Bolt, Arcane Explosion, Slow
+    # Ruins of Lordaeron
+    "Witherfang": [3358],                                # Leech Poison
+    "The Abandoned": [14907, 1266011, 6136],             # Frost Nova, Life Drain, Chilled
+    "Viktor the Vile": [3358],                           # Leech Poison
+    "Bjork": [1301635, 14099],                           # Anti-Magic Shield, Mighty Blow
+    "Rath'mael": [18399, 13376],                         # Flamestrike, Fire Shield
+    # The Hall of Thanes
+    "Faldrim Anvilmar": [1292602, 13860],                # Anvilmar's Curse, Mind Blast
+    "Plunder": [11130, 22911, 21055],                    # Knock Away, Charge, Crush Armor
+    "Durgen Dirgehammer": [11977, 19134, 25710],         # Rend, Intimidating Shout, Heroic Strike
+    # Excavation Site: Wetlands
+    "Saltspine": [1316382, 3604, 16495],                 # Dust Storm, Tendon Rip, Fatal Bite
+    "Shadetooth": [14100, 13445, 1284435],               # Terrifying Roar, Rend, Enrage
+    "Highland Horror": [1316480, 9616],                  # Entangling Roots, Wild Regeneration
+    "Relic Guardian": [8078, 8374, 10101, 11876],        # Thunderclap, Arcing Smash, Knock Away, War Stomp
     # The Drowned City
     "Zul'Alai": [1282504, 1282519, 1282511],             # Monstrous Slam, Rotted Strike, Undying Oath
     "Var'Taka": [1282615],                               # Harpoon
     "Captain Dreadrise": [1282842, 1282860],             # Embrine, Waterbolt Volley
-    "Deathless Guardians": [1283034],                    # Bloodbolt
+    "Deathless Guardians": [1283034, 1283081, 1283086, 1283073],  # Bloodbolt; the guardians' Shield Slam, Fireball, Charge
     "Primeval Elemental": [1290978, 1290983],            # Waterbolt, Freeze Water
     "Min'loth the Serpent": [1283250, 1283239, 1283266, 1283295, 1283313],  # Drench, Deluge, Drain Blood, Transform, Poison Bolt Volley
     # Krol'dok Stronghold
-    "Overseer Mugg": [1282386, 1282393, 1282394],        # Mugg's Fury, Set of Maces, Set of Mauls
+    "Slavecrusher Grox": [1280081],                      # Force Compliance
+    "Twilight Commander Zarmok": [1280011],              # Rending Whirl
+    "Handler Ashka": [1282082, 1282071],                 # Command: Kill!, Frightening Howl
+    "Nar'gurk": [1280259, 1280262, 1280356],             # Convert, Shadow Infusion, Shadow Bolt Volley
+    "Overseer Mugg": [1282386, 1282393, 1282394, 1282396],  # Mugg's Fury, Set of Maces, Set of Mauls, Crushing Slam
     # Blackmaw Hold
     "Withermaw": [1302780],                              # Writhing Mass
     "Bonesnout the Unbroken": [1277364, 1277406],        # Desecration, Profane Bulwark
     "Varrox Bleakhoof": [1246453],                       # Crimson Wrest
     "Unbound Spirit": [1247237],                         # Profane Protection
-    # City of Dalaran
-    "Fel Ancient": [1240692],                            # Fel Timbers
-    "Shade of the Archmage": [1241501, 1241523],         # Focal Blast, Bounding Mana
     # The Shaper's Terrace
     "Nanaya": [1290463],                                 # Powerful Slam
-    # The Hall of Thanes
-    "Faldrim Anvilmar": [1292602],                       # Anvilmar's Curse
 }
+# Older bosses the other sources have nothing on: used only where an encounter
+# would otherwise have no list (a seasonal version of the fight keeps its own).
+ATTESTED_IF_EMPTY = {
+    "Azgaloth": [470457, 20812, 470535, 469990, 470280, 470031],  # Bounding Shadow, Cripple, Nether Strike, Rain of Fire, Umbral Slash, War Stomp
+    "Testwerk": [28131],                                 # Enrage
+    "Old Serra'kis": [8433],                             # Leech Pulse
+    "Grubbis": [12057],                                  # Strike
+    "Viscous Fallout": [21687],                          # Toxic Volley
+}
+# Bosses the guides know by another name than the client's encounter list: the
+# game may announce either, so these are filed by name alone.
+ATTESTED_BY_NAME = {
+    "Arcanic Enigma": [1240869, 8988, 1304455],          # Manamorph, Silence, Summon Manaling (Dalaran)
+    "The Baron": [17307, 5568],                          # Knockout, Trample (Ruins of Lordaeron)
+    "Magmatus": [1293228, 11970],                        # Combust, Fire Nova (Hall of Thanes; the client's Infurnus)
+    "Deathless Marrow": [1283034, 1283081, 1283086, 1283073],
+}
+ATTESTED["Infurnus"] = ATTESTED_BY_NAME["Magmatus"]
+ATTESTED_BY_NAME["War Handler Ashka"] = ATTESTED["Handler Ashka"]
+ATTESTED_BY_NAME["Overlord Mugg"] = ATTESTED["Overseer Mugg"]
 
 
 def classicdb_spells():
@@ -325,8 +370,10 @@ def main():
             scripted += script_for(key(alias), scripts)
         # scripts also name the fight's stage machinery: leave that out
         raw += [sp for sp in scripted if not MACHINERY.search(names.get(sp, ""))]
-        if name in FOREVER_KNOWN:  # a new boss: a classic creature of a like name is someone else
-            raw = FOREVER_KNOWN[name]
+        if name in ATTESTED:  # a new boss: a classic creature of a like name is someone else
+            raw = ATTESTED[name]
+        if not any(names.get(sp) for sp in raw):
+            raw = ATTESTED_IF_EMPTY.get(name, [])
         spells, used = [], set()
         for sp in raw:
             label = names.get(sp)
@@ -348,6 +395,13 @@ def main():
             seen_keys.add(k)
             out.append('N["%s"] = A[%d]' % (k, eid))
 
+    out.append("")
+    out.append("-- Bosses known to guides by another name than the encounter's")
+    for name, ids in sorted(ATTESTED_BY_NAME.items()):
+        if key(name) not in seen_keys:
+            seen_keys.add(key(name))
+            out.append('N["%s"] = { %s } -- %s: %s' % (key(name), ", ".join(map(str, ids)), name,
+                                                      ", ".join(names.get(sp, "?") for sp in ids)))
     header = [
         "-- Boss abilities. GENERATED by tools/make_abilities.py: do not edit.",
         "--",

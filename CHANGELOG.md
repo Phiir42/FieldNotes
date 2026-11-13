@@ -2,10 +2,15 @@
 
 ## 0.2.0-beta.7 – not yet released
 
-- Known abilities for fifteen bosses of the dungeons new to Forever (the
-  Drowned City, Blackmaw Hold, Krol'dok Stronghold, Dalaran, the Shaper's
-  Terrace, the Hall of Thanes), where the game's own spell text or a
-  published guide names them.
+- Known abilities for the bosses of the dungeons new to Forever: all of
+  Dalaran, the Ruins of Lordaeron, the Hall of Thanes, the Wetlands
+  Excavation Site, the Drowned City and Krol'dok Stronghold, and some of
+  Blackmaw Hold. Taken from the Warcraft Wiki's boss pages and published
+  guides (Method, Warcraft Tavern, Fextralife and others) where they agree,
+  and from the game's own spell text where it names the boss; every spell
+  was checked against the game's data. Alcaz Prison and the Shaper's Terrace
+  remain mostly unwritten: nothing is published on them yet.
+- Also filled in: Azgaloth, Old Serra'kis, Grubbis, Viscous Fallout.
 
 ## 0.2.0-beta.6
 

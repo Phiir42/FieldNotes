@@ -102,6 +102,8 @@ A[2914] = { 6533 } -- Geilhast: Net
 N["geilhast"] = A[2914]
 A[2913] = { 12550, 12167 } -- Lorgus Jett: Lightning Shield, Lightning Bolt
 N["lorgusjett"] = A[2913]
+A[2912] = { 8433 } -- Old Serra'kis: Leech Pulse
+N["oldserrakis"] = A[2912]
 A[2911] = { 15587, 8399 } -- Twilight Lord Kelris: Mind Blast, Sleep
 N["twilightlordkelris"] = A[2911]
 A[2694] = { 404806, 413664, 405953, 14907, 15043 } -- Baron Aquanis: Depth Charge, Bubble Beam, Torrential Downpour, Frost Nova, Frostbolt
@@ -117,6 +119,7 @@ A[2704] = { 412072, 411956, 411959, 412456, 6533 } -- Gelihast: Shadow Strike, C
 N["gelihast"] = A[2704]
 A[2764] = { 12550, 12167 } -- Lorgus Jett: Lightning Shield, Lightning Bolt
 A[2710] = { 419649, 22883, 414691, 414763, 419636, 12550, 12167 } -- Lorgus Jett: Spawn Murloc, Heal, Corrupted Windfury Totem, Corrupted Lightning Shield Totem, Corrupted Molten Fury Totem, Lightning Shield, Lightning Bolt
+A[2765] = { 8433 } -- Old Serra'kis: Leech Pulse
 A[2766] = { 15587, 8399 } -- Twilight Lord Kelris: Mind Blast, Sleep
 A[2767] = { 3815, 3490 } -- Aku'mai: Poison Cloud, Frenzied Rage
 A[2825] = { 423135, 425460, 425265, 426489, 15587 } -- Twilight Lord Kelris: Sleep, Dream Eater, Shadowy Chains, Manifesting Dreams, Mind Blast
@@ -141,6 +144,10 @@ A[554] = { 10252, 10258, 10259, 6524 } -- Archaedas: Awaken Earthen Guardians, A
 N["archaedas"] = A[554]
 
 -- Gnomeregan
+A[2768] = { 12057 } -- Grubbis: Strike
+N["grubbis"] = A[2768]
+A[2769] = { 21687 } -- Viscous Fallout: Toxic Volley
+N["viscousfallout"] = A[2769]
 A[2770] = { 11082, 11085, 11084 } -- Electrocutioner 6000: Megavolt, Chain Bolt, Shock
 N["electrocutioner6000"] = A[2770]
 A[2771] = { 16169, 5568, 10887 } -- Crowd Pummeler 9-60: Arcing Smash, Trample, Crowd Pummel
@@ -148,9 +155,7 @@ N["crowdpummeler960"] = A[2771]
 A[2772] = { 10101, 11795, 11511 } -- Mekgineer Thermaplugg: Knock Away, Activate Bomb B, Activate Bomb A
 N["mekgineerthermaplugg"] = A[2772]
 A[2925] = { 434168, 434724, 3019, 436100, 436074, 436027, 434941, 436059, 439956 } -- Grubbis: Irradiated Cloud, Radiation Sickness, Enrage, Petrify, Trogg Rage, Grubbis Mad!, Toxic Vigor, Radiation?, Revive Pet
-N["grubbis"] = A[2925]
 A[2928] = { 434358, 433546, 434434 } -- Viscous Fallout: Summon Irradiated Goo, Radiation Burn, Sludge
-N["viscousfallout"] = A[2928]
 A[2899] = { 432423, 432062, 431839, 16169, 5568, 10887 } -- Crowd Pummeler 9-60: Gnomeregan Smash, The Claw!, Off Balanced, Arcing Smash, Trample, Crowd Pummel
 A[2927] = { 433359, 433398, 433251, 11082, 11085, 11084 } -- Electrocutioner 6000: Magnetic Pulse, Discombobulation Protocol, Static Arc, Megavolt, Chain Bolt, Shock
 A[2935] = { 438735, 436692, 436570, 436833, 436836, 436816, 436695, 436825, 440073 } -- Mechanical Menagerie: High Voltage!, Explosive Egg, Cluck!, Widget Volley, Widget Fortress, Sprocketfire Breath, Overheat, Frayed Wiring, Self Repair
@@ -588,6 +593,10 @@ N["sapphiron"] = A[1119]
 A[1114] = { 28467, 27808, 27810, 28410, 27819, 28453, 29898, 28470 } -- Kel'Thuzad: Mortal Wound, Frost Blast, Shadow Fissure, Chains of Kel'Thuzad, Detonate Mana, Summon Type D Periodic, Guardian of Icecrown, Blood Tap
 N["kelthuzad"] = A[1114]
 
+-- The Searing Basin
+A[3025] = { 28131 } -- Testwerk: Enrage
+N["testwerk"] = A[3025]
+
 -- Demon Fall Canyon
 A[3023] = { 460509, 460703, 460727 } -- Grimroot: Corrupted Tears, Tender's Rage, Gloom
 N["grimroot"] = A[3023]
@@ -601,6 +610,8 @@ A[3024] = { 460755, 460756, 460766, 12542, 18557 } -- Diathorus the Seeker: Veil
 N["diathorustheseeker"] = A[3024]
 A[3031] = { 460254, 460084, 460119 } -- Hellscream's Phantom: Spiritstorm, Spectral Shout, Mortal Combo
 N["hellscreamsphantom"] = A[3031]
+A[3080] = { 470457, 20812, 470535, 469990, 470280, 470031 } -- Azgaloth: Bounding Shadow, Cripple, Nether Strike, Rain of Fire, Umbral Slash, War Stomp
+N["azgaloth"] = A[3080]
 
 -- The Tainted Scar
 A[3026] = { 21056, 21063, 21053, 21340, 21341, 20691, 26554, 21066 } -- Lord Kazzak: Mark of Kazzak, Twisted Reflection, Capture Soul, Frenzy, Shadow Bolt Volley, Cleave, Thunderclap, Void Bolt
@@ -670,9 +681,19 @@ A[3296] = { 28834 } -- Spirit of Mograine: Mark of Mograine
 N["spiritofmograine"] = A[3296]
 
 -- City of Dalaran
-A[3299] = { 1240692 } -- Fel Ancient: Fel Timbers
+A[3298] = { 1241501, 1240682 } -- Arcane Anomaly: Focal Blast, Arcane Bolt
+N["arcaneanomaly"] = A[3298]
+A[3299] = { 1240692, 1240688, 1240687 } -- Fel Ancient: Fel Timbers, Entangle, Trample
 N["felancient"] = A[3299]
-A[3303] = { 1241501, 1241523 } -- Shade of the Archmage: Focal Blast, Bounding Mana
+A[3300] = { 1240750, 1240738 } -- Mana Devourer: Debilitate, Drain Vitality
+N["manadevourer"] = A[3300]
+A[3302] = { 1241329, 16169 } -- Unstable Sentinel: Malfunction, Arcing Smash
+N["unstablesentinel"] = A[3302]
+A[3310] = { 1304473, 17228, 1303266 } -- Lyn the Ignored: Curse of Thorns, Shadow Bolt Volley, Raise Dead
+N["lyntheignored"] = A[3310]
+A[3311] = { 1303266, 1303264, 6713, 3391, 12057 } -- Atrexis the Grave Knight: Raise Dead, Unholy Frenzy, Disarm, Thrash, Strike
+N["atrexisthegraveknight"] = A[3311]
+A[3303] = { 1241523, 1303598, 1303599, 1241506, 1304398, 1303350 } -- Shade of the Archmage: Bounding Mana, Mass Polymorph, Evocation, Arcane Bolt, Arcane Explosion, Slow
 N["shadeofthearchmage"] = A[3303]
 
 -- The Drowned City
@@ -682,7 +703,7 @@ A[3475] = { 1282615 } -- Var'Taka: Harpoon
 N["vartaka"] = A[3475]
 A[3476] = { 1282842, 1282860 } -- Captain Dreadrise: Embrine, Waterbolt Volley
 N["captaindreadrise"] = A[3476]
-A[3478] = { 1283034 } -- Deathless Guardians: Bloodbolt
+A[3478] = { 1283034, 1283081, 1283086, 1283073 } -- Deathless Guardians: Bloodbolt, Shield Slam, Fireball, Charge
 N["deathlessguardians"] = A[3478]
 A[3511] = { 1290978, 1290983 } -- Primeval Elemental: Waterbolt, Freeze Water
 N["primevalelemental"] = A[3511]
@@ -704,20 +725,60 @@ A[3418] = { 29230, 28874 } -- Katerina the Cleaner: Immune All, Consumption
 N["katerinathecleaner"] = A[3418]
 
 -- Excavation Site: Wetlands
-A[3482] = { 5, 24751, 24755, 8593 } -- Relic Guardian: Death Touch, Trick or Treat, Tricked or Treated, Symbol of Life
+A[3480] = { 1316382, 3604, 16495 } -- Saltspine: Dust Storm, Tendon Rip, Fatal Bite
+N["saltspine"] = A[3480]
+A[3481] = { 14100, 13445, 1284435 } -- Shadetooth: Terrifying Roar, Rend, Enrage
+N["shadetooth"] = A[3481]
+A[3644] = { 1316480, 9616 } -- Highland Horror: Entangling Roots, Wild Regeneration
+N["highlandhorror"] = A[3644]
+A[3482] = { 8078, 8374, 10101, 11876 } -- Relic Guardian: Thunderclap, Arcing Smash, Knock Away, War Stomp
 N["relicguardian"] = A[3482]
+
+-- Ruins of Lordaeron
+A[3353] = { 3358 } -- Witherfang: Leech Poison
+N["witherfang"] = A[3353]
+A[3357] = { 14907, 1266011, 6136 } -- The Abandoned: Frost Nova, Life Drain, Chilled
+N["abandoned"] = A[3357]
+A[3411] = { 3358 } -- Viktor the Vile: Leech Poison
+N["viktorthevile"] = A[3411]
+A[3412] = { 1301635, 14099 } -- Bjork: Anti-Magic Shield, Mighty Blow
+N["bjork"] = A[3412]
+A[3354] = { 18399, 13376 } -- Rath'mael: Flamestrike, Fire Shield
+N["rathmael"] = A[3354]
 
 -- The Shaper's Terrace
 A[3502] = { 1290463 } -- Nanaya: Powerful Slam
 N["nanaya"] = A[3502]
 
 -- Krol'dok Stronghold
-A[3451] = { 1282386, 1282393, 1282394 } -- Overseer Mugg: Mugg's Fury, Set of Maces, Set of Mauls
+A[3450] = { 1280081 } -- Slavecrusher Grox: Force Compliance
+N["slavecrushergrox"] = A[3450]
+A[3452] = { 1280011 } -- Twilight Commander Zarmok: Rending Whirl
+N["twilightcommanderzarmok"] = A[3452]
+A[3453] = { 1282082, 1282071 } -- Handler Ashka: Command: Kill!, Frightening Howl
+N["handlerashka"] = A[3453]
+A[3449] = { 1280259, 1280262, 1280356 } -- Nar'gurk: Convert, Shadow Infusion, Shadow Bolt Volley
+N["nargurk"] = A[3449]
+A[3451] = { 1282386, 1282393, 1282394, 1282396 } -- Overseer Mugg: Mugg's Fury, Set of Maces, Set of Mauls, Crushing Slam
 N["overseermugg"] = A[3451]
 
 -- The Hall of Thanes
-A[3493] = { 1292602 } -- Faldrim Anvilmar: Anvilmar's Curse
+A[3493] = { 1292602, 13860 } -- Faldrim Anvilmar: Anvilmar's Curse, Mind Blast
 N["faldrimanvilmar"] = A[3493]
+A[3495] = { 1293228, 11970 } -- Infurnus: Combust, Fire Nova
+N["infurnus"] = A[3495]
+A[3494] = { 11130, 22911, 21055 } -- Plunder: Knock Away, Charge, Crush Armor
+N["plunder"] = A[3494]
+A[3496] = { 11977, 19134, 25710 } -- Durgen Dirgehammer: Rend, Intimidating Shout, Heroic Strike
+N["durgendirgehammer"] = A[3496]
+
+-- Bosses known to guides by another name than the encounter's
+N["arcanicenigma"] = { 1240869, 8988, 1304455 } -- Arcanic Enigma: Manamorph, Silence, Summon Manaling
+N["deathlessmarrow"] = { 1283034, 1283081, 1283086, 1283073 } -- Deathless Marrow: Bloodbolt, Shield Slam, Fireball, Charge
+N["magmatus"] = { 1293228, 11970 } -- Magmatus: Combust, Fire Nova
+N["overlordmugg"] = { 1282386, 1282393, 1282394, 1282396 } -- Overlord Mugg: Mugg's Fury, Set of Maces, Set of Mauls, Crushing Slam
+N["baron"] = { 17307, 5568 } -- The Baron: Knockout, Trample
+N["warhandlerashka"] = { 1282082, 1282071 } -- War Handler Ashka: Command: Kill!, Frightening Howl
 
 -- Creatures
 C["advisorwillington"] = { lo = 62, hi = 62, type = "Humanoid", spells = {  }, model = 12672 } -- Advisor Willington
