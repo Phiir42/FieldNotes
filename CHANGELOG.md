@@ -128,6 +128,8 @@
 - Baron Aquanis in Blackfathom Deeps (summoned at the Fathom Stone, with no
   encounter of the game's) lists his own Frost Nova and Frostbolt, not the
   Depth Charge and Bubble Beam of the Season of Discovery raid's Baron.
+- "/fn find <words>" typed before the journal had been opened once since
+  logging in raised a Lua error; it opens the search page now.
 - "/fn quality" alone says which items are being noted, instead of listing
   every command.
 - A dungeon whose halls the game never names (Shadowfang Keep) no longer

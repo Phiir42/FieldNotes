@@ -1947,12 +1947,6 @@ local function SearchPage(lines, query)
 	end
 end
 
-function ns:Search(query)
-	if not frame then CreateJournal() end
-	sel.inst, sel.kind, sel.key = nil, "search", query
-	if frame:IsShown() then Refresh() else frame:Show() end
-end
-
 ---------------------------------------------------------------------------
 -- Contents list
 ---------------------------------------------------------------------------
@@ -2373,6 +2367,13 @@ local function CreateJournal()
 end
 
 -- page: open on this page of the dungeon you are standing in ("map").
+-- "/fn find <words>" (CreateJournal is defined above this, not before)
+function ns:Search(query)
+	if not frame then CreateJournal() end
+	sel.inst, sel.kind, sel.key = nil, "search", query
+	if frame:IsShown() then Refresh() else frame:Show() end
+end
+
 function ns:ToggleJournal(page)
 	if not frame then CreateJournal() end
 	if frame:IsShown() then

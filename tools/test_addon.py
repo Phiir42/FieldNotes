@@ -84,6 +84,31 @@ def secret_order():
     return found
 
 
+def local_order():
+    """Calls to a local function above the line that defines it, with no
+    "local Name" declared before: Lua takes the name for a global there, which
+    does not exist ("/fn find" before the journal was first opened)."""
+    found = []
+    for path in sorted(glob.glob(os.path.join(ROOT, "FieldNotes", "*.lua"))):
+        lines = [l.split("--", 1)[0] for l in read(path).splitlines()]
+        defs = {}
+        for n, code in enumerate(lines, 1):
+            hit = re.match(r"\s*local function (\w+)", code)
+            if hit:
+                defs.setdefault(hit.group(1), n)
+        for name, at in defs.items():
+            declared = None
+            for n, code in enumerate(lines[:at - 1], 1):
+                if re.match(r"\s*local\s+(?:\w+\s*,\s*)*%s(?!\s*=)" % re.escape(name), code):
+                    declared = n
+                    break
+            for n, code in enumerate(lines[:at - 1], 1):
+                if (declared is None or n < declared) and re.search(r"(?<![\w.:])%s\s*\(" % re.escape(name), code):
+                    found.append("%s:%d: %s is called before its local definition (line %d)" % (
+                        os.path.basename(path), n, name, at))
+    return found
+
+
 def main():
     lua, load, mock, ns = client()
     checks, fails, missing, chat = load(read(os.path.join(ROOT, "tools", "test_run.lua")), "@test_run.lua")(mock, ns)
@@ -94,6 +119,9 @@ def main():
         fails[len(fails) + 1] = "older client's item tooltips: " + problem
     checks += 1
     for problem in secret_order():
+        fails[len(fails) + 1] = problem
+    checks += 1
+    for problem in local_order():
         fails[len(fails) + 1] = problem
     if "-v" in sys.argv:
         for line in chat.values():
