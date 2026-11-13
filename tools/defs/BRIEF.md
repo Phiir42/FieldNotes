@@ -83,3 +83,9 @@ whose sheets are separate wings. A floor can also list `"roads"`: lists of
 area names that are roads of their own on that sheet (a side branch, the
 quarters around a hub); areas in no list belong to the first road. Check the
 order with `python tools/check_routes.py <slug>`.
+
+## Checking the names
+
+`python tools/check_map_names.py` lists areas none of whose names the game
+ever reports (not a sub-zone, boss or known creature): such an area stays
+blank. Give it a boss or creature alias.
