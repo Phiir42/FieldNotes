@@ -76,6 +76,7 @@ local function Company()
 	if issecret(me) then me = nil end
 	for i = 1, raid and n or (n - 1) do
 		local name = UnitName((raid and "raid" or "party") .. i)
+		Tally(issecret(name) and "group member's name hidden" or "group member's name shown")
 		if not issecret(name) and type(name) == "string" and name ~= "" and name ~= me
 			and name ~= UNKNOWNOBJECT then
 			r.with = r.with or {}
