@@ -73,6 +73,11 @@
   the level of a namesake elsewhere.
 - Places read as they are said: "errands that lead into the Deadmines",
   "set foot in the Wailing Caverns".
+- Some 90 more creatures have their level, kind and portrait: those whose
+  spawn point holds one of several kinds (Shadowfang Keep's Shadow
+  Chargers among them). Quest marks for them are placed too.
+- The map no longer lists the dungeon's own name ("The Deadmines") among
+  the halls not yet placed on it.
 
 ## 0.2.0-beta.9
 

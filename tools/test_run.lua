@@ -464,6 +464,8 @@ step("every page of the journal", function()
 	end
 	check("map opens", open("Map"))
 	check("map page text", pageText():find("What you have charted", 1, true))
+	check("an unmapped hall is listed, not the place's own name", pageText():find("not yet placed on the map: Somewhere Unmapped.", 1, true))
+	check("a creature placed by a spawn of several kinds is known", ns.Creatures.shadowcharger and ns.Creatures.shadowcharger.lo == 20)
 	-- a boss marker for the boss that was faced, and it leads to its page
 	local marks, quests, lit = 0, 0, 0
 	for _, f in ipairs(M.frames) do

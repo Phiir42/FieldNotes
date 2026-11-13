@@ -1686,9 +1686,10 @@ local function MapPage(lines, id, inst)
 	QuestMarks(id, shown.floor, shown.marks)
 	lines[#lines + 1] = { text = "", gap = 6, space = MAP_H, map = shown }
 
-	local loose = {}
+	-- (not the place's own name, which the game gives its entrance)
+	local loose, itself = {}, ns:AreaKey(inst.name)
 	for _, a in ipairs(inst.areas) do
-		if not placed[a.name] then loose[#loose + 1] = a.name end
+		if not placed[a.name] and ns:AreaKey(a.name) ~= itself then loose[#loose + 1] = a.name end
 	end
 	if #loose > 0 then
 		Faded(lines, "Visited, but not yet placed on the map: " .. table.concat(loose, ", ") .. ".")

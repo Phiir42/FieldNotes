@@ -21,7 +21,8 @@ import csv, glob, gzip, json, os, re
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DUMP = os.path.join(ROOT, "refs", "classicdb", "ClassicDB.sql.gz")
 OUT = os.path.join(ROOT, "refs", "classicdb", "creatures.json")
-TABLES = ("creature_template", "creature_template_spells", "creature_spell_list", "creature", "creature_ai_scripts")
+TABLES = ("creature_template", "creature_template_spells", "creature_spell_list", "creature", "creature_ai_scripts",
+          "creature_spawn_entry")
 ACTION_CAST = 11  # EventAI ACTION_T_CAST: param1 is the spell
 ACTION_SUMMON = 12  # EventAI ACTION_T_SUMMON: param1 is the creature
 ACTION_SUMMON_ID = 32  # EventAI ACTION_T_SUMMON_ID: param1 is the creature
@@ -156,13 +157,24 @@ def main():
             elif kind in (ACTION_SUMMON, ACTION_SUMMON_ID) and param:
                 calls.setdefault(num(r[cid]), []).append(param)
 
+    # a spawn point may hold one of several creatures, chosen when it fills
+    # (creature_spawn_entry: the Shadow Chargers of Shadowfang Keep)
+    t = "creature_spawn_entry"
+    entries_of = {}
+    for r in data[t]:
+        entries_of.setdefault(num(r[col(t, "guid")]), []).append(num(r[col(t, "entry")]))
+
     t = "creature"
     for r in data[t]:
-        c = creatures.get(num(r[col(t, "id")]))
         m = num(r[col(t, "map")])
-        if c and m > 1:  # instances only; 0 and 1 are the two continents
-            c["spawns"].append([m, round(float(r[col(t, "position_x")]), 1), round(float(r[col(t, "position_y")]), 1),
-                                round(float(r[col(t, "position_z")]), 1)])
+        if m <= 1:  # instances only; 0 and 1 are the two continents
+            continue
+        spot = [m, round(float(r[col(t, "position_x")]), 1), round(float(r[col(t, "position_y")]), 1),
+                round(float(r[col(t, "position_z")]), 1)]
+        for entry in [num(r[col(t, "id")])] + entries_of.get(num(r[col(t, "guid")]), []):
+            c = creatures.get(entry)
+            if c and spot not in c["spawns"][-1:]:
+                c["spawns"].append(spot)
 
     # what is called up in an instance, and what that calls up in turn
     spells = summoning_spells()
