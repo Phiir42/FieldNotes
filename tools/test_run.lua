@@ -784,6 +784,13 @@ step("leave and return", function()
 	M.slash("")
 	check("the dungeon's page lists its visits", pageText():find("Visits", 1, true)
 		and pageText():find("foes of note defeated", 1, true) and pageText():find("with Brann and Thrall", 1, true))
+	local kept = inst.runs
+	inst.runs = {}
+	for i = 1, 12 do inst.runs[i] = { t = 1000 * i, last = 1000 * i + 600 } end
+	M.slash("") M.slash("")
+	check("past ten visits, the rest are counted", pageText():find("And 2 earlier visits.", 1, true))
+	inst.runs = kept
+	M.slash("") M.slash("")
 	M.slash("find thrall")
 	check("a search finds who went with you", pageText():find("went with you into the Deadmines", 1, true))
 	M.slash("find set foot")

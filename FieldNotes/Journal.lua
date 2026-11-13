@@ -747,6 +747,7 @@ local function OverviewPage(lines, id, inst)
 			if #did > 0 then t[#t + 1] = table.concat(did, ", ") end
 			Body(lines, date("%d %b %Y, %H:%M", r.t) .. (#t > 0 and (FADED_HEX .. "  " .. table.concat(t, "; ") .. ".|r") or ""), 8)
 		end
+		if #runs > 10 then Faded(lines, "And " .. Plural(#runs - 10, "earlier visit", "earlier visits") .. ".", 8) end
 	end
 
 	H2(lines, "Diary")
