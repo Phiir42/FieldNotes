@@ -210,6 +210,43 @@ def creature_lines(names, boss_keys):
     return out
 
 
+# Who else belongs in a boss's picture: the fight is against more than the one
+# the game names it for.
+COMPANY = {
+    "Sneed": ["Sneed's Shredder"],
+}
+
+
+def picture_lines(boss_names):
+    """Lua lines for ns.Pictures: the display id of every boss that has no
+    place of its own in an instance (it is summoned, or steps out of another
+    creature) and so is missing from ns.Creatures; and ns.Company."""
+    path = os.path.join(ROOT, "refs", "classicdb", "creatures.json")
+    if not os.path.exists(path):
+        return [], []
+    placed, loose = {}, {}
+    with open(path, encoding="utf-8") as f:
+        for c in json.load(f).values():
+            if c["name"] and c.get("model"):
+                (placed if c["spawns"] else loose).setdefault(key(c["name"]), c["model"])
+    out, missing, done = [], [], set()
+    for name in boss_names:
+        k = key(name)
+        if k in done or k in placed:
+            continue
+        done.add(k)
+        model = loose.get(k)
+        for alias in ALIASES.get(name, []):
+            model = model or placed.get(key(alias)) or loose.get(key(alias))
+        if model:
+            out.append('P["%s"] = %d -- %s' % (k, model, name))
+        else:
+            missing.append(name)
+    for name, others in sorted(COMPANY.items()):
+        out.append('W["%s"] = { %s }' % (key(name), ", ".join('"%s"' % o for o in others)))
+    return out, missing
+
+
 def main():
     names = {int(r["ID"]): r["Name_lang"] for r in table("SpellName", FOREVER)}
     mod_id, mod_name = boss_mod_spells()
@@ -267,12 +304,17 @@ def main():
         "--     known of the creatures that live in instances, shown on their bestiary entries",
         "local _, ns = ...",
         "",
-        "local A, N, C, I = {}, {}, {}, {}",
+        "--   ns.Pictures[ns:AreaKey(boss name)] = display id, for bosses not among the creatures",
+        "--   ns.Company[ns:AreaKey(boss name)] = { names of who else is pictured with it }",
+        "local A, N, C, I, P, W = {}, {}, {}, {}, {}, {}",
         "ns.Abilities, ns.AbilitiesByName, ns.Creatures, ns.CreatureNames = A, N, C, I",
+        "ns.Pictures, ns.Company = P, W",
     ]
     with open(LUA, "w", encoding="utf-8", newline="\n") as f:
         creatures = creature_lines(names, seen_keys)
-        f.write("\n".join(header + out + ["", "-- Creatures"] + creatures) + "\n")
+        pictures, unpictured = picture_lines([e["Name_lang"] for e in encounters if int(e["MapID"]) <= 1000])
+        f.write("\n".join(header + out + ["", "-- Creatures"] + creatures + ["", "-- Pictures of bosses"] + pictures) + "\n")
+    print(len(pictures), "boss pictures; none for:", ", ".join(unpictured))
     print(len(creatures), "creatures")
     print(f"{with_data} of {total} Forever encounters have abilities; wrote {LUA}")
     missing = {}

@@ -9,8 +9,11 @@
 --     known of the creatures that live in instances, shown on their bestiary entries
 local _, ns = ...
 
-local A, N, C, I = {}, {}, {}, {}
+--   ns.Pictures[ns:AreaKey(boss name)] = display id, for bosses not among the creatures
+--   ns.Company[ns:AreaKey(boss name)] = { names of who else is pictured with it }
+local A, N, C, I, P, W = {}, {}, {}, {}, {}, {}
 ns.Abilities, ns.AbilitiesByName, ns.Creatures, ns.CreatureNames = A, N, C, I
+ns.Pictures, ns.Company = P, W
 
 -- Shadowfang Keep
 A[2748] = { 7295 } -- Rethilgore: Soul Drain
@@ -2943,3 +2946,44 @@ I[16998] = "Mr. Bigglesworth"
 I[17231] = "Garden Gas"
 I[17286] = "Invisible Man"
 I[17293] = "Plague Wave"
+
+-- Pictures of bosses
+P["sneed"] = 7125 -- Sneed
+P["ladyanacondra"] = 4313 -- Lady Anacondra
+P["mutanusthedevourer"] = 4088 -- Mutanus the Devourer
+P["geilhast"] = 1773 -- Geilhast
+P["baronaquanis"] = 110 -- Baron Aquanis
+P["lostdwarves"] = 5710 -- The Lost Dwarves
+P["ironaya"] = 6089 -- Ironaya
+P["avatarofhakkar"] = 8053 -- Avatar of Hakkar
+P["atalalarion"] = 7873 -- Atal'alarion
+P["dreamscythe"] = 7553 -- Dreamscythe
+P["weaver"] = 6375 -- Weaver
+P["tutenkash"] = 7845 -- Tuten'kash
+P["plaguemawtherotting"] = 6124 -- Plaguemaw the Rotting
+P["gahzrilla"] = 7271 -- Gahz'rilla
+P["nekrumgutchewer"] = 6690 -- Nekrum Gutchewer
+P["shadowpriestsezzziz"] = 6441 -- Shadowpriest Sezz'ziz
+P["urokdoomhowl"] = 11583 -- Urok Doomhowl
+P["gizrultheslavener"] = 9564 -- Gizrul the Slavener
+P["warchiefrendblackhand"] = 9778 -- Warchief Rend Blackhand
+P["lordvalthalak"] = 14308 -- Lord Valthalak
+P["ringoflaw"] = 8760 -- Ring of Law
+P["vault"] = 9089 -- The Vault
+P["seven"] = 8687 -- The Seven
+P["kirtonos"] = 7534 -- Kirtonos
+P["kormok"] = 16020 -- Kormok
+P["rasfrostwhisperer"] = 7919 -- Ras Frostwhisperer
+P["darkmastergandling"] = 11070 -- Darkmaster Gandling
+P["gahzranka"] = 15288 -- Gahz'ranka
+P["highpriestessarlokk"] = 15218 -- High Priestess Arlokk
+P["timmythecruel"] = 571 -- Timmy the Cruel
+P["balnazzar"] = 10691 -- Balnazzar
+P["ramsteinthegorger"] = 12818 -- Ramstein the Gorger
+P["blackguardswordsmith"] = 775 -- Black Guard Swordsmith
+P["crimsonhammersmith"] = 10637 -- Crimson Hammersmith
+P["postmastermalown"] = 10669 -- Postmaster Malown
+P["majordomoexecutus"] = 12029 -- Majordomo Executus
+P["ragnaros"] = 11121 -- Ragnaros
+P["lordhelnurath"] = 14556 -- Lord Hel'nurath
+W["sneed"] = { "Sneed's Shredder" }

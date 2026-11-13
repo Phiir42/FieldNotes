@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.0-beta.6 – not yet released
+
+- Portraits for bosses that are summoned or step out of another creature
+  (Sneed, Mutanus, Ragnaros and some forty more); Sneed's page also pictures
+  his shredder.
+
 ## 0.2.0-beta.5
 
 - Portraits: each boss page and bestiary entry shows the creature, drawn from

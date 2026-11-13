@@ -335,6 +335,8 @@ local function PictureOf(name, npc)
 	if ns.db.settings.pictures == "off" then return end
 	local lore = ns.Creatures[ns:AreaKey(name)]
 	if lore and lore.model then return { display = lore.model } end
+	local display = ns.Pictures[ns:AreaKey(name)]
+	if display then return { display = display } end
 	if type(npc) == "number" then return { npc = npc } end
 end
 
@@ -616,6 +618,13 @@ local function BossPage(lines, inst, eid)
 		if b.kills == 0 then head.text = head.text .. "\n\n|cff29140dNot yet defeated.|r" end
 	elseif b.kills == 0 then
 		Body(lines, "Not yet defeated.")
+	end
+	-- and whoever else the fight is against
+	for _, other in ipairs(ns.Company[ns:AreaKey(b.name)] or {}) do
+		local with = PictureOf(other)
+		if with then
+			lines[#lines + 1] = { text = other, font = "GameFontNormal", picture = with, iconSize = PORTRAIT, gap = 6 }
+		end
 	end
 
 	-- everything fought in this encounter, the boss itself first
