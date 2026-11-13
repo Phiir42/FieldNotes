@@ -137,6 +137,7 @@
     have met ("/fn find frostbolt");
   - the quests that send you after a creature ("/fn find ravager": Deviate
     Hides, Deviate Eradication), and those someone gives ("/fn find nalpak");
+  - who a quest is handed in to inside, and its note ("/fn find outside");
   - what the quests pay, once the game has the items to hand.
   A find in the results says who carried it ("found in Blackfathom Deeps,
   from Aku'mai"), and a creature how many were slain.
