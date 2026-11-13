@@ -3,8 +3,8 @@
 ## 0.2.0-beta.5 – not yet released
 
 - Portraits: each boss page and bestiary entry shows the creature, drawn from
-  the game's own model as a sepia sketch (or in colour, or not at all: see
-  Preferences).
+  the game's own model as a sepia sketch or in true colour, animated or held
+  still, or not at all (Preferences).
 - Your own notes on single entries: click a creature in the bestiary, an item
   in the spoils or a hall on a dungeon's first page, and the notes box writes
   on that entry; the note shows under it.

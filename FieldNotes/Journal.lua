@@ -338,6 +338,18 @@ local function PictureOf(name, npc)
 	if type(npc) == "number" then return { npc = npc } end
 end
 
+-- Still or moving: a still portrait holds the first frame of the creature's
+-- standing pose. Set again once the model has loaded, when it takes hold.
+local function Pose(model)
+	local still = not ns.db.settings.picturesMove
+	if still and model.FreezeAnimation then
+		pcall(model.FreezeAnimation, model, 0, 0, 0)
+	elseif model.SetPaused then
+		pcall(model.SetPaused, model, still)
+	end
+	if not still and model.SetAnimation then pcall(model.SetAnimation, model, 0) end
+end
+
 local function NewPicture()
 	local f = CreateFrame("Frame", nil, page.child)
 	local edge = f:CreateTexture(nil, "BACKGROUND", nil, 0)
@@ -351,6 +363,7 @@ local function NewPicture()
 	f.model = CreateFrame("PlayerModel", nil, f)
 	f.model:SetPoint("TOPLEFT", 2, -2)
 	f.model:SetPoint("BOTTOMRIGHT", -2, 2)
+	f.model:SetScript("OnModelLoaded", Pose)
 	-- the wash sits on a frame above the model
 	local over = CreateFrame("Frame", nil, f)
 	over:SetAllPoints(f.model)
@@ -393,6 +406,7 @@ local function PlacePictures(lines)
 			f:SetPoint("TOPLEFT", page.rows[i], "TOPLEFT", line.indent or 0, -2)
 			f:Show()
 			local key = (pic.display and ("d" .. pic.display) or ("n" .. tostring(pic.npc))) .. mode .. size
+				.. (ns.db.settings.picturesMove and "moving" or "still")
 			if f.key ~= key then
 				f.key = key
 				f.model:ClearModel()
@@ -405,6 +419,7 @@ local function PlacePictures(lines)
 				pcall(f.model.SetPortraitZoom, f.model, size >= PORTRAIT_BOSS and 0.55 or 0.85)
 				if f.model.SetDesaturation then pcall(f.model.SetDesaturation, f.model, mode == "sketch" and 1 or 0) end
 				f.tint:SetShown(mode == "sketch")
+				Pose(f.model)
 			end
 		end
 	end
@@ -1169,10 +1184,16 @@ local function SettingsPage(lines)
 	}
 
 	H2(lines, "Pictures of creatures")
-	for _, o in ipairs({ { "sketch", "As sketches" }, { "colour", "In colour" }, { "off", "None" } }) do
+	for _, o in ipairs({ { "sketch", "As sketches" }, { "colour", "In true colour" }, { "off", "None" } }) do
 		lines[#lines + 1] = {
 			text = o[2], indent = 8, selected = s.pictures == o[1],
 			click = function() s.pictures = o[1]; Refresh() end,
+		}
+	end
+	for _, o in ipairs({ { true, "Animated" }, { false, "Still" } }) do
+		lines[#lines + 1] = {
+			text = o[2], indent = 8, selected = s.picturesMove == o[1], gap = o[1] and 8 or 0,
+			click = function() s.picturesMove = o[1]; Refresh() end,
 		}
 	end
 
