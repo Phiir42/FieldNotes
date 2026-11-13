@@ -132,7 +132,8 @@
   in battle, and where), after everything else it finds; and the known
   abilities of the bosses you have beaten and the creatures you have met
   ("/fn find frostbolt"), and the quests that send you after what you
-  searched for ("/fn find ravager": Deviate Hides, Deviate Eradication).
+  searched for ("/fn find ravager": Deviate Hides, Deviate Eradication) or
+  that the one searched for gives ("/fn find nalpak").
 - "/fn find <words>" typed before the journal had been opened once since
   logging in raised a Lua error; it opens the search page now.
 - Known abilities no longer list a fight's hidden workings: "Kirtonos

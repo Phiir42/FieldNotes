@@ -776,6 +776,8 @@ step("leave and return", function()
 	check("a search finds a defeated boss's abilities", pageText():find("an ability of Rhahk'Zor", 1, true))
 	M.slash("find defias miner")
 	check("a search finds the quests that want it", pageText():find("a quest of the Deadmines: look for Defias Miner", 1, true))
+	M.slash("find gryan")
+	check("a search finds the quests someone gives", pageText():find("given by Gryan Stoutmantle", 1, true))
 	M.slash("")
 	local said = #M.chat
 	M.fire("QUEST_ACCEPTED", 2040)

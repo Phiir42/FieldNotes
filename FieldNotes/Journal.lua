@@ -1953,12 +1953,17 @@ local function SearchPage(lines, query)
 			if Has(q[2]) then
 				Hit(q[2], "a quest of " .. ns:The(place), Go("quests"))
 			else
-				-- or one that sends you after what was searched for
+				-- or one that sends you after what was searched for, or is given
+				-- by whoever it is
+				local found
 				for _, who in ipairs(q[7] or {}) do
-					if Has(who) then
+					if not found and Has(who) then
+						found = true
 						Hit(q[2], "a quest of " .. ns:The(place) .. ": look for " .. ns:The(who), Go("quests"))
-						break
 					end
+				end
+				if not found and Has(q.from) then
+					Hit(q[2], "a quest of " .. ns:The(place) .. ", given by " .. ns:The(q.from), Go("quests"))
 				end
 			end
 			Note(inst.questNotes and inst.questNotes[q[1]] and inst.questNotes[q[1]].note, q[2], place, Go("quests"))
