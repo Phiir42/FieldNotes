@@ -876,6 +876,7 @@ ns:On("QUEST_LOG_UPDATE", function()
 	if changed then ns:Changed() end
 end)
 
+local askedFor = {} -- [item id] = true once the game has been asked to load it
 local function QuestsPage(lines, id, inst)
 	H1(lines, "Quests")
 	local quests = QuestsOf(id)
@@ -925,13 +926,17 @@ local function QuestsPage(lines, id, inst)
 					-- page is written again when it comes (GET_ITEM_INFO_RECEIVED)
 					local ask = GetItemInfo or (C_Item and C_Item.GetItemInfo)
 					local ok, name, link = pcall(ask, item)
-					if not (ok and name) and C_Item and C_Item.RequestLoadItemDataByID then
+					-- (once: an item the game does not have would be asked for,
+					-- fail, and bring the page round again without end)
+					if not (ok and name) and not askedFor[item] and C_Item and C_Item.RequestLoadItemDataByID then
+						askedFor[item] = true
 						pcall(C_Item.RequestLoadItemDataByID, item)
 					end
 					lines[#lines + 1] = {
 						text = ok and (link or name) or "Something not yet seen",
 						icon = ItemIcon(item), iconSize = 18, indent = 16, link = "item:" .. item,
-					}				end
+					}
+				end
 			end
 			Rewards(q.pick, #(q.pick or {}) > 1 and "Reward, one of:" or "Reward:")
 			Rewards(q.get, q.pick and "And:" or "Reward:")

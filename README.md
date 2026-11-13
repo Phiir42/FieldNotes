@@ -18,6 +18,10 @@ you walk, the creatures you fight, the bosses you face and what they drop.
   kill, its abilities (written in once you have beaten it) and its loot.
 - **Bestiary** – the creatures you have killed, with level, type and the
   abilities they are known to use.
+- **Quests** – the errands that lead into each dungeon: who gives them, what
+  to look for, what they pay, and how far along yours are. The map marks
+  where each one takes you, where one is handed out inside, and where a
+  finished one is handed in.
 - **Spoils** – every item of note found in the dungeon and who carried it.
   Shift-click a line to link the item in chat.
 - **Diary** – a dated log of each visit, and a box on every page for notes of
