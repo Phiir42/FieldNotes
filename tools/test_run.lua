@@ -362,6 +362,20 @@ step("every page of the journal", function()
 	check("a search for nothing says how", pageText():find("/fn find cookie", 1, true))
 	open("The Deadmines") open("Bestiary")
 	check("bestiary entries have portraits", #portraits() >= 2)
+	do -- a creature new to Forever: known by its NPC id alone
+		ns.Creatures.blackmawdruid = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = {}, npc = 258516 }
+		inst.mobs["n:Blackmaw Druid"] = { name = "Blackmaw Druid", first = time(), kills = 1, spells = {}, order = {} }
+		table.insert(inst.mobOrder, "n:Blackmaw Druid")
+		open("Spoils") open("Bestiary")
+		local drawn
+		for _, k in ipairs(portraits()) do drawn = drawn or k:find("^n258516") end
+		check("a creature new to Forever is drawn by its NPC id, with its level", drawn
+			and pageText():find("Elite humanoid, level 60, slain 1", 1, true))
+		inst.mobs["n:Blackmaw Druid"] = nil
+		table.remove(inst.mobOrder)
+		ns.Creatures.blackmawdruid = nil
+		open("Spoils") open("Bestiary")
+	end
 	ns.db.settings.pictures = "off"
 	open("Bestiary")
 	check("no portraits when turned off", #portraits() == 0 and pageText():find("level 18-19", 1, true))

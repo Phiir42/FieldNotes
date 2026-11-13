@@ -5,7 +5,7 @@
 -- Only spell IDs are stored; the game supplies names, icons and descriptions.
 --   ns.Abilities[encounterID] = { spellID, ... }
 --   ns.AbilitiesByName[ns:AreaKey(boss name)] = the same list
---   ns.Creatures[ns:AreaKey(creature name)] = { lo, hi, cls, type, spells }: what is
+--   ns.Creatures[ns:AreaKey(creature name)] = { lo, hi, cls, type, spells, model or npc }: what is
 --     known of the creatures that live in instances, shown on their bestiary entries
 local _, ns = ...
 

@@ -258,6 +258,19 @@ def creature_lines(names, boss_keys):
                 m["lo"], m["hi"] = min(m["lo"] or c["lo"], c["lo"]), max(m["hi"], c["hi"])
             m["rank"] = max(m["rank"], c["rank"] if c["rank"] in RANKS else 0)
             m["spells"] += c["spells"]
+    # creatures new to Forever, which the classic database never heard of:
+    # what Wowhead lists for them (tools/data/forever_creatures.json:
+    # { name: { npc, lo, hi, rank, type } }, rank and type numbered as above)
+    extra = os.path.join(ROOT, "tools", "data", "forever_creatures.json")
+    if os.path.exists(extra):
+        with open(extra, encoding="utf-8") as f:
+            for name, c in sorted(json.load(f).items()):
+                if key(name) in merged:
+                    continue
+                ids.append((c["npc"], name))
+                merged[key(name)] = {"name": name, "lo": c.get("lo", 0), "hi": c.get("hi", 0), "spells": [],
+                                     "rank": c.get("rank", 0) if c.get("rank") in RANKS else 0,
+                                     "type": c.get("type", 0), "friend": False, "model": 0, "npc": c["npc"]}
     out = []
     for k in sorted(merged):
         m = merged[k]
@@ -277,6 +290,8 @@ def creature_lines(names, boss_keys):
         fields.append("spells = { %s }" % ", ".join(map(str, spells[:MAX_CREATURE_SPELLS])))
         if m["model"]:
             fields.append("model = %d" % m["model"])  # creature display id, for its picture
+        elif m.get("npc"):
+            fields.append("npc = %d" % m["npc"])  # no display id known: drawn by its NPC id
         if m["friend"]:
             fields.append("friend = true")  # every creature of this name is one you talk to
         out.append('C["%s"] = { %s } -- %s' % (k, ", ".join(fields), m["name"]))
@@ -436,7 +451,7 @@ def main():
         "-- Only spell IDs are stored; the game supplies names, icons and descriptions.",
         "--   ns.Abilities[encounterID] = { spellID, ... }",
         "--   ns.AbilitiesByName[ns:AreaKey(boss name)] = the same list",
-        "--   ns.Creatures[ns:AreaKey(creature name)] = { lo, hi, cls, type, spells }: what is",
+        "--   ns.Creatures[ns:AreaKey(creature name)] = { lo, hi, cls, type, spells, model or npc }: what is",
         "--     known of the creatures that live in instances, shown on their bestiary entries",
         "local _, ns = ...",
         "",

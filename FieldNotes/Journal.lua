@@ -339,6 +339,8 @@ local function PictureOf(name, npc)
 	if ns.db.settings.pictures == "off" then return end
 	local lore = ns.Creatures[ns:AreaKey(name)]
 	if lore and lore.model then return { display = lore.model } end
+	-- a creature new to Forever: no display id on record, but its NPC id
+	if lore and lore.npc and type(npc) ~= "number" then return { npc = lore.npc } end
 	local display = ns.Pictures[ns:AreaKey(name)]
 	if display then return { display = display } end
 	if type(npc) == "number" then return { npc = npc } end
