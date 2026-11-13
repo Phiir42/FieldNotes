@@ -474,7 +474,8 @@ local function MobTag(m)
 		t[#t + 1] = lo == hi and ("level " .. lo) or ("level " .. lo .. "-" .. hi)
 	end
 	if m.kills then t[#t + 1] = "slain " .. m.kills end
-	return table.concat(t, ", ")
+	local text = table.concat(t, ", ")
+	return text:sub(1, 1):upper() .. text:sub(2) -- ("Level 12, slain 1" where its kind is unknown)
 end
 
 -- lore: also write in what is known of it from elsewhere (not on a boss's
