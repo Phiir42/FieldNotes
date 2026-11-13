@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.0-beta.9 – not yet released
+## 0.2.0-beta.9
 
 - Quests show what they pay: the items to choose from and those given
   regardless, with their tooltips.
