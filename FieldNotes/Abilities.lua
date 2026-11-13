@@ -176,7 +176,7 @@ A[3583] = { 6607, 12888, 12889, 10893, 24318 } -- Avatar of Hakkar: Lash, Cause 
 A[487] = { 16359, 12882, 12884 } -- Weaver: Corrosive Acid Breath, Wing Flap, Acid Breath
 N["weaver"] = A[487]
 A[2954] = { 446372, 446364, 438294, 438341, 438335, 446338, 445284, 445289, 23511, 438350, 446360 } -- Atal'ai Defenders: Corrupted Slam, Frailty, Thorns, Renew, Healing Ward, Chain Lightning, Fervor, Spinning Axes, Demoralizing Shout, Shadow Bolt Volley, Hukku's Guardians
-A[3584] = { 12890, 11876, 12891, 12535, 8876, 23017, 24818, 25586 } -- Shade of Eranikus: Deep Slumber, War Stomp, Acid Breath, Shade of Eranikus Passive Visual, Thrash, Arcane Channeling, Noxious Breath, Shadow Bolt Volley
+A[3584] = { 12890, 11876, 12891, 8876, 23017, 24818, 25586 } -- Shade of Eranikus: Deep Slumber, War Stomp, Acid Breath, Thrash, Arcane Channeling, Noxious Breath, Shadow Bolt Volley
 N["shadeoferanikus"] = A[3584]
 A[2955] = { 442622, 443766, 443856 } -- Dreamscythe and Weaver: Acid Breath, Wing Buffet, Caustic Overflow
 A[3585] = { 12884, 12882 } -- Hazzas: Acid Breath, Wing Flap
@@ -190,9 +190,9 @@ A[3587] = { 16359, 12882, 12884 } -- Weaver: Corrosive Acid Breath, Wing Flap, A
 A[491] = { 12884, 12882 } -- Hazzas: Acid Breath, Wing Flap
 A[2958] = { 446489, 446468, 445158, 446487, 446661 } -- Morphaz and Hazzas: Backfire, Dreamer's Lament, Lucid Dreaming, Corrupted Breath, Animate Flame
 A[3588] = { 16359, 12882, 12884 } -- Dreamscythe: Corrosive Acid Breath, Wing Flap, Acid Breath
-A[2959] = { 437353, 445498, 437301, 437390, 437398, 3391, 437416, 11876, 12891, 12535, 23017, 24818, 25586 } -- Shade of Eranikus: Corrosive Breath, Bellowing Roar, Deep Slumber, Lethargic Poison, Waking Nightmare, Thrash, Dreamwalker, War Stomp, Acid Breath, Shade of Eranikus Passive Visual, Arcane Channeling, Noxious Breath, Shadow Bolt Volley
+A[2959] = { 437353, 445498, 437301, 437390, 437398, 3391, 437416, 11876, 12891, 23017, 24818, 25586 } -- Shade of Eranikus: Corrosive Breath, Bellowing Roar, Deep Slumber, Lethargic Poison, Waking Nightmare, Thrash, Dreamwalker, War Stomp, Acid Breath, Arcane Channeling, Noxious Breath, Shadow Bolt Volley
 A[3589] = { 12468, 10893, 12480, 13540, 12492, 8376 } -- Jammal'an the Prophet: Flamestrike, Shadow Word: Pain, Hex of Jammal'an, Green Channeling, Healing Wave, Earthgrab Totem
-A[493] = { 12890, 11876, 12891, 12535, 8876, 23017, 24818, 25586 } -- Shade of Eranikus: Deep Slumber, War Stomp, Acid Breath, Shade of Eranikus Passive Visual, Thrash, Arcane Channeling, Noxious Breath, Shadow Bolt Volley
+A[493] = { 12890, 11876, 12891, 8876, 23017, 24818, 25586 } -- Shade of Eranikus: Deep Slumber, War Stomp, Acid Breath, Thrash, Arcane Channeling, Noxious Breath, Shadow Bolt Volley
 A[2814] = { 12887, 6524 } -- Atal'alarion: Sweeping Slam, Ground Tremor
 
 -- Razorfen Downs
@@ -322,11 +322,11 @@ A[1084] = { 18435, 18392, 17086, 18958, 15847, 22191, 20171, 19983, 18500, 19633
 N["onyxia"] = A[1084]
 
 -- Scholomance
-A[2805] = { 18116, 20741, 18144, 6016, 12882, 8379, 16467, 12889, 14515 } -- Kirtonos: Kirtonos Gargoyle Passive, Shadow Bolt Volley, Swoop, Pierce Armor, Wing Flap, Disarm, Kirtonos Transform, Curse of Tongues, Dominate Mind
+A[2805] = { 20741, 18144, 6016, 12882, 8379, 16467, 12889, 14515 } -- Kirtonos: Shadow Bolt Volley, Swoop, Pierce Armor, Wing Flap, Disarm, Kirtonos Transform, Curse of Tongues, Dominate Mind
 N["kirtonos"] = A[2805]
-A[2804] = { 24673, 18270, 18116, 17772, 8994, 17773 } -- Jandice Barov: Curse of Blood, Dark Plague, Kirtonos Gargoyle Passive, Spread, Banish, Summon Illusions
+A[2804] = { 24673, 18270, 17772, 8994, 17773 } -- Jandice Barov: Curse of Blood, Dark Plague, Spread, Banish, Summon Illusions
 N["jandicebarov"] = A[2804]
-A[2811] = { 10101, 16727, 18116, 18368 } -- Rattlegore: Knock Away, War Stomp, Kirtonos Gargoyle Passive, Strike
+A[2811] = { 10101, 16727, 18368 } -- Rattlegore: Knock Away, War Stomp, Strike
 N["rattlegore"] = A[2811]
 A[2809] = { 17228, 12040, 15284, 17695 } -- Marduk Blackpool: Shadow Bolt Volley, Shadow Shield, Cleave, Defiling Aura
 N["mardukblackpool"] = A[2809]
@@ -336,19 +336,19 @@ A[3055] = { 27689, 27688, 20741, 27687, 27695, 8269 } -- Kormok: Bloodlust, Bone
 N["kormok"] = A[3055]
 A[2810] = { 18099, 8398, 12096, 18763, 18100, 11130 } -- Ras Frostwhisperer: Chill Nova, Frostbolt Volley, Fear, Freeze, Frost Armor, Knock Away
 N["rasfrostwhisperer"] = A[2810]
-A[2803] = { 11672, 12020, 18116, 8362, 13747, 17843, 15586 } -- Instructor Malicia: Corruption, Call of the Grave, Kirtonos Gargoyle Passive, Renew, Slow, Flash Heal, Heal
+A[2803] = { 11672, 12020, 8362, 13747, 17843, 15586 } -- Instructor Malicia: Corruption, Call of the Grave, Renew, Slow, Flash Heal, Heal
 N["instructormalicia"] = A[2803]
 A[2802] = { 16509, 18103, 8269 } -- Doctor Theolen Krastinov: Rend, Backhand, Enrage
 N["doctortheolenkrastinov"] = A[2802]
-A[2808] = { 16359, 3584, 18116, 18151, 8245 } -- Lorekeeper Polkelt: Corrosive Acid Breath, Volatile Infection, Kirtonos Gargoyle Passive, Noxious Catalyst, Corrosive Acid
+A[2808] = { 16359, 3584, 18151, 8245 } -- Lorekeeper Polkelt: Corrosive Acid Breath, Volatile Infection, Noxious Catalyst, Corrosive Acid
 N["lorekeeperpolkelt"] = A[2808]
 A[2812] = { 17963, 15550, 18670, 15584 } -- The Ravenian: Sundering Cleave, Trample, Knock Away, Cleave
 N["ravenian"] = A[2812]
-A[2807] = { 11668, 11700, 18116, 17467, 17820 } -- Lord Alexei Barov: Immolate, Drain Life, Kirtonos Gargoyle Passive, Unholy Aura, Veil of Shadow
+A[2807] = { 11668, 11700, 17467, 17820 } -- Lord Alexei Barov: Immolate, Drain Life, Unholy Aura, Veil of Shadow
 N["lordalexeibarov"] = A[2807]
-A[2806] = { 18116, 19460, 6215, 15487, 18671, 14515 } -- Lady Illucia Barov: Kirtonos Gargoyle Passive, Shadow Shock, Fear, Silence, Curse of Agony, Dominate Mind
+A[2806] = { 19460, 6215, 15487, 18671, 14515 } -- Lady Illucia Barov: Shadow Shock, Fear, Silence, Curse of Agony, Dominate Mind
 N["ladyilluciabarov"] = A[2806]
-A[2801] = { 18702, 10212, 18116, 12040, 17950 } -- Darkmaster Gandling: Curse of the Darkmaster, Arcane Missiles, Kirtonos Gargoyle Passive, Shadow Shield, Shadow Portal
+A[2801] = { 18702, 10212, 12040, 17950 } -- Darkmaster Gandling: Curse of the Darkmaster, Arcane Missiles, Shadow Shield, Shadow Portal
 N["darkmastergandling"] = A[2801]
 
 -- Zul'Gurub
@@ -1307,7 +1307,7 @@ C["duros"] = { lo = 60, hi = 60, cls = "elite", type = "Beast", spells = { 8599 
 C["dustwraith"] = { lo = 45, hi = 45, cls = "rareelite", type = "Humanoid", spells = { 12254, 15667 }, model = 9292 } -- Dustwraith
 C["dwarfexcavator"] = { cls = "elite", type = "Humanoid", spells = {  }, npc = 261603 } -- Dwarf Excavator
 C["dwarfminer"] = { cls = "elite", type = "Humanoid", spells = {  }, npc = 261385 } -- Dwarf Miner
-C["earthbindtotem"] = { spells = { 6474 }, model = 4588 } -- Earthbind Totem
+C["earthbindtotem"] = { spells = {  }, model = 4588 } -- Earthbind Totem
 C["earthborer"] = { lo = 13, hi = 14, cls = "elite", type = "Beast", spells = { 18070 }, model = 11010 } -- Earthborer
 C["earthcallerhalmgar"] = { lo = 32, hi = 32, cls = "rareelite", type = "Humanoid", spells = { 8270, 2484, 9532 }, model = 6102 } -- Earthcaller Halmgar
 C["earthencustodian"] = { lo = 44, hi = 45, type = "Humanoid", spells = { 10255, 10666 }, model = 6025 } -- Earthen Custodian
@@ -1365,11 +1365,11 @@ C["evolvingectoplasm"] = { lo = 17, hi = 18, cls = "elite", spells = {  }, model
 C["executionermorg"] = { lo = 46, hi = 46, cls = "elite", type = "Humanoid", spells = {  }, npc = 256891 } -- Executioner Morg
 C["executorasharell"] = { cls = "elite", type = "Humanoid", spells = {  }, npc = 270451 } -- Executor Asharell
 C["exittrigger"] = { lo = 60, hi = 60, spells = { 26271, 26224 }, model = 11686 } -- Exit Trigger
-C["explosivesheep"] = { type = "Humanoid", spells = { 4051, 8279, 8329 }, model = 3886 } -- Explosive Sheep
+C["explosivesheep"] = { type = "Humanoid", spells = { 8279, 8329 }, model = 3886 } -- Explosive Sheep
 C["eyeofcthun"] = { lo = 63, hi = 63, cls = "worldboss", spells = {  }, model = 15556 } -- Eye of C'Thun
 C["eyeofimmolthar"] = { lo = 59, hi = 59, spells = { 22909 }, model = 14430 } -- Eye of Immol'thar
 C["eyeofnaxxramas"] = { lo = 55, hi = 57, type = "Undead", spells = { 16380, 16381 }, model = 4629 } -- Eye of Naxxramas
-C["eyestalk"] = { lo = 61, hi = 61, cls = "elite", spells = { 26586, 28819, 29407 }, model = 15788 } -- Eye Stalk
+C["eyestalk"] = { lo = 61, hi = 61, cls = "elite", spells = { 26586, 29407 }, model = 15788 } -- Eye Stalk
 C["eyetentacle"] = { lo = 60, hi = 60, spells = { 26139, 26143 }, model = 15788 } -- Eye Tentacle
 C["faldrimanvilmar"] = { cls = "elite", type = "Undead", spells = {  }, npc = 261306 } -- Faldrim Anvilmar
 C["fallenberserker"] = { cls = "elite", type = "Undead", spells = {  }, npc = 250656 } -- Fallen Berserker
@@ -1505,7 +1505,7 @@ C["goroshthedervish"] = { lo = 56, hi = 56, cls = "elite", type = "Humanoid", sp
 C["gothiktheharvester"] = { lo = 63, hi = 63, cls = "worldboss", type = "Undead", spells = {  }, model = 16279 } -- Gothik the Harvester
 C["grandcrusaderdathrohan"] = { lo = 62, hi = 62, cls = "elite", type = "Humanoid", spells = { 17286, 20830 }, model = 10545 } -- Grand Crusader Dathrohan
 C["grandwidowfaerlina"] = { lo = 63, hi = 63, cls = "worldboss", type = "Humanoid", spells = {  }, model = 15940 } -- Grand Widow Faerlina
-C["greaterhealingward"] = { lo = 45, hi = 45, spells = { 11901 }, model = 2030 } -- Greater Healing Ward
+C["greaterhealingward"] = { lo = 45, hi = 45, spells = {  }, model = 2030 } -- Greater Healing Ward
 C["greaterkraulbat"] = { lo = 32, hi = 32, cls = "elite", type = "Beast", spells = { 3242, 8281 }, model = 1954 } -- Greater Kraul Bat
 C["greendrakonid"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = { 22561, 23363 }, model = 14888 } -- Green Drakonid
 C["grelkor"] = { lo = 55, hi = 55, type = "Humanoid", spells = {  }, model = 1359, friend = true } -- Grelkor
@@ -1561,8 +1561,8 @@ C["hauntedservitor"] = { lo = 20, hi = 21, cls = "elite", type = "Undead", spell
 C["hauntingphantasm"] = { lo = 32, hi = 33, cls = "elite", type = "Undead", spells = { 8986, 8278 }, model = 4629 } -- Haunting Phantasm
 C["hazzas"] = { lo = 53, hi = 53, cls = "elite", type = "Dragonkin", spells = {  }, model = 9584 } -- Hazzas
 C["headscratcher"] = { cls = "elite", type = "Beast", spells = {  }, npc = 251199 } -- Head Scratcher
-C["healingward"] = { lo = 37, hi = 37, spells = { 5608 }, model = 2030 } -- Healing Ward
-C["healingwardv"] = { lo = 28, hi = 38, spells = { 4972 }, model = 2030 } -- Healing Ward V
+C["healingward"] = { lo = 37, hi = 37, spells = {  }, model = 2030 } -- Healing Ward
+C["healingwardv"] = { lo = 28, hi = 38, spells = {  }, model = 2030 } -- Healing Ward V
 C["hearthsingerforresten"] = { lo = 57, hi = 57, cls = "rareelite", type = "Undead", spells = {  }, model = 10482 } -- Hearthsinger Forresten
 C["hedrumthecreeper"] = { lo = 53, hi = 53, cls = "elite", type = "Beast", spells = { 745, 6751, 3609, 15474, 15475 }, model = 8271 } -- Hedrum the Creeper
 C["heigantheunclean"] = { lo = 63, hi = 63, cls = "worldboss", type = "Undead", spells = {  }, model = 16309 } -- Heigan the Unclean
@@ -1683,7 +1683,7 @@ C["kharanmighthammer"] = { lo = 52, hi = 52, cls = "elite", type = "Humanoid", s
 C["kinggordok"] = { lo = 62, hi = 62, cls = "elite", type = "Humanoid", spells = {  }, model = 11583 } -- King Gordok
 C["kirintorguard"] = { cls = "elite", type = "Humanoid", spells = {  }, npc = 256259 } -- Kirin Tor Guard
 C["kirintornecromancer"] = { cls = "elite", type = "Humanoid", spells = {  }, npc = 269134 } -- Kirin Tor Necromancer
-C["kirtonostheherald"] = { lo = 60, hi = 60, cls = "elite", type = "Undead", spells = { 18116, 20741, 18144, 6016, 12882, 8379 }, model = 7534 } -- Kirtonos the Herald
+C["kirtonostheherald"] = { lo = 60, hi = 60, cls = "elite", type = "Undead", spells = { 20741, 18144, 6016, 12882, 8379, 16467 }, model = 7534 } -- Kirtonos the Herald
 C["knightjastonvalarias"] = { cls = "elite", type = "Undead", spells = {  }, npc = 265696 } -- Knight Jaston Valarias
 C["knotthimblejack"] = { lo = 50, hi = 50, type = "Humanoid", spells = {  }, model = 14381, friend = true } -- Knot Thimblejack
 C["kogthugthebrave"] = { lo = 43, hi = 43, cls = "elite", type = "Humanoid", spells = {  }, npc = 253527 } -- Kog'thug the Brave
@@ -1713,7 +1713,7 @@ C["lavaannihilator"] = { lo = 61, hi = 62, cls = "elite", type = "Elemental", sp
 C["lavaelemental"] = { lo = 61, hi = 62, cls = "elite", type = "Elemental", spells = { 19641 }, model = 5781 } -- Lava Elemental
 C["lavareaver"] = { lo = 62, hi = 63, cls = "elite", type = "Elemental", spells = { 19642, 19644 }, model = 12163 } -- Lava Reaver
 C["lavaspawn"] = { lo = 60, hi = 60, cls = "elite", type = "Elemental", spells = { 18108, 19569 }, model = 2172 } -- Lava Spawn
-C["lavaspouttotem"] = { lo = 37, hi = 37, spells = { 8266 }, model = 1421 } -- Lava Spout Totem
+C["lavaspouttotem"] = { lo = 37, hi = 37, spells = {  }, model = 1421 } -- Lava Spout Totem
 C["lavasurger"] = { lo = 61, hi = 62, cls = "elite", type = "Elemental", spells = { 25787 }, model = 12239 } -- Lava Surger
 C["lefty"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = {  }, model = 15972 } -- Lefty
 C["legashiplaguebringer"] = { cls = "elite", type = "Demon", spells = {  }, npc = 268864 } -- Legashi Plaguebringer
@@ -2217,7 +2217,7 @@ C["sergeantyazrabloodsnarl"] = { lo = 56, hi = 57, type = "Humanoid", spells = {
 C["servantofantusul"] = { lo = 48, hi = 48, cls = "elite", spells = { 11020 }, model = 601 } -- Servant of Antu'sul
 C["sever"] = { lo = 25, hi = 25, cls = "elite", type = "Undead", spells = { 16508, 17745, 28126, 8269 }, model = 1061 } -- Sever
 C["shadeoferanikus"] = { lo = 55, hi = 55, cls = "elite", type = "Dragonkin", spells = {  }, model = 7806 } -- Shade of Eranikus
-C["shadeofhakkar"] = { lo = 49, hi = 50, cls = "elite", spells = { 12889, 6607, 12888, 9617 }, model = 7690 } -- Shade of Hakkar
+C["shadeofhakkar"] = { lo = 49, hi = 50, cls = "elite", spells = { 12889, 6607, 12888 }, model = 7690 } -- Shade of Hakkar
 C["shadeofnaxxramas"] = { lo = 61, hi = 61, cls = "elite", type = "Undead", spells = { 18950, 28407 }, model = 14703 } -- Shade of Naxxramas
 C["shadeofthearchmage"] = { cls = "elite", type = "Elemental", spells = {  }, npc = 246020 } -- Shade of the Archmage
 C["shadetooth"] = { cls = "elite", type = "Beast", spells = {  }, npc = 260325 } -- Shadetooth
@@ -2414,7 +2414,7 @@ C["sullithuzsandcrawler"] = { lo = 45, hi = 47, cls = "elite", type = "Beast", s
 C["summonedwaterelemental"] = { lo = 55, hi = 56, type = "Elemental", spells = {  }, model = 4606 } -- Summoned Water Elemental
 C["sunderbark"] = { cls = "elite", spells = {  }, npc = 248709 } -- Sunderbark
 C["superhogger"] = { cls = "elite", type = "Humanoid", spells = {  }, npc = 278256 } -- Super Hogger
-C["superiorhealingward"] = { lo = 56, hi = 56, spells = { 15872 }, model = 2030 } -- Superior Healing Ward
+C["superiorhealingward"] = { lo = 56, hi = 56, spells = {  }, model = 2030 } -- Superior Healing Ward
 C["surgicalassistant"] = { lo = 60, hi = 60, cls = "elite", type = "Undead", spells = { 28310 }, model = 836 } -- Surgical Assistant
 C["surgingelemental"] = { cls = "elite", type = "Beast", spells = {  }, npc = 250159 } -- Surging Elemental
 C["svalbradfarmountain"] = { lo = 55, hi = 55, type = "Humanoid", spells = {  }, model = 3083, friend = true } -- Svalbrad Farmountain
@@ -2476,7 +2476,7 @@ C["torturedslave"] = { lo = 1, hi = 1, type = "Undead", spells = {  }, model = 7
 C["towerpointwarmaster"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = { 22911, 15584, 23511, 13736, 8599 }, model = 14797, friend = true } -- Tower Point Warmaster
 C["toxictunnel"] = { lo = 60, hi = 60, spells = { 28370 }, model = 11686 } -- Toxic Tunnel
 C["treant"] = { cls = "elite", type = "Elemental", spells = {  }, npc = 275929 } -- Treant
-C["tremortotem"] = { spells = { 8145 }, model = 4588 } -- Tremor Totem
+C["tremortotem"] = { spells = {  }, model = 4588 } -- Tremor Totem
 C["trulaverpon"] = { cls = "elite", type = "Humanoid", spells = {  }, npc = 274985 } -- Trula Verpon
 C["tsuzee"] = { lo = 59, hi = 59, cls = "elite", type = "Undead", spells = {  }, model = 11250 } -- Tsu'zee
 C["tunk"] = { cls = "elite", type = "Humanoid", spells = {  }, npc = 259256 } -- Tunk

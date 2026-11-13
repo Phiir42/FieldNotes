@@ -130,6 +130,9 @@
   Depth Charge and Bubble Beam of the Season of Discovery raid's Baron.
 - "/fn find <words>" typed before the journal had been opened once since
   logging in raised a Lua error; it opens the search page now.
+- Known abilities no longer list a fight's hidden workings: "Kirtonos
+  Gargoyle Passive" on every Scholomance boss, "Shade of Eranikus Passive
+  Visual".
 - "/fn quality" alone says which items are being noted, instead of listing
   every command.
 - A dungeon whose halls the game never names (Shadowfang Keep) no longer

@@ -299,7 +299,7 @@ def creature_lines(names, boss_keys):
         spells, used = [], set()
         for sp in ([] if k in boss_keys else m["spells"]):
             label = names.get(sp)
-            if label and label not in used and "(OLD)" not in label and "DND" not in label:
+            if label and label not in used and "(OLD)" not in label and "DND" not in label and not NOT_ABILITY.search(label):
                 used.add(label)
                 spells.append(sp)
         fields = []
@@ -409,13 +409,18 @@ def picture_lines(boss_names):
     return out, missing
 
 
+# the fight's machinery, whatever the source: "Kirtonos Gargoyle Passive" on
+# every Scholomance boss, "Shade of Eranikus Passive Visual"
+NOT_ABILITY = re.compile(r"\b(?:Passive|Visual|Dummy|Cosmetic)\b")
+
+
 def pick(raw, names):
     """[(spellID, name)]: the spells that exist in the client, one per name."""
     spells, used = [], set()
     for sp in raw:
         label = names.get(sp)
         # one entry per spell name: seasonal copies of a spell share the name
-        if label and label not in used and "(OLD)" not in label and "DND" not in label:
+        if label and label not in used and "(OLD)" not in label and "DND" not in label and not NOT_ABILITY.search(label):
             used.add(label)
             spells.append((sp, label))
     return spells[:MAX_SPELLS]
