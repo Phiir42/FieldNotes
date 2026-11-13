@@ -897,13 +897,16 @@ local function BestiaryPage(lines, id, inst)
 		if not IsBoss(inst, m) then
 			any = true
 			local from = #lines + 1
-			-- the quests still wanting it, those you carry marked
-			local wanted = {}
+			-- the quests still wanting it, those you carry first and marked
+			local wanted, later = {}, {}
 			for _, w in ipairs(QuestsAfter(id, m.name)) do
-				if w.state ~= "done" and not w.ready then
-					wanted[#wanted + 1] = w.q[2] .. (w.state == "log" and " (in your quest log)" or "")
+				if w.state == "log" and not w.ready then
+					wanted[#wanted + 1] = w.q[2] .. " (in your quest log)"
+				elseif not w.state then
+					later[#later + 1] = w.q[2]
 				end
 			end
+			for _, title in ipairs(later) do wanted[#wanted + 1] = title end
 			MobLines(lines, m, true, true, npc, #wanted > 0 and ("Wanted for " .. table.concat(wanted, ", ") .. ".") or nil)
 			local ink = Ink(inst, "beast:" .. ns:AreaKey(m.name))
 			for i = from, #lines do lines[i].ink = ink end

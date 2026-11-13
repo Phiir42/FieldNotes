@@ -35,7 +35,7 @@ Q[34] = {
 
 -- Deadmines
 Q[36] = {
-	{ 214, "Red Silk Bandanas", 17, 14, "A", "Scout Riell at the Sentinel Hill Tower wants you to bring her 10 Red Silk Bandanas.", nil, from = "Scout Riell", after = "The Defias Brotherhood", pick = { 2074, 2089, 6094 } },
+	{ 214, "Red Silk Bandanas", 17, 14, "A", "Scout Riell at the Sentinel Hill Tower wants you to bring her 10 Red Silk Bandanas.", { "Defias Miner", "Defias Squallshaper", "Defias Pirate", "Defias Strip Miner" }, from = "Scout Riell", after = "The Defias Brotherhood", pick = { 2074, 2089, 6094 } },
 	{ 168, "Collecting Memories", 18, 14, "A", "Retrieve 4 Miners' Union Cards and return them to Wilder Thistlenettle in Stormwind.", nil, from = "Wilder Thistlenettle", pick = { 2037, 2036 } },
 	{ 92753, "Destruction in Deadmines", 18, 9, "A", "Find the hidden forge in the Deadmines and plant the Extra-Destructive Explosives beside it, then meet Alba Fairmoon at the exit.", { "Gilnid" }, from = "Alba Fairmoon in Sentinel Hill" },
 	{ 167, "Oh Brother. . .", 20, 15, "A", "Bring Foreman Thistlenettle's Explorers' League Badge to Wilder Thistlenettle in Stormwind.", nil, from = "Wilder Thistlenettle", get = { 1893 } },
@@ -51,7 +51,7 @@ Q[43] = {
 	{ 385, "Crocolisk Hunting", 15, 10, "A", "Get 5 pieces of Crocolisk Meat and 6 Crocolisk Skins for Marek Ironheart at the Farstrider Lodge.", { "Deviate Crocolisk" }, from = "Marek Ironheart", get = { 3678, 2240 } },
 	{ 1489, "Hamuul Runetotem", 16, 12, "H", "Speak with Hamuul Runetotem.", nil, from = "Tonga Runetotem", after = "Altered Beings" },
 	{ 1490, "Nara Wildmane", 16, 12, "H", "Speak with Nara Wildmane.", nil, from = "Arch Druid Hamuul Runetotem", after = "Hamuul Runetotem" },
-	{ 1486, "Deviate Hides", 17, 13, nil, "Nalpak in the Wailing Caverns wants 20 Deviate Hides.", nil, from = "Nalpak", pick = { 6480, 918 } },
+	{ 1486, "Deviate Hides", 17, 13, nil, "Nalpak in the Wailing Caverns wants 20 Deviate Hides.", { "Deviate Ravager", "Deviate Guardian", "Deviate Shambler", "Deviate Dreadfang" }, from = "Nalpak", pick = { 6480, 918 } },
 	{ 962, "Serpentbloom", 18, 14, "H", "Apothecary Zamah in Thunder Bluff wants you to collect 10 Serpentbloom.", { "Serpentbloom" }, from = "Apothecary Zamah", get = { 10919 } },
 	{ 1491, "Smart Drinks", 18, 13, nil, "Bring 6 portions of Wailing Essence to Mebok Mizzyrix in Ratchet.", { "Evolving Ectoplasm" }, from = "Mebok Mizzyrix", after = "Raptor Horns" },
 	{ 959, "Trouble at the Docks", 18, 14, nil, "Crane Operator Bigglefuzz in Ratchet wants you to retrieve the bottle of 99-Year-Old Port from Mad Magglish who is hiding in the Wailing Caverns.", nil, from = "Crane Operator Bigglefuzz" },
@@ -65,7 +65,7 @@ Q[47] = {
 	{ 1221, "Blueleaf Tubers", 26, 20, nil, "Grab a Crate with Holes. Grab a Snufflenose Command Stick. Grab and read the Snufflenose Owner's Manual. In Razorfen Kraul, use the Crate with Holes to summon a Snufflenose Gopher, and use the Command Stick on the gopher to make it search for Tubers. Bring 6 Blueleaf Tubers, the Snufflenose Command Stick and the Crate with Holes to Mebok Mizzyrix in Ratchet.", { "Blueleaf Tuber" }, from = "Mebok Mizzyrix", get = { 6755 } },
 	{ 1701, "Fire Hardened Mail", 28, 20, "A", "Gather the materials Furen Longbeard requires, and bring them to him in Stormwind.", { "Roogug" }, from = "Furen Longbeard", after = "The Shieldsmith", class = 1 },
 	{ 1838, "Brutal Armor", 30, 20, "H", "Bring to Thun'grim Firegaze 15 Smoky Iron Ingots, 10 Powdered Azurite, 10 Iron Bars and a Vial of Phlogiston.", { "Roogug" }, from = "Thun'grim Firegaze", after = "Speak with Thun'grim", class = 1 },
-	{ 1142, "Mortality Wanes", 30, 25, "A", "Find and return Treshala's Pendant to Treshala Fallowbrook in Darnassus.", nil, from = "Heralath Fallowbrook", inside = true, pick = { 6751, 6752 } },
+	{ 1142, "Mortality Wanes", 30, 25, "A", "Find and return Treshala's Pendant to Treshala Fallowbrook in Darnassus.", { "Razorfen Defender", "Quilguard Champion", "Razorfen Quilguard", "Death's Head Adept" }, from = "Heralath Fallowbrook", inside = true, pick = { 6751, 6752 } },
 	{ 1144, "Willix the Importer", 30, 23, nil, "Escort Willix the Importer out of Razorfen Kraul.", nil, from = "Willix the Importer", to = "Willix the Importer", inside = true, pick = { 6748, 6750, 6749 } },
 	{ 96264, "Elemental Aid", 33, 30, "A", "Defeat Charlga Razorflank and take the Tattered Note on the quilboar's plans.", { "Charlga Razorflank" }, from = "Veyric Thunderhame in the Arathi Highlands", class = 64 },
 	{ 1109, "Going, Going, Guano!", 33, 30, "H", "Bring 1 pile of Kraul Guano to Master Apothecary Faranell in the Undercity.", { "Greater Kraul Bat", "Kraul Bat" }, from = "Master Apothecary Faranell" },
@@ -138,13 +138,13 @@ Q[90] = {
 	{ 2904, "A Fine Mess", 30, 24, nil, "Escort Kernobee to the Clockwerk Run exit and then report to Scooty in Booty Bay.", nil, from = "Kernobee", inside = true, pick = { 9535, 9536 } },
 	{ 2930, "Data Rescue", 30, 25, "A", "Bring a Prismatic Punch Card to Master Mechanic Castpipe in Ironforge.", nil, from = "Master Mechanic Castpipe", get = { 9605, 9604 } },
 	{ 2924, "Essential Artificials", 30, 24, "A", "Bring 12 Essential Artificials to Klockmort Spannerspan in Ironforge.", { "Artificial Extrapolator" }, from = "Klockmort Spannerspan" },
-	{ 2928, "Gyrodrillmatic Excavationators", 30, 20, "A", "Bring twenty-four Robo-mechanical Guts to Shoni in Stormwind.", nil, from = "Shoni the Shilent", pick = { 9608, 9609 } },
+	{ 2928, "Gyrodrillmatic Excavationators", 30, 20, "A", "Bring twenty-four Robo-mechanical Guts to Shoni in Stormwind.", { "Leprous Assistant", "Irradiated Pillager", "Caverndeep Burrower", "Caverndeep Reaver" }, from = "Shoni the Shilent", pick = { 9608, 9609 } },
 	{ 2925, "Klockmort's Essentials", 30, 24, "A", "Speak with Klockmort Spannerspan in Ironforge.", nil, from = "Mathiel" },
 	{ 2962, "The Only Cure is More Green Glow", 30, 20, "A", "Travel to Gnomeregan and bring back High Potency Radioactive Fallout. Be warned, the fallout is unstable and will collapse rather quickly. Ozzie will also require your Heavy Leaden Collection Phial when the task is complete.", nil, from = "Ozzie Togglevolt", after = "Gnogaine" },
-	{ 2951, "The Sparklematic 5200!", 30, 25, nil, "Insert a Grime-Encrusted Item into the Sparklematic 5200, and be sure to have three silver coins to start the machine.", nil, from = "The Sparklematic 5200", to = "The Sparklematic 5200", inside = true },
+	{ 2951, "The Sparklematic 5200!", 30, 25, nil, "Insert a Grime-Encrusted Item into the Sparklematic 5200, and be sure to have three silver coins to start the machine.", { "Irradiated Pillager", "Caverndeep Burrower", "Caverndeep Reaver", "Dark Iron Agent" }, from = "The Sparklematic 5200", to = "The Sparklematic 5200", inside = true },
 	{ 2952, "The Sparklematic 5200!", 30, 25, nil, "", nil, from = "The Sparklematic 5200", to = "The Sparklematic 5200", inside = true, get = { 9363 } },
-	{ 4601, "The Sparklematic 5200!", 30, 25, nil, "Insert a Grime-Encrusted Item into the Sparklematic 5200, and be sure to have three silver coins to start the machine.", nil, from = "The Sparklematic 5200", to = "The Sparklematic 5200", inside = true },
-	{ 4602, "The Sparklematic 5200!", 30, 25, nil, "Insert a Grime-Encrusted Item into the Sparklematic 5200, and be sure to have three silver coins to start the machine.", nil, from = "The Sparklematic 5200", to = "The Sparklematic 5200", inside = true },
+	{ 4601, "The Sparklematic 5200!", 30, 25, nil, "Insert a Grime-Encrusted Item into the Sparklematic 5200, and be sure to have three silver coins to start the machine.", { "Irradiated Pillager", "Caverndeep Burrower", "Caverndeep Reaver", "Dark Iron Agent" }, from = "The Sparklematic 5200", to = "The Sparklematic 5200", inside = true },
+	{ 4602, "The Sparklematic 5200!", 30, 25, nil, "Insert a Grime-Encrusted Item into the Sparklematic 5200, and be sure to have three silver coins to start the machine.", { "Irradiated Pillager", "Caverndeep Burrower", "Caverndeep Reaver", "Dark Iron Agent" }, from = "The Sparklematic 5200", to = "The Sparklematic 5200", inside = true },
 	{ 4605, "The Sparklematic 5200!", 30, 25, nil, "", nil, from = "The Sparklematic 5200", to = "The Sparklematic 5200", inside = true, get = { 9363 } },
 	{ 4606, "The Sparklematic 5200!", 30, 25, nil, "", nil, from = "The Sparklematic 5200", to = "The Sparklematic 5200", inside = true, get = { 9363 } },
 	{ 2945, "Grime-Encrusted Ring", 34, 28, nil, "Figure out a way to remove the grime from the Grime-Encrusted Ring.", { "Dark Iron Agent" }, item = "Grime-Encrusted Ring", to = "The Sparklematic 5200" },
@@ -160,7 +160,7 @@ Q[90] = {
 -- Sunken Temple
 Q[109] = {
 	{ 1475, "Into The Temple of Atal'Hakkar", 50, 41, "A", "Gather 10 Atal'ai Tablets for Brohann Caskbelly in Stormwind.", { "Atal'ai Tablet" }, from = "Brohann Caskbelly", after = "Rhapsody's Tale", get = { 1490 } },
-	{ 1445, "The Temple of Atal'Hakkar", 50, 38, "H", "Collect 20 Fetishes of Hakkar and bring them to Fel'Zerul in Stonard.", nil, from = "Fel'zerul", after = "Return to Fel'Zerul", get = { 1490 } },
+	{ 1445, "The Temple of Atal'Hakkar", 50, 38, "H", "Collect 20 Fetishes of Hakkar and bring them to Fel'Zerul in Stonard.", { "Atal'ai Warrior", "Atal'ai Witch Doctor", "Unliving Atal'ai", "Atal'ai Corpse Eater" }, from = "Fel'zerul", after = "Return to Fel'Zerul", get = { 1490 } },
 	{ 3446, "Into the Depths", 51, 46, nil, "Find the Altar of Hakkar in the Sunken Temple in Swamp of Sorrows.", nil, from = "Marvon Rivetseeker", after = "The Stone Circle", to = "Altar of Hakkar" },
 	{ 3447, "Secret of the Circle", 51, 46, nil, "Travel into the Sunken Temple and discover the secret hidden in the circle of statues.", nil, from = "Marvon Rivetseeker", after = "The Stone Circle", to = "Idol of Hakkar", get = { 10773 } },
 	{ 3380, "The Sunken Temple", 51, 46, "H", "Find Marvon Rivetseeker in Tanaris.", nil, from = "Witch Doctor Uzer'i" },
@@ -180,7 +180,6 @@ Q[109] = {
 -- Razorfen Downs
 Q[129] = {
 	{ 6626, "A Host of Evil", 35, 28, nil, "Kill 8 Razorfen Battleguard, 8 Razorfen Thornweavers, and 8 Death's Head Cultists and return to Myriam Moonsinger near the entrance to Razorfen Downs.", nil, from = "Myriam Moonsinger" },
-	{ 635, "Crystal in the Mountains", 35, 30, nil, "Find the crystal from your vision.", { "Freezing Spirit" }, item = "Pendant of Myzrael" },
 	{ 6521, "An Unholy Alliance", 36, 28, "H", "Bring Ambassador Malcin's Head to Varimathras in the Undercity.", nil, from = "Varimathras", pick = { 17039, 17042, 17043 } },
 	{ 6522, "An Unholy Alliance", 36, 28, "H", "Take the Small Scroll to Varimathras in the Undercity.", nil, item = "Small Scroll" },
 	{ 3525, "Extinguishing the Idol", 37, 32, nil, "Escort Belnistrasz to the Quilboar's idol in Razorfen Downs. Protect Belnistrasz while he performs the ritual to shut down the idol.", nil, from = "Belnistrasz", after = "Scourge of the Downs", to = "Belnistrasz", inside = true, get = { 10710 } },
@@ -195,7 +194,7 @@ Q[129] = {
 
 -- Scarlet Monastery
 Q[189] = {
-	{ 1113, "Hearts of Zeal", 33, 30, "H", "Master Apothecary Faranell in the Undercity wants 20 Hearts of Zeal.", nil, from = "Master Apothecary Faranell", after = "Going, Going, Guano!" },
+	{ 1113, "Hearts of Zeal", 33, 30, "H", "Master Apothecary Faranell in the Undercity wants 20 Hearts of Zeal.", { "Scarlet Myrmidon", "Scarlet Monk", "Scarlet Defender", "Scarlet Centurion" }, from = "Master Apothecary Faranell", after = "Going, Going, Guano!" },
 	{ 1051, "Vorrel's Revenge", 33, 25, "H", "Return Vorrel Sengutz's wedding ring to Monika Sengutz in Tarren Mill.", nil, from = "Vorrel Sengutz", inside = true, pick = { 7750, 4643 }, get = { 7751 } },
 	{ 1160, "Test of Lore", 36, 25, "H", "Find The Beginnings of the Undead Threat, and return it to Parqual Fintallas in Undercity.", { "Beginnings of the Undead Threat" }, from = "Parqual Fintallas" },
 	{ 1049, "Compendium of the Fallen", 38, 28, "H", "Retrieve the Compendium of the Fallen from the Monastery in Tirisfal Glades and return to Sage Truthseeker in Thunder Bluff.", { "Rituals of Power", "Compendium of the Fallen" }, from = "Sage Truthseeker", pick = { 7747, 17508, 7749 } },
@@ -210,7 +209,7 @@ Q[209] = {
 	{ 2865, "Scarab Shells", 45, 40, nil, "Bring 5 Uncracked Scarab Shells to Tran'rek in Gadgetzan.", { "Scarab" }, from = "Tran'rek" },
 	{ 2936, "The Spider God", 45, 40, "H", "Read from the Tablet of Theka to learn the name of the Witherbark spider god, then return to Master Gadrin.", nil, from = "Master Gadrin", after = "Consult Master Gadrin" },
 	{ 2864, "Tran'rek", 45, 40, nil, "Speak with Tran'rek in Gadgetzan.", nil, from = "Krazek" },
-	{ 3042, "Troll Temper", 45, 40, nil, "Bring 20 Vials of Troll Temper to Trenton Lighthammer in Gadgetzan.", nil, from = "Trenton Lighthammer" },
+	{ 3042, "Troll Temper", 45, 40, nil, "Bring 20 Vials of Troll Temper to Trenton Lighthammer in Gadgetzan.", { "Sandfury Witch Doctor", "Sandfury Blood Drinker", "Sandfury Shadowhunter", "Sandfury Shadowcaster" }, from = "Trenton Lighthammer" },
 	{ 2861, "Tabetha's Task", 46, 40, nil, "Speak with Tabetha in Dustwallow Marsh.", nil, from = "Ursyn Ghull" },
 	{ 96770, "The Witch Doctor's Head", 46, 39, "A", "Kill Witch Doctor Zum'rah and bring back his head.", { "Witch Doctor Zum'rah" }, from = "Archmage Lan'dalock in the Alterac Mountains" },
 	{ 2846, "Tiara of the Deep", 46, 40, nil, "Bring the Tiara of the Deep to Tabetha in Dustwallow Marsh.", { "Hydromancer Velratha" }, from = "Tabetha", get = { 9527, 9531 } },
@@ -218,7 +217,6 @@ Q[209] = {
 	{ 2768, "Divino-matic Rod", 47, 40, nil, "Bring the Divino-matic Rod to Chief Engineer Bilgewhizzle in Gadgetzan.", { "Sergeant Bly" }, from = "Chief Engineer Bilgewhizzle", pick = { 9533, 9534 } },
 	{ 2991, "Nekrum's Medallion", 47, 40, "A", "Bring Nekrum's Medallion to Thadius Grimshade in the Blasted Lands.", { "Nekrum Gutchewer" }, from = "Thadius Grimshade", after = "Thadius Grimshade" },
 	{ 3527, "The Prophecy of Mosh'aru", 47, 40, nil, "Bring the First and Second Mosh'aru Tablets to Yeh'kinya in Tanaris.", { "Theka the Martyr", "Hydromancer Velratha" }, from = "Yeh'kinya", after = "Screecher Spirits" },
-	{ 351, "Find OOX-17/TN!", 48, 43, nil, "Bring the distress beacon to Oglethorpe's homing robot.", { "Zerillis", "Dustwraith", "Sandarr Dunereaver" }, item = "OOX-17/TN Distress Beacon" },
 	{ 2770, "Gahz'rilla", 50, 40, nil, "Bring Gahz'rilla's Electrified Scale to Wizzle Brassbolts in the Shimmering Flats.", { "Gahz'rilla" }, from = "Wizzle Brassbolts", get = { 11122 } },
 }
 
@@ -272,8 +270,8 @@ Q[229] = {
 	{ 4766, "Mayara Brightwing", 60, 57, "A", "Speak with Mayara Brightwing in the Burning Steppes.", nil, from = "Count Remington Ridgewell" },
 	{ 8995, "Mea Culpa, Lord Valthalak", 60, 58, nil, "Use the Brazier of Beckoning to summon Lord Valthalak. Dispatch him, and use Lord Valthalak's Amulet on the corpse. Then, return Lord Valthalak's Amulet to the Spirit of Lord Valthalak.", { "Lord Valthalak" }, from = "Bodley", after = "Final Preparations" },
 	{ 4866, "Mother's Milk", 60, 55, nil, "In the heart of Blackrock Spire you will find Mother Smolderweb. Engage her and get her to poison you. Chances are good that you will have to kill her as well. Return to Ragged John when you are poisoned so that he can 'milk' you.", nil, from = "Ragged John", get = { 15873 } },
-	{ 6569, "Oculus Illusions", 60, 55, "H", "Travel to Blackrock Spire and collect 20 Black Dragonspawn Eyes. Return to Myranda the Hag when the task is complete.", nil, from = "Myranda the Hag", after = "The Testament of Rexxar" },
-	{ 4742, "Seal of Ascension", 60, 57, nil, "Find the three gemstones of command: The Gemstone of Smolderthorn, Gemstone of Spirestone, and Gemstone of Bloodaxe. Return them, along with the Unadorned Seal of Ascension, to Vaelan. The Generals, as told to you by Vaelan, are: War Master Voone of the Smolderthorn; Highlord Omokk of the Spirestone; and Overlord Wyrmthalak of the Bloodaxe.", { "Highlord Omokk", "War Master Voone", "Overlord Wyrmthalak" }, from = "Vaelan" },
+	{ 6569, "Oculus Illusions", 60, 55, "H", "Travel to Blackrock Spire and collect 20 Black Dragonspawn Eyes. Return to Myranda the Hag when the task is complete.", { "Rage Talon Dragonspawn", "Rage Talon Flamescale", "Rage Talon Fire Tongue", "Rage Talon Dragon Guard" }, from = "Myranda the Hag", after = "The Testament of Rexxar" },
+	{ 4742, "Seal of Ascension", 60, 57, nil, "Find the three gemstones of command: The Gemstone of Smolderthorn, Gemstone of Spirestone, and Gemstone of Bloodaxe. Return them, along with the Unadorned Seal of Ascension, to Vaelan. The Generals, as told to you by Vaelan, are: War Master Voone of the Smolderthorn; Highlord Omokk of the Spirestone; and Overlord Wyrmthalak of the Bloodaxe.", { "Highlord Omokk", "War Master Voone", "Overlord Wyrmthalak", "Scarshield Legionnaire" }, from = "Vaelan" },
 	{ 4743, "Seal of Ascension", 60, 57, nil, "Travel to the Wyrmbog in Dustwallow Marsh. Find the ancient drake, Emberstrife and beat him without mercy until his will is broken. It is at that moment which you must place the Unforged Seal of Ascension before the great beast. You must then be quick to use the Orb of Draconic Energy on his weakened form and claim dominion over his mental faculties. Control the beast and force the Flames of the Black Dragonflight upon the Unforged Seal of Ascension!", nil, from = "Vaelan", get = { 12344 } },
 	{ 4768, "The Darkstone Tablet", 60, 57, "H", "Bring the Darkstone Tablet to Shadow Mage Vivian Lagrave in Kargath.", { "Darkstone Tablet" }, from = "Shadowmage Vivian Lagrave", pick = { 15861, 15860 } },
 	{ 8966, "The Left Piece of Lord Valthalak's Amulet", 60, 58, nil, "Use the Brazier of Beckoning to summon forth the spirit of Mor Grayhoof and slay him. Return to Bodley inside Blackrock Mountain with the Left Piece of Lord Valthalak's Amulet and the Brazier of Beckoning.", { "Mor Grayhoof" }, from = "Bodley", after = "Components of Importance" },
@@ -311,8 +309,8 @@ Q[230] = {
 	{ 4133, "Vivian Lagrave", 55, 50, "H", "Speak with Shadowmaster Vivian Lagrave in Kargath.", nil, from = "Apothecary Zinge" },
 	{ 3907, "Disharmony of Fire", 56, 48, "H", "Enter Blackrock Depths and track down Lord Incendius. Slay him and return any source of information you may find to Thunderheart.", { "Lord Incendius" }, from = "Thunderheart", after = "Disharmony of Flame", pick = { 12113, 12114, 12112, 12115 } },
 	{ 4263, "Incendius!", 56, 48, "A", "Find Lord Incendius in Blackrock Depths and destroy him!", { "Lord Incendius" }, from = "Jalinda Sprig", after = "Overmaster Pyron", pick = { 12113, 12114, 12112, 12115 } },
-	{ 4286, "The Good Stuff", 56, 50, "A", "Travel to Blackrock Depths and recover 20 Dark Iron Fanny Packs. Return to Oralius when you have completed this task. You assume that the Dark Iron dwarves inside Blackrock Depths carry these 'fanny pack' contraptions.", nil, from = "Oralius", get = { 11883 } },
-	{ 4264, "A Crumpled Up Note", 58, 50, "A", "You may have just stumbled on to something that Marshal Windsor would be interested in seeing. There may be hope, after all.", { "Jaz", "Crest Killer", "Shill Dinger", "Ograbisi" }, item = "A Crumpled Up Note", after = "Abandoned Hope", to = "Marshal Windsor" },
+	{ 4286, "The Good Stuff", 56, 50, "A", "Travel to Blackrock Depths and recover 20 Dark Iron Fanny Packs. Return to Oralius when you have completed this task. You assume that the Dark Iron dwarves inside Blackrock Depths carry these 'fanny pack' contraptions.", { "Anvilrage Guardsman", "Anvilrage Footman", "Shadowforge Peasant", "Shadowforge Senator" }, from = "Oralius", get = { 11883 } },
+	{ 4264, "A Crumpled Up Note", 58, 50, "A", "You may have just stumbled on to something that Marshal Windsor would be interested in seeing. There may be hope, after all.", { "Bloodhound", "Anvilrage Guardsman", "Anvilrage Footman", "Fireguard Destroyer" }, item = "A Crumpled Up Note", after = "Abandoned Hope", to = "Marshal Windsor" },
 	{ 4282, "A Shred of Hope", 58, 50, "A", "Return Marshal Windsor's Lost Information. Marshal Windsor believes that the information is being held by Golem Lord Argelmach and General Angerforge.", { "General Angerforge", "Golem Lord Argelmach" }, from = "Marshal Windsor", after = "A Crumpled Up Note", to = "Marshal Windsor", inside = true },
 	{ 4024, "A Taste of Flame", 58, 52, nil, "Travel to Blackrock Depths and slay Bael'Gar. You only know that the giant resides inside Blackrock Depths. Remember to use the Altered Black Dragonflight Molt on Bael'Gar's remains to capture the Fiery Essence. Return the Encased Fiery Essence to Cyrus Therepentous.", { "Bael'Gar" }, from = "Cyrus Therepentous", pick = { 12066, 12082, 12083 } },
 	{ 4122, "Grark Lorkrub", 58, 52, "H", "Travel to the Burning Steppes and find Grark Lorkrub. You recall Lexlort mentioning that he was last seen in a massive Blackrock fortress. When you find Grark Lorkrub, use the Thorium Shackles to bind him and then lead him back through Blackrock Mountain to the Searing Gorge. Lexlort will have his men waiting on the other side to take Grark into custody.", nil, from = "Lexlort" },
@@ -407,7 +405,7 @@ Q[329] = {
 	{ 6163, "Ramstein", 60, 56, "H", "Travel to Stratholme and slay Ramstein the Gorger. Take his head as a souvenir for Nathanos.", { "Ramstein the Gorger" }, from = "Nathanos Blightcaller", after = "Duskwing, Oh How I Hate Thee...", pick = { 18022, 17001 } },
 	{ 5213, "The Active Agent", 60, 55, nil, "Travel to Stratholme and search the ziggurats. Find and return new Scourge Data to Betina Bigglezink.", { "Scourge Data" }, from = "Betina Bigglezink", after = "The Flesh Does Not Lie", pick = { 13209, 19812 } },
 	{ 5251, "The Archivist", 60, 55, nil, "Travel to Stratholme and find Archivist Galford of the Scarlet Crusade. Destroy him and burn down the Scarlet Archive.", { "Archivist Galford", "Scarlet Archive" }, from = "Duke Nicholas Zverenhoff" },
-	{ 5212, "The Flesh Does Not Lie", 60, 55, nil, "Recover 10 Plagued Flesh Samples from Stratholme and return them to Betina Bigglezink. You suspect that any creature in Stratholme would have said flesh sample.", nil, from = "Betina Bigglezink" },
+	{ 5212, "The Flesh Does Not Lie", 60, 55, nil, "Recover 10 Plagued Flesh Samples from Stratholme and return them to Betina Bigglezink. You suspect that any creature in Stratholme would have said flesh sample.", { "Mangled Cadaver", "Plague Ghoul", "Ravaged Cadaver", "Ghoul Ravener" }, from = "Betina Bigglezink" },
 	{ 5214, "The Great Fras Siabi", 60, 55, nil, "Find Fras Siabi's smoke shop in Stratholme and recover a box of Siabi's Premium Tobacco. Return to Smokey LaRue when the job is done.", { "Fras Siabi" }, from = "Smokey LaRue", get = { 13171 } },
 	{ 8968, "The Left Piece of Lord Valthalak's Amulet", 60, 58, nil, "Use the Brazier of Beckoning to summon forth Jarien and Sothos and slay them. Return to Bodley inside Blackrock Mountain with the Left Piece of Lord Valthalak's Amulet and the Brazier of Beckoning.", { "Jarien", "Sothos" }, from = "Bodley", after = "Components of Importance" },
 	{ 5282, "The Restless Souls", 60, 55, nil, "Use Egan's Blaster on the ghostly and spectral citizens of Stratholme. When the restless souls break free from their ghostly shells, use the blaster again - freedom will be theirs! Free 15 Restless Souls and return to Egan.", { "Ghostly Citizen", "Spectral Citizen" }, from = "Egan", get = { 13315 } },
@@ -421,7 +419,7 @@ Q[349] = {
 	{ 771, "Rite of Vision", 7, 3, "H", "Collect 2 Well Stones and 2 Ambercorn and bring them back to Zarlman Two-Moons in Bloodhoof Village.", { "Razorlash" }, from = "Zarlman Two-Moons" },
 	{ 7068, "Shadowshard Fragments", 42, 38, "H", "Collect 10 Shadowshard Fragments from Maraudon and return them to Uthel'nay in Orgrimmar.", nil, from = "Uthel'nay", pick = { 17772, 17773 } },
 	{ 7070, "Shadowshard Fragments", 42, 38, "A", "Collect 10 Shadowshard Fragments from Maraudon and return them to Archmage Tervosh in Theramore on the coast of Dustwallow Marsh.", nil, from = "Archmage Tervosh", pick = { 17772, 17773 } },
-	{ 7028, "Twisted Evils", 47, 41, nil, "Collect 15 Theradric Crystal Carvings for Willow in Desolace.", nil, from = "Willow", pick = { 17775, 17776, 17777, 17779 } },
+	{ 7028, "Twisted Evils", 47, 41, nil, "Collect 15 Theradric Crystal Carvings for Willow in Desolace.", { "Vile Larva", "Constrictor Vine", "Poison Sprite", "Noxious Slime" }, from = "Willow", pick = { 17775, 17776, 17777, 17779 } },
 	{ 7029, "Vyletongue Corruption", 47, 41, "H", "Fill the Coated Cerulean Vial at the orange crystal pool in Maraudon. Use the Filled Cerulean Vial on the Vylestem Vines to force the corrupted Noxxious Scion to emerge. Heal 8 plants by killing these Noxxious Scion, then return to Vark Battlescar in Shadowprey Village.", nil, from = "Vark Battlescar", pick = { 17768, 17778, 17770 } },
 	{ 7041, "Vyletongue Corruption", 47, 41, "A", "Fill the Coated Cerulean Vial at the orange crystal pool in Maraudon. Use the Filled Cerulean Vial on the Vylestem Vines to force the corrupted Noxxious Scion to emerge. Heal 8 plants by killing these Noxxious Scion, then return to Talendria in Nijel's Point.", nil, from = "Talendria", pick = { 17768, 17778, 17770 } },
 	{ 7067, "The Pariah's Instructions", 48, 39, nil, "Read the Pariah's Instructions. Afterwards, obtain the Amulet of Union from Maraudon and return it to the Centaur Pariah in southern Desolace.", nil, from = "Centaur Pariah", get = { 17774 } },
@@ -448,7 +446,7 @@ Q[389] = {
 Q[409] = {
 	{ 7848, "Attunement to the Core", 60, 55, nil, "Venture to the Molten Core entry portal in Blackrock Depths and recover a Core Fragment. Return to Lothos Riftwaker in Blackrock Mountain when you have recovered the Core Fragment.", nil, from = "Lothos Riftwaker" },
 	{ 6824, "Hands of the Enemy", 60, 60, nil, "Bring the Hands of Lucifron, Sulfuron, Gehennas and Shazzrah to Duke Hydraxis in Azshara.", { "Shazzrah", "Lucifron", "Gehennas", "Sulfuron Harbinger" }, from = "Duke Hydraxis", after = "Agent of Hydraxis" },
-	{ 8578, "Scrying Goggles? No Problem!", 60, 60, nil, "Find Narain's Scrying Goggles and return them to Narain Soothfancy in Tanaris.", nil, from = "Inconspicuous Crate", after = "Stewvul, Ex-B.F.F.", get = { 18253 } },
+	{ 8578, "Scrying Goggles? No Problem!", 60, 60, nil, "Find Narain's Scrying Goggles and return them to Narain Soothfancy in Tanaris.", { "Firelord", "Lava Annihilator", "Ancient Core Hound", "Lava Elemental" }, from = "Inconspicuous Crate", after = "Stewvul, Ex-B.F.F.", get = { 18253 } },
 	{ 6822, "The Molten Core", 60, 57, nil, "Kill 1 Fire Lord, 1 Molten Giant, 1 Ancient Core Hound and 1 Lava Surger, then return to Duke Hydraxis in Azshara.", { "Molten Giant", "Firelord", "Ancient Core Hound", "Lava Surger" }, from = "Duke Hydraxis", after = "Eye of the Emberseer" },
 	{ 7786, "Thunderaan the Windseeker", 60, 60, nil, "To free Thunderaan the Windseeker from his prison, you must present the right and left halves of the Bindings of the Windseeker, 10 bars of Elementium, and the Essence of the Firelord to Highlord Demitrian in Silithus.", { "Ragnaros", "Baron Geddon", "Garr" }, from = "Highlord Demitrian", after = "Examine the Vessel" },
 }
@@ -467,7 +465,7 @@ Q[429] = {
 	{ 7499, "Codex of Defense", 60, 54, nil, "Return the book to its rightful owners.", { "A Dusty Tome" }, item = "Codex of Defense", to = "Lorekeeper Kildrath", class = 1, get = { 18466 } },
 	{ 7481, "Elven Legends", 60, 54, "H", "Search Dire Maul for Kariel Winthalus. Report back to Sage Korolusk at Camp Mojache with whatever information that you may find.", nil, from = "Sage Korolusk" },
 	{ 7482, "Elven Legends", 60, 54, "A", "Search Dire Maul for Kariel Winthalus. Report back to Scholar Runethorn at Feathermoon with whatever information that you may find.", nil, from = "Scholar Runethorn" },
-	{ 8949, "Falrin's Vendetta", 60, 58, nil, "Collect 25 Ogre Warbeads from Ogres inside Dire Maul or Blackrock Spire and return to Falrin Treeshaper inside the Athenaeum in Dire Maul.", nil, from = "Falrin Treeshaper", after = "Anthion's Old Friend", to = "Falrin Treeshaper", inside = true, pick = { 22150, 22149 } },
+	{ 8949, "Falrin's Vendetta", 60, 58, nil, "Collect 25 Ogre Warbeads from Ogres inside Dire Maul or Blackrock Spire and return to Falrin Treeshaper inside the Athenaeum in Dire Maul.", { "Gordok Brute", "Gordok Mage-Lord", "Gordok Reaver", "Gordok Warlock" }, from = "Falrin Treeshaper", after = "Anthion's Old Friend", to = "Falrin Treeshaper", inside = true, pick = { 22150, 22149 } },
 	{ 7507, "Foror's Compendium", 60, 60, nil, "Return Foror's Compendium of Dragon Slaying to the Athenaeum.", { "A Dusty Tome" }, item = "Foror's Compendium of Dragon Slaying", to = "Lorekeeper Lydros" },
 	{ 5525, "Free Knot!", 60, 57, nil, "", { "Gordok Reaver", "Gordok Warlock", "Gordok Captain", "Gordok Mage-Lord" }, from = "Knot Thimblejack", to = "Knot Thimblejack", inside = true },
 	{ 7505, "Frost Shock and You", 60, 54, nil, "Return the book to its rightful owners.", { "A Dusty Tome" }, item = "Frost Shock and You", to = "Lorekeeper Javon", class = 64, get = { 18471 } },
@@ -536,7 +534,7 @@ Q[533] = {
 	{ 9243, "Polar Tunic", 60, 60, nil, "Craftsman Wilhelm at Light's Hope Chapel in the Eastern Plaguelands wants 8 Frozen Runes, 16 Enchanted Leathers, 5 Essences of Water, 5 Cured Rugged Hides and 300 gold. You must also be of Exalted reputation with the Argent Dawn.", { "Frozen Rune" }, from = "Craftsman Wilhelm", after = "Omarion's Handbook", get = { 22661 } },
 	{ 9230, "Ramaladni's Icy Grasp", 60, 60, nil, "Korfax at Light's Hope Chapel in the Eastern Plaguelands wants you to bring him 1 Frozen Rune, 1 Blue Sapphire and 1 Arcanite Bar.", { "Frozen Rune" }, from = "Korfax, Champion of the Light", after = "The Fate of Ramaladni", get = { 22707 } },
 	{ 9120, "The Fall of Kel'Thuzad", 60, 60, nil, "Take the Phylactery of Kel'Thuzad to Light's Hope Chapel in the Eastern Plaguelands.", { "Kel'Thuzad" }, item = "The Phylactery of Kel'Thuzad", pick = { 23206, 23207 } },
-	{ 9229, "The Fate of Ramaladni", 60, 60, nil, "Enter Naxxramas and uncover the Fate of Ramaladni.", nil, from = "Korfax, Champion of the Light", after = "Echoes of War" },
+	{ 9229, "The Fate of Ramaladni", 60, 60, nil, "Enter Naxxramas and uncover the Fate of Ramaladni.", { "Plagued Ghoul", "Necropolis Acolyte", "Plagued Gargoyle", "Naxxramas Cultist" }, from = "Korfax, Champion of the Light", after = "Echoes of War" },
 	{ 9232, "The Only Song I Know...", 60, 60, nil, "Craftsman Wilhelm at Light's Hope Chapel in the Eastern Plaguelands wants you to bring him 2 Frozen Runes, 2 Essence of Water, 2 Blue Sapphires and 30 gold pieces.", { "Frozen Rune" }, from = "Craftsman Wilhelm", after = "Echoes of War", pick = { 22700, 22699, 22702, 22701 } },
 }
 

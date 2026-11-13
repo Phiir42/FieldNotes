@@ -22,6 +22,8 @@ import make_abilities as m  # noqa: E402
 LUA = os.path.join(m.ROOT, "FieldNotes", "Quests.lua")
 EXTRA = os.path.join(m.ROOT, "tools", "data", "forever_quests.json")
 ALLIANCE, HORDE = 77, 178  # race masks
+WIDE_CHANCE = 1.0  # per cent: a creature that seldom carries a widely carried item is not worth naming
+QUEST_ITEM = 12  # item class
 JUNK = re.compile(r"UNUSED|DEPRECATED|<NYI>|<TXT>|\bTEST\b|^zz|REUSE|\bOLD\b")  # in capitals: not "Old Gods"
 TAB = chr(9)
 # What the database cannot say about a quest, by quest id.
@@ -109,9 +111,12 @@ def main():
     with open(os.path.join(m.ROOT, "refs", "classicdb", "creatures.json"), encoding="utf-8") as f:
         creatures = {int(k): v for k, v in json.load(f).items()}
     lcols, loot = tables["creature_loot_template"]
-    carriers = {}
+    carriers, chance = {}, {}
     for r in loot:
-        carriers.setdefault(x.num(r[lcols.index("item")]), []).append(x.num(r[lcols.index("entry")]))
+        item, entry = x.num(r[lcols.index("item")]), x.num(r[lcols.index("entry")])
+        carriers.setdefault(item, []).append(entry)
+        if x.num(r[lcols.index("mincountOrRef")]) > 0:  # (not a reference to another table)
+            chance[item, entry] = abs(float(r[lcols.index("ChanceOrQuestChance")] or 0))
 
     # ...and the things it is found in: chests and the like (objects), by what
     # they hold, and objects the quest has you use
@@ -169,6 +174,7 @@ def main():
                               (o["name"], {sp[0] for sp in o["spawns"]}, [sp[1:] for sp in o["spawns"]]))
     icols, idata = tables["item_template"]
     starts, start_item = {}, {}
+    item_class = {x.num(r[icols.index("entry")]): x.num(r[icols.index("class")]) for r in idata}
     for r in idata:
         begins = x.num(r[icols.index("startquest")])
         if begins:
@@ -182,9 +188,13 @@ def main():
     titles = {x.num(r[col("entry")]): plain(r[col("Title")]) for r in data}
     spots = {}  # {map: {name: [[x, y, z], ...]}}: where each thing named stands, for the map marks
 
-    def wants(r):
+    def wants(r, wide=False):
         """-> [[creature or object, ...], ...]: for each thing a quest asks for,
-        the creatures and objects that are it or hold it."""
+        the creatures and objects that are it or hold it. An item carried by
+        a great many creatures says nothing of where a quest leads, so it is
+        left out; wide: then take those of them that live in a dungeon,
+        likeliest to carry it first (Hearts of Zeal, Deviate Hides), to say
+        whom to look for once it is known where."""
         groups = []
         for i in (1, 2, 3, 4):
             who = x.num(r[col("ReqCreatureOrGOId%d" % i)])
@@ -199,19 +209,25 @@ def main():
             has = carriers.get(item, [])
             if len(has) <= 12:  # more than that is a drop of the whole place, or the whole world
                 found += [creatures[c] for c in has if c in creatures]
+            elif wide and item_class.get(item) == QUEST_ITEM:  # (not cloth, ores and the like)
+                inside = {c: sum(sp[0] in instance for sp in creatures[c]["spawns"]) for c in has if c in creatures}
+                # the likeliest to come by: how often it carries it, times how many there are
+                found += [creatures[c] for c in sorted(inside, key=lambda c: -chance.get((item, c), 0) * inside[c])
+                          if inside[c] and chance.get((item, c), 0) >= WIDE_CHANCE]
             for lootid in holds.get(item, ()):
                 found += [objects[e] for e in chests.get(lootid, [])]
             groups.append(found)
         # ...and whoever drops the item that begins it
         begun_by = start_item.get(x.num(r[col("entry")]))
-        if begun_by:
-            groups.append([creatures[c] for c in carriers.get(begun_by, [])[:12] if c in creatures])
+        has = carriers.get(begun_by, [])
+        if begun_by and len(has) <= 12:  # (not a drop of the whole world)
+            groups.append([creatures[c] for c in has if c in creatures])
         return groups
 
-    def sources(r):
+    def sources(r, wide=False):
         """-> [(name, spawns)] of the creatures and objects a quest sends you to."""
         out = []
-        for c in (c for group in wants(r) for c in group):
+        for c in (c for group in wants(r, wide) for c in group):
             if not c["name"]:
                 continue
             spawns = c["spawns"]
@@ -224,12 +240,12 @@ def main():
 
     def targets(r, mp):
         names = []
-        for name, spawns in sources(r):
+        for name, spawns in sources(r, wide=True):
             here = [sp[1:] for sp in spawns if sp[0] == mp]
-            if here and name not in names:
+            if here and name not in names and len(names) < 4:
                 names.append(name)
                 spots.setdefault(mp, {}).setdefault(name, []).extend(p for p in here if len(p) == 3)
-        return names[:4]
+        return names
 
     def home(r):
         """The one instance a quest filed elsewhere really sends you into, if any."""

@@ -851,7 +851,7 @@ step("creatures a quest wants", function()
 	M.wait(1)
 	M.slash("")
 	open("Bestiary")
-	check("a creature says which quests want it", pageText():find("Wanted for Deviate Eradication (in your quest log).", 1, true)
+	check("a creature says which quests want it", pageText():find("Wanted for Deviate Eradication (in your quest log), Deviate Hides.", 1, true)
 		and pageText():find("Wanted for Crocolisk Hunting.", 1, true))
 	M.questsDone[385] = true
 	open("Spoils") open("Bestiary")
