@@ -860,6 +860,16 @@ step("creatures a quest wants", function()
 	M.slash("")
 end)
 
+step("where a quest's quarry is", function()
+	M.slash("")
+	open("Quests (")
+	local text = pageText()
+	check("quarry outside the portal is said to be there", text:find("Look for Mad Magglish outside, near the way in.", 1, true))
+	check("a widely carried quest item names its likeliest carriers",
+		text:find("Look for Deviate Ravager, Deviate Guardian", 1, true))
+	M.slash("")
+end)
+
 step("mistakes are caught and kept for reporting", function()
 	check("no errors during the run: " .. tostring(ns.db.errors and ns.db.errors[1].msg), ns.db.errors == nil)
 	ns:On("FN_TEST", function() error("deliberate") end)
