@@ -7,6 +7,10 @@
 - A quest handed out inside a dungeon marks its giver on the map until you
   take it up.
 - The quests of the dungeons new to Forever say who gives them.
+- A quest whose objectives are met no longer marks the map, and the journal
+  keeps up with the quest log while it lies open.
+- Quest marks sit exactly on their spot, stepping aside only for a boss's
+  skull.
 
 ## 0.2.0-beta.8
 

@@ -376,6 +376,24 @@ step("every page of the journal", function()
 	check("one boss marker on the map (found " .. marks .. ")", marks == 1)
 	check("the map marks where quests lead (found " .. quests .. ")", quests >= 1)
 	check("a quest you carry is marked as such", lit >= 1)
+	-- once its objectives are met, a quest no longer marks the map
+	do
+		local function questMarks()
+			local n = 0
+			for _, f in ipairs(M.frames) do
+				if f.__kind == "Button" and f.__shown and rawget(f, "go") and rawget(f, "name"):find("here", 1, true) then n = n + 1 end
+			end
+			return n
+		end
+		local before = questMarks()
+		M.questGoals[166] = { { text = "1/1 Head of VanCleef", finished = true } }
+		M.questGoals[2040] = { { text = "1/1 Gnoam Sprecklesprocket", finished = true } }
+		M.fire("QUEST_LOG_UPDATE") M.wait(1)
+		check("quests ready to hand in leave the map (" .. before .. " to " .. questMarks() .. ")", questMarks() < before)
+		M.questGoals[166] = { { text = "0/1 Head of VanCleef", finished = false } }
+		M.questGoals[2040] = nil
+		M.fire("QUEST_LOG_UPDATE") M.wait(1)
+	end
 	-- the parts shown for the first time are being sketched in
 	local function drawing()
 		local n = 0

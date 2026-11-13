@@ -901,10 +901,20 @@ end
 -- that lead to the same spot share a mark.
 local function QuestMarks(id, floor, marks)
 	if ns.db.settings.questMarks == false then return end
+	-- A quest mark stands on its spot; only where something is already marked
+	-- there (a boss's skull, another quest) does it step aside to be seen.
+	local function Beside(x, y, side)
+		for _, m in ipairs(marks) do
+			if math.abs(m.x - x) < 16 and math.abs(m.y - y) < 16 then return side * 10, 10 end
+		end
+		return 0, 0
+	end
 	local spots, order = {}, {}
 	for _, q in ipairs(QuestsOf(id)) do
 		local state = QuestState(q[1])
-		for _, who in ipairs(state ~= "done" and q[7] or {}) do
+		-- nothing left to look for once every objective is met
+		local ready = state == "log" and select(2, QuestProgress(q[1]))
+		for _, who in ipairs(state ~= "done" and not ready and q[7] or {}) do
 			local k = ns:AreaKey(who)
 			local x, y
 			for _, spot in ipairs(floor.bosses or {}) do
@@ -933,8 +943,9 @@ local function QuestMarks(id, floor, marks)
 		-- a quest not yet taken up, handed out inside: where its giver stands
 		local giver = not state and q.inside and q.from and floor.places and floor.places[ns:AreaKey(q.from)]
 		if giver then
+			local dx, dy = Beside(giver[1], giver[2], -1)
 			marks[#marks + 1] = {
-				x = giver[1], y = giver[2], dx = -10, dy = 10, icon = QUEST_ICON, alpha = 0.65,
+				x = giver[1], y = giver[2], dx = dx, dy = dy, icon = QUEST_ICON, alpha = 0.65,
 				name = "A quest is given here", note = q[2] .. ": given by " .. q.from .. ".",
 				go = function() Select(id, "quests") end,
 			}
@@ -943,8 +954,9 @@ local function QuestMarks(id, floor, marks)
 	for _, s in ipairs(order) do
 		local t = {}
 		for _, n in ipairs(s.notes) do t[#t + 1] = n.title .. ": look for " .. table.concat(n.who, ", ") .. "." end
+		local dx, dy = Beside(s.x, s.y, 1)
 		marks[#marks + 1] = {
-			x = s.x, y = s.y, dx = 10, dy = 10, icon = QUEST_ICON, alpha = s.log and 1 or 0.65,
+			x = s.x, y = s.y, dx = dx, dy = dy, icon = QUEST_ICON, alpha = s.log and 1 or 0.65,
 			name = #s.notes == 1 and "A quest leads here" or "Quests lead here",
 			note = table.concat(t, "\n") .. (s.log and "" or "\nNot in your log."),
 			go = function() Select(id, "quests") end,
@@ -1893,6 +1905,13 @@ end
 ns:On("FN_DATA", function() Refresh() end)
 -- spell descriptions arrive a moment after they are first asked for
 ns:On("SPELL_TEXT_UPDATE", function() if frame and frame:IsShown() then ns:Changed() end end)
+-- quests taken up, moved along, or handed in while the journal lies open;
+-- and the names of rewards, which arrive a moment after they are asked for
+for _, event in ipairs({ "QUEST_LOG_UPDATE", "QUEST_TURNED_IN", "QUEST_ACCEPTED", "QUEST_REMOVED", "GET_ITEM_INFO_RECEIVED" }) do
+	ns:On(event, function()
+		if frame and frame:IsShown() and (sel.kind == "quests" or sel.kind == "map") then ns:Changed() end
+	end)
+end
 
 ---------------------------------------------------------------------------
 -- /fn maptest: look at a shipped map without visiting the dungeon. Makes a
