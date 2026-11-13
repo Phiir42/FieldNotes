@@ -959,7 +959,7 @@ C["blackhandsummoner"] = { lo = 59, hi = 60, cls = "elite", type = "Humanoid", s
 C["blackhandthug"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = {  }, model = 10172 } -- Blackhand Thug
 C["blackhandveteran"] = { lo = 59, hi = 60, cls = "elite", type = "Humanoid", spells = { 11972, 15749, 14516 }, model = 9686 } -- Blackhand Veteran
 C["blackmawbehemoth"] = { cls = "elite", type = "Beast", spells = {  }, npc = 247207 } -- Blackmaw Behemoth
-C["blackmawberserker"] = { cls = "elite", type = "Humanoid", spells = {  }, npc = 247237 } -- Blackmaw Berserker
+C["blackmawberserker"] = { cls = "elite", type = "Humanoid", spells = { 8269, 15793 }, npc = 247237 } -- Blackmaw Berserker
 C["blackmawchampion"] = { lo = 55, hi = 55, cls = "elite", type = "Humanoid", spells = {  }, npc = 255394 } -- Blackmaw Champion
 C["blackmawdruid"] = { cls = "elite", type = "Humanoid", spells = {  }, npc = 258516 } -- Blackmaw Druid
 C["blackmawheadhunter"] = { cls = "elite", type = "Humanoid", spells = {  }, npc = 250027 } -- Blackmaw Headhunter
@@ -1107,7 +1107,7 @@ C["chromaticwhelp"] = { lo = 57, hi = 58, type = "Dragonkin", spells = { 12167, 
 C["chubchob"] = { lo = 45, hi = 45, cls = "elite", type = "Humanoid", spells = {  }, npc = 257059 } -- Chub'chob
 C["churningelemental"] = { cls = "elite", type = "Elemental", spells = {  }, npc = 258819 } -- Churning Elemental
 C["cinder"] = { cls = "elite", type = "Beast", spells = {  }, npc = 261974 } -- Cinder
-C["clawbert"] = { cls = "elite", type = "Humanoid", spells = {  }, npc = 247996 } -- Clawbert
+C["clawbert"] = { cls = "elite", type = "Humanoid", spells = { 1244482, 1244951, 1244981 }, npc = 247996 } -- Clawbert
 C["clawtentacle"] = { lo = 60, hi = 60, spells = { 26139, 26211 }, model = 15789 } -- Claw Tentacle
 C["cleftscorpid"] = { lo = 35, hi = 36, type = "Beast", spells = { 3616 }, model = 5985 } -- Cleft Scorpid
 C["cleo"] = { lo = 5, hi = 5, type = "Critter", spells = {  }, model = 9990 } -- Cleo
@@ -1386,7 +1386,7 @@ C["fallenwarrior"] = { cls = "elite", type = "Undead", spells = {  }, npc = 2550
 C["falrintreeshaper"] = { lo = 60, hi = 60, type = "Humanoid", spells = {  }, model = 15996, friend = true } -- Falrin Treeshaper
 C["fankrisstheunyielding"] = { lo = 63, hi = 63, cls = "worldboss", spells = {  }, model = 15743 } -- Fankriss the Unyielding
 C["felancient"] = { cls = "elite", type = "Giant", spells = {  }, npc = 246003 } -- Fel Ancient
-C["felfireimp"] = { cls = "elite", type = "Demon", spells = {  }, npc = 247249 } -- Felfire Imp
+C["felfireimp"] = { cls = "elite", type = "Demon", spells = { 9053 }, npc = 247249 } -- Felfire Imp
 C["fellash"] = { lo = 56, hi = 56, cls = "elite", type = "Elemental", spells = { 22271, 15230 }, model = 13110 } -- Fel Lash
 C["felsteed"] = { lo = 19, hi = 20, cls = "elite", type = "Beast", spells = { 7139 }, model = 1951 } -- Fel Steed
 C["fenrusthedevourer"] = { lo = 25, hi = 25, cls = "elite", type = "Beast", spells = {  }, model = 2352 } -- Fenrus the Devourer
@@ -1724,8 +1724,8 @@ C["legashiplaguebringer"] = { cls = "elite", type = "Demon", spells = {  }, npc 
 C["legashiritualist"] = { cls = "elite", type = "Demon", spells = {  }, npc = 258668 } -- Legashi Ritualist
 C["legashisatyr"] = { cls = "elite", type = "Demon", spells = {  }, npc = 272307 } -- Legashi Satyr
 C["legashislayer"] = { cls = "elite", type = "Demon", spells = {  }, npc = 255347 } -- Legashi Slayer
-C["legashisubjugator"] = { cls = "elite", type = "Demon", spells = {  }, npc = 247235 } -- Legashi Subjugator
-C["legashisummoner"] = { cls = "elite", type = "Demon", spells = {  }, npc = 247248 } -- Legashi Summoner
+C["legashisubjugator"] = { cls = "elite", type = "Demon", spells = { 9613, 1310285 }, npc = 247235 } -- Legashi Subjugator
+C["legashisummoner"] = { cls = "elite", type = "Demon", spells = { 11639, 1323802 }, npc = 247248 } -- Legashi Summoner
 C["legionnaireteena"] = { lo = 62, hi = 62, type = "Humanoid", spells = {  }, model = 12670 } -- Legionnaire Teena
 C["leprousassistant"] = { lo = 28, hi = 29, type = "Humanoid", spells = { 11264, 12024 }, model = 6967 } -- Leprous Assistant
 C["leprousdefender"] = { lo = 28, hi = 29, cls = "elite", type = "Humanoid", spells = { 6660, 2643, 5116 }, model = 6982 } -- Leprous Defender

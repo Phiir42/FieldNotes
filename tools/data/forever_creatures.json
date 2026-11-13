@@ -208,6 +208,10 @@
  "Blackmaw Berserker": {
   "npc": 247237,
   "rank": 1,
+  "spells": [
+   8269,
+   15793
+  ],
   "type": 7
  },
  "Blackmaw Champion": {
@@ -431,6 +435,7 @@
  "Celegosa": {
   "npc": 247972,
   "rank": 1,
+  "spells": [],
   "type": 2
  },
  "Champion of the Deep": {
@@ -482,6 +487,11 @@
  "Clawbert": {
   "npc": 247996,
   "rank": 1,
+  "spells": [
+   1244482,
+   1244951,
+   1244981
+  ],
   "type": 7
  },
  "Clugfist": {
@@ -890,6 +900,9 @@
  "Felfire Imp": {
   "npc": 247249,
   "rank": 1,
+  "spells": [
+   9053
+  ],
   "type": 3
  },
  "Feral Spirit": {
@@ -1272,11 +1285,19 @@
  "Legashi Subjugator": {
   "npc": 247235,
   "rank": 1,
+  "spells": [
+   9613,
+   1310285
+  ],
   "type": 3
  },
  "Legashi Summoner": {
   "npc": 247248,
   "rank": 1,
+  "spells": [
+   11639,
+   1323802
+  ],
   "type": 3
  },
  "Lesser Stone Golem": {
@@ -2374,6 +2395,12 @@
  "Varrox Bleakhoof": {
   "npc": 247234,
   "rank": 1,
+  "spells": [
+   9081,
+   1246362,
+   1246456,
+   1247087
+  ],
   "type": 3
  },
  "Ve'han Talongrasp": {
