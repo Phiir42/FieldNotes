@@ -29,6 +29,7 @@ ns.DEFAULTS = {
 	minQuality = 2,    -- lowest item quality worth noting (2 = uncommon)
 	button = true,     -- minimap button
 	buttonAngle = 200,
+	sketch = true,     -- newly charted parts of a map are sketched in, not just shown
 	mapKey = true,     -- inside a dungeon, the map key opens the journal's map
 }
 

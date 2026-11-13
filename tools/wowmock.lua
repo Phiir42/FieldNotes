@@ -22,7 +22,7 @@ function issecretvalue(v) return type(v) == "table" and getmetatable(v) == secre
 -- Frames and regions
 ---------------------------------------------------------------------------
 local NOOP = { "Set", "Clear", "Register", "Unregister", "Enable", "Disable", "Add", "Raise", "Lower", "Start",
-	"Stop", "Lock", "Unlock", "Insert", "Highlight", "Apply", "Update" }
+	"Stop", "Remove", "Lock", "Unlock", "Insert", "Highlight", "Apply", "Update" }
 local Object = {}
 local object_mt
 

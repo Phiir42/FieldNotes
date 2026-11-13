@@ -458,6 +458,8 @@ end
 -- map tiles shown through that area's mask. Once every area of a sheet is
 -- found, the plain tiles show instead.
 ---------------------------------------------------------------------------
+local SketchDone
+
 local function CreateCanvas()
 	canvas = CreateFrame("Frame", nil, page.child)
 	canvas:SetSize(MAP_W, MAP_H)
@@ -467,6 +469,9 @@ local function CreateCanvas()
 	canvas.cache = {}  -- [piece or floor] = { texture, ... }, made on first use
 	canvas.shown = {}
 	canvas.marks = {}  -- boss markers, reused
+	canvas.anim = {}   -- parts being sketched in
+	canvas.reveals = {} -- spare wipe masks
+	canvas:SetScript("OnHide", function() SketchDone() end)
 end
 
 -- A skull where a boss you have faced stands; click it for the boss's page.
@@ -537,7 +542,139 @@ local function PieceTextures(floor, piece)
 	return list
 end
 
+---------------------------------------------------------------------------
+-- Sketching in: a part of the map shown for the first time is drawn onto the
+-- sheet rather than appearing at once. It is wiped in from the side you came
+-- from (a second mask that grows across it) while its ink darkens, one area
+-- after another along the road. What has been drawn before is remembered in
+-- the instance's saved data (inst.charted), so each part is sketched once.
+-- Driven from OnUpdate; when nothing is being drawn the map is exactly the
+-- static picture, with no extra masks.
+---------------------------------------------------------------------------
+local SKETCH_TIME = 1.1   -- s to draw one area
+local SKETCH_GAP = 0.4    -- s between one area starting and the next
+local SKETCH_MAX = 3      -- s at most before the last area starts
+local MARK_TIME = 0.5
+
+local function PieceID(piece)
+	return piece.mask:match("([^\\]+)$") or piece.mask
+end
+
+-- p: 0 not begun, 1 finished
+local function Sketch(a, p)
+	if a.mark then
+		a.mark:SetAlpha(p)
+		return
+	end
+	local ink = math.min(1, p * 1.6)
+	for _, tex in ipairs(a.list) do tex:SetAlpha(ink) end
+	local reveal = a.reveal
+	if not reveal then return end
+	if p >= 1 then
+		for _, tex in ipairs(a.list) do tex:RemoveMaskTexture(reveal) end
+		reveal:Hide()
+		canvas.reveals[#canvas.reveals + 1] = reveal
+		a.reveal = nil
+	else
+		local across = 1 - (1 - p) * (1 - p)  -- quick at first, slowing at the end
+		if a.sideways then
+			reveal:SetSize(math.max(1, a.w * across), a.h)
+		else
+			reveal:SetSize(a.w, math.max(1, a.h * across))
+		end
+	end
+end
+
+SketchDone = function()
+	for _, a in ipairs(canvas.anim) do
+		if not a.done then Sketch(a, 1) end
+	end
+	canvas.anim = {}
+	canvas:SetScript("OnUpdate", nil)
+end
+
+local function SketchTick()
+	local now, busy = GetTime(), false
+	for _, a in ipairs(canvas.anim) do
+		if not a.done then
+			local p = (now - a.t0) / a.dur
+			if p >= 1 then
+				Sketch(a, 1)
+				a.done = true
+			else
+				Sketch(a, math.max(p, 0))
+				busy = true
+			end
+		end
+	end
+	if not busy then SketchDone() end
+end
+
+-- Begin drawing a piece in, t seconds from now.
+local function SketchPiece(floor, piece, t)
+	local a = { list = PieceTextures(floor, piece), t0 = GetTime() + t, dur = SKETCH_TIME }
+	if canvas.CreateMaskTexture then
+		local sx, sy = MAP_W / ns.MAP_REF_W, MAP_H / ns.MAP_REF_H
+		-- from the side of the area before it on the road, else along its length
+		local sideways, from = piece.w >= piece.h, nil
+		local prev = piece.n and floor.areas["#" .. (piece.n - 1)]
+		if prev then
+			local dx = (piece.x + piece.w / 2) - (prev.x + prev.w / 2)
+			local dy = (piece.y + piece.h / 2) - (prev.y + prev.h / 2)
+			sideways = math.abs(dx) >= math.abs(dy)
+			from = sideways and (dx < 0 and "RIGHT") or (not sideways and dy < 0 and "BOTTOM") or nil
+		end
+		local reveal = table.remove(canvas.reveals)
+		if not reveal then
+			reveal = canvas:CreateMaskTexture()
+			reveal:SetTexture("Interface\\Buttons\\WHITE8X8", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
+		end
+		reveal:ClearAllPoints()
+		if from == "RIGHT" then
+			reveal:SetPoint("TOPRIGHT", canvas, "TOPLEFT", (piece.x + piece.w) * sx, -piece.y * sy)
+		elseif from == "BOTTOM" then
+			reveal:SetPoint("BOTTOMLEFT", canvas, "TOPLEFT", piece.x * sx, -(piece.y + piece.h) * sy)
+		else
+			reveal:SetPoint("TOPLEFT", canvas, "TOPLEFT", piece.x * sx, -piece.y * sy)
+		end
+		reveal:Show()
+		for _, tex in ipairs(a.list) do tex:AddMaskTexture(reveal) end
+		a.reveal, a.sideways, a.w, a.h = reveal, sideways, piece.w * sx, piece.h * sy
+	end
+	Sketch(a, 0)
+	canvas.anim[#canvas.anim + 1] = a
+end
+
 local function DrawMap(sheet)
+	local floor = sheet.floor
+	-- another sheet: whatever was being drawn is simply finished
+	if canvas.animFloor ~= floor then SketchDone() end
+	canvas.animFloor = floor
+	for _, a in ipairs(canvas.anim) do
+		if a.mark and not a.done then
+			Sketch(a, 1)
+			a.done = true
+		end
+	end
+	-- the parts not drawn before
+	local charted, fresh = sheet.charted, {}
+	if charted then
+		for _, piece in ipairs(sheet.pieces) do
+			local id = PieceID(piece)
+			if not charted[id] then
+				charted[id] = true
+				if ns.db.settings.sketch then fresh[#fresh + 1] = piece end
+			end
+		end
+		table.sort(fresh, function(a, b)
+			if (a.n or 0) ~= (b.n or 0) then return (a.n or 0) < (b.n or 0) end
+			return a.mask < b.mask
+		end)
+	end
+	local gap = #fresh > 1 and math.min(SKETCH_GAP, SKETCH_MAX / (#fresh - 1)) or 0
+	-- a finished sheet shows its plain tiles, but not while parts are being drawn
+	local whole = sheet.complete and #fresh == 0 and #canvas.anim == 0
+
 	for _, tex in ipairs(canvas.shown) do tex:Hide() end
 	local shown = {}
 	local function Show(list)
@@ -546,8 +683,7 @@ local function DrawMap(sheet)
 			shown[#shown + 1] = tex
 		end
 	end
-	local floor = sheet.floor
-	if sheet.complete then
+	if whole then
 		if not canvas.cache[floor] then
 			canvas.cache[floor] = TileTextures(floor, 0, 0, ns.MAP_REF_W, ns.MAP_REF_H)
 		end
@@ -556,6 +692,7 @@ local function DrawMap(sheet)
 		for _, piece in ipairs(sheet.pieces) do Show(PieceTextures(floor, piece)) end
 	end
 	canvas.shown = shown
+	for i, piece in ipairs(fresh) do SketchPiece(floor, piece, (i - 1) * gap) end
 
 	local sx, sy = MAP_W / ns.MAP_REF_W, MAP_H / ns.MAP_REF_H
 	for i, mark in ipairs(sheet.marks or {}) do
@@ -563,9 +700,20 @@ local function DrawMap(sheet)
 		b.name, b.note, b.go = mark.name, mark.note, mark.go
 		b:ClearAllPoints()
 		b:SetPoint("CENTER", canvas, "TOPLEFT", mark.x * sx, -mark.y * sy)
+		b:SetAlpha(1)
 		b:Show()
+		-- a boss marked for the first time is inked in after the rooms
+		if charted and mark.id and not charted[mark.id] then
+			charted[mark.id] = true
+			if ns.db.settings.sketch then
+				local a = { mark = b, t0 = GetTime() + #fresh * gap + (#fresh > 0 and SKETCH_TIME * 0.6 or 0), dur = MARK_TIME }
+				Sketch(a, 0)
+				canvas.anim[#canvas.anim + 1] = a
+			end
+		end
 	end
 	for i = #(sheet.marks or {}) + 1, #canvas.marks do canvas.marks[i]:Hide() end
+	if #canvas.anim > 0 then canvas:SetScript("OnUpdate", SketchTick) end
 end
 
 local SHEET = { "First sheet", "Second sheet", "Third sheet", "Fourth sheet", "Fifth sheet", "Sixth sheet" }
@@ -657,13 +805,15 @@ local function MapPage(lines, id, inst)
 		end
 	end
 	-- the bosses you have faced, marked where they stand
+	inst.charted = inst.charted or {}
+	shown.charted = inst.charted
 	shown.marks = {}
 	for _, spot in ipairs(shown.floor.bosses or {}) do
 		local key = ns:AreaKey(spot.name)
 		for eid, b in pairs(inst.bosses) do
 			if ns:AreaKey(b.name) == key then
 				shown.marks[#shown.marks + 1] = {
-					x = spot.x, y = spot.y, name = b.name,
+					x = spot.x, y = spot.y, name = b.name, id = "boss:" .. key,
 					note = b.kills > 0 and "Defeated. Click for its page." or "Faced, not yet defeated. Click for its page.",
 					go = function() Select(id, "boss", eid) end,
 				}

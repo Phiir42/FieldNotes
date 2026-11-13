@@ -218,6 +218,53 @@ step("every page of the journal", function()
 		end
 	end
 	check("one boss marker on the map (found " .. marks .. ")", marks == 1)
+	-- the parts shown for the first time are being sketched in
+	local function drawing()
+		local n = 0
+		for _, f in ipairs(M.frames) do
+			if f.__scripts.OnUpdate and f ~= FieldNotesMinimapButton then n = n + 1 end
+		end
+		return n
+	end
+	local function run(sec)
+		for _ = 1, sec * 20 do
+			M.wait(0.05)
+			for _, f in ipairs(M.frames) do
+				if f.__scripts.OnUpdate and f ~= FieldNotesMinimapButton then f.__scripts.OnUpdate(f, 0.05) end
+			end
+		end
+	end
+	check("the map is being sketched in", drawing() == 1)
+	run(0.5)
+	check("still drawing after half a second", drawing() == 1)
+	M.fire("ZONE_CHANGED")
+	M.wait(0.5)   -- a redraw in the middle of it
+	run(8)
+	check("the sketch finishes", drawing() == 0)
+	check("what was drawn is remembered", inst.charted and inst.charted["boss:rhahkzor"] and next(inst.charted))
+	open("Spoils"); open("Map")
+	check("nothing is drawn twice", drawing() == 0)
+	-- a new area: only it is sketched; leaving the page mid-sketch ends it
+	M.subzone = "Mast Room"
+	M.fire("ZONE_CHANGED")
+	M.wait(1)
+	check("the second sheet opens", open("Second sheet"))
+	check("a newly found area is sketched", drawing() == 1)
+	run(8)
+	check("and that sketch finishes too", drawing() == 0)
+	M.subzone = "Ironclad Cove"
+	M.fire("ZONE_CHANGED")
+	M.wait(1)
+	check("the next area is sketched", drawing() == 1)
+	open("Spoils")
+	check("leaving the page ends the sketch", drawing() == 0)
+	open("Map")
+	M.slash("sketch")
+	M.fire("ENCOUNTER_START", 2745, "Edwin VanCleef", 1, 5)
+	M.fire("ENCOUNTER_END", 2745, "Edwin VanCleef", 1, 5, 0)
+	M.wait(1)
+	check("with sketching off, areas simply appear", drawing() == 0)
+	M.slash("sketch")
 	-- hover and click every visible row
 	for _, kind in ipairs({ "The Deadmines", "Rhahk'Zor", "Bestiary", "Spoils", "Map" }) do
 		open(kind)

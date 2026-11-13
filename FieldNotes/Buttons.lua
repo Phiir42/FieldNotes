@@ -142,6 +142,9 @@ SlashCmdList["FIELDNOTES"] = function(msg)
 	elseif cmd == "mapkey" then
 		s.mapKey = not s.mapKey
 		ns:Print("the map key %s inside dungeons.", s.mapKey and "opens the journal" or "opens the game's map")
+	elseif cmd == "sketch" then
+		s.sketch = not s.sketch
+		ns:Print("newly charted parts of a map %s.", s.sketch and "are sketched in" or "simply appear")
 	elseif cmd == "maptest" then
 		ns:MapTest(arg ~= "" and arg or nil)
 	elseif cmd == "quality" and tonumber(arg) then
@@ -155,6 +158,7 @@ SlashCmdList["FIELDNOTES"] = function(msg)
 		print("  /fn button  -  show or hide the minimap button")
 		print("  /fn debug  -  what the game has let the journal read, and what it hid")
 		print("  /fn mapkey  -  whether the map key opens the journal inside dungeons")
+		print("  /fn sketch  -  whether new parts of a map are sketched in or simply appear")
 		print("  /fn maptest [instance id | off]  -  preview a map, three more areas each time")
 		print("  /fn errors  -  anything that went wrong, for reporting")
 	end
