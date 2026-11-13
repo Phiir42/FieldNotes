@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.0-beta.7 – not yet released
+
+- Known abilities for fifteen bosses of the dungeons new to Forever (the
+  Drowned City, Blackmaw Hold, Krol'dok Stronghold, Dalaran, the Shaper's
+  Terrace, the Hall of Thanes), where the game's own spell text or a
+  published guide names them.
+
 ## 0.2.0-beta.6
 
 - Portraits for bosses that are summoned or step out of another creature

@@ -319,13 +319,14 @@ def main():
         total += 1
         k = key(name)
         raw = mod_id.get(eid, []) + mod_name.get(k, []) + jrn_id.get(eid, []) + jrn_name.get(k, []) + cdb_name.get(k, [])
-        raw += FOREVER_KNOWN.get(name, [])
         scripted = script_for(k, scripts)
         for alias in ALIASES.get(name, []):
             raw += cdb_name.get(key(alias), [])
             scripted += script_for(key(alias), scripts)
         # scripts also name the fight's stage machinery: leave that out
         raw += [sp for sp in scripted if not MACHINERY.search(names.get(sp, ""))]
+        if name in FOREVER_KNOWN:  # a new boss: a classic creature of a like name is someone else
+            raw = FOREVER_KNOWN[name]
         spells, used = [], set()
         for sp in raw:
             label = names.get(sp)
