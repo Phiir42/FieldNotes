@@ -88,7 +88,7 @@
   Arcane Elementals, Remnants and Fragmented Sentries of Dalaran, and
   Blackmaw Hold's Berserkers, Legashi and Felfire Imps, have theirs in the
   bestiary.
-- Twenty more quests say whom to look for, where what they ask for is
+- Seventeen more quests say whom to look for, where what they ask for is
   carried by many: Hearts of Zeal (Scarlet Myrmidons, Monks...), Deviate
   Hides, Red Silk Bandanas, Troll Temper, Dark Iron Fanny Packs, Ogre
   Warbeads and more, the likeliest carriers first; the map marks where they
