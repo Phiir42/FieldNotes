@@ -1889,6 +1889,7 @@ local function SearchPage(lines, query)
 		return
 	end
 	Faded(lines, "For \"" .. query .. "\".")
+	local intro = lines[#lines] -- (how many were found is said here once known)
 	local n = 0
 	local function Has(text)
 		return type(text) == "string" and text:lower():find(query, 1, true) ~= nil
@@ -2015,6 +2016,9 @@ local function SearchPage(lines, query)
 		end
 	end
 	for _, d in ipairs(diary) do Hit(d[1], d[2], d[3]) end
+	if n > 0 and intro and type(intro.text) == "string" then
+		intro.text = ("For \"%s\": %s."):format(query, Plural(n, "entry", "entries"))
+	end
 	if n == 0 then
 		Body(lines, "\nNothing in the journal holds those words.")
 	elseif n > FOUND_MAX then
