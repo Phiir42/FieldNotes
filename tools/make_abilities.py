@@ -314,6 +314,7 @@ NPC_NAMES = {
     "Overseer Mugg": ["Overlord Mugg"],
     "Handler Ashka": ["War Handler Ashka"],
     "Deathless Guardians": ["Deathless Marrow"],
+    "Destructor's Wraith": ["The Destructor's Wraith"],
 }
 
 

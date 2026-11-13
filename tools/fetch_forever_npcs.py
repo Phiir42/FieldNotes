@@ -23,7 +23,7 @@ URL = "https://www.wowhead.com/forever/search/suggestions-template?q="
 # Names the guides use for bosses the client's encounter list calls otherwise,
 # and bosses the list leaves out.
 ALSO = ["Arcanic Enigma", "The Baron", "Magmatus", "Deathless Marrow", "Bossman Toof", "War Handler Ashka",
-        "Overlord Mugg", "Zarla Ober"]
+        "Overlord Mugg", "Zarla Ober", "Ezra Grimm", "Festering Rotslime", "The Destructor's Wraith"]
 
 
 def main():
