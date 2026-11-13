@@ -1950,7 +1950,17 @@ local function SearchPage(lines, query)
 			Note(it.note, name, place, Go("spoils"))
 		end
 		for _, q in ipairs(QuestsOf(id)) do
-			if Has(q[2]) then Hit(q[2], "a quest of " .. ns:The(place), Go("quests")) end
+			if Has(q[2]) then
+				Hit(q[2], "a quest of " .. ns:The(place), Go("quests"))
+			else
+				-- or one that sends you after what was searched for
+				for _, who in ipairs(q[7] or {}) do
+					if Has(who) then
+						Hit(q[2], "a quest of " .. ns:The(place) .. ": look for " .. ns:The(who), Go("quests"))
+						break
+					end
+				end
+			end
 			Note(inst.questNotes and inst.questNotes[q[1]] and inst.questNotes[q[1]].note, q[2], place, Go("quests"))
 		end
 		-- the visits someone went on with you
