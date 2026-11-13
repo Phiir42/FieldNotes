@@ -941,7 +941,9 @@ end
 
 -- The quests of a dungeon that your side is offered, and any others your quest
 -- log files under the dungeon: those are written down and kept from then on.
+local questsDrawn -- while a page is drawn: [inst id] = what QuestsOf gave, asked for once
 local function QuestsOf(id)
+	if questsDrawn and questsDrawn[id] then return questsDrawn[id] end
 	local side = UnitFactionGroup and UnitFactionGroup("player")
 	side = side == "Alliance" and "A" or side == "Horde" and "H" or nil
 	-- a class's own quests only for that class (q.class: a bit per class id)
@@ -974,6 +976,7 @@ local function QuestsOf(id)
 			t[#t + 1] = { qid, known.title, known.level or 0, 0, nil, "" }
 		end
 	end
+	if questsDrawn then questsDrawn[id] = t end
 	return t
 end
 
@@ -1897,7 +1900,16 @@ StaticPopupDialogs["FIELDNOTES_TEAR"] = {
 	hideOnEscape = true,
 }
 
+local Page
 local function Draw()
+	-- the quests of a dungeon are worked out once for the whole page
+	questsDrawn = {}
+	local ok, err = pcall(Page)
+	questsDrawn = nil
+	if not ok then error(err, 0) end
+end
+
+Page = function()
 	local inst = sel.inst and ns.db.instances[sel.inst]
 	if not inst then
 		noteOn = nil
