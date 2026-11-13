@@ -5,6 +5,7 @@
 --   from: who hands the quest out (inside = true: they stand in the dungeon itself);
 --   item: the item that begins it instead; after: the quest it follows
 --   to: who it is handed in to, where they stand inside the dungeon
+--   note: something worth knowing that the rest does not say
 --   class: a mask of the classes it is offered to (bit = class id - 1), where not all
 --   pick: item ids of the rewards you choose one of; get: those you are given regardless
 local _, ns = ...
@@ -80,10 +81,10 @@ Q[48] = {
 	{ 95042, "Seeking the Kor Gem", 25, 20, "H", "Bring back a Corrupted Kor Gem from the Blackfathom naga.", nil, from = "Ulric Frostveil at Zoram'gar Outpost", class = 2 },
 	{ 1199, "Twilight Falls", 25, 20, "A", "Bring 10 Twilight Pendants to Argent Guard Manados in Darnassus.", { "Twilight Elementalist", "Twilight Shadowmage", "Twilight Loreseeker", "Twilight Aquamancer" }, from = "Argent Guard Manados", get = { 6998, 7000 } },
 	{ 6565, "Allegiance to the Old Gods", 26, 17, "H", "Kill Lorgus Jett in Blackfathom Deeps and then return to Je'neu Sancrea in Ashenvale.", { "Lorgus Jett" }, from = "Je'neu Sancrea", pick = { 17694, 17695 } },
-	{ 6921, "Amongst the Ruins", 27, 21, "H", "Bring the Fathom Core to Je'neu Sancrea at Zoram'gar Outpost, Ashenvale.", { "Fathom Stone" }, from = "Je'neu Sancrea" },
+	{ 6921, "Amongst the Ruins", 27, 21, "H", "Bring the Fathom Core to Je'neu Sancrea at Zoram'gar Outpost, Ashenvale.", { "Fathom Stone" }, from = "Je'neu Sancrea", note = "Taking the Fathom Core from the Fathom Stone calls up Baron Aquanis." },
 	{ 1200, "Blackfathom Villainy", 27, 18, "A", "Bring the head of Twilight Lord Kelris to Dawnwatcher Selgorm in Darnassus.", { "Twilight Lord Kelris" }, from = "Argent Guard Thaelrid", after = "In Search of Thaelrid", inside = true, pick = { 7001, 7002 } },
 	{ 6561, "Blackfathom Villainy", 27, 18, "H", "Bring the head of Twilight Lord Kelris to Bashana Runetotem in Thunder Bluff.", { "Twilight Lord Kelris" }, from = "Argent Guard Thaelrid", inside = true, pick = { 7001, 7002 } },
-	{ 6922, "Baron Aquanis", 30, 21, "H", "Bring the Strange Water Globe to Je'neu Sancrea at Zoram'gar Outpost, Ashenvale.", { "Baron Aquanis" }, item = "Strange Water Globe", pick = { 16886, 16887 } },
+	{ 6922, "Baron Aquanis", 30, 21, "H", "Bring the Strange Water Globe to Je'neu Sancrea at Zoram'gar Outpost, Ashenvale.", { "Baron Aquanis" }, item = "Strange Water Globe", note = "Baron Aquanis rises when the Fathom Core is taken from the Fathom Stone.", pick = { 16886, 16887 } },
 }
 
 -- Uldaman

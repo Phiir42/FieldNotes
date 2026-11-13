@@ -24,6 +24,11 @@ EXTRA = os.path.join(m.ROOT, "tools", "data", "forever_quests.json")
 ALLIANCE, HORDE = 77, 178  # race masks
 JUNK = re.compile(r"UNUSED|DEPRECATED|<NYI>|<TXT>|\bTEST\b|^zz|REUSE|\bOLD\b")  # in capitals: not "Old Gods"
 TAB = chr(9)
+# What the database cannot say about a quest, by quest id.
+NOTES = {
+    6922: "Baron Aquanis rises when the Fathom Core is taken from the Fathom Stone.",
+    6921: "Taking the Fathom Core from the Fathom Stone calls up Baron Aquanis.",
+}
 
 
 def read_tables(wanted):
@@ -239,6 +244,8 @@ def main():
         q = by_map[mp][-1]
         if classes:
             q["class"] = classes
+        if q["id"] in NOTES:
+            q["note"] = NOTES[q["id"]]
         giver = givers.get(q["id"])
         if q["id"] in starts:
             q["item"] = starts[q["id"]]
@@ -274,6 +281,7 @@ def main():
         "--   from: who hands the quest out (inside = true: they stand in the dungeon itself);",
         "--   item: the item that begins it instead; after: the quest it follows",
         "--   to: who it is handed in to, where they stand inside the dungeon",
+        "--   note: something worth knowing that the rest does not say",
         "--   class: a mask of the classes it is offered to (bit = class id - 1), where not all",
         "--   pick: item ids of the rewards you choose one of; get: those you are given regardless",
         "local _, ns = ...",
@@ -290,9 +298,9 @@ def main():
         for q in quests:
             total += 1
             who = ", { %s }" % ", ".join(lua_string(w) for w in q["who"]) if q.get("who") else ""
-            if not who and any(q.get(k) for k in ("from", "item", "after", "to")):
+            if not who and any(q.get(k) for k in ("from", "item", "after", "to", "note")):
                 who = ", nil"
-            for k in ("from", "item", "after", "to"):
+            for k in ("from", "item", "after", "to", "note"):
                 if q.get(k):
                     who += ", %s = %s" % (k, lua_string(q[k]))
             if q.get("inside"):

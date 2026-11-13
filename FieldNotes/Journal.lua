@@ -913,6 +913,7 @@ local function QuestsPage(lines, id, inst)
 			end
 			if q.after then how = how and (how .. "; follows " .. q.after) or ("Follows " .. q.after) end
 			if how then Faded(lines, how .. ".", 8) end
+			if q.note then Faded(lines, q.note, 8) end
 			-- and what it pays
 			local function Rewards(ids, label)
 				if not ids then return end

@@ -3,6 +3,9 @@ MAP = {
     "slug": "blackfathom-deeps",
     "path": "sheets",  # each sheet is one road of its own, areas in the order you pass through them
     "creatures": "auto",  # file creatures by their spawn points (see make_maps.creature_rooms)
+    # Baron Aquanis stands nowhere: he rises where the Fathom Core is taken from
+    # the Fathom Stone (the stone's own spot on the second sheet).
+    "bosses": {"Baron Aquanis": (2, 415, 504)},
     "floors": [
         {
             "ref": "blackfathom-deeps-1",
@@ -31,7 +34,6 @@ MAP = {
                 "Blackfathom Oracle": "The Pool of Ask'ar",
                 "Domina": "Lady Sarevess",
                 "Shrine of Gelihast": "Gelihast",
-                "Baron Aquanis": "Gelihast",
                 "Murkshallow Softshell": "Gelihast",
                 "Blindlight Murloc": "Gelihast",
                 "Blindlight Muckdweller": "Gelihast",

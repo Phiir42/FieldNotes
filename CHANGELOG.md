@@ -23,6 +23,8 @@
   across 37 instances.
 - A quest that moves along while you are inside a dungeon is written down
   under it, whatever the game files it under.
+- Baron Aquanis is marked at the Fathom Stone, where he rises when the
+  Fathom Core is taken, and his quests say so.
 
 ## 0.2.0-beta.8
 
