@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.0-beta.2 – not yet released
+## 0.2.0-beta.2
 
 - Newly charted parts of a map are sketched in, room after room along the
   road, instead of appearing at once; a newly faced boss's marker is inked in
