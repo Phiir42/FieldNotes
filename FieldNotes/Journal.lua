@@ -1822,7 +1822,7 @@ local function SettingsPage(lines)
 		}
 	end
 	lines[#lines + 1] = {
-		text = "Move the note shown on screen", gap = 10, indent = 8, color = FADED,
+		text = "Move the slip of parchment shown on screen", gap = 10, indent = 8, color = FADED,
 		tip = "Holds a sample on screen: drag it where notes should appear, click it when done.",
 		click = function() ns:PlaceNotice() end,
 	}
