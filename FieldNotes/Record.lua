@@ -665,7 +665,7 @@ local function Tidy()
 		-- falls to a boss were counted from 0.2.0-beta.10 on: before, only the
 		-- diary says so
 		for _, b in pairs(inst.bosses) do
-			if b.deaths == nil then
+			if b.deaths == nil and type(b.name) == "string" then
 				-- (written "the Butcher" mid-sentence since; "The Butcher" before)
 				local line, old, n = ("Fell in battle against %s."):format(ns:The(b.name)),
 					("Fell in battle against %s."):format(b.name), 0
@@ -714,7 +714,9 @@ end
 
 -- Instance info can lag a moment behind the loading screen.
 local function CheckSoon()
-	Tidy()
+	-- (a slip in mending old notes must not keep the journal from its work)
+	local ok, err = pcall(Tidy)
+	if not ok then ns:Failed("mending old notes", err) end
 	CheckInstance()
 	C_Timer.After(2, CheckInstance)
 end
