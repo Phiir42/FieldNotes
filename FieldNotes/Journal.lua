@@ -1934,6 +1934,12 @@ local function SearchPage(lines, query)
 			local m = inst.mobs[npc]
 			if not IsBoss(inst, m) then
 				if Has(m.name) then Hit(m.name, "a creature of " .. ns:The(place), Go("bestiary")) end
+				-- the abilities its bestiary entry lists
+				local k = Lore(m)
+				for _, spell in ipairs(k and k.spells or {}) do
+					local name = SpellName(spell)
+					if Has(name) then Hit(name, "an ability of " .. m.name .. ", " .. ns:The(place), Go("bestiary")) end
+				end
 				Note(m.note, m.name, place, Go("bestiary"))
 			end
 		end
