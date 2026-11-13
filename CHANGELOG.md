@@ -14,6 +14,14 @@
   when you reach it, as on a real run.
 - Naxxramas: spiders, maggots and bats no longer uncover the quarters they
   do not live in.
+- The journal opened outside a dungeon no longer says its pages are blank
+  when they are not: it opens on a contents page listing every place
+  written about, with how far each has got. "Contents" at the top of the
+  list goes back to it.
+- A boss's page says when it was last defeated and how often you fell to
+  it.
+- A boss whose name the game hid as the fight began is given its name when
+  the fight ends, instead of staying "Unknown".
 
 ## 0.2.0-beta.9
 

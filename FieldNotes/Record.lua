@@ -274,6 +274,11 @@ ns:On("UNIT_SPELLCAST_SUCCEEDED", function(...) pcall(Cast, nil, ...) end)
 ---------------------------------------------------------------------------
 local function Boss(id, name)
 	local b = cur.bosses[id]
+	-- a name the game hid when the fight began, given at its end
+	if b and name and b.name == UNKNOWN then
+		b.name = name
+		ns:Changed()
+	end
 	if not b then
 		b = { name = name or UNKNOWN, first = time(), pulls = 0, kills = 0, wipes = 0 }
 		cur.bosses[id] = b
@@ -363,6 +368,7 @@ ns:On("PLAYER_DEAD", function()
 	local b = encounter and cur.bosses[encounter.id]
 	local area = cur.areas[#cur.areas]
 	if b then
+		b.deaths = (b.deaths or 0) + 1
 		ns:Log(cur, ("Fell in battle against %s."):format(b.name))
 	elseif area then
 		ns:Log(cur, ("Fell in battle in %s."):format(area.name))

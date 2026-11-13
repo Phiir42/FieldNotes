@@ -553,6 +553,68 @@ local function BlankPage(lines)
 	Faded(lines, "\nInside a dungeon the map key opens the journal's map of it. \"/fn help\" lists the commands.")
 end
 
+local IsBoss
+
+-- The places written about, most recently visited first.
+local function Places()
+	local ids = {}
+	for id in pairs(ns.db.instances) do ids[#ids + 1] = id end
+	table.sort(ids, function(a, b)
+		local ia, ib = ns.db.instances[a], ns.db.instances[b]
+		if (ia.last or 0) ~= (ib.last or 0) then return (ia.last or 0) > (ib.last or 0) end
+		return tostring(a) < tostring(b)
+	end)
+	return ids
+end
+
+-- The first page once something is written: every place in the journal, with
+-- how far its pages have got.
+local function TitlePage(lines)
+	H1(lines, "Field Notes")
+	local places, faced, beaten, kinds, finds = 0, 0, 0, 0, 0
+	local rows = {}
+	for _, id in ipairs(Places()) do
+		local inst = ns.db.instances[id]
+		places = places + 1
+		local f, k = 0, 0
+		for _, b in pairs(inst.bosses) do
+			f = f + 1
+			if b.kills > 0 then k = k + 1 end
+		end
+		local mobs = 0
+		for _, m in pairs(inst.mobs) do
+			if not IsBoss(inst, m) then mobs = mobs + 1 end
+		end
+		faced, beaten, kinds, finds = faced + f, beaten + k, kinds + mobs, finds + #inst.lootOrder
+		local t = {}
+		if f > 0 then
+			t[#t + 1] = (k == f and (f == 1 and "its foe of note defeated" or ("all " .. f .. " foes of note defeated")))
+				or (Plural(f, "foe", "foes") .. " of note faced, " .. k .. " defeated")
+		end
+		if mobs > 0 then t[#t + 1] = Plural(mobs, "kind of creature", "kinds of creature") end
+		if #inst.lootOrder > 0 then t[#t + 1] = Plural(#inst.lootOrder, "find", "finds") end
+		local about = (inst.kind == "raid" and "Raid" or "Dungeon") .. ", last visited " .. ns:Day(inst.last or inst.first) .. "."
+		if #t > 0 then
+			local rest = table.concat(t, ", ")
+			about = about .. " " .. rest:sub(1, 1):upper() .. rest:sub(2) .. "."
+		end
+		rows[#rows + 1] = { id = id, name = inst.name, about = about }
+	end
+	local t = { Plural(places, "place", "places") .. " written about" }
+	if beaten > 0 then t[#t + 1] = Plural(beaten, "foe", "foes") .. " of note defeated" end
+	if kinds > 0 then t[#t + 1] = Plural(kinds, "kind of creature", "kinds of creature") .. " noted" end
+	if finds > 0 then t[#t + 1] = Plural(finds, "find", "finds") end
+	Faded(lines, table.concat(t, ", ") .. ".")
+	H2(lines, "Contents")
+	for _, r in ipairs(rows) do
+		lines[#lines + 1] = {
+			text = r.name .. "\n" .. FADED_HEX .. r.about .. "|r", font = "GameFontNormal", gap = 8, indent = 8,
+			click = function() Select(r.id, "overview") end,
+		}
+	end
+	Faded(lines, "\nInside a dungeon the map key opens the journal's map of it. \"/fn help\" lists the commands.")
+end
+
 local function OverviewPage(lines, id, inst)
 	H1(lines, inst.name)
 	Faded(lines, ("%s. First entered %s, %s."):format(inst.kind == "raid" and "Raid" or "Dungeon",
@@ -609,6 +671,8 @@ local function BossPage(lines, inst, eid)
 	if b.kills > 0 then t[#t + 1] = Plural(b.kills, "victory", "victories") end
 	if b.wipes > 0 then t[#t + 1] = Plural(b.wipes, "defeat", "defeats") end
 	if b.best then t[#t + 1] = "swiftest victory " .. ns:Clock(b.best) end
+	if b.kills > 1 and b.lastKill then t[#t + 1] = "last victory " .. ns:Day(b.lastKill) end
+	if (b.deaths or 0) > 0 then t[#t + 1] = "fallen to it " .. (b.deaths == 1 and "once" or (b.deaths .. " times")) end
 	Faded(lines, table.concat(t, ", ") .. ".")
 	local own
 	for _, npc in ipairs(inst.mobOrder) do
@@ -690,7 +754,7 @@ end
 -- Bosses have pages of their own and stay out of the bestiary: creatures
 -- first fought in an encounter, anything named like a boss you have faced, and
 -- the bosses the addon knows of.
-local function IsBoss(inst, m)
+function IsBoss(inst, m)
 	if m.enc then return true end
 	local key = ns:AreaKey(m.name)
 	-- nor do friends who only spoke up during a fight (noted by older versions)
@@ -1559,17 +1623,16 @@ end
 
 local function IndexLines()
 	local lines = {}
-	local ids = {}
-	for id in pairs(ns.db.instances) do ids[#ids + 1] = id end
-	table.sort(ids, function(a, b)
-		local ia, ib = ns.db.instances[a], ns.db.instances[b]
-		if (ia.last or 0) ~= (ib.last or 0) then return (ia.last or 0) > (ib.last or 0) end
-		return tostring(a) < tostring(b)
-	end)
+	local ids = Places()
 	if #ids == 0 then
 		lines[1] = { text = "No pages yet.", color = FADED, font = "GameFontNormalSmall" }
 		return IndexTail(lines)
 	end
+	lines[1] = {
+		text = "Contents", font = "GameFontNormalSmall", color = FADED,
+		selected = not sel.inst and sel.kind ~= "settings",
+		click = function() Select(nil, "contents") end,
+	}
 	for _, id in ipairs(ids) do
 		local inst = ns.db.instances[id]
 		local open = sel.inst == id
@@ -1710,7 +1773,7 @@ Refresh = function()
 	if sel.kind == "settings" then
 		SettingsPage(lines)
 	elseif not inst then
-		BlankPage(lines)
+		if next(ns.db.instances) then TitlePage(lines) else BlankPage(lines) end
 	elseif sel.kind == "boss" then
 		BossPage(lines, inst, sel.key)
 	elseif sel.kind == "map" then

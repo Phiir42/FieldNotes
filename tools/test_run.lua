@@ -205,14 +205,24 @@ step("a boss: wipe, then kill", function()
 	M.fire("ENCOUNTER_START", 99999, "Someone New", 1, 5)
 	M.fire("ENCOUNTER_END", 99999, "Someone New", 1, 5, 1)
 	M.fire("ENCOUNTER_END", 88888, nil, 1, 5, 1)
+	-- one whose name the game hides as it begins, and gives at its end;
+	-- falling in it counts against it
+	local deaths = inst.deaths or 0
+	M.fire("ENCOUNTER_START", 77001, M.Secret(), 1, 5)
+	check("a hidden name is written as unknown", inst.bosses[77001] and inst.bosses[77001].name == UNKNOWN)
+	M.fire("PLAYER_DEAD")
+	M.fire("ENCOUNTER_END", 77001, "Late Name", 1, 5, 0)
+	check("and filled in once the game gives it", inst.bosses[77001].name == "Late Name")
+	check("a death in a boss fight counts against the boss", inst.bosses[77001].deaths == 1 and inst.deaths == deaths + 1)
 	M.wait(1)
 end)
 
 step("notices and deaths", function()
 	local slip = FieldNotesNotice
 	check("a notice was shown for what was written", slip ~= nil and slip:IsShown())
+	local deaths = inst.deaths or 0
 	M.fire("PLAYER_DEAD")
-	check("death written in the diary", inst.deaths == 1 and inst.log[#inst.log][2]:find("Fell in battle", 1, true))
+	check("death written in the diary", inst.deaths == deaths + 1 and inst.log[#inst.log][2]:find("Fell in battle", 1, true))
 	for _ = 1, 600 do
 		M.wait(0.05)
 		if slip.__scripts.OnUpdate then slip.__scripts.OnUpdate(slip, 0.05) end
@@ -220,7 +230,7 @@ step("notices and deaths", function()
 	check("notices fade away when all are shown", not slip:IsShown() and not slip.__scripts.OnUpdate)
 	M.slash("notices")
 	M.fire("PLAYER_DEAD")
-	check("no notice when turned off", not slip:IsShown() and inst.deaths == 2)
+	check("no notice when turned off", not slip:IsShown() and inst.deaths == deaths + 2)
 	M.slash("notices")
 	M.subzone = "Somewhere Unmapped"
 	M.fire("ZONE_CHANGED")
@@ -554,6 +564,9 @@ step("leave and return", function()
 	check("no current instance outside", ns.currentID == nil)
 	M.slash("")
 	check("journal still shows the dungeon", pageText():find("The Deadmines", 1, true))
+	check("the contents page lists every place", open("Contents") and pageText():find("1 place written about", 1, true)
+		and pageText():find("foes of note", 1, true) and not pageText():find("These pages are blank", 1, true))
+	check("a place opens from the contents page", open("kinds of creature") and pageText():find("First entered", 1, true))
 	M.slash("")
 	M.wait(4000)
 	M.instance = { name = "The Deadmines", kind = "party", id = 36 }
