@@ -85,6 +85,12 @@ local function Failed(event, err)
 	end
 end
 
+-- For code run other than from an event (a click on the journal): what went
+-- wrong is kept and reported the same way.
+function ns:Failed(what, err)
+	Failed(what, err)
+end
+
 local function Dispatch(event, ...)
 	local list = handlers[event]
 	if not list then return end

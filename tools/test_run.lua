@@ -735,6 +735,16 @@ step("mistakes are caught and kept for reporting", function()
 	M.slash("errors clear")
 	M.slash("errors")
 	check("error list cleared", ns.db.errors == nil)
+	-- a page that fails to draw is kept the same way, not thrown at the player
+	local quests = ns.Quests[36]
+	ns.Quests[36] = { { 1 } } -- a quest with nothing but its id
+	if not FieldNotesJournal:IsShown() then M.slash("") end
+	open("The Deadmines")
+	local ok = pcall(open, "Quests (")
+	check("a page that fails to draw is caught", ok and ns.db.errors and ns.db.errors[1].event == "drawing a page")
+	ns.Quests[36] = quests
+	ns.db.errors = nil
+	M.slash("")
 end)
 
 step("tearing pages out", function()

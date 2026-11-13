@@ -1851,8 +1851,7 @@ StaticPopupDialogs["FIELDNOTES_TEAR"] = {
 	hideOnEscape = true,
 }
 
-Refresh = function()
-	if not (frame and frame:IsShown()) then return end
+local function Draw()
 	local inst = sel.inst and ns.db.instances[sel.inst]
 	if not inst then
 		noteOn = nil
@@ -1926,6 +1925,14 @@ Refresh = function()
 		if file and size then notes.edit:SetFont(file, size * (ns.db.settings.textScale or 1), flags) end
 	end
 	if target then notes:Show() else notes:Hide() end
+end
+
+-- A page that fails to draw must not get in the way of play: the mistake is
+-- kept for "/fn errors" like any other.
+Refresh = function()
+	if not (frame and frame:IsShown()) then return end
+	local ok, err = pcall(Draw)
+	if not ok then ns:Failed("drawing a page", err) end
 end
 
 -- The journal is one fixed layout, made larger or smaller as a whole: by the

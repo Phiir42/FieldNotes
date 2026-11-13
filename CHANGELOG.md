@@ -37,6 +37,9 @@
   this version on.
 - Loot seen only in chat just after a boss the game announces no fight for
   (Cookie, Lorgus Jett) is now credited to that boss, as for any other.
+- The minimap button's tooltip says how far the place you are in has got.
+- A page that fails to draw is kept for "/fn errors" instead of raising an
+  error on screen.
 
 ## 0.2.0-beta.9
 
