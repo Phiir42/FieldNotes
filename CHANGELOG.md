@@ -98,7 +98,9 @@
 - Quests whose quarry stands outside a dungeon, by its way in, say so:
   Techbot, Mad Magglish, Magregan Deepshadow, the Common Hall chests of
   Uldaman, the Sapphires of Aku'Mai and the Shadowshards of Maraudon among
-  them. Uldaman Reagent Run names the Magenta Cap Clusters.
+  them. Uldaman Reagent Run names the Magenta Cap Clusters, and Kibler's
+  errands and Mother's Milk in Blackrock Spire whom they want.
+- Who gives a quest reads "the Sparklematic 5200" mid-sentence.
 - "Find OOX-17/TN!" and "Crystal in the Mountains" are no longer listed
   under Zul'Farrak and Razorfen Downs: what begins them drops all over.
 - Creatures called up as pets (BFD's Voidwalker Minions) no longer show
