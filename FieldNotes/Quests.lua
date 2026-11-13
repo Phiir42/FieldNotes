@@ -10,7 +10,7 @@ ns.Quests = Q
 -- Shadowfang Keep
 Q[33] = {
 	{ 1098, "Deathstalkers in Shadowfang", 25, 18, "H", "Find the Deathstalker Adamant and Deathstalker Vincent." },
-	{ 1013, "The Book of Ur", 26, 16, "H", "Bring the Book of Ur to Keeper Bel'dugur at the Apothecarium in the Undercity." },
+	{ 1013, "The Book of Ur", 26, 16, "H", "Bring the Book of Ur to Keeper Bel'dugur at the Apothecarium in the Undercity.", { "The Book of Ur" } },
 	{ 1014, "Arugal Must Die", 27, 18, "H", "Kill Arugal and bring his head to Dalar Dawnweaver at the Sepulcher.", { "Archmage Arugal" } },
 }
 
@@ -26,19 +26,21 @@ Q[34] = {
 
 -- Deadmines
 Q[36] = {
-	{ 214, "Red Silk Bandanas", 17, 14, "A", "Scout Riell at the Sentinel Hill Tower wants you to bring her 10 Red Silk Bandanas.", { "Defias Wizard", "Defias Taskmaster", "Defias Strip Miner", "Defias Squallshaper" } },
+	{ 214, "Red Silk Bandanas", 17, 14, "A", "Scout Riell at the Sentinel Hill Tower wants you to bring her 10 Red Silk Bandanas." },
 	{ 168, "Collecting Memories", 18, 14, "A", "Retrieve 4 Miners' Union Cards and return them to Wilder Thistlenettle in Stormwind." },
 	{ 167, "Oh Brother. . .", 20, 15, "A", "Bring Foreman Thistlenettle's Explorers' League Badge to Wilder Thistlenettle in Stormwind." },
 	{ 2040, "Underground Assault", 20, 15, "A", "Retrieve the Gnoam Sprecklesprocket from the Deadmines and return it to Shoni the Shilent in Stormwind.", { "Sneed's Shredder" } },
 	{ 166, "The Defias Brotherhood", 22, 14, "A", "Kill Edwin VanCleef and bring his head to Gryan Stoutmantle.", { "Edwin VanCleef" } },
+	{ 373, "The Unsent Letter", 22, 16, "A", "Deliver the Letter to the City Architect to Baros Alexston in Stormwind.", { "Edwin VanCleef" } },
 }
 
 -- Wailing Caverns
 Q[43] = {
+	{ 385, "Crocolisk Hunting", 15, 10, "A", "Get 5 pieces of Crocolisk Meat and 6 Crocolisk Skins for Marek Ironheart at the Farstrider Lodge.", { "Deviate Crocolisk" } },
 	{ 1489, "Hamuul Runetotem", 16, 12, "H", "Speak with Hamuul Runetotem." },
 	{ 1490, "Nara Wildmane", 16, 12, "H", "Speak with Nara Wildmane." },
-	{ 1486, "Deviate Hides", 17, 13, nil, "Nalpak in the Wailing Caverns wants 20 Deviate Hides.", { "Deviate Ravager", "Deviate Guardian", "Kresh", "Skum" } },
-	{ 962, "Serpentbloom", 18, 14, "H", "Apothecary Zamah in Thunder Bluff wants you to collect 10 Serpentbloom." },
+	{ 1486, "Deviate Hides", 17, 13, nil, "Nalpak in the Wailing Caverns wants 20 Deviate Hides." },
+	{ 962, "Serpentbloom", 18, 14, "H", "Apothecary Zamah in Thunder Bluff wants you to collect 10 Serpentbloom.", { "Serpentbloom" } },
 	{ 1491, "Smart Drinks", 18, 13, nil, "Bring 6 portions of Wailing Essence to Mebok Mizzyrix in Ratchet.", { "Evolving Ectoplasm" } },
 	{ 959, "Trouble at the Docks", 18, 14, nil, "Crane Operator Bigglefuzz in Ratchet wants you to retrieve the bottle of 99-Year-Old Port from Mad Magglish who is hiding in the Wailing Caverns." },
 	{ 1487, "Deviate Eradication", 21, 15, nil, "Ebru in the Wailing Caverns wants you to kill 7 Deviate Ravagers, 7 Deviate Vipers, 7 Deviate Shamblers and 7 Deviate Dreadfangs.", { "Deviate Ravager", "Deviate Viper", "Deviate Shambler", "Deviate Dreadfang" } },
@@ -48,8 +50,8 @@ Q[43] = {
 
 -- Razorfen Kraul
 Q[47] = {
-	{ 1221, "Blueleaf Tubers", 26, 20, nil, "Grab a Crate with Holes. Grab a Snufflenose Command Stick. Grab and read the Snufflenose Owner's Manual. In Razorfen Kraul, use the Crate with Holes to summon a Snufflenose Gopher, and use the Command Stick on the gopher to make it search for Tubers. Bring 6 Blueleaf Tubers, the Snufflenose Command Stick and the Crate with Holes to Mebok Mizzyrix in Ratchet." },
-	{ 1142, "Mortality Wanes", 30, 25, "A", "Find and return Treshala's Pendant to Treshala Fallowbrook in Darnassus.", { "Roogug", "Razorfen Stalker", "Overlord Ramtusk", "Charlga Razorflank" } },
+	{ 1221, "Blueleaf Tubers", 26, 20, nil, "Grab a Crate with Holes. Grab a Snufflenose Command Stick. Grab and read the Snufflenose Owner's Manual. In Razorfen Kraul, use the Crate with Holes to summon a Snufflenose Gopher, and use the Command Stick on the gopher to make it search for Tubers. Bring 6 Blueleaf Tubers, the Snufflenose Command Stick and the Crate with Holes to Mebok Mizzyrix in Ratchet.", { "Blueleaf Tuber" } },
+	{ 1142, "Mortality Wanes", 30, 25, "A", "Find and return Treshala's Pendant to Treshala Fallowbrook in Darnassus." },
 	{ 1144, "Willix the Importer", 30, 23, nil, "Escort Willix the Importer out of Razorfen Kraul." },
 	{ 1109, "Going, Going, Guano!", 33, 30, "H", "Bring 1 pile of Kraul Guano to Master Apothecary Faranell in the Undercity.", { "Greater Kraul Bat", "Kraul Bat" } },
 	{ 1102, "A Vengeful Fate", 34, 29, "H", "Bring Razorflank's Heart to Auld Stonespire in Thunder Bluff.", { "Charlga Razorflank" } },
@@ -58,13 +60,15 @@ Q[47] = {
 
 -- Blackfathom Deeps
 Q[48] = {
+	{ 6564, "Allegiance to the Old Gods", 22, 17, "H", "Bring the Damp Note to Je'neu Sancrea in Ashenvale." },
 	{ 6563, "The Essence of Aku'Mai", 22, 17, "H", "Bring 20 Sapphires of Aku'Mai to Je'neu Sancrea in Ashenvale." },
 	{ 6562, "Trouble in the Deeps", 22, 17, "H", "Speak to Je'neu Sancrea in Ashenvale." },
-	{ 971, "Knowledge in the Deeps", 23, 10, "A", "Bring the Lorgalis Manuscript to Gerrig Bonegrip in the Forlorn Cavern in Ironforge." },
+	{ 971, "Knowledge in the Deeps", 23, 10, "A", "Bring the Lorgalis Manuscript to Gerrig Bonegrip in the Forlorn Cavern in Ironforge.", { "Pitted Iron Chest" } },
 	{ 1198, "In Search of Thaelrid", 24, 18, "A", "Seek out Argent Guard Thaelrid in Blackfathom Deeps." },
 	{ 1275, "Researching the Corruption", 24, 18, "A", "Gershala Nightwhisper in Auberdine wants 8 Corrupt Brain stems.", { "Blackfathom Myrmidon", "Blackfathom Sea Witch", "Fallenroot Hellcaller", "Fallenroot Shadowstalker" } },
 	{ 1199, "Twilight Falls", 25, 20, "A", "Bring 10 Twilight Pendants to Argent Guard Manados in Darnassus.", { "Twilight Elementalist", "Twilight Shadowmage", "Twilight Loreseeker", "Twilight Aquamancer" } },
-	{ 6921, "Amongst the Ruins", 27, 21, "H", "Bring the Fathom Core to Je'neu Sancrea at Zoram'gar Outpost, Ashenvale." },
+	{ 6565, "Allegiance to the Old Gods", 26, 17, "H", "Kill Lorgus Jett in Blackfathom Deeps and then return to Je'neu Sancrea in Ashenvale.", { "Lorgus Jett" } },
+	{ 6921, "Amongst the Ruins", 27, 21, "H", "Bring the Fathom Core to Je'neu Sancrea at Zoram'gar Outpost, Ashenvale.", { "Fathom Stone" } },
 	{ 1200, "Blackfathom Villainy", 27, 18, "A", "Bring the head of Twilight Lord Kelris to Dawnwatcher Selgorm in Darnassus.", { "Twilight Lord Kelris" } },
 	{ 6561, "Blackfathom Villainy", 27, 18, "H", "Bring the head of Twilight Lord Kelris to Bashana Runetotem in Thunder Bluff.", { "Twilight Lord Kelris" } },
 }
@@ -74,6 +78,7 @@ Q[70] = {
 	{ 721, "A Sign of Hope", 35, 35, "A", "Find Hammertoe Grez in Uldaman." },
 	{ 2418, "Power Stones", 36, 30, nil, "Bring 8 Dentrium Power Stones and 8 An'Alleum Power Stones to Rigglefuzz in the Badlands.", { "Shadowforge Sharpshooter", "Shadowforge Geologist", "Shadowforge Archaeologist", "Shadowforge Darkcaster" } },
 	{ 704, "Agmond's Fate", 38, 30, "A", "Bring 4 Carved Stone Urns to Prospector Ironband in Loch Modan." },
+	{ 1108, "Indurium", 39, 28, nil, "Bring 10 Indurium Flakes to Martek the Exiled in the Badlands.", { "Stonevault Rockchewer" } },
 	{ 722, "Amulet of Secrets", 40, 35, "A", "Find Hammertoe's Amulet and return it to him in Uldaman." },
 	{ 709, "Solution to Doom", 40, 30, nil, "Bring the Tablet of Ryun'eh to Theldurin the Lost." },
 	{ 2240, "The Hidden Chamber", 40, 35, "A", "Read Baelog's Journal, explore the hidden chamber, then report to Prospector Stormpike." },
@@ -87,18 +92,19 @@ Q[70] = {
 	{ 2338, "Translating the Journal", 42, 37, "H", "Let Jarkal borrow the necklace. In exchange, he will translate the journal for you." },
 	{ 17, "Uldaman Reagent Run", 42, 36, "A", "Bring 12 Magenta Fungus Caps to Ghak Healtouch in Thelsamar." },
 	{ 2202, "Uldaman Reagent Run", 42, 36, "H", "Bring 12 Magenta Fungus Caps to Jarkal Mossmeld in Kargath." },
-	{ 2201, "Find the Gems", 43, 40, "A", "Find the ruby, sapphire, and topaz that are scattered throughout Uldaman. Once acquired, contact Talvash del Kissel remotely by using the Phial of Scrying he previously gave you. From the journal, you know... * The ruby has been stashed in a barricaded Shadowforge area. * The topaz has been hidden in an urn in one of the Trogg areas, near some Alliance dwarves. * The sapphire has been claimed by Grimlok, the trogg leader.", { "Grimlok" } },
+	{ 2201, "Find the Gems", 43, 40, "A", "Find the ruby, sapphire, and topaz that are scattered throughout Uldaman. Once acquired, contact Talvash del Kissel remotely by using the Phial of Scrying he previously gave you. From the journal, you know... * The ruby has been stashed in a barricaded Shadowforge area. * The topaz has been hidden in an urn in one of the Trogg areas, near some Alliance dwarves. * The sapphire has been claimed by Grimlok, the trogg leader.", { "Shadowforge Cache", "Grimlok", "Conspicuous Urn" } },
 	{ 1360, "Reclaimed Treasures", 43, 33, "A", "Get Krom Stoutarm's treasured possession from his chest in the North Common Hall of Uldaman, and bring it to him in Ironforge." },
 	{ 2342, "Reclaimed Treasures", 43, 33, "H", "Get Patrick Garrett's family treasure from their family chest in the South Common Hall of Uldaman, and bring it to him in the Undercity." },
 	{ 2340, "Deliver the Gems", 44, 37, "H", "Deliver the Necklace and Gem Salvage to Dran Droffers in Orgrimmar." },
-	{ 2339, "Find the Gems and Power Source", 44, 37, "H", "Recover all three gems and a power source for the necklace from Uldaman, and then bring them to Jarkal Mossmeld in Kargath. Jarkal believes a power source might be found on the strongest construct present in Uldaman. From the journal, you know... * The ruby has been stashed in a barricaded Shadowforge area. * The topaz has been hidden in an urn in one of the Trogg areas, near some Alliance dwarves. * The sapphire has been claimed by Grimlok, the trogg leader.", { "Grimlok", "Archaedas" } },
+	{ 2339, "Find the Gems and Power Source", 44, 37, "H", "Recover all three gems and a power source for the necklace from Uldaman, and then bring them to Jarkal Mossmeld in Kargath. Jarkal believes a power source might be found on the strongest construct present in Uldaman. From the journal, you know... * The ruby has been stashed in a barricaded Shadowforge area. * The topaz has been hidden in an urn in one of the Trogg areas, near some Alliance dwarves. * The sapphire has been claimed by Grimlok, the trogg leader.", { "Shadowforge Cache", "Grimlok", "Conspicuous Urn", "Archaedas" } },
 	{ 2341, "Necklace Recovery, Take 3", 44, 40, "H", "Visit Jarkal Mossmeld in Kargath to see if he was successful." },
 	{ 2204, "Restoring the Necklace", 44, 37, "A", "Obtain a power source from the most powerful construct you can find in Uldaman, and deliver it to Talvash del Kissel in Ironforge.", { "Archaedas" } },
 	{ 2361, "Restoring the Necklace", 44, 37, "A", "" },
-	{ 1139, "The Lost Tablets of Will", 45, 35, "A", "Find the Tablet of Will, and return them to Advisor Belgrum in Ironforge." },
+	{ 1139, "The Lost Tablets of Will", 45, 35, "A", "Find the Tablet of Will, and return them to Advisor Belgrum in Ironforge.", { "Tablet of Will" } },
 	{ 2278, "The Platinum Discs", 47, 40, nil, "Speak with stone watcher and learn what ancient lore it keeps. Once you have learned what lore it has to offer, activate the Discs of Norgannon." },
 	{ 2279, "The Platinum Discs", 47, 40, "A", "Take the miniature version of the Discs of Norgannon to the Explorers' League in Ironforge." },
 	{ 2280, "The Platinum Discs", 47, 40, "H", "Take the miniature version of the Discs of Norgannon to the one of the sages in Thunder Bluff." },
+	{ 8588, "The Horde Needs Heavy Leather!", 60, 53, nil, "Bring 10 Heavy Leather to Skinner Jamani at the Valley of Spirits in Orgrimmar.", { "Jadespine Basilisk", "Large Mithril Bound Chest" } },
 }
 
 -- Gnomeregan
@@ -110,14 +116,14 @@ Q[90] = {
 	{ 2931, "Castpipe's Task", 28, 25, "A", "Speak with Master Mechanic Castpipe in Ironforge." },
 	{ 2904, "A Fine Mess", 30, 24, nil, "Escort Kernobee to the Clockwerk Run exit and then report to Scooty in Booty Bay." },
 	{ 2930, "Data Rescue", 30, 25, "A", "Bring a Prismatic Punch Card to Master Mechanic Castpipe in Ironforge." },
-	{ 2924, "Essential Artificials", 30, 24, "A", "Bring 12 Essential Artificials to Klockmort Spannerspan in Ironforge." },
-	{ 2928, "Gyrodrillmatic Excavationators", 30, 20, "A", "Bring twenty-four Robo-mechanical Guts to Shoni in Stormwind.", { "Leprous Assistant", "Irradiated Pillager", "Mechanized Sentry", "Peacekeeper Security Suit" } },
+	{ 2924, "Essential Artificials", 30, 24, "A", "Bring 12 Essential Artificials to Klockmort Spannerspan in Ironforge.", { "Artificial Extrapolator" } },
+	{ 2928, "Gyrodrillmatic Excavationators", 30, 20, "A", "Bring twenty-four Robo-mechanical Guts to Shoni in Stormwind." },
 	{ 2925, "Klockmort's Essentials", 30, 24, "A", "Speak with Klockmort Spannerspan in Ironforge." },
 	{ 2962, "The Only Cure is More Green Glow", 30, 20, "A", "Travel to Gnomeregan and bring back High Potency Radioactive Fallout. Be warned, the fallout is unstable and will collapse rather quickly. Ozzie will also require your Heavy Leaden Collection Phial when the task is complete." },
-	{ 2951, "The Sparklematic 5200!", 30, 25, nil, "Insert a Grime-Encrusted Item into the Sparklematic 5200, and be sure to have three silver coins to start the machine.", { "Holdout Medic", "Holdout Warrior", "Irradiated Pillager", "Leprous Machinesmith" } },
+	{ 2951, "The Sparklematic 5200!", 30, 25, nil, "Insert a Grime-Encrusted Item into the Sparklematic 5200, and be sure to have three silver coins to start the machine." },
 	{ 2952, "The Sparklematic 5200!", 30, 25, nil, "" },
-	{ 4601, "The Sparklematic 5200!", 30, 25, nil, "Insert a Grime-Encrusted Item into the Sparklematic 5200, and be sure to have three silver coins to start the machine.", { "Holdout Medic", "Holdout Warrior", "Irradiated Pillager", "Leprous Machinesmith" } },
-	{ 4602, "The Sparklematic 5200!", 30, 25, nil, "Insert a Grime-Encrusted Item into the Sparklematic 5200, and be sure to have three silver coins to start the machine.", { "Holdout Medic", "Holdout Warrior", "Irradiated Pillager", "Leprous Machinesmith" } },
+	{ 4601, "The Sparklematic 5200!", 30, 25, nil, "Insert a Grime-Encrusted Item into the Sparklematic 5200, and be sure to have three silver coins to start the machine." },
+	{ 4602, "The Sparklematic 5200!", 30, 25, nil, "Insert a Grime-Encrusted Item into the Sparklematic 5200, and be sure to have three silver coins to start the machine." },
 	{ 4605, "The Sparklematic 5200!", 30, 25, nil, "" },
 	{ 4606, "The Sparklematic 5200!", 30, 25, nil, "" },
 	{ 2945, "Grime-Encrusted Ring", 34, 28, nil, "Figure out a way to remove the grime from the Grime-Encrusted Ring.", { "Dark Iron Agent" } },
@@ -125,14 +131,15 @@ Q[90] = {
 	{ 2949, "Return of the Ring", 34, 28, "H", "You may either keep the ring, or you may find the person responsible for the imprint and engravings on the inside of the band." },
 	{ 2842, "Chief Engineer Scooty", 35, 25, "H", "Speak with Scooty in Booty Bay." },
 	{ 2843, "Gnomer-gooooone!", 35, 20, "H", "Wait for Scooty to calibrate the Goblin Transponder." },
-	{ 2841, "Rig Wars", 35, 25, "H", "Retrieve the Rig Blueprints and Thermaplugg's Safe Combination from Gnomeregan and bring them to Nogg in Orgrimmar.", { "Mekgineer Thermaplugg" } },
+	{ 2841, "Rig Wars", 35, 25, "H", "Retrieve the Rig Blueprints and Thermaplugg's Safe Combination from Gnomeregan and bring them to Nogg in Orgrimmar.", { "Thermaplugg's Safe", "Mekgineer Thermaplugg" } },
 	{ 2929, "The Grand Betrayal", 35, 25, "A", "Venture to Gnomeregan and kill Mekgineer Thermaplugg. Return to High Tinker Mekkatorque when the task is complete.", { "Mekgineer Thermaplugg" } },
+	{ 714, "Gyro... What?", 37, 35, nil, "Bring a Gyrochronatom to Lotwil Veriatus in the Badlands.", { "Tink Sprocketwhistle" } },
 }
 
 -- Sunken Temple
 Q[109] = {
-	{ 1475, "Into The Temple of Atal'Hakkar", 50, 41, "A", "Gather 10 Atal'ai Tablets for Brohann Caskbelly in Stormwind." },
-	{ 1445, "The Temple of Atal'Hakkar", 50, 38, "H", "Collect 20 Fetishes of Hakkar and bring them to Fel'Zerul in Stonard.", { "Atal'ai Warrior", "Atal'ai Witch Doctor", "Jammal'an the Prophet", "Ogom the Wretched" } },
+	{ 1475, "Into The Temple of Atal'Hakkar", 50, 41, "A", "Gather 10 Atal'ai Tablets for Brohann Caskbelly in Stormwind.", { "Atal'ai Tablet" } },
+	{ 1445, "The Temple of Atal'Hakkar", 50, 38, "H", "Collect 20 Fetishes of Hakkar and bring them to Fel'Zerul in Stonard." },
 	{ 3446, "Into the Depths", 51, 46, nil, "Find the Altar of Hakkar in the Sunken Temple in Swamp of Sorrows." },
 	{ 3447, "Secret of the Circle", 51, 46, nil, "Travel into the Sunken Temple and discover the secret hidden in the circle of statues." },
 	{ 3380, "The Sunken Temple", 51, 46, "H", "Find Marvon Rivetseeker in Tanaris." },
@@ -156,10 +163,11 @@ Q[129] = {
 
 -- Scarlet Monastery
 Q[189] = {
-	{ 1113, "Hearts of Zeal", 33, 30, "H", "Master Apothecary Faranell in the Undercity wants 20 Hearts of Zeal.", { "Houndmaster Loksey", "Herod", "Scarlet Commander Mograine", "High Inquisitor Whitemane" } },
+	{ 1113, "Hearts of Zeal", 33, 30, "H", "Master Apothecary Faranell in the Undercity wants 20 Hearts of Zeal." },
 	{ 1051, "Vorrel's Revenge", 33, 25, "H", "Return Vorrel Sengutz's wedding ring to Monika Sengutz in Tarren Mill." },
-	{ 1049, "Compendium of the Fallen", 38, 28, "H", "Retrieve the Compendium of the Fallen from the Monastery in Tirisfal Glades and return to Sage Truthseeker in Thunder Bluff." },
-	{ 1050, "Mythology of the Titans", 38, 28, "A", "Retrieve Mythology of the Titans from the Monastery and bring it to Librarian Mae Paledust in Ironforge." },
+	{ 1160, "Test of Lore", 36, 25, "H", "Find The Beginnings of the Undead Threat, and return it to Parqual Fintallas in Undercity.", { "Beginnings of the Undead Threat" } },
+	{ 1049, "Compendium of the Fallen", 38, 28, "H", "Retrieve the Compendium of the Fallen from the Monastery in Tirisfal Glades and return to Sage Truthseeker in Thunder Bluff.", { "Rituals of Power", "Compendium of the Fallen" } },
+	{ 1050, "Mythology of the Titans", 38, 28, "A", "Retrieve Mythology of the Titans from the Monastery and bring it to Librarian Mae Paledust in Ironforge.", { "Mythology of the Titans" } },
 	{ 1053, "In the Name of the Light", 40, 34, "A", "Kill High Inquisitor Whitemane, Scarlet Commander Mograine, Herod, the Scarlet Champion and Houndmaster Loksey and then report back to Raleigh the Devout in Southshore.", { "High Inquisitor Whitemane", "Scarlet Commander Mograine", "Herod", "Houndmaster Loksey" } },
 	{ 1048, "Into The Scarlet Monastery", 42, 33, "H", "Kill High Inquisitor Whitemane, Scarlet Commander Mograine, Herod, the Scarlet Champion and Houndmaster Loksey and then report back to Varimathras in the Undercity.", { "High Inquisitor Whitemane", "Scarlet Commander Mograine", "Herod", "Houndmaster Loksey" } },
 }
@@ -169,7 +177,7 @@ Q[209] = {
 	{ 2865, "Scarab Shells", 45, 40, nil, "Bring 5 Uncracked Scarab Shells to Tran'rek in Gadgetzan.", { "Scarab" } },
 	{ 2936, "The Spider God", 45, 40, "H", "Read from the Tablet of Theka to learn the name of the Witherbark spider god, then return to Master Gadrin." },
 	{ 2864, "Tran'rek", 45, 40, nil, "Speak with Tran'rek in Gadgetzan." },
-	{ 3042, "Troll Temper", 45, 40, nil, "Bring 20 Vials of Troll Temper to Trenton Lighthammer in Gadgetzan.", { "Zerillis", "Dustwraith", "Sandarr Dunereaver", "Ruuzlu" } },
+	{ 3042, "Troll Temper", 45, 40, nil, "Bring 20 Vials of Troll Temper to Trenton Lighthammer in Gadgetzan." },
 	{ 2861, "Tabetha's Task", 46, 40, nil, "Speak with Tabetha in Dustwallow Marsh." },
 	{ 2846, "Tiara of the Deep", 46, 40, nil, "Bring the Tiara of the Deep to Tabetha in Dustwallow Marsh.", { "Hydromancer Velratha" } },
 	{ 2768, "Divino-matic Rod", 47, 40, nil, "Bring the Divino-matic Rod to Chief Engineer Bilgewhizzle in Gadgetzan.", { "Sergeant Bly" } },
@@ -180,9 +188,9 @@ Q[209] = {
 
 -- Blackrock Spire
 Q[229] = {
-	{ 4788, "The Final Tablets", 58, 40, nil, "Bring the Fifth and Sixth Mosh'aru Tablets to Prospector Ironboot in Tanaris." },
-	{ 4982, "Bijou's Belongings", 59, 55, "H", "Find Bijou's Belongings and return them to her. You recall her mentioning that she stashed them on the bottom floor of the city." },
-	{ 5001, "Bijou's Belongings", 59, 55, "A", "Find Bijou's Belongings and return them to her. Good luck!" },
+	{ 4788, "The Final Tablets", 58, 40, nil, "Bring the Fifth and Sixth Mosh'aru Tablets to Prospector Ironboot in Tanaris.", { "Fifth Mosh'aru Tablet", "Sixth Mosh'aru Tablet" } },
+	{ 4982, "Bijou's Belongings", 59, 55, "H", "Find Bijou's Belongings and return them to her. You recall her mentioning that she stashed them on the bottom floor of the city.", { "Bijou's Belongings" } },
+	{ 5001, "Bijou's Belongings", 59, 55, "A", "Find Bijou's Belongings and return them to her. Good luck!", { "Bijou's Belongings" } },
 	{ 4983, "Bijou's Reconnaissance Report", 59, 55, "H", "Take Bijou's Reconnaissance Report back to Grandmaster Lexlort in Kargath." },
 	{ 4862, "En-Ay-Es-Tee-Why", 59, 55, nil, "Travel to Blackrock Spire and collect 15 Spire Spider Eggs for Kibler. By the sound of it, these eggs could be found near spiders." },
 	{ 4729, "Kibler's Exotic Pets", 59, 55, nil, "Travel to Blackrock Spire and find Bloodaxe Worg Pups. Use the cage to carry the ferocious little beasts. Bring back a Caged Worg Pup to Kibler." },
@@ -193,10 +201,12 @@ Q[229] = {
 	{ 7761, "Blackhand's Command", 60, 55, nil, "That is one stupid orc. It would appear as if you need to find this brand and gain the Mark of Drakkisath in order to access the Orb of Command. The letter indicates that General Drakkisath guards the brand. Perhaps you should investigate." },
 	{ 6602, "Blood of the Black Dragon Champion", 60, 55, "H", "Travel to Blackrock Spire and slay General Drakkisath. Gather his blood and return it to Rexxar.", { "General Drakkisath" } },
 	{ 4765, "Delivery to Ridgewell", 60, 57, "A", "Bring Ridgewell's Crate to Remington Ridgewell in Stormwind." },
-	{ 4764, "Doomrigger's Clasp", 60, 57, "A", "Bring Doomrigger's Clasp to Mayara Brightwing in the Burning Steppes." },
+	{ 8586, "Dirge's Kickin' Chimaerok Chops", 60, 60, nil, "Dirge Quikcleave in Gadgetzan wants you to bring him 20 Goblin Rocket Fuel and 20 Deeprock Salt.", { "Spirestone Ogre Magus" } },
+	{ 4764, "Doomrigger's Clasp", 60, 57, "A", "Bring Doomrigger's Clasp to Mayara Brightwing in the Burning Steppes.", { "Doomrigger's Coffer" } },
 	{ 6502, "Drakefire Amulet", 60, 50, "A", "You must retrieve the Blood of the Black Dragon Champion from General Drakkisath. Drakkisath can be found in his throne room behind the Halls of Ascension in Blackrock Spire.", { "General Drakkisath" } },
 	{ 4735, "Egg Collection", 60, 57, nil, "Bring 8 Collected Dragon Eggs and the Collectronic Module to Tinkee Steamboil at Flame Crest in the Burning Steppes." },
 	{ 4734, "Egg Freezing", 60, 57, nil, "Use the Eggscilloscope Prototype on an egg in the Rookery." },
+	{ 6821, "Eye of the Emberseer", 60, 56, nil, "Bring the Eye of the Emberseer to Duke Hydraxis in Azshara.", { "Pyroguard Emberseer" } },
 	{ 5047, "Finkle Einhorn, At Your Service!", 60, 55, nil, "Talk to Malyfous Darkhammer in Everlook." },
 	{ 4974, "For The Horde!", 60, 55, "H", "Travel to Blackrock Spire and slay Warchief Rend Blackhand. Take his head and return to Orgrimmar." },
 	{ 5089, "General Drakkisath's Command", 60, 55, "A", "Take General Drakkisath's Command to Marshal Maxwell in Burning Steppes.", { "Overlord Wyrmthalak" } },
@@ -205,10 +215,10 @@ Q[229] = {
 	{ 4766, "Mayara Brightwing", 60, 57, "A", "Speak with Mayara Brightwing in the Burning Steppes." },
 	{ 8995, "Mea Culpa, Lord Valthalak", 60, 58, nil, "Use the Brazier of Beckoning to summon Lord Valthalak. Dispatch him, and use Lord Valthalak's Amulet on the corpse. Then, return Lord Valthalak's Amulet to the Spirit of Lord Valthalak." },
 	{ 4866, "Mother's Milk", 60, 55, nil, "In the heart of Blackrock Spire you will find Mother Smolderweb. Engage her and get her to poison you. Chances are good that you will have to kill her as well. Return to Ragged John when you are poisoned so that he can 'milk' you." },
-	{ 6569, "Oculus Illusions", 60, 55, "H", "Travel to Blackrock Spire and collect 20 Black Dragonspawn Eyes. Return to Myranda the Hag when the task is complete.", { "Rage Talon Fire Tongue", "Rage Talon Captain", "Rage Talon Dragon Guard", "Rage Talon Flamescale" } },
-	{ 4742, "Seal of Ascension", 60, 57, nil, "Find the three gemstones of command: The Gemstone of Smolderthorn, Gemstone of Spirestone, and Gemstone of Bloodaxe. Return them, along with the Unadorned Seal of Ascension, to Vaelan. The Generals, as told to you by Vaelan, are: War Master Voone of the Smolderthorn; Highlord Omokk of the Spirestone; and Overlord Wyrmthalak of the Bloodaxe.", { "Highlord Omokk", "War Master Voone", "Overlord Wyrmthalak", "Bloodaxe Summoner" } },
+	{ 6569, "Oculus Illusions", 60, 55, "H", "Travel to Blackrock Spire and collect 20 Black Dragonspawn Eyes. Return to Myranda the Hag when the task is complete." },
+	{ 4742, "Seal of Ascension", 60, 57, nil, "Find the three gemstones of command: The Gemstone of Smolderthorn, Gemstone of Spirestone, and Gemstone of Bloodaxe. Return them, along with the Unadorned Seal of Ascension, to Vaelan. The Generals, as told to you by Vaelan, are: War Master Voone of the Smolderthorn; Highlord Omokk of the Spirestone; and Overlord Wyrmthalak of the Bloodaxe.", { "Highlord Omokk", "War Master Voone", "Overlord Wyrmthalak" } },
 	{ 4743, "Seal of Ascension", 60, 57, nil, "Travel to the Wyrmbog in Dustwallow Marsh. Find the ancient drake, Emberstrife and beat him without mercy until his will is broken. It is at that moment which you must place the Unforged Seal of Ascension before the great beast. You must then be quick to use the Orb of Draconic Energy on his weakened form and claim dominion over his mental faculties. Control the beast and force the Flames of the Black Dragonflight upon the Unforged Seal of Ascension!" },
-	{ 4768, "The Darkstone Tablet", 60, 57, "H", "Bring the Darkstone Tablet to Shadow Mage Vivian Lagrave in Kargath." },
+	{ 4768, "The Darkstone Tablet", 60, 57, "H", "Bring the Darkstone Tablet to Shadow Mage Vivian Lagrave in Kargath.", { "Darkstone Tablet" } },
 	{ 8966, "The Left Piece of Lord Valthalak's Amulet", 60, 58, nil, "Use the Brazier of Beckoning to summon forth the spirit of Mor Grayhoof and slay him. Return to Bodley inside Blackrock Mountain with the Left Piece of Lord Valthalak's Amulet and the Brazier of Beckoning." },
 	{ 5160, "The Matron Protectorate", 60, 57, nil, "Travel to Winterspring and find Haleh. Give her Awbee's scale." },
 	{ 8989, "The Right Piece of Lord Valthalak's Amulet", 60, 58, nil, "Use the Brazier of Beckoning to summon forth the spirit of Mor Grayhoof and slay him. Return to Bodley inside Blackrock Mountain with the recombined Lord Valthalak's Amulet and the Brazier of Beckoning." },
@@ -220,6 +230,7 @@ Q[229] = {
 
 -- Blackrock Depths
 Q[230] = {
+	{ 7946, "Spawn of Jubjub", 1, 1, nil, "", { "Anvilrage Officer", "Grim Patron", "Guzzling Patron", "Hammered Patron" } },
 	{ 3981, "Commander Gor'shak", 52, 48, "H", "Find Commander Gor'shak in Blackrock Depths. You recall that the crudely drawn picture of the orc included bars drawn over the portrait. Perhaps you should search for a prison of some sort." },
 	{ 3801, "Dark Iron Legacy", 52, 48, nil, "Speak with Franclorn Forgewright if you are interested in obtaining a key to the city major." },
 	{ 3802, "Dark Iron Legacy", 52, 48, nil, "Slay Fineous Darkvire and recover the great hammer, Ironfel. Take Ironfel to the Shrine of Thaurissan and place it on the statue of Franclorn Forgewright.", { "Fineous Darkvire" } },
@@ -231,18 +242,18 @@ Q[230] = {
 	{ 4241, "Marshal Windsor", 54, 48, "A", "Travel to Blackrock Mountain in the northwest and enter Blackrock Depths. Find out what became of Marshal Windsor. You recall Ragged John talking about Windsor being dragged off to a prison." },
 	{ 4002, "The Eastern Kingdom", 54, 48, "H", "Speak with Thrall if you are prepared to take on the mission he has planned." },
 	{ 7201, "The Last Element", 54, 48, "H", "Travel to Blackrock Depths and recover 10 Essence of the Elements. Your first inclination is to search the golems and golem makers. You remember Vivian Lagrave also muttering something about elementals.", { "Molten War Golem", "Ragereaver Golem", "Warbringer Construct", "Fireguard" } },
-	{ 4201, "The Love Potion", 54, 50, nil, "Bring 4 Gromsblood, 10 Giant Silver Veins and Nagmara's Filled Vial to Mistress Nagmara in Blackrock Depths.", { "Anvilrage Soldier", "Blazing Fireguard", "Fireguard Destroyer" } },
+	{ 4201, "The Love Potion", 54, 50, nil, "Bring 4 Gromsblood, 10 Giant Silver Veins and Nagmara's Filled Vial to Mistress Nagmara in Blackrock Depths." },
 	{ 4001, "What Is Going On?", 54, 48, "H", "Speak with Kharan Mighthammer and gather information about Princess Moira Bronzebeard's kidnapping. Take that information to Thrall in Orgrimmar. You recall Gor'shak mentioning that Kharan is being held in a cell nearby." },
 	{ 4126, "Hurley Blackbreath", 55, 50, "A", "Bring the Lost Thunderbrew Recipe to Ragnar Thunderbrew in Kharanos." },
 	{ 4134, "Lost Thunderbrew Recipe", 55, 50, "H", "Bring the Lost Thunderbrew Recipe to Vivian Lagrave in Kargath." },
 	{ 4128, "Ragnar Thunderbrew", 55, 50, "A", "Speak with Ragnar Thunderbrew." },
-	{ 4123, "The Heart of the Mountain", 55, 50, nil, "Bring the Heart of the Mountain to Maxwort Uberglint in the Burning Steppes." },
-	{ 4083, "The Spectral Chalice", 55, 40, nil, "", { "Shadowforge Flame Keeper", "Jaz", "Crest Killer", "Shill Dinger" } },
+	{ 4123, "The Heart of the Mountain", 55, 50, nil, "Bring the Heart of the Mountain to Maxwort Uberglint in the Burning Steppes.", { "Heart of the Mountain" } },
+	{ 4083, "The Spectral Chalice", 55, 40, nil, "", { "Dark Coffer" } },
 	{ 4133, "Vivian Lagrave", 55, 50, "H", "Speak with Shadowmaster Vivian Lagrave in Kargath." },
 	{ 3907, "Disharmony of Fire", 56, 48, "H", "Enter Blackrock Depths and track down Lord Incendius. Slay him and return any source of information you may find to Thunderheart.", { "Lord Incendius" } },
 	{ 4263, "Incendius!", 56, 48, "A", "Find Lord Incendius in Blackrock Depths and destroy him!", { "Lord Incendius" } },
-	{ 4286, "The Good Stuff", 56, 50, "A", "Travel to Blackrock Depths and recover 20 Dark Iron Fanny Packs. Return to Oralius when you have completed this task. You assume that the Dark Iron dwarves inside Blackrock Depths carry these 'fanny pack' contraptions.", { "Crest Killer", "Shadowforge Senator", "Anvilrage Captain", "Shadowforge Citizen" } },
-	{ 4264, "A Crumpled Up Note", 58, 50, "A", "You may have just stumbled on to something that Marshal Windsor would be interested in seeing. There may be hope, after all.", { "Jaz", "Crest Killer", "Shill Dinger", "Ograbisi" } },
+	{ 4286, "The Good Stuff", 56, 50, "A", "Travel to Blackrock Depths and recover 20 Dark Iron Fanny Packs. Return to Oralius when you have completed this task. You assume that the Dark Iron dwarves inside Blackrock Depths carry these 'fanny pack' contraptions." },
+	{ 4264, "A Crumpled Up Note", 58, 50, "A", "You may have just stumbled on to something that Marshal Windsor would be interested in seeing. There may be hope, after all." },
 	{ 4282, "A Shred of Hope", 58, 50, "A", "Return Marshal Windsor's Lost Information. Marshal Windsor believes that the information is being held by Golem Lord Argelmach and General Angerforge.", { "General Angerforge", "Golem Lord Argelmach" } },
 	{ 4024, "A Taste of Flame", 58, 52, nil, "Travel to Blackrock Depths and slay Bael'Gar. You only know that the giant resides inside Blackrock Depths. Remember to use the Altered Black Dragonflight Molt on Bael'Gar's remains to capture the Fiery Essence. Return the Encased Fiery Essence to Cyrus Therepentous." },
 	{ 4122, "Grark Lorkrub", 58, 52, "H", "Travel to the Burning Steppes and find Grark Lorkrub. You recall Lexlort mentioning that he was last seen in a massive Blackrock fortress. When you find Grark Lorkrub, use the Thorium Shackles to bind him and then lead him back through Blackrock Mountain to the Searing Gorge. Lexlort will have his men waiting on the other side to take Grark into custody." },
@@ -260,14 +271,20 @@ Q[230] = {
 	{ 4004, "The Princess Saved?", 60, 48, "H", "Return to Thrall!" },
 }
 
+-- Onyxia's Lair
+Q[249] = {
+	{ 7495, "Victory for the Alliance", 60, 50, "A", "Take the Head of Onyxia to Highlord Bolvar Fordragon in Stormwind.", { "Onyxia" } },
+	{ 7490, "Victory for the Horde", 60, 60, "H", "Take the Head of Onyxia to Thrall in Orgrimmar.", { "Onyxia" } },
+}
+
 -- Scholomance
 Q[289] = {
 	{ 5529, "Plagued Hatchlings", 58, 55, nil, "Kill 20 Plagued Hatchlings, then return to Betina Bigglezink at the Light's Hope Chapel.", { "Plagued Hatchling" } },
-	{ 5341, "Barov Family Fortune", 60, 52, "H", "Venture to the Scholomance and recover the Barov family fortune. Four deeds make up this fortune: The Deed to Caer Darrow; The Deed to Brill; The Deed to Tarren Mill; and The Deed to Southshore. Return to Alexi Barov when you have completed this task." },
-	{ 5343, "Barov Family Fortune", 60, 52, "A", "Venture to the Scholomance and recover the Barov family fortune. Four deeds make up this fortune: The Deed to Caer Darrow; The Deed to Brill; The Deed to Tarren Mill; and The Deed to Southshore. Return to Weldon Barov when you have completed this task." },
+	{ 5341, "Barov Family Fortune", 60, 52, "H", "Venture to the Scholomance and recover the Barov family fortune. Four deeds make up this fortune: The Deed to Caer Darrow; The Deed to Brill; The Deed to Tarren Mill; and The Deed to Southshore. Return to Alexi Barov when you have completed this task.", { "The Deed to Brill", "The Deed to Caer Darrow", "The Deed to Southshore", "The Deed to Tarren Mill" } },
+	{ 5343, "Barov Family Fortune", 60, 52, "A", "Venture to the Scholomance and recover the Barov family fortune. Four deeds make up this fortune: The Deed to Caer Darrow; The Deed to Brill; The Deed to Tarren Mill; and The Deed to Southshore. Return to Weldon Barov when you have completed this task.", { "The Deed to Brill", "The Deed to Caer Darrow", "The Deed to Southshore", "The Deed to Tarren Mill" } },
 	{ 5531, "Betina Bigglezink", 60, 57, nil, "Bring the Frozen Eggs to Betina Bigglezink." },
 	{ 4771, "Dawn's Gambit", 60, 57, nil, "Place Dawn's Gambit in the Viewing Room of the Scholomance. Defeat Vectus, then return to Betina Bigglezink.", { "Vectus" } },
-	{ 5382, "Doctor Theolen Krastinov, the Butcher", 60, 55, nil, "Find Doctor Theolen Krastinov inside the Scholomance. Destroy him, then burn the Remains of Eva Sarkhoff and the Remains of Lucien Sarkhoff. Return to Eva Sarkhoff when the task is complete.", { "Doctor Theolen Krastinov" } },
+	{ 5382, "Doctor Theolen Krastinov, the Butcher", 60, 55, nil, "Find Doctor Theolen Krastinov inside the Scholomance. Destroy him, then burn the Remains of Eva Sarkhoff and the Remains of Lucien Sarkhoff. Return to Eva Sarkhoff when the task is complete.", { "Doctor Theolen Krastinov", "Remains of Eva Sarkhoff", "Remains of Lucien Sarkhoff" } },
 	{ 5384, "Kirtonos the Herald", 60, 55, nil, "Return to the Scholomance with the Blood of Innocents. Find the porch and place the Blood of Innocents in the brazier. Kirtonos will come to feast upon your soul. Fight valiantly, do not give an inch! Destroy Kirtonos and return to Eva Sarkhoff." },
 	{ 5515, "Krastinov's Bag of Horrors", 60, 55, nil, "Locate Jandice Barov in the Scholomance and destroy her. From her corpse recover Krastinov's Bag of Horrors. Return the bag to Eva Sarkhoff.", { "Jandice Barov" } },
 	{ 8969, "The Left Piece of Lord Valthalak's Amulet", 60, 58, nil, "Use the Brazier of Beckoning to summon forth the spirit of Kormok and slay him. Return to Bodley inside Blackrock Mountain with the Left Piece of Lord Valthalak's Amulet and the Brazier of Beckoning." },
@@ -281,21 +298,25 @@ Q[309] = {
 	{ 8240, "A Bijou for Zanza", 60, 58, nil, "Destroy any one of the Hakkari Bijous found in Zul'Gurub at the Altar of Zanza on Yojamba Isle. When done, speak with Vinchaxa nearby." },
 	{ 8201, "A Collection of Heads", 60, 58, nil, "String 5 Channeler's Heads, then return the Collection of Troll Heads to Exzhal on Yojamba Isle." },
 	{ 8227, "Nat's Measuring Tape", 60, 58, nil, "Return Nat's Measuring Tape to Nat Pagle in Dustwallow Marsh." },
+	{ 8515, "The Alliance Needs Thick Leather!", 60, 44, nil, "Bring 10 Thick Leather to Marta Finespindle at the Military Ward in Ironforge.", { "Razzashi Cobra" } },
 	{ 8183, "The Heart of Hakkar", 60, 58, nil, "Bring the Heart of Hakkar to Molthor on Yojamba Isle.", { "Hakkar" } },
+	{ 8590, "The Horde Needs Thick Leather!", 60, 54, nil, "Bring 10 Thick Leather to Sergeant Umala at the Valley of Spirits in Orgrimmar.", { "Razzashi Cobra" } },
 }
 
 -- Stratholme
 Q[329] = {
+	{ 5067, "Leggings of Arcana", 50, 57, nil, "In order to create the Leggings of Arcana, you will be required to bring the following items back to Malyfous Darkhammer: 1 Pristine Hide of the Beast; 5 Frayed Abomination Stitchings; 5 Arcanite Bars; 5 Frostwhisper's Embalming Fluid. You will also be required to pay 50 gold pieces for the crafting of the item.", { "Venom Belcher", "Bile Spewer", "Patchwork Horror" } },
 	{ 5263, "Above and Beyond", 60, 55, nil, "Venture to Stratholme and destroy Baron Rivendare. Take his head and return to Duke Nicholas Zverenhoff.", { "Baron Rivendare" } },
 	{ 5125, "Aurius' Reckoning", 60, 55, nil, "" },
+	{ 5063, "Cap of the Scarlet Savant", 60, 57, nil, "In order to create the Cap of the Scarlet Savant, you will be required to bring the following items back to Malyfous Darkhammer: 1 Pristine Hide of the Beast; 5 Frayed Abomination Stitchings; 8 Arcane Crystals; 5 Enchanted Scarlet Thread. You will also be required to pay 50 gold pieces for the crafting of the item.", { "Venom Belcher", "Bile Spewer", "Patchwork Horror", "Enchanted Scarlet Thread" } },
 	{ 8945, "Dead Man's Plea", 60, 58, nil, "Go into Stratholme and rescue Ysida Harmon from Baron Rivendare." },
-	{ 5243, "Houses of the Holy", 60, 55, nil, "Travel to Stratholme, in the north. Search the supply crates that litter the city and recover 5 Stratholme Holy Water. Return to Leonid Barthalomew the Revered when you have collected enough of the blessed fluid." },
+	{ 5243, "Houses of the Holy", 60, 55, nil, "Travel to Stratholme, in the north. Search the supply crates that litter the city and recover 5 Stratholme Holy Water. Return to Leonid Barthalomew the Revered when you have collected enough of the blessed fluid.", { "Stratholme Supply Crate", "Supply Crate" } },
 	{ 5463, "Menethil's Gift", 60, 57, nil, "Travel to Stratholme and find Menethil's Gift. Place the Keepsake of Remembrance upon the unholy ground." },
-	{ 5848, "Of Love and Family", 60, 52, nil, "Travel to Stratholme, in the northern part of the Plaguelands. It is in the Scarlet Bastion that you will find the painting 'Of Love and Family,' hidden behind another painting depicting the twin moons of our world. Return the painting to Tirion Fordring." },
+	{ 5848, "Of Love and Family", 60, 52, nil, "Travel to Stratholme, in the northern part of the Plaguelands. It is in the Scarlet Bastion that you will find the painting 'Of Love and Family,' hidden behind another painting depicting the twin moons of our world. Return the painting to Tirion Fordring.", { "Unfinished Painting" } },
 	{ 6163, "Ramstein", 60, 56, "H", "Travel to Stratholme and slay Ramstein the Gorger. Take his head as a souvenir for Nathanos." },
-	{ 5213, "The Active Agent", 60, 55, nil, "Travel to Stratholme and search the ziggurats. Find and return new Scourge Data to Betina Bigglezink." },
-	{ 5251, "The Archivist", 60, 55, nil, "Travel to Stratholme and find Archivist Galford of the Scarlet Crusade. Destroy him and burn down the Scarlet Archive.", { "Archivist Galford" } },
-	{ 5212, "The Flesh Does Not Lie", 60, 55, nil, "Recover 10 Plagued Flesh Samples from Stratholme and return them to Betina Bigglezink. You suspect that any creature in Stratholme would have said flesh sample.", { "Shrieking Banshee", "Venom Belcher", "Bile Spewer", "Patchwork Horror" } },
+	{ 5213, "The Active Agent", 60, 55, nil, "Travel to Stratholme and search the ziggurats. Find and return new Scourge Data to Betina Bigglezink.", { "Scourge Data" } },
+	{ 5251, "The Archivist", 60, 55, nil, "Travel to Stratholme and find Archivist Galford of the Scarlet Crusade. Destroy him and burn down the Scarlet Archive.", { "Archivist Galford", "Scarlet Archive" } },
+	{ 5212, "The Flesh Does Not Lie", 60, 55, nil, "Recover 10 Plagued Flesh Samples from Stratholme and return them to Betina Bigglezink. You suspect that any creature in Stratholme would have said flesh sample." },
 	{ 5214, "The Great Fras Siabi", 60, 55, nil, "Find Fras Siabi's smoke shop in Stratholme and recover a box of Siabi's Premium Tobacco. Return to Smokey LaRue when the job is done." },
 	{ 8968, "The Left Piece of Lord Valthalak's Amulet", 60, 58, nil, "Use the Brazier of Beckoning to summon forth Jarien and Sothos and slay them. Return to Bodley inside Blackrock Mountain with the Left Piece of Lord Valthalak's Amulet and the Brazier of Beckoning." },
 	{ 5282, "The Restless Souls", 60, 55, nil, "Use Egan's Blaster on the ghostly and spectral citizens of Stratholme. When the restless souls break free from their ghostly shells, use the blaster again - freedom will be theirs! Free 15 Restless Souls and return to Egan." },
@@ -305,9 +326,10 @@ Q[329] = {
 
 -- Maraudon
 Q[349] = {
+	{ 771, "Rite of Vision", 7, 3, "H", "Collect 2 Well Stones and 2 Ambercorn and bring them back to Zarlman Two-Moons in Bloodhoof Village.", { "Razorlash" } },
 	{ 7068, "Shadowshard Fragments", 42, 38, "H", "Collect 10 Shadowshard Fragments from Maraudon and return them to Uthel'nay in Orgrimmar." },
 	{ 7070, "Shadowshard Fragments", 42, 38, "A", "Collect 10 Shadowshard Fragments from Maraudon and return them to Archmage Tervosh in Theramore on the coast of Dustwallow Marsh." },
-	{ 7028, "Twisted Evils", 47, 41, nil, "Collect 15 Theradric Crystal Carvings for Willow in Desolace.", { "Cavern Shambler", "Cavern Lurker", "Creeping Sludge", "Noxious Slime" } },
+	{ 7028, "Twisted Evils", 47, 41, nil, "Collect 15 Theradric Crystal Carvings for Willow in Desolace." },
 	{ 7029, "Vyletongue Corruption", 47, 41, "H", "Fill the Coated Cerulean Vial at the orange crystal pool in Maraudon. Use the Filled Cerulean Vial on the Vylestem Vines to force the corrupted Noxxious Scion to emerge. Heal 8 plants by killing these Noxxious Scion, then return to Vark Battlescar in Shadowprey Village." },
 	{ 7041, "Vyletongue Corruption", 47, 41, "A", "Fill the Coated Cerulean Vial at the orange crystal pool in Maraudon. Use the Filled Cerulean Vial on the Vylestem Vines to force the corrupted Noxxious Scion to emerge. Heal 8 plants by killing these Noxxious Scion, then return to Talendria in Nijel's Point." },
 	{ 7067, "The Pariah's Instructions", 48, 39, nil, "Read the Pariah's Instructions. Afterwards, obtain the Amulet of Union from Maraudon and return it to the Centaur Pariah in southern Desolace." },
@@ -331,31 +353,39 @@ Q[389] = {
 -- Molten Core
 Q[409] = {
 	{ 7848, "Attunement to the Core", 60, 55, nil, "Venture to the Molten Core entry portal in Blackrock Depths and recover a Core Fragment. Return to Lothos Riftwaker in Blackrock Mountain when you have recovered the Core Fragment." },
-	{ 8578, "Scrying Goggles? No Problem!", 60, 60, nil, "Find Narain's Scrying Goggles and return them to Narain Soothfancy in Tanaris.", { "Flamewaker", "Flamewaker Protector", "Lava Surger", "Lava Reaver" } },
+	{ 6824, "Hands of the Enemy", 60, 60, nil, "Bring the Hands of Lucifron, Sulfuron, Gehennas and Shazzrah to Duke Hydraxis in Azshara.", { "Shazzrah", "Lucifron", "Gehennas", "Sulfuron Harbinger" } },
+	{ 8578, "Scrying Goggles? No Problem!", 60, 60, nil, "Find Narain's Scrying Goggles and return them to Narain Soothfancy in Tanaris." },
+	{ 6822, "The Molten Core", 60, 57, nil, "Kill 1 Fire Lord, 1 Molten Giant, 1 Ancient Core Hound and 1 Lava Surger, then return to Duke Hydraxis in Azshara.", { "Molten Giant", "Ancient Core Hound", "Lava Surger" } },
+	{ 7786, "Thunderaan the Windseeker", 60, 60, nil, "To free Thunderaan the Windseeker from his prison, you must present the right and left halves of the Bindings of the Windseeker, 10 bars of Elementium, and the Essence of the Firelord to Highlord Demitrian in Silithus.", { "Baron Geddon", "Garr" } },
 }
 
 -- Dire Maul
 Q[429] = {
 	{ 7492, "Camp Mojache", 57, 54, "H", "Speak with Talo Thornhoof at Camp Mojache in Feralas." },
+	{ 7494, "Feathermoon Stronghold", 57, 54, "A", "Speak with Latronicus Moonspear at the Feathermoon Stronghold in Feralas." },
 	{ 7488, "Lethtendris's Web", 57, 54, "A", "Bring Lethtendris' Web to Latronicus Moonspear at the Feathermoon Stronghold in Feralas.", { "Lethtendris" } },
 	{ 7489, "Lethtendris's Web", 57, 54, "H", "Bring Lethtendris's Web to Talo Thornhoof at Camp Mojache in Feralas.", { "Lethtendris" } },
 	{ 7441, "Pusillin and the Elder Azj'Tordin", 58, 54, nil, "Travel to Dire Maul and locate the Imp, Pusillin. Convince Pusillin to give you Azj'Tordin's Book of Incantations through any means necessary. Return to Azj'Tordin at the Lariss Pavilion in Feralas should you recover the Book of Incantations.", { "Pusillin" } },
 	{ 1193, "A Broken Trap", 60, 56, nil, "", { "Wildspawn Shadowstalker", "Gordok Warlock" } },
+	{ 8948, "Anthion's Old Friend", 60, 58, nil, "Take the incomplete Banner of Provocation to Falrin Treeshaper at the library in Dire Maul." },
 	{ 7481, "Elven Legends", 60, 54, "H", "Search Dire Maul for Kariel Winthalus. Report back to Sage Korolusk at Camp Mojache with whatever information that you may find." },
 	{ 7482, "Elven Legends", 60, 54, "A", "Search Dire Maul for Kariel Winthalus. Report back to Scholar Runethorn at Feathermoon with whatever information that you may find." },
-	{ 8949, "Falrin's Vendetta", 60, 58, nil, "Collect 25 Ogre Warbeads from Ogres inside Dire Maul or Blackrock Spire and return to Falrin Treeshaper inside the Athenaeum in Dire Maul.", { "Gordok Reaver", "Gordok Warlock", "Gordok Captain", "Gordok Mage-Lord" } },
-	{ 7507, "Foror's Compendium", 60, 60, nil, "Return Foror's Compendium of Dragon Slaying to the Athenaeum." },
+	{ 8949, "Falrin's Vendetta", 60, 58, nil, "Collect 25 Ogre Warbeads from Ogres inside Dire Maul or Blackrock Spire and return to Falrin Treeshaper inside the Athenaeum in Dire Maul." },
+	{ 7507, "Foror's Compendium", 60, 60, nil, "Return Foror's Compendium of Dragon Slaying to the Athenaeum.", { "A Dusty Tome" } },
 	{ 5525, "Free Knot!", 60, 57, nil, "", { "Gordok Reaver", "Gordok Warlock", "Gordok Captain", "Gordok Mage-Lord" } },
+	{ 8746, "Metzen the Reindeer", 60, 40, "H", "Find Metzen the Reindeer. Use the notes provided to you for clues as to where he is being held. When you find Metzen, have the Pouch of Reindeer Dust in your possession so you can sprinkle some of the dust on him; this should free Metzen from his bonds of captivity. Return the Pouch of Reindeer Dust to Kaymard Copperpinch in Orgrimmar once Metzen is freed.", { "Eldreth Spirit" } },
+	{ 8762, "Metzen the Reindeer", 60, 40, "A", "Find Metzen the Reindeer. Use the notes provided to you for clues as to where he is being held. When you find Metzen, have the Pouch of Reindeer Dust in your possession so you can sprinkle some of the dust on him; this should free Metzen from his bonds of captivity. Return the Pouch of Reindeer Dust to Wulmort Jinglepocket in Ironforge once Metzen is freed.", { "Eldreth Spirit" } },
 	{ 7508, "The Forging of Quel'Serrar", 60, 60, nil, "Give the Dull and Flat Elven Blade to Lorekeeper Lydros." },
-	{ 5518, "The Gordok Ogre Suit", 60, 56, nil, "Bring 4 Bolts of Runecloth, 8 Rugged Leather, 2 Rune Threads, and Ogre Tannin to Knot Thimblejack. He is currently chained inside the Gordok wing of Dire Maul.", { "Gordok Reaver", "Gordok Warlock", "Whip Lasher" } },
+	{ 5518, "The Gordok Ogre Suit", 60, 56, nil, "Bring 4 Bolts of Runecloth, 8 Rugged Leather, 2 Rune Threads, and Ogre Tannin to Knot Thimblejack. He is currently chained inside the Gordok wing of Dire Maul.", { "Gordok Reaver", "Gordok Warlock", "Whip Lasher", "Ogre Tannin Basket" } },
+	{ 5528, "The Gordok Taste Test", 60, 57, nil, "" },
 	{ 8950, "The Instigator's Enchantment", 60, 58, nil, "Bring the following to Falrin Treeshaper inside Dire Maul: 1 Jeering Spectre's Essence, 4 Dark Runes and 8 Large Brilliant Shards.", { "Eldreth Phantasm", "Eldreth Spectre", "Eldreth Spirit", "Eldreth Apparition" } },
 	{ 8967, "The Left Piece of Lord Valthalak's Amulet", 60, 58, nil, "Use the Brazier of Beckoning to summon forth the spirit of Isalien and slay her. Return to Bodley inside Blackrock Mountain with the Left Piece of Lord Valthalak's Amulet and the Brazier of Beckoning." },
 	{ 7461, "The Madness Within", 60, 56, nil, "You must destroy the guardians surrounding the 5 Pylons that power the Prison of Immol'thar. Once the Pylons have powered down, the force field surrounding Immol'thar will have dissipated. Enter the Prison of Immol'thar and eradicate the foul demon that stands at its heart. Finally, confront Prince Tortheldrin in Athenaeum. Return to the Shen'dralar Ancient in the courtyard should you complete this quest.", { "Immol'thar", "Prince Tortheldrin" } },
 	{ 8990, "The Right Piece of Lord Valthalak's Amulet", 60, 58, nil, "Use the Brazier of Beckoning to summon forth the spirit of Isalien and slay her. Return to Bodley inside Blackrock Mountain with the recombined Lord Valthalak's Amulet and the Brazier of Beckoning." },
 	{ 7462, "The Treasure of the Shen'dralar", 60, 56, "A", "Return to the Athenaeum and find the Treasure of the Shen'dralar. Claim your reward!" },
 	{ 7877, "The Treasure of the Shen'dralar", 60, 56, "H", "Return to the Athenaeum and find the Treasure of the Shen'dralar. Claim your reward!" },
-	{ 1318, "Unfinished Gordok Business", 60, 56, nil, "Find the Gauntlet of Gordok Might and return it to Captain Kromcrush in Dire Maul. According to Kromcrush, the \"old timey story\" says that Tortheldrin - a \"creepy\" elf who called himself a prince - stole it from one of the Gordok kings." },
-	{ 7703, "Unfinished Gordok Business", 60, 56, nil, "Find the Gauntlet of Gordok Might and return it to Captain Kromcrush in Dire Maul. According to Kromcrush, the \"old timey story\" says that Tortheldrin - a \"creepy\" elf who called himself a prince - stole it from one of the Gordok kings." },
+	{ 1318, "Unfinished Gordok Business", 60, 56, nil, "Find the Gauntlet of Gordok Might and return it to Captain Kromcrush in Dire Maul. According to Kromcrush, the \"old timey story\" says that Tortheldrin - a \"creepy\" elf who called himself a prince - stole it from one of the Gordok kings.", { "The Prince's Chest" } },
+	{ 7703, "Unfinished Gordok Business", 60, 56, nil, "Find the Gauntlet of Gordok Might and return it to Captain Kromcrush in Dire Maul. According to Kromcrush, the \"old timey story\" says that Tortheldrin - a \"creepy\" elf who called himself a prince - stole it from one of the Gordok kings.", { "The Prince's Chest" } },
 }
 
 -- Blackwing Lair
@@ -379,24 +409,24 @@ Q[531] = {
 -- Naxxramas
 Q[533] = {
 	{ 9033, "Echoes of War", 60, 60, nil, "Commander Eligor Dawnbringer at Light's Hope Chapel in the Eastern Plaguelands wants you to slay 5 Living Monstrosities, 5 Stoneskin Gargoyles, 8 Deathknight Captains and 3 Venom Stalkers.", { "Deathknight Captain", "Venom Stalker", "Living Monstrosity", "Stoneskin Gargoyle" } },
-	{ 9237, "Glacial Cloak", 60, 60, nil, "Craftsman Wilhelm at Light's Hope Chapel in the Eastern Plaguelands wants 5 Frozen Runes, 4 Bolts of Runecloth, 2 Essences of Water, 4 Ironweb Spider Silks and 200 gold. You must also be of Exalted reputation with the Argent Dawn.", { "Dread Creeper", "Carrion Spinner", "Venom Stalker", "Crypt Reaver" } },
-	{ 9239, "Glacial Gloves", 60, 60, nil, "Craftsman Wilhelm at Light's Hope Chapel in the Eastern Plaguelands wants 5 Frozen Runes, 4 Bolts of Runecloth, 4 Essences of Water, 2 Ironweb Spider Silks and 200 gold.", { "Dread Creeper", "Carrion Spinner", "Venom Stalker", "Crypt Reaver" } },
-	{ 9240, "Glacial Vest", 60, 60, nil, "Craftsman Wilhelm at Light's Hope Chapel in the Eastern Plaguelands wants 8 Frozen Runes, 8 Bolts of Runecloth, 6 Essences of Water, 4 Ironweb Spider Silks and 300 gold. You must also be of Exalted reputation with the Argent Dawn.", { "Dread Creeper", "Carrion Spinner", "Venom Stalker", "Crypt Reaver" } },
-	{ 9238, "Glacial Wrists", 60, 60, nil, "Craftsman Wilhelm at Light's Hope Chapel in the Eastern Plaguelands wants 4 Frozen Runes, 2 Bolts of Runecloth, 2 Essences of Water, 2 Ironweb Spider Silks and 200 gold.", { "Dread Creeper", "Carrion Spinner", "Venom Stalker", "Crypt Reaver" } },
-	{ 9235, "Icebane Bracers", 60, 60, nil, "Craftsman Wilhelm at Light's Hope Chapel in the Eastern Plaguelands wants 4 Frozen Runes, 12 Thorium Bars, 2 Arcanite Bars, 2 Essence of Water and 200 gold." },
-	{ 9236, "Icebane Breastplate", 60, 60, nil, "Craftsman Wilhelm at Light's Hope Chapel in the Eastern Plaguelands wants 8 Frozen Runes, 16 Thorium Bars, 2 Arcanite Bars, 4 Essence of Water and 300 gold. You will also need to be of Exalted reputation with the Argent Dawn." },
-	{ 9234, "Icebane Gauntlets", 60, 60, nil, "Craftsman Wilhelm at Light's Hope Chapel in the Eastern Plaguelands wants 5 Frozen Runes, 12 Thorium Bars, 2 Arcanite Bars, 2 Essences of Water and 200 gold." },
-	{ 9244, "Icy Scale Bracers", 60, 60, nil, "Craftsman Wilhelm at Light's Hope Chapel in the Eastern Plaguelands wants 4 Frozen Runes, 16 Heavy Scorpid Scales, 5 Essences of Water, 3 Cured Rugged Hides and 200 gold." },
-	{ 9246, "Icy Scale Breastplate", 60, 60, nil, "Craftsman Wilhelm at Light's Hope Chapel in the Eastern Plaguelands wants 8 Frozen Runes, 24 Heavy Scorpid Scale, 7 Essence of Water, 5 Cured Rugged Hides and 300 gold. You must also be of Exalted reputation with the Argent Dawn." },
-	{ 9245, "Icy Scale Gauntlets", 60, 60, nil, "Craftsman Wilhelm at Light's Hope Chapel in the Eastern Plaguelands wants 5 Frozen Runes, 16 Heavy Scorpid Scale, 5 Essence of Water, 3 Cured Rugged Hides and 200 gold." },
+	{ 9237, "Glacial Cloak", 60, 60, nil, "Craftsman Wilhelm at Light's Hope Chapel in the Eastern Plaguelands wants 5 Frozen Runes, 4 Bolts of Runecloth, 2 Essences of Water, 4 Ironweb Spider Silks and 200 gold. You must also be of Exalted reputation with the Argent Dawn.", { "Frozen Rune" } },
+	{ 9239, "Glacial Gloves", 60, 60, nil, "Craftsman Wilhelm at Light's Hope Chapel in the Eastern Plaguelands wants 5 Frozen Runes, 4 Bolts of Runecloth, 4 Essences of Water, 2 Ironweb Spider Silks and 200 gold.", { "Frozen Rune" } },
+	{ 9240, "Glacial Vest", 60, 60, nil, "Craftsman Wilhelm at Light's Hope Chapel in the Eastern Plaguelands wants 8 Frozen Runes, 8 Bolts of Runecloth, 6 Essences of Water, 4 Ironweb Spider Silks and 300 gold. You must also be of Exalted reputation with the Argent Dawn.", { "Frozen Rune" } },
+	{ 9238, "Glacial Wrists", 60, 60, nil, "Craftsman Wilhelm at Light's Hope Chapel in the Eastern Plaguelands wants 4 Frozen Runes, 2 Bolts of Runecloth, 2 Essences of Water, 2 Ironweb Spider Silks and 200 gold.", { "Frozen Rune" } },
+	{ 9235, "Icebane Bracers", 60, 60, nil, "Craftsman Wilhelm at Light's Hope Chapel in the Eastern Plaguelands wants 4 Frozen Runes, 12 Thorium Bars, 2 Arcanite Bars, 2 Essence of Water and 200 gold.", { "Frozen Rune" } },
+	{ 9236, "Icebane Breastplate", 60, 60, nil, "Craftsman Wilhelm at Light's Hope Chapel in the Eastern Plaguelands wants 8 Frozen Runes, 16 Thorium Bars, 2 Arcanite Bars, 4 Essence of Water and 300 gold. You will also need to be of Exalted reputation with the Argent Dawn.", { "Frozen Rune" } },
+	{ 9234, "Icebane Gauntlets", 60, 60, nil, "Craftsman Wilhelm at Light's Hope Chapel in the Eastern Plaguelands wants 5 Frozen Runes, 12 Thorium Bars, 2 Arcanite Bars, 2 Essences of Water and 200 gold.", { "Frozen Rune" } },
+	{ 9244, "Icy Scale Bracers", 60, 60, nil, "Craftsman Wilhelm at Light's Hope Chapel in the Eastern Plaguelands wants 4 Frozen Runes, 16 Heavy Scorpid Scales, 5 Essences of Water, 3 Cured Rugged Hides and 200 gold.", { "Frozen Rune" } },
+	{ 9246, "Icy Scale Breastplate", 60, 60, nil, "Craftsman Wilhelm at Light's Hope Chapel in the Eastern Plaguelands wants 8 Frozen Runes, 24 Heavy Scorpid Scale, 7 Essence of Water, 5 Cured Rugged Hides and 300 gold. You must also be of Exalted reputation with the Argent Dawn.", { "Frozen Rune" } },
+	{ 9245, "Icy Scale Gauntlets", 60, 60, nil, "Craftsman Wilhelm at Light's Hope Chapel in the Eastern Plaguelands wants 5 Frozen Runes, 16 Heavy Scorpid Scale, 5 Essence of Water, 3 Cured Rugged Hides and 200 gold.", { "Frozen Rune" } },
 	{ 9233, "Omarion's Handbook", 60, 60, nil, "Take Omarion's Handbook to Craftsman Wilhelm at Light's Hope Chapel in the Eastern Plaguelands." },
-	{ 9241, "Polar Bracers", 60, 60, nil, "Craftsman Wilhelm at Light's Hope Chapel in the Eastern Plaguelands wants 4 Frozen Runes, 12 Enchanted Leather, 3 Essence of Water, 3 Cured Rugged Hides and 200 gold." },
-	{ 9242, "Polar Gloves", 60, 60, nil, "Craftsman Wilhelm at Light's Hope Chapel in the Eastern Plaguelands wants 5 Frozen Runes, 12 Enchanted Leather, 3 Essence of Water, 3 Cured Rugged Hides and 200 gold." },
-	{ 9243, "Polar Tunic", 60, 60, nil, "Craftsman Wilhelm at Light's Hope Chapel in the Eastern Plaguelands wants 8 Frozen Runes, 16 Enchanted Leathers, 5 Essences of Water, 5 Cured Rugged Hides and 300 gold. You must also be of Exalted reputation with the Argent Dawn." },
-	{ 9230, "Ramaladni's Icy Grasp", 60, 60, nil, "Korfax at Light's Hope Chapel in the Eastern Plaguelands wants you to bring him 1 Frozen Rune, 1 Blue Sapphire and 1 Arcanite Bar." },
+	{ 9241, "Polar Bracers", 60, 60, nil, "Craftsman Wilhelm at Light's Hope Chapel in the Eastern Plaguelands wants 4 Frozen Runes, 12 Enchanted Leather, 3 Essence of Water, 3 Cured Rugged Hides and 200 gold.", { "Frozen Rune" } },
+	{ 9242, "Polar Gloves", 60, 60, nil, "Craftsman Wilhelm at Light's Hope Chapel in the Eastern Plaguelands wants 5 Frozen Runes, 12 Enchanted Leather, 3 Essence of Water, 3 Cured Rugged Hides and 200 gold.", { "Frozen Rune" } },
+	{ 9243, "Polar Tunic", 60, 60, nil, "Craftsman Wilhelm at Light's Hope Chapel in the Eastern Plaguelands wants 8 Frozen Runes, 16 Enchanted Leathers, 5 Essences of Water, 5 Cured Rugged Hides and 300 gold. You must also be of Exalted reputation with the Argent Dawn.", { "Frozen Rune" } },
+	{ 9230, "Ramaladni's Icy Grasp", 60, 60, nil, "Korfax at Light's Hope Chapel in the Eastern Plaguelands wants you to bring him 1 Frozen Rune, 1 Blue Sapphire and 1 Arcanite Bar.", { "Frozen Rune" } },
 	{ 9120, "The Fall of Kel'Thuzad", 60, 60, nil, "Take the Phylactery of Kel'Thuzad to Light's Hope Chapel in the Eastern Plaguelands.", { "Kel'Thuzad" } },
-	{ 9229, "The Fate of Ramaladni", 60, 60, nil, "Enter Naxxramas and uncover the Fate of Ramaladni.", { "Plague Slime", "Dread Creeper", "Carrion Spinner", "Venom Stalker" } },
-	{ 9232, "The Only Song I Know...", 60, 60, nil, "Craftsman Wilhelm at Light's Hope Chapel in the Eastern Plaguelands wants you to bring him 2 Frozen Runes, 2 Essence of Water, 2 Blue Sapphires and 30 gold pieces." },
+	{ 9229, "The Fate of Ramaladni", 60, 60, nil, "Enter Naxxramas and uncover the Fate of Ramaladni." },
+	{ 9232, "The Only Song I Know...", 60, 60, nil, "Craftsman Wilhelm at Light's Hope Chapel in the Eastern Plaguelands wants you to bring him 2 Frozen Runes, 2 Essence of Water, 2 Blue Sapphires and 30 gold pieces.", { "Frozen Rune" } },
 }
 
 -- City of Dalaran

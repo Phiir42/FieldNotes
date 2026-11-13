@@ -6,11 +6,17 @@
   drawn from the creature itself by its id.
 - Quests: each dungeon and raid has a Quests page listing the quests that
   lead into it (your side's only), what each asks, who to look for, and
-  whether you carry it or have finished it. 363 quests across 34 instances,
+  whether you carry it or have finished it. 389 quests across 35 instances,
   the nine dungeons new to Forever among them.
 - Quests on the map: a mark where each unfinished quest leads (the boss's
   place, or the room its creatures keep), brighter for quests in your log.
   It can be turned off in Preferences.
+- A quest in your log shows how far along it is, in the game's own words
+  ("0/1 Fathom Core"), and "ready to hand in" once it is.
+- Quests also say what to open or use (the Fathom Stone for the Fathom
+  Core), and the map marks the very spot where the game's data gives one.
+- Quests your log files under a dungeon that the journal had not heard of
+  are written down and kept.
 
 ## 0.2.0-beta.7
 

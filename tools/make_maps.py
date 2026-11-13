@@ -512,6 +512,45 @@ def creature_rooms(dungeon, splits, per_sheet=False):
     return out
 
 
+_quest_spots = None
+
+
+def quest_places(dungeon, splits):
+    """Where the things quests send you to stand on each sheet: creatures to
+    kill or loot and chests to open, from their spawn points
+    (refs/classicdb/quest_spots.json, written by make_quests.py; boss_points
+    must have run). -> [ {name: (x, y)} per floor ]. A thing that stands in
+    several places is marked at the middle one on the sheet that holds most of
+    them."""
+    global _quest_spots
+    if _quest_spots is None:
+        path = os.path.join(ROOT, "refs", "classicdb", "quest_spots.json")
+        _quest_spots = json.load(open(path, encoding="utf-8")) if os.path.exists(path) else {}
+    inst, floors = dungeon["instance"], dungeon["floors"]
+    bounds = _boss_data[2]
+    out = [{} for _ in floors]
+    for name, pts in _quest_spots.get(str(inst), {}).items():
+        on = {}
+        for wx, wy, _z in pts:
+            for f, floor in enumerate(floors):
+                b = bounds.get((floor.get("uimap"), inst))
+                if not b:
+                    continue
+                x = round((b[3] - wy) / (b[3] - b[1]) * W)
+                y = round((b[2] - wx) / (b[2] - b[0]) * H)
+                if not (3 < x < W - 3 and 3 < y < H - 3):
+                    continue
+                drawn = max((float(a[y - 3:y + 4, x - 3:x + 4].mean()) for n, a in splits[f][1]
+                             if n not in ("decor", "start")), default=0)
+                if drawn > 0.3:
+                    on.setdefault(f, []).append((x, y))
+        if on:
+            f = max(on, key=lambda k: len(on[k]))
+            here = sorted(on[f])
+            out[f][name] = here[len(here) // 2]
+    return out
+
+
 def main():
     preview = "--preview" in sys.argv
     only = sys.argv[sys.argv.index("--only") + 1] if "--only" in sys.argv else None
@@ -533,6 +572,7 @@ def main():
         out.append("ns.Maps[%d] = {}" % dungeon["instance"])
         splits = [split(floor, blank) for floor in dungeon["floors"]]
         bosses = boss_points(dungeon, splits)
+        places = quest_places(dungeon, splits)
         moved = {}
         if dungeon.get("path") is True:
             moved = creature_rooms(dungeon, splits)
@@ -609,6 +649,10 @@ def main():
             if floor["bosses"]:
                 out.append("\tfloor.bosses = { %s }" % ", ".join(
                     "{ name = %s, x = %d, y = %d }" % (lua_str(n), x, y) for n, x, y in floor["bosses"]))
+            if places[f - 1]:
+                # where quests lead: a creature's or a chest's own spot, for the map's quest marks
+                out.append("\tfloor.places = { %s }" % ", ".join(
+                    "[key(%s)] = { %d, %d }" % (lua_str(n), x, y) for n, (x, y) in sorted(places[f - 1].items())))
             if dungeon.get("path"):
                 out.append("\tfloor.path = true")
                 if dungeon["path"] == "sheets":

@@ -766,13 +766,79 @@ local function QuestState(id)
 	end
 end
 
--- The quests of a dungeon that your side is offered.
+-- What the quest log holds: { id, title, level, header } for each quest, the
+-- header being the zone the game files it under. The game has had two ways of
+-- asking; either may be missing.
+local function LogQuests()
+	local out = {}
+	pcall(function()
+		local q, header = C_QuestLog, nil
+		local n = (q and q.GetNumQuestLogEntries and q.GetNumQuestLogEntries())
+			or (GetNumQuestLogEntries and GetNumQuestLogEntries()) or 0
+		for i = 1, n do
+			local title, level, isHeader, id
+			if q and q.GetInfo then
+				local info = q.GetInfo(i)
+				if info then title, level, isHeader, id = info.title, info.level, info.isHeader, info.questID end
+			elseif GetQuestLogTitle then
+				local t, l, _, h, _, _, _, questID = GetQuestLogTitle(i)
+				title, level, isHeader, id = t, l, h, questID
+			end
+			if isHeader then
+				header = title
+			elseif type(id) == "number" and id > 0 and type(title) == "string" then
+				out[#out + 1] = { id = id, title = title, level = type(level) == "number" and level or 0, header = header }
+			end
+		end
+	end)
+	return out
+end
+
+-- How far along a quest in your log is: its objectives as the game words
+-- them ("0/1 Fathom Core"), and whether all are met.
+local function QuestProgress(id)
+	local lines, done = {}, false
+	pcall(function()
+		local list = C_QuestLog and C_QuestLog.GetQuestObjectives and C_QuestLog.GetQuestObjectives(id)
+		if type(list) ~= "table" then return end
+		done = #list > 0
+		for _, o in ipairs(list) do
+			if type(o.text) == "string" and o.text ~= "" then lines[#lines + 1] = o.text end
+			if not o.finished then done = false end
+		end
+	end)
+	return lines, done
+end
+
+-- The quests of a dungeon that your side is offered, and any others your quest
+-- log files under the dungeon: those are written down and kept from then on.
 local function QuestsOf(id)
 	local side = UnitFactionGroup and UnitFactionGroup("player")
 	side = side == "Alliance" and "A" or side == "Horde" and "H" or nil
 	local t = {}
+	local have = {}
 	for _, q in ipairs(ns.Quests and ns.Quests[id] or {}) do
+		have[q[1]] = true
 		if not q[5] or not side or q[5] == side then t[#t + 1] = q end
+	end
+	local inst = ns.db.instances[id]
+	if inst then
+		local here = ns:AreaKey(inst.name)
+		for _, q in ipairs(LogQuests()) do
+			if not have[q.id] and q.header and ns:AreaKey(q.header) == here then
+				inst.quests = inst.quests or {}
+				inst.quests[q.id] = { title = q.title, level = q.level }
+			end
+		end
+		local ids = {}
+		for qid in pairs(inst.quests or {}) do
+			if not have[qid] then ids[#ids + 1] = qid end
+		end
+		table.sort(ids)
+		for _, qid in ipairs(ids) do
+			local known = inst.quests[qid]
+			t[#t + 1] = { qid, known.title, known.level or 0, 0, nil, "" }
+		end
 	end
 	return t
 end
@@ -789,12 +855,19 @@ local function QuestsPage(lines, id, inst)
 		local state = QuestState(q[1])
 		local tag = {}
 		if q[3] > 0 then tag[#tag + 1] = "level " .. q[3] end
-		if state == "done" then tag[#tag + 1] = "done" elseif state == "log" then tag[#tag + 1] = "in your log" end
+		local progress, ready = {}, false
+		if state == "log" then progress, ready = QuestProgress(q[1]) end
+		if state == "done" then
+			tag[#tag + 1] = "done"
+		elseif state == "log" then
+			tag[#tag + 1] = ready and "ready to hand in" or "in your quest log"
+		end
 		lines[#lines + 1] = {
 			text = (state == "done" and DONE or OPEN) .. q[2] .. FADED_HEX .. "  " .. table.concat(tag, ", ") .. "|r",
 			font = "GameFontNormal", gap = 10,
 		}
 		if q[6] ~= "" then Body(lines, q[6], 8) end
+		if #progress > 0 then Faded(lines, "So far: " .. table.concat(progress, "; ") .. ".", 8) end
 		if q[7] then Faded(lines, "Look for " .. table.concat(q[7], ", ") .. ".", 8) end
 	end
 end
@@ -813,6 +886,9 @@ local function QuestMarks(id, floor, marks)
 			for _, spot in ipairs(floor.bosses or {}) do
 				if ns:AreaKey(spot.name) == k then x, y = spot.x, spot.y end
 			end
+			-- its own spot where the map has one, else the middle of its room
+			local spot = not x and floor.places and floor.places[k]
+			if spot then x, y = spot[1], spot[2] end
 			local piece = not x and floor.areas[k]
 			if piece then x, y = piece.x + piece.w / 2, piece.y + piece.h / 2 end
 			if x then

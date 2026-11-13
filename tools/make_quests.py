@@ -22,7 +22,7 @@ import make_abilities as m  # noqa: E402
 LUA = os.path.join(m.ROOT, "FieldNotes", "Quests.lua")
 EXTRA = os.path.join(m.ROOT, "tools", "data", "forever_quests.json")
 ALLIANCE, HORDE = 77, 178  # race masks
-JUNK = re.compile(r"UNUSED|DEPRECATED|<NYI>|<TXT>|\bTEST\b|^zz|REUSE|OLD\b", re.I)
+JUNK = re.compile(r"UNUSED|DEPRECATED|<NYI>|<TXT>|\bTEST\b|^zz|REUSE|\bOLD\b")  # in capitals: not "Old Gods"
 TAB = chr(9)
 
 
@@ -77,7 +77,8 @@ def main():
         if area_map.get(int(a["ID"])) not in instance and norm(a["AreaName_lang"]) in by_name:
             area_map[int(a["ID"])] = by_name[norm(a["AreaName_lang"])]
 
-    tables = read_tables(("quest_template", "creature_loot_template"))
+    tables = read_tables(("quest_template", "creature_loot_template", "gameobject_template", "gameobject",
+                          "gameobject_loot_template"))
     cols, data = tables["quest_template"]
     col = cols.index
     # who to look for: the creatures a quest asks you to kill, and those that
@@ -89,21 +90,74 @@ def main():
     for r in loot:
         carriers.setdefault(x.num(r[lcols.index("item")]), []).append(x.num(r[lcols.index("entry")]))
 
-    def targets(r, mp):
-        ids = [x.num(r[col("ReqCreatureOrGOId%d" % i)]) for i in (1, 2, 3, 4)]
+    # ...and the things it is found in: chests and the like (objects), by what
+    # they hold, and objects the quest has you use
+    gcols, gdata = tables["gameobject_template"]
+    objects = {}
+    for r in gdata:
+        objects[x.num(r[gcols.index("entry")])] = {"name": r[gcols.index("name")], "type": x.num(r[gcols.index("type")]),
+                                                   "loot": x.num(r[gcols.index("data1")]), "spawns": []}
+    scols, sdata = tables["gameobject"]
+    for r in sdata:
+        o = objects.get(x.num(r[scols.index("id")]))
+        if o:
+            o["spawns"].append([x.num(r[scols.index("map")]), round(float(r[scols.index("position_x")]), 1),
+                                round(float(r[scols.index("position_y")]), 1), round(float(r[scols.index("position_z")]), 1)])
+    ocols, oloot = tables["gameobject_loot_template"]
+    holds = {}
+    for r in oloot:
+        holds.setdefault(x.num(r[ocols.index("item")]), set()).add(x.num(r[ocols.index("entry")]))
+    chests = {}
+    for entry, o in objects.items():
+        if o["type"] == 3 and o["loot"]:
+            chests.setdefault(o["loot"], []).append(entry)
+    creature_names = {c["name"] for c in creatures.values()}
+    spots = {}  # {map: {name: [[x, y, z], ...]}}: where each thing named stands, for the map marks
+
+    def sources(r):
+        """-> [(name, spawns)] of the creatures and objects a quest sends you to."""
+        found = []
         for i in (1, 2, 3, 4):
-            ids += carriers.get(x.num(r[col("ReqItemId%d" % i)]), [])
+            who = x.num(r[col("ReqCreatureOrGOId%d" % i)])
+            if who > 0 and who in creatures:
+                found.append(creatures[who])
+            elif who < 0 and -who in objects:
+                found.append(objects[-who])
+            item = x.num(r[col("ReqItemId%d" % i)])
+            if not item:
+                continue
+            has = carriers.get(item, [])
+            if len(has) <= 12:  # more than that is a drop of the whole place, or the whole world
+                found += [creatures[c] for c in has if c in creatures]
+            for lootid in holds.get(item, ()):
+                found += [objects[e] for e in chests.get(lootid, [])]
+        return [(c["name"], c["spawns"]) for c in found if c["name"]]
+
+    def targets(r, mp):
         names = []
-        for i in ids:
-            c = creatures.get(i)
-            if c and c["name"] and any(sp[0] == mp for sp in c["spawns"]) and c["name"] not in names:
-                names.append(c["name"])
+        for name, spawns in sources(r):
+            here = [sp[1:] for sp in spawns if sp[0] == mp]
+            if here and name not in names:
+                names.append(name)
+                spots.setdefault(mp, {}).setdefault(name, []).extend(here)
         return names[:4]
+
+    def home(r):
+        """The one instance a quest filed elsewhere really sends you into, if any."""
+        found = set()
+        for name, spawns in sources(r):
+            maps_of = {sp[0] for sp in spawns}
+            # creatures only: a chest of the same name stands in many places
+            if maps_of and maps_of <= instance and name in creature_names:
+                found |= maps_of
+        return found.pop() if len(found) == 1 else None
 
     by_map = {}
     for r in data:
         zone = x.num(r[col("ZoneOrSort")])
         mp = area_map.get(zone) if zone > 0 else None
+        if mp not in instance:
+            mp = home(r)  # filed under the quest giver's zone, but its quarry lives in a dungeon
         title = r[col("Title")]
         if mp not in instance or not title or JUNK.search(title):
             continue
@@ -151,6 +205,8 @@ def main():
         out.append("}")
     with open(LUA, "w", encoding="utf-8", newline="\n") as f:
         f.write("\n".join(out) + "\n")
+    with open(os.path.join(m.ROOT, "refs", "classicdb", "quest_spots.json"), "w", encoding="utf-8") as f:
+        json.dump({str(k): v for k, v in spots.items()}, f)
     print(total, "quests in", len(by_map), "instances; wrote", LUA)
     print("  " + ", ".join("%s %d" % (maps[mp]["MapName_lang"], len(by_map[mp])) for mp in sorted(by_map)))
 

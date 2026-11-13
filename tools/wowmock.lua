@@ -205,10 +205,13 @@ function UnitName(t) local u = U(t) if not u then return end return u.player and
 function UnitIsPlayer(t) local u = U(t) return u and u.player or false end
 function UnitPlayerControlled(t) local u = U(t) return u and u.player or false end
 function UnitCanAttack(_, t) local u = U(t) return u and not u.player or false end
-M.questsDone, M.questsOn = {}, {}
+M.questsDone, M.questsOn, M.questLog, M.questGoals = {}, {}, {}, {}
 C_QuestLog = {
 	IsQuestFlaggedCompleted = function(id) return M.questsDone[id] or false end,
 	IsOnQuest = function(id) return M.questsOn[id] or false end,
+	GetNumQuestLogEntries = function() return #M.questLog end,
+	GetInfo = function(i) return M.questLog[i] end,
+	GetQuestObjectives = function(id) return M.questGoals[id] end,
 }
 function UnitFactionGroup() return "Alliance", "Alliance" end
 function UnitLevel(t) local u = U(t) return u and u.level or 0 end
