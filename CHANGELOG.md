@@ -43,8 +43,8 @@
   under its own heading. A quest you are too young for says from what
   level it can be taken up.
 - A dungeon's first page lists your visits: when, for how long, at what
-  level, and what came of each (foes defeated, falls, finds). Kept from
-  this version on.
+  level, and what came of each (foes defeated, falls, finds). Visits from
+  before this version are read from the diary (without the level).
 - Loot seen only in chat just after a boss the game announces no fight for
   (Cookie, Lorgus Jett) is now credited to that boss, as for any other.
 - A boss's page lists the quests that send you after it (or after those it

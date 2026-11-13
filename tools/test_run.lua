@@ -153,6 +153,13 @@ step("creatures: experience, speech, corpses", function()
 	-- one noted by an earlier version is taken out on the next loading screen
 	inst.loot[10978] = { link = item(10978, "Small Glimmering Shard"), first = 1, n = 1 }
 	inst.lootOrder[#inst.lootOrder + 1] = 10978
+	-- a place noted before visits were kept: they are read from its diary
+	ns.db.instances[4242] = { name = "Old Place", kind = "party", first = 100, visits = 2, areas = {}, bosses = {},
+		bossOrder = {}, mobs = {}, mobOrder = {}, loot = { [77] = { n = 1, first = 300 } }, lootOrder = { 77 }, log = {
+			{ 100, "Set foot in Old Place for the first time." }, { 200, "Defeated Somebody in 1:00." },
+			{ 300, "Found |cff0070dd|Hitem:77::::::::|h[Kept]|h|r." }, { 310, "Found |cff0070dd|Hitem:78::::::::|h[Shard]|h|r." },
+			{ 400, "Fell in battle." }, { 5000, "Took up \"Errand\"." }, { 9000, "Returned to Old Place." },
+			{ 9600, "Came upon Somewhere." } } }
 	-- and a boss noted before falls to it were counted: its diary says
 	inst.bosses[99901] = { name = "Old Foe", kills = 1, pulls = 2, wipes = 1, first = 1 }
 	inst.log[#inst.log + 1] = { 2, "Fell in battle against Old Foe." }
@@ -161,6 +168,11 @@ step("creatures: experience, speech, corpses", function()
 	M.wait(3)
 	check("old disenchanting entries are removed", not inst.loot[10978] and inst.lootOrder[#inst.lootOrder] ~= 10978)
 	check("falls to a boss noted before they were counted come from the diary", inst.bosses[99901].deaths == 2)
+	local old = ns.db.instances[4242].runs
+	check("visits from before they were kept come from the diary", old and #old == 2
+		and old[1].t == 100 and old[1].last == 400 and old[1].kills == 1 and old[1].finds == 1 and old[1].deaths == 1
+		and old[2].t == 9000 and old[2].last == 9600 and not old[2].kills)
+	ns.db.instances[4242] = nil
 	inst.bosses[99901] = nil
 	for i = #inst.log, 1, -1 do
 		if inst.log[i][2] == "Fell in battle against Old Foe." then table.remove(inst.log, i) end

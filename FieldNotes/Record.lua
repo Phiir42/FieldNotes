@@ -673,6 +673,33 @@ local function Tidy()
 				b.deaths = n
 			end
 		end
+		-- visits were kept from 0.2.0-beta.10 on: the earlier ones, from the
+		-- diary (each begins where it says you set foot in or returned)
+		if inst.runs == nil and #inst.log > 0 then
+			local runs = {}
+			for _, e in ipairs(inst.log) do
+				local t, text = e[1], e[2]
+				if type(t) == "number" and type(text) == "string" then
+					if text:find("^Set foot in ") or text:find("^Returned to ") then
+						runs[#runs + 1] = { t = t, last = t }
+					elseif runs[#runs] then
+						local r = runs[#runs]
+						-- a find counts while it is still in the journal (not a shard)
+						local item = text:find("^Found ") and tonumber(text:match("item:(%d+)"))
+						local what = (text:find("^Defeated ") and "kills") or (text:find("^Fell in battle") and "deaths")
+							or (item and inst.loot[item] and "finds")
+						-- (a quest taken up elsewhere is no part of a visit)
+						if what or item or text:find("^Faced ") or text:find("^Came upon ") or text:find("^Driven back by ") then
+							r.last = t
+							if what then r[what] = (r[what] or 0) + 1 end
+						end
+					end
+				end
+			end
+			while #runs > RUNS_MAX do table.remove(runs, 1) end
+			inst.runs = runs
+			changed = true
+		end
 	end
 	if changed then ns:Changed() end -- (item tooltips are written from the loot)
 end
