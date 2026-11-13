@@ -676,12 +676,14 @@ local function Tidy()
 			end
 		end
 		-- visits were kept from 0.2.0-beta.10 on: the earlier ones, from the
-		-- diary (each begins where it says you set foot in or returned)
-		if inst.runs == nil and #inst.log > 0 then
+		-- diary (each begins where it says you set foot in or returned), as
+		-- far as the first one kept
+		local first = inst.runs and inst.runs[1] and inst.runs[1].t
+		if #inst.log > 0 and (inst.runs == nil or (first and type(inst.log[1][1]) == "number" and inst.log[1][1] < first)) then
 			local runs = {}
 			for _, e in ipairs(inst.log) do
 				local t, text = e[1], e[2]
-				if type(t) == "number" and type(text) == "string" then
+				if type(t) == "number" and type(text) == "string" and not (first and t >= first) then
 					if text:find("^Set foot in ") or text:find("^Returned to ") then
 						runs[#runs + 1] = { t = t, last = t }
 					elseif runs[#runs] then
@@ -698,9 +700,13 @@ local function Tidy()
 					end
 				end
 			end
-			while #runs > RUNS_MAX do table.remove(runs, 1) end
-			inst.runs = runs
-			changed = true
+			if inst.runs == nil then
+				inst.runs, changed = runs, true
+			elseif #runs > 0 then
+				for i = #runs, 1, -1 do table.insert(inst.runs, 1, runs[i]) end
+				changed = true
+			end
+			while #inst.runs > RUNS_MAX do table.remove(inst.runs, 1) end
 		end
 	end
 	if changed then ns:Changed() end -- (item tooltips are written from the loot)

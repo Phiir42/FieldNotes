@@ -172,6 +172,15 @@ step("creatures: experience, speech, corpses", function()
 	check("visits from before they were kept come from the diary", old and #old == 2
 		and old[1].t == 100 and old[1].last == 400 and old[1].kills == 1 and old[1].finds == 1 and old[1].deaths == 1
 		and old[2].t == 9000 and old[2].last == 9600 and not old[2].kills)
+	-- and where only the latest visits were kept, the older ones are put before them
+	ns.db.instances[4242].runs = { { t = 9000, last = 9700, kills = 3 } }
+	M.fire("PLAYER_ENTERING_WORLD")
+	M.wait(3)
+	old = ns.db.instances[4242].runs
+	check("older visits from the diary go before those kept", #old == 2 and old[1].t == 100 and old[2].kills == 3)
+	M.fire("PLAYER_ENTERING_WORLD")
+	M.wait(3)
+	check("and only once", #ns.db.instances[4242].runs == 2)
 	ns.db.instances[4242] = nil
 	inst.bosses[99901] = nil
 	for i = #inst.log, 1, -1 do
