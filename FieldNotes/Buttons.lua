@@ -119,6 +119,9 @@ SlashCmdList["FIELDNOTES"] = function(msg)
 		ns:ToggleJournal()
 	elseif cmd == "settings" or cmd == "config" or cmd == "options" then
 		ns:OpenSettings()
+	elseif cmd == "full" or cmd == "fullscreen" then
+		if not (FieldNotesJournal and FieldNotesJournal:IsShown()) then ns:ToggleJournal() end
+		ns:JournalFull(not s.full)
 	elseif cmd == "announce" then
 		s.announce = not s.announce
 		ns:Print("chat lines for new entries %s.", s.announce and "on" or "off")
@@ -166,6 +169,7 @@ SlashCmdList["FIELDNOTES"] = function(msg)
 	else
 		ns:Print("version %s. Commands:", ns.VERSION)
 		print("  /fn  -  open or close the journal")
+		print("  /fn full  -  the journal fills the screen, or goes back to its usual size")
 		print("  /fn settings  -  the journal's preferences page (everything below, by clicking)")
 		print("  /fn announce  -  chat lines when something new is written down")
 		print("  /fn quality <0-5>  -  lowest item quality worth noting")

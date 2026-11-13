@@ -31,6 +31,7 @@ ns.DEFAULTS = {
 	buttonAngle = 200,
 	notices = true,    -- a slip of parchment on screen when something new is written down
 	sound = true,      -- the book opening and closing, pages turning
+	full = false,      -- the journal fills the screen
 	scale = 1,         -- size of the journal window
 	sketch = true,     -- newly charted parts of a map are sketched in, not just shown
 	mapKey = true,     -- inside a dungeon, the map key opens the journal's map

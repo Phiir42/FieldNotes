@@ -345,10 +345,19 @@ local function Quality(link, id)
 	return q
 end
 
+-- Dusts, essences and shards come from disenchanting what was found, not from
+-- the dungeon: the chat line for them reads like any other loot.
+local function Disenchanted(id)
+	local instant = (C_Item and C_Item.GetItemInfoInstant) or GetItemInfoInstant
+	if not instant then return false end
+	local ok, _, _, _, _, _, class, subclass = pcall(instant, id)
+	return ok and class == 7 and subclass == 12 -- trade goods: enchanting
+end
+
 -- guid: the corpse it lay on, when known (nil for loot seen only in chat).
 local function AddLoot(link, guid)
 	local id = tonumber(link:match("item:(%d+)"))
-	if not id then return end
+	if not id or Disenchanted(id) then return end
 	local q = Quality(link, id)
 	if not q or q < ns.db.settings.minQuality then return end
 
@@ -498,8 +507,23 @@ local function CheckInstance()
 	end
 end
 
+-- Take out what earlier versions noted by mistake.
+local function Tidy()
+	if not ns.db then return end
+	for _, inst in pairs(ns.db.instances) do
+		for i = #inst.lootOrder, 1, -1 do
+			local id = inst.lootOrder[i]
+			if type(id) == "number" and Disenchanted(id) then
+				inst.loot[id] = nil
+				table.remove(inst.lootOrder, i)
+			end
+		end
+	end
+end
+
 -- Instance info can lag a moment behind the loading screen.
 local function CheckSoon()
+	Tidy()
 	CheckInstance()
 	C_Timer.After(2, CheckInstance)
 end

@@ -23,6 +23,7 @@ local canvas          -- the map sheet, a child of the page's scroll area
 local sel = {}         -- inst (instanceID), kind ("overview" | "boss" | "map" | "bestiary" | "spoils"), key
 local shownKey         -- the page last drawn, to reset scrolling when it changes
 local Refresh
+local ApplySize     -- sets the window's size and place from the settings
 
 local function Font(name)
 	return _G[name] or GameFontNormal
@@ -995,14 +996,19 @@ local function SettingsPage(lines)
 	H2(lines, "Size of the journal")
 	for _, sc in ipairs(SCALES) do
 		lines[#lines + 1] = {
-			text = sc[2], indent = 8, selected = math.abs((s.scale or 1) - sc[1]) < 0.01,
+			text = sc[2], indent = 8, selected = not s.full and math.abs((s.scale or 1) - sc[1]) < 0.01,
 			click = function()
-				s.scale = sc[1]
-				frame:SetScale(sc[1])
+				s.scale, s.full = sc[1], false
+				ApplySize()
 				Refresh()
 			end,
 		}
 	end
+	lines[#lines + 1] = {
+		text = "Fill the screen", indent = 8, selected = s.full,
+		click = function() ns:JournalFull(not s.full) end,
+	}
+	Faded(lines, "Or drag the grip in the journal's bottom right corner.", 8)
 
 	Faded(lines, "\nField Notes " .. tostring(ns.VERSION) .. ". \"/fn help\" lists the chat commands.")
 end
@@ -1215,6 +1221,45 @@ Refresh = function()
 	if target then notes:Show() else notes:Hide() end
 end
 
+-- The journal is one fixed layout, made larger or smaller as a whole: by the
+-- sizes in Preferences, by dragging its corner grip, or filling the screen.
+local SCALE_MIN = 0.6
+
+-- the largest size at which the whole journal still fits on screen
+local function FitScale()
+	return math.max(SCALE_MIN, math.min(UIParent:GetWidth() / WIDTH, UIParent:GetHeight() / HEIGHT))
+end
+
+ApplySize = function()
+	if not frame then return end
+	local s = ns.db.settings
+	frame:ClearAllPoints()
+	if s.full then
+		frame:SetScale(FitScale())
+		frame:SetPoint("CENTER")
+	else
+		frame:SetScale(math.max(SCALE_MIN, math.min(s.scale or 1, FitScale())))
+		local pos = ns.db.journalPos
+		if pos then
+			frame:SetPoint(pos[1], UIParent, pos[2], pos[3], pos[4])
+		else
+			frame:SetPoint("CENTER")
+		end
+	end
+	if frame.grip then frame.grip:SetShown(not s.full) end
+	if frame.full then
+		local art = s.full and "Smaller" or "Bigger"
+		frame.full:SetNormalTexture("Interface\\Buttons\\UI-Panel-" .. art .. "Button-Up")
+		frame.full:SetPushedTexture("Interface\\Buttons\\UI-Panel-" .. art .. "Button-Down")
+	end
+end
+
+function ns:JournalFull(on)
+	self.db.settings.full = on and true or false
+	ApplySize()
+	Refresh()
+end
+
 local function CreateJournal()
 	frame = CreateFrame("Frame", "FieldNotesJournal", UIParent, "BasicFrameTemplateWithInset")
 	frame:SetSize(WIDTH, HEIGHT)
@@ -1228,16 +1273,71 @@ local function CreateJournal()
 	frame:SetScript("OnDragStart", frame.StartMoving)
 	frame:SetScript("OnDragStop", function(self)
 		self:StopMovingOrSizing()
+		if ns.db.settings.full then
+			ApplySize() -- filling the screen: it stays put
+			return
+		end
 		-- remember where the journal was left
 		local point, _, rel, x, y = self:GetPoint(1)
 		if point then ns.db.journalPos = { point, rel or point, x or 0, y or 0 } end
 	end)
-	local pos = ns.db.journalPos
-	if pos then
+
+	-- The corner grip: drag it to make the whole journal larger or smaller.
+	local grip = CreateFrame("Button", nil, frame)
+	frame.grip = grip
+	grip:SetSize(16, 16)
+	grip:SetPoint("BOTTOMRIGHT", -3, 3)
+	grip:SetFrameLevel(frame:GetFrameLevel() + 20)
+	grip:SetNormalTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Up")
+	grip:SetHighlightTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Highlight")
+	grip:SetPushedTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Down")
+	grip:SetScript("OnEnter", function(self)
+		GameTooltip:SetOwner(self, "ANCHOR_TOPLEFT")
+		GameTooltip:SetText("Drag to resize the journal")
+		GameTooltip:Show()
+	end)
+	grip:SetScript("OnLeave", function() GameTooltip:Hide() end)
+	local function Resize()
+		-- the top left corner stays where it is; the cursor sets the size
+		local ui = UIParent:GetEffectiveScale()
+		local cx, cy = GetCursorPosition()
+		cx, cy = cx / ui, cy / ui
+		local sc = math.max((cx - grip.left) / WIDTH, (grip.top - cy) / HEIGHT)
+		sc = math.max(SCALE_MIN, math.min(sc, FitScale()))
+		frame:SetScale(sc)
 		frame:ClearAllPoints()
-		frame:SetPoint(pos[1], UIParent, pos[2], pos[3], pos[4])
+		frame:SetPoint("TOPLEFT", UIParent, "BOTTOMLEFT", grip.left / sc, grip.top / sc)
+		return sc
 	end
-	frame:SetScale(ns.db.settings.scale or 1)
+	grip:SetScript("OnMouseDown", function()
+		local sc = frame:GetScale()
+		grip.left, grip.top = frame:GetLeft() * sc, frame:GetTop() * sc
+		grip:SetScript("OnUpdate", Resize)
+	end)
+	grip:SetScript("OnMouseUp", function()
+		if not grip:GetScript("OnUpdate") then return end
+		grip:SetScript("OnUpdate", nil)
+		local sc = Resize()
+		ns.db.settings.scale = sc
+		ns.db.journalPos = { "TOPLEFT", "BOTTOMLEFT", grip.left / sc, grip.top / sc }
+		Refresh()
+	end)
+
+	-- Beside the close button: fill the screen, or go back to the usual size.
+	local full = CreateFrame("Button", nil, frame)
+	frame.full = full
+	full:SetSize(22, 22)
+	full:SetPoint("TOPRIGHT", -24, 0)
+	full:SetFrameLevel(frame:GetFrameLevel() + 20)
+	full:SetHighlightTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight", "ADD")
+	full:SetScript("OnClick", function() ns:JournalFull(not ns.db.settings.full) end)
+	full:SetScript("OnEnter", function(self)
+		GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+		GameTooltip:SetText(ns.db.settings.full and "Back to the usual size" or "Fill the screen")
+		GameTooltip:Show()
+	end)
+	full:SetScript("OnLeave", function() GameTooltip:Hide() end)
+	ApplySize()
 	frame:Hide()
 	tinsert(UISpecialFrames, "FieldNotesJournal") -- Esc closes it
 

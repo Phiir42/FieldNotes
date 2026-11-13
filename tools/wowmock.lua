@@ -128,7 +128,7 @@ function CreateFrame(kind, name, parent)
 	return f
 end
 
-UIParent = New("Frame")
+UIParent = New("Frame"); UIParent.__w, UIParent.__h = 1366, 768
 Minimap = New("Minimap")
 WorldMapFrame = New("Frame"); WorldMapFrame.__shown = false
 GameTooltip = New("GameTooltip")
@@ -221,6 +221,11 @@ C_Item = {
 	GetItemQualityByID = function() return 2 end,
 	GetItemInfo = function(id) return "Item " .. tostring(id), nil, 2 end,
 	GetItemIconByID = function() return 134400 end,
+	-- 10978 is an enchanting material (Small Glimmering Shard)
+	GetItemInfoInstant = function(id)
+		if id == 10978 then return id, "Tradeskill", "Enchanting", "", 134400, 7, 12 end
+		return id, "Armor", "Cloth", "", 134400, 4, 1
+	end,
 }
 function GetItemInfo(id) return "Item " .. tostring(id), nil, 2 end
 function GetItemIcon() return 134400 end

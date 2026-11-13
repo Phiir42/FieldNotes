@@ -144,6 +144,14 @@ step("creatures: experience, speech, corpses", function()
 	M.fire("CHAT_MSG_LOOT", "You create: " .. item(3000, "Made Thing") .. ".")
 	M.fire("CHAT_MSG_LOOT", "Friend has selected Need for: " .. item(3001, "Rolled Thing"))
 	check("made and rolled-for items are not loot", not inst.loot[3000] and not inst.loot[3001])
+	M.fire("CHAT_MSG_LOOT", "Friend receives loot: " .. item(10978, "Small Glimmering Shard") .. ".")
+	check("disenchanting results are not loot", not inst.loot[10978])
+	-- one noted by an earlier version is taken out on the next loading screen
+	inst.loot[10978] = { link = item(10978, "Small Glimmering Shard"), first = 1, n = 1 }
+	inst.lootOrder[#inst.lootOrder + 1] = 10978
+	M.fire("PLAYER_ENTERING_WORLD")
+	M.wait(3)
+	check("old disenchanting entries are removed", not inst.loot[10978] and inst.lootOrder[#inst.lootOrder] ~= 10978)
 	M.fire("CHAT_MSG_LOOT", "Friend receives loot: " .. item(3002, "Stacked Thing") .. "x3.")
 	check("a stack someone received is loot", inst.loot[3002] ~= nil)
 	-- a captive calling out in a fight is not a creature fought
@@ -249,6 +257,23 @@ step("preferences page", function()
 	FieldNotesNotice:Click()
 	FieldNotesJournal.__scripts.OnDragStop(FieldNotesJournal)
 	check("the journal's place is remembered", ns.db.journalPos ~= nil)
+	-- filling the screen, by the page, the title button and the command
+	check("fill the screen by clicking", open("Fill the screen") and ns.db.settings.full == true)
+	FieldNotesJournal.full:Click()
+	check("the title button puts it back", ns.db.settings.full == false)
+	M.slash("full")
+	check("/fn full fills the screen", ns.db.settings.full == true)
+	FieldNotesJournal.__scripts.OnDragStop(FieldNotesJournal)
+	M.slash("full")
+	-- dragging the corner grip
+	local grip = FieldNotesJournal.grip
+	grip.__scripts.OnEnter(grip); grip.__scripts.OnLeave(grip)
+	grip.__scripts.OnMouseDown(grip)
+	grip.__scripts.OnUpdate(grip, 0.1)
+	grip.__scripts.OnMouseUp(grip)
+	check("dragging the grip sets a size within bounds", ns.db.settings.scale >= 0.6 and ns.db.settings.scale <= 1.4
+		and ns.db.journalPos[1] == "TOPLEFT")
+	open("Usual")
 	check("back to the dungeon from the contents", open("The Deadmines") and pageText():find("First entered", 1, true))
 	M.slash("")
 	FieldNotesMinimapButton.__scripts.OnClick(FieldNotesMinimapButton, "RightButton")
