@@ -21,16 +21,51 @@ def read(path):
     return io.open(path, encoding="utf-8").read()
 
 
-def main():
+def client(older=False):
+    """The addon loaded against the mock. older: a client without the tooltip
+    data processor, where item tooltips are hooked by OnTooltipSetItem."""
     lua = lupa.LuaRuntime(unpack_returned_tuples=True)
     load = lua.eval("function(src, name) local f, err = loadstring(src, name) if not f then error(err) end return f end")
     mock = load(read(os.path.join(ROOT, "tools", "wowmock.lua")), "@wowmock.lua")()
+    if older:
+        lua.execute("TooltipDataProcessor = nil; GameTooltip.GetItem = function() end")
     ns = lua.table()
     files = [l.strip() for l in read(os.path.join(ADDON, "FieldNotes.toc")).splitlines()
              if l.strip() and not l.startswith("#")]
     for name in files:
         load(read(os.path.join(ADDON, name)), "@" + name)("FieldNotes", ns)
+    return lua, load, mock, ns
+
+
+# On an older client: an item's tooltip is written to from OnTooltipSetItem.
+OLDER = r'''
+local M, ns = ...
+M.fire("ADDON_LOADED", "FieldNotes")
+M.instance = { name = "The Deadmines", kind = "party", id = 36 }
+M.fire("PLAYER_ENTERING_WORLD")
+M.wait(3)
+M.fire("CHAT_MSG_LOOT", "You receive loot: |cff1eff00|Hitem:872::::::::20:::::|h[Rockslicer]|h|r.")
+M.wait(1)
+local hook = GameTooltip:GetScript("OnTooltipSetItem")
+if not hook then return "no OnTooltipSetItem hook" end
+GameTooltip.GetItem = function() return "Rockslicer", "|cff1eff00|Hitem:872::::::::20:::::|h[Rockslicer]|h|r" end
+GameTooltip:ClearLines()
+hook(GameTooltip)
+local text = table.concat(GameTooltip.__lines or {}, "\n")
+if not text:find("found in The Deadmines", 1, true) then return "no line on the tooltip: " .. text end
+GameTooltip.GetItem = function() return nil, nil end
+hook(GameTooltip)
+'''
+
+
+def main():
+    lua, load, mock, ns = client()
     checks, fails, missing, chat = load(read(os.path.join(ROOT, "tools", "test_run.lua")), "@test_run.lua")(mock, ns)
+    older_lua, older_load, older_mock, older_ns = client(older=True)
+    problem = older_load(OLDER, "@older")(older_mock, older_ns)
+    checks += 1
+    if problem:
+        fails[len(fails) + 1] = "older client's item tooltips: " + problem
     if "-v" in sys.argv:
         for line in chat.values():
             print("   ", line.encode("ascii", "replace").decode())
