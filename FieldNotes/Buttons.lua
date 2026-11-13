@@ -10,6 +10,7 @@ local function Tooltip(owner, extra)
 	for _ in pairs(ns.db.instances) do n = n + 1 end
 	GameTooltip:AddLine(n == 0 and "The pages are blank" or (n == 1 and "1 place written about" or (n .. " places written about")), 1, 1, 1)
 	GameTooltip:AddLine("Click: open the journal", 0.7, 0.7, 0.7)
+	GameTooltip:AddLine("Right-click: preferences", 0.7, 0.7, 0.7)
 	if extra then GameTooltip:AddLine(extra, 0.7, 0.7, 0.7) end
 	GameTooltip:Show()
 end
@@ -63,7 +64,9 @@ local function CreateButton()
 	border:SetTexture("Interface\\Minimap\\MiniMap-TrackingBorder")
 	border:SetSize(53, 53)
 	border:SetPoint("TOPLEFT")
-	b:SetScript("OnClick", function() ns:ToggleJournal() end)
+	b:SetScript("OnClick", function(_, which)
+		if which == "RightButton" then ns:OpenSettings() else ns:ToggleJournal() end
+	end)
 	b:SetScript("OnEnter", function(self) Tooltip(self, OwnedByMinimap() and "Drag: move" or nil) end)
 	b:SetScript("OnLeave", function() GameTooltip:Hide() end)
 	b:SetScript("OnDragStart", function(self)
@@ -114,6 +117,8 @@ SlashCmdList["FIELDNOTES"] = function(msg)
 	local s = ns.db.settings
 	if cmd == "" then
 		ns:ToggleJournal()
+	elseif cmd == "settings" or cmd == "config" or cmd == "options" then
+		ns:OpenSettings()
 	elseif cmd == "announce" then
 		s.announce = not s.announce
 		ns:Print("chat lines for new entries %s.", s.announce and "on" or "off")
@@ -161,6 +166,7 @@ SlashCmdList["FIELDNOTES"] = function(msg)
 	else
 		ns:Print("version %s. Commands:", ns.VERSION)
 		print("  /fn  -  open or close the journal")
+		print("  /fn settings  -  the journal's preferences page (everything below, by clicking)")
 		print("  /fn announce  -  chat lines when something new is written down")
 		print("  /fn quality <0-5>  -  lowest item quality worth noting")
 		print("  /fn button  -  show or hide the minimap button")

@@ -339,17 +339,24 @@ local function MobLines(lines, m, showName, lore)
 	if not any then Faded(lines, "Fought, but nothing of note observed.") end
 end
 
-local function LootLines(lines, inst, filter)
+-- The boss (encounter id) an item is credited to, if any.
+local function LootBoss(inst, it)
+	local m = it.npc and inst.mobs[it.npc]
+	local eid = (m and m.enc) or it.enc
+	if eid and inst.bosses[eid] then return eid end
+end
+
+-- showFrom: say which creature carried each item.
+local function LootLines(lines, inst, filter, showFrom)
 	local any
 	for _, id in ipairs(inst.lootOrder) do
 		local it = inst.loot[id]
 		if not filter or filter(it) then
 			any = true
 			local from
-			if not filter then
+			if showFrom then
 				local m = it.npc and inst.mobs[it.npc]
-				local b = (m and m.enc and inst.bosses[m.enc]) or (it.enc and inst.bosses[it.enc])
-				from = (b and b.name) or (m and m.name)
+				from = m and m.name
 			end
 			local sub = (from and ("From " .. from .. ", ") or "") .. "found " .. (it.n == 1 and "once" or (it.n .. " times")) .. "."
 			if from then sub = sub:sub(1, 1):upper() .. sub:sub(2) else sub = "F" .. sub:sub(2) end
@@ -893,7 +900,89 @@ end
 local function SpoilsPage(lines, inst)
 	H1(lines, "Spoils")
 	Faded(lines, "What has been found in " .. inst.name .. ". Shift-click to link an item.")
-	if not LootLines(lines, inst) then Body(lines, "\nNothing found yet.") end
+	if #inst.lootOrder == 0 then
+		Body(lines, "\nNothing found yet.")
+		return
+	end
+	-- under each boss what it carried, then what the rest of the place gave up
+	local bosses
+	for _, eid in ipairs(inst.bossOrder) do
+		local n = #lines
+		H2(lines, inst.bosses[eid].name)
+		if LootLines(lines, inst, function(it) return LootBoss(inst, it) == eid end) then
+			bosses = true
+		else
+			lines[#lines] = nil
+			assert(#lines == n)
+		end
+	end
+	local n = #lines
+	if bosses then H2(lines, "From the halls") end
+	if not LootLines(lines, inst, function(it) return not LootBoss(inst, it) end, true) and bosses then
+		lines[#lines] = nil
+		assert(#lines == n)
+	end
+end
+
+---------------------------------------------------------------------------
+-- Preferences: a page of the journal itself. Click a line to change it.
+---------------------------------------------------------------------------
+local OFF = "|TInterface\\RaidFrame\\ReadyCheck-NotReady:12|t "
+local TOGGLES = {
+	{ "notices", "Notes on screen", "A slip of parchment shows when something new is written down." },
+	{ "announce", "Notes in chat", "A chat line when something new is written down." },
+	{ "sketch", "Sketch new things in", "New parts of a map are drawn in, new entries fade onto the page." },
+	{ "sound", "Sounds", "The book opening and closing, pages turning." },
+	{ "mapKey", "Map key opens the journal", "Inside a dungeon, where the game's own map is empty." },
+	{ "button", "Minimap button", "" },
+}
+local QUALITIES = { [0] = "Everything", "Common and better", "Uncommon and better", "Rare and better", "Epic and better" }
+local SCALES = { { 0.8, "Small" }, { 0.9, "Smaller" }, { 1, "Usual" }, { 1.1, "Larger" }, { 1.25, "Large" } }
+
+local function SettingsPage(lines)
+	local s = ns.db.settings
+	H1(lines, "Preferences")
+	Faded(lines, "Click a line to change it.")
+	for _, t in ipairs(TOGGLES) do
+		local key, label, about = t[1], t[2], t[3]
+		lines[#lines + 1] = {
+			text = (s[key] and DONE or OFF) .. label .. (about ~= "" and ("\n" .. FADED_HEX .. about .. "|r") or ""),
+			gap = 6, indent = 8,
+			click = function()
+				s[key] = not s[key]
+				if key == "button" then ns:UpdateMinimapButton() end
+				ns:Sound("page")
+				Refresh()
+			end,
+		}
+	end
+	lines[#lines + 1] = {
+		text = "Move the note shown on screen", gap = 10, indent = 8, color = FADED,
+		tip = "Holds a sample on screen: drag it where notes should appear, click it when done.",
+		click = function() ns:PlaceNotice() end,
+	}
+
+	H2(lines, "Loot worth noting")
+	for q = 0, 4 do
+		lines[#lines + 1] = {
+			text = QUALITIES[q], indent = 8, selected = s.minQuality == q,
+			click = function() s.minQuality = q; Refresh() end,
+		}
+	end
+
+	H2(lines, "Size of the journal")
+	for _, sc in ipairs(SCALES) do
+		lines[#lines + 1] = {
+			text = sc[2], indent = 8, selected = math.abs((s.scale or 1) - sc[1]) < 0.01,
+			click = function()
+				s.scale = sc[1]
+				frame:SetScale(sc[1])
+				Refresh()
+			end,
+		}
+	end
+
+	Faded(lines, "\nField Notes " .. tostring(ns.VERSION) .. ". \"/fn help\" lists the chat commands.")
 end
 
 ---------------------------------------------------------------------------
@@ -907,6 +996,15 @@ local function Count(t, skip)
 	return n
 end
 
+local function IndexTail(lines)
+	lines[#lines + 1] = {
+		text = "Preferences", font = "GameFontNormalSmall", color = FADED, gap = 16,
+		selected = sel.kind == "settings",
+		click = function() Select(nil, "settings") end,
+	}
+	return lines
+end
+
 local function IndexLines()
 	local lines = {}
 	local ids = {}
@@ -918,7 +1016,7 @@ local function IndexLines()
 	end)
 	if #ids == 0 then
 		lines[1] = { text = "No pages yet.", color = FADED, font = "GameFontNormalSmall" }
-		return lines
+		return IndexTail(lines)
 	end
 	for _, id in ipairs(ids) do
 		local inst = ns.db.instances[id]
@@ -955,7 +1053,7 @@ local function IndexLines()
 			}
 		end
 	end
-	return lines
+	return IndexTail(lines)
 end
 
 ---------------------------------------------------------------------------
@@ -1032,7 +1130,7 @@ Refresh = function()
 	if not (frame and frame:IsShown()) then return end
 	local inst = sel.inst and ns.db.instances[sel.inst]
 	if not inst then
-		sel.inst, sel.kind, sel.key = nil, nil, nil
+		sel.inst, sel.kind, sel.key = nil, sel.kind == "settings" and "settings" or nil, nil
 	elseif sel.kind == "boss" and not inst.bosses[sel.key] then
 		sel.kind, sel.key = "overview", nil
 	elseif sel.kind == "map" and not ns.Maps[sel.inst] then
@@ -1048,7 +1146,9 @@ Refresh = function()
 	end
 	inkCount = 0
 	local lines = {}
-	if not inst then
+	if sel.kind == "settings" then
+		SettingsPage(lines)
+	elseif not inst then
 		BlankPage(lines)
 	elseif sel.kind == "boss" then
 		BossPage(lines, inst, sel.key)
@@ -1104,7 +1204,18 @@ local function CreateJournal()
 	frame:EnableMouse(true)
 	frame:RegisterForDrag("LeftButton")
 	frame:SetScript("OnDragStart", frame.StartMoving)
-	frame:SetScript("OnDragStop", frame.StopMovingOrSizing)
+	frame:SetScript("OnDragStop", function(self)
+		self:StopMovingOrSizing()
+		-- remember where the journal was left
+		local point, _, rel, x, y = self:GetPoint(1)
+		if point then ns.db.journalPos = { point, rel or point, x or 0, y or 0 } end
+	end)
+	local pos = ns.db.journalPos
+	if pos then
+		frame:ClearAllPoints()
+		frame:SetPoint(pos[1], UIParent, pos[2], pos[3], pos[4])
+	end
+	frame:SetScale(ns.db.settings.scale or 1)
 	frame:Hide()
 	tinsert(UISpecialFrames, "FieldNotesJournal") -- Esc closes it
 
@@ -1144,6 +1255,12 @@ function ns:ToggleJournal(page)
 		sel.inst, sel.kind, sel.key = self.currentID, page or "overview", nil
 	end
 	frame:Show()
+end
+
+function ns:OpenSettings()
+	if not frame then CreateJournal() end
+	sel.inst, sel.kind, sel.key = nil, "settings", nil
+	if frame:IsShown() then Refresh() else frame:Show() end
 end
 
 -- Inside a dungeon the game's own map has nothing to show, so the map key

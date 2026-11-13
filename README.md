@@ -53,6 +53,7 @@ opens straight to the map.
 | Command | |
 | --- | --- |
 | `/fn` | open or close the journal |
+| `/fn settings` | the Preferences page, where everything below can be clicked (also: right-click the minimap button) |
 | `/fn announce` | chat lines when something new is written down, on/off |
 | `/fn quality <0-5>` | lowest item quality worth noting (default 2, uncommon) |
 | `/fn button` | show or hide the minimap button |

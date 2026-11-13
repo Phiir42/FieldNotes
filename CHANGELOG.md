@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.0-beta.3 – not yet released
+
+- A Preferences page at the bottom of the journal's contents (`/fn settings`,
+  or right-click the minimap button): every option by clicking, plus the size
+  of the journal window.
+- Spoils are listed under the boss that carried them, then the rest.
+- The journal remembers where you dragged it.
+
 ## 0.2.0-beta.2
 
 - Newly charted parts of a map are sketched in, room after room along the
