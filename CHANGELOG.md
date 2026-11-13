@@ -13,6 +13,8 @@
 - Fuller boss ability lists: fights that the server scripts in code (Arugal's
   curse and teleport, Onyxia, Ragnaros, Nefarian and 85 others) now list what
   those scripts cast.
+- More in Preferences: the size of the writing, how light the paper is, how
+  see-through the window is, and the size of the boss marks on the map.
 - Dusts, essences and shards from disenchanting are no longer noted as loot.
 - Blackfathom Deeps, Scarlet Monastery and Naxxramas: creatures are filed by
   where they really stand, as in the single-road dungeons.

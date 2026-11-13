@@ -24,6 +24,7 @@ local sel = {}         -- inst (instanceID), kind ("overview" | "boss" | "map" |
 local shownKey         -- the page last drawn, to reset scrolling when it changes
 local Refresh
 local ApplySize     -- sets the window's size and place from the settings
+local ApplyLook     -- sets its paper and opacity
 
 local function Font(name)
 	return _G[name] or GameFontNormal
@@ -159,7 +160,13 @@ local function ListSet(list, lines)
 		end
 		local tx = indent + (size > 0 and size + 6 or 0)
 		local c = line.color or INK
-		row.text:SetFontObject(Font(line.font or "QuestFont"))
+		local font = Font(line.font or "QuestFont")
+		row.text:SetFontObject(font)
+		-- the text size chosen in Preferences, on top of the font's own
+		if font and font.GetFont then
+			local file, size, flags = font:GetFont()
+			if file and size then row.text:SetFont(file, size * (ns.db.settings.textScale or 1), flags) end
+		end
 		row.text:SetTextColor(c[1], c[2], c[3])
 		row.text:ClearAllPoints()
 		row.text:SetPoint("TOPLEFT", tx, -2)
@@ -194,6 +201,7 @@ local function Paper(parent, light, upright)
 	local wash = parent:CreateTexture(nil, "BACKGROUND", nil, 1)
 	wash:SetAllPoints()
 	wash:SetColorTexture(1, 0.93, 0.78, light)
+	return wash
 end
 
 -- A parchment pane with a scrolling list inside it.
@@ -556,7 +564,7 @@ local function Mark(i)
 	local b = canvas.marks[i]
 	if not b then
 		b = CreateFrame("Button", nil, canvas)
-		b:SetSize(18, 18)
+		b:SetSize(18, 18) -- DrawMap sets the size chosen in Preferences
 		b:SetFrameLevel(canvas:GetFrameLevel() + 5)
 		local icon = b:CreateTexture(nil, "OVERLAY")
 		icon:SetAllPoints()
@@ -778,6 +786,8 @@ local function DrawMap(sheet)
 		b:ClearAllPoints()
 		b:SetPoint("CENTER", canvas, "TOPLEFT", mark.x * sx, -mark.y * sy)
 		b:SetAlpha(1)
+		local size = ns.db.settings.markSize or 18
+		b:SetSize(size, size)
 		b:Show()
 		-- a boss marked for the first time is inked in after the rooms
 		if charted and mark.id and not charted[mark.id] then
@@ -960,6 +970,27 @@ local TOGGLES = {
 	{ "button", "Minimap button", "" },
 }
 local QUALITIES = { [0] = "Everything", "Common and better", "Uncommon and better", "Rare and better", "Epic and better" }
+local TEXT_SIZES = { { 0.9, "Small text" }, { 1, "Usual text" }, { 1.15, "Large text" }, { 1.3, "Larger text" } }
+local PAPERS = { { 0.16, "Dark paper" }, { 0.34, "Usual paper" }, { 0.5, "Light paper" }, { 0.66, "Pale paper" } }
+local ALPHAS = { { 1, "Solid" }, { 0.9, "Slightly see-through" }, { 0.75, "See-through" } }
+local MARKS = { { 14, "Small marks" }, { 18, "Usual marks" }, { 24, "Large marks" } }
+
+-- A heading and one line per choice; the chosen one is marked.
+local function Choice(lines, title, key, default, options, apply)
+	local s = ns.db.settings
+	H2(lines, title)
+	for _, o in ipairs(options) do
+		lines[#lines + 1] = {
+			text = o[2], indent = 8, selected = math.abs((s[key] or default) - o[1]) < 0.01,
+			click = function()
+				s[key] = o[1]
+				if apply then apply() end
+				Refresh()
+			end,
+		}
+	end
+end
+
 local SCALES = { { 0.8, "Small" }, { 0.9, "Smaller" }, { 1, "Usual" }, { 1.1, "Larger" }, { 1.25, "Large" } }
 
 local function SettingsPage(lines)
@@ -1009,6 +1040,11 @@ local function SettingsPage(lines)
 		click = function() ns:JournalFull(not s.full) end,
 	}
 	Faded(lines, "Or drag the grip in the journal's bottom right corner.", 8)
+
+	Choice(lines, "Size of the writing", "textScale", 1, TEXT_SIZES)
+	Choice(lines, "Paper", "paper", 0.34, PAPERS, ApplyLook)
+	Choice(lines, "Window", "alpha", 1, ALPHAS, ApplyLook)
+	Choice(lines, "Boss marks on the map", "markSize", 18, MARKS)
 
 	Faded(lines, "\nField Notes " .. tostring(ns.VERSION) .. ". \"/fn help\" lists the chat commands.")
 end
@@ -1260,6 +1296,17 @@ function ns:JournalFull(on)
 	Refresh()
 end
 
+-- The look of the journal, from Preferences: how light the paper is, how
+-- solid the window, how large the map's boss marks.
+ApplyLook = function()
+	if not frame then return end
+	local s = ns.db.settings
+	local light = s.paper or 0.34
+	if page.wash then page.wash:SetColorTexture(1, 0.93, 0.78, light) end
+	if index.wash then index.wash:SetColorTexture(1, 0.93, 0.78, light * 0.47) end
+	frame:SetAlpha(s.alpha or 1)
+end
+
 local function CreateJournal()
 	frame = CreateFrame("Frame", "FieldNotesJournal", UIParent, "BasicFrameTemplateWithInset")
 	frame:SetSize(WIDTH, HEIGHT)
@@ -1349,18 +1396,19 @@ local function CreateJournal()
 	index.pane:SetPoint("TOPLEFT", 10, -28)
 	index.pane:SetPoint("BOTTOMLEFT", 10, 10)
 	index.pane:SetWidth(INDEX_W + 38)
-	Paper(index.pane, 0.16, true)
+	index.wash = Paper(index.pane, 0.16, true)
 
 	page = CreateList("FieldNotesJournalPage", PAGE_W)
 	page.pane:SetPoint("TOPLEFT", index.pane, "TOPRIGHT", 6, 0)
 	page.pane:SetPoint("BOTTOMRIGHT", -10, 10)
-	Paper(page.pane, 0.34)
+	page.wash = Paper(page.pane, 0.34)
 	page.sf:SetPoint("BOTTOMRIGHT", -28, NOTES_H + 14)
 
 	notes = CreateNotes(page.pane)
 	notes:SetPoint("BOTTOMLEFT", 10, 6)
 	notes:SetPoint("BOTTOMRIGHT", -28, 6)
 
+	ApplyLook()
 	frame:SetScript("OnShow", function() ns:Sound("open") Refresh() end)
 	frame:SetScript("OnHide", function() ns:Sound("close") end)
 end
