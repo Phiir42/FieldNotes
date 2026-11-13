@@ -9,6 +9,19 @@ local function Tooltip(owner, extra)
 	local n = 0
 	for _ in pairs(ns.db.instances) do n = n + 1 end
 	GameTooltip:AddLine(n == 0 and "The pages are blank" or (n == 1 and "1 place written about" or (n .. " places written about")), 1, 1, 1)
+	-- and what is written about the place you are in
+	local inst = ns.current
+	if inst then
+		local faced, beaten = 0, 0
+		for _, b in pairs(inst.bosses) do
+			faced = faced + 1
+			if b.kills > 0 then beaten = beaten + 1 end
+		end
+		local t = {}
+		if faced > 0 then t[#t + 1] = ("%d of %d %s faced defeated"):format(beaten, faced, faced == 1 and "foe" or "foes") end
+		if #inst.lootOrder > 0 then t[#t + 1] = #inst.lootOrder .. (#inst.lootOrder == 1 and " find" or " finds") end
+		GameTooltip:AddLine(inst.name .. (#t > 0 and (": " .. table.concat(t, ", ")) or ""), 0.86, 0.78, 0.62, true)
+	end
 	GameTooltip:AddLine("Click: open the journal", 0.7, 0.7, 0.7)
 	GameTooltip:AddLine("Right-click: preferences", 0.7, 0.7, 0.7)
 	if extra then GameTooltip:AddLine(extra, 0.7, 0.7, 0.7) end
