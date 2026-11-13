@@ -1158,7 +1158,7 @@ C["crimsoninquisitor"] = { lo = 59, hi = 60, cls = "elite", type = "Humanoid", s
 C["crimsonmonk"] = { lo = 58, hi = 60, cls = "elite", type = "Humanoid", spells = { 11978, 8876 }, model = 10463 } -- Crimson Monk
 C["crimsonpriest"] = { lo = 58, hi = 59, cls = "elite", type = "Humanoid", spells = { 15586, 15238, 17139, 17142 }, model = 10508 } -- Crimson Priest
 C["crimsonsorcerer"] = { lo = 58, hi = 59, cls = "elite", type = "Humanoid", spells = { 15230, 13323, 12544, 14145, 17150 }, model = 10504 } -- Crimson Sorcerer
-C["croaky"] = { lo = 11, hi = 11, cls = "elite", type = "Humanoid", spells = {  }, npc = 248278 } -- Croaky
+C["croaky"] = { lo = 11, hi = 11, cls = "elite", type = "Humanoid", spells = { 2607, 9532 }, npc = 248278 } -- Croaky
 C["crowdpummeler960"] = { lo = 32, hi = 32, cls = "elite", type = "Mechanical", spells = {  }, model = 6774 } -- Crowd Pummeler 9-60
 C["crushfistbloodbreaker"] = { cls = "elite", type = "Humanoid", spells = {  }, npc = 251618 } -- Crushfist Bloodbreaker
 C["cryptbeast"] = { lo = 59, hi = 60, cls = "elite", type = "Undead", spells = { 4962, 3589, 16428 }, model = 9758 } -- Crypt Beast
@@ -1903,7 +1903,7 @@ C["netherwalker"] = { lo = 60, hi = 60, cls = "elite", type = "Demon", spells = 
 C["nightmareectoplasm"] = { lo = 20, hi = 21, spells = {  }, model = 470 } -- Nightmare Ectoplasm
 C["nightmaresuppressor"] = { lo = 49, hi = 50, cls = "elite", type = "Dragonkin", spells = { 11672, 7741 }, model = 7974 } -- Nightmare Suppressor
 C["nightveiledrotheap"] = { lo = 31, hi = 32, cls = "elite", type = "Elemental", spells = {  }, npc = 270589 } -- Nightveiled Rotheap
-C["nimsy"] = { lo = 6, hi = 6, cls = "elite", type = "Humanoid", spells = {  }, npc = 248464 } -- Nimsy
+C["nimsy"] = { lo = 6, hi = 6, cls = "elite", type = "Humanoid", spells = { 20793, 1246059 }, npc = 248464 } -- Nimsy
 C["nipsy"] = { lo = 12, hi = 12, type = "Humanoid", spells = {  }, model = 12965, friend = true } -- Nipsy
 C["nizookboof"] = { lo = 55, hi = 55, cls = "elite", type = "Humanoid", spells = {  }, npc = 275276 } -- Nizook Boof
 C["noththeplaguebringer"] = { lo = 63, hi = 63, cls = "worldboss", type = "Undead", spells = {  }, model = 16590 } -- Noth the Plaguebringer
@@ -2252,7 +2252,7 @@ C["shendralarwisp"] = { lo = 1, hi = 1, type = "Critter", spells = {  }, model =
 C["shendralarzealot"] = { lo = 59, hi = 59, cls = "elite", type = "Humanoid", spells = {  }, model = 14408, friend = true } -- Shen'dralar Zealot
 C["shendralasprotector"] = { lo = 60, hi = 60, cls = "elite", type = "Undead", spells = {  }, npc = 255759 } -- Shen'dralas Protector
 C["shilldinger"] = { lo = 56, hi = 56, cls = "elite", type = "Humanoid", spells = { 15472, 11980, 22417 }, model = 9051, friend = true } -- Shill Dinger
-C["shinyfindernarf"] = { lo = 3, hi = 3, cls = "elite", type = "Humanoid", spells = {  }, npc = 248362 } -- Shinyfinder Narf
+C["shinyfindernarf"] = { lo = 3, hi = 3, cls = "elite", type = "Humanoid", spells = { 20793, 43958 }, npc = 248362 } -- Shinyfinder Narf
 C["shriekerscarab"] = { lo = 60, hi = 60, cls = "elite", spells = { 22886, 26379 }, model = 12151 } -- Shrieker Scarab
 C["shriekingbanshee"] = { lo = 57, hi = 58, cls = "elite", type = "Undead", spells = { 3589, 16868 }, model = 10728 } -- Shrieking Banshee
 C["shrikebat"] = { lo = 38, hi = 39, cls = "elite", type = "Beast", spells = { 8281 }, model = 1954 } -- Shrike Bat

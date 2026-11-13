@@ -535,6 +535,10 @@
   "lo": 11,
   "npc": 248278,
   "rank": 1,
+  "spells": [
+   2607,
+   9532
+  ],
   "type": 7
  },
  "Crushfist Bloodbreaker": {
@@ -807,6 +811,7 @@
   "lo": 12,
   "npc": 248299,
   "rank": 1,
+  "spells": [],
   "type": 1
  },
  "Emberleaf Flayer": {
@@ -908,6 +913,7 @@
  "Feral Spirit": {
   "npc": 248218,
   "rank": 1,
+  "spells": [],
   "type": 4
  },
  "Feral Timbermaw Boar": {
@@ -939,6 +945,7 @@
   "lo": 60,
   "npc": 248366,
   "rank": 1,
+  "spells": [],
   "type": 10
  },
  "Frostseeker": {
@@ -1535,6 +1542,10 @@
   "lo": 6,
   "npc": 248464,
   "rank": 1,
+  "spells": [
+   20793,
+   1246059
+  ],
   "type": 7
  },
  "Nizook Boof": {
@@ -1979,6 +1990,10 @@
   "lo": 3,
   "npc": 248362,
   "rank": 1,
+  "spells": [
+   20793,
+   43958
+  ],
   "type": 7
  },
  "Shrieking Banshee": {
