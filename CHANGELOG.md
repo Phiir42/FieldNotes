@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.0-beta.4 – not yet released
+## 0.2.0-beta.4
 
 - Maps for the eight new Forever dungeons that had none: Blackmaw Hold, The
   Drowned City, The Hall of Thanes, City of Dalaran, Ruins of Lordaeron,
