@@ -38,7 +38,7 @@ def main():
     # guards for their absence, but worth a look when something new appears
     optional = {"GetSpellInfo", "GetSpellTexture", "GetSpellDescription", "ChatFrameUtil", "GameFontNormal",
                 "QuestFont", "QuestTitleFont", "GameFontNormalLarge", "GameFontNormalSmall", "GameFontHighlight",
-                "YES", "NO", "FieldNotesDB"}
+                "YES", "NO", "FieldNotesDB", "SOUNDKIT", "FieldNotesJournal"}
     new = [k for k in missing.values() if k not in optional]
     if new:
         print("globals the mock does not have:", ", ".join(new))

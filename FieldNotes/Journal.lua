@@ -363,6 +363,7 @@ local function LootLines(lines, inst, filter)
 end
 
 local function Select(inst, kind, key)
+	if inst ~= sel.inst or kind ~= sel.kind or key ~= sel.key then ns:Sound("page") end
 	sel.inst, sel.kind, sel.key = inst, kind, key
 	Refresh()
 end
@@ -376,7 +377,8 @@ end
 local function OverviewPage(lines, id, inst)
 	H1(lines, inst.name)
 	Faded(lines, ("%s. First entered %s, %s."):format(inst.kind == "raid" and "Raid" or "Dungeon",
-		ns:Day(inst.first), Plural(inst.visits, "visit", "visits")))
+		ns:Day(inst.first), Plural(inst.visits, "visit", "visits"))
+		.. ((inst.deaths or 0) > 0 and (" Fallen here " .. (inst.deaths == 1 and "once" or (inst.deaths .. " times")) .. ".") or ""))
 
 	H2(lines, "Halls and chambers")
 	if #inst.areas == 0 then Faded(lines, "Nothing noted yet.") end
@@ -1126,7 +1128,8 @@ local function CreateJournal()
 	notes:SetPoint("BOTTOMLEFT", 10, 6)
 	notes:SetPoint("BOTTOMRIGHT", -28, 6)
 
-	frame:SetScript("OnShow", Refresh)
+	frame:SetScript("OnShow", function() ns:Sound("open") Refresh() end)
+	frame:SetScript("OnHide", function() ns:Sound("close") end)
 end
 
 -- page: open on this page of the dungeon you are standing in ("map").

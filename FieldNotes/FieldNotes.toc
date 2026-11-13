@@ -12,6 +12,7 @@
 ## AddonCompartmentFuncOnLeave: FieldNotes_OnCompartmentLeave
 
 Core.lua
+Notice.lua
 Record.lua
 Maps.lua
 Abilities.lua

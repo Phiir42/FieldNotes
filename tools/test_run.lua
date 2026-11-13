@@ -60,7 +60,7 @@ step("blank journal", function()
 end)
 
 step("slash commands", function()
-	for _, cmd in ipairs({ "help", "announce", "announce", "button", "button", "quality 3", "quality 2",
+	for _, cmd in ipairs({ "help", "notices", "notices", "sound", "sound", "announce", "announce", "sketch", "sketch", "button", "button", "quality 3", "quality 2",
 		"quality x", "mapkey", "mapkey", "debug", "nonsense", "version", "reset" }) do
 		M.slash(cmd)
 	end
@@ -198,6 +198,28 @@ step("a boss: wipe, then kill", function()
 	M.fire("ENCOUNTER_END", 99999, "Someone New", 1, 5, 1)
 	M.fire("ENCOUNTER_END", 88888, nil, 1, 5, 1)
 	M.wait(1)
+end)
+
+step("notices and deaths", function()
+	local slip = FieldNotesNotice
+	check("a notice was shown for what was written", slip ~= nil and slip:IsShown())
+	M.fire("PLAYER_DEAD")
+	check("death written in the diary", inst.deaths == 1 and inst.log[#inst.log][2]:find("Fell in battle", 1, true))
+	for _ = 1, 600 do
+		M.wait(0.05)
+		if slip.__scripts.OnUpdate then slip.__scripts.OnUpdate(slip, 0.05) end
+	end
+	check("notices fade away when all are shown", not slip:IsShown() and not slip.__scripts.OnUpdate)
+	M.slash("notices")
+	M.fire("PLAYER_DEAD")
+	check("no notice when turned off", not slip:IsShown() and inst.deaths == 2)
+	M.slash("notices")
+	M.subzone = "Somewhere Unmapped"
+	M.fire("ZONE_CHANGED")
+	check("a notice shows again", slip:IsShown())
+	slip:Click()
+	check("clicking a notice opens the journal", FieldNotesJournal:IsShown() and not slip:IsShown())
+	M.slash("")
 end)
 
 step("every page of the journal", function()

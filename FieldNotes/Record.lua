@@ -319,6 +319,21 @@ ns:On("ENCOUNTER_END", function(id, name, _, _, success)
 	cur.last = time()
 end)
 
+-- Your own death is part of the story.
+ns:On("PLAYER_DEAD", function()
+	if not cur then return end
+	cur.deaths = (cur.deaths or 0) + 1
+	local b = encounter and cur.bosses[encounter.id]
+	local area = cur.areas[#cur.areas]
+	if b then
+		ns:Log(cur, ("Fell in battle against %s."):format(b.name))
+	elseif area then
+		ns:Log(cur, ("Fell in battle in %s."):format(area.name))
+	else
+		ns:Log(cur, "Fell in battle.")
+	end
+end)
+
 ---------------------------------------------------------------------------
 -- Loot
 ---------------------------------------------------------------------------

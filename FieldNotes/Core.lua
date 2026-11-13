@@ -29,6 +29,8 @@ ns.DEFAULTS = {
 	minQuality = 2,    -- lowest item quality worth noting (2 = uncommon)
 	button = true,     -- minimap button
 	buttonAngle = 200,
+	notices = true,    -- a slip of parchment on screen when something new is written down
+	sound = true,      -- the book opening and closing, pages turning
 	sketch = true,     -- newly charted parts of a map are sketched in, not just shown
 	mapKey = true,     -- inside a dungeon, the map key opens the journal's map
 }
@@ -144,6 +146,7 @@ function ns:Log(inst, text)
 	if self.db.settings.announce then
 		DEFAULT_CHAT_FRAME:AddMessage(PREFIX .. text, 0.86, 0.78, 0.62)
 	end
+	if self.Notice then self:Notice(text) end
 	self:Changed()
 end
 
