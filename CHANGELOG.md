@@ -146,7 +146,9 @@
   the bestiary, "Invisibility and Stealth Detection" on 13 creatures and
   the like.
 - A quest begun by an item shows the item as the game's link: hover it for
-  its tooltip, shift-click to link it ("Begins with [Glowing Shard]").
+  its tooltip, shift-click to link it ("Begins with [Glowing Shard]"). The
+  item's own tooltip says which quest it begins ('begins "The Glowing
+  Shard" (Wailing Caverns)').
 - The slip of parchment on screen widens to fit a long line ("Took up the
   quest ...") instead of cutting it short.
 - "/fn quality" alone says which items are being noted ("noting uncommon

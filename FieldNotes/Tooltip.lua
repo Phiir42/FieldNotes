@@ -51,6 +51,11 @@ local function Rewards()
 						table.insert(rewards[item], { inst = inst, q = q })
 					end
 				end
+				-- and the item that begins it
+				if q.itemID then
+					rewards[q.itemID] = rewards[q.itemID] or {}
+					table.insert(rewards[q.itemID], { inst = inst, q = q, begins = true })
+				end
 			end
 		end
 	end
@@ -86,7 +91,7 @@ function ns:FoundLines(item)
 	-- and the quests that give it
 	for i, r in ipairs(Rewards()[item] or {}) do
 		if i > PLACES_MAX then break end
-		out[#out + 1] = ("a reward of \"%s\" (%s)."):format(r.q[2], r.inst.name)
+		out[#out + 1] = (r.begins and "begins \"%s\" (%s)." or "a reward of \"%s\" (%s)."):format(r.q[2], r.inst.name)
 	end
 	if #out > 0 then return out end
 end
