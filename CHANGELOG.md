@@ -73,6 +73,9 @@
   the level of a namesake elsewhere.
 - Places read as they are said: "errands that lead into the Deadmines",
   "set foot in the Wailing Caverns".
+- Eleven quests whose quarry the database leaves unnamed say whom to look
+  for: the pieces of Lord Valthalak's Amulet, The Restless Souls, Dead
+  Man's Plea, A Taste of Flame and more.
 - Some 90 more creatures have their level, kind and portrait: those whose
   spawn point holds one of several kinds (Shadowfang Keep's Shadow
   Chargers among them). Quest marks for them are placed too.

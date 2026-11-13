@@ -30,6 +30,19 @@ NOTES = {
     6921: "Taking the Fathom Core from the Fathom Stone calls up Baron Aquanis.",
 }
 
+# Who to look for, where the database cannot tell (summoned, or handled by a
+# script), by quest id.
+WHO = {
+    4024: ["Bael'Gar"],                                     # A Taste of Flame
+    5214: ["Fras Siabi"],                                   # The Great Fras Siabi
+    5282: ["Ghostly Citizen", "Spectral Citizen"],          # The Restless Souls
+    8945: ["Baron Rivendare"],                              # Dead Man's Plea
+    8966: ["Mor Grayhoof"], 8989: ["Mor Grayhoof"],         # Lord Valthalak's Amulet, left and right
+    8967: ["Isalien"], 8990: ["Isalien"],
+    8968: ["Jarien", "Sothos"], 8991: ["Jarien", "Sothos"],
+    5384: ["Kirtonos the Herald"],                          # Kirtonos the Herald
+}
+
 
 def read_tables(wanted):
     """-> {table: (columns, rows)} from the database dump."""
@@ -275,6 +288,13 @@ def main():
         q = by_map[mp][-1]
         if classes:
             q["class"] = classes
+        if not q["who"] and q["id"] in WHO:
+            q["who"] = WHO[q["id"]]
+            for name in q["who"]:  # where they stand, for the map
+                for c in list(creatures.values()) + list(objects.values()):
+                    if c["name"] == name:
+                        spots.setdefault(mp, {}).setdefault(name, []).extend(
+                            sp[1:] for sp in c["spawns"] if sp[0] == mp and len(sp) == 4)
         if q["id"] in NOTES:
             q["note"] = NOTES[q["id"]]
         elif len(every) > 1:
