@@ -144,6 +144,8 @@
   Visual", Heigan's "Plague Wave Controller", "Reset Gothik Event"; and in
   the bestiary, "Invisibility and Stealth Detection" on 13 creatures and
   the like.
+- A quest begun by an item shows the item as the game's link: hover it for
+  its tooltip, shift-click to link it ("Begins with [Glowing Shard]").
 - "/fn quality" alone says which items are being noted, instead of listing
   every command.
 - A dungeon whose halls the game never names (Shadowfang Keep) no longer

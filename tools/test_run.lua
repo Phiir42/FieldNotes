@@ -914,6 +914,12 @@ step("creatures a quest wants", function()
 	M.questsDone[1491] = true
 	open("Spoils") open("Bestiary")
 	check("but not for quests done", not pageText():find("Wanted for Smart Drinks", 1, true))
+	open("Quests")
+	local shard
+	for _, f in ipairs(M.frames) do
+		if f.__shown and rawget(f, "line") and f.line.link == "item:10441" then shard = f.line.text end
+	end
+	check("a quest begun by an item shows that item, with its tooltip", shard and shard:find("Begins with Glowing Shard", 1, true))
 	M.questsOn[1487], M.questsDone[1491] = nil, nil
 	M.slash("")
 end)

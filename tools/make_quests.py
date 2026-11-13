@@ -405,7 +405,7 @@ def main():
             q["note"] = "Look for %s outside, near the way in." % listed(out[:3])
         giver = givers.get(q["id"])
         if q["id"] in starts:
-            q["item"] = starts[q["id"]]
+            q["item"], q["itemID"] = starts[q["id"]], start_item[q["id"]]
         elif giver:
             q["from"], q["inside"] = plain(giver[0]), mp in giver[1]
             if q["inside"]:  # where they stand, for the map
@@ -462,6 +462,8 @@ def main():
                     who += ", %s = %s" % (k, lua_string(q[k]))
             if q.get("inside"):
                 who += ", inside = true"
+            if q.get("itemID"):  # (the item that begins it, to show as the game's link)
+                who += ", itemID = %d" % q["itemID"]
             if q.get("class"):
                 who = (who or ", nil") + ", class = %d" % q["class"]
             for k in ("pick", "get"):

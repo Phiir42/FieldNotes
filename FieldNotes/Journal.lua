@@ -1230,12 +1230,24 @@ local function QuestsPage(lines, id, inst)
 			-- (how to come by it, only until you have it)
 			if state == "log" then
 			elseif q.item then
-				how = "Begins with " .. q.item
+				-- the game's own link for the item, once it has it to hand
+				local ask = GetItemInfo or (C_Item and C_Item.GetItemInfo)
+				local ok, name, link = false, nil, nil
+				if q.itemID and ask then ok, name, link = pcall(ask, q.itemID) end
+				if q.itemID and not (ok and name) and not askedFor[q.itemID] and C_Item and C_Item.RequestLoadItemDataByID then
+					askedFor[q.itemID] = true
+					pcall(C_Item.RequestLoadItemDataByID, q.itemID)
+				end
+				how = "Begins with " .. ((ok and type(link) == "string" and link) or q.item)
 			elseif q.from then
 				how = "Given by " .. ns:The(q.from) .. (q.inside and ", inside" or "")
 			end
 			if q.after and state ~= "log" then how = how and (how .. "; follows " .. q.after) or ("Follows " .. q.after) end
-			if how then Faded(lines, Stop(how), 8) end
+			if how then
+				Faded(lines, Stop(how), 8)
+				-- (the item's tooltip on the line, and shift-click to link it)
+				if q.item and q.itemID and state ~= "log" then lines[#lines].link = "item:" .. q.itemID end
+			end
 			if q.note and not ready then Faded(lines, q.note, 8) end
 			-- and what it pays
 			local function Rewards(ids, label)
