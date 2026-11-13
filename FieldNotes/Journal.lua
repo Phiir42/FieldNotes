@@ -1933,7 +1933,7 @@ local function SearchPage(lines, query)
 		for _, eid in ipairs(inst.bossOrder) do
 			local b = inst.bosses[eid]
 			if Has(b.name) then
-				Hit(b.name, "a foe of note in " .. ns:The(place) .. (b.kills > 0 and ", defeated" or ""), Go("boss", eid))
+				Hit(b.name, "a foe of note in " .. ns:The(place) .. (b.kills > 0 and (", defeated " .. Times(b.kills)) or ""), Go("boss", eid))
 			end
 			-- its known abilities, once written in (on its defeat)
 			local known = b.kills > 0 and (ns.Abilities[eid] or ns.AbilitiesByName[ns:AreaKey(b.name)])
