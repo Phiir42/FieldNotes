@@ -46,6 +46,7 @@ WHO = {
     8967: ["Isalien"], 8990: ["Isalien"],
     8968: ["Jarien", "Sothos"], 8991: ["Jarien", "Sothos"],
     5384: ["Kirtonos the Herald"],                          # Kirtonos the Herald
+    17: ["Magenta Cap Clusters"], 2202: ["Magenta Cap Clusters"],  # Uldaman Reagent Run
 }
 
 
