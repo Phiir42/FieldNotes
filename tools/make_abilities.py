@@ -411,7 +411,7 @@ def picture_lines(boss_names):
 
 # the fight's machinery, whatever the source: "Kirtonos Gargoyle Passive" on
 # every Scholomance boss, "Shade of Eranikus Passive Visual"
-NOT_ABILITY = re.compile(r"\b(?:Passive|Visual|Dummy|Cosmetic|Controller|Periodic|Event|Immune All)\b")
+NOT_ABILITY = re.compile(r"\b(?:Passive|Visual|Dummy|Cosmetic|Controller|Periodic|Event|Immune All|Detection|Spawn-in|Trigger|TEST)\b")
 
 
 def pick(raw, names):
