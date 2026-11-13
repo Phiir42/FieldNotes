@@ -649,6 +649,9 @@ local function Lockout(id, inst)
 	return found
 end
 
+local DIARY_SHOWN = 60
+local wholeDiary = {} -- [instance record] = true: every entry shown, this session
+
 local function OverviewPage(lines, id, inst)
 	H1(lines, inst.name)
 	Faded(lines, ("%s. First entered %s, %s."):format(inst.kind == "raid" and "Raid" or "Dungeon",
@@ -717,7 +720,9 @@ local function OverviewPage(lines, id, inst)
 	H2(lines, "Diary")
 	local day
 	local log = inst.log
-	for i = #log, math.max(1, #log - 59), -1 do
+	-- the latest entries, or (once asked for) all the diary keeps
+	local shown = wholeDiary[inst] and #log or DIARY_SHOWN
+	for i = #log, math.max(1, #log - shown + 1), -1 do
 		local t, text = log[i][1], log[i][2]
 		local d = ns:Day(t)
 		if d ~= day then
@@ -725,6 +730,14 @@ local function OverviewPage(lines, id, inst)
 			lines[#lines + 1] = { text = d, font = "GameFontNormalSmall", color = FADED, gap = 6 }
 		end
 		Body(lines, FADED_HEX .. date("%H:%M", t) .. "|r  " .. text, 8)
+	end
+	if #log > shown then
+		local more = #log - shown
+		lines[#lines + 1] = {
+			text = Plural(more, "earlier entry", "earlier entries"), font = "GameFontNormalSmall", color = FADED,
+			gap = 6, indent = 8, tip = "Click to read them.",
+			click = function() wholeDiary[inst] = true; Refresh() end,
+		}
 	end
 
 	lines[#lines + 1] = {

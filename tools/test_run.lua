@@ -313,6 +313,19 @@ step("every page of the journal", function()
 	M.slash("")
 	check("opens on the dungeon", pageText():find("The Deadmines", 1, true))
 	check("diary has entries", pageText():find("Came upon Goblin Foundry", 1, true))
+	do -- a long diary shows its latest entries, and the rest when asked
+		local log = ns.db.instances[36].log
+		local kept = {}
+		for i, e in ipairs(log) do kept[i] = e end
+		for i = 1, 80 do table.insert(log, 1, { 1794000000 - i, "Old entry " .. i .. "." }) end
+		open("Bestiary") open("The Deadmines")
+		check("a long diary is cut short", pageText():find("earlier entries", 1, true) and not pageText():find("Old entry 80.", 1, true))
+		open("earlier entries")
+		check("and read in full on asking", pageText():find("Old entry 80.", 1, true))
+		for i = #log, 1, -1 do log[i] = nil end
+		for i, e in ipairs(kept) do log[i] = e end
+		open("Bestiary") open("The Deadmines")
+	end
 	check("boss page opens", open("Rhahk'Zor"))
 	check("boss page text", pageText():find("swiftest victory 0:42", 1, true))
 	local function portraits()
