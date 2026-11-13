@@ -304,6 +304,7 @@ GROUPS = {
     "Silithid Royalty": ["Princess Yauj", "Vem", "Lord Kri"],
     "Twin Emperors": ["Emperor Vek'lor", "Emperor Vek'nilash"],
     "The Four Horsemen": ["Highlord Mograine", "Thane Korth'azz", "Lady Blaumeux", "Sir Zeliek"],
+    "Hans and Greta": ["Hans", "Greta"],
 }
 
 
@@ -315,6 +316,7 @@ NPC_NAMES = {
     "Handler Ashka": ["War Handler Ashka"],
     "Deathless Guardians": ["Deathless Marrow"],
     "Destructor's Wraith": ["The Destructor's Wraith"],
+    "Ravasaur Hunters": ["Ravasaur Hunter"],
 }
 
 

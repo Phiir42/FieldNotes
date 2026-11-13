@@ -23,13 +23,18 @@ URL = "https://www.wowhead.com/forever/search/suggestions-template?q="
 # Names the guides use for bosses the client's encounter list calls otherwise,
 # and bosses the list leaves out.
 ALSO = ["Arcanic Enigma", "The Baron", "Magmatus", "Deathless Marrow", "Bossman Toof", "War Handler Ashka",
-        "Overlord Mugg", "Zarla Ober", "Ezra Grimm", "Festering Rotslime", "The Destructor's Wraith"]
+        "Overlord Mugg", "Zarla Ober", "Ezra Grimm", "Festering Rotslime", "The Destructor's Wraith",
+        "Hans", "Greta", "Ravasaur Hunter"]
 
 
 def main():
     maps = {r["ID"]: r["MapName_lang"] for r in m.table("Map", m.FOREVER)}
     names = [e["Name_lang"] for e in m.table("DungeonEncounter", m.FOREVER) if int(e["MapID"]) > 1000] + ALSO
+    # what an earlier run found stays, should a lookup fail this time
     found, missing = {}, []
+    if os.path.exists(OUT):
+        with open(OUT, encoding="utf-8") as f:
+            found = json.load(f)
     for name in dict.fromkeys(names):
         req = urllib.request.Request(URL + urllib.parse.quote(name), headers={"User-Agent": "Mozilla/5.0"})
         try:
@@ -37,7 +42,8 @@ def main():
                 results = json.load(r).get("results", [])
         except Exception as e:  # noqa: BLE001
             print("failed:", name, e)
-            results = []
+            time.sleep(5)  # (turned away: slow down)
+            continue
         ids = [x["id"] for x in results if x.get("type") == 1 and x.get("name", "").lower() == name.lower()]
         # an elite of the name before a common creature of the same name
         elite = [x["id"] for x in results if x.get("type") == 1 and x.get("name", "").lower() == name.lower()
@@ -46,7 +52,7 @@ def main():
             found[name] = (elite or ids)[0]
         else:
             missing.append(name)
-        time.sleep(0.4)
+        time.sleep(1)
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, "w", encoding="utf-8", newline="\n") as f:
         json.dump(found, f, indent=1, ensure_ascii=False, sort_keys=True)

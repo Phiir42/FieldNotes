@@ -74,6 +74,8 @@
   game calls "Geilhast") instead of "From the halls"; journals that already
   hold them are put right. The same goes for any boss whose fight is named
   otherwise than the creature.
+- Portraits for Ezra Grimm, Hans and Greta, the Ravasaur Hunters and two
+  more bosses that had none.
 - Creatures called up as pets (BFD's Voidwalker Minions) no longer show
   the level of a namesake elsewhere.
 - Places read as they are said: "errands that lead into the Deadmines",
