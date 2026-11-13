@@ -40,6 +40,9 @@
 - A boss's page lists the quests that send you after it (or after those it
   fights beside), and whether you carry them; click one for the Quests
   page. A creature in the bestiary says which unfinished quests want it.
+- "/fn find <words>" searches the journal: every boss, creature, find,
+  hall, quest and note of your own that holds the words, each a click away
+  from its page.
 - The minimap button's tooltip says how far the place you are in has got.
 - A raid or dungeon you are saved to says so on its first page: until
   when, and how many of its foes are down, as the game's raid information

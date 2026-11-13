@@ -1790,6 +1790,88 @@ local function SettingsPage(lines)
 end
 
 ---------------------------------------------------------------------------
+-- Searching the journal ("/fn find <words>"): every place, boss, creature,
+-- find, hall, quest and note of your own that holds the words, each leading
+-- to its page.
+---------------------------------------------------------------------------
+local FOUND_MAX = 40
+
+local function SearchPage(lines, query)
+	H1(lines, "Searching the journal")
+	query = (query or ""):lower()
+	if query == "" then
+		Body(lines, "\nWrite what to look for after the command: \"/fn find cookie\".")
+		return
+	end
+	Faded(lines, "For \"" .. query .. "\".")
+	local n = 0
+	local function Has(text)
+		return type(text) == "string" and text:lower():find(query, 1, true) ~= nil
+	end
+	local function Hit(text, what, go, link)
+		n = n + 1
+		if n > FOUND_MAX then return end
+		lines[#lines + 1] = {
+			text = text .. FADED_HEX .. "  " .. what .. "|r", gap = 4, indent = 8, click = go, link = link,
+		}
+	end
+	-- a note of your own, quoted around the words
+	local function Note(note, on, place, go)
+		if not Has(note) then return end
+		local at = note:lower():find(query, 1, true)
+		local from = math.max(1, at - 30)
+		local bit = (from > 1 and "..." or "") .. note:sub(from, at + #query + 40):gsub("\n", " ")
+			.. (at + #query + 40 < #note and "..." or "")
+		Hit("\"" .. bit .. "\"", "your note on " .. on .. (place and (", " .. place) or ""), go)
+	end
+	for _, id in ipairs(Places()) do
+		local inst = ns.db.instances[id]
+		local place = inst.name
+		local function Go(kind, key) return function() Select(id, kind, key) end end
+		if Has(place) then Hit(place, inst.kind == "raid" and "a raid" or "a dungeon", Go("overview")) end
+		Note(inst.note, place, nil, Go("overview"))
+		for _, a in ipairs(inst.areas) do
+			if Has(a.name) then Hit(a.name, "a hall of " .. place, Go("overview")) end
+			Note(a.note, a.name, place, Go("overview"))
+		end
+		for _, eid in ipairs(inst.bossOrder) do
+			local b = inst.bosses[eid]
+			if Has(b.name) then
+				Hit(b.name, "a foe of note in " .. place .. (b.kills > 0 and ", defeated" or ""), Go("boss", eid))
+			end
+			Note(b.note, b.name, place, Go("boss", eid))
+		end
+		for _, npc in ipairs(inst.mobOrder) do
+			local m = inst.mobs[npc]
+			if not IsBoss(inst, m) then
+				if Has(m.name) then Hit(m.name, "a creature of " .. place, Go("bestiary")) end
+				Note(m.note, m.name, place, Go("bestiary"))
+			end
+		end
+		for _, item in ipairs(inst.lootOrder) do
+			local it = inst.loot[item]
+			local name = it.link:match("%[(.-)%]") or ""
+			if Has(name) then Hit(it.link, "found in " .. place, Go("spoils"), it.link) end
+			Note(it.note, name, place, Go("spoils"))
+		end
+		for _, q in ipairs(QuestsOf(id)) do
+			if Has(q[2]) then Hit(q[2], "a quest of " .. place, Go("quests")) end
+		end
+	end
+	if n == 0 then
+		Body(lines, "\nNothing in the journal holds those words.")
+	elseif n > FOUND_MAX then
+		Faded(lines, ("\nAnd %d more. More words narrow it down."):format(n - FOUND_MAX))
+	end
+end
+
+function ns:Search(query)
+	if not frame then CreateJournal() end
+	sel.inst, sel.kind, sel.key = nil, "search", query
+	if frame:IsShown() then Refresh() else frame:Show() end
+end
+
+---------------------------------------------------------------------------
 -- Contents list
 ---------------------------------------------------------------------------
 local function Count(t, skip)
@@ -1818,7 +1900,7 @@ local function IndexLines()
 	end
 	lines[1] = {
 		text = "Contents", font = "GameFontNormalSmall", color = FADED,
-		selected = not sel.inst and sel.kind ~= "settings",
+		selected = not sel.inst and sel.kind ~= "settings" and sel.kind ~= "search",
 		click = function() Select(nil, "contents") end,
 	}
 	for _, id in ipairs(ids) do
@@ -1950,7 +2032,8 @@ Page = function()
 	local inst = sel.inst and ns.db.instances[sel.inst]
 	if not inst then
 		noteOn = nil
-		sel.inst, sel.kind, sel.key = nil, sel.kind == "settings" and "settings" or nil, nil
+		local keep = sel.kind == "settings" or sel.kind == "search"
+		sel.inst, sel.kind, sel.key = nil, keep and sel.kind or nil, keep and sel.key or nil
 	elseif sel.kind == "boss" and not inst.bosses[sel.key] then
 		sel.kind, sel.key = "overview", nil
 	elseif sel.kind == "map" and not ns.Maps[sel.inst] then
@@ -1968,6 +2051,8 @@ Page = function()
 	local lines = {}
 	if sel.kind == "settings" then
 		SettingsPage(lines)
+	elseif sel.kind == "search" then
+		SearchPage(lines, sel.key)
 	elseif not inst then
 		if next(ns.db.instances) then TitlePage(lines) else BlankPage(lines) end
 	elseif sel.kind == "boss" then

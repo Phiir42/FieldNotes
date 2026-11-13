@@ -138,6 +138,8 @@ SlashCmdList["FIELDNOTES"] = function(msg)
 		s.button = not s.button
 		ns:UpdateMinimapButton()
 		ns:Print("minimap button %s.", s.button and "shown" or "hidden")
+	elseif cmd == "find" or cmd == "search" then
+		ns:Search(arg)
 	elseif cmd == "debug" then
 		ns:DebugReport()
 	elseif cmd == "errors" then
@@ -180,6 +182,7 @@ SlashCmdList["FIELDNOTES"] = function(msg)
 		print("  /fn  -  open or close the journal")
 		print("  /fn full  -  the journal fills the screen, or goes back to its usual size")
 		print("  /fn settings  -  the journal's preferences page (everything below, by clicking)")
+		print("  /fn find <words>  -  every boss, creature, find, hall, quest and note that holds them")
 		print("  /fn announce  -  chat lines when something new is written down")
 		print("  /fn quality <0-5>  -  lowest item quality worth noting")
 		print("  /fn button  -  show or hide the minimap button")
