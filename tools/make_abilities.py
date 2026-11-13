@@ -95,6 +95,35 @@ ALIASES = {
     "Ras Frostwhisperer": ["Ras Frostwhisper"],
 }
 
+# The dungeons new to Forever have no journal, boss module or classic database
+# behind them. What is listed here is attested one of two ways: the client's
+# own spell text names the boss ("...healing Min'loth every..."), or a
+# published guide names the ability and the client has a spell of that name
+# among the new dungeon's spells. Short lists, but nothing guessed.
+FOREVER_KNOWN = {
+    # The Drowned City
+    "Zul'Alai": [1282504, 1282519, 1282511],             # Monstrous Slam, Rotted Strike, Undying Oath
+    "Var'Taka": [1282615],                               # Harpoon
+    "Captain Dreadrise": [1282842, 1282860],             # Embrine, Waterbolt Volley
+    "Deathless Guardians": [1283034],                    # Bloodbolt
+    "Primeval Elemental": [1290978, 1290983],            # Waterbolt, Freeze Water
+    "Min'loth the Serpent": [1283250, 1283239, 1283266, 1283295, 1283313],  # Drench, Deluge, Drain Blood, Transform, Poison Bolt Volley
+    # Krol'dok Stronghold
+    "Overseer Mugg": [1282386, 1282393, 1282394],        # Mugg's Fury, Set of Maces, Set of Mauls
+    # Blackmaw Hold
+    "Withermaw": [1302780],                              # Writhing Mass
+    "Bonesnout the Unbroken": [1277364, 1277406],        # Desecration, Profane Bulwark
+    "Varrox Bleakhoof": [1246453],                       # Crimson Wrest
+    "Unbound Spirit": [1247237],                         # Profane Protection
+    # City of Dalaran
+    "Fel Ancient": [1240692],                            # Fel Timbers
+    "Shade of the Archmage": [1241501, 1241523],         # Focal Blast, Bounding Mana
+    # The Shaper's Terrace
+    "Nanaya": [1290463],                                 # Powerful Slam
+    # The Hall of Thanes
+    "Faldrim Anvilmar": [1292602],                       # Anvilmar's Curse
+}
+
 
 def classicdb_spells():
     """-> {name key: [spellID]} from the cmangos classic database
@@ -290,6 +319,7 @@ def main():
         total += 1
         k = key(name)
         raw = mod_id.get(eid, []) + mod_name.get(k, []) + jrn_id.get(eid, []) + jrn_name.get(k, []) + cdb_name.get(k, [])
+        raw += FOREVER_KNOWN.get(name, [])
         scripted = script_for(k, scripts)
         for alias in ALIASES.get(name, []):
             raw += cdb_name.get(key(alias), [])

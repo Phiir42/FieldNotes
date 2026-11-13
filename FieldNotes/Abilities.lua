@@ -669,9 +669,35 @@ N["barianmaryla"] = A[3172]
 A[3296] = { 28834 } -- Spirit of Mograine: Mark of Mograine
 N["spiritofmograine"] = A[3296]
 
+-- City of Dalaran
+A[3299] = { 1240692 } -- Fel Ancient: Fel Timbers
+N["felancient"] = A[3299]
+A[3303] = { 1241501, 1241523 } -- Shade of the Archmage: Focal Blast, Bounding Mana
+N["shadeofthearchmage"] = A[3303]
+
 -- The Drowned City
-A[3478] = { 5, 24751, 24755, 8593 } -- Deathless Guardians: Death Touch, Trick or Treat, Tricked or Treated, Symbol of Life
+A[3474] = { 1282504, 1282519, 1282511 } -- Zul'Alai: Monstrous Slam, Rotted Strike, Undying Oath
+N["zulalai"] = A[3474]
+A[3475] = { 1282615 } -- Var'Taka: Harpoon
+N["vartaka"] = A[3475]
+A[3476] = { 1282842, 1282860 } -- Captain Dreadrise: Embrine, Waterbolt Volley
+N["captaindreadrise"] = A[3476]
+A[3478] = { 1283034, 5, 24751, 24755, 8593 } -- Deathless Guardians: Bloodbolt, Death Touch, Trick or Treat, Tricked or Treated, Symbol of Life
 N["deathlessguardians"] = A[3478]
+A[3511] = { 1290978, 1290983 } -- Primeval Elemental: Waterbolt, Freeze Water
+N["primevalelemental"] = A[3511]
+A[3479] = { 1283250, 1283239, 1283266, 1283295, 1283313 } -- Min'loth the Serpent: Drench, Deluge, Drain Blood, Transform, Poison Bolt Volley
+N["minloththeserpent"] = A[3479]
+
+-- Blackmaw Hold
+A[3315] = { 1302780 } -- Withermaw: Writhing Mass
+N["withermaw"] = A[3315]
+A[3322] = { 1277364, 1277406 } -- Bonesnout the Unbroken: Desecration, Profane Bulwark
+N["bonesnouttheunbroken"] = A[3322]
+A[3334] = { 1246453 } -- Varrox Bleakhoof: Crimson Wrest
+N["varroxbleakhoof"] = A[3334]
+A[3336] = { 1247237 } -- Unbound Spirit: Profane Protection
+N["unboundspirit"] = A[3336]
 
 -- Alcaz Prison
 A[3418] = { 29230, 28874 } -- Katerina the Cleaner: Immune All, Consumption
@@ -680,6 +706,18 @@ N["katerinathecleaner"] = A[3418]
 -- Excavation Site: Wetlands
 A[3482] = { 5, 24751, 24755, 8593 } -- Relic Guardian: Death Touch, Trick or Treat, Tricked or Treated, Symbol of Life
 N["relicguardian"] = A[3482]
+
+-- The Shaper's Terrace
+A[3502] = { 1290463 } -- Nanaya: Powerful Slam
+N["nanaya"] = A[3502]
+
+-- Krol'dok Stronghold
+A[3451] = { 1282386, 1282393, 1282394 } -- Overseer Mugg: Mugg's Fury, Set of Maces, Set of Mauls
+N["overseermugg"] = A[3451]
+
+-- The Hall of Thanes
+A[3493] = { 1292602 } -- Faldrim Anvilmar: Anvilmar's Curse
+N["faldrimanvilmar"] = A[3493]
 
 -- Creatures
 C["advisorwillington"] = { lo = 62, hi = 62, type = "Humanoid", spells = {  }, model = 12672 } -- Advisor Willington
