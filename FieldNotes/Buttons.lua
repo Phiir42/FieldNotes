@@ -12,11 +12,7 @@ local function Tooltip(owner, extra)
 	-- and what is written about the place you are in
 	local inst = ns.current
 	if inst then
-		local faced, beaten = 0, 0
-		for _, b in pairs(inst.bosses) do
-			faced = faced + 1
-			if b.kills > 0 then beaten = beaten + 1 end
-		end
+		local faced, beaten = ns:Foes(inst)
 		local t = {}
 		if faced > 0 then t[#t + 1] = ("%d of %d %s faced defeated"):format(beaten, faced, faced == 1 and "foe" or "foes") end
 		if #inst.lootOrder > 0 then t[#t + 1] = #inst.lootOrder .. (#inst.lootOrder == 1 and " find" or " finds") end

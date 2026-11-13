@@ -519,6 +519,17 @@ local function LootBoss(inst, it)
 	local eid = (m and m.enc) or it.enc
 	if eid and inst.bosses[eid] then return eid end
 end
+ns.LootBoss = LootBoss
+
+-- How many foes of note a place has: faced, and defeated.
+function ns:Foes(inst)
+	local faced, beaten = 0, 0
+	for _, b in pairs(inst.bosses) do
+		faced = faced + 1
+		if b.kills > 0 then beaten = beaten + 1 end
+	end
+	return faced, beaten
+end
 
 -- showFrom: say which creature carried each item.
 local function LootLines(lines, inst, filter, showFrom)
@@ -581,11 +592,7 @@ local function TitlePage(lines)
 	for _, id in ipairs(Places()) do
 		local inst = ns.db.instances[id]
 		places = places + 1
-		local f, k = 0, 0
-		for _, b in pairs(inst.bosses) do
-			f = f + 1
-			if b.kills > 0 then k = k + 1 end
-		end
+		local f, k = ns:Foes(inst)
 		local mobs = 0
 		for _, m in pairs(inst.mobs) do
 			if not IsBoss(inst, m) then mobs = mobs + 1 end
@@ -627,10 +634,13 @@ local function Lockout(id, inst)
 	local found
 	pcall(function()
 		for i = 1, GetNumSavedInstances() do
-			local name, _, reset, _, locked, _, _, _, _, difficulty, total, done, _, mapID = GetSavedInstanceInfo(i)
-			if locked and type(reset) == "number" and reset > 0
-				and (mapID == id or (type(name) == "string" and ns:AreaKey(name) == ns:AreaKey(inst.name))) then
-				found = { ends = time() + reset, total = total, done = done, difficulty = difficulty }
+			local name, _, reset, _, locked, _, _, isRaid, _, _, total, done, _, mapID = GetSavedInstanceInfo(i)
+			-- by the instance's map id where the client gives it, else by name and kind
+			local mine = mapID ~= nil and mapID == id
+				or mapID == nil and type(name) == "string" and ns:AreaKey(name) == ns:AreaKey(inst.name)
+				and (isRaid == nil or (isRaid and true or false) == (inst.kind == "raid"))
+			if locked and type(reset) == "number" and reset > 0 and mine then
+				found = { ends = time() + reset, total = total, done = done }
 			end
 		end
 	end)
@@ -1049,9 +1059,13 @@ end)
 -- goes in the diary of each dungeon with a page that the quest leads into.
 -- Away from the dungeon it is written quietly, without a chat line or slip.
 local homes -- [quest id] = { instance id, ... }, from Quests.lua
+local written = {} -- [how .. quest id] = true once written this session
 local function QuestDiary(id, how)
 	if issecretvalue and issecretvalue(id) then return end
 	if type(id) ~= "number" or not ns.db then return end
+	-- (a quest abandoned and taken up again, or an event sent twice, once)
+	if written[how .. id] then return end
+	written[how .. id] = true
 	if not homes then
 		homes = {}
 		for inst, list in pairs(ns.Quests or {}) do

@@ -572,8 +572,13 @@ local function CheckInstance()
 				NewVisit(inst)
 				ns:Log(inst, inst.visits == 1 and ("Set foot in %s for the first time."):format(name)
 					or ("Returned to %s."):format(name))
-			elseif not (inst.runs and inst.runs[1]) then
-				NewVisit(inst) -- a visit begun before visits were kept
+			else
+				-- the same visit goes on, unless it was begun before visits were
+				-- kept, or by another character
+				local last = inst.runs and inst.runs[#inst.runs]
+				local who = UnitName and UnitName("player")
+				if issecret(who) then who = nil end
+				if not last or (who and last.who and who ~= last.who) then NewVisit(inst) end
 			end
 			inst.last = now
 			Visit()
@@ -592,12 +597,14 @@ end
 -- Take out what earlier versions noted by mistake.
 local function Tidy()
 	if not ns.db then return end
+	local changed
 	for _, inst in pairs(ns.db.instances) do
 		for i = #inst.lootOrder, 1, -1 do
 			local id = inst.lootOrder[i]
 			if type(id) == "number" and Disenchanted(id) then
 				inst.loot[id] = nil
 				table.remove(inst.lootOrder, i)
+				changed = true
 			end
 		end
 		-- bosses killed without the game announcing the fight, noted by older
@@ -606,6 +613,7 @@ local function Tidy()
 			if not m.enc then ns:NamedBoss(inst, m) end
 		end
 	end
+	if changed then ns:Changed() end -- (item tooltips are written from the loot)
 end
 
 -- Instance info can lag a moment behind the loading screen.

@@ -37,12 +37,12 @@ end
 
 ns:On("FN_DATA", function() found = nil end)
 
--- Who carried it: the boss it is credited to, else the creature.
+-- Who carried it: the boss it is credited to (as on the Spoils page), else
+-- the creature.
 local function Source(inst, it)
+	local eid = ns.LootBoss(inst, it)
+	if eid then return inst.bosses[eid].name end
 	local m = it.npc and inst.mobs[it.npc]
-	local eid = (m and m.enc) or it.enc
-	local b = eid and inst.bosses[eid]
-	if b then return b.name end
 	return m and m.name
 end
 
