@@ -1959,7 +1959,13 @@ local function SearchPage(lines, query)
 		for _, item in ipairs(inst.lootOrder) do
 			local it = inst.loot[item]
 			local name = it.link:match("%[(.-)%]") or ""
-			if Has(name) then Hit(it.link, "found in " .. ns:The(place), Go("spoils"), it.link) end
+			if Has(name) then
+				-- and who carried it, as the item's tooltip says
+				local eid = LootBoss(inst, it)
+				local m = not eid and it.npc and inst.mobs[it.npc]
+				local from = (eid and inst.bosses[eid] and inst.bosses[eid].name) or (m and m.name)
+				Hit(it.link, "found in " .. ns:The(place) .. (from and (", from " .. ns:The(from)) or ""), Go("spoils"), it.link)
+			end
 			Note(it.note, name, place, Go("spoils"))
 		end
 		for _, q in ipairs(QuestsOf(id)) do
