@@ -65,6 +65,12 @@
   under each, with a word on where the rest is found: The Test of
   Righteousness (the Deadmines and Shadowfang Keep), the Orb of Soran'ruk,
   Three Kings of Flame, Atiesh and some 20 more.
+- Blackfathom Deeps: Gelihast's finds are listed under his fight (which the
+  game calls "Geilhast") instead of "From the halls"; journals that already
+  hold them are put right. The same goes for any boss whose fight is named
+  otherwise than the creature.
+- Creatures called up as pets (BFD's Voidwalker Minions) no longer show
+  the level of a namesake elsewhere.
 
 ## 0.2.0-beta.9
 

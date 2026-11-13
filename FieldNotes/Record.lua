@@ -363,9 +363,14 @@ function ns:NamedBoss(inst, m, live)
 	end
 	-- not one the game did announce: by its name, or (where the fight goes by
 	-- another name than the creature) by having died as that fight ended
+	-- (Gelihast, whose fight the game calls "Geilhast"): it is that boss, and
+	-- what it carried is that boss's
 	local at = live and time() or m.fought or 0
-	for _, other in pairs(inst.bosses) do
-		if ns:AreaKey(other.name) == key or math.abs((other.lastKill or 0) - at) < 60 then return end
+	for oid, other in pairs(inst.bosses) do
+		if ns:AreaKey(other.name) == key or math.abs((other.lastKill or 0) - at) < 60 then
+			m.enc = m.enc or oid
+			return
+		end
 	end
 	inst.bosses[id] = {
 		name = m.name, first = m.first or at, pulls = m.kills, kills = m.kills, wipes = 0, lastKill = at,
