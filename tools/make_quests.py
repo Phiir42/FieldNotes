@@ -50,6 +50,9 @@ WHO = {
     8968: ["Jarien", "Sothos"], 8991: ["Jarien", "Sothos"],
     5384: ["Kirtonos the Herald"],                          # Kirtonos the Herald
     17: ["Magenta Cap Clusters"], 2202: ["Magenta Cap Clusters"],  # Uldaman Reagent Run
+    4729: ["Bloodaxe Worg Pup"],                            # Kibler's Exotic Pets
+    4862: ["Spire Spider Egg"],                             # En-Ay-Es-Tee-Why
+    4866: ["Mother Smolderweb"],                            # Mother's Milk
 }
 
 
