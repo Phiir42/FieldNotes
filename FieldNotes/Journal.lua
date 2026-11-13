@@ -1980,6 +1980,18 @@ local function SearchPage(lines, query)
 				end
 			end
 			Note(inst.questNotes and inst.questNotes[q[1]] and inst.questNotes[q[1]].note, q[2], place, Go("quests"))
+			-- what it pays, as far as the game has the items to hand
+			local ask = GetItemInfo or (C_Item and C_Item.GetItemInfo)
+			for _, list in ipairs({ q.pick or {}, q.get or {} }) do
+				for _, item in ipairs(list) do
+					local ok, name, link = false, nil, nil
+					if ask then ok, name, link = pcall(ask, item) end
+					if ok and Has(name) then
+						Hit(type(link) == "string" and link or name, "a reward of \"" .. q[2] .. "\", " .. ns:The(place),
+							Go("quests"), type(link) == "string" and link or nil)
+					end
+				end
+			end
 		end
 		-- the visits someone went on with you
 		for i = #(inst.runs or {}), 1, -1 do
