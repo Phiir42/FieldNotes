@@ -776,7 +776,7 @@ local function OverviewPage(lines, id, inst)
 	lines[#lines + 1] = {
 		text = "Tear these pages out", font = "GameFontNormalSmall", color = FADED, gap = 24,
 		tip = "Erase everything noted about " .. ns:The(inst.name) .. ".",
-		click = function() StaticPopup_Show("FIELDNOTES_TEAR", inst.name, nil, id) end,
+		click = function() StaticPopup_Show("FIELDNOTES_TEAR", ns:The(inst.name), nil, id) end,
 	}
 end
 
