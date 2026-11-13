@@ -1453,6 +1453,12 @@ Refresh = function()
 		notes.edit:SetText(target and target.note or "")
 		notes.label:SetText(target and ("My notes on " .. name) or "")
 	end
+	-- your own writing follows the text size chosen in Preferences
+	local font = Font("QuestFont")
+	if font and font.GetFont then
+		local file, size, flags = font:GetFont()
+		if file and size then notes.edit:SetFont(file, size * (ns.db.settings.textScale or 1), flags) end
+	end
 	if target then notes:Show() else notes:Hide() end
 end
 

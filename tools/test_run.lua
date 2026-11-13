@@ -407,6 +407,19 @@ step("every page of the journal", function()
 	M.fire("ENCOUNTER_END", 2745, "Edwin VanCleef", 1, 5, 0)
 	M.wait(1)
 	check("with sketching off, areas simply appear", drawing() == 0)
+	-- a boss with no place of its own, and who it fights beside
+	M.fire("ENCOUNTER_START", 2742, "Sneed", 1, 5)
+	M.fire("ENCOUNTER_END", 2742, "Sneed", 1, 5, 1)
+	M.wait(1)
+	open("The Deadmines")
+	check("Sneed has a page", open("Sneed"))
+	do
+		local keys = table.concat(portraits(), " ")
+		check("a summoned boss has a portrait", keys:find("d7125", 1, true))
+		check("and his shredder beside him", keys:find("d1269", 1, true) and pageText():find("Sneed's Shredder", 1, true))
+		check("with what it is", pageText():find("mechanical, level 20", 1, true))
+	end
+	check("group fights name their members", #ns.Company.twinemperors == 2 and ns.Pictures.nefarian)
 	M.slash("sketch")
 	-- hover and click every visible row
 	for _, kind in ipairs({ "The Deadmines", "Rhahk'Zor", "Bestiary", "Spoils", "Map" }) do

@@ -7,6 +7,7 @@
   pictures his shredder.
 - Fights against a company (the Twin Emperors, the Four Horsemen, the Seven,
   the Lost Dwarves...) picture each member by name.
+- The notes box follows the text size chosen in Preferences.
 
 ## 0.2.0-beta.5
 
