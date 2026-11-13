@@ -138,9 +138,8 @@
   - the quests that send you after a creature ("/fn find ravager": Deviate
     Hides, Deviate Eradication), and those someone gives ("/fn find nalpak");
   - what the quests pay, once the game has the items to hand.
-  A find in the results says who carried it, a creature how many were
-  slain ("found in Blackfathom Deeps,
-  from Aku'mai").
+  A find in the results says who carried it ("found in Blackfathom Deeps,
+  from Aku'mai"), and a creature how many were slain.
 - "/fn find <words>" typed before the journal had been opened once since
   logging in raised a Lua error; it opens the search page now.
 - Known abilities no longer list a fight's hidden workings: "Kirtonos
