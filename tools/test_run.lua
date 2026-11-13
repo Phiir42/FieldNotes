@@ -672,15 +672,27 @@ step("leave and return", function()
 	M.slash("")
 	M.wait(4000)
 	M.instance = { name = "The Deadmines", kind = "party", id = 36 }
+	M.group = 3
+	M.units.party1 = { name = "Brann", guid = "Player-1-0003", player = true }
+	M.units.party2 = { name = "hidden" } -- a name the game keeps secret
 	M.fire("PLAYER_ENTERING_WORLD")
 	M.wait(3)
 	check("second visit counted", inst.visits == 2)
+	check("the visit notes who went along", inst.runs[2].with and #inst.runs[2].with == 1
+		and inst.runs[2].with[1] == "Brann")
+	M.units.party2 = { name = "Thrall", guid = "Player-1-0004", player = true }
+	M.fire("GROUP_ROSTER_UPDATE")
+	M.fire("GROUP_ROSTER_UPDATE")
+	check("and who joined later, once", #inst.runs[2].with == 2 and inst.runs[2].with[2] == "Thrall")
+	M.group, M.units.party1, M.units.party2 = 0, nil, nil
 	check("each visit is kept with what came of it", inst.runs and #inst.runs == 2 and inst.runs[1].kills >= 2
 		and (inst.runs[1].finds or 0) >= 3 and (inst.runs[1].deaths or 0) >= 1 and inst.runs[1].last > inst.runs[1].t
 		and (inst.runs[2].kills or 0) == 0)
 	M.slash("")
 	check("the dungeon's page lists its visits", pageText():find("Visits", 1, true)
-		and pageText():find("foes of note defeated", 1, true))
+		and pageText():find("foes of note defeated", 1, true) and pageText():find("with Brann and Thrall", 1, true))
+	M.slash("find thrall")
+	check("a search finds who went with you", pageText():find("went with you into The Deadmines", 1, true))
 	M.slash("")
 	local said = #M.chat
 	M.fire("QUEST_ACCEPTED", 2040)

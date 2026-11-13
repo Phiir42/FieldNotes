@@ -58,6 +58,9 @@
   dungeon (Arugal's Voidwalkers, Aku'mai Servants, drakonids, Hakkari
   Minions and some 270 more) have their level, kind and portrait in the
   bestiary.
+- Each visit notes who went along: the names of your group, including
+  those who joined on the way ("with Brann and Thrall"). "/fn find" finds
+  them too.
 
 ## 0.2.0-beta.9
 

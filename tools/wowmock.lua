@@ -216,6 +216,9 @@ function UnitName(t) local u = U(t) if not u then return end return u.player and
 function UnitIsPlayer(t) local u = U(t) return u and u.player or false end
 function UnitPlayerControlled(t) local u = U(t) return u and u.player or false end
 function UnitCanAttack(_, t) local u = U(t) return u and not u.player or false end
+M.group, M.raid = 0, false   -- how many are in the group (the character too), and whether it is a raid
+function GetNumGroupMembers() return M.group end
+function IsInRaid() return M.raid end
 M.questsDone, M.questsOn, M.questLog, M.questGoals = {}, {}, {}, {}
 C_QuestLog = {
 	IsQuestFlaggedCompleted = function(id) return M.questsDone[id] or false end,

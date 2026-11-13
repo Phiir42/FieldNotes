@@ -63,6 +63,29 @@ local function NewVisit(inst)
 	if #inst.runs > RUNS_MAX then table.remove(inst.runs, 1) end
 end
 
+-- Who else went on the visit under way: the names of the group, as they join.
+local WITH_MAX = 40
+local function Company()
+	local runs = cur and cur.runs
+	local r = runs and runs[#runs]
+	if not r or not GetNumGroupMembers then return end
+	local n = GetNumGroupMembers()
+	if issecret(n) or type(n) ~= "number" or n < 2 then return end
+	local raid = IsInRaid and IsInRaid()
+	local me = UnitName("player")
+	if issecret(me) then me = nil end
+	for i = 1, raid and n or (n - 1) do
+		local name = UnitName((raid and "raid" or "party") .. i)
+		if not issecret(name) and type(name) == "string" and name ~= "" and name ~= me
+			and name ~= UNKNOWNOBJECT then
+			r.with = r.with or {}
+			local known
+			for _, w in ipairs(r.with) do known = known or w == name end
+			if not known and #r.with < WITH_MAX then r.with[#r.with + 1] = name end
+		end
+	end
+end
+
 ---------------------------------------------------------------------------
 -- Creatures and their abilities
 ---------------------------------------------------------------------------
@@ -590,6 +613,7 @@ local function CheckInstance()
 			end
 			inst.last = now
 			Visit()
+			Company()
 			ns:Changed()
 		end
 		CheckArea()
@@ -635,6 +659,7 @@ ns:On("PLAYER_ENTERING_WORLD", CheckSoon)
 ns:On("ZONE_CHANGED_NEW_AREA", CheckSoon)
 ns:On("ZONE_CHANGED", CheckArea)
 ns:On("ZONE_CHANGED_INDOORS", CheckArea)
+ns:On("GROUP_ROSTER_UPDATE", function() Company() end)
 
 -- /fn debug: what the game has shown and hidden so far.
 function ns:DebugReport()

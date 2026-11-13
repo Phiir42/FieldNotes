@@ -27,7 +27,8 @@ you walk, the creatures you fight, the bosses you face and what they drop.
   Shift-click a line to link the item in chat. An item's tooltip, wherever
   you see it, says where the journal noted it.
 - **Diary** – a dated log of each visit, the quests taken up and handed in,
-  a summary of every visit (how long, at what level, what came of it), and
+  a summary of every visit (how long, at what level, with whom, what came
+  of it), and
   a box on every page for notes of your own (click a creature, find, hall or
   quest to write on that alone).
 - **Contents** – the first page lists every place written about;
@@ -114,7 +115,8 @@ you can:
 - best of all, your saved journal:
   `WTF\Account\<you>\SavedVariables\FieldNotes.lua` (it holds only what the
   journal recorded: dungeon, creature and item names, your characters'
-  names and levels on each visit, and your own notes).
+  names and levels on each visit and the names of those who went with
+  them, and your own notes).
 
 Saved journals from the new Forever dungeons are especially useful: the room
 names and creatures recorded there are what the missing maps will be built from.

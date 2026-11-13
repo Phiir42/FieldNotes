@@ -708,6 +708,13 @@ local function OverviewPage(lines, id, inst)
 			end
 			if many and r.who then t[#t + 1] = r.who end
 			if r.level then t[#t + 1] = "level " .. r.level end
+			if r.with and #r.with > 0 then
+				local w = r.with
+				t[#t + 1] = "with " .. (#w > 4
+					and (table.concat(w, ", ", 1, 3) .. " and " .. Plural(#w - 3, "other", "others"))
+					or #w == 1 and w[1]
+					or (table.concat(w, ", ", 1, #w - 1) .. " and " .. w[#w]))
+			end
 			local did = {}
 			if (r.kills or 0) > 0 then did[#did + 1] = Plural(r.kills, "foe", "foes") .. " of note defeated" end
 			if (r.deaths or 0) > 0 then did[#did + 1] = "fell " .. (r.deaths == 1 and "once" or (r.deaths .. " times")) end
@@ -1886,6 +1893,15 @@ local function SearchPage(lines, query)
 		for _, q in ipairs(QuestsOf(id)) do
 			if Has(q[2]) then Hit(q[2], "a quest of " .. place, Go("quests")) end
 			Note(inst.questNotes and inst.questNotes[q[1]] and inst.questNotes[q[1]].note, q[2], place, Go("quests"))
+		end
+		-- the visits someone went on with you
+		for i = #(inst.runs or {}), 1, -1 do
+			local r = inst.runs[i]
+			for _, name in ipairs(r.with or {}) do
+				if Has(name) then
+					Hit(name, "went with you into " .. place .. " on " .. date("%d %b %Y", r.t), Go("overview"))
+				end
+			end
 		end
 	end
 	if n == 0 then
