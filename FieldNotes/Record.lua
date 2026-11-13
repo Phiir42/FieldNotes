@@ -399,8 +399,8 @@ function ns:NamedBoss(inst, m, live)
 end
 
 ns:On("ENCOUNTER_START", function(id, name)
-	if not cur or issecret(id) or not id then return end
-	if issecret(name) then name = nil end
+	if not cur or issecret(id) or not id or type(id) == "boolean" or type(id) == "table" then return end
+	if issecret(name) or type(name) ~= "string" or name == "" then name = nil end
 	local b = Boss(id, name)
 	b.pulls = b.pulls + 1
 	encounter = { id = id, t = GetTime() }
@@ -416,8 +416,8 @@ ns:On("ENCOUNTER_START", function(id, name)
 end)
 
 ns:On("ENCOUNTER_END", function(id, name, _, _, success)
-	if not cur or issecret(id) or not id then return end
-	if issecret(name) then name = nil end
+	if not cur or issecret(id) or not id or type(id) == "boolean" or type(id) == "table" then return end
+	if issecret(name) or type(name) ~= "string" or name == "" then name = nil end
 	if issecret(success) then success = nil end
 	local b = Boss(id, name)
 	local started = encounter and encounter.id == id and encounter.t
