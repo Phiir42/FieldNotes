@@ -249,6 +249,8 @@ step("preferences page", function()
 	check("and back", open("Sounds") and ns.db.settings.sound == true)
 	check("minimap button hides by clicking", open("Minimap button") and not FieldNotesMinimapButton:IsShown())
 	open("Minimap button")
+	check("pictures in colour by clicking", open("In colour") and ns.db.settings.pictures == "colour")
+	open("As sketches")
 	check("quality by clicking", open("Rare and better") and ns.db.settings.minQuality == 3)
 	open("Uncommon and better")
 	check("size by clicking", open("Larger") and ns.db.settings.scale == 1.1)
@@ -294,6 +296,14 @@ step("every page of the journal", function()
 	check("diary has entries", pageText():find("Came upon Goblin Foundry", 1, true))
 	check("boss page opens", open("Rhahk'Zor"))
 	check("boss page text", pageText():find("swiftest victory 0:42", 1, true))
+	local function portraits()
+		local t = {}
+		for _, f in ipairs(M.frames) do
+			if rawget(f, "tint") and rawget(f, "row") then t[#t + 1] = f.key end
+		end
+		return t
+	end
+	check("the boss has a portrait from its display id", portraits()[1] and portraits()[1]:find("^d14403sketch"))
 	check("boss page lists its loot", pageText():find("Rockslicer", 1, true))
 	check("boss page leaves trash out", not pageText():find("Trash Blade", 1, true))
 	check("known abilities shown after the kill", pageText():find("Known abilities", 1, true))
@@ -305,6 +315,12 @@ step("every page of the journal", function()
 	inst.mobs[1731].note = "Hits hard."
 	open("Bestiary")
 	check("the note shows under the creature", pageText():find("My note:|r Hits hard.", 1, true))
+	check("bestiary entries have portraits", #portraits() >= 2)
+	ns.db.settings.pictures = "off"
+	open("Bestiary")
+	check("no portraits when turned off", #portraits() == 0 and pageText():find("level 18-19", 1, true))
+	ns.db.settings.pictures = "sketch"
+	open("Bestiary")
 	check("bestiary lists the craftsman", pageText():find("Goblin Craftsman", 1, true))
 	check("bestiary shows shipped level", pageText():find("level 18-19", 1, true))
 	check("spoils opens", open("Spoils"))

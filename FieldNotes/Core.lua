@@ -31,6 +31,7 @@ ns.DEFAULTS = {
 	buttonAngle = 200,
 	notices = true,    -- a slip of parchment on screen when something new is written down
 	sound = true,      -- the book opening and closing, pages turning
+	pictures = "sketch", -- portraits of creatures: "sketch", "colour" or "off"
 	textScale = 1,     -- size of the writing, on top of each font's own
 	paper = 0.34,      -- how light the page is (0 as dark as the map sheet)
 	alpha = 1,         -- how solid the window is

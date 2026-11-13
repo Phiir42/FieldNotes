@@ -167,7 +167,7 @@ local function ListSet(list, lines)
 		row.line = line
 		y = y + (line.gap or 0)
 		local indent = line.indent or 0
-		local size = line.icon and (line.iconSize or 18) or 0
+		local size = (line.icon or line.picture) and (line.iconSize or 18) or 0
 		if line.icon then
 			row.icon:SetTexture(line.icon)
 			row.icon:SetSize(size, size)
@@ -195,6 +195,7 @@ local function ListSet(list, lines)
 		row:ClearAllPoints()
 		row:SetPoint("TOPLEFT", 0, -y)
 		row:SetSize(list.width, h)
+		row.y = y
 		if line.rule then row.rule:Show() else row.rule:Hide() end
 		if line.selected then row.mark:Show() else row.mark:Hide() end
 		row:EnableMouse((line.click or line.link or line.spell or line.tip) and true or false)
@@ -317,6 +318,103 @@ end
 
 -- What is known of a creature from elsewhere (ns.Creatures in Abilities.lua):
 -- the game hides nearly everything about a dungeon's creatures from addons.
+---------------------------------------------------------------------------
+-- Pictures: a portrait of a creature or boss beside its entry, drawn from the
+-- game's own model of it. As a "sketch" the model is drained of colour and
+-- washed in the paper's tone, like a drawing on the page; "colour" shows it as
+-- it is. A line asks for one with line.picture = { display = creature display
+-- id } or { npc = NPC id }; the list leaves room for it like an icon
+-- (line.iconSize) and the frames are placed after the list is laid out.
+---------------------------------------------------------------------------
+local PORTRAIT, PORTRAIT_BOSS = 56, 104
+local pictures = {}   -- frames, reused
+
+-- What to draw for a creature of this name: its display id where the addon
+-- knows it, else the game's own record of the NPC if its id was learned.
+local function PictureOf(name, npc)
+	if ns.db.settings.pictures == "off" then return end
+	local lore = ns.Creatures[ns:AreaKey(name)]
+	if lore and lore.model then return { display = lore.model } end
+	if type(npc) == "number" then return { npc = npc } end
+end
+
+local function NewPicture()
+	local f = CreateFrame("Frame", nil, page.child)
+	local edge = f:CreateTexture(nil, "BACKGROUND", nil, 0)
+	edge:SetAllPoints()
+	edge:SetColorTexture(0.24, 0.13, 0.04, 0.85)
+	local paper = f:CreateTexture(nil, "BACKGROUND", nil, 1)
+	paper:SetPoint("TOPLEFT", 1, -1)
+	paper:SetPoint("BOTTOMRIGHT", -1, 1)
+	paper:SetTexture(ns.MAP_BLANK)
+	paper:SetTexCoord(0.3, 0.6, 0.3, 0.9)
+	f.model = CreateFrame("PlayerModel", nil, f)
+	f.model:SetPoint("TOPLEFT", 2, -2)
+	f.model:SetPoint("BOTTOMRIGHT", -2, 2)
+	-- the wash sits on a frame above the model
+	local over = CreateFrame("Frame", nil, f)
+	over:SetAllPoints(f.model)
+	over:SetFrameLevel(f.model:GetFrameLevel() + 2)
+	f.tint = over:CreateTexture(nil, "OVERLAY")
+	f.tint:SetAllPoints()
+	f.tint:SetColorTexture(0.80, 0.64, 0.40, 0.30)
+	return f
+end
+
+-- Models are not cut off at the edge of a scrolling page: show only the
+-- pictures that lie wholly inside it.
+local function ClipPictures()
+	local top = page.sf:GetVerticalScroll() or 0
+	local view = page.sf:GetHeight() or 0
+	for _, f in ipairs(pictures) do
+		if f.row then
+			local y = f.row.y or 0
+			f:SetShown(y - top >= -1 and y + f.size - top <= view + 1)
+		end
+	end
+end
+
+local function PlacePictures(lines)
+	local n = 0
+	local mode = ns.db.settings.pictures
+	for i, line in ipairs(lines) do
+		local pic = line.picture
+		if pic and mode ~= "off" then
+			n = n + 1
+			local f = pictures[n]
+			if not f then
+				f = NewPicture()
+				pictures[n] = f
+			end
+			local size = line.iconSize or PORTRAIT
+			f.size, f.row = size, page.rows[i]
+			f:SetSize(size, size)
+			f:ClearAllPoints()
+			f:SetPoint("TOPLEFT", page.rows[i], "TOPLEFT", line.indent or 0, -2)
+			f:Show()
+			local key = (pic.display and ("d" .. pic.display) or ("n" .. tostring(pic.npc))) .. mode .. size
+			if f.key ~= key then
+				f.key = key
+				f.model:ClearModel()
+				if pic.display then
+					f.model:SetDisplayInfo(pic.display)
+				else
+					pcall(f.model.SetCreature, f.model, pic.npc)
+				end
+				-- a face for the small ones, more of the body for a boss
+				pcall(f.model.SetPortraitZoom, f.model, size >= PORTRAIT_BOSS and 0.55 or 0.85)
+				if f.model.SetDesaturation then pcall(f.model.SetDesaturation, f.model, mode == "sketch" and 1 or 0) end
+				f.tint:SetShown(mode == "sketch")
+			end
+		end
+	end
+	for i = n + 1, #pictures do
+		pictures[i].row = nil
+		pictures[i]:Hide()
+	end
+	ClipPictures()
+end
+
 local function Lore(m)
 	return ns.Creatures and ns.Creatures[ns:AreaKey(m.name)]
 end
@@ -342,7 +440,7 @@ end
 
 -- lore: also write in what is known of it from elsewhere (not on a boss's
 -- page, which has its own list).
-local function MobLines(lines, m, showName, lore)
+local function MobLines(lines, m, showName, lore, npc)
 	if showName then
 		lines[#lines + 1] = {
 			text = m.name, font = "GameFontNormal", gap = 10, tip = NOTE_TIP,
@@ -350,7 +448,15 @@ local function MobLines(lines, m, showName, lore)
 		}
 	end
 	local tag = MobTag(m)
-	if tag ~= "" then Faded(lines, tag) end
+	local picture = showName and PictureOf(m.name, npc)
+	if picture then
+		-- the portrait stands beside the name and what is known of it
+		local head = lines[#lines]
+		head.picture, head.iconSize = picture, PORTRAIT
+		if tag ~= "" then head.text = m.name .. "\n" .. FADED_HEX .. tag .. "|r" end
+	elseif tag ~= "" then
+		Faded(lines, tag)
+	end
 	if showName then NoteLine(lines, m) end
 	if not m.fought then
 		Faded(lines, "Seen, but not yet fought.")
@@ -484,7 +590,18 @@ local function BossPage(lines, inst, eid)
 	if b.wipes > 0 then t[#t + 1] = Plural(b.wipes, "defeat", "defeats") end
 	if b.best then t[#t + 1] = "swiftest victory " .. ns:Clock(b.best) end
 	Faded(lines, table.concat(t, ", ") .. ".")
-	if b.kills == 0 then Body(lines, "Not yet defeated.") end
+	local own
+	for _, npc in ipairs(inst.mobOrder) do
+		if inst.mobs[npc].name == b.name then own = npc end
+	end
+	local picture = PictureOf(b.name, own)
+	if picture then
+		local head = lines[#lines]
+		head.picture, head.iconSize, head.gap = picture, PORTRAIT_BOSS, 6
+		if b.kills == 0 then head.text = head.text .. "\n\n|cff29140dNot yet defeated.|r" end
+	elseif b.kills == 0 then
+		Body(lines, "Not yet defeated.")
+	end
 
 	-- everything fought in this encounter, the boss itself first
 	local mobs = {}
@@ -563,7 +680,7 @@ local function BestiaryPage(lines, inst)
 		if not IsBoss(inst, m) then
 			any = true
 			local from = #lines + 1
-			MobLines(lines, m, true, true)
+			MobLines(lines, m, true, true, npc)
 			local ink = Ink(inst, "beast:" .. ns:AreaKey(m.name))
 			for i = from, #lines do lines[i].ink = ink end
 		end
@@ -1051,6 +1168,14 @@ local function SettingsPage(lines)
 		click = function() ns:PlaceNotice() end,
 	}
 
+	H2(lines, "Pictures of creatures")
+	for _, o in ipairs({ { "sketch", "As sketches" }, { "colour", "In colour" }, { "off", "None" } }) do
+		lines[#lines + 1] = {
+			text = o[2], indent = 8, selected = s.pictures == o[1],
+			click = function() s.pictures = o[1]; Refresh() end,
+		}
+	end
+
 	H2(lines, "Loot worth noting")
 	for q = 0, 4 do
 		lines[#lines + 1] = {
@@ -1264,6 +1389,7 @@ Refresh = function()
 		OverviewPage(lines, sel.inst, inst)
 	end
 	page:Set(lines)
+	PlacePictures(lines)
 
 	-- the map sheet sits in the space its line reserved
 	local sheet
@@ -1454,6 +1580,7 @@ local function CreateJournal()
 	page.pane:SetPoint("BOTTOMRIGHT", -10, 10)
 	page.wash, page.paper = Paper(page.pane, 0.34)
 	page.sf:SetPoint("BOTTOMRIGHT", -28, NOTES_H + 14)
+	page.sf:HookScript("OnVerticalScroll", function() ClipPictures() end)
 
 	notes = CreateNotes(page.pane)
 	notes:SetPoint("BOTTOMLEFT", 10, 6)
