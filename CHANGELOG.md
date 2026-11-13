@@ -116,7 +116,8 @@
 - Creatures called up as pets (BFD's Voidwalker Minions) no longer show
   the level of a namesake elsewhere.
 - Places read as they are said: "errands that lead into the Deadmines",
-  "set foot in the Wailing Caverns".
+  "set foot in the Wailing Caverns". The diary writes bosses and halls the
+  same way: "Faced the Prophet Skeram", "Came upon the Forgotten Pool".
 - Eleven quests whose quarry the database leaves unnamed say whom to look
   for: the pieces of Lord Valthalak's Amulet, The Restless Souls, Dead
   Man's Plea, A Taste of Flame and more.

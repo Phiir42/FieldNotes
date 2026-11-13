@@ -331,7 +331,7 @@ local function Boss(id, name)
 		local met = ("Faced %s for the first time."):format(UNKNOWN)
 		for i = #cur.log, math.max(1, #cur.log - 30), -1 do
 			if cur.log[i][2] == met then
-				cur.log[i][2] = ("Faced %s for the first time."):format(name)
+				cur.log[i][2] = ("Faced %s for the first time."):format(ns:The(name))
 				break
 			end
 		end
@@ -341,7 +341,7 @@ local function Boss(id, name)
 		b = { name = name or UNKNOWN, first = time(), pulls = 0, kills = 0, wipes = 0 }
 		cur.bosses[id] = b
 		cur.bossOrder[#cur.bossOrder + 1] = id
-		ns:Log(cur, ("Faced %s for the first time."):format(b.name))
+		ns:Log(cur, ("Faced %s for the first time."):format(ns:The(b.name)))
 	end
 	return b
 end
@@ -394,7 +394,7 @@ function ns:NamedBoss(inst, m, live)
 		-- loot seen only in chat just after is this boss's, as for any other
 		lastKill = { id = id, t = GetTime() }
 		Visit("kills")
-		ns:Log(inst, ("Defeated %s."):format(m.name))
+		ns:Log(inst, ("Defeated %s."):format(ns:The(m.name)))
 	end
 end
 
@@ -430,13 +430,13 @@ ns:On("ENCOUNTER_END", function(id, name, _, _, success)
 		if started then
 			local took = GetTime() - started
 			if not b.best or took < b.best then b.best = took end
-			ns:Log(cur, ("Defeated %s in %s."):format(b.name, ns:Clock(took)))
+			ns:Log(cur, ("Defeated %s in %s."):format(ns:The(b.name), ns:Clock(took)))
 		else
-			ns:Log(cur, ("Defeated %s."):format(b.name))
+			ns:Log(cur, ("Defeated %s."):format(ns:The(b.name)))
 		end
 	else
 		b.wipes = b.wipes + 1
-		ns:Log(cur, ("Driven back by %s."):format(b.name))
+		ns:Log(cur, ("Driven back by %s."):format(ns:The(b.name)))
 	end
 	cur.last = time()
 end)
@@ -450,9 +450,9 @@ ns:On("PLAYER_DEAD", function()
 	local area = cur.areas[#cur.areas]
 	if b then
 		b.deaths = (b.deaths or 0) + 1
-		ns:Log(cur, ("Fell in battle against %s."):format(b.name))
+		ns:Log(cur, ("Fell in battle against %s."):format(ns:The(b.name)))
 	elseif area then
-		ns:Log(cur, ("Fell in battle in %s."):format(area.name))
+		ns:Log(cur, ("Fell in battle in %s."):format(ns:The(area.name)))
 	else
 		ns:Log(cur, "Fell in battle.")
 	end
@@ -596,7 +596,7 @@ local function CheckArea()
 	end
 	cur.areas[#cur.areas + 1] = { name = name, t = time() }
 	cur.last = time()
-	ns:Log(cur, ("Came upon %s."):format(name))
+	ns:Log(cur, ("Came upon %s."):format(ns:The(name)))
 end
 
 local function CheckInstance()
@@ -666,9 +666,11 @@ local function Tidy()
 		-- diary says so
 		for _, b in pairs(inst.bosses) do
 			if b.deaths == nil then
-				local line, n = ("Fell in battle against %s."):format(b.name), 0
+				-- (written "the Butcher" mid-sentence since; "The Butcher" before)
+				local line, old, n = ("Fell in battle against %s."):format(ns:The(b.name)),
+					("Fell in battle against %s."):format(b.name), 0
 				for _, e in ipairs(inst.log) do
-					if e[2] == line then n = n + 1 end
+					if e[2] == line or e[2] == old then n = n + 1 end
 				end
 				b.deaths = n
 			end

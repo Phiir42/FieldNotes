@@ -867,6 +867,9 @@ step("a dungeon the addon has no map or lore for", function()
 	M.fire("CHAT_MSG_COMBAT_XP_GAIN", "Maw Spawn dies, you gain 5 experience.")
 	M.fire("ENCOUNTER_END", 31337, "The Mawlord", 1, 5, 1)
 	M.wait(1)
+	local saw
+	for _, e in ipairs(ns.db.instances[77777].log) do saw = saw or e[2] == "Faced the Mawlord for the first time." end
+	check("the diary writes a boss's name mid-sentence: the Mawlord", saw)
 	ToggleWorldMap()
 	check("map key opens the overview where there is no map", pageText():find("First entered", 1, true))
 	check("not saved, nothing said of it", not pageText():find("Saved to it", 1, true))
