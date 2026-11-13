@@ -1946,7 +1946,10 @@ local function SearchPage(lines, query)
 		for _, npc in ipairs(inst.mobOrder) do
 			local m = inst.mobs[npc]
 			if not IsBoss(inst, m) then
-				if Has(m.name) then Hit(m.name, "a creature of " .. ns:The(place), Go("bestiary")) end
+				if Has(m.name) then
+					Hit(m.name, "a creature of " .. ns:The(place)
+						.. ((type(m.kills) == "number" and m.kills > 0) and (", slain " .. m.kills) or ""), Go("bestiary"))
+				end
 				-- the abilities its bestiary entry lists
 				local k = Lore(m)
 				for _, spell in ipairs(k and k.spells or {}) do
