@@ -764,9 +764,14 @@ local function BossPage(lines, id, inst, eid)
 	if b.kills > 1 and b.lastKill then t[#t + 1] = "last victory " .. ns:Day(b.lastKill) end
 	if (b.deaths or 0) > 0 then t[#t + 1] = "fallen to it " .. (b.deaths == 1 and "once" or (b.deaths .. " times")) end
 	Faded(lines, table.concat(t, ", ") .. ".")
+	-- the boss's own creature: by name, or a boss known by another name than
+	-- the fight's (Gelihast, whose fight the game calls "Geilhast")
+	local function Self(m)
+		return m.name == b.name or (m.enc == eid and ns.AbilitiesByName[ns:AreaKey(m.name)] ~= nil)
+	end
 	local own
 	for _, npc in ipairs(inst.mobOrder) do
-		if inst.mobs[npc].name == b.name then own = npc end
+		if Self(inst.mobs[npc]) then own = npc end
 	end
 	local picture = PictureOf(b.name, own)
 	if picture then
@@ -794,14 +799,14 @@ local function BossPage(lines, id, inst, eid)
 	for _, npc in ipairs(inst.mobOrder) do
 		local m = inst.mobs[npc]
 		-- the boss itself only when something of it was observed
-		if m.enc == eid and (m.name ~= b.name or #m.order > 0 or m.melee) then
-			if m.name == b.name then table.insert(mobs, 1, m) else mobs[#mobs + 1] = m end
+		if m.enc == eid and (not Self(m) or #m.order > 0 or m.melee) then
+			if Self(m) then table.insert(mobs, 1, m) else mobs[#mobs + 1] = m end
 		end
 	end
 	-- the game hides most of a fight from addons: say nothing rather than "nothing"
 	if #mobs > 0 then H2(lines, "Observed in battle") end
 	for i, m in ipairs(mobs) do
-		MobLines(lines, m, #mobs > 1 or m.name ~= b.name)
+		MobLines(lines, m, #mobs > 1 or not Self(m))
 	end
 
 	-- What is known of the boss from elsewhere (Abilities.lua), written in once
