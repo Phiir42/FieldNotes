@@ -420,6 +420,7 @@ step("every page of the journal", function()
 		check("with what it is", pageText():find("mechanical, level 20", 1, true))
 	end
 	check("group fights name their members", #ns.Company.twinemperors == 2 and ns.Pictures.nefarian)
+	check("new bosses are drawn by NPC id", ns.BossNpc.withermaw == 247195 and ns.BossNpc.infurnus == ns.BossNpc.magmatus)
 	M.slash("sketch")
 	-- hover and click every visible row
 	for _, kind in ipairs({ "The Deadmines", "Rhahk'Zor", "Bestiary", "Spoils", "Map" }) do

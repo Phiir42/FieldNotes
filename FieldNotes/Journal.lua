@@ -338,6 +338,9 @@ local function PictureOf(name, npc)
 	local display = ns.Pictures[ns:AreaKey(name)]
 	if display then return { display = display } end
 	if type(npc) == "number" then return { npc = npc } end
+	-- a boss new to Forever: drawn by the NPC id the addon ships for it
+	npc = ns.BossNpc[ns:AreaKey(name)]
+	if npc then return { npc = npc } end
 end
 
 -- Still or moving: a still portrait holds the first frame of the creature's

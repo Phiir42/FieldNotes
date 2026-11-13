@@ -306,6 +306,16 @@ GROUPS = {
 }
 
 
+# The name a boss's creature goes by, where the encounter is named otherwise.
+NPC_NAMES = {
+    "Infurnus": ["Magmatus"],
+    "The Butcher": ["The Baron"],
+    "Overseer Mugg": ["Overlord Mugg"],
+    "Handler Ashka": ["War Handler Ashka"],
+    "Deathless Guardians": ["Deathless Marrow"],
+}
+
+
 def picture_lines(boss_names):
     """Lua lines for ns.Pictures: the display id of every boss that has no
     place of its own in an instance (it is summoned, or steps out of another
@@ -319,6 +329,13 @@ def picture_lines(boss_names):
             if c["name"] and c.get("model"):
                 (placed if c["spawns"] else loose).setdefault(key(c["name"]), c["model"])
     out, missing, done = [], [], set()
+    # bosses new to Forever: no display id anywhere, but an NPC id to draw by
+    # (tools/fetch_forever_npcs.py)
+    npcs = {}
+    path = os.path.join(ROOT, "tools", "data", "forever_npcs.json")
+    if os.path.exists(path):
+        with open(path, encoding="utf-8") as f:
+            npcs = json.load(f)
 
     def picture(name, aliases=()):
         k = key(name)
@@ -328,8 +345,11 @@ def picture_lines(boss_names):
         model = loose.get(k)
         for alias in aliases:
             model = model or placed.get(key(alias)) or loose.get(key(alias))
+        npc = npcs.get(name) or next((npcs[a] for a in NPC_NAMES.get(name, []) if a in npcs), None)
         if model:
             out.append('P["%s"] = %d -- %s' % (k, model, name))
+        elif npc:
+            out.append('Q["%s"] = %d -- %s' % (k, npc, name))
         else:
             missing.append(name)
 
@@ -339,6 +359,8 @@ def picture_lines(boss_names):
             company[name] = GROUPS[name]
         else:
             picture(name, ALIASES.get(name, []))
+    for name in sorted(npcs):  # and the names the guides use
+        picture(name)
     for name, others in sorted(company.items()):
         for other in others:
             picture(other)
@@ -416,13 +438,15 @@ def main():
         "",
         "--   ns.Pictures[ns:AreaKey(boss name)] = display id, for bosses not among the creatures",
         "--   ns.Company[ns:AreaKey(boss name)] = { names of who else is pictured with it }",
-        "local A, N, C, I, P, W = {}, {}, {}, {}, {}, {}",
+        "--   ns.BossNpc[ns:AreaKey(boss name)] = NPC id, for bosses with no display id on record",
+        "local A, N, C, I, P, W, Q = {}, {}, {}, {}, {}, {}, {}",
+        "ns.BossNpc = Q",
         "ns.Abilities, ns.AbilitiesByName, ns.Creatures, ns.CreatureNames = A, N, C, I",
         "ns.Pictures, ns.Company = P, W",
     ]
     with open(LUA, "w", encoding="utf-8", newline="\n") as f:
         creatures = creature_lines(names, seen_keys)
-        pictures, unpictured = picture_lines([e["Name_lang"] for e in encounters if int(e["MapID"]) <= 1000])
+        pictures, unpictured = picture_lines([e["Name_lang"] for e in encounters])
         f.write("\n".join(header + out + ["", "-- Creatures"] + creatures + ["", "-- Pictures of bosses"] + pictures) + "\n")
     print(len(pictures), "boss pictures; none for:", ", ".join(unpictured))
     print(len(creatures), "creatures")
