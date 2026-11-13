@@ -13,6 +13,8 @@ Sources, merged per encounter:
   2. Retail's dungeon journal tables from wago.tools (cached in refs/tables).
   3. The cmangos classic database (see tools/extract_classicdb.py): the
      spells each creature of the boss's name casts.
+  4. The cmangos boss scripts (see script_spells): the spells of fights that
+     are written in code rather than in the database.
 Only spells that exist in the Forever client (refs/tables/wowf/SpellName.csv)
 are kept, and only encounters the Forever client has (DungeonEncounter.csv).
 """
@@ -107,6 +109,53 @@ def classicdb_spells():
     return by_name
 
 
+SCRIPTS = os.path.join(ROOT, "refs", "cmangos", "mangos-classic", "src", "game", "AI", "ScriptDevAI", "scripts")
+
+
+def script_spells():
+    """-> {script name key: ([spellID], is a boss script)} from the cmangos
+    boss scripts. Bosses whose fights are written in code rather than in the
+    database (Arugal's curse and teleports, say) have their spells there:
+    SPELL_* constants, used inside a "struct boss_<name>AI". Get the sources with
+      git clone --depth 1 --filter=blob:none --sparse https://github.com/cmangos/mangos-classic refs/cmangos/mangos-classic
+      git -C refs/cmangos/mangos-classic sparse-checkout set src/game/AI/ScriptDevAI/scripts
+    """
+    out = {}
+    for path in glob.glob(os.path.join(SCRIPTS, "**", "*.cpp"), recursive=True):
+        text = open(path, encoding="utf-8", errors="replace").read()
+        consts = {m.group(1): int(m.group(2)) for m in re.finditer(r"(SPELL_\w+)\s*=\s*(\d+)", text)}
+        if not consts:
+            continue
+        structs = list(re.finditer(r"struct\s+((?:boss|npc|mob)_\w+?)AI", text))
+        for i, m in enumerate(structs):
+            body = text[m.start():structs[i + 1].start() if i + 1 < len(structs) else len(text)]
+            ids = [consts[c] for c in dict.fromkeys(re.findall(r"SPELL_\w+", body)) if c in consts]
+            kind, _, name = m.group(1).partition("_")
+            if ids:
+                got = out.setdefault(key(name.replace("_", " ")), ([], kind == "boss"))
+                got[0].extend(ids)
+        # a file for one boss whose script uses no struct of that name
+        base = os.path.basename(path)[:-4]
+        if base.startswith("boss_") and not structs:
+            out.setdefault(key(base[5:].replace("_", " ")), ([], True))[0].extend(consts.values())
+    return out
+
+
+MACHINERY = re.compile(r"Self|Hover|Submerge|Emerge|Visual|Effect|Passive|Trigger|Dummy|Speed Burst|Double Attack|"
+                       r"Dual Wield|Invisib|Transform|Spawn|Root|Despawn|Kill Credit|Teleport Self|Cosmetic|Test|Fade")
+
+
+def script_for(k, scripts):
+    """The scripted spells for a boss name key: a script named exactly so, or
+    whose name is part of the boss's ("arugal" for Archmage Arugal), or a boss
+    script whose name contains the boss's."""
+    ids = []
+    for sk, (spells, boss) in scripts.items():
+        if sk == k or (len(sk) >= 5 and sk in k) or (boss and len(k) >= 5 and k in sk):
+            ids += spells
+    return ids
+
+
 RANKS = {1: "elite", 2: "rareelite", 3: "worldboss", 4: "rare"}
 TYPES = {1: "Beast", 2: "Dragonkin", 3: "Demon", 4: "Elemental", 5: "Giant", 6: "Undead", 7: "Humanoid",
          8: "Critter", 9: "Mechanical"}
@@ -159,6 +208,8 @@ def main():
     mod_id, mod_name = boss_mod_spells()
     jrn_id, jrn_name = journal_spells()
     cdb_name = classicdb_spells()
+    scripts = script_spells()
+    print(len(scripts), "boss and creature scripts read")
     maps = {r["ID"]: r["MapName_lang"] for r in table("Map", FOREVER)}
 
     out, total, with_data = [], 0, 0
@@ -170,8 +221,12 @@ def main():
         total += 1
         k = key(name)
         raw = mod_id.get(eid, []) + mod_name.get(k, []) + jrn_id.get(eid, []) + jrn_name.get(k, []) + cdb_name.get(k, [])
+        scripted = script_for(k, scripts)
         for alias in ALIASES.get(name, []):
             raw += cdb_name.get(key(alias), [])
+            scripted += script_for(key(alias), scripts)
+        # scripts also name the fight's stage machinery: leave that out
+        raw += [sp for sp in scripted if not MACHINERY.search(names.get(sp, ""))]
         spells, used = [], set()
         for sp in raw:
             label = names.get(sp)

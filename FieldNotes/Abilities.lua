@@ -27,7 +27,7 @@ A[2753] = { 7125 } -- Fenrus the Devourer: Toxic Saliva
 N["fenrusthedevourer"] = A[2753]
 A[2754] = { 7487, 7489, 7488 } -- Wolf Master Nandos: Call Bleak Worg, Call Lupine Horror, Call Slavering Worg
 N["wolfmasternandos"] = A[2754]
-A[2755] = { 22709, 7803 } -- Archmage Arugal: Void Bolt, Thundershock
+A[2755] = { 22709, 7803, 7621, 7586 } -- Archmage Arugal: Void Bolt, Thundershock, Arugal's Curse, Shadow Port
 N["archmagearugal"] = A[2755]
 
 -- Stormwind Stockade
@@ -53,7 +53,7 @@ A[2743] = { 5213, 5159 } -- Gilnid: Molten Metal, Melt Ore
 N["gilnid"] = A[2743]
 A[2744] = { 5208, 5532 } -- Captain Greenskin: Poisoned Harpoon, Cleave
 N["captaingreenskin"] = A[2744]
-A[2745] = { 6435, 6432, 6264 } -- Mr. Smite: Smite Slam, Smite Stomp, Nimble Reflexes
+A[2745] = { 6435, 6432, 6264, 6433, 6436, 12787 } -- Mr. Smite: Smite Slam, Smite Stomp, Nimble Reflexes, Nimble Reflexes III, Smite's Hammer, Thrash
 N["mrsmite"] = A[2745]
 A[2746] = { 5174, 6306 } -- Cookie: Cookie's Cooking, Acid Splash
 N["cookie"] = A[2746]
@@ -134,13 +134,15 @@ A[552] = { 9482, 3356, 8053, 11969 } -- Galgann Firehammer: Amplify Flames, Flam
 N["galgannfirehammer"] = A[552]
 A[553] = { 6742, 11892, 8143, 8292, 9532 } -- Grimlok: Bloodlust, Shrink, Tremor Totem, Chain Bolt, Lightning Bolt
 N["grimlok"] = A[553]
+A[554] = { 10252, 10258, 10259, 6524 } -- Archaedas: Awaken Earthen Guardians, Awaken Vault Warder, Awaken Earthen Dwarf, Ground Tremor
+N["archaedas"] = A[554]
 
 -- Gnomeregan
 A[2770] = { 11082, 11085, 11084 } -- Electrocutioner 6000: Megavolt, Chain Bolt, Shock
 N["electrocutioner6000"] = A[2770]
 A[2771] = { 16169, 5568, 10887 } -- Crowd Pummeler 9-60: Arcing Smash, Trample, Crowd Pummel
 N["crowdpummeler960"] = A[2771]
-A[2772] = { 10101 } -- Mekgineer Thermaplugg: Knock Away
+A[2772] = { 10101, 11795, 11511 } -- Mekgineer Thermaplugg: Knock Away, Activate Bomb B, Activate Bomb A
 N["mekgineerthermaplugg"] = A[2772]
 A[2925] = { 434168, 434724, 3019, 436100, 436074, 436027, 434941, 436059, 439956 } -- Grubbis: Irradiated Cloud, Radiation Sickness, Enrage, Petrify, Trogg Rage, Grubbis Mad!, Toxic Vigor, Radiation?, Revive Pet
 N["grubbis"] = A[2925]
@@ -150,10 +152,10 @@ A[2899] = { 432423, 432062, 431839, 16169, 5568, 10887 } -- Crowd Pummeler 9-60:
 A[2927] = { 433359, 433398, 433251, 11082, 11085, 11084 } -- Electrocutioner 6000: Magnetic Pulse, Discombobulation Protocol, Static Arc, Megavolt, Chain Bolt, Shock
 A[2935] = { 438735, 436692, 436570, 436833, 436836, 436816, 436695, 436825, 440073 } -- Mechanical Menagerie: High Voltage!, Explosive Egg, Cluck!, Widget Volley, Widget Fortress, Sprocketfire Breath, Overheat, Frayed Wiring, Self Repair
 N["mechanicalmenagerie"] = A[2935]
-A[2940] = { 437853, 438735, 438683, 438710, 438713, 438719, 438720, 438723, 438726, 438727, 438732, 10101 } -- Mekgineer Thermaplugg: Summon Bomb, High Voltage!, Sprocketfire Punch, Sprocketfire, Furnace Surge, Supercooled Smash, Freezing, Coolant Discharge, Hazardous Hammer, Radiation Sickness, Toxic Ventilation, Knock Away
+A[2940] = { 437853, 438735, 438683, 438710, 438713, 438719, 438720, 438723, 438726, 438727, 438732, 10101, 11795, 11511 } -- Mekgineer Thermaplugg: Summon Bomb, High Voltage!, Sprocketfire Punch, Sprocketfire, Furnace Surge, Supercooled Smash, Freezing, Coolant Discharge, Hazardous Hammer, Radiation Sickness, Toxic Ventilation, Knock Away, Activate Bomb B, Activate Bomb A
 
 -- Sunken Temple
-A[492] = { 6607, 12888, 12889, 10893 } -- Avatar of Hakkar: Lash, Cause Insanity, Curse of Tongues, Shadow Word: Pain
+A[492] = { 6607, 12888, 12889, 10893, 24318 } -- Avatar of Hakkar: Lash, Cause Insanity, Curse of Tongues, Shadow Word: Pain, Enrage
 N["avatarofhakkar"] = A[492]
 A[2952] = { 437597, 437503, 12887, 6524 } -- Atal'alarion: Demolishing Smash, Pillars of Might, Sweeping Slam, Ground Tremor
 N["atalalarion"] = A[2952]
@@ -164,18 +166,18 @@ A[486] = { 16359, 12882, 12884 } -- Dreamscythe: Corrosive Acid Breath, Wing Fla
 N["dreamscythe"] = A[486]
 A[2953] = { 438142, 438136 } -- Festering Rotslime: Gunk, Nauseous Gas
 N["festeringrotslime"] = A[2953]
-A[3583] = { 6607, 12888, 12889, 10893 } -- Avatar of Hakkar: Lash, Cause Insanity, Curse of Tongues, Shadow Word: Pain
+A[3583] = { 6607, 12888, 12889, 10893, 24318 } -- Avatar of Hakkar: Lash, Cause Insanity, Curse of Tongues, Shadow Word: Pain, Enrage
 A[487] = { 16359, 12882, 12884 } -- Weaver: Corrosive Acid Breath, Wing Flap, Acid Breath
 N["weaver"] = A[487]
 A[2954] = { 446372, 446364, 438294, 438341, 438335, 446338, 445284, 445289, 23511, 438350, 446360 } -- Atal'ai Defenders: Corrupted Slam, Frailty, Thorns, Renew, Healing Ward, Chain Lightning, Fervor, Spinning Axes, Demoralizing Shout, Shadow Bolt Volley, Hukku's Guardians
 N["atalaidefenders"] = A[2954]
-A[3584] = { 12890, 11876, 12891, 12535, 8876 } -- Shade of Eranikus: Deep Slumber, War Stomp, Acid Breath, Shade of Eranikus Passive Visual, Thrash
+A[3584] = { 12890, 11876, 12891, 12535, 8876, 23017, 24818, 25586 } -- Shade of Eranikus: Deep Slumber, War Stomp, Acid Breath, Shade of Eranikus Passive Visual, Thrash, Arcane Channeling, Noxious Breath, Shadow Bolt Volley
 N["shadeoferanikus"] = A[3584]
 A[2955] = { 442622, 443766, 443856 } -- Dreamscythe and Weaver: Acid Breath, Wing Buffet, Caustic Overflow
 N["dreamscytheandweaver"] = A[2955]
 A[3585] = { 12884, 12882 } -- Hazzas: Acid Breath, Wing Flap
 N["hazzas"] = A[3585]
-A[2956] = { 443990, 443953, 444039, 444046, 444255, 444132, 6607, 12888, 10893 } -- Avatar of Hakkar: Frightsome Howl, Bubbling Blood, Insanity, Curse of Tongues, Corrupted Blood, Drain Blood, Lash, Cause Insanity, Shadow Word: Pain
+A[2956] = { 443990, 443953, 444039, 444046, 444255, 444132, 6607, 12888, 10893, 24318 } -- Avatar of Hakkar: Frightsome Howl, Bubbling Blood, Insanity, Curse of Tongues, Corrupted Blood, Drain Blood, Lash, Cause Insanity, Shadow Word: Pain, Enrage
 A[3586] = { 12882, 12884 } -- Morphaz: Wing Flap, Acid Breath
 N["morphaz"] = A[3586]
 A[490] = { 12882, 12884 } -- Morphaz: Wing Flap, Acid Breath
@@ -186,9 +188,9 @@ A[491] = { 12884, 12882 } -- Hazzas: Acid Breath, Wing Flap
 A[2958] = { 446489, 446468, 445158, 446487, 446661 } -- Morphaz and Hazzas: Backfire, Dreamer's Lament, Lucid Dreaming, Corrupted Breath, Animate Flame
 N["morphazandhazzas"] = A[2958]
 A[3588] = { 16359, 12882, 12884 } -- Dreamscythe: Corrosive Acid Breath, Wing Flap, Acid Breath
-A[2959] = { 437353, 445498, 437301, 437390, 437398, 3391, 437416, 11876, 12891, 12535 } -- Shade of Eranikus: Corrosive Breath, Bellowing Roar, Deep Slumber, Lethargic Poison, Waking Nightmare, Thrash, Dreamwalker, War Stomp, Acid Breath, Shade of Eranikus Passive Visual
+A[2959] = { 437353, 445498, 437301, 437390, 437398, 3391, 437416, 11876, 12891, 12535, 23017, 24818, 25586 } -- Shade of Eranikus: Corrosive Breath, Bellowing Roar, Deep Slumber, Lethargic Poison, Waking Nightmare, Thrash, Dreamwalker, War Stomp, Acid Breath, Shade of Eranikus Passive Visual, Arcane Channeling, Noxious Breath, Shadow Bolt Volley
 A[3589] = { 12468, 10893, 12480, 13540, 12492, 8376 } -- Jammal'an the Prophet: Flamestrike, Shadow Word: Pain, Hex of Jammal'an, Green Channeling, Healing Wave, Earthgrab Totem
-A[493] = { 12890, 11876, 12891, 12535, 8876 } -- Shade of Eranikus: Deep Slumber, War Stomp, Acid Breath, Shade of Eranikus Passive Visual, Thrash
+A[493] = { 12890, 11876, 12891, 12535, 8876, 23017, 24818, 25586 } -- Shade of Eranikus: Deep Slumber, War Stomp, Acid Breath, Shade of Eranikus Passive Visual, Thrash, Arcane Channeling, Noxious Breath, Shadow Bolt Volley
 A[2814] = { 12887, 6524 } -- Atal'alarion: Sweeping Slam, Ground Tremor
 
 -- Razorfen Downs
@@ -212,11 +214,13 @@ A[2779] = { 8814, 12470, 8053, 9613 } -- Bloodmage Thalnos: Flame Spike, Fire No
 N["bloodmagethalnos"] = A[2779]
 A[446] = { 6742, 6192 } -- Houndmaster Loksey: Bloodlust, Battle Shout
 N["houndmasterloksey"] = A[446]
-A[448] = { 6268, 8599, 15579 } -- Herod: Rushing Charge, Enrage, Cleave
+A[447] = { 9435, 9438, 13323, 8988, 9433 } -- Arcanist Doan: Detonation, Arcane Bubble, Polymorph, Silence, Arcane Explosion
+N["arcanistdoan"] = A[447]
+A[448] = { 6268, 8599, 15579, 8989 } -- Herod: Rushing Charge, Enrage, Cleave, Whirlwind
 N["herod"] = A[448]
 A[449] = { 15090, 8282, 12039, 11647, 12096, 8399, 8278, 8279 } -- High Inquisitor Fairbanks: Dispel Magic, Curse of Blood, Heal, Power Word: Shield, Fear, Sleep, Invisibility Detection, Stealth Detection
 N["highinquisitorfairbanks"] = A[449]
-A[450] = { 22187, 9481, 9256, 12039 } -- High Inquisitor Whitemane: Power Word: Shield, Holy Smite, Deep Sleep, Heal
+A[450] = { 22187, 9481, 9256, 12039, 9232, 14515 } -- High Inquisitor Whitemane: Power Word: Shield, Holy Smite, Deep Sleep, Heal, Scarlet Resurrection, Dominate Mind
 N["highinquisitorwhitemane"] = A[450]
 
 -- Zul'Farrak
@@ -228,7 +232,7 @@ A[595] = { 15982, 8376, 11899, 15501, 16006, 11895, 11894, 11020 } -- Antu'sul: 
 N["antusul"] = A[595]
 A[596] = { 8600, 17228, 15654, 11089 } -- Theka the Martyr: Fevered Plague, Shadow Bolt Volley, Shadow Word: Pain, Theka Transform
 N["thekathemartyr"] = A[596]
-A[597] = { 11086, 15982, 17228, 12739 } -- Witch Doctor Zum'rah: Ward of Zum'rah, Healing Wave, Shadow Bolt Volley, Shadow Bolt
+A[597] = { 11086, 15982, 17228, 12739, 10247 } -- Witch Doctor Zum'rah: Ward of Zum'rah, Healing Wave, Shadow Bolt Volley, Shadow Bolt, Summon Zul'Farrak Zombies
 N["witchdoctorzumrah"] = A[597]
 A[598] = { 8600, 13704, 8362, 12039 } -- Nekrum Gutchewer: Fevered Plague, Psychic Scream, Renew, Heal
 N["nekrumgutchewer"] = A[598]
@@ -254,7 +258,9 @@ A[274] = { 13738, 8876 } -- Halycon: Rend, Thrash
 N["halycon"] = A[274]
 A[273] = { 8269, 16128, 16495 } -- Gizrul the Slavener: Enrage, Infected Bite, Fatal Bite
 N["gizrultheslavener"] = A[273]
-A[3062] = { 16079, 16536 } -- Pyroguard Emberseer: Fire Nova, Flame Buffet
+A[275] = { 11130, 23511, 20691 } -- Overlord Wyrmthalak: Knock Away, Demoralizing Shout, Cleave
+N["overlordwyrmthalak"] = A[275]
+A[3062] = { 16079, 16536, 13377, 16047, 16534, 15281, 20228 } -- Pyroguard Emberseer: Fire Nova, Flame Buffet, Fire Shield, Emberseer Full Strength, Emberseer Bonus Damage, Encage Emberseer, Pyroblast
 N["pyroguardemberseer"] = A[3062]
 A[3063] = { 20691, 15589, 23931, 8269, 15708 } -- Warchief Rend Blackhand: Cleave, Whirlwind, Thunderclap, Enrage, Mortal Strike
 N["warchiefrendblackhand"] = A[3063]
@@ -284,33 +290,39 @@ A[234] = { 13953, 8258, 15493, 11978, 15346 } -- Fineous Darkvire: Holy Strike, 
 N["fineousdarkvire"] = A[234]
 A[235] = { 13895, 23378 } -- Bael'Gar: Summon Spawn of Bael'Gar, Magma Splash
 N["baelgar"] = A[235]
+A[236] = { 15088, 15097, 15572 } -- General Angerforge: Flurry, Enrage, Sunder Armor
+N["generalangerforge"] = A[236]
 A[237] = { 15507, 15305, 15605 } -- Golem Lord Argelmach: Lightning Shield, Chain Lightning, Shock
 N["golemlordargelmach"] = A[237]
-A[239] = { 14099, 15588, 15285 } -- Phalanx: Mighty Blow, Thunderclap, Fireball Volley
+A[238] = { 9573, 14872, 8994, 13338, 13787, 12742, 12739, 921 } -- Hurley Blackbreath: Flame Breath, Drunken Rage, Banish, Curse of Tongues, Demon Armor, Immolate, Shadow Bolt, Pick Pocket
+N["hurleyblackbreath"] = A[238]
+A[239] = { 14099, 15588, 15285, 14928, 15064 } -- Phalanx: Mighty Blow, Thunderclap, Fireball Volley, Nagmara's Love Potion, Nagmara + Rocknot
 N["phalanx"] = A[239]
 A[240] = { 12540, 9080 } -- Ribbly Screwspigot: Gouge, Hamstring
 N["ribblyscrewspigot"] = A[240]
-A[241] = { 12739, 12742, 13787, 13338 } -- Plugger Spazzring: Shadow Bolt, Immolate, Demon Armor, Curse of Tongues
+A[241] = { 12739, 12742, 13787, 13338, 921, 8994, 15529 } -- Plugger Spazzring: Shadow Bolt, Immolate, Demon Armor, Curse of Tongues, Pick Pocket, Banish, Gout of Flame
 N["pluggerspazzring"] = A[241]
 A[2791] = { 12674, 12675, 12556, 15044, 15042, 8599 } -- The Vault: Frost Nova, Frostbolt, Frost Armor, Frost Ward, Curse of Blood, Enrage
 N["vault"] = A[2791]
+A[242] = { 13489, 15573 } -- Ambassador Flamelash: Burning Spirit, Fire Blast
+N["ambassadorflamelash"] = A[242]
 A[243] = { 15245, 12742, 12493, 15092, 13787, 12544, 8364, 12675, 15044, 15244, 12674, 9080, 15284, 13737 } -- The Seven: Shadow Bolt Volley, Immolate, Curse of Weakness, Summon Voidwalkers, Demon Armor, Frost Armor, Blizzard, Frostbolt, Frost Ward, Cone of Cold, Frost Nova, Hamstring, Cleave, Mortal Strike
 N["seven"] = A[243]
 A[244] = { 15593, 15668 } -- Magmus: War Stomp, Fiery Burst
 N["magmus"] = A[244]
-A[2789] = { 15586, 8362, 15587 } -- Princess Moira Bronzebeard: Heal, Renew, Mind Blast
+A[2789] = { 15586, 8362, 15587, 13912, 15654, 10934 } -- Princess Moira Bronzebeard: Heal, Renew, Mind Blast, Princess Summons Portal, Shadow Word: Pain, Smite
 N["princessmoirabronzebeard"] = A[2789]
-A[2790] = { 15636, 17492 } -- Emperor Dagran Thaurissan: Avatar of Flame, Hand of Thaurissan
+A[2790] = { 15636, 17492, 15586, 10929, 10901, 15587, 15654, 10934, 15537, 13912 } -- Emperor Dagran Thaurissan: Avatar of Flame, Hand of Thaurissan, Heal, Renew, Power Word: Shield, Mind Blast, Shadow Word: Pain, Smite, Shadow Bolt, Princess Summons Portal
 N["emperordagranthaurissan"] = A[2790]
 
 -- Onyxia's Lair
-A[1084] = { 18435, 18392, 17086, 18958, 15847 } -- Onyxia: Flame Breath, Fireball, Breath, Flame Lash, Tail Sweep
+A[1084] = { 18435, 18392, 17086, 18958, 15847, 22191, 20171, 19983, 18500, 19633 } -- Onyxia: Flame Breath, Fireball, Breath, Flame Lash, Tail Sweep, Heated Ground, Summon Onyxian Whelps, Cleave, Wing Buffet, Knock Away
 N["onyxia"] = A[1084]
 
 -- Scholomance
 A[2805] = { 18116, 20741, 18144, 6016, 12882, 8379, 16467, 12889, 14515 } -- Kirtonos: Kirtonos Gargoyle Passive, Shadow Bolt Volley, Swoop, Pierce Armor, Wing Flap, Disarm, Kirtonos Transform, Curse of Tongues, Dominate Mind
 N["kirtonos"] = A[2805]
-A[2804] = { 24673, 18270, 18116 } -- Jandice Barov: Curse of Blood, Dark Plague, Kirtonos Gargoyle Passive
+A[2804] = { 24673, 18270, 18116, 17772, 8994, 17773 } -- Jandice Barov: Curse of Blood, Dark Plague, Kirtonos Gargoyle Passive, Spread, Banish, Summon Illusions
 N["jandicebarov"] = A[2804]
 A[2811] = { 10101, 16727, 18116, 18368 } -- Rattlegore: Knock Away, War Stomp, Kirtonos Gargoyle Passive, Strike
 N["rattlegore"] = A[2811]
@@ -334,25 +346,25 @@ A[2807] = { 11668, 11700, 18116, 17467, 17820 } -- Lord Alexei Barov: Immolate, 
 N["lordalexeibarov"] = A[2807]
 A[2806] = { 18116, 19460, 6215, 15487, 18671, 14515 } -- Lady Illucia Barov: Kirtonos Gargoyle Passive, Shadow Shock, Fear, Silence, Curse of Agony, Dominate Mind
 N["ladyilluciabarov"] = A[2806]
-A[2801] = { 18702, 10212, 18116 } -- Darkmaster Gandling: Curse of the Darkmaster, Arcane Missiles, Kirtonos Gargoyle Passive
+A[2801] = { 18702, 10212, 18116, 12040, 17950 } -- Darkmaster Gandling: Curse of the Darkmaster, Arcane Missiles, Kirtonos Gargoyle Passive, Shadow Shield, Shadow Portal
 N["darkmastergandling"] = A[2801]
 
 -- Zul'Gurub
-A[785] = { 12097, 23954, 23953, 16098, 23970, 23952, 22911, 24210, 23918, 23974, 22644 } -- High Priestess Jeklik: Pierce Armor, Great Heal, Mind Flay, Curse of Blood, Throw Liquid Fire, Shadow Word: Pain, Charge, Mark of Arlokk, Sonic Burst, Summon Frenzied Bloodseeker Bats, Blood Leech
+A[785] = { 12097, 23954, 23953, 16098, 23970, 23952, 22911, 24210, 23918, 23974, 22644, 13540 } -- High Priestess Jeklik: Pierce Armor, Great Heal, Mind Flay, Curse of Blood, Throw Liquid Fire, Shadow Word: Pain, Charge, Mark of Arlokk, Sonic Burst, Summon Frenzied Bloodseeker Bats, Blood Leech, Green Channeling
 N["highpriestessjeklik"] = A[785]
-A[784] = { 23895, 23860, 23861, 23865, 8269, 23859, 23979, 23858, 3391 } -- High Priest Venoxis: Renew, Holy Fire, Poison Cloud, Parasitic Serpent, Enrage, Dispel Magic, Holy Wrath, Holy Nova, Thrash
+A[784] = { 23895, 23860, 23861, 23865, 8269, 23859, 23979, 23858, 3391, 22413 } -- High Priest Venoxis: Renew, Holy Fire, Poison Cloud, Parasitic Serpent, Enrage, Dispel Magic, Holy Wrath, Holy Nova, Thrash, Virulent Poison Proc
 N["highpriestvenoxis"] = A[784]
-A[786] = { 24083, 24300, 24099, 24082, 24109, 3391, 24110 } -- High Priestess Mar'li: Hatch Eggs, Drain Life, Poison Bolt Volley, Hatch Spider Egg, Enlarge, Thrash, Enveloping Webs
+A[786] = { 24083, 24300, 24099, 24082, 24109, 3391, 24110, 22911 } -- High Priestess Mar'li: Hatch Eggs, Drain Life, Poison Bolt Volley, Hatch Spider Egg, Enlarge, Thrash, Enveloping Webs, Charge
 N["highpriestessmarli"] = A[786]
-A[787] = { 16856, 24314, 24318, 24408, 13736, 19134, 24407 } -- Bloodlord Mandokir: Mortal Strike, Threatening Gaze, Enrage, Charge, Whirlwind, Intimidating Shout, Overpower
+A[787] = { 16856, 24314, 24318, 24408, 13736, 19134, 24407, 24349, 25104, 24312, 24341 } -- Bloodlord Mandokir: Mortal Strike, Threatening Gaze, Enrage, Charge, Whirlwind, Intimidating Shout, Overpower, Summon Bloodlord's Raptor, Summon Player, Level Up, Revive
 N["bloodlordmandokir"] = A[787]
 A[788] = { 24646, 24729, 24699, 26550 } -- Edge of Madness: Avatar, Summon Nightmare Illusions, Vanish, Lightning Cloud
 N["edgeofmadness"] = A[788]
-A[789] = { 22859, 22666, 24208, 24185, 21060, 12540, 24189, 24183, 8269 } -- High Priest Thekal: Mortal Cleave, Silence, Great Heal, Bloodlust, Blind, Gouge, Force Punch, Summon Zulian Guardians, Enrage
+A[789] = { 22859, 22666, 24208, 24185, 21060, 12540, 24189, 24183, 8269, 24173 } -- High Priest Thekal: Mortal Cleave, Silence, Great Heal, Bloodlust, Blind, Gouge, Force Punch, Summon Zulian Guardians, Enrage, Resurrection
 N["highpriestthekal"] = A[789]
 A[790] = { 21099, 22421, 24326 } -- Gahz'ranka: Frost Breath, Massive Geyser, Gahz'ranka Slam
 N["gahzranka"] = A[790]
-A[791] = { 12540, 24210, 24212 } -- High Priestess Arlokk: Gouge, Mark of Arlokk, Shadow Word: Pain
+A[791] = { 12540, 24210, 24212, 24235, 24247, 20538 } -- High Priestess Arlokk: Gouge, Mark of Arlokk, Shadow Word: Pain, Super Invis, Summon Zulian Prowlers, Hate to Zero
 N["highpriestessarlokk"] = A[791]
 A[792] = { 24306, 17172, 24262, 24309, 24466 } -- Jin'do the Hexxer: Delusions of Jin'do, Hex, Summon Brain Wash Totem, Powerful Healing Ward, Banish
 N["jindothehexxer"] = A[792]
@@ -366,19 +378,19 @@ A[474] = { 17470, 8599, 12021, 12787 } -- Timmy the Cruel: Ravenous Claw, Enrage
 N["timmythecruel"] = A[474]
 A[476] = { 12734, 16172, 17228, 17233, 15493 } -- Malor the Zealous: Ground Smash, Head Crack, Shadow Bolt Volley, Lay on Hands, Holy Light
 N["malorthezealous"] = A[476]
-A[475] = { 17279, 10101, 16615, 11729 } -- Cannon Master Willey: Summon Crimson Rifleman, Knock Away, Add Lightning Dam - Weap 03, Create Healthstone
+A[475] = { 17279, 10101, 16615, 11729, 15615, 16496 } -- Cannon Master Willey: Summon Crimson Rifleman, Knock Away, Add Lightning Dam - Weap 03, Create Healthstone, Pummel, Shoot
 N["cannonmasterwilley"] = A[475]
 A[477] = { 17366, 17293, 17274 } -- Archivist Galford: Fire Nova, Burning Winds, Pyroblast
 N["archivistgalford"] = A[477]
-A[478] = { 17405, 13704, 20603, 9256, 20741 } -- Balnazzar: Domination, Psychic Scream, Shadow Shock, Deep Sleep, Shadow Bolt Volley
+A[478] = { 17405, 13704, 20603, 9256, 20741, 17287, 17286, 17281, 17284, 12098, 15690 } -- Balnazzar: Domination, Psychic Scream, Shadow Shock, Deep Sleep, Shadow Bolt Volley, Mind Blast, Crusader's Hammer, Crusader Strike, Holy Strike, Sleep, Mind Control
 N["balnazzar"] = A[478]
 A[472] = { 22766, 8822, 14907 } -- The Unforgiven: Sneak, Stealth, Frost Nova
 N["unforgiven"] = A[472]
-A[479] = { 17244, 18327, 16867, 16565 } -- Baroness Anastari: Possess, Silence, Banshee Curse, Banshee Wail
+A[479] = { 17244, 18327, 16867, 16565, 17246 } -- Baroness Anastari: Possess, Silence, Banshee Curse, Banshee Wail, Possessed
 N["baronessanastari"] = A[479]
 A[480] = { 17235, 6016, 4962, 16418 } -- Nerub'enkan: Raise Undead Scarab, Pierce Armor, Encasing Webs, Crypt Scarabs
 N["nerubenkan"] = A[480]
-A[481] = { 16869, 17620, 17503, 17243 } -- Maleki the Pallid: Ice Tomb, Drain Life, Frostbolt, Drain Mana
+A[481] = { 16869, 17620, 17503, 17243, 12556 } -- Maleki the Pallid: Ice Tomb, Drain Life, Frostbolt, Drain Mana, Frost Armor
 N["malekithepallid"] = A[481]
 A[482] = { 10887, 16791, 14099, 16793, 16794 } -- Magistrate Barthilas: Crowd Pummel, Furious Anger, Mighty Blow, Draining Blow, Transformation
 N["magistratebarthilas"] = A[482]
@@ -398,7 +410,7 @@ A[2800] = { 14331 } -- Stonespine: Vicious Rend
 N["stonespine"] = A[2800]
 
 -- Maraudon
-A[422] = { 21687, 21547, 21707 } -- Noxxion: Toxic Volley, Spore Cloud, Summon Noxxion's Spawns
+A[422] = { 21687, 21547, 21707, 22916 } -- Noxxion: Toxic Volley, Spore Cloud, Summon Noxxion's Spawns, Uppercut
 N["noxxion"] = A[422]
 A[423] = { 12787, 15976, 15584 } -- Razorlash: Thrash, Puncture, Cleave
 N["razorlash"] = A[423]
@@ -426,25 +438,25 @@ A[2735] = { 3616, 14873 } -- Bazzalan: Poison Proc, Sinister Strike
 N["bazzalan"] = A[2735]
 
 -- Molten Core
-A[663] = { 19702, 19703, 20604 } -- Lucifron: Impending Doom, Lucifron's Curse, Dominate Mind
+A[663] = { 19702, 19703, 20604, 19460 } -- Lucifron: Impending Doom, Lucifron's Curse, Dominate Mind, Shadow Shock
 N["lucifron"] = A[663]
-A[664] = { 19408, 19451, 19428, 19411, 19272 } -- Magmadar: Panic, Frenzy, Conflagration, Lava Bomb, Lava Breath
+A[664] = { 19408, 19451, 19428, 19411, 19272, 19449 } -- Magmadar: Panic, Frenzy, Conflagration, Lava Bomb, Lava Breath, Magma Spit
 N["magmadar"] = A[664]
-A[665] = { 19716, 19717 } -- Gehennas: Gehennas' Curse, Rain of Fire
+A[665] = { 19716, 19717, 19729 } -- Gehennas: Gehennas' Curse, Rain of Fire, Shadow Bolt
 N["gehennas"] = A[665]
-A[666] = { 19492 } -- Garr: Antimagic Pulse
+A[666] = { 19492, 23487, 19516, 19496 } -- Garr: Antimagic Pulse, Separation Anxiety, Enrage, Magma Shackles
 N["garr"] = A[666]
 A[667] = { 19714, 23138, 19715, 19713, 19712 } -- Shazzrah: Deaden Magic, Gate of Shazzrah, Counterspell, Shazzrah's Curse, Arcane Explosion
 N["shazzrah"] = A[667]
 A[668] = { 20475, 19695, 20478, 19659 } -- Baron Geddon: Living Bomb, Inferno, Armageddon, Ignite Mana
 N["barongeddon"] = A[668]
-A[669] = { 19779, 19775, 19778, 19780, 19781 } -- Sulfuron Harbinger: Inspire, Dark Mending, Demoralizing Shout, Hand of Ragnaros, Flame Spear
+A[669] = { 19779, 19775, 19778, 19780, 19781, 19776 } -- Sulfuron Harbinger: Inspire, Dark Mending, Demoralizing Shout, Hand of Ragnaros, Flame Spear, Shadow Word: Pain
 N["sulfuronharbinger"] = A[669]
-A[670] = { 13880, 20228 } -- Golemagg the Incinerator: Magma Splash, Pyroblast
+A[670] = { 13880, 20228, 20556, 19953, 19798 } -- Golemagg the Incinerator: Magma Splash, Pyroblast, Golemagg's Trust, Enrage, Earthquake
 N["golemaggtheincinerator"] = A[670]
-A[671] = { 20619, 21075, 20534, 20620 } -- Majordomo Executus: Magic Reflection, Damage Shield, Teleport, Aegis of Ragnaros
+A[671] = { 20619, 21075, 20534, 20620, 21094, 21090, 21087, 21086, 19774, 19773, 20538 } -- Majordomo Executus: Magic Reflection, Damage Shield, Teleport, Aegis of Ragnaros, Separation Anxiety, Champion, Immunity, Encouragement, Summon Ragnaros, Elemental Fire, Hate to Zero
 N["majordomoexecutus"] = A[671]
-A[672] = { 20566, 19773, 19780, 20565 } -- Ragnaros: Wrath of Ragnaros, Elemental Fire, Hand of Ragnaros, Magma Blast
+A[672] = { 20566, 19773, 19780, 20565, 21387, 21857, 21155, 21108, 21154, 21908 } -- Ragnaros: Wrath of Ragnaros, Elemental Fire, Hand of Ragnaros, Magma Blast, Melt Weapon, Lava Shield, Intense Heat, Summon Sons of Flame, Might of Ragnaros, Lava Burst Randomizer
 N["ragnaros"] = A[672]
 A[3018] = { 460898, 460895, 460887, 460885, 460883 } -- The Molten Core: Heart of Ash, Heart of Cinder, Harmonic Tremor, Doomsday, Meteor
 N["moltencore"] = A[3018]
@@ -490,59 +502,59 @@ A[2794] = { 12540, 14873, 21060 } -- Tsu'zee: Gouge, Sinister Strike, Blind
 N["tsuzee"] = A[2794]
 
 -- Blackwing Lair
-A[610] = { 14515, 23023, 19873, 19872, 19632, 22425 } -- Razorgore the Untamed: Dominate Mind, Conflagration, Destroy Egg, Calm Dragonkin, Cleave, Fireball Volley
+A[610] = { 14515, 23023, 19873, 19872, 19632, 22425, 23014, 24375 } -- Razorgore the Untamed: Dominate Mind, Conflagration, Destroy Egg, Calm Dragonkin, Cleave, Fireball Volley, Possess, War Stomp
 N["razorgoretheuntamed"] = A[610]
-A[611] = { 18173, 23461, 19983, 15847 } -- Vaelastrasz the Corrupt: Burning Adrenaline, Flame Breath, Cleave, Tail Sweep
+A[611] = { 18173, 23461, 19983, 15847, 23513, 23642, 23462 } -- Vaelastrasz the Corrupt: Burning Adrenaline, Flame Breath, Cleave, Tail Sweep, Essence of the Red, Corruption, Fire Nova
 N["vaelastraszthecorrupt"] = A[611]
 A[612] = { 24573, 23331, 18670, 15284 } -- Broodlord Lashlayer: Mortal Strike, Blast Wave, Knock Away, Cleave
 N["broodlordlashlayer"] = A[612]
-A[613] = { 23339, 22539, 23341 } -- Firemaw: Wing Buffet, Shadow Flame, Flame Buffet
+A[613] = { 23339, 22539, 23341, 3391 } -- Firemaw: Wing Buffet, Shadow Flame, Flame Buffet, Thrash
 N["firemaw"] = A[613]
-A[614] = { 23339, 22539, 23340 } -- Ebonroc: Wing Buffet, Shadow Flame, Shadow of Ebonroc
+A[614] = { 23339, 22539, 23340, 3391 } -- Ebonroc: Wing Buffet, Shadow Flame, Shadow of Ebonroc, Thrash
 N["ebonroc"] = A[614]
-A[615] = { 23339, 22539, 23342 } -- Flamegor: Wing Buffet, Shadow Flame, Frenzy
+A[615] = { 23339, 22539, 23342, 3391 } -- Flamegor: Wing Buffet, Shadow Flame, Frenzy, Thrash
 N["flamegor"] = A[615]
-A[616] = { 23128, 23537, 23174, 23170 } -- Chromaggus: Frenzy, Enrage, Chromatic Mutation, Brood Affliction: Bronze
+A[616] = { 23128, 23537, 23174, 23170, 23195, 22276, 23173 } -- Chromaggus: Frenzy, Enrage, Chromatic Mutation, Brood Affliction: Bronze, Dragondog Breath Selection, Elemental Shield, Brood Affliction
 N["chromaggus"] = A[616]
-A[617] = { 22667, 22539, 22686, 22687 } -- Nefarian: Shadow Command, Shadow Flame, Bellowing Roar, Veil of Shadow
+A[617] = { 22667, 22539, 22686, 22687, 23362, 19983, 23364, 23397, 23418, 23436, 23414, 23401, 23425, 23410 } -- Nefarian: Shadow Command, Shadow Flame, Bellowing Roar, Veil of Shadow, Raise Drakonids, Cleave, Tail Lash, Berserk, Siphon Blessing, Corrupt Weapon, Paralyze, Corrupted Healing, Corrupted Totems, Wild Magic
 N["nefarian"] = A[617]
 
 -- Ruins of Ahn'Qiraj
-A[718] = { 25646, 25648, 26527 } -- Kurinnaxx: Mortal Wound, Sand Trap, Enrage
+A[718] = { 25646, 25648, 26527, 3391, 25814 } -- Kurinnaxx: Mortal Wound, Sand Trap, Enrage, Thrash, Wide Slash
 N["kurinnaxx"] = A[718]
 A[719] = { 25471, 8269, 25599, 25462, 26550, 6713, 20477, 18943 } -- General Rajaxx: Attack Order, Enrage, Thundercrash, Enlarge, Lightning Cloud, Disarm, Summon Player, Double Attack
 N["generalrajaxx"] = A[719]
-A[720] = { 25685, 25672, 15550 } -- Moam: Energize, Arcane Eruption, Trample
+A[720] = { 25685, 25672, 15550, 25676, 25684, 25681 } -- Moam: Energize, Arcane Eruption, Trample, Drain Mana, Summon Mana Fiends, Summon Mana Fiend
 N["moam"] = A[720]
 A[721] = { 20512, 96, 1557, 25640 } -- Buru the Gorger: Creeping Plague, Dismember, Full Speed, Thorns
 N["buruthegorger"] = A[721]
-A[722] = { 25725, 8269, 17742 } -- Ayamiss the Hunter: Paralyze, Enrage, Cloud of Disease
+A[722] = { 25725, 8269, 17742, 25709, 26538, 25749, 25748, 25708, 25852, 3391 } -- Ayamiss the Hunter: Paralyze, Enrage, Cloud of Disease, Hive'Zara Swarmer Teleport, Summon Hive'Zara Larva, Stinger Spray, Poison Stinger, Summon Hive'Zara Swarmer, Lash, Thrash
 N["ayamissthehunter"] = A[722]
-A[723] = { 25189, 25195, 25188, 25176, 25177, 25178, 25180, 25181, 25183 } -- Ossirian the Unscarred: Enveloping Winds, Curse of Tongues, War Stomp, Strength of Ossirian, Fire Weakness, Frost Weakness, Nature Weakness, Arcane Weakness, Shadow Weakness
+A[723] = { 25189, 25195, 25188, 25176, 25177, 25178, 25180, 25181, 25183, 25192, 25160 } -- Ossirian the Unscarred: Enveloping Winds, Curse of Tongues, War Stomp, Strength of Ossirian, Fire Weakness, Frost Weakness, Nature Weakness, Arcane Weakness, Shadow Weakness, Summon Ossirian Crystal, Sand Storm
 N["ossiriantheunscarred"] = A[723]
 
 -- Ahn'Qiraj Temple
-A[709] = { 785, 20449, 26192, 747, 26194 } -- The Prophet Skeram: True Fulfillment, Teleport, Arcane Explosion, Summon Images, Earth Shock
+A[709] = { 785, 20449, 26192, 747, 26194, 26262, 794, 3730, 26591 } -- The Prophet Skeram: True Fulfillment, Teleport, Arcane Explosion, Summon Images, Earth Shock, Birth, Initialize Images, Initialize Image, Teleport Image
 N["prophetskeram"] = A[709]
-A[710] = { 25807, 26580, 25812, 25786 } -- Silithid Royalty: Great Heal, Fear, Toxic Volley, Toxic Vapors
+A[710] = { 25807, 26580, 25812, 25786, 25770, 17683 } -- Silithid Royalty: Great Heal, Fear, Toxic Volley, Toxic Vapors, Bloody Death, Full Heal
 N["silithidroyalty"] = A[710]
 A[711] = { 26083, 8269, 25174, 27680 } -- Battleguard Sartura: Whirlwind, Enrage, Sundering Cleave, Berserk
 N["battleguardsartura"] = A[711]
 A[712] = { 25646, 25832, 720 } -- Fankriss the Unyielding: Mortal Wound, Summon Worm, Entangle
 N["fankrisstheunyielding"] = A[712]
-A[713] = { 25991, 25989, 25993 } -- Viscidus: Poison Bolt Volley, Toxin, Poison Shock
+A[713] = { 25991, 25989, 25993, 25994, 25926, 25896, 26034, 26036, 25937, 20538, 27933, 25897, 26584, 25885 } -- Viscidus: Poison Bolt Volley, Toxin, Poison Shock, Membrane of Viscidus, Viscidus Frost Weakness, Rejoin Viscidus, Viscidus Slowed, Viscidus Slowed More, Viscidus Freeze, Hate to Zero, Invis Stalker, Viscidus Grows, Summon Toxic Slime, Summon Globs of Viscidus
 N["viscidus"] = A[713]
-A[714] = { 26180, 26051, 26050, 26053 } -- Princess Huhuran: Wyvern Sting, Frenzy, Acid Spit, Noxious Poison
+A[714] = { 26180, 26051, 26050, 26053, 26068 } -- Princess Huhuran: Wyvern Sting, Frenzy, Acid Spit, Noxious Poison, Berserk
 N["princesshuhuran"] = A[714]
-A[715] = { 7393, 800, 802, 804, 26607 } -- Twin Emperors: Heal Brother, Twin Teleport, Mutate Bug, Explode Bug, Blizzard
+A[715] = { 7393, 800, 802, 804, 26607, 1177, 26627 } -- Twin Emperors: Heal Brother, Twin Teleport, Mutate Bug, Explode Bug, Blizzard, Twin Empathy, Suicide
 N["twinemperors"] = A[715]
-A[716] = { 26103, 26102, 26615 } -- Ouro: Sweep, Sand Blast, Berserk
+A[716] = { 26103, 26102, 26615, 26133, 26642, 26619, 26058, 26100, 26586, 26075, 26616 } -- Ouro: Sweep, Sand Blast, Berserk, Summon Sandworm Base, Summon Ouro, Summon Ouro Scarabs Periodic, Summon Ouro Mounds, Ground Rupture, Birth, Set Ouro Health, Boulder
 N["ouro"] = A[716]
-A[717] = { 26029, 26134, 26476 } -- C'thun: Dark Glare, Eye Beam, Digestive Acid
+A[717] = { 26029, 26134, 26476, 26152, 26397, 26255, 26009, 26136, 26236, 26766, 26213, 26156, 26235, 26478 } -- C'thun: Dark Glare, Eye Beam, Digestive Acid, Summon Eye Tentacles, Summon Hook Tentacles, Check Reset, Rotate 360, Rotate -360, Summon Mouth Tentacles, Summon Giant Eye Tentacles, Summon Giant Hook Tentacles, Carapace of C'Thun, Cthun Vulnerable, Ground Rupture
 N["cthun"] = A[717]
 
 -- Naxxramas
-A[1107] = { 28783, 28785 } -- Anub'Rekhan: Impale, Locust Swarm
+A[1107] = { 28783, 28785, 29508, 29103 } -- Anub'Rekhan: Impale, Locust Swarm, Summon Crypt Guard, Anub'Rekhan's Aura
 N["anubrekhan"] = A[1107]
 A[1110] = { 28732, 28798, 28794, 30225, 28796 } -- Grand Widow Faerlina: Widow's Embrace, Enrage, Rain of Fire, Silence, Poison Bolt Volley
 N["grandwidowfaerlina"] = A[1110]
@@ -550,25 +562,27 @@ A[1116] = { 28622, 29484, 28776, 28747, 28741 } -- Maexxna: Web Wrap, Web Spray,
 N["maexxna"] = A[1116]
 A[1117] = { 29212, 29213, 29214, 29208 } -- Noth the Plaguebringer: Cripple, Curse of the Plaguebringer, Wrath of the Plaguebringer, Blink
 N["noththeplaguebringer"] = A[1117]
-A[1112] = { 29998 } -- Heigan the Unclean: Decrepit Fever
+A[1112] = { 29998, 29351, 30114, 29350 } -- Heigan the Unclean: Decrepit Fever, Plague Wave Controller (Slow), Plague Wave Controller (Fast), Plague Cloud
 N["heigantheunclean"] = A[1112]
 A[1115] = { 29865, 29204, 30281, 29234, 29184, 29232 } -- Loatheb: Poison Aura, Inevitable Doom, Remove Curse, Summon Spore, Corrupted Mind, Fungal Bloom
 N["loatheb"] = A[1115]
-A[1113] = { 29107, 29060, 29061, 29051 } -- Instructor Razuvious: Disrupting Shout, Taunt, Shield Wall, Mind Exhaustion
+A[1113] = { 29107, 29060, 29061, 29051, 29125 } -- Instructor Razuvious: Disrupting Shout, Taunt, Shield Wall, Mind Exhaustion, Hopeless
 N["instructorrazuvious"] = A[1113]
+A[1109] = { 29230, 28025, 28035, 28026, 27921, 27932, 27939, 29875, 28749 } -- Gothik the Harvester: Immune All, Teleport Left, Reset Gothik Event, Teleport Right, Summon Spectral Trainee, Summon Spectral Knight, Summon Spectral Rivendare, Check Unrelenting Side, Check Spectral Side
+N["gothiktheharvester"] = A[1109]
 A[1121] = { 28884, 28863, 28883, 29061 } -- The Four Horsemen: Meteor, Void Zone, Holy Wrath, Shield Wall
 N["fourhorsemen"] = A[1121]
-A[1118] = { 28131, 26662, 32309 } -- Patchwerk: Enrage, Berserk, Slime Bolt
+A[1118] = { 28131, 26662, 32309, 28308 } -- Patchwerk: Enrage, Berserk, Slime Bolt, Hateful Strike
 N["patchwerk"] = A[1118]
-A[1111] = { 28169, 28240 } -- Grobbulus: Mutating Injection, Poison Cloud
+A[1111] = { 28169, 28240, 28157, 28218, 28137, 28322, 28206 } -- Grobbulus: Mutating Injection, Poison Cloud, Slime Spray, Summon Fallout Slime, Slime Stream, Embalming Cloud, Mutagen Explosion
 N["grobbulus"] = A[1111]
-A[1108] = { 28371, 29685, 25646, 29306, 28375 } -- Gluth: Frenzy, Terrifying Roar, Mortal Wound, Infected Wound, Decimate
+A[1108] = { 28371, 29685, 25646, 29306, 28375, 28235, 29681, 28216 } -- Gluth: Frenzy, Terrifying Roar, Mortal Wound, Infected Wound, Decimate, Zombie Chow Search, Call All Zombie Chow, Summon Zombie Chow
 N["gluth"] = A[1108]
 A[1120] = { 28338, 28134, 28089, 28084, 28059, 28167, 28299 } -- Thaddius: Magnetic Pull, Power Surge, Polarity Shift, Negative Charge, Positive Charge, Chain Lightning, Ball Lightning
 N["thaddius"] = A[1120]
-A[1119] = { 28542, 28522, 28524, 28547 } -- Sapphiron: Life Drain, Icebolt, Frost Breath, Chill
+A[1119] = { 28542, 28522, 28524, 28547, 28529, 29329, 26662, 28535, 28561 } -- Sapphiron: Life Drain, Icebolt, Frost Breath, Chill, Frost Aura, Summon Sapphiron's Wing Buffet, Berserk, Summon Ice Block, Summon Blizzard
 N["sapphiron"] = A[1119]
-A[1114] = { 28467, 27808, 27810, 28410, 27819 } -- Kel'Thuzad: Mortal Wound, Frost Blast, Shadow Fissure, Chains of Kel'Thuzad, Detonate Mana
+A[1114] = { 28467, 27808, 27810, 28410, 27819, 28453, 29898, 28470 } -- Kel'Thuzad: Mortal Wound, Frost Blast, Shadow Fissure, Chains of Kel'Thuzad, Detonate Mana, Summon Type D Periodic, Guardian of Icecrown, Blood Tap
 N["kelthuzad"] = A[1114]
 
 -- Demon Fall Canyon
@@ -586,11 +600,11 @@ A[3031] = { 460254, 460084, 460119 } -- Hellscream's Phantom: Spiritstorm, Spect
 N["hellscreamsphantom"] = A[3031]
 
 -- The Tainted Scar
-A[3026] = { 21056, 21063 } -- Lord Kazzak: Mark of Kazzak, Twisted Reflection
+A[3026] = { 21056, 21063, 21053, 21340, 21341, 20691, 26554, 21066 } -- Lord Kazzak: Mark of Kazzak, Twisted Reflection, Capture Soul, Frenzy, Shadow Bolt Volley, Cleave, Thunderclap, Void Bolt
 N["lordkazzak"] = A[3026]
 
 -- Storm Cliffs
-A[3027] = { 22067, 21147, 21099, 21097, 21098, 23187 } -- Azuregos: Reflection, Arcane Vacuum, Frost Breath, Manastorm, Chill, Frost Burn
+A[3027] = { 22067, 21147, 21099, 21097, 21098, 23187, 23182, 19983 } -- Azuregos: Reflection, Arcane Vacuum, Frost Breath, Manastorm, Chill, Frost Burn, Mark of Frost, Cleave
 N["azuregos"] = A[3027]
 
 -- The Crystal Vale
@@ -598,17 +612,17 @@ A[3079] = { 465700, 466211, 466774, 470866, 11642, 23011 } -- Prince Thunderaan:
 N["princethunderaan"] = A[3079]
 
 -- Nightmare Grove
-A[3111] = { 1213155, 24910, 1213169, 1213170, 24814 } -- Emeriss: Volatile Infection, Corruption of the Earth, Spore Cloud, Noxious Breath, Seeping Fog
+A[3111] = { 1213155, 24910, 1213169, 1213170, 24814, 24904, 24834, 24811, 24810, 24804 } -- Emeriss: Volatile Infection, Corruption of the Earth, Spore Cloud, Noxious Breath, Seeping Fog, Summon Putrid Mushroom, Shadow Bolt Whirl, Draw Spirit, Summon Spirit Shade, Dark Offering
 N["emeriss"] = A[3111]
 A[3112] = { 24821, 1214002, 1213170, 24814 } -- Lethon: Shadow Bolt Whirl, Draw Spirit, Noxious Breath, Seeping Fog
 N["lethon"] = A[3112]
-A[3113] = { 1214028, 1214008, 1213170, 24814 } -- Taerar: Bellowing Roar, Summon Shade of Taerar, Noxious Breath, Seeping Fog
+A[3113] = { 1214028, 1214008, 1213170, 24814, 24857, 24819, 24796 } -- Taerar: Bellowing Roar, Summon Shade of Taerar, Noxious Breath, Seeping Fog, Arcane Blast, Lightning Wave, Summon Demented Druid Spirit
 N["taerar"] = A[3113]
-A[3114] = { 24795, 1214136, 1213170, 24814 } -- Ysondre: Summon Demented Druid Spirit, Divergent Lightning, Noxious Breath, Seeping Fog
+A[3114] = { 24795, 1214136, 1213170, 24814, 24819 } -- Ysondre: Summon Demented Druid Spirit, Divergent Lightning, Noxious Breath, Seeping Fog, Lightning Wave
 N["ysondre"] = A[3114]
 
 -- Scarlet Enclave
-A[3185] = { 1231837, 1231844, 1231901, 1231885, 17405, 13704, 20603, 9256, 20741 } -- Balnazzar: Carrion Swarm, Circle of Domination, Summon Infernal, Screeching Fear, Domination, Psychic Scream, Shadow Shock, Deep Sleep, Shadow Bolt Volley
+A[3185] = { 1231837, 1231844, 1231901, 1231885, 17405, 13704, 20603, 9256, 20741, 17287, 17286, 17281, 17284, 12098 } -- Balnazzar: Carrion Swarm, Circle of Domination, Summon Infernal, Screeching Fear, Domination, Psychic Scream, Shadow Shock, Deep Sleep, Shadow Bolt Volley, Mind Blast, Crusader's Hammer, Crusader Strike, Holy Strike, Sleep
 A[3187] = { 1237324, 1232390, 1231873, 1232389, 1232637 } -- Beatrix: Explosive Shell, Rose's Thorn, Confession, Unwavering Blade, Stock Break
 N["beatrix"] = A[3187]
 A[3196] = { 1230105, 1228295, 1230200, 1230242, 1230899 } -- Beastmaster: Wild Aperture, Stomp, Enervate, Enkindle, Immolation Trap
@@ -651,6 +665,18 @@ N["barianmaryla"] = A[3172]
 -- Naxxramas
 A[3296] = { 28834 } -- Spirit of Mograine: Mark of Mograine
 N["spiritofmograine"] = A[3296]
+
+-- The Drowned City
+A[3478] = { 5, 24751, 24755, 8593 } -- Deathless Guardians: Death Touch, Trick or Treat, Tricked or Treated, Symbol of Life
+N["deathlessguardians"] = A[3478]
+
+-- Alcaz Prison
+A[3418] = { 29230, 28874 } -- Katerina the Cleaner: Immune All, Consumption
+N["katerinathecleaner"] = A[3418]
+
+-- Excavation Site: Wetlands
+A[3482] = { 5, 24751, 24755, 8593 } -- Relic Guardian: Death Touch, Trick or Treat, Tricked or Treated, Symbol of Life
+N["relicguardian"] = A[3482]
 
 -- Creatures
 C["advisorwillington"] = { lo = 62, hi = 62, type = "Humanoid", spells = {  } } -- Advisor Willington

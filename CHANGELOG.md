@@ -10,6 +10,9 @@
 - The journal can be resized by dragging its bottom right corner, or made to
   fill the screen (the button beside the close button, `/fn full`, or
   Preferences).
+- Fuller boss ability lists: fights that the server scripts in code (Arugal's
+  curse and teleport, Onyxia, Ragnaros, Nefarian and 85 others) now list what
+  those scripts cast.
 - Dusts, essences and shards from disenchanting are no longer noted as loot.
 - Blackfathom Deeps, Scarlet Monastery and Naxxramas: creatures are filed by
   where they really stand, as in the single-road dungeons.
