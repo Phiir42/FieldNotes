@@ -624,7 +624,7 @@ local function TitlePage(lines)
 			click = function() Select(r.id, "overview") end,
 		}
 	end
-	Faded(lines, "\nInside a dungeon the map key opens the journal's map of it. \"/fn help\" lists the commands.")
+	Faded(lines, "\nInside a dungeon the map key opens the journal's map of it. \"/fn find <words>\" searches the journal; \"/fn help\" lists the commands.")
 end
 
 -- Whether the character is saved to the instance, as the game's raid

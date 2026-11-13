@@ -300,6 +300,14 @@ local function Boss(id, name)
 	-- a name the game hid when the fight began, given at its end
 	if b and name and b.name == UNKNOWN then
 		b.name = name
+		-- and the diary's line on meeting it
+		local met = ("Faced %s for the first time."):format(UNKNOWN)
+		for i = #cur.log, math.max(1, #cur.log - 30), -1 do
+			if cur.log[i][2] == met then
+				cur.log[i][2] = ("Faced %s for the first time."):format(name)
+				break
+			end
+		end
 		ns:Changed()
 	end
 	if not b then

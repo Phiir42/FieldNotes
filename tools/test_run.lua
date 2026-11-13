@@ -213,6 +213,11 @@ step("a boss: wipe, then kill", function()
 	M.fire("PLAYER_DEAD")
 	M.fire("ENCOUNTER_END", 77001, "Late Name", 1, 5, 0)
 	check("and filled in once the game gives it", inst.bosses[77001].name == "Late Name")
+	do
+		local fixed
+		for _, e in ipairs(inst.log) do if e[2] == "Faced Late Name for the first time." then fixed = true end end
+		check("the diary's line on meeting it too", fixed)
+	end
 	check("a death in a boss fight counts against the boss", inst.bosses[77001].deaths == 1 and inst.deaths == deaths + 1)
 	M.wait(1)
 end)
