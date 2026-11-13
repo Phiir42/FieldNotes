@@ -612,7 +612,7 @@ Q[2998] = {
 
 -- Ruins of Lordaeron
 Q[2999] = {
-	{ 95250, "Abominable Creatures", 21, 16, "A", "Bring the Head of the Baron to Captain Truman, just inside the entrance.", { "The Butcher" }, from = "Captain Truman, just inside the entrance", note = "The abomination itself is named the Baron; he keeps the arena in King's Alley.", inside = true },
+	{ 95250, "Abominable Creatures", 21, 16, "A", "Bring the Head of the Baron to Captain Truman, just inside the entrance.", { "The Butcher" }, from = "Captain Truman", note = "The abomination itself is named the Baron; he keeps the arena in King's Alley.", inside = true },
 	{ 97288, "Unending Torment", 21, 16, "H", "Deliver the Abominable Head, dropped by the Baron, to Master Apothecary Faranell in the Undercity.", { "The Butcher" }, item = "the Abominable Head, dropped by the Baron", note = "The abomination itself is named the Baron; he keeps the arena in King's Alley. Everyone loots a head of their own." },
 	{ 92401, "A Frightened Request", 22, 15, "H", "Find out what became of Edward Heartweaver for Tabitha Heartweaver in Silverpine; his body lies near Rath'mael.", { "Rath'mael" }, from = "Tabitha Heartweaver in Silverpine" },
 	{ 95195, "Bloodied Insignia", 22, 16, "A", "Collect 10 Bloodied Insignias for General Marcus Jonathan in Stormwind.", nil, item = "a Bloodied Insignia, found inside", note = "The insignias drop from the undead throughout the ruins." },
@@ -652,5 +652,5 @@ Q[3065] = {
 	{ 96403, "Important Heirlooms", 15, 10, nil, "Collect 8 Dwarven Heirlooms for Thom Filch in Ironforge.", nil, from = "Thom Filch in Ironforge", note = "The heirlooms lie in urns and chests along the way; the vaults of the last room, the Reliquary of Kings, hold enough for a whole party." },
 	{ 96394, "The Restless Dead", 15, 10, "A", "Kill 15 Enraged Apparitions and 10 Tormented Souls for Afadra Dunwall in Ironforge.", { "Enraged Apparition", "Tormented Soul" }, from = "Afadra Dunwall in Ironforge", note = "The ghosts haunt the first chambers, around the first tomb." },
 	{ 96393, "Old Ironforge Incursion", 16, 9, "A", "Kill Durgen Dirgehammer and bring back his head for Earthseer Farsen in Dun Morogh.", { "Durgen Dirgehammer" }, from = "Earthseer Farsen in Dun Morogh" },
-	{ 98423, "The Treaty of Understanding", 16, 9, "A", "Bring the stone tablet from the vault behind the last room to King Magni Bronzebeard.", { "Durgen Dirgehammer" }, from = "a stone tablet in the vault behind the last room", inside = true },
+	{ 98423, "The Treaty of Understanding", 16, 9, "A", "Bring the stone tablet from the vault behind the last room to King Magni Bronzebeard.", { "Durgen Dirgehammer" }, from = "a stone tablet in the vault behind the last room" },
 }
