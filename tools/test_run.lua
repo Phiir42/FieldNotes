@@ -472,6 +472,13 @@ step("every page of the journal", function()
 		end
 	end
 	check("one boss marker on the map (found " .. marks .. ")", marks == 1)
+	do
+		local said
+		for _, f in ipairs(M.frames) do
+			if f.__kind == "Button" and f.__shown and rawget(f, "go") and rawget(f, "name") == "Rhahk'Zor" then said = f.note end
+		end
+		check("a boss's mark tells how it went", said == "Defeated once, swiftest in 0:42. Click for its page.")
+	end
 	check("the map marks where quests lead (found " .. quests .. ")", quests >= 1)
 	check("a quest you carry is marked as such", lit >= 1)
 	-- once its objectives are met, a quest no longer marks the map

@@ -1660,7 +1660,9 @@ local function MapPage(lines, id, inst)
 			if ns:AreaKey(b.name) == key then
 				shown.marks[#shown.marks + 1] = {
 					x = spot.x, y = spot.y, name = b.name, id = "boss:" .. key,
-					note = b.kills > 0 and "Defeated. Click for its page." or "Faced, not yet defeated. Click for its page.",
+					note = (b.kills > 0 and ("Defeated " .. (b.kills == 1 and "once" or (b.kills .. " times"))
+						.. (b.best and (", swiftest in " .. ns:Clock(b.best)) or "") .. ".")
+						or "Faced, not yet defeated.") .. " Click for its page.",
 					go = function() Select(id, "boss", eid) end,
 				}
 				break
