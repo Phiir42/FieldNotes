@@ -281,6 +281,10 @@ local function Plural(n, one, many)
 	return n .. " " .. (n == 1 and one or many)
 end
 
+local function Times(n)
+	return n == 1 and "once" or n == 2 and "twice" or (n .. " times")
+end
+
 local function SpellIcon(id)
 	local tex
 	if type(id) == "number" then
@@ -560,7 +564,7 @@ local function LootLines(lines, inst, filter, showFrom, victories)
 				local m = it.npc and inst.mobs[it.npc]
 				from = m and m.name
 			end
-			local sub = (from and ("From " .. from .. ", ") or "") .. "found " .. (it.n == 1 and "once" or (it.n .. " times"))
+			local sub = (from and ("From " .. from .. ", ") or "") .. "found " .. Times(it.n)
 				.. ((victories or 0) > 1 and (" in " .. victories .. " victories") or "") .. "."
 			if from then sub = sub:sub(1, 1):upper() .. sub:sub(2) else sub = "F" .. sub:sub(2) end
 			lines[#lines + 1] = {
@@ -673,7 +677,7 @@ local function OverviewPage(lines, id, inst)
 	H1(lines, inst.name)
 	Faded(lines, ("%s. First entered %s, %s."):format(inst.kind == "raid" and "Raid" or "Dungeon",
 		ns:Day(inst.first), Plural(inst.visits, "visit", "visits"))
-		.. ((inst.deaths or 0) > 0 and (" Fallen here " .. (inst.deaths == 1 and "once" or (inst.deaths .. " times")) .. ".") or ""))
+		.. ((inst.deaths or 0) > 0 and (" Fallen here " .. Times(inst.deaths) .. ".") or ""))
 	local saved = Lockout(id, inst)
 	if saved then
 		Faded(lines, ("Saved to it until %s%s."):format(date("%a %d %b, %H:%M", saved.ends),
@@ -702,7 +706,7 @@ local function OverviewPage(lines, id, inst)
 		local b = inst.bosses[eid]
 		lines[#lines + 1] = {
 			text = (b.kills > 0 and DONE or OPEN) .. b.name .. FADED_HEX ..
-				(b.kills > 0 and ("  defeated " .. (b.kills == 1 and "once" or (b.kills .. " times"))) or "  not yet defeated") .. "|r",
+				(b.kills > 0 and ("  defeated " .. Times(b.kills)) or "  not yet defeated") .. "|r",
 			indent = 8, click = function() Select(id, "boss", eid) end,
 			ink = Ink(inst, "faced:" .. eid),
 		}
@@ -738,7 +742,7 @@ local function OverviewPage(lines, id, inst)
 			end
 			local did = {}
 			if (r.kills or 0) > 0 then did[#did + 1] = Plural(r.kills, "foe", "foes") .. " of note defeated" end
-			if (r.deaths or 0) > 0 then did[#did + 1] = "fell " .. (r.deaths == 1 and "once" or (r.deaths .. " times")) end
+			if (r.deaths or 0) > 0 then did[#did + 1] = "fell " .. Times(r.deaths) end
 			if (r.finds or 0) > 0 then did[#did + 1] = Plural(r.finds, "find", "finds") end
 			if #did > 0 then t[#t + 1] = table.concat(did, ", ") end
 			Body(lines, date("%d %b %Y, %H:%M", r.t) .. (#t > 0 and (FADED_HEX .. "  " .. table.concat(t, "; ") .. ".|r") or ""), 8)
@@ -783,7 +787,7 @@ local function BossPage(lines, id, inst, eid)
 	if b.wipes > 0 then t[#t + 1] = Plural(b.wipes, "defeat", "defeats") end
 	if b.best then t[#t + 1] = "swiftest victory " .. ns:Clock(b.best) end
 	if b.kills > 1 and b.lastKill then t[#t + 1] = "last victory " .. ns:Day(b.lastKill) end
-	if (b.deaths or 0) > 0 then t[#t + 1] = "fallen to it " .. (b.deaths == 1 and "once" or (b.deaths .. " times")) end
+	if (b.deaths or 0) > 0 then t[#t + 1] = "fallen to it " .. Times(b.deaths) end
 	Faded(lines, table.concat(t, ", ") .. ".")
 	-- the boss's own creature: by name, or a boss known by another name than
 	-- the fight's (Gelihast, whose fight the game calls "Geilhast"); not one
@@ -1700,7 +1704,7 @@ local function MapPage(lines, id, inst)
 			if ns:AreaKey(b.name) == key then
 				shown.marks[#shown.marks + 1] = {
 					x = spot.x, y = spot.y, name = b.name, id = "boss:" .. key,
-					note = (b.kills > 0 and ("Defeated " .. (b.kills == 1 and "once" or (b.kills .. " times"))
+					note = (b.kills > 0 and ("Defeated " .. Times(b.kills)
 						.. (b.best and (", swiftest in " .. ns:Clock(b.best)) or "") .. ".")
 						or "Faced, not yet defeated.") .. " Click for its page.",
 					go = function() Select(id, "boss", eid) end,
