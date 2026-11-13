@@ -97,7 +97,8 @@
   that want it.
 - Quests whose quarry stands outside a dungeon, by its way in, say so:
   Techbot, Mad Magglish, Magregan Deepshadow, the Common Hall chests of
-  Uldaman, the Sapphires of Aku'Mai and the Shadowshards of Maraudon among
+  Uldaman, the Sapphires of Aku'Mai, the Shadowshards of Maraudon and the
+  Razorfen outside Razorfen Downs among
   them. Uldaman Reagent Run names the Magenta Cap Clusters, and Kibler's
   errands and Mother's Milk in Blackrock Spire whom they want.
 - Who gives a quest reads "the Sparklematic 5200" mid-sentence.

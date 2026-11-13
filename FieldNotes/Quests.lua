@@ -179,8 +179,8 @@ Q[109] = {
 
 -- Razorfen Downs
 Q[129] = {
-	{ 6626, "A Host of Evil", 35, 28, nil, "Kill 8 Razorfen Battleguard, 8 Razorfen Thornweavers, and 8 Death's Head Cultists and return to Myriam Moonsinger near the entrance to Razorfen Downs.", nil, from = "Myriam Moonsinger" },
-	{ 6521, "An Unholy Alliance", 36, 28, "H", "Bring Ambassador Malcin's Head to Varimathras in the Undercity.", nil, from = "Varimathras", pick = { 17039, 17042, 17043 } },
+	{ 6626, "A Host of Evil", 35, 28, nil, "Kill 8 Razorfen Battleguard, 8 Razorfen Thornweavers, and 8 Death's Head Cultists and return to Myriam Moonsinger near the entrance to Razorfen Downs.", nil, from = "Myriam Moonsinger", note = "Look for Razorfen Battleguard, Razorfen Thornweaver and Death's Head Cultist outside, near the way in." },
+	{ 6521, "An Unholy Alliance", 36, 28, "H", "Bring Ambassador Malcin's Head to Varimathras in the Undercity.", nil, from = "Varimathras", note = "Look for Ambassador Malcin outside, near the way in.", pick = { 17039, 17042, 17043 } },
 	{ 6522, "An Unholy Alliance", 36, 28, "H", "Take the Small Scroll to Varimathras in the Undercity.", nil, item = "Small Scroll" },
 	{ 3525, "Extinguishing the Idol", 37, 32, nil, "Escort Belnistrasz to the Quilboar's idol in Razorfen Downs. Protect Belnistrasz while he performs the ritual to shut down the idol.", nil, from = "Belnistrasz", after = "Scourge of the Downs", to = "Belnistrasz", inside = true, get = { 10710 } },
 	{ 3523, "Scourge of the Downs", 37, 32, nil, "If you agree to aid Belnistrasz, speak with him again and hand the Oathstone he gave you back to him.", nil, from = "Belnistrasz", to = "Belnistrasz", inside = true },

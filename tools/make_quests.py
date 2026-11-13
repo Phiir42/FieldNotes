@@ -26,7 +26,7 @@ ALLIANCE, HORDE = 77, 178  # race masks
 WIDE_CHANCE = 1.0  # per cent: a creature that seldom carries a widely carried item is not worth naming
 QUEST_ITEM = 12  # item class
 CONTINENTS = (0, 1)
-OUTSIDE = 260  # yards from where a dungeon's way out puts you: what stands that near is outside, on the way in
+OUTSIDE = 650  # yards from where a dungeon's way out puts you: what stands that near is outside, on the way in
 JUNK = re.compile(r"UNUSED|DEPRECATED|<NYI>|<TXT>|\bTEST\b|^zz|REUSE|\bOLD\b")  # in capitals: not "Old Gods"
 TAB = chr(9)
 # What the database cannot say about a quest, by quest id.
