@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.0-beta.6 – not yet released
+## 0.2.0-beta.6
 
 - Portraits for bosses that are summoned or step out of another creature
   (Sneed, Mutanus, Nefarian, Ragnaros and some forty more); Sneed's page also
