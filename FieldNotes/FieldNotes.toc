@@ -1,7 +1,7 @@
 ## Interface: 16001
 ## Title: Field Notes
 ## Notes: A dungeon journal that starts blank and fills in as you explore: the halls you walk, the creatures you fight, what they do to you and what they drop.
-## Version: 0.2.0-beta.1
+## Version: 0.2.0-beta.2
 ## Author: Phiir42
 ## X-License: GPL-2.0-or-later
 ## X-Website: https://github.com/Phiir42/FieldNotes

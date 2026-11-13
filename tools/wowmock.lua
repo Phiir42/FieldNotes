@@ -97,6 +97,7 @@ function Object:GetScrollChild() return self.__child end
 function Object:SetScrollChild(child) self.__child = child end
 function Object:NumLines() return 1 end
 function Object:IsMouseOver() return false end
+function Object:IsProtected() return false end
 function Object:HasFocus() return false end
 function Object:AddMessage(text) M.chat[#M.chat + 1] = tostring(text) end
 function Object:Click() if self.__scripts.OnClick then self.__scripts.OnClick(self, "LeftButton") end end
@@ -143,6 +144,8 @@ end
 ---------------------------------------------------------------------------
 UNKNOWN, UNKNOWNOBJECT = "Unknown", "Unknown Entity"
 COMBATLOG_XPGAIN_FIRSTPERSON = "%s dies, you gain %d experience."
+LOOT_ITEM_SELF, LOOT_ITEM_SELF_MULTIPLE = "You receive loot: %s.", "You receive loot: %sx%d."
+LOOT_ITEM, LOOT_ITEM_MULTIPLE = "%s receives loot: %s.", "%s receives loot: %sx%d."
 StaticPopupDialogs, SlashCmdList, UISpecialFrames = {}, {}, {}
 function StaticPopup_Show(which, text, _, data)
 	local d = StaticPopupDialogs[which]

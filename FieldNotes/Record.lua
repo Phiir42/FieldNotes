@@ -191,8 +191,18 @@ local function Heard(_, sender)
 	if type(sender) ~= "string" or sender == "" then return end
 	Tally("speaker name shown")
 	if not (encounter or InCombatLockdown()) then return end
-	if ns.AbilitiesByName[ns:AreaKey(sender)] then return end
-	local m = Mob("n:" .. sender, sender)
+	local key = ns:AreaKey(sender)
+	if ns.AbilitiesByName[key] then return end
+	-- Friends speak in a fight too (escorts, captives). In the old dungeons
+	-- only the creatures known to live there are taken for enemies; in new
+	-- ones nothing is known, so every speaker is.
+	local known = ns.Creatures[key] or type(ns.currentID) ~= "number" or ns.currentID > 1000
+	local m = known and Mob("n:" .. sender, sender)
+	if not known then
+		for _, old in pairs(cur.mobs) do
+			if old.name == sender then m = old end
+		end
+	end
 	if m then Fought(m) end
 end
 ns:On("CHAT_MSG_MONSTER_EMOTE", Heard)
@@ -391,11 +401,32 @@ ns:On("LOOT_OPENED", function()
 	end
 end)
 
--- Works in any client language: only the item link is read.
+-- Only lines saying someone received loot count: not rolls, not things made
+-- or handed over. The client's own wordings are turned into patterns, so this
+-- works in any language; the item itself is read from its link.
+local lootPatterns
+local function IsLootLine(msg)
+	if not lootPatterns then
+		lootPatterns = {}
+		for _, fmt in ipairs({ LOOT_ITEM_SELF, LOOT_ITEM_SELF_MULTIPLE, LOOT_ITEM, LOOT_ITEM_MULTIPLE }) do
+			if type(fmt) == "string" then
+				local pat = fmt:gsub("([%(%)%.%+%-%*%?%[%]%^%$])", "%%%1")
+					:gsub("%%%d?%$?s", ".+"):gsub("%%%d?%$?d", "%%d+")
+				lootPatterns[#lootPatterns + 1] = "^" .. pat .. "$"
+			end
+		end
+	end
+	if #lootPatterns == 0 then return true end -- wordings unknown: take every line
+	for _, pat in ipairs(lootPatterns) do
+		if msg:find(pat) then return true end
+	end
+	return false
+end
+
 ns:On("CHAT_MSG_LOOT", function(msg)
 	if not cur then return end
 	if issecret(msg) then Tally("loot message hidden") return end
-	if type(msg) ~= "string" then return end
+	if type(msg) ~= "string" or not IsLootLine(msg) then return end
 	local link = msg:match("|c[^|]*|Hitem:.-|h.-|h|r")
 	if link then AddLoot(link) end
 end)

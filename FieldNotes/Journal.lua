@@ -63,6 +63,50 @@ local function RowClick(self)
 	end
 end
 
+-- Inking in: an entry shown for the first time (line.ink = its id) fades onto
+-- the page, one entry after another, like the map's sketching. Which entries
+-- have been read before is kept with the map's record (inst.charted).
+local INK_TIME, INK_GAP, INK_MAX = 0.6, 0.12, 1.5
+local inking = {}   -- [id] = GetTime() its ink starts to show
+local inkCount = 0  -- entries begun in this redraw, to space them out
+
+local function Ink(inst, id)
+	local seen = inst.charted
+	if not seen then seen = {}; inst.charted = seen end
+	if not seen[id] then
+		seen[id] = true
+		if ns.db.settings.sketch then
+			inking[id] = GetTime() + math.min(inkCount * INK_GAP, INK_MAX)
+			inkCount = inkCount + 1
+		end
+	end
+	return id
+end
+
+-- how dark a line is by now: nil once it is fully written
+local function InkAlpha(id)
+	local t0 = id and inking[id]
+	if not t0 then return end
+	local p = (GetTime() - t0) / INK_TIME
+	if p >= 1 then return end
+	return math.max(p, 0)
+end
+
+local function InkTick(pane)
+	local busy
+	for _, row in ipairs(pane.list.rows) do
+		if row:IsShown() then
+			local a = InkAlpha(row.line.ink)
+			row:SetAlpha(a or 1)
+			busy = busy or a
+		end
+	end
+	if not busy then
+		for id in pairs(inking) do inking[id] = nil end
+		pane:SetScript("OnUpdate", nil)
+	end
+end
+
 local function NewRow(list)
 	local row = CreateFrame("Button", nil, list.child)
 	row.mark = row:CreateTexture(nil, "BACKGROUND")
@@ -124,6 +168,9 @@ local function ListSet(list, lines)
 		if line.rule then row.rule:Show() else row.rule:Hide() end
 		if line.selected then row.mark:Show() else row.mark:Hide() end
 		row:EnableMouse((line.click or line.link or line.spell or line.tip) and true or false)
+		local alpha = InkAlpha(line.ink)
+		row:SetAlpha(alpha or 1)
+		if alpha then list.pane:SetScript("OnUpdate", InkTick) end
 		row:Show()
 		y = y + h
 	end
@@ -146,7 +193,9 @@ local function CreateList(name, width)
 	local child = CreateFrame("Frame", nil, sf)
 	child:SetSize(width, 1)
 	sf:SetScrollChild(child)
-	return { pane = pane, sf = sf, child = child, rows = {}, width = width, Set = ListSet }
+	local list = { pane = pane, sf = sf, child = child, rows = {}, width = width, Set = ListSet }
+	pane.list = list
+	return list
 end
 
 ---------------------------------------------------------------------------
@@ -306,7 +355,7 @@ local function LootLines(lines, inst, filter)
 			if from then sub = sub:sub(1, 1):upper() .. sub:sub(2) else sub = "F" .. sub:sub(2) end
 			lines[#lines + 1] = {
 				text = it.link .. "\n" .. FADED_HEX .. sub .. "|r",
-				icon = ItemIcon(id), iconSize = 26, indent = 8, gap = 4, link = it.link,
+				icon = ItemIcon(id), iconSize = 26, indent = 8, gap = 4, link = it.link, ink = Ink(inst, "item:" .. id),
 			}
 		end
 	end
@@ -331,7 +380,10 @@ local function OverviewPage(lines, id, inst)
 
 	H2(lines, "Halls and chambers")
 	if #inst.areas == 0 then Faded(lines, "Nothing noted yet.") end
-	for _, a in ipairs(inst.areas) do Body(lines, a.name, 8) end
+	for _, a in ipairs(inst.areas) do
+		Body(lines, a.name, 8)
+		lines[#lines].ink = Ink(inst, "area:" .. a.name)
+	end
 
 	H2(lines, "Adversaries")
 	if #inst.bossOrder == 0 then Faded(lines, "No one of note encountered yet.") end
@@ -341,6 +393,7 @@ local function OverviewPage(lines, id, inst)
 			text = (b.kills > 0 and DONE or OPEN) .. b.name .. FADED_HEX ..
 				(b.kills > 0 and ("  defeated " .. (b.kills == 1 and "once" or (b.kills .. " times"))) or "  not yet defeated") .. "|r",
 			indent = 8, click = function() Select(id, "boss", eid) end,
+			ink = Ink(inst, "faced:" .. eid),
 		}
 	end
 
@@ -410,7 +463,7 @@ local function BossPage(lines, inst, eid)
 					lines[#lines + 1] = {
 						text = name .. (text and ("\n" .. FADED_HEX .. text .. "|r") or ""),
 						icon = SpellIcon(id), iconSize = 26, indent = 8, gap = 4,
-						spell = id, name = name,
+						spell = id, name = name, ink = Ink(inst, "known:" .. eid .. ":" .. id),
 					}
 				end
 			end
@@ -447,7 +500,10 @@ local function BestiaryPage(lines, inst)
 		local m = inst.mobs[npc]
 		if not IsBoss(inst, m) then
 			any = true
+			local from = #lines + 1
 			MobLines(lines, m, true, true)
+			local ink = Ink(inst, "beast:" .. ns:AreaKey(m.name))
+			for i = from, #lines do lines[i].ink = ink end
 		end
 	end
 	if not any then Body(lines, "\nNo creatures noted yet.") end
@@ -983,6 +1039,12 @@ Refresh = function()
 
 	index:Set(IndexLines())
 
+	local key = tostring(sel.inst) .. ":" .. tostring(sel.kind) .. ":" .. tostring(sel.key)
+	if key ~= shownKey then
+		-- another page: what was still being inked on the last one is done
+		for id in pairs(inking) do inking[id] = nil end
+	end
+	inkCount = 0
 	local lines = {}
 	if not inst then
 		BlankPage(lines)
@@ -1013,7 +1075,6 @@ Refresh = function()
 	end
 	if canvas and not sheet then canvas:Hide() end
 
-	local key = tostring(sel.inst) .. ":" .. tostring(sel.kind) .. ":" .. tostring(sel.key)
 	if key ~= shownKey then
 		shownKey = key
 		page.sf:SetVerticalScroll(0)
@@ -1088,7 +1149,8 @@ if type(ToggleWorldMap) == "function" then
 	hooksecurefunc("ToggleWorldMap", function()
 		if not (ns.db and ns.db.settings.mapKey and ns.currentID) then return end
 		if WorldMapFrame and WorldMapFrame:IsShown() then
-			if InCombatLockdown() then return end -- leave the game's panels alone mid-fight
+			-- mid-fight, leave the game's map alone only if it is a protected panel
+			if InCombatLockdown() and WorldMapFrame.IsProtected and WorldMapFrame:IsProtected() then return end
 			HideUIPanel(WorldMapFrame)
 		end
 		ns:ToggleJournal(ns.Maps[ns.currentID] and "map" or nil)

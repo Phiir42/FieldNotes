@@ -141,6 +141,16 @@ step("creatures: experience, speech, corpses", function()
 	check("same corpse opened twice counts once", inst.loot[1930].n == 1)
 	M.fire("CHAT_MSG_LOOT", "You receive loot: " .. item(1930, "Stonemason Cloak") .. ".")
 	check("chat line for the same item counts once", inst.loot[1930].n == 1)
+	M.fire("CHAT_MSG_LOOT", "You create: " .. item(3000, "Made Thing") .. ".")
+	M.fire("CHAT_MSG_LOOT", "Friend has selected Need for: " .. item(3001, "Rolled Thing"))
+	check("made and rolled-for items are not loot", not inst.loot[3000] and not inst.loot[3001])
+	M.fire("CHAT_MSG_LOOT", "Friend receives loot: " .. item(3002, "Stacked Thing") .. "x3.")
+	check("a stack someone received is loot", inst.loot[3002] ~= nil)
+	-- a captive calling out in a fight is not a creature fought
+	M.combat = true
+	M.fire("CHAT_MSG_MONSTER_SAY", "Help me!", "Some Captive")
+	M.combat = false
+	check("an unknown speaker is not put in the bestiary", inst.mobs["n:Some Captive"] == nil)
 	-- a corpse of something never named before: the shipped name table fills it in
 	M.loot = { { link = nil, guid = CREATURE:format(622, 9) } }
 	M.fire("LOOT_OPENED")
@@ -222,7 +232,7 @@ step("every page of the journal", function()
 	local function drawing()
 		local n = 0
 		for _, f in ipairs(M.frames) do
-			if f.__scripts.OnUpdate and f ~= FieldNotesMinimapButton then n = n + 1 end
+			if f.__scripts.OnUpdate and rawget(f, "anim") then n = n + 1 end
 		end
 		return n
 	end
@@ -234,6 +244,14 @@ step("every page of the journal", function()
 			end
 		end
 	end
+	local function inking()
+		local n = 0
+		for _, f in ipairs(M.frames) do
+			if f.__scripts.OnUpdate and rawget(f, "list") then n = n + 1 end
+		end
+		return n
+	end
+	check("new entries on the pages are being inked in", inking() == 1)
 	check("the map is being sketched in", drawing() == 1)
 	run(0.5)
 	check("still drawing after half a second", drawing() == 1)
@@ -241,6 +259,16 @@ step("every page of the journal", function()
 	M.wait(0.5)   -- a redraw in the middle of it
 	run(8)
 	check("the sketch finishes", drawing() == 0)
+	check("the inking finishes", inking() == 0)
+	open("Spoils"); open("Bestiary"); open("The Deadmines")
+	check("pages read before are not inked again", inking() == 0)
+	M.fire("CHAT_MSG_COMBAT_XP_GAIN", "Defias Taskmaster dies, you gain 90 experience.")
+	M.wait(1)
+	open("Bestiary")
+	check("a new bestiary entry is inked in", inking() == 1)
+	run(3)
+	check("and finishes", inking() == 0)
+	open("Map")
 	check("what was drawn is remembered", inst.charted and inst.charted["boss:rhahkzor"] and next(inst.charted))
 	open("Spoils"); open("Map")
 	check("nothing is drawn twice", drawing() == 0)

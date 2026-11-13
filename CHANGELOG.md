@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.2.0-beta.2 – not yet released
+
+- Newly charted parts of a map are sketched in, room after room along the
+  road, instead of appearing at once; a newly faced boss's marker is inked in
+  after its room. New entries on the other pages (areas, bosses, bestiary,
+  spoils, abilities) fade in the same way. `/fn sketch` turns this off.
+- The map key works in combat.
+- Friendly characters who speak during a fight no longer enter the bestiary.
+- Only "receives loot" chat lines count as loot: not rolls, not crafted items.
+
 ## 0.2.0-beta.1 – first public test build
 
 Everything is new to testers; this lists what the build contains and what
