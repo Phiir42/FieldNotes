@@ -565,6 +565,7 @@ step("every page of the journal", function()
 	M.wait(1)
 	open("The Deadmines")
 	check("it has a page of its own", open("Cookie") and pageText():find("2 victories", 1, true))
+	check("its finds are set against its victories", pageText():find("Found once in 2 victories.", 1, true))
 	M.slash("sketch")
 	-- hover and click every visible row
 	for _, kind in ipairs({ "The Deadmines", "Rhahk'Zor", "Bestiary", "Spoils", "Map" }) do

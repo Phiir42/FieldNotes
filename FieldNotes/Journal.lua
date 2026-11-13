@@ -531,8 +531,9 @@ function ns:Foes(inst)
 	return faced, beaten
 end
 
--- showFrom: say which creature carried each item.
-local function LootLines(lines, inst, filter, showFrom)
+-- showFrom: say which creature carried each item. victories: the boss's,
+-- to set each find against.
+local function LootLines(lines, inst, filter, showFrom, victories)
 	local any
 	for _, id in ipairs(inst.lootOrder) do
 		local it = inst.loot[id]
@@ -543,7 +544,8 @@ local function LootLines(lines, inst, filter, showFrom)
 				local m = it.npc and inst.mobs[it.npc]
 				from = m and m.name
 			end
-			local sub = (from and ("From " .. from .. ", ") or "") .. "found " .. (it.n == 1 and "once" or (it.n .. " times")) .. "."
+			local sub = (from and ("From " .. from .. ", ") or "") .. "found " .. (it.n == 1 and "once" or (it.n .. " times"))
+				.. ((victories or 0) > 1 and (" in " .. victories .. " victories") or "") .. "."
 			if from then sub = sub:sub(1, 1):upper() .. sub:sub(2) else sub = "F" .. sub:sub(2) end
 			lines[#lines + 1] = {
 				text = it.link .. "\n" .. FADED_HEX .. sub .. "|r" .. (it.note and ("\n" .. FADED_HEX .. "My note:|r " .. it.note) or ""),
@@ -837,7 +839,7 @@ local function BossPage(lines, id, inst, eid)
 	local any = LootLines(lines, inst, function(it)
 		local m = it.npc and inst.mobs[it.npc]
 		return it.enc == eid or (m and m.enc == eid)
-	end)
+	end, nil, b.kills)
 	if not any then Faded(lines, "Nothing found yet.") end
 end
 

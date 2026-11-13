@@ -19,7 +19,8 @@
   written about, with how far each has got. "Contents" at the top of the
   list goes back to it.
 - A boss's page says when it was last defeated and how often you fell to
-  it.
+  it, and sets each find against its victories ("found twice in 5
+  victories").
 - A boss whose name the game hid as the fight began is given its name when
   the fight ends, instead of staying "Unknown".
 - Item tooltips say where the journal noted an item and who carried it
