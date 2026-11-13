@@ -339,6 +339,11 @@ step("every page of the journal", function()
 	check("boss page lists its loot", pageText():find("Rockslicer", 1, true))
 	check("boss page leaves trash out", not pageText():find("Trash Blade", 1, true))
 	check("known abilities shown after the kill", pageText():find("Known abilities", 1, true))
+	-- a boss Forever fights with no encounter is looked up by name: never by a
+	-- Season of Discovery raid encounter's list
+	local aquanis = ns.AbilitiesByName.baronaquanis
+	check("Baron Aquanis by name has his classic spells", aquanis and aquanis[1] == 14907 and #aquanis == 2)
+	check("Atal'alarion by name has his classic spells", ns.AbilitiesByName.atalalarion == ns.Abilities[3582])
 	check("unknown boss page opens", open("Someone New"))
 	check("bestiary opens", open("Bestiary"))
 	check("bosses are left out of the bestiary", pageText():find("Bestiary (3)", 1, true))

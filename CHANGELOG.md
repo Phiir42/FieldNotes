@@ -120,6 +120,9 @@
   Chargers among them). Quest marks for them are placed too.
 - The map no longer lists the dungeon's own name ("The Deadmines") among
   the halls not yet placed on it.
+- Baron Aquanis in Blackfathom Deeps (summoned at the Fathom Stone, with no
+  encounter of the game's) lists his own Frost Nova and Frostbolt, not the
+  Depth Charge and Bubble Beam of the Season of Discovery raid's Baron.
 
 ## 0.2.0-beta.9
 

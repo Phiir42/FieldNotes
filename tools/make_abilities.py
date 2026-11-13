@@ -26,6 +26,11 @@ ADDONS = r"C:\Program Files (x86)\World of Warcraft\_retail_\Interface\AddOns"
 LUA = os.path.join(ROOT, "FieldNotes", "Abilities.lua")
 FOREVER = "1.60.1.70862"
 MAX_SPELLS = 14
+# Season of Discovery's raids (Blackfathom Deeps, Gnomeregan, Sunken Temple):
+# the Forever client carries their encounters, but Forever's dungeons are the
+# classic ones. Their lists stand under their own encounter IDs only; a boss
+# looked up by name gets the classic spells.
+SEASONAL = {"198", "215"}
 
 
 def table(name, build=None):
@@ -404,6 +409,18 @@ def picture_lines(boss_names):
     return out, missing
 
 
+def pick(raw, names):
+    """[(spellID, name)]: the spells that exist in the client, one per name."""
+    spells, used = [], set()
+    for sp in raw:
+        label = names.get(sp)
+        # one entry per spell name: seasonal copies of a spell share the name
+        if label and label not in used and "(OLD)" not in label and "DND" not in label:
+            used.add(label)
+            spells.append((sp, label))
+    return spells[:MAX_SPELLS]
+
+
 def main():
     names = {int(r["ID"]): r["Name_lang"] for r in table("SpellName", FOREVER)}
     mod_id, mod_name = boss_mod_spells()
@@ -415,7 +432,7 @@ def main():
 
     out, total, with_data = [], 0, 0
     encounters = sorted(table("DungeonEncounter", FOREVER), key=lambda r: (int(r["MapID"]), int(r["OrderIndex"] or 0)))
-    seen_keys = set()
+    seen_keys, seasonal = set(), {}
     last_map = None
     for e in encounters:
         eid, name = int(e["ID"]), e["Name_lang"]
@@ -432,14 +449,7 @@ def main():
             raw = ATTESTED.get(name) or WOWHEAD[name]
         if not any(names.get(sp) for sp in raw):
             raw = ATTESTED_IF_EMPTY.get(name, [])
-        spells, used = [], set()
-        for sp in raw:
-            label = names.get(sp)
-            # one entry per spell name: seasonal copies of a spell share the name
-            if label and label not in used and "(OLD)" not in label and "DND" not in label:
-                used.add(label)
-                spells.append((sp, label))
-        spells = spells[:MAX_SPELLS]
+        spells = pick(raw, names)
         if not spells:
             continue
         with_data += 1
@@ -449,9 +459,25 @@ def main():
         ids = ", ".join(str(sp) for sp, _ in spells)
         comment = ", ".join(label for _, label in spells)
         out.append("A[%d] = { %s } -- %s: %s" % (eid, ids, name, comment))
-        if k not in seen_keys:
+        if e["DifficultyID"] in SEASONAL:
+            seasonal.setdefault(k, name)
+        elif k not in seen_keys:
             seen_keys.add(k)
             out.append('N["%s"] = A[%d]' % (k, eid))
+
+    # bosses whose only encounters are seasonal (Baron Aquanis is summoned in
+    # classic Blackfathom Deeps, with no encounter): by name, the classic spells
+    out.append("")
+    out.append("-- Bosses whose only encounters are Season of Discovery's: their classic spells")
+    for k, name in seasonal.items():
+        if k in seen_keys:
+            continue
+        seen_keys.add(k)
+        raw = cdb_name.get(k, []) + [sp for sp in script_for(k, scripts) if not MACHINERY.search(names.get(sp, ""))]
+        spells = pick(raw, names)
+        if spells:
+            out.append('N["%s"] = { %s } -- %s: %s' % (k, ", ".join(str(sp) for sp, _ in spells), name,
+                                                      ", ".join(label for _, label in spells)))
 
     out.append("")
     out.append("-- Bosses known to guides by another name than the encounter's")
