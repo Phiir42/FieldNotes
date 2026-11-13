@@ -2,6 +2,7 @@ MAP = {
     "instance": 189,
     "slug": "scarlet-monastery",
     "path": "sheets",  # each sheet is one road of its own, areas in the order you pass through them
+    "creatures": "auto",  # file creatures by their spawn points (see make_maps.creature_rooms)
     "floors": [
         {   # Graveyard
             "ref": "scarlet-monastery-1",

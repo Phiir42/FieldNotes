@@ -21,11 +21,11 @@ def main():
     blank, _ = m.blank_parchment()
     want = sys.argv[1:]
     for d in m.definitions():
-        if (want and d["slug"] not in want) or (not want and d.get("path") is not True):
+        if (want and d["slug"] not in want) or (not want and d.get("path") is not True and d.get("creatures") != "auto"):
             continue
         splits = [m.split(f, blank) for f in d["floors"]]
         m.boss_points(d, splits)
-        moved = m.creature_rooms(d, splits)
+        moved = m.creature_rooms(d, splits, per_sheet=d.get("path") is not True)
         order = [list(f["areas"]) for f in d["floors"]]
         print("%s: %d changes" % (d["slug"], sum(map(len, moved.values()))))
         for f, rows in sorted(moved.items()):

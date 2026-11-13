@@ -399,7 +399,7 @@ _creature_spawns = None
 ROOM_SHARE = 0.10  # a room counts as a creature's if this share of its spawn points are in it
 
 
-def creature_rooms(dungeon, splits):
+def creature_rooms(dungeon, splits, per_sheet=False):
     """Where each creature named in a one-road definition really stands, from
     its spawn points in the classic database (boss_points must have run).
 
@@ -408,6 +408,10 @@ def creature_rooms(dungeon, splits):
     or the map is uncovered too soon. Returns {floor index: [(name, n or None)]}:
     the room number the name should point at on that floor, None to take the
     name off that floor. Names the database knows nothing of are left alone.
+
+    per_sheet: for dungeons whose sheets are roads of their own ("path":
+    "sheets" with "creatures": "auto"): the earliest room on each sheet the
+    creature stands on.
     """
     global _creature_spawns
     inst, floors = dungeon["instance"], dungeon["floors"]
@@ -458,10 +462,17 @@ def creature_rooms(dungeon, splits):
                 continue
             first = real[0]
             want = {first[0]: first[1]}
+            if per_sheet:
+                want = {}
+                for g in range(len(floors)):
+                    here = sum(v for r, v in hits.items() if r[0] == g)
+                    mine = sorted(r[1] for r, v in hits.items() if r[0] == g and v >= max(1, ROOM_SHARE * here))
+                    if mine:
+                        want[g] = mine[0]
             # A later sheet too, only when the earlier one ends in the same room
             # (the room drawn on both): otherwise finding it "on the later
             # sheet" would wrongly complete the earlier one.
-            if all(r[1] == len(order[r[0]]) for r in real if r[0] == first[0]):
+            elif all(r[1] == len(order[r[0]]) for r in real if r[0] == first[0]):
                 for r in real:
                     want.setdefault(r[0], r[1])
             for g, other in enumerate(floors):
@@ -494,7 +505,11 @@ def main():
         out.append("ns.Maps[%d] = {}" % dungeon["instance"])
         splits = [split(floor, blank) for floor in dungeon["floors"]]
         bosses = boss_points(dungeon, splits)
-        moved = creature_rooms(dungeon, splits) if dungeon.get("path") is True else {}
+        moved = {}
+        if dungeon.get("path") is True:
+            moved = creature_rooms(dungeon, splits)
+        elif dungeon.get("creatures") == "auto":
+            moved = creature_rooms(dungeon, splits, per_sheet=True)
         for f, floor in enumerate(dungeon["floors"], 1):
             floor["bosses"] = bosses[f - 1]
             img, pieces = splits[f - 1]

@@ -108,6 +108,7 @@ MAP = {
     "instance": 533,
     "slug": "naxxramas",
     "path": "sheets",  # each sheet (and each quarter on the hub sheet) is a road of its own
+    "creatures": "auto",  # file creatures by their spawn points (see make_maps.creature_rooms)
     "floors": [
         {   # The Construct Quarter
             "ref": "naxxramas-1",

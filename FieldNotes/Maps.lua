@@ -102,6 +102,14 @@ do
 	floor.count = floor.count + 1
 	floor.areas[key("Murkshallow Snapclaw")] = floor.areas[key("Ghamoo-ra")]
 	floor.areas[key("Aku'mai Fisher")] = floor.areas[key("Ghamoo-ra")]
+	floor.areas[key("Snapping Crustacean")] = floor.areas["#2"]
+	floor.areas[key("Murkshallow Snapclaw")] = floor.areas["#1"]
+	floor.areas[key("Aku'mai Fisher")] = floor.areas["#3"]
+	floor.areas[key("Blindlight Murloc")] = floor.areas["#1"]
+	floor.areas[key("Blindlight Muckdweller")] = floor.areas["#5"]
+	floor.areas[key("Blindlight Oracle")] = floor.areas["#5"]
+	floor.areas[key("Fallenroot Shadowstalker")] = floor.areas["#2"]
+	floor.areas[key("Fallenroot Hellcaller")] = floor.areas["#5"]
 	floor.areas[key("Ghamoo-ra")] = floor.areas["#3"]
 	floor.areas[key("Lady Sarevess")] = floor.areas["#4"]
 	floor.areas[key("Gelihast")] = floor.areas["#5"]
@@ -149,6 +157,13 @@ do
 	floor.areas[key("Akumais Lair")] = floor.areas[key("Aku'mai's Lair")]
 	floor.areas[key("Aku'mai Servant")] = floor.areas[key("Aku'mai's Lair")]
 	floor.areas[key("Morridune")] = floor.areas[key("Aku'mai's Lair")]
+	floor.areas[key("Blackfathom Sea Witch")] = floor.areas["#1"]
+	floor.areas[key("Blackfathom Myrmidon")] = floor.areas["#1"]
+	floor.areas[key("Blindlight Muckdweller")] = floor.areas["#1"]
+	floor.areas[key("Twilight Acolyte")] = floor.areas["#2"]
+	floor.areas[key("Twilight Reaver")] = floor.areas["#2"]
+	floor.areas[key("Aku'mai Snapjaw")] = floor.areas["#4"]
+	floor.areas[key("Deep Pool Threshfin")] = floor.areas["#2"]
 	floor.areas[key("Lorgus Jett")] = floor.areas["#1"]
 	floor.bosses = { { name = "Aku'mai", x = 857, y = 577 }, { name = "Lorgus Jett", x = 389, y = 134 }, { name = "Twilight Lord Kelris", x = 520, y = 545 } }
 	floor.path = true
@@ -166,6 +181,13 @@ do
 	floor.areas[key("Old Serra'kis")] = floor.areas[key("The Forgotten Pool")]
 	floor.areas[key("Deep Pool Threshfin")] = floor.areas[key("The Forgotten Pool")]
 	floor.areas[key("Thruk")] = floor.areas[key("The Forgotten Pool")]
+	floor.areas[key("Twilight Acolyte")] = floor.areas["#1"]
+	floor.areas[key("Twilight Reaver")] = floor.areas["#1"]
+	floor.areas[key("Twilight Aquamancer")] = floor.areas["#1"]
+	floor.areas[key("Twilight Loreseeker")] = floor.areas["#1"]
+	floor.areas[key("Twilight Shadowmage")] = floor.areas["#1"]
+	floor.areas[key("Twilight Elementalist")] = floor.areas["#1"]
+	floor.areas[key("Barbed Crustacean")] = floor.areas["#1"]
 	floor.bosses = { { name = "Old Serra'kis", x = 608, y = 208 } }
 	floor.path = true
 	floor.alone = true
@@ -1390,6 +1412,20 @@ do
 	floor.areas[key("Feugen")] = floor.areas[key("Thaddius")]
 	floor.areas[key("The Halls of Reanimation")] = floor.areas[key("Thaddius")]
 	floor.areas[key("Halls of Reanimation")] = floor.areas[key("Thaddius")]
+	floor.areas[key("Embalming Slime")] = nil
+	floor.areas[key("Living Monstrosity")] = floor.areas["#1"]
+	floor.areas[key("Mad Scientist")] = floor.areas["#1"]
+	floor.areas[key("Surgical Assistant")] = floor.areas["#1"]
+	floor.areas[key("Toxic Tunnel")] = floor.areas["#1"]
+	floor.areas[key("Carrion Spinner")] = floor.areas["#1"]
+	floor.areas[key("Dread Creeper")] = floor.areas["#1"]
+	floor.areas[key("Necro Stalker")] = floor.areas["#5"]
+	floor.areas[key("Infectious Skitterer")] = floor.areas["#1"]
+	floor.areas[key("Shade of Naxxramas")] = floor.areas["#1"]
+	floor.areas[key("Skeletal Smith")] = floor.areas["#1"]
+	floor.areas[key("Infectious Ghoul")] = floor.areas["#1"]
+	floor.areas[key("Plague Slime")] = floor.areas["#1"]
+	floor.areas[key("Plagued Bat")] = floor.areas["#1"]
 	floor.bosses = { { name = "Gluth", x = 464, y = 293 }, { name = "Grobbulus", x = 617, y = 355 }, { name = "Patchwerk", x = 542, y = 278 }, { name = "Thaddius", x = 266, y = 97 } }
 	floor.path = true
 	floor.alone = true
@@ -1431,6 +1467,13 @@ do
 	floor.areas[key("Maexxna Spiderling")] = floor.areas[key("Maexxna")]
 	floor.areas[key("Crypt Reaver")] = floor.areas[key("Maexxna")]
 	floor.areas[key("Infectious Skitterer")] = floor.areas[key("Maexxna")]
+	floor.areas[key("Crypt Reaver")] = floor.areas["#1"]
+	floor.areas[key("Infectious Skitterer")] = floor.areas["#1"]
+	floor.areas[key("Infectious Ghoul")] = floor.areas["#1"]
+	floor.areas[key("Plague Slime")] = floor.areas["#1"]
+	floor.areas[key("Eye Stalk")] = floor.areas["#4"]
+	floor.areas[key("Rotting Maggot")] = floor.areas["#4"]
+	floor.areas[key("Diseased Maggot")] = floor.areas["#4"]
 	floor.bosses = { { name = "Anub'Rekhan", x = 308, y = 314 }, { name = "Grand Widow Faerlina", x = 443, y = 241 }, { name = "Maexxna", x = 688, y = 102 } }
 	floor.path = true
 	floor.alone = true
@@ -1482,6 +1525,14 @@ do
 	floor.areas[key("The Horsemen's Assembly")] = floor.areas[key("The Four Horsemen")]
 	floor.areas[key("Deathknight Cavalier")] = floor.areas[key("The Four Horsemen")]
 	floor.areas[key("Death Lord")] = floor.areas[key("The Four Horsemen")]
+	floor.areas[key("Surgical Assistant")] = floor.areas["#1"]
+	floor.areas[key("Doom Touched Warrior")] = floor.areas["#3"]
+	floor.areas[key("Shade of Naxxramas")] = floor.areas["#1"]
+	floor.areas[key("Necro Knight")] = floor.areas["#1"]
+	floor.areas[key("Skeletal Smith")] = floor.areas["#1"]
+	floor.areas[key("Bony Construct")] = floor.areas["#1"]
+	floor.areas[key("Deathknight Cavalier")] = floor.areas["#2"]
+	floor.areas[key("Death Lord")] = nil
 	floor.bosses = { { name = "Gothik the Harvester", x = 676, y = 398 }, { name = "Instructor Razuvious", x = 428, y = 307 }, { name = "The Four Horsemen", x = 302, y = 513 } }
 	floor.path = true
 	floor.alone = true
@@ -1523,6 +1574,10 @@ do
 	floor.areas[key("Spore")] = floor.areas[key("Loatheb")]
 	floor.areas[key("The Necrotic Vault")] = floor.areas[key("Loatheb")]
 	floor.areas[key("Necrotic Vault")] = floor.areas[key("Loatheb")]
+	floor.areas[key("Carrion Spinner")] = floor.areas["#1"]
+	floor.areas[key("Dread Creeper")] = floor.areas["#1"]
+	floor.areas[key("Infectious Skitterer")] = floor.areas["#1"]
+	floor.areas[key("Frenzied Bat")] = floor.areas["#1"]
 	floor.bosses = { { name = "Heigan the Unclean", x = 499, y = 305 }, { name = "Loatheb", x = 762, y = 189 }, { name = "Noth the Plaguebringer", x = 347, y = 377 } }
 	floor.path = true
 	floor.alone = true
@@ -1690,6 +1745,23 @@ do
 	floor.areas[key("Spore")] = floor.areas[key("Loatheb")]
 	floor.areas[key("The Necrotic Vault")] = floor.areas[key("Loatheb")]
 	floor.areas[key("Necrotic Vault")] = floor.areas[key("Loatheb")]
+	floor.areas[key("Living Monstrosity")] = floor.areas["#1"]
+	floor.areas[key("Mad Scientist")] = floor.areas["#1"]
+	floor.areas[key("Surgical Assistant")] = floor.areas["#1"]
+	floor.areas[key("Toxic Tunnel")] = floor.areas["#1"]
+	floor.areas[key("Crypt Reaver")] = floor.areas["#6"]
+	floor.areas[key("Infectious Skitterer")] = floor.areas["#6"]
+	floor.areas[key("Risen Deathknight")] = nil
+	floor.areas[key("Doom Touched Warrior")] = floor.areas["#12"]
+	floor.areas[key("Shade of Naxxramas")] = floor.areas["#10"]
+	floor.areas[key("Necro Knight")] = floor.areas["#10"]
+	floor.areas[key("Skeletal Smith")] = floor.areas["#10"]
+	floor.areas[key("Bony Construct")] = floor.areas["#10"]
+	floor.areas[key("Deathknight Cavalier")] = floor.areas["#10"]
+	floor.areas[key("Death Lord")] = floor.areas["#10"]
+	floor.areas[key("Mutated Grub")] = floor.areas["#15"]
+	floor.areas[key("Plagued Bat")] = floor.areas["#15"]
+	floor.areas[key("Frenzied Bat")] = floor.areas["#14"]
 	floor.bosses = { { name = "Anub'Rekhan", x = 555, y = 181 }, { name = "Gluth", x = 400, y = 198 }, { name = "Gothik the Harvester", x = 512, y = 508 }, { name = "Grand Widow Faerlina", x = 624, y = 164 }, { name = "Grobbulus", x = 475, y = 212 }, { name = "Heigan the Unclean", x = 667, y = 434 }, { name = "Instructor Razuvious", x = 372, y = 453 }, { name = "Loatheb", x = 808, y = 378 }, { name = "Maexxna", x = 769, y = 91 }, { name = "Noth the Plaguebringer", x = 559, y = 490 }, { name = "Patchwerk", x = 437, y = 185 }, { name = "Thaddius", x = 291, y = 89 }, { name = "The Four Horsemen", x = 310, y = 480 } }
 	floor.path = true
 	floor.alone = true
@@ -2101,6 +2173,10 @@ do
 	floor.areas[key("Arcanist Doan")].n = 5
 	floor.areas["#5"] = floor.areas[key("Arcanist Doan")]
 	floor.count = floor.count + 1
+	floor.areas[key("Scarlet Tracking Hound")] = floor.areas["#1"]
+	floor.areas[key("Scarlet Gallant")] = floor.areas["#1"]
+	floor.areas[key("Scarlet Adept")] = floor.areas["#1"]
+	floor.areas[key("Scarlet Diviner")] = floor.areas["#3"]
 	floor.bosses = { { name = "Houndmaster Loksey", x = 309, y = 587 }, { name = "Arcanist Doan", x = 834, y = 498 } }
 	floor.path = true
 	floor.alone = true
@@ -2135,6 +2211,9 @@ do
 	floor.count = floor.count + 1
 	floor.areas[key("Herod")] = floor.areas[key("Hall of Champions")]
 	floor.areas[key("Scarlet Trainee")] = floor.areas[key("Hall of Champions")]
+	floor.areas[key("Scarlet Evoker")] = floor.areas["#1"]
+	floor.areas[key("Scarlet Protector")] = floor.areas["#2"]
+	floor.areas[key("Scarlet Guardsman")] = floor.areas["#2"]
 	floor.bosses = { { name = "Herod", x = 788, y = 72 } }
 	floor.path = true
 	floor.alone = true

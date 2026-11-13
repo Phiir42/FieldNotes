@@ -2,6 +2,7 @@ MAP = {
     "instance": 48,
     "slug": "blackfathom-deeps",
     "path": "sheets",  # each sheet is one road of its own, areas in the order you pass through them
+    "creatures": "auto",  # file creatures by their spawn points (see make_maps.creature_rooms)
     "floors": [
         {
             "ref": "blackfathom-deeps-1",
