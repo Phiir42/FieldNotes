@@ -6,18 +6,48 @@ Full_DB/ClassicDB_1_12_1_z*.sql.gz to refs/classicdb/ClassicDB.sql.gz).
 
 Writes refs/classicdb/creatures.json:
   { "<creature entry>": { "name", "rank", "lo", "hi", "type", "spells": [spell IDs],
-                          "spawns": [[map, x, y, z], ...] } }
+                          "spawns": [[map, x, y, z], ...], "summoned": true } }
 Spells come from the creature's spell list, its template spells and the
-casts in its AI scripts. Only creatures that spawn in an instance map or
-have spells are kept.
+casts in its AI scripts. Only creatures that spawn in an instance map, are
+called up by one that does, or have spells are kept.
+
+"summoned": the creature has no place of its own in an instance but is called
+up there: by a summoning spell or AI script of a creature that lives there,
+or by an instance's own script in the cmangos core (refs/cmangos, see
+make_abilities.py), whose NPC_ constants name every creature it handles.
 """
-import gzip, json, os, re
+import csv, glob, gzip, json, os, re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DUMP = os.path.join(ROOT, "refs", "classicdb", "ClassicDB.sql.gz")
 OUT = os.path.join(ROOT, "refs", "classicdb", "creatures.json")
 TABLES = ("creature_template", "creature_template_spells", "creature_spell_list", "creature", "creature_ai_scripts")
 ACTION_CAST = 11  # EventAI ACTION_T_CAST: param1 is the spell
+ACTION_SUMMON = 12  # EventAI ACTION_T_SUMMON: param1 is the creature
+ACTION_SUMMON_ID = 32  # EventAI ACTION_T_SUMMON_ID: param1 is the creature
+SPELL_EFFECTS = os.path.join(ROOT, "refs", "tables", "wowf", "SpellEffect.csv")
+SUMMON_EFFECTS = {28, 41, 42, 56, 112}  # summon, wild, guardian, pet, demon
+SCRIPTS = os.path.join(ROOT, "refs", "cmangos", "mangos-classic", "src", "game", "AI", "ScriptDevAI", "scripts")
+
+
+def summoning_spells():
+    """{spell ID: [creature entry]} for every spell that calls up a creature."""
+    out = {}
+    if os.path.exists(SPELL_EFFECTS):
+        with open(SPELL_EFFECTS, encoding="utf-8") as f:
+            for r in csv.DictReader(f):
+                if num(r["Effect"]) in SUMMON_EFFECTS and num(r["EffectMiscValue_0"]) > 0:
+                    out.setdefault(num(r["SpellID"]), []).append(num(r["EffectMiscValue_0"]))
+    return out
+
+
+def scripted_creatures():
+    """Creature entries the core's instance scripts name (one folder each)."""
+    out = set()
+    for path in glob.glob(os.path.join(SCRIPTS, "*", "*", "*.[ch]*")):
+        with open(path, encoding="utf-8", errors="replace") as f:
+            out.update(int(v) for v in re.findall(r"\bNPC_\w+\s*=\s*(\d+)", f.read()))
+    return out
 
 
 def rows(values):
@@ -114,13 +144,17 @@ def main():
 
     t = "creature_ai_scripts"
     cid = col(t, "creature_id")
+    calls = {}  # creature entry: the creatures it calls up
     for r in data[t]:
         c = creatures.get(num(r[cid]))
         if not c:
             continue
         for a in (1, 2, 3):
-            if num(r[col(t, f"action{a}_type")]) == ACTION_CAST and num(r[col(t, f"action{a}_param1")]):
-                c["spells"].append(num(r[col(t, f"action{a}_param1")]))
+            kind, param = num(r[col(t, f"action{a}_type")]), num(r[col(t, f"action{a}_param1")])
+            if kind == ACTION_CAST and param:
+                c["spells"].append(param)
+            elif kind in (ACTION_SUMMON, ACTION_SUMMON_ID) and param:
+                calls.setdefault(num(r[cid]), []).append(param)
 
     t = "creature"
     for r in data[t]:
@@ -130,18 +164,35 @@ def main():
             c["spawns"].append([m, round(float(r[col(t, "position_x")]), 1), round(float(r[col(t, "position_y")]), 1),
                                 round(float(r[col(t, "position_z")]), 1)])
 
+    # what is called up in an instance, and what that calls up in turn
+    spells = summoning_spells()
+    summoned = {e for e in scripted_creatures() if e in creatures and not creatures[e]["spawns"]}
+    todo = [e for e, c in creatures.items() if c["spawns"]] + sorted(summoned)
+    while todo:
+        e = todo.pop()
+        for s in creatures[e]["spells"]:
+            calls.setdefault(e, []).extend(spells.get(s, []))
+        for other in calls.get(e, []):
+            if other in creatures and not creatures[other]["spawns"] and other not in summoned:
+                summoned.add(other)
+                todo.append(other)
+    for e in summoned:
+        # not the unseen helpers scripts call up (spawn points, kill credit...)
+        if not re.search(r"\(DND\)|Trigger|Kill Credit|Spawner|Spawn Point|GM can see", creatures[e]["name"]):
+            creatures[e]["summoned"] = True
+
     kept = {}
     for entry, c in creatures.items():
         c["spells"] = list(dict.fromkeys(c["spells"]))
         # elites and bosses are kept even with neither: a scripted boss is
         # summoned and casts from code, but its picture is still wanted
-        if c["spells"] or c["spawns"] or (c["rank"] and c["model"]):
+        if c["spells"] or c["spawns"] or c.get("summoned") or (c["rank"] and c["model"]):
             kept[entry] = c
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(kept, f)
     with_spells = sum(1 for c in kept.values() if c["spells"])
     print({k: len(v) for k, v in data.items()})
-    print(f"{len(kept)} creatures kept, {with_spells} with spells -> {OUT}")
+    print(f"{len(kept)} creatures kept, {with_spells} with spells, {len(summoned)} summoned -> {OUT}")
 
 
 if __name__ == "__main__":

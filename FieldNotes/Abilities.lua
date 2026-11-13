@@ -791,11 +791,13 @@ C["aggirumblestomp"] = { lo = 58, hi = 58, type = "Humanoid", spells = { 15655, 
 C["ahnqirajtrigger"] = { lo = 60, hi = 60, spells = {  }, model = 15294 } -- Ahn'Qiraj Trigger
 C["akumai"] = { lo = 28, hi = 28, cls = "elite", spells = {  }, model = 2837 } -- Aku'mai
 C["akumaifisher"] = { lo = 23, hi = 24, cls = "elite", type = "Beast", spells = {  }, model = 1244 } -- Aku'mai Fisher
+C["akumaiservant"] = { lo = 26, hi = 26, cls = "elite", type = "Elemental", spells = { 8398, 865 }, model = 110 } -- Aku'mai Servant
 C["akumaisnapjaw"] = { lo = 26, hi = 27, cls = "elite", type = "Beast", spells = { 8391 }, model = 5026 } -- Aku'mai Snapjaw
 C["alarmabomb2600"] = { lo = 20, hi = 20, type = "Mechanical", spells = {  }, model = 6888 } -- Alarm-a-bomb 2600
 C["alliancespiritguide"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = {  }, model = 13336, friend = true } -- Alliance Spirit Guide
 C["alteracram"] = { lo = 50, hi = 51, type = "Beast", spells = { 22120, 13443 }, model = 13340 } -- Alterac Ram
 C["alteracyeti"] = { lo = 61, hi = 61, cls = "elite", type = "Humanoid", spells = { 22479, 16727 }, model = 10946 } -- Alterac Yeti
+C["alzzinsminion"] = { lo = 56, hi = 56, type = "Demon", spells = { 10095 }, model = 911 } -- Alzzin's Minion
 C["alzzinthewildshaper"] = { lo = 58, hi = 58, cls = "elite", type = "Demon", spells = {  }, model = 14416 } -- Alzzin the Wildshaper
 C["ambassadorflamelash"] = { lo = 57, hi = 57, cls = "elite", type = "Humanoid", spells = {  }, model = 8329 } -- Ambassador Flamelash
 C["amnennarthecoldbringer"] = { lo = 41, hi = 41, cls = "elite", type = "Undead", spells = {  }, model = 7971 } -- Amnennar the Coldbringer
@@ -809,8 +811,11 @@ C["antusul"] = { lo = 48, hi = 48, cls = "elite", type = "Humanoid", spells = { 
 C["anubisathdefender"] = { lo = 62, hi = 62, cls = "elite", spells = {  }, model = 15351 } -- Anubisath Defender
 C["anubisathguardian"] = { lo = 62, hi = 62, cls = "elite", spells = {  }, model = 15347 } -- Anubisath Guardian
 C["anubisathsentinel"] = { lo = 61, hi = 61, cls = "elite", spells = {  }, model = 15347 } -- Anubisath Sentinel
+C["anubisathswarmguard"] = { lo = 62, hi = 62, cls = "elite", spells = { 26350 }, model = 15546 } -- Anubisath Swarmguard
 C["anubisathwarder"] = { lo = 63, hi = 63, cls = "elite", spells = { 26071, 26072, 26069, 26070, 26073 }, model = 15351 } -- Anubisath Warder
+C["anubisathwarrior"] = { lo = 62, hi = 62, cls = "elite", spells = { 10966, 15550, 8599 }, model = 15545 } -- Anubisath Warrior
 C["anubrekhan"] = { lo = 63, hi = 63, cls = "worldboss", type = "Undead", spells = {  }, model = 15931 } -- Anub'Rekhan
+C["anubshiah"] = { lo = 54, hi = 54, cls = "elite", type = "Undead", spells = { 13787, 15472, 15471, 12493, 15470, 8994 }, model = 3004 } -- Anub'shiah
 C["anvilragecaptain"] = { lo = 55, hi = 56, cls = "elite", type = "Humanoid", spells = { 13737, 11972, 12169 }, model = 8749 } -- Anvilrage Captain
 C["anvilragefootman"] = { lo = 51, hi = 52, cls = "elite", type = "Humanoid", spells = { 11978, 11976 }, model = 8718 } -- Anvilrage Footman
 C["anvilrageguardsman"] = { lo = 50, hi = 51, cls = "elite", type = "Humanoid", spells = { 3417, 11971, 6713, 12169 }, model = 8750 } -- Anvilrage Guardsman
@@ -821,6 +826,7 @@ C["anvilrageoverseer"] = { lo = 48, hi = 49, cls = "elite", type = "Humanoid", s
 C["anvilragereservist"] = { lo = 54, hi = 55, type = "Humanoid", spells = { 9128, 9080, 11976, 6660 }, model = 8755 } -- Anvilrage Reservist
 C["anvilragesoldier"] = { lo = 52, hi = 53, cls = "elite", type = "Humanoid", spells = { 14030, 27991, 15284, 9080 }, model = 8757 } -- Anvilrage Soldier
 C["anvilragewarden"] = { lo = 49, hi = 50, cls = "elite", type = "Humanoid", spells = { 24317, 19644, 3417, 11972, 14030 }, model = 8758 } -- Anvilrage Warden
+C["aquaguardian"] = { lo = 22, hi = 23, type = "Elemental", spells = { 865 }, model = 525 } -- Aqua Guardian
 C["arathiblacksmith"] = { lo = 5, hi = 5, spells = {  }, model = 15172 } -- Arathi Blacksmith
 C["arathifarmer"] = { lo = 5, hi = 5, spells = {  }, model = 15146 } -- Arathi Farmer
 C["arathihorse"] = { lo = 5, hi = 5, spells = {  }, model = 229 } -- Arathi Horse
@@ -840,25 +846,33 @@ C["archmagetarsiskirmoldir"] = { lo = 60, hi = 60, cls = "elite", type = "Humano
 C["arenaspectator"] = { lo = 52, hi = 54, type = "Humanoid", spells = { 9128, 13730, 6713, 13446, 13338, 11642 }, model = 9069 } -- Arena Spectator
 C["argentguardthaelrid"] = { lo = 20, hi = 20, type = "Humanoid", spells = {  }, model = 4946, friend = true } -- Argent Guard Thaelrid
 C["arugal"] = { lo = 26, hi = 26, cls = "elite", type = "Humanoid", spells = {  }, model = 2353 } -- Arugal
+C["arugalsvoidwalker"] = { lo = 24, hi = 25, type = "Demon", spells = {  }, model = 1131 } -- Arugal's Voidwalker
 C["arygos"] = { lo = 63, hi = 63, cls = "worldboss", type = "Dragonkin", spells = {  }, model = 15418, friend = true } -- Arygos
 C["asharicrystal"] = { lo = 60, hi = 60, cls = "elite", spells = { 512, 1010 }, model = 9832 } -- Ash'ari Crystal
 C["atalaicorpseeater"] = { lo = 49, hi = 50, cls = "elite", type = "Undead", spells = { 10893, 12134 }, model = 4778 } -- Atal'ai Corpse Eater
 C["atalaideathwalker"] = { lo = 50, hi = 51, cls = "elite", type = "Undead", spells = { 10893, 12095, 12096 }, model = 4773 } -- Atal'ai Deathwalker
+C["atalaideathwalkersspirit"] = { lo = 50, hi = 51, cls = "elite", type = "Undead", spells = {  }, model = 146 } -- Atal'ai Deathwalker's Spirit
 C["atalaihighpriest"] = { lo = 50, hi = 51, cls = "elite", type = "Humanoid", spells = { 15654, 11660, 12040, 12151, 8362, 12039 }, model = 6675 } -- Atal'ai High Priest
 C["atalaimistress"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = { 674, 24671, 15615 }, model = 14977 } -- Atal'ai Mistress
+C["atalaiskeleton"] = { lo = 46, hi = 47, type = "Undead", spells = { 10893 }, model = 7555 } -- Atal'ai Skeleton
 C["atalaislave"] = { lo = 46, hi = 47, type = "Demon", spells = {  }, model = 7554 } -- Atal'ai Slave
+C["atalaitotem"] = { lo = 51, hi = 51, spells = { 12507 }, model = 2420 } -- Atal'ai Totem
 C["atalaiwarrior"] = { lo = 48, hi = 49, cls = "elite", type = "Humanoid", spells = { 13446, 13445 }, model = 7709 } -- Atal'ai Warrior
 C["atalaiwitchdoctor"] = { lo = 49, hi = 50, cls = "elite", type = "Humanoid", spells = { 11986, 11641, 12058, 9532 }, model = 6670 } -- Atal'ai Witch Doctor
+C["atalalarion"] = { lo = 50, hi = 50, cls = "elite", type = "Humanoid", spells = {  }, model = 7873 } -- Atal'alarion
 C["athramanis"] = { lo = 60, hi = 60, type = "Humanoid", spells = {  }, model = 14215, friend = true } -- Athramanis
 C["aurius"] = { lo = 60, hi = 60, type = "Humanoid", spells = { 1096, 14517, 17149, 13952, 13874 }, model = 10217, friend = true } -- Aurius
+C["avatarofhakkar"] = { lo = 49, hi = 50, cls = "elite", spells = {  }, model = 8053 } -- Avatar of Hakkar
 C["awbee"] = { lo = 57, hi = 57, cls = "elite", type = "Dragonkin", spells = {  }, model = 6293, friend = true } -- Awbee
 C["ayamissthehunter"] = { lo = 63, hi = 63, cls = "worldboss", spells = {  }, model = 15431 } -- Ayamiss the Hunter
 C["baelgar"] = { lo = 54, hi = 54, cls = "elite", type = "Giant", spells = {  }, model = 12162 } -- Bael'Gar
 C["baelog"] = { lo = 41, hi = 41, cls = "elite", type = "Humanoid", spells = { 14516, 15620 }, model = 5710, friend = true } -- Baelog
+C["balnazzar"] = { lo = 62, hi = 62, cls = "elite", type = "Demon", spells = {  }, model = 10691 } -- Balnazzar
 C["balzaphon"] = { lo = 60, hi = 60, cls = "elite", type = "Undead", spells = { 12096, 8398, 28126, 12557, 16799 }, model = 7919 } -- Balzaphon
 C["bannokgrimaxe"] = { lo = 59, hi = 59, cls = "rareelite", type = "Humanoid", spells = { 13737 }, model = 9668 } -- Bannok Grimaxe
 C["barbedcrustacean"] = { lo = 25, hi = 26, cls = "elite", type = "Beast", spells = {  }, model = 9565 } -- Barbed Crustacean
 C["barbedlasher"] = { lo = 44, hi = 45, cls = "elite", spells = { 21749 }, model = 12347 } -- Barbed Lasher
+C["baronaquanis"] = { lo = 28, hi = 28, cls = "elite", type = "Elemental", spells = {  }, model = 110 } -- Baron Aquanis
 C["baronessanastari"] = { lo = 59, hi = 59, cls = "elite", type = "Undead", spells = {  }, model = 10698 } -- Baroness Anastari
 C["barongeddon"] = { lo = 63, hi = 63, cls = "worldboss", type = "Elemental", spells = {  }, model = 12129 } -- Baron Geddon
 C["baronrivendare"] = { lo = 62, hi = 62, cls = "elite", type = "Undead", spells = {  }, model = 10729 } -- Baron Rivendare
@@ -873,11 +887,16 @@ C["beetle"] = { lo = 1, hi = 1, type = "Critter", spells = {  }, model = 7511 } 
 C["belnistrasz"] = { lo = 36, hi = 36, type = "Humanoid", spells = {  }, model = 7851, friend = true } -- Belnistrasz
 C["bijou"] = { lo = 58, hi = 58, cls = "elite", type = "Humanoid", spells = {  }, model = 9553, friend = true } -- Bijou
 C["bileretcher"] = { lo = 61, hi = 61, cls = "elite", type = "Undead", spells = { 27862, 27807 }, model = 15958 } -- Bile Retcher
+C["bileslime"] = { lo = 59, hi = 60, spells = { 16866 }, model = 10029 } -- Bile Slime
 C["bilespewer"] = { lo = 59, hi = 60, cls = "elite", type = "Undead", spells = { 16866, 3417, 16809, 16865 }, model = 9760 } -- Bile Spewer
 C["biletoad"] = { lo = 1, hi = 1, type = "Critter", spells = { 10251 }, model = 1924 } -- Biletoad
+C["blackbreathcrony"] = { lo = 53, hi = 53, cls = "elite", type = "Humanoid", spells = { 15581 }, model = 8661 } -- Blackbreath Crony
+C["blackdrakonid"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = { 22560, 23363 }, model = 14885 } -- Black Drakonid
 C["blackfathommyrmidon"] = { lo = 22, hi = 23, cls = "elite", type = "Humanoid", spells = { 8379 }, model = 4762 } -- Blackfathom Myrmidon
 C["blackfathomseawitch"] = { lo = 23, hi = 24, cls = "elite", type = "Humanoid", spells = { 12544, 122, 15044 }, model = 4982 } -- Blackfathom Sea Witch
+C["blackguardsentry"] = { lo = 58, hi = 59, cls = "elite", type = "Undead", spells = { 17439, 15584 }, model = 775 } -- Black Guard Sentry
 C["blackhandassassin"] = { lo = 60, hi = 61, cls = "elite", type = "Humanoid", spells = { 15582, 12540, 6434 }, model = 9691 } -- Blackhand Assassin
+C["blackhanddragonhandler"] = { lo = 59, hi = 60, cls = "elite", type = "Humanoid", spells = { 16637 }, model = 10176 } -- Blackhand Dragon Handler
 C["blackhanddreadweaver"] = { lo = 59, hi = 60, cls = "elite", type = "Humanoid", spells = { 12739, 7068, 16247 }, model = 9670 } -- Blackhand Dreadweaver
 C["blackhandelite"] = { lo = 60, hi = 61, cls = "elite", type = "Humanoid", spells = { 6253, 16172, 15580 }, model = 9734 } -- Blackhand Elite
 C["blackhandincarcerator"] = { lo = 59, hi = 60, type = "Humanoid", spells = { 16045, 15580 }, model = 9690 } -- Blackhand Incarcerator
@@ -887,6 +906,8 @@ C["blackhandthug"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spell
 C["blackhandveteran"] = { lo = 59, hi = 60, cls = "elite", type = "Humanoid", spells = { 11972, 15749, 14516 }, model = 9686 } -- Blackhand Veteran
 C["blackrat"] = { lo = 1, hi = 1, type = "Critter", spells = {  }, model = 1141 } -- Black Rat
 C["blackwingguardsman"] = { lo = 61, hi = 61, cls = "elite", type = "Humanoid", spells = { 15284, 23967, 15580 }, model = 12024 } -- Blackwing Guardsman
+C["blackwinglegionnaire"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = { 15284, 23967, 15580 }, model = 12024 } -- Blackwing Legionnaire
+C["blackwingmage"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = { 22271, 17290 }, model = 11979 } -- Blackwing Mage
 C["blackwingorbtrigger"] = { lo = 1, hi = 1, spells = {  }, model = 11686 } -- Blackwing Orb Trigger
 C["blackwingspellbinder"] = { lo = 62, hi = 62, cls = "elite", type = "Dragonkin", spells = { 22275, 22274 }, model = 7923 } -- Blackwing Spellbinder
 C["blackwingspellmarker"] = { lo = 1, hi = 1, spells = {  }, model = 14501 } -- Blackwing Spell Marker
@@ -901,6 +922,7 @@ C["blindhunter"] = { lo = 32, hi = 32, cls = "rareelite", type = "Beast", spells
 C["blindlightmuckdweller"] = { lo = 25, hi = 25, cls = "elite", type = "Humanoid", spells = { 8382 }, model = 11293 } -- Blindlight Muckdweller
 C["blindlightmurloc"] = { lo = 22, hi = 23, cls = "elite", type = "Humanoid", spells = { 7164, 7405 }, model = 4920 } -- Blindlight Murloc
 C["blindlightoracle"] = { lo = 25, hi = 25, cls = "elite", type = "Humanoid", spells = { 6063, 9532, 8362 }, model = 3617 } -- Blindlight Oracle
+C["blizzard"] = { lo = 63, hi = 63, spells = {  }, model = 11686 } -- Blizzard
 C["bloodaxeevoker"] = { lo = 58, hi = 59, cls = "elite", type = "Humanoid", spells = { 13748, 15744, 15743 }, model = 9625 } -- Bloodaxe Evoker
 C["bloodaxeraider"] = { lo = 57, hi = 58, cls = "elite", type = "Humanoid", spells = { 15284, 15572 }, model = 9602 } -- Bloodaxe Raider
 C["bloodaxesummoner"] = { lo = 57, hi = 58, cls = "elite", type = "Humanoid", spells = { 15791, 15532, 15734 }, model = 9613 } -- Bloodaxe Summoner
@@ -918,12 +940,24 @@ C["bloodscalpspeaker"] = { lo = 61, hi = 61, type = "Humanoid", spells = { 18200
 C["bloodseeker"] = { lo = 23, hi = 24, cls = "elite", type = "Beast", spells = { 7140 }, model = 1955 } -- Blood Seeker
 C["bloodseekerbat"] = { lo = 60, hi = 60, type = "Beast", spells = { 24023 }, model = 14562 } -- Bloodseeker Bat
 C["bloodstewardofkirtonos"] = { lo = 61, hi = 61, cls = "elite", type = "Demon", spells = { 22371, 12493, 3609, 4086 }, model = 10925 } -- Blood Steward of Kirtonos
+C["bluedrakonid"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = { 22559, 23363 }, model = 14886 } -- Blue Drakonid
+C["boarspirit"] = { lo = 19, hi = 20, cls = "elite", type = "Beast", spells = {  }, model = 4716 } -- Boar Spirit
+C["boneconstruct"] = { lo = 60, hi = 60, cls = "elite", type = "Undead", spells = { 8355 }, model = 12073 } -- Bone Construct
 C["boneflayerghoul"] = { lo = 38, hi = 39, cls = "elite", type = "Undead", spells = { 15584 }, model = 1065 } -- Boneflayer Ghoul
 C["bonyconstruct"] = { lo = 61, hi = 61, cls = "elite", type = "Undead", spells = { 19632, 25322 }, model = 14706 } -- Bony Construct
+C["borerbeetle"] = { lo = 50, hi = 52, type = "Beast", spells = { 14539, 6016 }, model = 7470 } -- Borer Beetle
+C["brainwashtotem"] = { lo = 60, hi = 60, spells = { 24261 }, model = 15291 } -- Brain Wash Totem
 C["bravestonehide"] = { lo = 55, hi = 55, type = "Humanoid", spells = {  }, model = 12675, friend = true } -- Brave Stonehide
 C["brogusthunderbrew"] = { lo = 55, hi = 55, type = "Humanoid", spells = {  }, model = 2284, friend = true } -- Brogus Thunderbrew
+C["brokencadaver"] = { lo = 55, hi = 56, type = "Undead", spells = { 16140, 16310, 18950 }, model = 10970 } -- Broken Cadaver
+C["bronzedrakonid"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = { 22642, 23363 }, model = 14887 } -- Bronze Drakonid
 C["broodlordlashlayer"] = { lo = 63, hi = 63, cls = "worldboss", type = "Dragonkin", spells = {  }, model = 14308 } -- Broodlord Lashlayer
 C["bruegalironknuckle"] = { lo = 26, hi = 26, cls = "rareelite", type = "Humanoid", spells = {  }, model = 2142 } -- Bruegal Ironknuckle
+C["burningfelguard"] = { lo = 56, hi = 57, cls = "rareelite", type = "Demon", spells = { 16046, 15588, 15580, 16074 }, model = 5047 } -- Burning Felguard
+C["burningfelhound"] = { lo = 54, hi = 55, type = "Demon", spells = { 20817 }, model = 1913 } -- Burning Felhound
+C["burningservant"] = { lo = 30, hi = 30, type = "Elemental", spells = { 10869 }, model = 2172 } -- Burning Servant
+C["burningspirit"] = { lo = 30, hi = 30, type = "Elemental", spells = {  }, model = 4607 } -- Burning Spirit
+C["burrowingthundersnout"] = { lo = 50, hi = 52, type = "Beast", spells = { 14533, 15548, 15611 }, model = 8184 } -- Burrowing Thundersnout
 C["buruegg"] = { lo = 55, hi = 55, spells = {  }, model = 15512 } -- Buru Egg
 C["buruthegorger"] = { lo = 63, hi = 63, cls = "worldboss", spells = {  }, model = 15654 } -- Buru the Gorger
 C["caelestrasz"] = { lo = 63, hi = 63, cls = "worldboss", type = "Dragonkin", spells = {  }, model = 15419, friend = true } -- Caelestrasz
@@ -941,11 +975,15 @@ C["captaintuubid"] = { lo = 63, hi = 63, cls = "elite", spells = { 24317, 15584,
 C["captainxurrem"] = { lo = 63, hi = 63, cls = "elite", spells = { 24317, 15584, 25425 }, model = 15738 } -- Captain Xurrem
 C["carrionspinner"] = { lo = 61, hi = 61, cls = "elite", type = "Beast", spells = { 28434, 30043 }, model = 15938 } -- Carrion Spinner
 C["carrionswarmer"] = { lo = 57, hi = 58, type = "Beast", spells = { 5416 }, model = 13096 } -- Carrion Swarmer
+C["cavecreeper"] = { lo = 50, hi = 52, type = "Beast", spells = { 745, 744, 6751, 13299, 14532 }, model = 8014 } -- Cave Creeper
 C["caverndeepambusher"] = { lo = 25, hi = 27, type = "Humanoid", spells = { 2590 }, model = 764 } -- Caverndeep Ambusher
+C["caverndeepburrower"] = { lo = 25, hi = 27, cls = "elite", type = "Humanoid", spells = { 9770, 16145, 9776, 7164 }, model = 830 } -- Caverndeep Burrower
 C["cavernlurker"] = { lo = 45, hi = 46, cls = "elite", type = "Elemental", spells = { 11428 }, model = 3386 } -- Cavern Lurker
 C["cavernshambler"] = { lo = 46, hi = 47, cls = "elite", type = "Elemental", spells = { 7948, 16790 }, model = 9014 } -- Cavern Shambler
 C["celebrasthecursed"] = { lo = 49, hi = 49, cls = "elite", type = "Humanoid", spells = {  }, model = 12350 } -- Celebras the Cursed
+C["celebrastheredeemed"] = { lo = 49, hi = 49, cls = "elite", type = "Humanoid", spells = {  }, model = 13715, friend = true } -- Celebras the Redeemed
 C["celebriandryad"] = { lo = 45, hi = 46, cls = "elite", type = "Humanoid", spells = { 16000, 7992, 17201 }, model = 11714 } -- Celebrian Dryad
+C["chainedspirit"] = { lo = 60, hi = 60, type = "Undead", spells = {  }, model = 14560 } -- Chained Spirit
 C["championcoldmineexplorer"] = { lo = 60, hi = 60, type = "Humanoid", spells = { 12544, 14145, 15244, 15242 }, model = 13889 } -- Champion Coldmine Explorer
 C["championcoldmineguard"] = { lo = 60, hi = 60, type = "Humanoid", spells = { 15580, 6253 }, model = 13563, friend = true } -- Champion Coldmine Guard
 C["championcoldmineinvader"] = { lo = 60, hi = 60, type = "Humanoid", spells = { 12057, 16509, 9080 }, model = 13632 } -- Champion Coldmine Invader
@@ -959,9 +997,14 @@ C["championlegionnaire"] = { lo = 60, hi = 60, type = "Humanoid", spells = {  },
 C["charlgarazorflank"] = { lo = 33, hi = 33, cls = "elite", type = "Humanoid", spells = {  }, model = 4642 } -- Charlga Razorflank
 C["chieftainearthbind"] = { lo = 62, hi = 62, type = "Humanoid", spells = {  }, model = 12673 } -- Chieftain Earthbind
 C["chiefukorzsandscalp"] = { lo = 48, hi = 48, cls = "elite", type = "Humanoid", spells = {  }, model = 6439 } -- Chief Ukorz Sandscalp
+C["chomper"] = { lo = 30, hi = 30, cls = "elite", type = "Beast", spells = { 6409, 3420 }, model = 4906 } -- Chomper
 C["chorushtheobserver"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = {  }, model = 11537, friend = true } -- Cho'Rush the Observer
 C["chromaggus"] = { lo = 63, hi = 63, cls = "worldboss", type = "Dragonkin", spells = {  }, model = 14367 } -- Chromaggus
+C["chromaticdragonspawn"] = { lo = 59, hi = 60, cls = "elite", type = "Dragonkin", spells = { 15580, 15284 }, model = 10094 } -- Chromatic Dragonspawn
+C["chromaticdrakonid"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = { 22560, 23363 }, model = 14352 } -- Chromatic Drakonid
 C["chromaticeliteguard"] = { lo = 59, hi = 60, cls = "elite", type = "Dragonkin", spells = { 15708, 16790, 15580 }, model = 10116 } -- Chromatic Elite Guard
+C["chromaticwhelp"] = { lo = 57, hi = 58, type = "Dragonkin", spells = { 12167, 16250, 16249 }, model = 10095 } -- Chromatic Whelp
+C["clawtentacle"] = { lo = 60, hi = 60, spells = { 26139, 26211 }, model = 15789 } -- Claw Tentacle
 C["cleftscorpid"] = { lo = 35, hi = 36, type = "Beast", spells = { 3616 }, model = 5985 } -- Cleft Scorpid
 C["cleo"] = { lo = 5, hi = 5, type = "Critter", spells = {  }, model = 9990 } -- Cleo
 C["coldmineexplorer"] = { lo = 54, hi = 55, type = "Humanoid", spells = { 12544, 15244, 14145, 15242 }, model = 13895 } -- Coldmine Explorer
@@ -981,6 +1024,7 @@ C["cookie"] = { lo = 20, hi = 20, cls = "elite", type = "Humanoid", spells = {  
 C["corehound"] = { lo = 61, hi = 61, cls = "elite", type = "Beast", spells = { 19771 }, model = 12168 } -- Core Hound
 C["corerager"] = { lo = 62, hi = 62, cls = "elite", type = "Beast", spells = { 3417, 19820 }, model = 11997 } -- Core Rager
 C["corporalnoregstormpike"] = { lo = 58, hi = 59, cls = "elite", type = "Humanoid", spells = { 19130, 12169 }, model = 13383, friend = true } -- Corporal Noreg Stormpike
+C["corpsescarab"] = { lo = 60, hi = 60, spells = {  }, model = 10005 } -- Corpse Scarab
 C["corruptedbluewhelp"] = { lo = 60, hi = 60, type = "Dragonkin", spells = {  }, model = 9994 } -- Corrupted Blue Whelp
 C["corruptedbronzewhelp"] = { lo = 60, hi = 60, type = "Dragonkin", spells = {  }, model = 14720 } -- Corrupted Bronze Whelp
 C["corruptedgreenwhelp"] = { lo = 60, hi = 60, type = "Dragonkin", spells = {  }, model = 694 } -- Corrupted Green Whelp
@@ -989,10 +1033,13 @@ C["corruptforceofnature"] = { lo = 44, hi = 44, type = "Elemental", spells = {  
 C["corruptor"] = { lo = 42, hi = 43, type = "Demon", spells = { 5413, 21068 }, model = 12345 } -- Corruptor
 C["creepingsludge"] = { lo = 45, hi = 46, cls = "elite", spells = { 21070 }, model = 14350 } -- Creeping Sludge
 C["crestkiller"] = { lo = 54, hi = 54, cls = "elite", type = "Humanoid", spells = { 13767, 3417 }, model = 9053 } -- Crest Killer
+C["crimsonbattlemage"] = { lo = 59, hi = 60, cls = "elite", type = "Humanoid", spells = { 12742, 15253, 17145 }, model = 10529 } -- Crimson Battle Mage
+C["crimsoncannon"] = { lo = 61, hi = 61, type = "Mechanical", spells = { 17501 }, model = 10753 } -- Crimson Cannon
 C["crimsonconjuror"] = { lo = 57, hi = 58, cls = "elite", type = "Humanoid", spells = { 12675, 12674, 17195, 17162 }, model = 10488 } -- Crimson Conjuror
 C["crimsondefender"] = { lo = 58, hi = 59, cls = "elite", type = "Humanoid", spells = { 8258, 15493, 13005, 13874 }, model = 10500 } -- Crimson Defender
 C["crimsongallant"] = { lo = 59, hi = 60, cls = "elite", type = "Humanoid", spells = { 17143, 14518, 8990 }, model = 10512 } -- Crimson Gallant
 C["crimsonguardsman"] = { lo = 57, hi = 58, cls = "elite", type = "Humanoid", spells = { 15749, 6713, 11972 }, model = 10492 } -- Crimson Guardsman
+C["crimsoninitiate"] = { lo = 57, hi = 58, cls = "elite", type = "Humanoid", spells = { 8362, 17138, 17194 }, model = 10496 } -- Crimson Initiate
 C["crimsonmonk"] = { lo = 58, hi = 60, cls = "elite", type = "Humanoid", spells = { 11978, 8876 }, model = 10463 } -- Crimson Monk
 C["crimsonsorcerer"] = { lo = 58, hi = 59, cls = "elite", type = "Humanoid", spells = { 15230, 13323, 12544, 14145, 17150 }, model = 10504 } -- Crimson Sorcerer
 C["crowdpummeler960"] = { lo = 32, hi = 32, cls = "elite", type = "Mechanical", spells = {  }, model = 6774 } -- Crowd Pummeler 9-60
@@ -1000,13 +1047,18 @@ C["cryptbeast"] = { lo = 59, hi = 60, cls = "elite", type = "Undead", spells = {
 C["cryptcrawler"] = { lo = 58, hi = 59, cls = "elite", type = "Undead", spells = { 15471, 3589, 16430 }, model = 6841 } -- Crypt Crawler
 C["cryptguard"] = { lo = 61, hi = 61, cls = "elite", type = "Undead", spells = { 15284, 28991, 28969, 8269 }, model = 14698 } -- Crypt Guard
 C["cryptreaver"] = { lo = 61, hi = 61, cls = "elite", type = "Undead", spells = { 15284, 22413, 8269 }, model = 15941 } -- Crypt Reaver
+C["cryptscarab"] = { lo = 58, hi = 58, type = "Beast", spells = {  }, model = 10005 } -- Crypt Scarab
 C["crystalfang"] = { lo = 60, hi = 60, cls = "rareelite", type = "Beast", spells = {  }, model = 9755 } -- Crystal Fang
 C["cthun"] = { lo = 63, hi = 63, cls = "worldboss", spells = {  }, model = 15787 } -- C'Thun
 C["cthunportal"] = { lo = 63, hi = 63, spells = {  }, model = 15866 } -- C'Thun Portal
 C["darkironagent"] = { lo = 32, hi = 33, cls = "elite", type = "Humanoid", spells = { 11802 }, model = 3456 } -- Dark Iron Agent
 C["darkironambassador"] = { lo = 33, hi = 33, cls = "rareelite", type = "Humanoid", spells = { 3053, 16412, 12544, 184, 10870 }, model = 6669 } -- Dark Iron Ambassador
+C["darkironlandmine"] = { lo = 32, hi = 33, type = "Mechanical", spells = { 11816, 10831, 4043 }, model = 6271 } -- Dark Iron Land Mine
+C["darkmastergandling"] = { lo = 61, hi = 61, cls = "elite", type = "Humanoid", spells = {  }, model = 11070 } -- Darkmaster Gandling
+C["darkscreecher"] = { lo = 50, hi = 52, type = "Beast", spells = { 14538, 8281 }, model = 1955 } -- Dark Screecher
 C["darktouchedwarrior"] = { lo = 61, hi = 61, cls = "elite", type = "Undead", spells = {  }, model = 16534 } -- Dark Touched Warrior
 C["deadlycleftscorpid"] = { lo = 42, hi = 43, type = "Beast", spells = { 3616 }, model = 5985 } -- Deadly Cleft Scorpid
+C["deathchillservant"] = { lo = 61, hi = 61, type = "Undead", spells = {  }, model = 732 } -- Deathchill Servant
 C["deathknight"] = { lo = 61, hi = 61, cls = "elite", type = "Undead", spells = { 13589, 5246, 28350, 28353 }, model = 16508 } -- Deathknight
 C["deathknightcaptain"] = { lo = 61, hi = 61, cls = "elite", type = "Undead", spells = { 28335 }, model = 16513 } -- Deathknight Captain
 C["deathknightcavalier"] = { lo = 61, hi = 61, cls = "elite", type = "Undead", spells = { 15284, 28413, 28412 }, model = 10729 } -- Deathknight Cavalier
@@ -1027,6 +1079,7 @@ C["deathstalkeradamant"] = { lo = 18, hi = 18, cls = "elite", type = "Humanoid",
 C["deathstalkervincent"] = { lo = 21, hi = 21, type = "Humanoid", spells = {  }, model = 2689, friend = true } -- Deathstalker Vincent
 C["deathsworncaptain"] = { lo = 25, hi = 25, cls = "rareelite", type = "Undead", spells = { 7165, 15584, 9080 }, model = 3224 } -- Deathsworn Captain
 C["deathtaloncaptain"] = { lo = 62, hi = 62, cls = "elite", type = "Dragonkin", spells = { 22436, 22438, 15496, 22440 }, model = 14544 } -- Death Talon Captain
+C["deathtalondragonspawn"] = { lo = 60, hi = 60, cls = "elite", type = "Dragonkin", spells = { 15284, 15580, 23967 }, model = 2554 } -- Death Talon Dragonspawn
 C["deathtalonflamescale"] = { lo = 62, hi = 62, cls = "elite", type = "Dragonkin", spells = { 16636, 22423 }, model = 8310 } -- Death Talon Flamescale
 C["deathtalonhatcher"] = { lo = 61, hi = 61, cls = "elite", type = "Dragonkin", spells = { 22275, 22442 }, model = 12892 } -- Death Talon Hatcher
 C["deathtalonoverseer"] = { lo = 62, hi = 62, cls = "elite", type = "Humanoid", spells = { 15284, 20623 }, model = 14355 } -- Death Talon Overseer
@@ -1040,8 +1093,10 @@ C["deeprotstomper"] = { lo = 43, hi = 44, cls = "elite", type = "Elemental", spe
 C["deeprottangler"] = { lo = 44, hi = 45, cls = "elite", type = "Elemental", spells = { 21331, 21337 }, model = 13098 } -- Deeprot Tangler
 C["deeprundiver"] = { lo = 20, hi = 20, type = "Humanoid", spells = {  }, model = 14172 } -- Deeprun Diver
 C["deeprunrat"] = { lo = 1, hi = 1, type = "Critter", spells = {  }, model = 1141 } -- Deeprun Rat
+C["deepstinger"] = { lo = 50, hi = 52, type = "Beast", spells = { 14534, 15584 }, model = 7347 } -- Deep Stinger
 C["deer"] = { lo = 5, hi = 5, type = "Critter", spells = {  }, model = 347 } -- Deer
 C["defiasblackguard"] = { lo = 19, hi = 20, cls = "elite", type = "Humanoid", spells = { 8874, 14903, 6408, 1833 }, model = 2314 } -- Defias Blackguard
+C["defiascompanion"] = { lo = 14, hi = 15, type = "Beast", spells = {  }, model = 5207 } -- Defias Companion
 C["defiasevoker"] = { lo = 17, hi = 18, cls = "elite", type = "Humanoid", spells = { 4979, 11829, 12544 }, model = 2318 } -- Defias Evoker
 C["defiasinsurgent"] = { lo = 25, hi = 26, cls = "elite", type = "Humanoid", spells = { 9128, 13730, 6253 }, model = 2147 } -- Defias Insurgent
 C["defiasminer"] = { lo = 17, hi = 18, type = "Humanoid", spells = { 6016 }, model = 308 } -- Defias Miner
@@ -1052,12 +1107,14 @@ C["defiasstripminer"] = { lo = 18, hi = 19, type = "Humanoid", spells = { 6016 }
 C["defiastaskmaster"] = { lo = 18, hi = 19, cls = "elite", type = "Humanoid", spells = { 6660, 6685 }, model = 2440 } -- Defias Taskmaster
 C["defiaswatchman"] = { lo = 16, hi = 17, cls = "elite", type = "Humanoid", spells = { 6660 }, model = 184 } -- Defias Watchman
 C["defiaswizard"] = { lo = 18, hi = 19, cls = "elite", type = "Humanoid", spells = { 9053, 4979, 113 }, model = 2447 } -- Defias Wizard
+C["demonportal"] = { lo = 61, hi = 61, spells = { 22391 }, model = 9510 } -- Demon Portal
 C["deviateadder"] = { lo = 18, hi = 19, cls = "elite", type = "Beast", spells = { 744, 3616 }, model = 4317 } -- Deviate Adder
 C["deviatecrocolisk"] = { lo = 18, hi = 19, type = "Beast", spells = { 3604 }, model = 2996 } -- Deviate Crocolisk
 C["deviatedreadfang"] = { lo = 20, hi = 21, cls = "elite", type = "Beast", spells = { 7399 }, model = 3006 } -- Deviate Dreadfang
 C["deviatefaeriedragon"] = { lo = 20, hi = 20, cls = "rareelite", type = "Dragonkin", spells = {  }, model = 1267 } -- Deviate Faerie Dragon
 C["deviateguardian"] = { lo = 18, hi = 19, cls = "elite", type = "Beast", spells = {  }, model = 755 } -- Deviate Guardian
 C["deviatelasher"] = { lo = 19, hi = 20, spells = { 7342 }, model = 8172 } -- Deviate Lasher
+C["deviatemoccasin"] = { lo = 20, hi = 21, cls = "elite", type = "Beast", spells = {  }, model = 4305 } -- Deviate Moccasin
 C["deviatenightmare"] = { lo = 19, hi = 21, spells = {  }, model = 3006 } -- Deviate Nightmare
 C["deviatepython"] = { lo = 18, hi = 19, type = "Beast", spells = {  }, model = 8173 } -- Deviate Python
 C["deviateravager"] = { lo = 18, hi = 19, cls = "elite", type = "Beast", spells = { 3417 }, model = 1747 } -- Deviate Ravager
@@ -1067,6 +1124,7 @@ C["deviateviper"] = { lo = 19, hi = 20, cls = "elite", type = "Beast", spells = 
 C["dextrenward"] = { lo = 26, hi = 26, cls = "elite", type = "Humanoid", spells = {  }, model = 2149 } -- Dextren Ward
 C["diremaulcrystaltotem"] = { lo = 1, hi = 1, spells = {  }, model = 11686 } -- Dire Maul Crystal Totem
 C["dirkswindle"] = { lo = 59, hi = 59, type = "Humanoid", spells = {  }, model = 14234, friend = true } -- Dirk Swindle
+C["dirtmound"] = { lo = 60, hi = 60, spells = {  }, model = 15294 } -- Dirt Mound
 C["discipleofnaralex"] = { lo = 20, hi = 20, cls = "elite", type = "Humanoid", spells = {  }, model = 1941, friend = true } -- Disciple of Naralex
 C["diseasedghoul"] = { lo = 58, hi = 59, cls = "elite", type = "Undead", spells = { 24063, 18270, 8247, 17742 }, model = 519 } -- Diseased Ghoul
 C["diseasedmaggot"] = { lo = 60, hi = 60, cls = "elite", type = "Beast", spells = {  }, model = 15978 } -- Diseased Maggot
@@ -1074,11 +1132,15 @@ C["doctortheolenkrastinov"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoi
 C["doomforgearcanasmith"] = { lo = 54, hi = 55, type = "Humanoid", spells = { 13748, 13745 }, model = 8812 } -- Doomforge Arcanasmith
 C["doomforgecraftsman"] = { lo = 52, hi = 54, type = "Humanoid", spells = { 15619, 13951, 9143 }, model = 8803 } -- Doomforge Craftsman
 C["doomforgedragoon"] = { lo = 54, hi = 55, cls = "elite", type = "Humanoid", spells = { 15620, 15496, 15495 }, model = 8820 } -- Doomforge Dragoon
+C["doomguardminion"] = { lo = 59, hi = 60, type = "Demon", spells = { 89, 16005, 15090, 16727 }, model = 1912 } -- Doomguard Minion
 C["doomrel"] = { lo = 57, hi = 57, cls = "elite", type = "Undead", spells = { 15245, 12742, 12493, 15092, 13787 }, model = 8687, friend = true } -- Doom'rel
 C["doomtouchedwarrior"] = { lo = 61, hi = 61, cls = "elite", type = "Humanoid", spells = {  }, model = 16528 } -- Doom Touched Warrior
 C["doperel"] = { lo = 56, hi = 56, cls = "elite", type = "Undead", spells = { 15581, 12540, 15583, 15087, 22766, 15582 }, model = 8688, friend = true } -- Dope'rel
 C["draka"] = { lo = 60, hi = 60, cls = "elite", type = "Beast", spells = { 8599 }, model = 10278, friend = true } -- Draka
 C["dreadcreeper"] = { lo = 61, hi = 61, cls = "elite", type = "Beast", spells = { 22687, 744, 6751 }, model = 15937 } -- Dread Creeper
+C["dreadguard"] = { lo = 60, hi = 60, cls = "elite", type = "Demon", spells = { 18663, 15284 }, model = 14152 } -- Dread Guard
+C["dreamscythe"] = { lo = 53, hi = 53, cls = "elite", type = "Dragonkin", spells = {  }, model = 7553 } -- Dreamscythe
+C["dredgeworm"] = { lo = 50, hi = 52, type = "Beast", spells = { 14535, 6917, 13298 }, model = 8182 } -- Dredge Worm
 C["drekthar"] = { lo = 62, hi = 62, cls = "elite", type = "Humanoid", spells = { 13736, 19128, 8269 }, model = 11894, friend = true } -- Drek'Thar
 C["druidofthefang"] = { lo = 19, hi = 20, cls = "elite", type = "Humanoid", spells = { 9532, 8041, 5187, 8040 }, model = 4211 } -- Druid of the Fang
 C["druidofthegrove"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = { 22128, 21668, 22127 }, model = 13409, friend = true } -- Druid of the Grove
@@ -1087,6 +1149,7 @@ C["dunbaldarnorthmarshal"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid
 C["dunbaldarsouthmarshal"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = { 22911, 15584, 23511, 13736, 8599 }, model = 14793 } -- Dun Baldar South Marshal
 C["duros"] = { lo = 60, hi = 60, cls = "elite", type = "Beast", spells = { 8599 }, model = 10278, friend = true } -- Duros
 C["dustwraith"] = { lo = 45, hi = 45, cls = "rareelite", type = "Humanoid", spells = { 12254, 15667 }, model = 9292 } -- Dustwraith
+C["earthbindtotem"] = { lo = 13, hi = 13, spells = { 6474 }, model = 4588 } -- Earthbind Totem
 C["earthborer"] = { lo = 13, hi = 14, cls = "elite", type = "Beast", spells = { 18070 }, model = 11010 } -- Earthborer
 C["earthcallerhalmgar"] = { lo = 32, hi = 32, cls = "rareelite", type = "Humanoid", spells = { 8270, 2484, 9532 }, model = 6102 } -- Earthcaller Halmgar
 C["earthencustodian"] = { lo = 44, hi = 45, type = "Humanoid", spells = { 10255, 10666 }, model = 6025 } -- Earthen Custodian
@@ -1096,6 +1159,7 @@ C["earthenrocksmasher"] = { lo = 42, hi = 43, type = "Humanoid", spells = { 1205
 C["earthensculptor"] = { lo = 42, hi = 43, type = "Humanoid", spells = { 10452, 2602 }, model = 6009 } -- Earthen Sculptor
 C["earthenstonebreaker"] = { lo = 44, hi = 45, type = "Humanoid", spells = { 12057, 2457 }, model = 6010 } -- Earthen Stonebreaker
 C["earthenstonecarver"] = { lo = 44, hi = 45, type = "Humanoid", spells = { 10452, 2602 }, model = 6009 } -- Earthen Stonecarver
+C["earthgrabtotem"] = { lo = 50, hi = 50, spells = { 8378 }, model = 2420 } -- Earthgrab Totem
 C["eastfrostwolfwarmaster"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = { 22911, 15584, 23511, 13736, 8599 }, model = 14797 } -- East Frostwolf Warmaster
 C["ebonroc"] = { lo = 63, hi = 63, cls = "worldboss", type = "Dragonkin", spells = {  }, model = 6377 } -- Ebonroc
 C["edwinvancleef"] = { lo = 21, hi = 21, cls = "rareelite", type = "Humanoid", spells = {  }, model = 2029 } -- Edwin VanCleef
@@ -1113,16 +1177,23 @@ C["eldrethsorcerer"] = { lo = 58, hi = 59, cls = "elite", type = "Undead", spell
 C["eldrethspectre"] = { lo = 58, hi = 59, cls = "elite", type = "Undead", spells = { 17201, 7154, 16380 }, model = 14366 } -- Eldreth Spectre
 C["eldrethspirit"] = { lo = 57, hi = 58, cls = "elite", type = "Undead", spells = { 16838, 22743 }, model = 10751 } -- Eldreth Spirit
 C["electrocutioner6000"] = { lo = 32, hi = 32, cls = "elite", type = "Mechanical", spells = {  }, model = 6915 } -- Electrocutioner 6000
+C["elementalprotectiontotem"] = { lo = 54, hi = 54, spells = { 8263 }, model = 2419 } -- Elemental Protection Totem
 C["embalmingslime"] = { lo = 60, hi = 60, cls = "elite", type = "Undead", spells = { 18950, 28322 }, model = 12349 } -- Embalming Slime
+C["ember"] = { lo = 30, hi = 30, type = "Elemental", spells = {  }, model = 6537 } -- Ember
 C["emperordagranthaurissan"] = { lo = 59, hi = 59, cls = "elite", type = "Humanoid", spells = {  }, model = 8807 } -- Emperor Dagran Thaurissan
 C["emperorveklor"] = { lo = 63, hi = 63, cls = "worldboss", type = "Humanoid", spells = { 26607, 26006, 568, 7393 }, model = 15778 } -- Emperor Vek'lor
 C["emperorveknilash"] = { lo = 63, hi = 63, cls = "worldboss", type = "Humanoid", spells = { 26613, 26007, 7393, 27680 }, model = 15761 } -- Emperor Vek'nilash
+C["empyrean"] = { lo = 60, hi = 60, cls = "elite", type = "Beast", spells = { 27556, 3417, 17963, 8599 }, model = 12589 } -- Empyrean
 C["erictheswift"] = { lo = 40, hi = 40, cls = "elite", type = "Humanoid", spells = { 6268 }, model = 5708, friend = true } -- Eric "The Swift"
+C["eviscerator"] = { lo = 54, hi = 54, cls = "elite", type = "Humanoid", spells = { 14331, 15245, 7121 }, model = 523 } -- Eviscerator
 C["evolvingectoplasm"] = { lo = 17, hi = 18, cls = "elite", spells = {  }, model = 1751 } -- Evolving Ectoplasm
 C["exittrigger"] = { lo = 60, hi = 60, spells = { 26271, 26224 }, model = 11686 } -- Exit Trigger
+C["explosivesheep"] = { lo = 30, hi = 30, type = "Humanoid", spells = { 4051, 8279, 8329 }, model = 3886 } -- Explosive Sheep
 C["eyeofcthun"] = { lo = 63, hi = 63, cls = "worldboss", spells = {  }, model = 15556 } -- Eye of C'Thun
+C["eyeofimmolthar"] = { lo = 59, hi = 59, spells = { 22909 }, model = 14430 } -- Eye of Immol'thar
 C["eyeofnaxxramas"] = { lo = 55, hi = 57, type = "Undead", spells = { 16380, 16381 }, model = 4629 } -- Eye of Naxxramas
 C["eyestalk"] = { lo = 61, hi = 61, cls = "elite", spells = { 26586, 28819, 29407 }, model = 15788 } -- Eye Stalk
+C["eyetentacle"] = { lo = 60, hi = 60, spells = { 26139, 26143 }, model = 15788 } -- Eye Tentacle
 C["fallenroothellcaller"] = { lo = 24, hi = 25, cls = "elite", type = "Demon", spells = { 9613, 8129 }, model = 2021 } -- Fallenroot Hellcaller
 C["fallenrootshadowstalker"] = { lo = 23, hi = 24, cls = "elite", type = "Demon", spells = { 6205, 7939 }, model = 2014 } -- Fallenroot Shadowstalker
 C["falrintreeshaper"] = { lo = 60, hi = 60, type = "Humanoid", spells = {  }, model = 15996, friend = true } -- Falrin Treeshaper
@@ -1139,29 +1210,39 @@ C["firebrandgrunt"] = { lo = 56, hi = 57, cls = "elite", type = "Humanoid", spel
 C["firebrandinvoker"] = { lo = 56, hi = 57, cls = "elite", type = "Humanoid", spells = { 15128, 12468, 12470, 15242 }, model = 9648 } -- Firebrand Invoker
 C["firebrandlegionnaire"] = { lo = 57, hi = 58, cls = "elite", type = "Humanoid", spells = { 3248, 11972, 15128 }, model = 9660 } -- Firebrand Legionnaire
 C["firebrandpyromancer"] = { lo = 57, hi = 58, cls = "elite", type = "Humanoid", spells = { 15128, 15096 }, model = 9656 } -- Firebrand Pyromancer
+C["fireelemental"] = { lo = 35, hi = 36, type = "Elemental", spells = { 25035 }, model = 1405 } -- Fire Elemental
 C["fireguard"] = { lo = 50, hi = 52, cls = "elite", type = "Elemental", spells = { 15242 }, model = 2172 } -- Fireguard
 C["fireguarddestroyer"] = { lo = 54, hi = 56, cls = "elite", type = "Elemental", spells = { 3417, 15243 }, model = 5488 } -- Fireguard Destroyer
 C["firemaw"] = { lo = 63, hi = 63, cls = "worldboss", type = "Dragonkin", spells = {  }, model = 6377 } -- Firemaw
 C["firesworn"] = { lo = 60, hi = 60, cls = "elite", type = "Elemental", spells = { 12742 }, model = 5781 } -- Firesworn
 C["firewalker"] = { lo = 61, hi = 62, cls = "elite", type = "Elemental", spells = { 19635, 19636 }, model = 1070 } -- Firewalker
 C["firstsergeantholamahi"] = { lo = 55, hi = 55, type = "Humanoid", spells = {  }, model = 12677, friend = true } -- First Sergeant Hola'mahi
+C["flamebuffettotem"] = { lo = 56, hi = 57, spells = { 16168 }, model = 4589 } -- Flame Buffet Totem
 C["flamegor"] = { lo = 63, hi = 63, cls = "worldboss", type = "Dragonkin", spells = {  }, model = 6377 } -- Flamegor
 C["flameguard"] = { lo = 61, hi = 62, cls = "elite", type = "Elemental", spells = { 19630, 19631, 19626, 19629 }, model = 5488 } -- Flameguard
 C["flameimp"] = { lo = 61, hi = 62, cls = "elite", type = "Elemental", spells = { 20203 }, model = 12190 } -- Flame Imp
+C["flameofragnaros"] = { lo = 60, hi = 60, spells = { 21155 }, model = 13069 } -- Flame of Ragnaros
 C["flamewaker"] = { lo = 62, hi = 62, cls = "elite", type = "Humanoid", spells = { 19730, 20277, 15502 }, model = 12030 } -- Flamewaker
+C["flamewakerelite"] = { lo = 62, hi = 62, cls = "elite", type = "Humanoid", spells = { 20793, 20229, 20623 }, model = 12002 } -- Flamewaker Elite
+C["flamewakerhealer"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = { 20603, 24668 }, model = 13029 } -- Flamewaker Healer
 C["flamewakerpriest"] = { lo = 62, hi = 62, cls = "elite", type = "Humanoid", spells = { 19775, 23952, 19777, 20294 }, model = 12030 } -- Flamewaker Priest
 C["flamewakerprotector"] = { lo = 62, hi = 62, cls = "elite", type = "Humanoid", spells = { 20740, 20677 }, model = 12030 } -- Flamewaker Protector
 C["fleshflayerghoul"] = { lo = 59, hi = 60, cls = "elite", type = "Undead", spells = { 18200, 9791, 16458, 26047, 8876, 18950 }, model = 414 } -- Fleshflayer Ghoul
 C["fleshhunter"] = { lo = 62, hi = 62, cls = "elite", spells = { 25424, 8876, 25371 }, model = 15463 } -- Flesh Hunter
+C["fleshtentacle"] = { lo = 60, hi = 60, spells = {  }, model = 15793 } -- Flesh Tentacle
 C["forsakenblacksmith"] = { lo = 5, hi = 5, spells = {  }, model = 15176 } -- Forsaken Blacksmith
 C["forsakenfarmer"] = { lo = 5, hi = 5, spells = {  }, model = 15152 } -- Forsaken Farmer
 C["forsakenhorse"] = { lo = 1, hi = 2, spells = {  }, model = 10671 } -- Forsaken Horse
 C["forsakenlumberjack"] = { lo = 5, hi = 5, spells = {  }, model = 15206 } -- Forsaken Lumberjack
 C["forsakenminer"] = { lo = 5, hi = 5, spells = {  }, model = 15187 } -- Forsaken Miner
 C["forsakenstablehand"] = { lo = 5, hi = 5, spells = {  }, model = 15196 } -- Forsaken Stablehand
+C["frailskeleton"] = { lo = 1, hi = 1, type = "Undead", spells = {  }, model = 7550 } -- Frail Skeleton
+C["freedsoul"] = { lo = 1, hi = 1, spells = { 16249, 16143, 16449 }, model = 1825 } -- Freed Soul
 C["freezingspirit"] = { lo = 39, hi = 40, cls = "elite", type = "Undead", spells = { 15532, 12531 }, model = 146 } -- Freezing Spirit
 C["frenziedbat"] = { lo = 60, hi = 60, cls = "elite", type = "Beast", spells = { 30112 }, model = 7896 } -- Frenzied Bat
+C["frenziedbloodseekerbat"] = { lo = 60, hi = 60, type = "Beast", spells = {  }, model = 14562 } -- Frenzied Bloodseeker Bat
 C["frog"] = { lo = 1, hi = 1, type = "Critter", spells = {  }, model = 6297 } -- Frog
+C["frostspectre"] = { lo = 41, hi = 41, type = "Undead", spells = {  }, model = 146 } -- Frost Spectre
 C["frostwolf"] = { lo = 50, hi = 51, type = "Beast", spells = { 13443 }, model = 10278 } -- Frostwolf
 C["frostwolfbloodhound"] = { lo = 53, hi = 54, type = "Beast", spells = { 12787 }, model = 782 } -- Frostwolf Bloodhound
 C["frostwolfbowman"] = { lo = 59, hi = 60, type = "Humanoid", spells = { 22121 }, model = 13398 } -- Frostwolf Bowman
@@ -1174,9 +1255,11 @@ C["frostwolfstablemaster"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid
 C["frostwolfwolfridercommander"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = {  }, model = 13415, friend = true } -- Frostwolf Wolf Rider Commander
 C["frozensoul"] = { lo = 37, hi = 38, cls = "elite", type = "Undead", spells = { 12528, 12531 }, model = 146 } -- Frozen Soul
 C["gaeldenhammersmith"] = { lo = 58, hi = 58, cls = "elite", type = "Humanoid", spells = {  }, model = 13476, friend = true } -- Gaelden Hammersmith
+C["gahzrilla"] = { lo = 46, hi = 46, cls = "elite", spells = {  }, model = 7271 } -- Gahz'rilla
 C["galgannfirehammer"] = { lo = 45, hi = 45, cls = "elite", type = "Humanoid", spells = {  }, model = 6059 } -- Galgann Firehammer
 C["gardengas"] = { lo = 60, hi = 60, spells = { 30074 }, model = 169 } -- Garden Gas
 C["garr"] = { lo = 63, hi = 63, cls = "worldboss", type = "Elemental", spells = {  }, model = 12110 } -- Garr
+C["gasher"] = { lo = 51, hi = 51, cls = "elite", type = "Undead", spells = { 15580, 13540 }, model = 6698 } -- Gasher
 C["gehennas"] = { lo = 63, hi = 63, cls = "worldboss", type = "Humanoid", spells = {  }, model = 13030 } -- Gehennas
 C["gelihast"] = { lo = 26, hi = 26, cls = "elite", type = "Humanoid", spells = {  }, model = 1773 } -- Gelihast
 C["generalangerforge"] = { lo = 57, hi = 57, cls = "elite", type = "Humanoid", spells = {  }, model = 8756 } -- General Angerforge
@@ -1186,12 +1269,18 @@ C["ghamoora"] = { lo = 25, hi = 25, cls = "elite", type = "Beast", spells = {  }
 C["ghokbashguud"] = { lo = 59, hi = 59, cls = "rareelite", type = "Humanoid", spells = { 8269, 11972 }, model = 11809 } -- Ghok Bashguud
 C["ghostlycitizen"] = { lo = 56, hi = 57, cls = "elite", type = "Undead", spells = { 22687 }, model = 10478 } -- Ghostly Citizen
 C["ghoulravener"] = { lo = 58, hi = 59, cls = "elite", type = "Undead", spells = { 12538, 16172, 26047 }, model = 10626 } -- Ghoul Ravener
+C["giantclawtentacle"] = { lo = 60, hi = 60, cls = "elite", spells = {  }, model = 15790 } -- Giant Claw Tentacle
+C["gianteyetentacle"] = { lo = 60, hi = 60, cls = "elite", spells = { 26478, 26134 }, model = 15948 } -- Giant Eye Tentacle
+C["gianttentacleportal"] = { lo = 63, hi = 63, spells = {  }, model = 15900 } -- Giant Tentacle Portal
 C["gilnid"] = { lo = 20, hi = 20, cls = "elite", type = "Humanoid", spells = {  }, model = 7124 } -- Gilnid
+C["gizrultheslavener"] = { lo = 60, hi = 60, cls = "elite", type = "Beast", spells = {  }, model = 9564 } -- Gizrul the Slavener
+C["globofviscidus"] = { lo = 60, hi = 60, spells = {  }, model = 12349 } -- Glob of Viscidus
 C["gloomrel"] = { lo = 56, hi = 56, cls = "elite", type = "Undead", spells = { 9080, 15284, 13737 }, model = 8689, friend = true } -- Gloom'rel
 C["gluth"] = { lo = 63, hi = 63, cls = "worldboss", type = "Undead", spells = {  }, model = 16064 } -- Gluth
 C["glutton"] = { lo = 40, hi = 40, cls = "elite", type = "Undead", spells = {  }, model = 7864 } -- Glutton
 C["goblincraftsman"] = { lo = 18, hi = 19, cls = "elite", type = "Humanoid", spells = { 5159 }, model = 7110 } -- Goblin Craftsman
 C["goblinengineer"] = { lo = 18, hi = 19, cls = "elite", type = "Humanoid", spells = { 3605, 6660 }, model = 7109 } -- Goblin Engineer
+C["goblinlandmine"] = { lo = 43, hi = 43, type = "Mechanical", spells = { 11816, 4043 }, model = 6271 } -- Goblin Land Mine
 C["goblinshipbuilder"] = { lo = 19, hi = 20, cls = "elite", type = "Humanoid", spells = {  }, model = 7112 } -- Goblin Shipbuilder
 C["goblinwoodcarver"] = { lo = 18, hi = 19, cls = "elite", type = "Humanoid", spells = { 6466, 6467, 5532 }, model = 7111 } -- Goblin Woodcarver
 C["golemaggtheincinerator"] = { lo = 63, hi = 63, cls = "worldboss", type = "Giant", spells = {  }, model = 11986 } -- Golemagg the Incinerator
@@ -1204,21 +1293,27 @@ C["gordokmastiff"] = { lo = 57, hi = 59, type = "Beast", spells = { 3604, 13738 
 C["gordokreaver"] = { lo = 58, hi = 59, cls = "elite", type = "Humanoid", spells = { 22572, 22916, 16145, 15284, 13737 }, model = 10709, friend = true } -- Gordok Reaver
 C["gordokspirit"] = { lo = 60, hi = 60, cls = "elite", type = "Undead", spells = {  }, model = 13093 } -- Gordok Spirit
 C["gordokwarlock"] = { lo = 59, hi = 60, cls = "elite", type = "Humanoid", spells = { 22865, 13787, 8994, 13338, 17883, 15232 }, model = 14423, friend = true } -- Gordok Warlock
+C["goroshthedervish"] = { lo = 56, hi = 56, cls = "elite", type = "Humanoid", spells = { 15708, 13736, 21049 }, model = 8760 } -- Gorosh the Dervish
 C["gothiktheharvester"] = { lo = 63, hi = 63, cls = "worldboss", type = "Undead", spells = {  }, model = 16279 } -- Gothik the Harvester
 C["grandcrusaderdathrohan"] = { lo = 62, hi = 62, cls = "elite", type = "Humanoid", spells = { 17286, 20830 }, model = 10545 } -- Grand Crusader Dathrohan
 C["grandwidowfaerlina"] = { lo = 63, hi = 63, cls = "worldboss", type = "Humanoid", spells = {  }, model = 15940 } -- Grand Widow Faerlina
+C["greaterhealingward"] = { lo = 45, hi = 45, spells = { 11901 }, model = 2030 } -- Greater Healing Ward
 C["greaterkraulbat"] = { lo = 32, hi = 32, cls = "elite", type = "Beast", spells = { 3242, 8281 }, model = 1954 } -- Greater Kraul Bat
+C["greendrakonid"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = { 22561, 23363 }, model = 14888 } -- Green Drakonid
 C["grelkor"] = { lo = 55, hi = 55, type = "Humanoid", spells = {  }, model = 1359, friend = true } -- Grelkor
 C["grethokthecontroller"] = { lo = 62, hi = 62, cls = "elite", type = "Humanoid", spells = { 22272, 22274, 14515, 13747 }, model = 14296 } -- Grethok the Controller
 C["grimlok"] = { lo = 45, hi = 45, cls = "elite", type = "Humanoid", spells = {  }, model = 11165 } -- Grimlok
 C["grimpatron"] = { lo = 48, hi = 52, type = "Humanoid", spells = { 11978 }, model = 8673, friend = true } -- Grim Patron
 C["grimtooth"] = { lo = 60, hi = 60, type = "Humanoid", spells = {  }, model = 10792 } -- Grimtooth
+C["grizzle"] = { lo = 54, hi = 54, cls = "elite", type = "Humanoid", spells = { 6524, 8269 }, model = 7873 } -- Grizzle
 C["grobbulus"] = { lo = 63, hi = 63, cls = "worldboss", type = "Undead", spells = {  }, model = 16035 } -- Grobbulus
+C["grubbis"] = { lo = 32, hi = 32, cls = "elite", type = "Humanoid", spells = {  }, model = 6533 } -- Grubbis
 C["grunndawolfheart"] = { lo = 58, hi = 58, cls = "elite", type = "Humanoid", spells = {  }, model = 13477, friend = true } -- Grunnda Wolfheart
 C["gruntbekrah"] = { lo = 62, hi = 62, type = "Humanoid", spells = {  }, model = 12680 } -- Grunt Bek'rah
 C["gruntkorf"] = { lo = 62, hi = 62, type = "Humanoid", spells = {  }, model = 12679 } -- Grunt Korf
 C["guardfengus"] = { lo = 59, hi = 59, cls = "elite", type = "Humanoid", spells = {  }, model = 11561, friend = true } -- Guard Fengus
 C["guardhammon"] = { lo = 62, hi = 62, type = "Humanoid", spells = { 12169, 12170 }, model = 12919 } -- Guard Hammon
+C["guardianoficecrown"] = { lo = 60, hi = 60, cls = "elite", type = "Undead", spells = { 28470 }, model = 16586 } -- Guardian of Icecrown
 C["guardmoldar"] = { lo = 59, hi = 59, cls = "elite", type = "Humanoid", spells = {  }, model = 11561, friend = true } -- Guard Mol'dar
 C["guardquine"] = { lo = 62, hi = 62, type = "Humanoid", spells = { 12169, 12170 }, model = 12920 } -- Guard Quine
 C["guardslipkik"] = { lo = 59, hi = 59, cls = "elite", type = "Humanoid", spells = {  }, model = 11561, friend = true } -- Guard Slip'kik
@@ -1229,9 +1324,12 @@ C["gurubashiblooddrinker"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid
 C["gurubashichampion"] = { lo = 61, hi = 61, cls = "elite", type = "Humanoid", spells = { 22591, 15655, 24438, 22886 }, model = 11100 } -- Gurubashi Champion
 C["gurubashiheadhunter"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = { 24048, 24049, 15708, 22887 }, model = 11109 } -- Gurubashi Headhunter
 C["guzzlingpatron"] = { lo = 48, hi = 52, type = "Humanoid", spells = { 14868, 20825 }, model = 8678, friend = true } -- Guzzling Patron
+C["gyth"] = { lo = 62, hi = 62, cls = "elite", type = "Dragonkin", spells = { 20667, 20712, 18763 }, model = 9806 } -- Gyth
 C["haggle"] = { lo = 20, hi = 20, type = "Humanoid", spells = {  }, model = 14093 } -- Haggle
 C["hakkar"] = { lo = 63, hi = 63, cls = "worldboss", spells = {  }, model = 15295 } -- Hakkar
+C["hakkaribloodkeeper"] = { lo = 49, hi = 50, cls = "elite", spells = { 11660, 11672, 7741 }, model = 7829 } -- Hakkari Bloodkeeper
 C["hakkaribloodpriest"] = { lo = 61, hi = 61, cls = "elite", type = "Humanoid", spells = { 24617, 17201, 24618 }, model = 11221 } -- Hakkari Blood Priest
+C["hakkariminion"] = { lo = 45, hi = 46, spells = { 11672 }, model = 4768 } -- Hakkari Minion
 C["hakkaripriest"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = { 24021, 24022, 22883, 13704 }, model = 11758 } -- Hakkari Priest
 C["hakkarishadowcaster"] = { lo = 61, hi = 61, cls = "elite", type = "Humanoid", spells = { 22947, 15232, 20741 }, model = 11229 } -- Hakkari Shadowcaster
 C["hakkarishadowhunter"] = { lo = 61, hi = 61, cls = "elite", type = "Humanoid", spells = { 21390, 16496, 22908, 24335 }, model = 11225 } -- Hakkari Shadow Hunter
@@ -1243,7 +1341,10 @@ C["haterel"] = { lo = 55, hi = 55, cls = "elite", type = "Undead", spells = { 15
 C["hauntedservitor"] = { lo = 20, hi = 21, cls = "elite", type = "Undead", spells = { 7057 }, model = 3229 } -- Haunted Servitor
 C["hauntingphantasm"] = { lo = 32, hi = 33, cls = "elite", type = "Undead", spells = { 8986, 8278 }, model = 4629 } -- Haunting Phantasm
 C["hazzas"] = { lo = 53, hi = 53, cls = "elite", type = "Dragonkin", spells = {  }, model = 9584 } -- Hazzas
+C["healingward"] = { lo = 37, hi = 37, spells = { 5608 }, model = 2030 } -- Healing Ward
+C["healingwardv"] = { lo = 28, hi = 38, spells = { 4972 }, model = 2030 } -- Healing Ward V
 C["hearthsingerforresten"] = { lo = 57, hi = 57, cls = "rareelite", type = "Undead", spells = {  }, model = 10482 } -- Hearthsinger Forresten
+C["hedrumthecreeper"] = { lo = 53, hi = 53, cls = "elite", type = "Beast", spells = { 745, 6751, 3609, 15474, 15475 }, model = 8271 } -- Hedrum the Creeper
 C["heigantheunclean"] = { lo = 63, hi = 63, cls = "worldboss", type = "Undead", spells = {  }, model = 16309 } -- Heigan the Unclean
 C["henrystern"] = { lo = 36, hi = 36, type = "Humanoid", spells = {  }, model = 8029, friend = true } -- Henry Stern
 C["heralathfallowbrook"] = { lo = 25, hi = 25, type = "Humanoid", spells = {  }, model = 2596, friend = true } -- Heralath Fallowbrook
@@ -1253,17 +1354,23 @@ C["highbornesummoner"] = { lo = 55, hi = 55, cls = "elite", type = "Undead", spe
 C["highinquisitorfairbanks"] = { lo = 40, hi = 40, cls = "elite", type = "Undead", spells = {  }, model = 2605, friend = true } -- High Inquisitor Fairbanks
 C["highinquisitorwhitemane"] = { lo = 42, hi = 42, cls = "elite", type = "Humanoid", spells = {  }, model = 2043 } -- High Inquisitor Whitemane
 C["highinterrogatorgerstahn"] = { lo = 52, hi = 52, cls = "elite", type = "Humanoid", spells = {  }, model = 8761 } -- High Interrogator Gerstahn
+C["highjusticegrimstone"] = { lo = 52, hi = 52, cls = "elite", type = "Humanoid", spells = {  }, model = 9329 } -- High Justice Grimstone
 C["highlordmograine"] = { lo = 63, hi = 63, cls = "worldboss", type = "Undead", spells = { 29061, 26446 }, model = 16139 } -- Highlord Mograine
 C["highlordomokk"] = { lo = 59, hi = 59, cls = "elite", type = "Humanoid", spells = {  }, model = 11565 } -- Highlord Omokk
 C["highpriestessjeklik"] = { lo = 63, hi = 63, cls = "worldboss", type = "Humanoid", spells = {  }, model = 15219 } -- High Priestess Jeklik
 C["highpriestessmarli"] = { lo = 63, hi = 63, cls = "worldboss", type = "Humanoid", spells = {  }, model = 15220 } -- High Priestess Mar'li
+C["highpriestessofthaurissan"] = { lo = 58, hi = 58, cls = "elite", type = "Humanoid", spells = { 15654, 8362, 15586, 15537 }, model = 9295 } -- High Priestess of Thaurissan
 C["highpriestthekal"] = { lo = 63, hi = 63, cls = "worldboss", type = "Humanoid", spells = {  }, model = 15216 } -- High Priest Thekal
 C["highpriestvenoxis"] = { lo = 63, hi = 63, cls = "worldboss", type = "Humanoid", spells = {  }, model = 15217 } -- High Priest Venoxis
 C["hivezaracollector"] = { lo = 60, hi = 60, cls = "elite", spells = { 3589, 12252 }, model = 15483 } -- Hive'Zara Collector
 C["hivezaradrone"] = { lo = 60, hi = 60, cls = "elite", spells = {  }, model = 12153 } -- Hive'Zara Drone
+C["hivezarahatchling"] = { lo = 60, hi = 60, cls = "elite", spells = {  }, model = 11095 } -- Hive'Zara Hatchling
+C["hivezarahornet"] = { lo = 61, hi = 61, cls = "elite", spells = {  }, model = 14522 } -- Hive'Zara Hornet
+C["hivezaralarva"] = { lo = 60, hi = 60, spells = {  }, model = 15554 } -- Hive'Zara Larva
 C["hivezarasandstalker"] = { lo = 61, hi = 61, cls = "elite", spells = { 26381 }, model = 11084 } -- Hive'Zara Sandstalker
 C["hivezarasoldier"] = { lo = 61, hi = 61, cls = "elite", spells = { 25497, 22857 }, model = 15439 } -- Hive'Zara Soldier
 C["hivezarastinger"] = { lo = 61, hi = 61, cls = "elite", spells = { 24150 }, model = 9229 } -- Hive'Zara Stinger
+C["hivezaraswarmer"] = { lo = 60, hi = 60, spells = {  }, model = 482 } -- Hive'Zara Swarmer
 C["hivezarataillasher"] = { lo = 61, hi = 61, cls = "elite", spells = { 25645, 25654 }, model = 15336 } -- Hive'Zara Tail Lasher
 C["hivezarawasp"] = { lo = 61, hi = 61, cls = "elite", spells = { 25185 }, model = 11142 } -- Hive'Zara Wasp
 C["holdoutmedic"] = { lo = 29, hi = 30, cls = "elite", type = "Humanoid", spells = { 22167, 13864, 22168 }, model = 6608 } -- Holdout Medic
@@ -1272,20 +1379,31 @@ C["hooktoothfrenzy"] = { lo = 60, hi = 60, cls = "elite", type = "Beast", spells
 C["hordespiritguide"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = {  }, model = 13338, friend = true } -- Horde Spirit Guide
 C["houndmastergrebmar"] = { lo = 52, hi = 52, cls = "elite", type = "Humanoid", spells = {  }, model = 9212 } -- Houndmaster Grebmar
 C["houndmasterloksey"] = { lo = 34, hi = 34, cls = "elite", type = "Humanoid", spells = {  }, model = 2040 } -- Houndmaster Loksey
+C["hukku"] = { lo = 52, hi = 52, cls = "elite", type = "Undead", spells = { 12790, 12471, 12279, 13540, 9081 }, model = 6702 } -- Hukku
+C["hukkusimp"] = { lo = 52, hi = 52, type = "Demon", spells = { 11770, 11762 }, model = 4449 } -- Hukku's Imp
+C["hukkussuccubus"] = { lo = 52, hi = 52, type = "Demon", spells = { 11779, 6358 }, model = 4162 } -- Hukku's Succubus
+C["hukkusvoidwalker"] = { lo = 52, hi = 52, type = "Demon", spells = {  }, model = 1132 } -- Hukku's Voidwalker
+C["hurleyblackbreath"] = { lo = 55, hi = 55, cls = "elite", type = "Humanoid", spells = {  }, model = 8658 } -- Hurley Blackbreath
+C["hydroling"] = { lo = 57, hi = 57, type = "Elemental", spells = { 22715 }, model = 5561 } -- Hydroling
 C["hydromancervelratha"] = { lo = 46, hi = 46, cls = "elite", type = "Humanoid", spells = {  }, model = 6685 } -- Hydromancer Velratha
 C["hydrospawn"] = { lo = 57, hi = 57, cls = "elite", type = "Elemental", spells = {  }, model = 5489 } -- Hydrospawn
 C["icebloodwarmaster"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = { 22911, 15584, 23511, 13736, 8599 }, model = 14797 } -- Iceblood Warmaster
+C["icetotem"] = { lo = 53, hi = 54, spells = { 18977 }, model = 4590 } -- Ice Totem
 C["icewingmarshal"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = { 22911, 15584, 23511, 13736, 8599 }, model = 14793 } -- Icewing Marshal
 C["idolovenfiretarget"] = { lo = 1, hi = 1, type = "Dragonkin", spells = {  }, model = 7804 } -- Idol Oven Fire Target
+C["illusionaryphantasm"] = { lo = 32, hi = 33, cls = "elite", type = "Undead", spells = {  }, model = 146 } -- Illusionary Phantasm
 C["illyannaravenoak"] = { lo = 60, hi = 60, cls = "elite", type = "Undead", spells = {  }, model = 11270 } -- Illyanna Ravenoak
 C["immolthar"] = { lo = 61, hi = 61, cls = "elite", type = "Demon", spells = {  }, model = 14173 } -- Immol'thar
+C["impminion"] = { lo = 46, hi = 46, type = "Demon", spells = { 3110 }, model = 4449 } -- Imp Minion
 C["infectiousghoul"] = { lo = 61, hi = 61, cls = "elite", type = "Undead", spells = { 29915, 13738, 24318 }, model = 10627 } -- Infectious Ghoul
 C["infectiousskitterer"] = { lo = 61, hi = 61, cls = "elite", type = "Beast", spells = { 28429 }, model = 959 } -- Infectious Skitterer
+C["infernal"] = { lo = 50, hi = 60, type = "Demon", spells = { 22707, 19483 }, model = 169 } -- Infernal
 C["instructormalicia"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = {  }, model = 11069, friend = true } -- Instructor Malicia
 C["instructorrazuvious"] = { lo = 63, hi = 63, cls = "worldboss", type = "Undead", spells = {  }, model = 16582 } -- Instructor Razuvious
 C["interrogatorvishas"] = { lo = 32, hi = 32, cls = "elite", type = "Humanoid", spells = {  }, model = 2044 } -- Interrogator Vishas
 C["invisibleman"] = { lo = 60, hi = 60, spells = {  }, model = 15435 } -- Invisible Man
 C["ironbarkprotector"] = { lo = 57, hi = 59, cls = "elite", type = "Elemental", spells = { 5568, 18670, 28858 }, model = 13489 } -- Ironbark Protector
+C["ironbarktheredeemed"] = { lo = 58, hi = 58, cls = "elite", type = "Elemental", spells = {  }, model = 1461, friend = true } -- Ironbark the Redeemed
 C["irondeepexplorer"] = { lo = 54, hi = 55, type = "Humanoid", spells = { 12544, 15244, 14145, 15242 }, model = 13430 } -- Irondeep Explorer
 C["irondeepguard"] = { lo = 54, hi = 55, type = "Humanoid", spells = { 16856, 15284 }, model = 13311 } -- Irondeep Guard
 C["irondeepminer"] = { lo = 52, hi = 53, type = "Humanoid", spells = { 15572 }, model = 556, friend = true } -- Irondeep Miner
@@ -1294,17 +1412,22 @@ C["irondeepshaman"] = { lo = 53, hi = 54, type = "Humanoid", spells = { 12492, 1
 C["irondeeptrogg"] = { lo = 52, hi = 53, type = "Humanoid", spells = { 14516 }, model = 10285 } -- Irondeep Trogg
 C["ironhandguardian"] = { lo = 56, hi = 56, cls = "elite", type = "Elemental", spells = {  }, model = 9189 } -- Ironhand Guardian
 C["irradiatedpillager"] = { lo = 25, hi = 26, cls = "elite", type = "Humanoid", spells = { 9771, 9798, 8269 }, model = 976 } -- Irradiated Pillager
+C["isalien"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = { 27639, 22907, 14443, 12024, 27636, 27637 }, model = 16000 } -- Isalien
 C["isalientrigger"] = { lo = 60, hi = 60, spells = {  }, model = 11686 } -- Isalien Trigger
 C["jadespinebasilisk"] = { lo = 39, hi = 40, cls = "elite", type = "Beast", spells = { 3636, 9906 }, model = 4486 } -- Jadespine Basilisk
 C["jammalantheprophet"] = { lo = 54, hi = 54, cls = "elite", type = "Humanoid", spells = {  }, model = 6708 } -- Jammal'an the Prophet
 C["jandicebarov"] = { lo = 61, hi = 61, cls = "elite", type = "Undead", spells = {  }, model = 11073 } -- Jandice Barov
+C["jarien"] = { lo = 59, hi = 60, cls = "elite", type = "Undead", spells = { 17685, 18663, 19643, 20812, 27644 }, model = 16018 } -- Jarien
 C["jarienandsothostrigger"] = { lo = 60, hi = 60, spells = {  }, model = 11686 } -- Jarien and Sothos Trigger
 C["jaz"] = { lo = 53, hi = 53, cls = "elite", type = "Humanoid", spells = {  }, model = 9049 } -- Jaz
 C["jedrunewatcher"] = { lo = 59, hi = 59, cls = "rareelite", type = "Humanoid", spells = { 15749, 11972, 14516 }, model = 9686 } -- Jed Runewatcher
+C["jeevee"] = { lo = 58, hi = 58, type = "Demon", spells = {  }, model = 10812 } -- J'eevee
 C["jergoshtheinvoker"] = { lo = 16, hi = 16, cls = "elite", type = "Humanoid", spells = {  }, model = 11429 } -- Jergosh the Invoker
 C["jindothehexxer"] = { lo = 63, hi = 63, cls = "worldboss", type = "Humanoid", spells = {  }, model = 11311 } -- Jin'do the Hexxer
 C["joniverafarmountain"] = { lo = 55, hi = 55, type = "Humanoid", spells = {  }, model = 3061, friend = true } -- Jonivera Farmountain
 C["jotek"] = { lo = 60, hi = 61, cls = "elite", type = "Humanoid", spells = { 16856, 15284 }, model = 13808, friend = true } -- Jotek
+C["jungletoad"] = { lo = 1, hi = 1, type = "Critter", spells = { 24063 }, model = 14932 } -- Jungle Toad
+C["kaldoreielite"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = {  }, model = 15689 } -- Kaldorei Elite
 C["kamdeepfury"] = { lo = 27, hi = 27, cls = "elite", type = "Humanoid", spells = {  }, model = 825 } -- Kam Deepfury
 C["kandrostrasz"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = {  }, model = 15481, friend = true } -- Kandrostrasz
 C["keetar"] = { lo = 58, hi = 58, type = "Humanoid", spells = { 17207, 14516, 15496 }, model = 13300, friend = true } -- Keetar
@@ -1312,8 +1435,11 @@ C["kelthuzad"] = { lo = 63, hi = 63, cls = "worldboss", type = "Undead", spells 
 C["kernobee"] = { lo = 28, hi = 28, type = "Humanoid", spells = {  }, model = 7132, friend = true } -- Kernobee
 C["kharanmighthammer"] = { lo = 52, hi = 52, cls = "elite", type = "Humanoid", spells = {  }, model = 8708, friend = true } -- Kharan Mighthammer
 C["kinggordok"] = { lo = 62, hi = 62, cls = "elite", type = "Humanoid", spells = {  }, model = 11583 } -- King Gordok
+C["kirtonostheherald"] = { lo = 60, hi = 60, cls = "elite", type = "Undead", spells = { 18116, 20741, 18144, 6016, 12882, 8379 }, model = 7534 } -- Kirtonos the Herald
 C["knotthimblejack"] = { lo = 50, hi = 50, type = "Humanoid", spells = {  }, model = 14381, friend = true } -- Knot Thimblejack
+C["kormok"] = { lo = 58, hi = 60, cls = "elite", type = "Humanoid", spells = {  }, model = 16020 } -- Kormok
 C["kormoktrigger"] = { lo = 60, hi = 60, spells = {  }, model = 11686 } -- Kormok Trigger
+C["korv"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = {  }, model = 15976 } -- Korv
 C["kraulbat"] = { lo = 30, hi = 31, cls = "elite", type = "Beast", spells = {  }, model = 1955 } -- Kraul Bat
 C["kresh"] = { lo = 20, hi = 20, cls = "elite", type = "Beast", spells = {  }, model = 5126 } -- Kresh
 C["kurdrumbarleybeard"] = { lo = 55, hi = 55, type = "Humanoid", spells = {  }, model = 3084, friend = true } -- Kurdrum Barleybeard
@@ -1329,7 +1455,9 @@ C["landslide"] = { lo = 50, hi = 50, cls = "elite", type = "Giant", spells = {  
 C["larva"] = { lo = 1, hi = 1, type = "Critter", spells = {  }, model = 9906 } -- Larva
 C["lavaelemental"] = { lo = 61, hi = 62, cls = "elite", type = "Elemental", spells = { 19641 }, model = 5781 } -- Lava Elemental
 C["lavareaver"] = { lo = 62, hi = 63, cls = "elite", type = "Elemental", spells = { 19642, 19644 }, model = 12163 } -- Lava Reaver
+C["lavaspouttotem"] = { lo = 37, hi = 37, spells = { 8266 }, model = 1421 } -- Lava Spout Totem
 C["lavasurger"] = { lo = 61, hi = 62, cls = "elite", type = "Elemental", spells = { 25787 }, model = 12239 } -- Lava Surger
+C["lefty"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = {  }, model = 15972 } -- Lefty
 C["legionnaireteena"] = { lo = 62, hi = 62, type = "Humanoid", spells = {  }, model = 12670 } -- Legionnaire Teena
 C["leprousassistant"] = { lo = 28, hi = 29, type = "Humanoid", spells = { 11264, 12024 }, model = 6967 } -- Leprous Assistant
 C["leprousdefender"] = { lo = 28, hi = 29, cls = "elite", type = "Humanoid", spells = { 6660, 2643, 5116 }, model = 6982 } -- Leprous Defender
@@ -1337,6 +1465,7 @@ C["leprousmachinesmith"] = { lo = 29, hi = 30, type = "Humanoid", spells = { 133
 C["leproustechnician"] = { lo = 29, hi = 30, type = "Humanoid", spells = { 13398, 12024, 10348, 10732, 10345 }, model = 6932 } -- Leprous Technician
 C["lethtendris"] = { lo = 57, hi = 57, cls = "elite", type = "Humanoid", spells = {  }, model = 14378 } -- Lethtendris
 C["lichking"] = { lo = 60, hi = 60, spells = {  }, model = 11686 } -- The Lich King
+C["lieutenantgeneralandorov"] = { lo = 61, hi = 61, cls = "elite", type = "Humanoid", spells = {  }, model = 15688, friend = true } -- Lieutenant General Andorov
 C["lieutenantgreywand"] = { lo = 59, hi = 59, cls = "elite", type = "Humanoid", spells = {  }, model = 13456 } -- Lieutenant Greywand
 C["lieutenantjackspring"] = { lo = 55, hi = 55, type = "Humanoid", spells = {  }, model = 12921, friend = true } -- Lieutenant Jackspring
 C["lieutenantkarter"] = { lo = 55, hi = 55, type = "Humanoid", spells = {  }, model = 12922, friend = true } -- Lieutenant Karter
@@ -1346,17 +1475,21 @@ C["lieutenantmancuso"] = { lo = 59, hi = 59, cls = "elite", type = "Humanoid", s
 C["lieutenantrachelvaccar"] = { lo = 55, hi = 55, type = "Humanoid", spells = {  }, model = 9811 } -- Lieutenant Rachel Vaccar
 C["lieutenantspencer"] = { lo = 59, hi = 59, cls = "elite", type = "Humanoid", spells = {  }, model = 13460 } -- Lieutenant Spencer
 C["lieutenantstouthandle"] = { lo = 59, hi = 59, cls = "elite", type = "Humanoid", spells = {  }, model = 13461 } -- Lieutenant Stouthandle
+C["lightningtotem"] = { lo = 62, hi = 62, spells = { 28297 }, model = 4590 } -- Lightning Totem
 C["livingmonstrosity"] = { lo = 62, hi = 62, cls = "elite", type = "Undead", spells = { 28293, 27990, 28294 }, model = 16175 } -- Living Monstrosity
+C["livingpoison"] = { lo = 61, hi = 61, cls = "elite", type = "Undead", spells = {  }, model = 12349 } -- Living Poison
 C["loatheb"] = { lo = 63, hi = 63, cls = "worldboss", type = "Undead", spells = {  }, model = 16110 } -- Loatheb
 C["lokhtosdarkbargainer"] = { lo = 60, hi = 60, type = "Humanoid", spells = {  }, model = 14666, friend = true } -- Lokhtos Darkbargainer
 C["lordalexeibarov"] = { lo = 60, hi = 60, cls = "elite", type = "Undead", spells = {  }, model = 11072 } -- Lord Alexei Barov
 C["lordblackwood"] = { lo = 60, hi = 60, cls = "elite", type = "Undead", spells = { 28126, 7964, 11972, 20733, 21390, 16496 }, model = 14699 } -- Lord Blackwood
 C["lordcobrahn"] = { lo = 20, hi = 20, cls = "elite", type = "Humanoid", spells = {  }, model = 4213 } -- Lord Cobrahn
+C["lordhelnurath"] = { lo = 62, hi = 62, cls = "elite", type = "Demon", spells = {  }, model = 14556 } -- Lord Hel'nurath
 C["lordincendius"] = { lo = 55, hi = 55, cls = "elite", type = "Elemental", spells = {  }, model = 1204 } -- Lord Incendius
 C["lordkri"] = { lo = 63, hi = 63, cls = "worldboss", type = "Humanoid", spells = {  }, model = 15656 } -- Lord Kri
 C["lordpythas"] = { lo = 21, hi = 21, cls = "elite", type = "Humanoid", spells = {  }, model = 4214 } -- Lord Pythas
 C["lordroccor"] = { lo = 51, hi = 51, cls = "rareelite", type = "Elemental", spells = {  }, model = 5781 } -- Lord Roccor
 C["lordserpentis"] = { lo = 21, hi = 21, cls = "elite", type = "Humanoid", spells = {  }, model = 4215 } -- Lord Serpentis
+C["lordvalthalak"] = { lo = 63, hi = 63, cls = "worldboss", type = "Humanoid", spells = {  }, model = 14308 } -- Lord Valthalak
 C["lordvalthalaktrigger"] = { lo = 60, hi = 60, spells = {  }, model = 11686 } -- Lord Valthalak Trigger
 C["lordvictornefarius"] = { lo = 63, hi = 63, cls = "worldboss", type = "Dragonkin", spells = { 20741, 24668 }, model = 9472 } -- Lord Victor Nefarius
 C["lordvyletongue"] = { lo = 47, hi = 47, cls = "elite", type = "Demon", spells = {  }, model = 12334 } -- Lord Vyletongue
@@ -1366,25 +1499,35 @@ C["lorekeeperlydros"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", sp
 C["lorekeepermykos"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = {  }, model = 14421, friend = true } -- Lorekeeper Mykos
 C["lorekeeperpolkelt"] = { lo = 60, hi = 60, cls = "elite", type = "Undead", spells = {  }, model = 11492 } -- Lorekeeper Polkelt
 C["lorgusjett"] = { lo = 26, hi = 26, cls = "elite", type = "Humanoid", spells = {  }, model = 12822 } -- Lorgus Jett
+C["loro"] = { lo = 51, hi = 51, cls = "elite", type = "Undead", spells = { 12782, 15655, 9205, 13540, 3639 }, model = 6700 } -- Loro
 C["lucifron"] = { lo = 63, hi = 63, cls = "worldboss", type = "Humanoid", spells = {  }, model = 13031 } -- Lucifron
+C["lupinedelusion"] = { lo = 24, hi = 25, type = "Undead", spells = {  }, model = 3123 } -- Lupine Delusion
 C["lupinehorror"] = { lo = 24, hi = 25, cls = "elite", type = "Undead", spells = { 7132 }, model = 2446 } -- Lupine Horror
 C["madscientist"] = { lo = 61, hi = 61, cls = "elite", type = "Undead", spells = { 28301, 28306 }, model = 16063 } -- Mad Scientist
 C["madservant"] = { lo = 61, hi = 61, cls = "elite", type = "Demon", spells = { 24621, 24612, 24611 }, model = 6811 } -- Mad Servant
 C["maexxna"] = { lo = 63, hi = 63, cls = "worldboss", type = "Beast", spells = {  }, model = 15928 } -- Maexxna
+C["maexxnaspiderling"] = { lo = 60, hi = 60, type = "Beast", spells = { 28741, 28776 }, model = 13111 } -- Maexxna Spiderling
 C["maggot"] = { lo = 1, hi = 1, type = "Critter", spells = {  }, model = 9904 } -- Maggot
 C["magisterkalendris"] = { lo = 60, hi = 60, cls = "elite", type = "Undead", spells = {  }, model = 14384 } -- Magister Kalendris
 C["magistratebarthilas"] = { lo = 58, hi = 58, cls = "elite", type = "Undead", spells = {  }, model = 10433 } -- Magistrate Barthilas
 C["magmadar"] = { lo = 63, hi = 63, cls = "worldboss", type = "Beast", spells = {  }, model = 10193 } -- Magmadar
 C["magmus"] = { lo = 57, hi = 57, cls = "elite", type = "Giant", spells = {  }, model = 12162 } -- Magmus
+C["majordomoexecutus"] = { lo = 63, hi = 63, cls = "worldboss", type = "Humanoid", spells = {  }, model = 12029 } -- Majordomo Executus
 C["majorpakkon"] = { lo = 63, hi = 63, cls = "elite", spells = { 24317, 15584, 25322 }, model = 15738 } -- Major Pakkon
 C["majoryeggeth"] = { lo = 63, hi = 63, cls = "elite", spells = { 24317, 15584, 25282 }, model = 15738 } -- Major Yeggeth
 C["malekithepallid"] = { lo = 61, hi = 61, cls = "elite", type = "Humanoid", spells = {  }, model = 10546 } -- Maleki the Pallid
+C["malfurionstormrage"] = { lo = 63, hi = 63, cls = "worldboss", type = "Humanoid", spells = {  }, model = 15399, friend = true } -- Malfurion Stormrage
+C["malgenlongspear"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = { 6660, 20735, 15503, 27632, 27634, 27633 }, model = 15975 } -- Malgen Longspear
 C["malorthezealous"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = {  }, model = 10458 } -- Malor the Zealous
+C["manaburst"] = { lo = 59, hi = 60, type = "Elemental", spells = { 22938 }, model = 14273 } -- Mana Burst
+C["manafiend"] = { lo = 60, hi = 60, cls = "elite", type = "Elemental", spells = { 25679, 15122 }, model = 15547 } -- Mana Fiend
 C["manaremnant"] = { lo = 57, hi = 59, cls = "elite", type = "Elemental", spells = { 14514, 15659 }, model = 14272 } -- Mana Remnant
 C["mangledcadaver"] = { lo = 55, hi = 56, cls = "elite", type = "Undead", spells = { 16143, 15043 }, model = 10972 } -- Mangled Cadaver
 C["mardukblackpool"] = { lo = 58, hi = 58, cls = "elite", type = "Undead", spells = {  }, model = 10248, friend = true } -- Marduk Blackpool
+C["marshalreginaldwindsor"] = { lo = 52, hi = 52, cls = "elite", type = "Humanoid", spells = {  }, model = 9052, friend = true } -- Marshal Reginald Windsor
 C["marshalwindsor"] = { lo = 52, hi = 52, cls = "elite", type = "Humanoid", spells = {  }, model = 8707, friend = true } -- Marshal Windsor
 C["mashaswiftcut"] = { lo = 58, hi = 58, type = "Humanoid", spells = { 8876, 15667, 6434 }, model = 13305, friend = true } -- Masha Swiftcut
+C["massivegeyser"] = { lo = 60, hi = 60, spells = { 22422 }, model = 13069 } -- Massive Geyser
 C["mastercraftsmanomarion"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = {  }, model = 16129, friend = true } -- Master Craftsman Omarion
 C["masterelementalshaperkrixix"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = {  }, model = 14498 } -- Master Elemental Shaper Krixix
 C["mastersergeantbiggins"] = { lo = 55, hi = 55, type = "Humanoid", spells = {  }, model = 12669, friend = true } -- Master Sergeant Biggins
@@ -1396,8 +1539,12 @@ C["mekgineerthermaplugg"] = { lo = 34, hi = 34, cls = "elite", type = "Mechanica
 C["mekgineertrigger"] = { lo = 1, hi = 1, spells = {  }, model = 11686 } -- Mekgineer Trigger
 C["merithraofthedream"] = { lo = 63, hi = 63, cls = "worldboss", type = "Dragonkin", spells = {  }, model = 15420, friend = true } -- Merithra of the Dream
 C["meshloktheharvester"] = { lo = 48, hi = 48, cls = "rareelite", type = "Elemental", spells = { 24375, 15580 }, model = 9014 } -- Meshlok the Harvester
+C["mijan"] = { lo = 52, hi = 52, cls = "elite", type = "Undead", spells = { 8362, 12492, 11899, 8148, 13540 }, model = 6707 } -- Mijan
+C["mindlessskeleton"] = { lo = 60, hi = 60, type = "Undead", spells = { 6788, 17472 }, model = 9784 } -- Mindless Skeleton
+C["mindlessundead"] = { lo = 56, hi = 57, type = "Undead", spells = { 6788 }, model = 9784 } -- Mindless Undead
 C["minerjohnson"] = { lo = 19, hi = 19, cls = "rareelite", type = "Humanoid", spells = {  }, model = 556 } -- Miner Johnson
 C["mistressnagmara"] = { lo = 54, hi = 54, cls = "elite", type = "Demon", spells = { 15341 }, model = 2834, friend = true } -- Mistress Nagmara
+C["mizzlethecrafty"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = {  }, model = 14406, friend = true } -- Mizzle the Crafty
 C["moam"] = { lo = 63, hi = 63, cls = "worldboss", spells = {  }, model = 15392 } -- Moam
 C["mobilealertsystem"] = { lo = 25, hi = 25, type = "Mechanical", spells = { 1543 }, model = 6888 } -- Mobile Alert System
 C["moltendestroyer"] = { lo = 63, hi = 63, cls = "elite", type = "Giant", spells = { 20276, 19129, 18943 }, model = 12162 } -- Molten Destroyer
@@ -1407,6 +1554,7 @@ C["moltenwargolem"] = { lo = 55, hi = 56, cls = "elite", type = "Elemental", spe
 C["monstergeneratorblackwing"] = { lo = 1, hi = 1, spells = {  }, model = 11686 } -- Monster Generator (Blackwing)
 C["monty"] = { lo = 12, hi = 12, type = "Humanoid", spells = {  }, model = 5485, friend = true } -- Monty
 C["mordreshfireeye"] = { lo = 39, hi = 39, cls = "elite", type = "Undead", spells = {  }, model = 8055 } -- Mordresh Fire Eye
+C["morgrayhoof"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = { 27737, 27527, 27532, 27530, 27543, 27551 }, model = 15997 } -- Mor Grayhoof
 C["morgrayhooftrigger"] = { lo = 60, hi = 60, spells = {  }, model = 11686 } -- Mor Grayhoof Trigger
 C["morloch"] = { lo = 58, hi = 58, type = "Humanoid", spells = { 11939, 17228, 12741, 15537 }, model = 5945 } -- Morloch
 C["morphaz"] = { lo = 52, hi = 52, cls = "elite", type = "Dragonkin", spells = {  }, model = 7975 } -- Morphaz
@@ -1416,7 +1564,9 @@ C["mrbigglesworth"] = { lo = 5, hi = 5, type = "Critter", spells = {  }, model =
 C["mrsmite"] = { lo = 20, hi = 20, cls = "elite", type = "Humanoid", spells = {  }, model = 2026 } -- Mr. Smite
 C["murgotdeepforge"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = {  }, model = 13151, friend = true } -- Murgot Deepforge
 C["murkshallowsnapclaw"] = { lo = 22, hi = 23, cls = "elite", type = "Humanoid", spells = { 8379 }, model = 2835 } -- Murkshallow Snapclaw
+C["murkshallowsoftshell"] = { lo = 25, hi = 25, type = "Humanoid", spells = {  }, model = 1819 } -- Murkshallow Softshell
 C["murtagrimgut"] = { lo = 44, hi = 44, cls = "elite", type = "Humanoid", spells = { 10577, 25058, 9734, 11974 }, model = 6438 } -- Murta Grimgut
+C["mutanusthedevourer"] = { lo = 22, hi = 22, cls = "elite", type = "Humanoid", spells = {  }, model = 4088 } -- Mutanus the Devourer
 C["mutatedgrub"] = { lo = 61, hi = 61, cls = "elite", spells = { 30109 }, model = 7898 } -- Mutated Grub
 C["nagasiren"] = { lo = 55, hi = 57, type = "Humanoid", spells = {  }, model = 11263 } -- Naga Siren
 C["najakhexxen"] = { lo = 59, hi = 59, type = "Humanoid", spells = {  }, model = 14232, friend = true } -- Najak Hexxen
@@ -1433,31 +1583,44 @@ C["necroknight"] = { lo = 61, hi = 61, cls = "elite", type = "Undead", spells = 
 C["necroknightguardian"] = { lo = 62, hi = 62, cls = "elite", type = "Undead", spells = { 30092, 30091, 30094, 30096, 28391, 30095 }, model = 2606 } -- Necro Knight Guardian
 C["necropolisacolyte"] = { lo = 62, hi = 62, cls = "elite", type = "Humanoid", spells = { 30096, 27646 }, model = 16160 } -- Necropolis Acolyte
 C["necrostalker"] = { lo = 61, hi = 61, cls = "elite", type = "Beast", spells = { 28431, 18943 }, model = 15939 } -- Necro Stalker
+C["nefarian"] = { lo = 63, hi = 63, cls = "worldboss", type = "Dragonkin", spells = {  }, model = 11380 } -- Nefarian
 C["nefarianstroops"] = { lo = 1, hi = 1, spells = {  }, model = 11686 } -- Nefarian's Troops
+C["nekrumgutchewer"] = { lo = 45, hi = 46, cls = "elite", type = "Undead", spells = {  }, model = 6690 } -- Nekrum Gutchewer
 C["nerubenkan"] = { lo = 60, hi = 60, cls = "elite", type = "Undead", spells = {  }, model = 9793 } -- Nerub'enkan
 C["nessy"] = { lo = 62, hi = 62, cls = "worldboss", type = "Beast", spells = { 3417 }, model = 10244 } -- Nessy
+C["netherwalker"] = { lo = 60, hi = 60, cls = "elite", type = "Demon", spells = { 22878, 18950 }, model = 14428 } -- Netherwalker
+C["nightmareectoplasm"] = { lo = 20, hi = 21, spells = {  }, model = 470 } -- Nightmare Ectoplasm
+C["nightmaresuppressor"] = { lo = 49, hi = 50, cls = "elite", type = "Dragonkin", spells = { 11672, 7741 }, model = 7974 } -- Nightmare Suppressor
 C["nipsy"] = { lo = 12, hi = 12, type = "Humanoid", spells = {  }, model = 12965, friend = true } -- Nipsy
 C["noththeplaguebringer"] = { lo = 63, hi = 63, cls = "worldboss", type = "Undead", spells = {  }, model = 16590 } -- Noth the Plaguebringer
 C["noxiousslime"] = { lo = 46, hi = 47, cls = "elite", spells = { 21070 }, model = 1145 } -- Noxious Slime
 C["noxxion"] = { lo = 48, hi = 48, cls = "elite", type = "Elemental", spells = {  }, model = 11172 } -- Noxxion
+C["noxxionsspawn"] = { lo = 46, hi = 46, type = "Elemental", spells = {  }, model = 5492 } -- Noxxion's Spawn
 C["obsidiandestroyer"] = { lo = 61, hi = 61, cls = "elite", type = "Elemental", spells = { 25756 }, model = 15343 } -- Obsidian Destroyer
 C["obsidianeradicator"] = { lo = 60, hi = 60, cls = "elite", spells = { 26458, 26559, 20223 }, model = 15346 } -- Obsidian Eradicator
 C["obsidiannullifier"] = { lo = 61, hi = 61, cls = "elite", spells = { 26552, 26559, 15584 }, model = 15346 } -- Obsidian Nullifier
 C["obsidiansentinel"] = { lo = 42, hi = 42, cls = "elite", type = "Mechanical", spells = {  }, model = 5285 } -- Obsidian Sentinel
+C["obsidianshard"] = { lo = 35, hi = 35, type = "Mechanical", spells = {  }, model = 3731 } -- Obsidian Shard
 C["odotheblindwatcher"] = { lo = 24, hi = 24, cls = "elite", type = "Humanoid", spells = {  }, model = 522 } -- Odo the Blindwatcher
 C["oggleflint"] = { lo = 16, hi = 16, cls = "elite", type = "Humanoid", spells = {  }, model = 11611 } -- Oggleflint
 C["ogomthewretched"] = { lo = 53, hi = 53, cls = "elite", type = "Undead", spells = { 15654, 11660, 12493 }, model = 6709 } -- Ogom the Wretched
 C["ograbisi"] = { lo = 55, hi = 55, cls = "elite", type = "Humanoid", spells = {  }, model = 11553 } -- Ograbisi
+C["ohgan"] = { lo = 60, hi = 60, cls = "worldboss", type = "Beast", spells = {  }, model = 15271 } -- Ohgan
+C["okthorthebreaker"] = { lo = 53, hi = 53, cls = "elite", type = "Humanoid", spells = {  }, model = 11538 } -- Ok'thor the Breaker
 C["olaf"] = { lo = 40, hi = 40, cls = "elite", type = "Humanoid", spells = { 8242 }, model = 5709, friend = true } -- Olaf
 C["oldironbark"] = { lo = 58, hi = 58, cls = "elite", type = "Elemental", spells = {  }, model = 13170 } -- Old Ironbark
 C["oldserrakis"] = { lo = 26, hi = 26, cls = "elite", type = "Beast", spells = {  }, model = 1816 } -- Old Serra'kis
 C["onyxia"] = { lo = 63, hi = 63, cls = "worldboss", type = "Dragonkin", spells = {  }, model = 8570 } -- Onyxia
 C["onyxianwarder"] = { lo = 60, hi = 63, cls = "elite", type = "Dragonkin", spells = { 20203, 18958, 15284, 12097 }, model = 8711 } -- Onyxian Warder
+C["onyxianwhelp"] = { lo = 56, hi = 57, type = "Dragonkin", spells = { 20228, 15750 }, model = 397 } -- Onyxian Whelp
 C["onyxiatrigger"] = { lo = 1, hi = 1, spells = {  }, model = 11686 } -- Onyxia Trigger
 C["oozeling"] = { lo = 40, hi = 40, spells = {  }, model = 7763 } -- Oozeling
+C["orbofdomination"] = { lo = 1, hi = 1, spells = {  }, model = 14501 } -- Orb of Domination
 C["oroeyegouge"] = { lo = 44, hi = 44, cls = "elite", type = "Humanoid", spells = { 12741, 11962, 11990, 9613 }, model = 6432 } -- Oro Eyegouge
 C["ossiriancrystaltrigger"] = { lo = 60, hi = 60, spells = {  }, model = 14501 } -- Ossirian Crystal Trigger
 C["ossiriantheunscarred"] = { lo = 63, hi = 63, cls = "worldboss", spells = {  }, model = 15432 } -- Ossirian the Unscarred
+C["ouro"] = { lo = 63, hi = 63, cls = "worldboss", type = "Beast", spells = {  }, model = 15509 } -- Ouro
+C["ouroscarab"] = { lo = 60, hi = 60, cls = "elite", spells = {  }, model = 11108 } -- Ouro Scarab
 C["ourospawner"] = { lo = 60, hi = 60, spells = {  }, model = 15294 } -- Ouro Spawner
 C["overlordramtusk"] = { lo = 32, hi = 32, cls = "elite", type = "Humanoid", spells = {  }, model = 4652 } -- Overlord Ramtusk
 C["overlordwyrmthalak"] = { lo = 60, hi = 60, cls = "elite", type = "Dragonkin", spells = {  }, model = 8711 } -- Overlord Wyrmthalak
@@ -1477,11 +1640,20 @@ C["plagueddeathhound"] = { lo = 61, hi = 61, cls = "elite", type = "Beast", spel
 C["plaguedgargoyle"] = { lo = 61, hi = 61, cls = "elite", type = "Undead", spells = { 29325, 28995, 18950 }, model = 14710 } -- Plagued Gargoyle
 C["plaguedghoul"] = { lo = 61, hi = 61, cls = "elite", type = "Undead", spells = { 19818, 29915, 13738, 24318 }, model = 10627 } -- Plagued Ghoul
 C["plaguedhatchling"] = { lo = 57, hi = 59, type = "Dragonkin", spells = { 17745 }, model = 10007 } -- Plagued Hatchling
+C["plaguedinsect"] = { lo = 55, hi = 55, type = "Critter", spells = { 16460 }, model = 7511 } -- Plagued Insect
+C["plaguedmaggot"] = { lo = 55, hi = 55, type = "Critter", spells = { 16449 }, model = 9903 } -- Plagued Maggot
+C["plaguedrat"] = { lo = 55, hi = 55, type = "Critter", spells = { 16448 }, model = 1141 } -- Plagued Rat
+C["plaguedwarrior"] = { lo = 61, hi = 61, cls = "elite", type = "Undead", spells = { 15496 }, model = 16916 } -- Plagued Warrior
 C["plagueghoul"] = { lo = 57, hi = 58, cls = "elite", type = "Undead", spells = { 8599, 16458, 15584 }, model = 559 } -- Plague Ghoul
+C["plaguemawtherotting"] = { lo = 40, hi = 40, cls = "elite", type = "Humanoid", spells = {  }, model = 6124 } -- Plaguemaw the Rotting
 C["plagueslime"] = { lo = 61, hi = 61, cls = "elite", spells = { 28988, 28990 }, model = 11140 } -- Plague Slime
 C["plaguewave"] = { lo = 60, hi = 60, spells = {  }, model = 15435 } -- Plague Wave
 C["pluggerspazzring"] = { lo = 55, hi = 55, cls = "elite", type = "Humanoid", spells = {  }, model = 8652, friend = true } -- Plugger Spazzring
+C["poisoncloud"] = { lo = 60, hi = 60, spells = {  }, model = 11686 } -- Poison Cloud
+C["poisonouscloud"] = { lo = 60, hi = 60, spells = { 6306, 24320 }, model = 11686 } -- Poisonous Cloud
 C["poisonsprite"] = { lo = 42, hi = 43, type = "Demon", spells = { 21067 }, model = 2452 } -- Poison Sprite
+C["portalofmadness"] = { lo = 1, hi = 1, spells = {  }, model = 9510 } -- Portal of Madness
+C["powerfulhealingward"] = { lo = 60, hi = 60, spells = { 24684, 24311 }, model = 15292 } -- Powerful Healing Ward
 C["primalistthurloga"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = { 15982, 15786, 16006, 15616, 15234 }, model = 13478, friend = true } -- Primalist Thurloga
 C["primordialbehemoth"] = { lo = 48, hi = 49, cls = "elite", type = "Giant", spells = { 5568, 21071 }, model = 12309 } -- Primordial Behemoth
 C["princesshuhuran"] = { lo = 63, hi = 63, cls = "worldboss", spells = {  }, model = 15739 } -- Princess Huhuran
@@ -1518,7 +1690,9 @@ C["ragetalonfiretongue"] = { lo = 60, hi = 61, cls = "elite", type = "Dragonkin"
 C["ragetalonflamescale"] = { lo = 58, hi = 59, cls = "elite", type = "Dragonkin", spells = { 16102, 15285, 12470 }, model = 8249 } -- Rage Talon Flamescale
 C["ragglesnout"] = { lo = 40, hi = 40, cls = "elite", type = "Humanoid", spells = {  }, model = 11382 } -- Ragglesnout
 C["ragingagamar"] = { lo = 25, hi = 26, cls = "elite", type = "Beast", spells = { 8269 }, model = 2453 } -- Raging Agam'ar
+C["ragnaros"] = { lo = 63, hi = 63, cls = "worldboss", type = "Elemental", spells = {  }, model = 11121 } -- Ragnaros
 C["raiderbork"] = { lo = 55, hi = 55, type = "Humanoid", spells = {  }, model = 12678, friend = true } -- Raider Bork
+C["ramsteinthegorger"] = { lo = 61, hi = 61, cls = "elite", type = "Undead", spells = {  }, model = 12818 } -- Ramstein the Gorger
 C["rarck"] = { lo = 55, hi = 55, type = "Humanoid", spells = {  }, model = 4294, friend = true } -- Rarck
 C["rasfrostwhisper"] = { lo = 62, hi = 62, cls = "elite", type = "Undead", spells = { 18099, 8398, 12096, 18763, 18100, 11130 }, model = 7919 } -- Ras Frostwhisper
 C["rat"] = { lo = 1, hi = 1, type = "Critter", spells = {  }, model = 1141 } -- Rat
@@ -1552,11 +1726,15 @@ C["razzashiserpent"] = { lo = 60, hi = 60, cls = "elite", type = "Beast", spells
 C["razzashiskitterer"] = { lo = 56, hi = 58, cls = "elite", type = "Beast", spells = { 11838 }, model = 15072 } -- Razzashi Skitterer
 C["razzashivenombrood"] = { lo = 60, hi = 60, cls = "elite", type = "Beast", spells = { 24596, 7992 }, model = 14950 } -- Razzashi Venombrood
 C["reanimatedcorpse"] = { lo = 58, hi = 59, type = "Undead", spells = { 18270, 23965 }, model = 10975 } -- Reanimated Corpse
+C["reddrakonid"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = { 22558, 23363 }, model = 14889 } -- Red Drakonid
 C["remainsofapaladin"] = { lo = 35, hi = 35, type = "Humanoid", spells = {  }, model = 5711, friend = true } -- Remains of a Paladin
+C["remotecontrolledgolem"] = { lo = 18, hi = 18, cls = "elite", type = "Mechanical", spells = {  }, model = 1159 } -- Remote-Controlled Golem
 C["residualmonstrosity"] = { lo = 59, hi = 60, cls = "elite", type = "Elemental", spells = { 22939, 22940, 15230 }, model = 14254 } -- Residual Monstrosity
+C["restlesssoul"] = { lo = 1, hi = 1, spells = {  }, model = 1825 } -- Restless Soul
 C["rethilgore"] = { lo = 20, hi = 20, cls = "elite", type = "Humanoid", spells = {  }, model = 524 } -- Rethilgore
 C["revanchion"] = { lo = 60, hi = 60, cls = "elite", type = "Undead", spells = { 29849, 12544, 28126, 15245 }, model = 14695 } -- Revanchion
 C["revelosh"] = { lo = 40, hi = 40, cls = "elite", type = "Humanoid", spells = {  }, model = 5945 } -- Revelosh
+C["rezznik"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = { 19784, 27677, 8209 }, model = 15977 } -- Rezznik
 C["rhahkzor"] = { lo = 19, hi = 19, cls = "elite", type = "Humanoid", spells = {  }, model = 14403 } -- Rhahk'Zor
 C["ribblyscrewspigot"] = { lo = 53, hi = 53, cls = "elite", type = "Humanoid", spells = {  }, model = 8667, friend = true } -- Ribbly Screwspigot
 C["ribblyscrony"] = { lo = 48, hi = 52, cls = "elite", type = "Humanoid", spells = { 15581, 15692, 13299 }, model = 9233, friend = true } -- Ribbly's Crony
@@ -1565,10 +1743,16 @@ C["risenbonewarder"] = { lo = 58, hi = 59, cls = "elite", type = "Undead", spell
 C["risenconstruct"] = { lo = 58, hi = 61, cls = "elite", type = "Undead", spells = { 8269, 16169, 8876 }, model = 12074 } -- Risen Construct
 C["risendeathknight"] = { lo = 61, hi = 61, cls = "elite", type = "Undead", spells = {  }, model = 16927 } -- Risen Deathknight
 C["risenguard"] = { lo = 57, hi = 59, cls = "elite", type = "Undead", spells = { 15655, 15572 }, model = 7848 } -- Risen Guard
+C["risenguardian"] = { lo = 59, hi = 61, type = "Undead", spells = { 13496, 7068, 16583, 7289, 4974, 11443 }, model = 775 } -- Risen Guardian
+C["risenlackey"] = { lo = 1, hi = 1, type = "Undead", spells = {  }, model = 9786 } -- Risen Lackey
 C["risenprotector"] = { lo = 58, hi = 60, cls = "elite", type = "Undead", spells = { 17439, 6726, 15654 }, model = 11489 } -- Risen Protector
 C["risenwarrior"] = { lo = 59, hi = 61, cls = "elite", type = "Undead", spells = { 14516, 11428, 16509, 15588 }, model = 7847 } -- Risen Warrior
 C["roach"] = { lo = 1, hi = 1, type = "Critter", spells = {  }, model = 2177 } -- Roach
+C["rockwinggargoyle"] = { lo = 57, hi = 58, cls = "elite", type = "Undead", spells = { 13444 }, model = 7533 } -- Rockwing Gargoyle
 C["roogug"] = { lo = 28, hi = 28, cls = "elite", type = "Humanoid", spells = {  }, model = 6110 } -- Roogug
+C["rookeryguardian"] = { lo = 58, hi = 59, cls = "elite", type = "Dragonkin", spells = { 24317, 15580 }, model = 2554 } -- Rookery Guardian
+C["rookeryhatcher"] = { lo = 58, hi = 59, cls = "elite", type = "Dragonkin", spells = {  }, model = 8309 } -- Rookery Hatcher
+C["rotfang"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = { 15581, 15691, 14897, 15610 }, model = 16017 } -- Rotfang
 C["rotgrip"] = { lo = 50, hi = 50, cls = "elite", type = "Beast", spells = {  }, model = 13589 } -- Rotgrip
 C["rottingagamar"] = { lo = 28, hi = 28, cls = "elite", type = "Beast", spells = { 8267 }, model = 4714 } -- Rotting Agam'ar
 C["rottinghighborne"] = { lo = 58, hi = 59, type = "Undead", spells = {  }, model = 14391 } -- Rotting Highborne
@@ -1577,10 +1761,18 @@ C["ruuzlu"] = { lo = 46, hi = 46, cls = "elite", type = "Humanoid", spells = { 7
 C["sacrificedtroll"] = { lo = 60, hi = 60, type = "Undead", spells = {  }, model = 14391 } -- Sacrificed Troll
 C["sahrhee"] = { lo = 30, hi = 30, type = "Humanoid", spells = {  }, model = 11573, friend = true } -- Sah'rhee
 C["sandarrdunereaver"] = { lo = 45, hi = 45, cls = "rareelite", type = "Humanoid", spells = { 14516, 15615, 13730 }, model = 9291 } -- Sandarr Dunereaver
+C["sandfuryacolyte"] = { lo = 42, hi = 44, type = "Humanoid", spells = { 11981, 11980, 11639, 9613 }, model = 6411 } -- Sandfury Acolyte
+C["sandfurycretin"] = { lo = 43, hi = 45, cls = "elite", type = "Humanoid", spells = { 20798, 14032 }, model = 6682 } -- Sandfury Cretin
+C["sandfurydrudge"] = { lo = 44, hi = 45, type = "Humanoid", spells = {  }, model = 6680 } -- Sandfury Drudge
 C["sandfuryexecutioner"] = { lo = 46, hi = 46, cls = "elite", type = "Humanoid", spells = { 7160, 15496, 7366 }, model = 6440 } -- Sandfury Executioner
 C["sandfuryguardian"] = { lo = 45, hi = 46, cls = "elite", type = "Beast", spells = { 13518, 8876 }, model = 4305 } -- Sandfury Guardian
 C["sandfuryshadowhunter"] = { lo = 45, hi = 46, cls = "elite", type = "Humanoid", spells = { 15547, 11641, 18395 }, model = 6425 } -- Sandfury Shadowhunter
+C["sandfuryslave"] = { lo = 43, hi = 44, type = "Humanoid", spells = {  }, model = 6678 } -- Sandfury Slave
 C["sandfuryspeaker"] = { lo = 61, hi = 61, type = "Humanoid", spells = { 3417 }, model = 11314 } -- Sandfury Speaker
+C["sandfuryzealot"] = { lo = 44, hi = 45, type = "Humanoid", spells = { 8599 }, model = 6423 } -- Sandfury Zealot
+C["sandstorm"] = { lo = 44, hi = 44, type = "Elemental", spells = { 10092 }, model = 11686 } -- Sand Storm
+C["sandvortex"] = { lo = 60, hi = 60, type = "Elemental", spells = { 25160 }, model = 14501 } -- Sand Vortex
+C["sapphiron"] = { lo = 63, hi = 63, cls = "worldboss", type = "Undead", spells = {  }, model = 16033 } -- Sapphiron
 C["sarturasroyalguard"] = { lo = 61, hi = 61, cls = "elite", spells = { 26038, 26027, 21727 }, model = 15465 } -- Sartura's Royal Guard
 C["scarab"] = { lo = 44, hi = 46, type = "Beast", spells = { 3256 }, model = 7470 } -- Scarab
 C["scarletabbot"] = { lo = 39, hi = 40, cls = "elite", type = "Humanoid", spells = { 1006, 6064, 8362, 8269 }, model = 2492 } -- Scarlet Abbot
@@ -1605,10 +1797,12 @@ C["scarletsoldier"] = { lo = 35, hi = 36, cls = "elite", type = "Humanoid", spel
 C["scarletsorcerer"] = { lo = 37, hi = 38, cls = "elite", type = "Humanoid", spells = { 8364, 6146, 9672 }, model = 2524 } -- Scarlet Sorcerer
 C["scarlettorturer"] = { lo = 30, hi = 31, cls = "elite", type = "Humanoid", spells = { 9276 }, model = 2607 } -- Scarlet Torturer
 C["scarlettrackinghound"] = { lo = 33, hi = 34, cls = "elite", type = "Beast", spells = {  }, model = 2709 } -- Scarlet Tracking Hound
+C["scarlettrainee"] = { lo = 30, hi = 30, type = "Humanoid", spells = {  }, model = 2467 } -- Scarlet Trainee
 C["scarletwizard"] = { lo = 38, hi = 39, cls = "elite", type = "Humanoid", spells = { 8439, 2601 }, model = 2525 } -- Scarlet Wizard
 C["scarshieldacolyte"] = { lo = 54, hi = 55, cls = "elite", type = "Humanoid", spells = { 8362, 14032, 12039 }, model = 8898 } -- Scarshield Acolyte
 C["scarshieldinfiltrator"] = { lo = 54, hi = 55, cls = "elite", type = "Humanoid", spells = { 11972, 15496, 16037 }, model = 9642, friend = true } -- Scarshield Infiltrator
 C["scarshieldlegionnaire"] = { lo = 54, hi = 55, cls = "elite", type = "Humanoid", spells = { 11972, 15496 }, model = 9629 } -- Scarshield Legionnaire
+C["scarshieldportal"] = { lo = 54, hi = 55, spells = { 15127, 16002, 16004 }, model = 9510 } -- Scarshield Portal
 C["scarshieldraider"] = { lo = 55, hi = 56, cls = "elite", type = "Humanoid", spells = { 14030, 12057 }, model = 9637 } -- Scarshield Raider
 C["scarshieldspellbinder"] = { lo = 54, hi = 55, cls = "elite", type = "Humanoid", spells = { 15122, 15123, 15785, 13748 }, model = 9618 } -- Scarshield Spellbinder
 C["scarshieldwarlock"] = { lo = 54, hi = 55, cls = "elite", type = "Humanoid", spells = { 15125, 12471 }, model = 9609 } -- Scarshield Warlock
@@ -1623,6 +1817,7 @@ C["scholomanceneophyte"] = { lo = 57, hi = 58, cls = "elite", type = "Humanoid",
 C["scholomanceoccultist"] = { lo = 58, hi = 59, cls = "elite", type = "Humanoid", spells = { 15122, 17682, 16431, 17228 }, model = 11157 } -- Scholomance Occultist
 C["scholomancestudent"] = { lo = 58, hi = 59, cls = "elite", type = "Humanoid", spells = {  }, model = 11161, friend = true } -- Scholomance Student
 C["schooloffish"] = { lo = 1, hi = 1, type = "Critter", spells = {  }, model = 4878 } -- School of Fish
+C["scorchingtotem"] = { lo = 52, hi = 52, spells = { 15037 }, model = 4589 } -- Scorching Totem
 C["searingbladecultist"] = { lo = 13, hi = 15, cls = "elite", type = "Humanoid", spells = { 18266 }, model = 11434 } -- Searing Blade Cultist
 C["searingbladeenforcer"] = { lo = 13, hi = 15, cls = "elite", type = "Humanoid", spells = { 8242 }, model = 11430 } -- Searing Blade Enforcer
 C["searingbladewarlock"] = { lo = 13, hi = 15, cls = "elite", type = "Humanoid", spells = { 20791, 12746 }, model = 11438 } -- Searing Blade Warlock
@@ -1636,8 +1831,10 @@ C["sergeantmajorclate"] = { lo = 55, hi = 55, type = "Humanoid", spells = {  }, 
 C["sergeantmajorskyshadow"] = { lo = 55, hi = 55, type = "Humanoid", spells = {  }, model = 12924 } -- Sergeant Major Skyshadow
 C["sergeantthunderhorn"] = { lo = 55, hi = 55, type = "Humanoid", spells = {  }, model = 14612, friend = true } -- Sergeant Thunderhorn
 C["sergeantyazrabloodsnarl"] = { lo = 56, hi = 57, type = "Humanoid", spells = { 11977 }, model = 13402, friend = true } -- Sergeant Yazra Bloodsnarl
+C["servantofantusul"] = { lo = 48, hi = 48, cls = "elite", spells = { 11020 }, model = 601 } -- Servant of Antu'sul
 C["sever"] = { lo = 25, hi = 25, cls = "elite", type = "Undead", spells = { 16508, 17745, 28126, 8269 }, model = 1061 } -- Sever
 C["shadeoferanikus"] = { lo = 55, hi = 55, cls = "elite", type = "Dragonkin", spells = {  }, model = 7806 } -- Shade of Eranikus
+C["shadeofhakkar"] = { lo = 49, hi = 50, cls = "elite", spells = { 12889, 6607, 12888, 9617 }, model = 7690 } -- Shade of Hakkar
 C["shadeofnaxxramas"] = { lo = 61, hi = 61, cls = "elite", type = "Undead", spells = { 18950, 28407 }, model = 14703 } -- Shade of Naxxramas
 C["shadowfangdarksoul"] = { lo = 20, hi = 21, cls = "elite", type = "Humanoid", spells = { 8140, 970 }, model = 657 } -- Shadowfang Darksoul
 C["shadowfangglutton"] = { lo = 21, hi = 22, cls = "elite", type = "Humanoid", spells = { 7122 }, model = 202 } -- Shadowfang Glutton
@@ -1655,6 +1852,7 @@ C["shadowforgerelichunter"] = { lo = 39, hi = 40, cls = "elite", type = "Humanoi
 C["shadowforgesenator"] = { lo = 55, hi = 56, type = "Humanoid", spells = { 15547, 14034, 15498, 12471, 2601, 14868 }, model = 8825 } -- Shadowforge Senator
 C["shadowforgesharpshooter"] = { lo = 43, hi = 44, cls = "elite", type = "Humanoid", spells = { 6660, 6685 }, model = 6057 } -- Shadowforge Sharpshooter
 C["shadowhuntervoshgajin"] = { lo = 58, hi = 58, cls = "elite", type = "Humanoid", spells = {  }, model = 9732 } -- Shadow Hunter Vosh'gajin
+C["shadowpriestsezzziz"] = { lo = 47, hi = 47, cls = "elite", type = "Humanoid", spells = {  }, model = 6441 } -- Shadowpriest Sezz'ziz
 C["shazzrah"] = { lo = 63, hi = 63, cls = "worldboss", type = "Humanoid", spells = {  }, model = 13032 } -- Shazzrah
 C["shendralarancient"] = { lo = 60, hi = 60, cls = "elite", type = "Undead", spells = {  }, model = 14393, friend = true } -- Shen'dralar Ancient
 C["shendralarprovisioner"] = { lo = 52, hi = 52, cls = "elite", type = "Humanoid", spells = {  }, model = 14412, friend = true } -- Shen'dralar Provisioner
@@ -1672,9 +1870,12 @@ C["skeletalberserker"] = { lo = 56, hi = 57, type = "Undead", spells = { 11976, 
 C["skeletalfrostweaver"] = { lo = 37, hi = 38, cls = "elite", type = "Undead", spells = { 9672 }, model = 9783 } -- Skeletal Frostweaver
 C["skeletalguardian"] = { lo = 55, hi = 56, type = "Undead", spells = { 9672, 9613, 13787, 12557, 11975, 13901 }, model = 9789 } -- Skeletal Guardian
 C["skeletalhighborne"] = { lo = 57, hi = 58, type = "Undead", spells = { 21081 }, model = 11078 } -- Skeletal Highborne
+C["skeletalservant"] = { lo = 32, hi = 32, type = "Undead", spells = {  }, model = 7846 } -- Skeletal Servant
+C["skeletalshadowcaster"] = { lo = 36, hi = 36, type = "Undead", spells = { 17312, 992, 984, 12248, 9613 }, model = 9786 } -- Skeletal Shadowcaster
 C["skeletalsmith"] = { lo = 61, hi = 61, cls = "elite", type = "Humanoid", spells = { 23931, 6713, 24317 }, model = 11404 } -- Skeletal Smith
 C["skeletalsteed"] = { lo = 61, hi = 61, cls = "elite", type = "Undead", spells = { 5568, 27826 }, model = 16937 } -- Skeletal Steed
 C["skeletalsummoner"] = { lo = 39, hi = 40, cls = "elite", type = "Undead", spells = { 9532, 11980, 12258 }, model = 1245 } -- Skeletal Summoner
+C["skeletonofzumrah"] = { lo = 35, hi = 35, type = "Undead", spells = {  }, model = 200 } -- Skeleton of Zum'rah
 C["skitteringcrustacean"] = { lo = 22, hi = 23, cls = "elite", type = "Beast", spells = {  }, model = 981 } -- Skittering Crustacean
 C["skul"] = { lo = 58, hi = 58, cls = "rareelite", type = "Undead", spells = {  }, model = 2606 } -- Skul
 C["skullsplitterspeaker"] = { lo = 61, hi = 61, type = "Humanoid", spells = { 3148, 24048 }, model = 11313, friend = true } -- Skullsplitter Speaker
@@ -1693,19 +1894,35 @@ C["smolderthornshadowpriest"] = { lo = 55, hi = 56, cls = "elite", type = "Human
 C["smolderthornwitchdoctor"] = { lo = 56, hi = 57, cls = "elite", type = "Humanoid", spells = { 8262, 15867, 15869 }, model = 9719 } -- Smolderthorn Witch Doctor
 C["snake"] = { lo = 1, hi = 1, type = "Critter", spells = {  }, model = 1206 } -- Snake
 C["snappingcrustacean"] = { lo = 23, hi = 24, cls = "elite", type = "Beast", spells = {  }, model = 1001 } -- Snapping Crustacean
+C["sneed"] = { lo = 20, hi = 20, cls = "elite", type = "Humanoid", spells = {  }, model = 7125 } -- Sneed
 C["sneedsshredder"] = { lo = 20, hi = 20, cls = "elite", type = "Mechanical", spells = { 7399, 3603, 5141 }, model = 1269 } -- Sneed's Shredder
+C["snokhblackspine"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = { 17273, 13878, 11829, 13323 }, model = 15974 } -- Snokh Blackspine
 C["snowblindambusher"] = { lo = 52, hi = 53, type = "Humanoid", spells = { 19472, 7159 }, model = 10282 } -- Snowblind Ambusher
 C["snowblindharpy"] = { lo = 52, hi = 53, type = "Humanoid", spells = { 3589 }, model = 10282 } -- Snowblind Harpy
 C["snowblindwindcaller"] = { lo = 53, hi = 54, type = "Humanoid", spells = { 6728, 9532 }, model = 10282 } -- Snowblind Windcaller
+C["snufflenosegopher"] = { lo = 1, hi = 1, type = "Beast", spells = {  }, model = 2838 } -- Snufflenose Gopher
+C["solakarflamewreath"] = { lo = 60, hi = 60, cls = "elite", type = "Dragonkin", spells = { 16727, 16556 }, model = 9581 } -- Solakar Flamewreath
+C["soldierofthefrozenwastes"] = { lo = 60, hi = 60, cls = "elite", type = "Undead", spells = { 28457 }, model = 7869 } -- Soldier of the Frozen Wastes
 C["sonofarugal"] = { lo = 24, hi = 25, cls = "elite", type = "Humanoid", spells = { 7124 }, model = 1098 } -- Son of Arugal
+C["sonofflame"] = { lo = 60, hi = 60, cls = "elite", type = "Elemental", spells = { 21857, 19818 }, model = 5488 } -- Son of Flame
 C["sonofhakkar"] = { lo = 60, hi = 60, cls = "elite", type = "Beast", spells = { 16790, 24319 }, model = 15275 } -- Son of Hakkar
 C["sorcererashcrombe"] = { lo = 18, hi = 18, cls = "elite", type = "Humanoid", spells = {  }, model = 2005, friend = true } -- Sorcerer Ashcrombe
+C["sothos"] = { lo = 60, hi = 60, cls = "elite", type = "Undead", spells = { 27643, 27641, 12169, 27646, 15749, 15655 }, model = 16003 } -- Sothos
 C["soulflayer"] = { lo = 61, hi = 61, cls = "elite", type = "Beast", spells = { 24619, 22678, 8269, 8876 }, model = 7829 } -- Soulflayer
+C["soulweaver"] = { lo = 60, hi = 60, cls = "elite", type = "Undead", spells = { 28459 }, model = 16178 } -- Soul Weaver
+C["spawnofbaelgar"] = { lo = 49, hi = 50, spells = {  }, model = 8573 } -- Spawn of Bael'Gar
+C["spawnoffankriss"] = { lo = 63, hi = 63, cls = "elite", type = "Beast", spells = { 26662 }, model = 15582 } -- Spawn of Fankriss
 C["spawnofhakkar"] = { lo = 51, hi = 51, cls = "elite", type = "Beast", spells = { 12280 }, model = 4065 } -- Spawn of Hakkar
+C["spectralassassin"] = { lo = 60, hi = 60, type = "Undead", spells = { 27177, 16583 }, model = 15982 } -- Spectral Assassin
 C["spectralcitizen"] = { lo = 55, hi = 56, cls = "elite", type = "Undead", spells = { 16333, 16336 }, model = 10483 } -- Spectral Citizen
+C["spectraldeathknight"] = { lo = 62, hi = 62, cls = "elite", type = "Undead", spells = { 15589, 27991, 20817, 28749, 10848 }, model = 16611 } -- Spectral Deathknight
+C["spectralhorse"] = { lo = 63, hi = 63, cls = "elite", type = "Undead", spells = { 28749, 27993 }, model = 10719 } -- Spectral Horse
 C["spectralresearcher"] = { lo = 58, hi = 60, cls = "elite", type = "Undead", spells = { 17630, 17631 }, model = 3942 } -- Spectral Researcher
+C["spectralrider"] = { lo = 63, hi = 63, cls = "elite", type = "Undead", spells = { 27995, 27987, 27994, 28749 }, model = 16614 } -- Spectral Rider
 C["spectralteacher"] = { lo = 58, hi = 61, cls = "elite", type = "Undead", spells = { 17630, 17633, 8994 }, model = 3942 } -- Spectral Teacher
+C["spectraltrainee"] = { lo = 61, hi = 61, cls = "elite", type = "Undead", spells = { 27989, 28749, 26229 }, model = 3942 } -- Spectral Trainee
 C["spectraltutor"] = { lo = 58, hi = 60, cls = "elite", type = "Undead", spells = { 17630, 12528, 17651 }, model = 3942 } -- Spectral Tutor
+C["spewedlarva"] = { lo = 45, hi = 47, cls = "elite", type = "Beast", spells = { 5413 }, model = 13609 } -- Spewed Larva
 C["spider"] = { lo = 1, hi = 1, type = "Critter", spells = { 745, 744, 6751 }, model = 2536 } -- Spider
 C["spike"] = { lo = 5, hi = 5, type = "Critter", spells = {  }, model = 15181 } -- Spike
 C["spirescarab"] = { lo = 58, hi = 58, type = "Beast", spells = {  }, model = 9469 } -- Spire Scarab
@@ -1721,15 +1938,22 @@ C["spirestonemystic"] = { lo = 55, hi = 56, cls = "elite", type = "Humanoid", sp
 C["spirestoneogremagus"] = { lo = 54, hi = 55, cls = "elite", type = "Humanoid", spells = { 6742, 13747, 15979 }, model = 11562 } -- Spirestone Ogre Magus
 C["spirestonereaver"] = { lo = 55, hi = 56, cls = "elite", type = "Humanoid", spells = { 11876, 15284 }, model = 11581 } -- Spirestone Reaver
 C["spirestonewarlord"] = { lo = 57, hi = 58, cls = "elite", type = "Humanoid", spells = { 16171, 8269 }, model = 11582 } -- Spirestone Warlord
+C["spiritofblaumeux"] = { lo = 63, hi = 63, cls = "worldboss", type = "Undead", spells = { 28833 }, model = 16327 } -- Spirit of Blaumeux
+C["spiritofjarien"] = { lo = 60, hi = 60, type = "Undead", spells = { 27650, 22575, 16856 }, model = 16019 } -- Spirit of Jarien
+C["spiritofkorthazz"] = { lo = 63, hi = 63, cls = "worldboss", type = "Undead", spells = { 28832 }, model = 16329 } -- Spirit of Korth'azz
 C["spiritofmaraudos"] = { lo = 46, hi = 46, cls = "elite", type = "Undead", spells = { 15667, 15795, 6533 }, model = 12370 } -- Spirit of Maraudos
+C["spiritofmograine"] = { lo = 63, hi = 63, cls = "worldboss", type = "Undead", spells = {  }, model = 16326 } -- Spirit of Mograine
 C["spiritofnaxxramas"] = { lo = 61, hi = 61, cls = "elite", type = "Undead", spells = { 18950 }, model = 10553 } -- Spirit of Naxxramas
+C["spiritofsothos"] = { lo = 60, hi = 60, type = "Undead", spells = { 27650, 27646, 15749 }, model = 16004 } -- Spirit of Sothos
 C["spiritofveng"] = { lo = 47, hi = 47, cls = "elite", type = "Undead", spells = { 14030, 15620, 18651 }, model = 12373 } -- Spirit of Veng
+C["spiritofzeliek"] = { lo = 63, hi = 63, cls = "worldboss", type = "Undead", spells = { 28835 }, model = 16328 } -- Spirit of Zeliek
 C["spittingscarab"] = { lo = 60, hi = 60, cls = "elite", spells = { 22886, 24334 }, model = 15464 } -- Spitting Scarab
 C["splinterbonecaptain"] = { lo = 39, hi = 40, cls = "elite", type = "Undead", spells = { 9128, 12461 }, model = 7847 } -- Splinterbone Captain
 C["splinterbonecenturion"] = { lo = 38, hi = 39, type = "Undead", spells = { 8078 }, model = 7848 } -- Splinterbone Centurion
 C["splinterboneskeleton"] = { lo = 35, hi = 35, type = "Undead", spells = {  }, model = 7550 } -- Splinterbone Skeleton
 C["splinterbonewarrior"] = { lo = 37, hi = 38, type = "Undead", spells = { 11971 }, model = 5231 } -- Splinterbone Warrior
 C["splinteredskeleton"] = { lo = 59, hi = 60, cls = "elite", type = "Undead", spells = {  }, model = 11401 } -- Splintered Skeleton
+C["spore"] = { lo = 60, hi = 60, spells = { 29232 }, model = 16111 } -- Spore
 C["squirrel"] = { lo = 1, hi = 1, type = "Critter", spells = {  }, model = 134 } -- Squirrel
 C["stabledalteracram"] = { lo = 50, hi = 51, type = "Beast", spells = {  }, model = 13340 } -- Stabled Alterac Ram
 C["stabledfrostwolf"] = { lo = 50, hi = 51, type = "Beast", spells = {  }, model = 10278 } -- Stabled Frostwolf
@@ -1740,6 +1964,7 @@ C["stomperkreeg"] = { lo = 59, hi = 59, cls = "elite", type = "Humanoid", spells
 C["stoneguardzarg"] = { lo = 55, hi = 55, type = "Humanoid", spells = {  }, model = 12676, friend = true } -- Stone Guard Zarg
 C["stonehearthmarshal"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = { 22911, 15584, 23511, 13736, 8599 }, model = 14793 } -- Stonehearth Marshal
 C["stonekeeper"] = { lo = 46, hi = 46, cls = "elite", type = "Elemental", spells = { 5568, 9874, 10255 }, model = 10805 } -- Stone Keeper
+C["stonerumbler"] = { lo = 21, hi = 22, cls = "elite", type = "Elemental", spells = {  }, model = 9589 } -- Stone Rumbler
 C["stoneskingargoyle"] = { lo = 61, hi = 61, cls = "elite", type = "Undead", spells = { 18950, 29325, 28995 }, model = 14710 } -- Stoneskin Gargoyle
 C["stonespine"] = { lo = 60, hi = 60, cls = "rareelite", type = "Undead", spells = {  }, model = 7856 } -- Stonespine
 C["stonesteward"] = { lo = 44, hi = 44, cls = "elite", type = "Elemental", spells = { 6524 }, model = 2234 } -- Stone Steward
@@ -1766,38 +1991,51 @@ C["subterraneandiemetradon"] = { lo = 46, hi = 48, cls = "elite", type = "Beast"
 C["sufferingvictim"] = { lo = 25, hi = 25, type = "Humanoid", spells = {  }, model = 1027 } -- Suffering Victim
 C["sulfuronharbinger"] = { lo = 63, hi = 63, cls = "worldboss", type = "Humanoid", spells = {  }, model = 13030 } -- Sulfuron Harbinger
 C["sullithuzabomination"] = { lo = 47, hi = 47, cls = "elite", spells = { 11020 }, model = 7345 } -- Sul'lithuz Abomination
+C["sullithuzbroodling"] = { lo = 39, hi = 39, spells = { 8876 }, model = 1075 } -- Sul'lithuz Broodling
 C["sullithuzhatchling"] = { lo = 30, hi = 35, cls = "elite", spells = {  }, model = 1073 } -- Sul'lithuz Hatchling
 C["sullithuzsandcrawler"] = { lo = 45, hi = 47, cls = "elite", type = "Beast", spells = { 11020 }, model = 7345 } -- Sul'lithuz Sandcrawler
+C["summonedwaterelemental"] = { lo = 55, hi = 56, type = "Elemental", spells = {  }, model = 4606 } -- Summoned Water Elemental
+C["superiorhealingward"] = { lo = 56, hi = 56, spells = { 15872 }, model = 2030 } -- Superior Healing Ward
 C["surgicalassistant"] = { lo = 60, hi = 60, cls = "elite", type = "Undead", spells = { 28310 }, model = 836 } -- Surgical Assistant
 C["svalbradfarmountain"] = { lo = 55, hi = 55, type = "Humanoid", spells = {  }, model = 3083, friend = true } -- Svalbrad Farmountain
 C["swarmguardneedler"] = { lo = 61, hi = 61, cls = "elite", spells = { 15584 }, model = 15354 } -- Swarmguard Needler
 C["syndicatemasterryson"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = {  }, model = 13454, friend = true } -- Syndicate Master Ryson
+C["tamedbattleboar"] = { lo = 25, hi = 26, cls = "elite", type = "Beast", spells = { 8260 }, model = 704 } -- Tamed Battleboar
+C["tamedhyena"] = { lo = 27, hi = 28, cls = "elite", type = "Beast", spells = {  }, model = 1535 } -- Tamed Hyena
 C["taragamanthehungerer"] = { lo = 16, hi = 16, cls = "elite", type = "Humanoid", spells = {  }, model = 7970 } -- Taragaman the Hungerer
 C["targorrthedread"] = { lo = 24, hi = 24, cls = "elite", type = "Humanoid", spells = {  }, model = 517 } -- Targorr the Dread
 C["taskmastersnivvle"] = { lo = 58, hi = 58, type = "Humanoid", spells = { 8876, 14516, 16170 }, model = 371 } -- Taskmaster Snivvle
 C["tendriswarpwood"] = { lo = 60, hi = 60, cls = "elite", type = "Elemental", spells = {  }, model = 14383 } -- Tendris Warpwood
+C["tentacleportal"] = { lo = 63, hi = 63, spells = {  }, model = 15882 } -- Tentacle Portal
 C["teslacoil"] = { lo = 60, hi = 60, spells = {  }, model = 13069 } -- Tesla Coil
 C["thaddius"] = { lo = 63, hi = 63, cls = "worldboss", type = "Undead", spells = {  }, model = 16137 } -- Thaddius
 C["thanekorthazz"] = { lo = 63, hi = 63, cls = "worldboss", type = "Undead", spells = { 28832, 28884, 29061 }, model = 16155 } -- Thane Korth'azz
 C["thekathemartyr"] = { lo = 45, hi = 46, cls = "elite", type = "Undead", spells = {  }, model = 6696 } -- Theka the Martyr
+C["theldren"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = {  }, model = 15981 } -- Theldren
 C["theldrentrigger"] = { lo = 60, hi = 60, spells = {  }, model = 11686 } -- Theldren Trigger
 C["theradrimguardian"] = { lo = 47, hi = 48, cls = "elite", type = "Elemental", spells = { 16790, 21057 }, model = 11712 } -- Theradrim Guardian
+C["theradrimshardling"] = { lo = 46, hi = 46, type = "Elemental", spells = { 13584 }, model = 12310 } -- Theradrim Shardling
 C["thessalahydra"] = { lo = 46, hi = 47, cls = "elite", spells = { 21790 }, model = 6737 } -- Thessala Hydra
 C["thorneaterghoul"] = { lo = 37, hi = 38, cls = "elite", type = "Undead", spells = { 12538 }, model = 1065 } -- Thorn Eater Ghoul
 C["thuzadinacolyte"] = { lo = 59, hi = 60, type = "Humanoid", spells = {  }, model = 10535 } -- Thuzadin Acolyte
 C["thuzadinnecromancer"] = { lo = 60, hi = 61, cls = "elite", type = "Humanoid", spells = { 12420, 16431, 16430 }, model = 10539 } -- Thuzadin Necromancer
 C["thuzadinshadowcaster"] = { lo = 58, hi = 59, cls = "elite", type = "Humanoid", spells = { 16429, 11443, 15232 }, model = 10631 } -- Thuzadin Shadowcaster
+C["timmythecruel"] = { lo = 58, hi = 58, cls = "rareelite", type = "Undead", spells = {  }, model = 571 } -- Timmy the Cruel
 C["tinkerergizlock"] = { lo = 50, hi = 50, cls = "elite", type = "Humanoid", spells = {  }, model = 7125 } -- Tinkerer Gizlock
 C["tinksprocketwhistle"] = { lo = 24, hi = 24, type = "Humanoid", spells = {  }, model = 9027, friend = true } -- Tink Sprocketwhistle
 C["toad"] = { lo = 1, hi = 1, type = "Critter", spells = {  }, model = 901 } -- Toad
 C["tobiasseecher"] = { lo = 52, hi = 52, cls = "elite", type = "Humanoid", spells = {  }, model = 9054, friend = true } -- Tobias Seecher
+C["tombfiend"] = { lo = 35, hi = 35, type = "Undead", spells = {  }, model = 6842 } -- Tomb Fiend
 C["tombhorror"] = { lo = 61, hi = 61, cls = "elite", type = "Undead", spells = { 28614, 28615 }, model = 15942 } -- Tomb Horror
+C["tombreaver"] = { lo = 37, hi = 37, cls = "elite", type = "Undead", spells = { 745 }, model = 3004 } -- Tomb Reaver
 C["tormentedofficer"] = { lo = 23, hi = 24, cls = "elite", type = "Undead", spells = { 7054 }, model = 3225 } -- Tormented Officer
 C["tortureddrake"] = { lo = 40, hi = 40, cls = "elite", type = "Dragonkin", spells = {  }, model = 14012 } -- Tortured Drake
 C["torturedslave"] = { lo = 1, hi = 1, type = "Undead", spells = {  }, model = 7550 } -- Tortured Slave
 C["towerpointwarmaster"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = { 22911, 15584, 23511, 13736, 8599 }, model = 14797, friend = true } -- Tower Point Warmaster
 C["toxictunnel"] = { lo = 60, hi = 60, spells = { 28370 }, model = 11686 } -- Toxic Tunnel
+C["tremortotem"] = { lo = 53, hi = 53, spells = { 8145 }, model = 4588 } -- Tremor Totem
 C["tsuzee"] = { lo = 59, hi = 59, cls = "elite", type = "Undead", spells = {  }, model = 11250 } -- Tsu'zee
+C["tutenkash"] = { lo = 40, hi = 40, cls = "elite", type = "Undead", spells = {  }, model = 7845 } -- Tuten'kash
 C["twilightacolyte"] = { lo = 24, hi = 25, cls = "elite", type = "Humanoid", spells = { 2055, 8362 }, model = 2882 } -- Twilight Acolyte
 C["twilightaquamancer"] = { lo = 25, hi = 26, cls = "elite", type = "Humanoid", spells = { 9672, 8372 }, model = 2886 } -- Twilight Aquamancer
 C["twilightbodyguard"] = { lo = 53, hi = 54, cls = "elite", type = "Humanoid", spells = { 13902, 13903, 15615 }, model = 9346 } -- Twilight Bodyguard
@@ -1810,15 +2048,23 @@ C["twilightshadowmage"] = { lo = 26, hi = 27, cls = "elite", type = "Humanoid", 
 C["twilightshammerambassador"] = { lo = 54, hi = 55, type = "Humanoid", spells = { 15096, 15499, 15500, 15501, 12248, 11980 }, model = 8778 } -- Twilight's Hammer Ambassador
 C["twilightshammertorturer"] = { lo = 50, hi = 51, cls = "elite", type = "Humanoid", spells = { 14032, 13616 }, model = 8790 } -- Twilight's Hammer Torturer
 C["umithorson"] = { lo = 58, hi = 58, type = "Humanoid", spells = { 12057, 8147 }, model = 13299 } -- Umi Thorson
+C["undeadpostman"] = { lo = 57, hi = 58, cls = "elite", type = "Undead", spells = { 7713, 5137 }, model = 10668, friend = true } -- Undead Postman
+C["undeadscarab"] = { lo = 57, hi = 57, type = "Undead", spells = {  }, model = 10031 } -- Undead Scarab
 C["underfoot"] = { lo = 5, hi = 5, type = "Critter", spells = {  }, model = 5556 } -- Underfoot
 C["unfetteredspirit"] = { lo = 31, hi = 32, type = "Undead", spells = {  }, model = 5430 } -- Unfettered Spirit
 C["unforgiven"] = { lo = 57, hi = 57, cls = "elite", type = "Undead", spells = {  }, model = 10771 } -- The Unforgiven
 C["unlivingatalai"] = { lo = 48, hi = 49, cls = "elite", type = "Undead", spells = { 8247, 8876, 8269 }, model = 4771 } -- Unliving Atal'ai
+C["unrelentingdeathknight"] = { lo = 61, hi = 61, cls = "elite", type = "Undead", spells = { 27825, 29875, 27826 }, model = 16612 } -- Unrelenting Deathknight
+C["unrelentingrider"] = { lo = 62, hi = 62, cls = "elite", type = "Undead", spells = { 28340, 29875, 27831 }, model = 10729 } -- Unrelenting Rider
+C["unrelentingtrainee"] = { lo = 60, hi = 60, type = "Humanoid", spells = { 29875, 18950, 30285, 20276 }, model = 16608 } -- Unrelenting Trainee
 C["unstablecorpse"] = { lo = 58, hi = 59, type = "Undead", spells = { 17689, 15571, 18270 }, model = 10978 } -- Unstable Corpse
+C["unstoppableabomination"] = { lo = 60, hi = 60, cls = "elite", type = "Undead", spells = { 25646 }, model = 12818 } -- Unstoppable Abomination
 C["vaelastraszthecorrupt"] = { lo = 63, hi = 63, cls = "worldboss", type = "Dragonkin", spells = {  }, model = 13992, friend = true } -- Vaelastrasz the Corrupt
+C["vajashni"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = {  }, model = 15979 } -- Va'jashni
 C["vanndarstormpike"] = { lo = 62, hi = 62, cls = "elite", type = "Humanoid", spells = { 19135, 15588, 19136 }, model = 11896 } -- Vanndar Stormpike
 C["vaultwarder"] = { lo = 45, hi = 45, cls = "elite", type = "Elemental", spells = { 10255, 5568, 10666 }, model = 5989 } -- Vault Warder
 C["vectus"] = { lo = 60, hi = 60, cls = "elite", type = "Undead", spells = {  }, model = 2606, friend = true } -- Vectus
+C["veknissborer"] = { lo = 60, hi = 60, cls = "elite", spells = {  }, model = 6633 } -- Vekniss Borer
 C["veknissdrone"] = { lo = 60, hi = 60, spells = {  }, model = 15362 } -- Vekniss Drone
 C["veknissguardian"] = { lo = 61, hi = 61, cls = "elite", spells = { 8599, 26025 }, model = 14521 } -- Vekniss Guardian
 C["veknisshivecrawler"] = { lo = 62, hi = 62, cls = "elite", spells = { 25809, 25810, 26601, 25051 }, model = 15533 } -- Vekniss Hive Crawler
@@ -1844,14 +2090,20 @@ C["vilerel"] = { lo = 56, hi = 56, cls = "elite", type = "Undead", spells = { 15
 C["vilescarab"] = { lo = 55, hi = 55, spells = {  }, model = 13096 } -- Vile Scarab
 C["viscidus"] = { lo = 63, hi = 63, cls = "worldboss", spells = {  }, model = 15686 } -- Viscidus
 C["viscousfallout"] = { lo = 30, hi = 30, cls = "elite", type = "Elemental", spells = {  }, model = 5497 } -- Viscous Fallout
+C["voidwalkerminion"] = { lo = 47, hi = 47, type = "Demon", spells = {  }, model = 1132 } -- Voidwalker Minion
+C["volida"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = { 27618, 12557 }, model = 15980 } -- Volida
 C["voodooslave"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = { 24670, 24669, 24668 }, model = 14973 } -- Voodoo Slave
+C["voodoospirit"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = {  }, model = 14368 } -- Voodoo Spirit
 C["vorrelsengutz"] = { lo = 8, hi = 8, type = "Humanoid", spells = {  }, model = 2046, friend = true } -- Vorrel Sengutz
 C["wailingbanshee"] = { lo = 58, hi = 59, cls = "elite", type = "Undead", spells = { 19645, 17105 }, model = 8782 } -- Wailing Banshee
 C["wailingguardsman"] = { lo = 21, hi = 22, cls = "elite", type = "Undead", spells = { 7074 }, model = 3226 } -- Wailing Guardsman
+C["walkingbomb"] = { lo = 30, hi = 30, type = "Mechanical", spells = { 11504 }, model = 6977 } -- Walking Bomb
 C["wanderingeyeofkilrogg"] = { lo = 60, hi = 60, type = "Demon", spells = { 22876 }, model = 14430 } -- Wandering Eye of Kilrogg
 C["warbringerconstruct"] = { lo = 53, hi = 54, cls = "elite", type = "Elemental", spells = { 15621 }, model = 8289 } -- Warbringer Construct
+C["warchiefrendblackhand"] = { lo = 62, hi = 62, cls = "worldboss", type = "Humanoid", spells = {  }, model = 9778 } -- Warchief Rend Blackhand
 C["warderstilgiss"] = { lo = 56, hi = 56, cls = "rareelite", type = "Humanoid", spells = {  }, model = 9089 } -- Warder Stilgiss
 C["wardguardian"] = { lo = 31, hi = 31, cls = "elite", type = "Humanoid", spells = { 959 }, model = 6104 } -- Ward Guardian
+C["wardofzumrah"] = { lo = 46, hi = 46, spells = {  }, model = 2418 } -- Ward of Zum'rah
 C["warmastervoone"] = { lo = 59, hi = 59, cls = "elite", type = "Humanoid", spells = {  }, model = 9733 } -- War Master Voone
 C["warosh"] = { lo = 60, hi = 60, type = "Humanoid", spells = {  }, model = 763, friend = true } -- Warosh
 C["warpwoodcrusher"] = { lo = 56, hi = 56, cls = "elite", type = "Elemental", spells = { 22426, 15550 }, model = 12929 } -- Warpwood Crusher
@@ -1859,7 +2111,9 @@ C["warpwoodguardian"] = { lo = 57, hi = 58, cls = "elite", type = "Elemental", s
 C["warpwoodstomper"] = { lo = 57, hi = 58, cls = "elite", type = "Elemental", spells = { 16727, 8876 }, model = 6350 } -- Warpwood Stomper
 C["warpwoodtangler"] = { lo = 55, hi = 56, cls = "elite", type = "Elemental", spells = { 22415, 22414 }, model = 9592 } -- Warpwood Tangler
 C["warpwoodtreant"] = { lo = 54, hi = 55, cls = "elite", type = "Elemental", spells = { 14331, 11428, 18368 }, model = 10621 } -- Warpwood Treant
+C["watchmandoomgrip"] = { lo = 55, hi = 55, cls = "elite", type = "Humanoid", spells = { 11971, 15504 }, model = 8655 } -- Watchman Doomgrip
 C["weapontechnician"] = { lo = 54, hi = 56, type = "Humanoid", spells = { 7896, 12551, 14443, 6660 }, model = 8894 } -- Weapon Technician
+C["weaver"] = { lo = 51, hi = 51, cls = "elite", type = "Dragonkin", spells = {  }, model = 6375 } -- Weaver
 C["weegliblastfuse"] = { lo = 43, hi = 43, cls = "elite", type = "Humanoid", spells = { 8858, 21688, 6660, 10772 }, model = 7222, friend = true } -- Weegli Blastfuse
 C["westfrostwolfwarmaster"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = { 22911, 15584, 23511, 13736, 8599 }, model = 14797 } -- West Frostwolf Warmaster
 C["whiplasher"] = { lo = 54, hi = 54, type = "Elemental", spells = { 21987 }, model = 12962 } -- Whip Lasher
@@ -1881,6 +2135,7 @@ C["wildspawnsatyr"] = { lo = 55, hi = 56, cls = "elite", type = "Demon", spells 
 C["wildspawnshadowstalker"] = { lo = 56, hi = 56, cls = "elite", type = "Demon", spells = { 14897, 22416, 18950, 7939 }, model = 2014 } -- Wildspawn Shadowstalker
 C["wildspawntrickster"] = { lo = 56, hi = 57, cls = "elite", type = "Demon", spells = { 12493, 22371, 4086, 3609 }, model = 2020 } -- Wildspawn Trickster
 C["willixtheimporter"] = { lo = 27, hi = 27, cls = "elite", type = "Humanoid", spells = {  }, model = 7155, friend = true } -- Willix the Importer
+C["windhowler"] = { lo = 25, hi = 26, cls = "elite", type = "Elemental", spells = {  }, model = 5494 } -- Wind Howler
 C["wingcommanderguse"] = { lo = 59, hi = 59, cls = "elite", type = "Humanoid", spells = { 15572, 15580 }, model = 13473, friend = true } -- Wing Commander Guse
 C["wingcommanderichman"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = { 16380, 15580, 16509 }, model = 13470, friend = true } -- Wing Commander Ichman
 C["wingcommanderjeztor"] = { lo = 58, hi = 58, cls = "elite", type = "Humanoid", spells = { 15572, 15580 }, model = 13474, friend = true } -- Wing Commander Jeztor
@@ -1899,14 +2154,22 @@ C["wolfguardworg"] = { lo = 20, hi = 21, type = "Beast", spells = {  }, model = 
 C["wolfmasternandos"] = { lo = 25, hi = 25, cls = "elite", type = "Humanoid", spells = {  }, model = 11179 } -- Wolf Master Nandos
 C["worldtrigger"] = { lo = 60, hi = 60, spells = {  }, model = 11686 } -- World Trigger
 C["wrathhammerconstruct"] = { lo = 55, hi = 56, cls = "elite", type = "Elemental", spells = { 15575, 10966 }, model = 8178 } -- Wrath Hammer Construct
+C["xorothianimp"] = { lo = 59, hi = 60, type = "Demon", spells = {  }, model = 14380 } -- Xorothian Imp
 C["yaelikafarclaw"] = { lo = 55, hi = 55, type = "Humanoid", spells = {  }, model = 9763, friend = true } -- Yaelika Farclaw
+C["yaujbrood"] = { lo = 60, hi = 60, cls = "elite", spells = { 25788 }, model = 11105 } -- Yauj Brood
+C["ysidaharmon"] = { lo = 60, hi = 60, type = "Humanoid", spells = {  }, model = 15967, friend = true } -- Ysida Harmon
 C["ysidastrigger"] = { lo = 60, hi = 60, spells = {  }, model = 11686 } -- Ysida's Trigger
+C["zaetarsspirit"] = { lo = 60, hi = 60, cls = "elite", type = "Undead", spells = {  }, model = 12369, friend = true } -- Zaetar's Spirit
 C["zanzatherestless"] = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = {  }, model = 15144, friend = true } -- Zanza the Restless
 C["zealotlorkhan"] = { lo = 62, hi = 62, cls = "elite", type = "Humanoid", spells = { 17201, 20545, 24208, 6713 }, model = 11219 } -- Zealot Lor'Khan
 C["zealotzath"] = { lo = 62, hi = 62, cls = "elite", type = "Humanoid", spells = { 15581, 12540, 15614, 21060, 18765 }, model = 11189 } -- Zealot Zath
 C["zerillis"] = { lo = 45, hi = 45, cls = "rareelite", type = "Humanoid", spells = { 6533, 12551, 15547 }, model = 9293 } -- Zerillis
 C["zevrimthornhoof"] = { lo = 57, hi = 57, cls = "elite", type = "Demon", spells = {  }, model = 11335 } -- Zevrim Thornhoof
+C["zolo"] = { lo = 51, hi = 51, cls = "elite", type = "Undead", spells = { 12506, 12058, 13540 }, model = 6699 } -- Zolo
+C["zombiechow"] = { lo = 60, hi = 60, cls = "elite", type = "Undead", spells = { 29306 }, model = 10976 } -- Zombie Chow
 C["zoraguthrek"] = { lo = 55, hi = 55, type = "Humanoid", spells = {  }, model = 14781, friend = true } -- Zora Guthrek
+C["zulfarrakdeadhero"] = { lo = 45, hi = 46, type = "Undead", spells = { 3427, 10747 }, model = 6436 } -- Zul'Farrak Dead Hero
+C["zulfarrakzombie"] = { lo = 43, hi = 44, cls = "elite", type = "Undead", spells = { 10747 }, model = 6417 } -- Zul'Farrak Zombie
 C["zulgurubpanthertrigger"] = { lo = 60, hi = 60, spells = {  }, model = 11686 } -- Zul'Gurub Panther Trigger
 C["zulgurubtrigger"] = { lo = 60, hi = 60, spells = {  }, model = 11686 } -- Zul'Gurub Trigger
 C["zuliancrocolisk"] = { lo = 60, hi = 60, cls = "elite", type = "Beast", spells = { 3604, 13445 }, model = 833 } -- Zulian Crocolisk
@@ -1914,8 +2177,11 @@ C["zuliancub"] = { lo = 60, hi = 60, type = "Beast", spells = {  }, model = 1515
 C["zulianpanther"] = { lo = 60, hi = 60, cls = "elite", type = "Beast", spells = { 8355, 24332, 24333 }, model = 633 } -- Zulian Panther
 C["zulianstalker"] = { lo = 61, hi = 61, cls = "elite", type = "Beast", spells = { 7939, 24337 }, model = 14572 } -- Zulian Stalker
 C["zuliantiger"] = { lo = 60, hi = 60, cls = "elite", type = "Beast", spells = {  }, model = 11031 } -- Zulian Tiger
+C["zullor"] = { lo = 52, hi = 52, cls = "elite", type = "Undead", spells = { 12530, 13540, 15584 }, model = 6701 } -- Zul'Lor
 
 -- Creature names by NPC id: a looted corpse shows its id but not its name
+I[89] = "Infernal"
+I[575] = "Fire Elemental"
 I[598] = "Defias Miner"
 I[603] = "Grimtooth"
 I[622] = "Goblin Engineer"
@@ -1924,6 +2190,7 @@ I[636] = "Defias Blackguard"
 I[639] = "Edwin VanCleef"
 I[641] = "Goblin Woodcarver"
 I[642] = "Sneed's Shredder"
+I[643] = "Sneed"
 I[644] = "Rhahk'Zor"
 I[645] = "Cookie"
 I[646] = "Mr. Smite"
@@ -1945,18 +2212,26 @@ I[1729] = "Defias Evoker"
 I[1731] = "Goblin Craftsman"
 I[1732] = "Defias Squallshaper"
 I[1763] = "Gilnid"
+I[1853] = "Darkmaster Gandling"
 I[2110] = "Black Rat"
 I[2225] = "Zora Guthrek"
+I[2520] = "Remote-Controlled Golem"
 I[2529] = "Son of Arugal"
+I[2630] = "Earthbind Totem"
+I[2675] = "Explosive Sheep"
 I[2748] = "Archaedas"
 I[2914] = "Snake"
+I[2992] = "Healing Ward V"
 I[3343] = "Grelkor"
+I[3450] = "Defias Companion"
+I[3560] = "Healing Ward"
 I[3586] = "Miner Johnson"
 I[3625] = "Rarck"
 I[3636] = "Deviate Ravager"
 I[3637] = "Deviate Guardian"
 I[3640] = "Evolving Ectoplasm"
 I[3653] = "Kresh"
+I[3654] = "Mutanus the Devourer"
 I[3669] = "Lord Cobrahn"
 I[3670] = "Lord Pythas"
 I[3673] = "Lord Serpentis"
@@ -2054,9 +2329,13 @@ I[4520] = "Razorfen Geomancer"
 I[4522] = "Razorfen Dustweaver"
 I[4523] = "Razorfen Groundshaker"
 I[4525] = "Razorfen Earthbreaker"
+I[4526] = "Wind Howler"
+I[4528] = "Stone Rumbler"
 I[4530] = "Razorfen Handler"
 I[4531] = "Razorfen Beast Trainer"
 I[4532] = "Razorfen Beastmaster"
+I[4534] = "Tamed Hyena"
+I[4535] = "Tamed Battleboar"
 I[4538] = "Kraul Bat"
 I[4539] = "Greater Kraul Bat"
 I[4540] = "Scarlet Monk"
@@ -2065,6 +2344,8 @@ I[4542] = "High Inquisitor Fairbanks"
 I[4543] = "Bloodmage Thalnos"
 I[4623] = "Quilguard Champion"
 I[4625] = "Death's Head Ward Keeper"
+I[4627] = "Arugal's Voidwalker"
+I[4781] = "Snufflenose Gopher"
 I[4787] = "Argent Guard Thaelrid"
 I[4798] = "Fallenroot Shadowstalker"
 I[4799] = "Fallenroot Hellcaller"
@@ -2105,11 +2386,14 @@ I[4860] = "Stone Steward"
 I[4861] = "Shrike Bat"
 I[4863] = "Jadespine Basilisk"
 I[4887] = "Ghamoo-ra"
+I[4977] = "Murkshallow Softshell"
+I[4978] = "Aku'mai Servant"
 I[5048] = "Deviate Adder"
 I[5053] = "Deviate Crocolisk"
 I[5055] = "Deviate Lasher"
 I[5056] = "Deviate Dreadfang"
 I[5058] = "Wolfguard Worg"
+I[5097] = "Lupine Delusion"
 I[5134] = "Jonivera Farmountain"
 I[5135] = "Svalbrad Farmountain"
 I[5139] = "Kurdrum Barleybeard"
@@ -2124,19 +2408,37 @@ I[5708] = "Spawn of Hakkar"
 I[5709] = "Shade of Eranikus"
 I[5710] = "Jammal'an the Prophet"
 I[5711] = "Ogom the Wretched"
+I[5712] = "Zolo"
+I[5713] = "Gasher"
+I[5714] = "Loro"
+I[5715] = "Hukku"
+I[5716] = "Zul'Lor"
+I[5717] = "Mijan"
 I[5719] = "Morphaz"
+I[5720] = "Weaver"
+I[5721] = "Dreamscythe"
 I[5722] = "Hazzas"
 I[5755] = "Deviate Viper"
 I[5756] = "Deviate Venomwing"
 I[5761] = "Deviate Shambler"
+I[5762] = "Deviate Moccasin"
+I[5763] = "Nightmare Ectoplasm"
 I[5775] = "Verdan the Everliving"
 I[5912] = "Deviate Faerie Dragon"
+I[5913] = "Tremor Totem"
 I[5914] = "Deviate Nightmare"
+I[6016] = "Elemental Protection Totem"
+I[6017] = "Lava Spout Totem"
+I[6021] = "Boar Spirit"
 I[6035] = "Razorfen Stalker"
+I[6047] = "Aqua Guardian"
+I[6066] = "Earthgrab Totem"
 I[6145] = "School of Fish"
 I[6168] = "Roogug"
+I[6206] = "Caverndeep Burrower"
 I[6207] = "Caverndeep Ambusher"
 I[6212] = "Dark Iron Agent"
+I[6215] = "Chomper"
 I[6222] = "Leprous Technician"
 I[6223] = "Leprous Defender"
 I[6224] = "Leprous Machinesmith"
@@ -2153,7 +2455,9 @@ I[6392] = "Holdout Medic"
 I[6426] = "Anguished Dead"
 I[6427] = "Haunting Phantasm"
 I[6487] = "Arcanist Doan"
+I[6493] = "Illusionary Phantasm"
 I[6547] = "Suffering Victim"
+I[6575] = "Scarlet Trainee"
 I[6906] = "Baelog"
 I[6907] = "Eric \"The Swift\""
 I[6908] = "Olaf"
@@ -2170,13 +2474,20 @@ I[7078] = "Cleft Scorpid"
 I[7079] = "Viscous Fallout"
 I[7175] = "Stonevault Ambusher"
 I[7206] = "Ancient Stone Keeper"
+I[7209] = "Obsidian Shard"
+I[7226] = "Sand Storm"
 I[7246] = "Sandfury Shadowhunter"
+I[7266] = "Ember"
 I[7267] = "Chief Ukorz Sandscalp"
 I[7268] = "Sandfury Guardian"
 I[7269] = "Scarab"
 I[7271] = "Witch Doctor Zum'rah"
 I[7272] = "Theka the Martyr"
+I[7273] = "Gahz'rilla"
 I[7274] = "Sandfury Executioner"
+I[7275] = "Shadowpriest Sezz'ziz"
+I[7276] = "Zul'Farrak Dead Hero"
+I[7286] = "Zul'Farrak Zombie"
 I[7290] = "Shadowforge Sharpshooter"
 I[7291] = "Galgann Firehammer"
 I[7309] = "Earthen Custodian"
@@ -2190,6 +2501,7 @@ I[7333] = "Withered Battle Boar"
 I[7334] = "Battle Boar Horror"
 I[7335] = "Death's Head Geomancer"
 I[7337] = "Death's Head Necromancer"
+I[7340] = "Skeletal Shadowcaster"
 I[7341] = "Skeletal Frostweaver"
 I[7342] = "Skeletal Summoner"
 I[7343] = "Splinterbone Skeleton"
@@ -2198,39 +2510,73 @@ I[7345] = "Splinterbone Captain"
 I[7346] = "Splinterbone Centurion"
 I[7347] = "Boneflayer Ghoul"
 I[7348] = "Thorn Eater Ghoul"
+I[7349] = "Tomb Fiend"
+I[7351] = "Tomb Reaver"
 I[7352] = "Frozen Soul"
 I[7353] = "Freezing Spirit"
 I[7354] = "Ragglesnout"
+I[7355] = "Tuten'kash"
+I[7356] = "Plaguemaw the Rotting"
 I[7357] = "Mordresh Fire Eye"
 I[7358] = "Amnennar the Coldbringer"
+I[7361] = "Grubbis"
 I[7396] = "Earthen Stonebreaker"
 I[7397] = "Earthen Stonecarver"
 I[7405] = "Deadly Cleft Scorpid"
+I[7527] = "Goblin Land Mine"
 I[7603] = "Leprous Assistant"
 I[7604] = "Sergeant Bly"
 I[7605] = "Raven"
 I[7606] = "Oro Eyegouge"
 I[7607] = "Weegli Blastfuse"
 I[7608] = "Murta Grimgut"
+I[7738] = "Burning Servant"
+I[7785] = "Ward of Zum'rah"
+I[7786] = "Skeleton of Zum'rah"
+I[7787] = "Sandfury Slave"
+I[7788] = "Sandfury Drudge"
+I[7789] = "Sandfury Cretin"
 I[7795] = "Hydromancer Velratha"
+I[7796] = "Nekrum Gutchewer"
 I[7797] = "Ruuzlu"
 I[7800] = "Mekgineer Thermaplugg"
 I[7849] = "Mobile Alert System"
 I[7850] = "Kernobee"
 I[7897] = "Alarm-a-bomb 2600"
+I[7915] = "Walking Bomb"
 I[7998] = "Blastmaster Emi Shortfuse"
+I[8035] = "Dark Iron Land Mine"
 I[8095] = "Sul'lithuz Sandcrawler"
 I[8120] = "Sul'lithuz Abomination"
 I[8127] = "Antu'sul"
 I[8130] = "Sul'lithuz Hatchling"
+I[8138] = "Sul'lithuz Broodling"
+I[8156] = "Servant of Antu'sul"
+I[8179] = "Greater Healing Ward"
 I[8257] = "Oozeling"
 I[8311] = "Slime Maggot"
+I[8317] = "Atal'ai Deathwalker's Spirit"
 I[8318] = "Atal'ai Slave"
+I[8324] = "Atal'ai Skeleton"
+I[8437] = "Hakkari Minion"
+I[8438] = "Hakkari Bloodkeeper"
+I[8440] = "Shade of Hakkar"
+I[8443] = "Avatar of Hakkar"
+I[8477] = "Skeletal Servant"
+I[8497] = "Nightmare Suppressor"
+I[8510] = "Atal'ai Totem"
 I[8516] = "Belnistrasz"
 I[8567] = "Glutton"
+I[8580] = "Atal'alarion"
+I[8585] = "Frost Spectre"
+I[8656] = "Hukku's Voidwalker"
+I[8657] = "Hukku's Succubus"
+I[8658] = "Hukku's Imp"
 I[8662] = "Idol Oven Fire Target"
 I[8696] = "Henry Stern"
 I[8767] = "Sah'rhee"
+I[8876] = "Sandfury Acolyte"
+I[8877] = "Sandfury Zealot"
 I[8886] = "Deviate Python"
 I[8889] = "Anvilrage Overseer"
 I[8890] = "Anvilrage Warden"
@@ -2264,9 +2610,16 @@ I[8920] = "Weapon Technician"
 I[8921] = "Bloodhound"
 I[8922] = "Bloodhound Mastiff"
 I[8923] = "Panzor the Invincible"
+I[8925] = "Dredge Worm"
+I[8926] = "Deep Stinger"
+I[8927] = "Dark Screecher"
+I[8928] = "Burrowing Thundersnout"
 I[8929] = "Princess Moira Bronzebeard"
+I[8932] = "Borer Beetle"
+I[8933] = "Cave Creeper"
 I[8982] = "Ironhand Guardian"
 I[8983] = "Golem Lord Argelmach"
+I[8996] = "Voidwalker Minion"
 I[9016] = "Bael'Gar"
 I[9017] = "Lord Incendius"
 I[9018] = "High Interrogator Gerstahn"
@@ -2277,6 +2630,12 @@ I[9022] = "Dughal Stormwing"
 I[9023] = "Marshal Windsor"
 I[9024] = "Pyromancer Loregrain"
 I[9025] = "Lord Roccor"
+I[9027] = "Gorosh the Dervish"
+I[9028] = "Grizzle"
+I[9029] = "Eviscerator"
+I[9030] = "Ok'thor the Breaker"
+I[9031] = "Anub'shiah"
+I[9032] = "Hedrum the Creeper"
 I[9033] = "General Angerforge"
 I[9034] = "Hate'rel"
 I[9035] = "Anger'rel"
@@ -2293,6 +2652,7 @@ I[9096] = "Rage Talon Dragonspawn"
 I[9097] = "Scarshield Legionnaire"
 I[9098] = "Scarshield Spellbinder"
 I[9156] = "Ambassador Flamelash"
+I[9178] = "Burning Spirit"
 I[9196] = "Highlord Omokk"
 I[9197] = "Spirestone Battle Mage"
 I[9198] = "Spirestone Mystic"
@@ -2323,10 +2683,14 @@ I[9268] = "Smolderthorn Berserker"
 I[9269] = "Smolderthorn Seer"
 I[9319] = "Houndmaster Grebmar"
 I[9416] = "Scarshield Worg"
+I[9436] = "Spawn of Bael'Gar"
+I[9476] = "Watchman Doomgrip"
 I[9499] = "Plugger Spazzring"
 I[9500] = "Mistress Nagmara"
 I[9502] = "Phalanx"
 I[9503] = "Private Rocknot"
+I[9537] = "Hurley Blackbreath"
+I[9541] = "Blackbreath Crony"
 I[9543] = "Ribbly Screwspigot"
 I[9545] = "Grim Patron"
 I[9547] = "Guzzling Patron"
@@ -2334,16 +2698,19 @@ I[9554] = "Hammered Patron"
 I[9568] = "Overlord Wyrmthalak"
 I[9583] = "Bloodaxe Veteran"
 I[9596] = "Bannok Grimaxe"
+I[9637] = "Scorching Totem"
 I[9676] = "Tink Sprocketwhistle"
 I[9677] = "Ograbisi"
 I[9678] = "Shill Dinger"
 I[9679] = "Tobias Seecher"
 I[9680] = "Crest Killer"
 I[9681] = "Jaz"
+I[9682] = "Marshal Reginald Windsor"
 I[9692] = "Bloodaxe Raider"
 I[9693] = "Bloodaxe Evoker"
 I[9696] = "Bloodaxe Worg"
 I[9701] = "Spire Scorpid"
+I[9707] = "Scarshield Portal"
 I[9716] = "Bloodaxe Warmonger"
 I[9717] = "Bloodaxe Summoner"
 I[9718] = "Ghok Bashguud"
@@ -2356,24 +2723,34 @@ I[9938] = "Magmus"
 I[9956] = "Shadowforge Flame Keeper"
 I[10000] = "Arugal"
 I[10043] = "Ribbly's Crony"
+I[10076] = "High Priestess of Thaurissan"
 I[10080] = "Sandarr Dunereaver"
 I[10081] = "Dustwraith"
 I[10082] = "Zerillis"
 I[10083] = "Rage Talon Flamescale"
+I[10096] = "High Justice Grimstone"
 I[10116] = "Slave"
 I[10117] = "Tortured Slave"
 I[10120] = "Vault Warder"
 I[10162] = "Lord Victor Nefarius"
 I[10177] = "Spire Scarab"
 I[10184] = "Onyxia"
+I[10217] = "Flame Buffet Totem"
+I[10218] = "Superior Healing Ward"
 I[10220] = "Halycon"
 I[10221] = "Bloodaxe Worg Pup"
 I[10257] = "Bijou"
+I[10258] = "Rookery Guardian"
+I[10261] = "Burning Felhound"
+I[10263] = "Burning Felguard"
+I[10264] = "Solakar Flamewreath"
+I[10268] = "Gizrul the Slavener"
 I[10299] = "Scarshield Infiltrator"
 I[10316] = "Blackhand Incarcerator"
 I[10317] = "Blackhand Elite"
 I[10318] = "Blackhand Assassin"
 I[10319] = "Blackhand Iron Guard"
+I[10339] = "Gyth"
 I[10363] = "General Drakkisath"
 I[10364] = "Yaelika Farclaw"
 I[10366] = "Rage Talon Dragon Guard"
@@ -2385,18 +2762,21 @@ I[10375] = "Spire Spiderling"
 I[10376] = "Crystal Fang"
 I[10381] = "Ravaged Cadaver"
 I[10382] = "Mangled Cadaver"
+I[10383] = "Broken Cadaver"
 I[10384] = "Spectral Citizen"
 I[10385] = "Ghostly Citizen"
 I[10387] = "Vengeful Phantom"
 I[10390] = "Skeletal Guardian"
 I[10391] = "Skeletal Berserker"
 I[10393] = "Skul"
+I[10394] = "Black Guard Sentry"
 I[10398] = "Thuzadin Shadowcaster"
 I[10399] = "Thuzadin Acolyte"
 I[10400] = "Thuzadin Necromancer"
 I[10405] = "Plague Ghoul"
 I[10406] = "Ghoul Ravener"
 I[10407] = "Fleshflayer Ghoul"
+I[10408] = "Rockwing Gargoyle"
 I[10411] = "Eye of Naxxramas"
 I[10412] = "Crypt Crawler"
 I[10413] = "Crypt Beast"
@@ -2406,9 +2786,12 @@ I[10416] = "Bile Spewer"
 I[10417] = "Venom Belcher"
 I[10418] = "Crimson Guardsman"
 I[10419] = "Crimson Conjuror"
+I[10420] = "Crimson Initiate"
 I[10421] = "Crimson Defender"
 I[10422] = "Crimson Sorcerer"
 I[10424] = "Crimson Gallant"
+I[10425] = "Crimson Battle Mage"
+I[10429] = "Warchief Rend Blackhand"
 I[10430] = "The Beast"
 I[10432] = "Vectus"
 I[10433] = "Marduk Blackpool"
@@ -2416,7 +2799,12 @@ I[10435] = "Magistrate Barthilas"
 I[10436] = "Baroness Anastari"
 I[10437] = "Nerub'enkan"
 I[10438] = "Maleki the Pallid"
+I[10439] = "Ramstein the Gorger"
 I[10440] = "Baron Rivendare"
+I[10441] = "Plagued Rat"
+I[10442] = "Chromatic Whelp"
+I[10447] = "Chromatic Dragonspawn"
+I[10461] = "Plagued Insect"
 I[10463] = "Shrieking Banshee"
 I[10464] = "Wailing Banshee"
 I[10469] = "Scholomance Adept"
@@ -2429,6 +2817,7 @@ I[10477] = "Scholomance Necromancer"
 I[10478] = "Splintered Skeleton"
 I[10480] = "Unstable Corpse"
 I[10481] = "Reanimated Corpse"
+I[10482] = "Risen Lackey"
 I[10485] = "Risen Aberration"
 I[10486] = "Risen Warrior"
 I[10487] = "Risen Protector"
@@ -2443,24 +2832,34 @@ I[10502] = "Lady Illucia Barov"
 I[10503] = "Jandice Barov"
 I[10504] = "Lord Alexei Barov"
 I[10505] = "Instructor Malicia"
+I[10506] = "Kirtonos the Herald"
 I[10507] = "The Ravenian"
 I[10508] = "Ras Frostwhisper"
 I[10509] = "Jed Runewatcher"
 I[10516] = "The Unforgiven"
+I[10536] = "Plagued Maggot"
 I[10558] = "Hearthsinger Forresten"
+I[10577] = "Crypt Scarab"
 I[10596] = "Mother Smolderweb"
 I[10678] = "Plagued Hatchling"
+I[10683] = "Rookery Hatcher"
+I[10697] = "Bile Slime"
 I[10740] = "Awbee"
+I[10742] = "Blackhand Dragon Handler"
 I[10762] = "Blackhand Thug"
 I[10799] = "Warosh"
+I[10808] = "Timmy the Cruel"
 I[10809] = "Stonespine"
 I[10811] = "Archivist Galford"
 I[10812] = "Grand Crusader Dathrohan"
+I[10813] = "Balnazzar"
 I[10814] = "Chromatic Elite Guard"
+I[10876] = "Undead Scarab"
 I[10899] = "Goraluk Anvilcrack"
 I[10901] = "Lorekeeper Polkelt"
 I[10917] = "Aurius"
 I[10942] = "Nessy"
+I[10955] = "Summoned Water Elemental"
 I[10956] = "Naga Siren"
 I[10981] = "Frostwolf"
 I[10982] = "Whitewhisker Vermin"
@@ -2469,12 +2868,20 @@ I[10987] = "Irondeep Trogg"
 I[10990] = "Alterac Ram"
 I[10991] = "Wildpaw Gnoll"
 I[10997] = "Cannon Master Willey"
+I[11030] = "Mindless Undead"
 I[11032] = "Malor the Zealous"
 I[11043] = "Crimson Monk"
 I[11073] = "Annora"
 I[11082] = "Stratholme Courier"
+I[11122] = "Restless Soul"
+I[11136] = "Freed Soul"
+I[11142] = "Undead Postman"
+I[11197] = "Mindless Skeleton"
+I[11199] = "Crimson Cannon"
 I[11257] = "Scholomance Handler"
+I[11258] = "Frail Skeleton"
 I[11261] = "Doctor Theolen Krastinov"
+I[11262] = "Onyxian Whelp"
 I[11318] = "Ragefire Trogg"
 I[11319] = "Ragefire Shaman"
 I[11320] = "Earthborer"
@@ -2525,6 +2932,7 @@ I[11456] = "Wildspawn Shadowstalker"
 I[11457] = "Wildspawn Hellcaller"
 I[11458] = "Petrified Treant"
 I[11459] = "Ironbark Protector"
+I[11460] = "Alzzin's Minion"
 I[11461] = "Warpwood Guardian"
 I[11462] = "Warpwood Treant"
 I[11464] = "Warpwood Tangler"
@@ -2551,12 +2959,15 @@ I[11491] = "Old Ironbark"
 I[11492] = "Alzzin the Wildshaper"
 I[11496] = "Immol'thar"
 I[11501] = "King Gordok"
+I[11502] = "Ragnaros"
 I[11517] = "Oggleflint"
 I[11518] = "Jergosh the Invoker"
 I[11519] = "Bazzalan"
 I[11520] = "Taragaman the Hungerer"
 I[11551] = "Necrofiend"
 I[11582] = "Scholomance Dark Summoner"
+I[11583] = "Nefarian"
+I[11598] = "Risen Guardian"
 I[11600] = "Irondeep Shaman"
 I[11603] = "Whitewhisker Digger"
 I[11604] = "Whitewhisker Geomancer"
@@ -2567,6 +2978,8 @@ I[11658] = "Molten Giant"
 I[11659] = "Molten Destroyer"
 I[11661] = "Flamewaker"
 I[11662] = "Flamewaker Priest"
+I[11663] = "Flamewaker Healer"
+I[11664] = "Flamewaker Elite"
 I[11666] = "Firewalker"
 I[11667] = "Flameguard"
 I[11669] = "Flame Imp"
@@ -2576,6 +2989,7 @@ I[11673] = "Ancient Core Hound"
 I[11675] = "Snowblind Windcaller"
 I[11677] = "Taskmaster Snivvle"
 I[11678] = "Snowblind Ambusher"
+I[11783] = "Theradrim Shardling"
 I[11784] = "Theradrim Guardian"
 I[11789] = "Deep Borer"
 I[11790] = "Putridus Satyr"
@@ -2601,6 +3015,7 @@ I[11988] = "Golemagg the Incinerator"
 I[11997] = "Stormpike Herald"
 I[11998] = "Frostwolf Herald"
 I[12017] = "Broodlord Lashlayer"
+I[12018] = "Majordomo Executus"
 I[12050] = "Stormpike Defender"
 I[12051] = "Frostwolf Legionnaire"
 I[12053] = "Frostwolf Guardian"
@@ -2619,6 +3034,8 @@ I[12121] = "Draka"
 I[12122] = "Duros"
 I[12127] = "Stormpike Guardsman"
 I[12129] = "Onyxian Warder"
+I[12141] = "Ice Totem"
+I[12143] = "Son of Flame"
 I[12201] = "Princess Theradras"
 I[12203] = "Landslide"
 I[12206] = "Primordial Behemoth"
@@ -2635,11 +3052,15 @@ I[12224] = "Cavern Shambler"
 I[12225] = "Celebras the Cursed"
 I[12236] = "Lord Vyletongue"
 I[12237] = "Meshlok the Harvester"
+I[12238] = "Zaetar's Spirit"
 I[12242] = "Spirit of Maraudos"
 I[12243] = "Spirit of Veng"
 I[12258] = "Razorlash"
 I[12259] = "Gehennas"
 I[12264] = "Shazzrah"
+I[12416] = "Blackwing Legionnaire"
+I[12420] = "Blackwing Mage"
+I[12422] = "Death Talon Dragonspawn"
 I[12434] = "Monster Generator (Blackwing)"
 I[12435] = "Razorgore the Untamed"
 I[12457] = "Blackwing Spellbinder"
@@ -2676,7 +3097,9 @@ I[12795] = "First Sergeant Hola'mahi"
 I[12796] = "Raider Bork"
 I[12797] = "Grunt Korf"
 I[12798] = "Grunt Bek'rah"
+I[12876] = "Baron Aquanis"
 I[12902] = "Lorgus Jett"
+I[12922] = "Imp Minion"
 I[12944] = "Lokhtos Darkbargainer"
 I[12997] = "Monty"
 I[12999] = "Blackwing Trigger"
@@ -2701,6 +3124,7 @@ I[13138] = "Lieutenant Spencer"
 I[13139] = "Commander Randolph"
 I[13141] = "Deeprot Stomper"
 I[13142] = "Deeprot Tangler"
+I[13148] = "Flame of Ragnaros"
 I[13151] = "Syndicate Master Ryson"
 I[13160] = "Carrion Swarmer"
 I[13176] = "Smith Regzar"
@@ -2750,7 +3174,9 @@ I[13443] = "Druid of the Grove"
 I[13446] = "Field Marshal Teravaine"
 I[13447] = "Corporal Noreg Stormpike"
 I[13448] = "Sergeant Yazra Bloodsnarl"
+I[13456] = "Noxxion's Spawn"
 I[13525] = "Seasoned Commando"
+I[13533] = "Spewed Larva"
 I[13536] = "Champion Coldmine Guard"
 I[13539] = "Champion Coldmine Surveyor"
 I[13545] = "Champion Irondeep Raider"
@@ -2767,6 +3193,7 @@ I[13616] = "Frostwolf Stable Master"
 I[13617] = "Stormpike Stable Master"
 I[13618] = "Stabled Frostwolf"
 I[13676] = "Stabled Alterac Ram"
+I[13716] = "Celebras the Redeemed"
 I[13743] = "Corrupt Force of Nature"
 I[13797] = "Mountaineer Boombellow"
 I[13798] = "Jotek"
@@ -2782,14 +3209,23 @@ I[14023] = "Corrupted Green Whelp"
 I[14024] = "Corrupted Blue Whelp"
 I[14025] = "Corrupted Bronze Whelp"
 I[14041] = "Haggle"
+I[14081] = "Demon Portal"
 I[14121] = "Deeprun Diver"
+I[14122] = "Massive Geyser"
 I[14185] = "Najak Hexxen"
 I[14186] = "Ravak Grimtotem"
 I[14187] = "Athramanis"
 I[14188] = "Dirk Swindle"
+I[14241] = "Ironbark the Redeemed"
+I[14261] = "Blue Drakonid"
+I[14262] = "Green Drakonid"
+I[14263] = "Bronze Drakonid"
+I[14264] = "Red Drakonid"
+I[14265] = "Black Drakonid"
 I[14282] = "Frostwolf Bloodhound"
 I[14283] = "Stormpike Owl"
 I[14284] = "Stormpike Battleguard"
+I[14302] = "Chromatic Drakonid"
 I[14303] = "Petrified Guardian"
 I[14308] = "Ferra"
 I[14321] = "Guard Fengus"
@@ -2801,6 +3237,8 @@ I[14326] = "Guard Mol'dar"
 I[14327] = "Lethtendris"
 I[14338] = "Knot Thimblejack"
 I[14349] = "Pimgib"
+I[14350] = "Hydroling"
+I[14353] = "Mizzle the Crafty"
 I[14354] = "Pusillin"
 I[14358] = "Shen'dralar Ancient"
 I[14361] = "Shen'dralar Wisp"
@@ -2810,14 +3248,23 @@ I[14371] = "Shen'dralar Provisioner"
 I[14381] = "Lorekeeper Javon"
 I[14382] = "Lorekeeper Mykos"
 I[14383] = "Lorekeeper Kildrath"
+I[14385] = "Doomguard Minion"
 I[14386] = "Wandering Eye of Kilrogg"
+I[14389] = "Netherwalker"
+I[14396] = "Eye of Immol'thar"
+I[14397] = "Mana Burst"
 I[14398] = "Eldreth Darter"
 I[14399] = "Arcane Torrent"
 I[14400] = "Arcane Feedback"
 I[14401] = "Master Elemental Shaper Krixix"
 I[14449] = "Blackwing Orb Trigger"
+I[14453] = "Orb of Domination"
 I[14456] = "Blackwing Guardsman"
 I[14459] = "Nefarian's Troops"
+I[14482] = "Xorothian Imp"
+I[14483] = "Dread Guard"
+I[14500] = "J'eevee"
+I[14506] = "Lord Hel'nurath"
 I[14507] = "High Priest Venoxis"
 I[14509] = "High Priest Thekal"
 I[14510] = "High Priestess Mar'li"
@@ -2825,6 +3272,7 @@ I[14517] = "High Priestess Jeklik"
 I[14532] = "Razzashi Venombrood"
 I[14581] = "Sergeant Thunderhorn"
 I[14601] = "Ebonroc"
+I[14605] = "Bone Construct"
 I[14646] = "Stratholme Trigger"
 I[14682] = "Sever"
 I[14684] = "Balzaphon"
@@ -2851,6 +3299,12 @@ I[14880] = "Razzashi Skitterer"
 I[14881] = "Spider"
 I[14882] = "Atal'ai Mistress"
 I[14883] = "Voodoo Slave"
+I[14965] = "Frenzied Bloodseeker Bat"
+I[14987] = "Powerful Healing Ward"
+I[14988] = "Ohgan"
+I[14989] = "Poisonous Cloud"
+I[15009] = "Voodoo Spirit"
+I[15010] = "Jungle Toad"
 I[15042] = "Zanza the Restless"
 I[15043] = "Zulian Crocolisk"
 I[15045] = "Arathi Farmer"
@@ -2872,6 +3326,9 @@ I[15091] = "Zul'Gurub Panther Trigger"
 I[15107] = "Arathi Horse"
 I[15108] = "Forsaken Horse"
 I[15111] = "Mad Servant"
+I[15112] = "Brain Wash Totem"
+I[15117] = "Chained Spirit"
+I[15141] = "Portal of Madness"
 I[15168] = "Vile Scarab"
 I[15229] = "Vekniss Soldier"
 I[15230] = "Vekniss Warrior"
@@ -2901,6 +3358,7 @@ I[15324] = "Qiraji Gladiator"
 I[15325] = "Hive'Zara Wasp"
 I[15327] = "Hive'Zara Stinger"
 I[15333] = "Silicate Feeder"
+I[15334] = "Giant Eye Tentacle"
 I[15335] = "Flesh Hunter"
 I[15336] = "Hive'Zara Tail Lasher"
 I[15338] = "Obsidian Destroyer"
@@ -2911,6 +3369,7 @@ I[15343] = "Qiraji Swarmguard"
 I[15344] = "Swarmguard Needler"
 I[15348] = "Kurinnaxx"
 I[15355] = "Anubisath Guardian"
+I[15362] = "Malfurion Stormrage"
 I[15369] = "Ayamiss the Hunter"
 I[15370] = "Buru the Gorger"
 I[15378] = "Merithra of the Dream"
@@ -2926,8 +3385,11 @@ I[15390] = "Captain Xurrem"
 I[15391] = "Captain Qeez"
 I[15392] = "Captain Tuubid"
 I[15426] = "Ahn'Qiraj Trigger"
+I[15428] = "Sand Vortex"
 I[15461] = "Shrieker Scarab"
 I[15462] = "Spitting Scarab"
+I[15471] = "Lieutenant General Andorov"
+I[15473] = "Kaldorei Elite"
 I[15475] = "Beetle"
 I[15502] = "Andorgos"
 I[15503] = "Kandrostrasz"
@@ -2938,9 +3400,16 @@ I[15510] = "Fankriss the Unyielding"
 I[15511] = "Lord Kri"
 I[15514] = "Buru Egg"
 I[15516] = "Battleguard Sartura"
+I[15517] = "Ouro"
+I[15521] = "Hive'Zara Hatchling"
+I[15527] = "Mana Fiend"
+I[15537] = "Anubisath Warrior"
+I[15538] = "Anubisath Swarmguard"
 I[15543] = "Princess Yauj"
 I[15544] = "Vem"
+I[15546] = "Hive'Zara Swarmer"
 I[15549] = "Elder Morndeep"
+I[15555] = "Hive'Zara Larva"
 I[15556] = "Elder Splitrock"
 I[15560] = "Elder Stonefort"
 I[15578] = "Elder Wildmane"
@@ -2948,15 +3417,29 @@ I[15589] = "Eye of C'Thun"
 I[15590] = "Ossirian Crystal Trigger"
 I[15593] = "Elder Starsong"
 I[15607] = "Elder Farwhisper"
+I[15621] = "Yauj Brood"
+I[15622] = "Vekniss Borer"
+I[15630] = "Spawn of Fankriss"
+I[15667] = "Glob of Viscidus"
 I[15695] = "Vek Twins Trigger"
+I[15712] = "Dirt Mound"
+I[15718] = "Ouro Scarab"
+I[15725] = "Claw Tentacle"
+I[15726] = "Eye Tentacle"
 I[15727] = "C'Thun"
+I[15728] = "Giant Claw Tentacle"
 I[15800] = "Exit Trigger"
+I[15802] = "Flesh Tentacle"
 I[15896] = "C'Thun Portal"
+I[15904] = "Tentacle Portal"
+I[15910] = "Giant Tentacle Portal"
 I[15928] = "Thaddius"
 I[15929] = "Stalagg"
 I[15930] = "Feugen"
 I[15931] = "Grobbulus"
 I[15932] = "Gluth"
+I[15933] = "Poison Cloud"
+I[15934] = "Hive'Zara Hornet"
 I[15936] = "Heigan the Unclean"
 I[15952] = "Maexxna"
 I[15953] = "Grand Widow Faerlina"
@@ -2973,6 +3456,7 @@ I[15979] = "Tomb Horror"
 I[15980] = "Naxxramas Cultist"
 I[15981] = "Naxxramas Acolyte"
 I[15984] = "Sartura's Royal Guard"
+I[15989] = "Sapphiron"
 I[15990] = "Kel'Thuzad"
 I[16011] = "Loatheb"
 I[16017] = "Patchwork Golem"
@@ -2982,33 +3466,61 @@ I[16021] = "Living Monstrosity"
 I[16022] = "Surgical Assistant"
 I[16024] = "Embalming Slime"
 I[16025] = "Stitched Spewer"
+I[16027] = "Living Poison"
 I[16028] = "Patchwerk"
 I[16030] = "Maggot"
+I[16031] = "Ysida Harmon"
 I[16032] = "Falrin Treeshaper"
 I[16034] = "Plague Beast"
 I[16036] = "Frenzied Bat"
 I[16037] = "Plagued Bat"
+I[16042] = "Lord Valthalak"
 I[16044] = "Mor Grayhoof Trigger"
 I[16045] = "Isalien Trigger"
 I[16046] = "Jarien and Sothos Trigger"
 I[16047] = "Kormok Trigger"
 I[16048] = "Lord Valthalak Trigger"
+I[16049] = "Lefty"
+I[16050] = "Rotfang"
+I[16051] = "Snokh Blackspine"
+I[16052] = "Malgen Longspear"
+I[16053] = "Korv"
+I[16054] = "Rezznik"
+I[16055] = "Va'jashni"
 I[16056] = "Diseased Maggot"
 I[16057] = "Rotting Maggot"
+I[16058] = "Volida"
+I[16059] = "Theldren"
 I[16060] = "Gothik the Harvester"
 I[16061] = "Instructor Razuvious"
 I[16062] = "Highlord Mograine"
 I[16063] = "Sir Zeliek"
 I[16064] = "Thane Korth'azz"
 I[16065] = "Lady Blaumeux"
+I[16066] = "Spectral Assassin"
 I[16067] = "Skeletal Steed"
 I[16068] = "Larva"
 I[16079] = "Theldren Trigger"
+I[16080] = "Mor Grayhoof"
 I[16082] = "Naxxramas Trigger"
+I[16097] = "Isalien"
+I[16098] = "Empyrean"
 I[16100] = "Ysida's Trigger"
+I[16101] = "Jarien"
+I[16102] = "Sothos"
+I[16103] = "Spirit of Jarien"
+I[16104] = "Spirit of Sothos"
+I[16118] = "Kormok"
+I[16124] = "Unrelenting Trainee"
+I[16125] = "Unrelenting Deathknight"
+I[16126] = "Unrelenting Rider"
+I[16127] = "Spectral Trainee"
 I[16137] = "Naxxramas Military Sub-Boss Trigger"
 I[16145] = "Deathknight Captain"
 I[16146] = "Deathknight"
+I[16148] = "Spectral Deathknight"
+I[16149] = "Spectral Horse"
+I[16150] = "Spectral Rider"
 I[16154] = "Risen Deathknight"
 I[16156] = "Dark Touched Warrior"
 I[16157] = "Doom Touched Warrior"
@@ -3024,11 +3536,19 @@ I[16218] = "Tesla Coil"
 I[16236] = "Eye Stalk"
 I[16243] = "Plague Slime"
 I[16244] = "Infectious Ghoul"
+I[16286] = "Spore"
 I[16297] = "Mutated Grub"
+I[16360] = "Zombie Chow"
 I[16365] = "Master Craftsman Omarion"
 I[16368] = "Necropolis Acolyte"
 I[16381] = "Archmage Tarsis Kir-Moldir"
+I[16385] = "Lightning Totem"
+I[16390] = "Deathchill Servant"
 I[16400] = "Toxic Tunnel"
+I[16427] = "Soldier of the Frozen Wastes"
+I[16428] = "Unstoppable Abomination"
+I[16429] = "Soul Weaver"
+I[16441] = "Guardian of Icecrown"
 I[16446] = "Plagued Gargoyle"
 I[16447] = "Plagued Ghoul"
 I[16448] = "Plagued Deathhound"
@@ -3036,59 +3556,39 @@ I[16449] = "Spirit of Naxxramas"
 I[16451] = "Deathknight Vindicator"
 I[16452] = "Necro Knight Guardian"
 I[16453] = "Necro Stalker"
+I[16474] = "Blizzard"
 I[16505] = "Naxxramas Follower"
 I[16506] = "Naxxramas Worshipper"
 I[16573] = "Crypt Guard"
 I[16604] = "Blackwing Spell Marker"
+I[16698] = "Corpse Scarab"
+I[16775] = "Spirit of Mograine"
+I[16776] = "Spirit of Blaumeux"
+I[16777] = "Spirit of Zeliek"
+I[16778] = "Spirit of Korth'azz"
 I[16803] = "Deathknight Understudy"
 I[16861] = "Death Lord"
 I[16980] = "The Lich King"
+I[16984] = "Plagued Warrior"
 I[16998] = "Mr. Bigglesworth"
+I[17055] = "Maexxna Spiderling"
 I[17231] = "Garden Gas"
 I[17286] = "Invisible Man"
 I[17293] = "Plague Wave"
 
 -- Pictures of bosses
-P["sneed"] = 7125 -- Sneed
 P["ladyanacondra"] = 4313 -- Lady Anacondra
-P["mutanusthedevourer"] = 4088 -- Mutanus the Devourer
 P["geilhast"] = 1773 -- Geilhast
-P["baronaquanis"] = 110 -- Baron Aquanis
 P["ironaya"] = 6089 -- Ironaya
-P["grubbis"] = 6533 -- Grubbis
-P["avatarofhakkar"] = 8053 -- Avatar of Hakkar
-P["atalalarion"] = 7873 -- Atal'alarion
-P["dreamscythe"] = 7553 -- Dreamscythe
-P["weaver"] = 6375 -- Weaver
-P["tutenkash"] = 7845 -- Tuten'kash
-P["plaguemawtherotting"] = 6124 -- Plaguemaw the Rotting
-P["gahzrilla"] = 7271 -- Gahz'rilla
-P["nekrumgutchewer"] = 6690 -- Nekrum Gutchewer
-P["shadowpriestsezzziz"] = 6441 -- Shadowpriest Sezz'ziz
 P["urokdoomhowl"] = 11583 -- Urok Doomhowl
-P["gizrultheslavener"] = 9564 -- Gizrul the Slavener
-P["warchiefrendblackhand"] = 9778 -- Warchief Rend Blackhand
-P["lordvalthalak"] = 14308 -- Lord Valthalak
 P["ringoflaw"] = 8760 -- Ring of Law
-P["hurleyblackbreath"] = 8658 -- Hurley Blackbreath
 P["kirtonos"] = 7534 -- Kirtonos
-P["kormok"] = 16020 -- Kormok
 P["rasfrostwhisperer"] = 7919 -- Ras Frostwhisperer
-P["darkmastergandling"] = 11070 -- Darkmaster Gandling
 P["gahzranka"] = 15288 -- Gahz'ranka
 P["highpriestessarlokk"] = 15218 -- High Priestess Arlokk
-P["timmythecruel"] = 571 -- Timmy the Cruel
-P["balnazzar"] = 10691 -- Balnazzar
-P["ramsteinthegorger"] = 12818 -- Ramstein the Gorger
 P["blackguardswordsmith"] = 775 -- Black Guard Swordsmith
 P["crimsonhammersmith"] = 10637 -- Crimson Hammersmith
 P["postmastermalown"] = 10669 -- Postmaster Malown
-P["majordomoexecutus"] = 12029 -- Majordomo Executus
-P["ragnaros"] = 11121 -- Ragnaros
-P["lordhelnurath"] = 14556 -- Lord Hel'nurath
-P["nefarian"] = 11380 -- Nefarian
-P["ouro"] = 15509 -- Ouro
-P["sapphiron"] = 16033 -- Sapphiron
 Q["testwerk"] = 227866 -- Testwerk
 Q["grimroot"] = 264333 -- Grimroot
 Q["zilbagob"] = 226922 -- Zilbagob
@@ -3113,7 +3613,6 @@ Q["unkomon"] = 238678 -- Unk'omon
 Q["kaigymaryla"] = 256275 -- Kaigy Maryla
 Q["sairuhmaryla"] = 256273 -- Sairuh Maryla
 Q["barianmaryla"] = 238234 -- Barian Maryla
-P["spiritofmograine"] = 16326 -- Spirit of Mograine
 Q["arcaneanomaly"] = 245999 -- Arcane Anomaly
 Q["felancient"] = 246003 -- Fel Ancient
 Q["manadevourer"] = 246008 -- Mana Devourer
@@ -3181,12 +3680,6 @@ Q["overlordmugg"] = 258968 -- Overlord Mugg
 Q["baron"] = 250660 -- The Baron
 Q["warhandlerashka"] = 259281 -- War Handler Ashka
 Q["zarlaober"] = 255707 -- Zarla Ober
-P["gasher"] = 6698 -- Gasher
-P["loro"] = 6700 -- Loro
-P["hukku"] = 6702 -- Hukku
-P["zolo"] = 6699 -- Zolo
-P["zullor"] = 6701 -- Zul'Lor
-P["mijan"] = 6707 -- Mijan
 W["atalaidefenders"] = { "Gasher", "Loro", "Hukku", "Zolo", "Zul'Lor", "Mijan" }
 W["dreamscytheandweaver"] = { "Dreamscythe", "Weaver" }
 P["grilek"] = 8390 -- Gri'lek

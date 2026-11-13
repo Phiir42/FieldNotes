@@ -578,7 +578,9 @@ step("every page of the journal", function()
 		check("and his shredder beside him", keys:find("d1269", 1, true) and pageText():find("Sneed's Shredder", 1, true))
 		check("with what it is", pageText():find("mechanical, level 20", 1, true))
 	end
-	check("group fights name their members", #ns.Company.twinemperors == 2 and ns.Pictures.nefarian)
+	check("group fights name their members", #ns.Company.twinemperors == 2 and ns.Creatures.nefarian.model)
+	check("a creature called up in a dungeon is known by name, with its picture",
+		ns.Creatures.arugalsvoidwalker and ns.Creatures.arugalsvoidwalker.type == "Demon" and ns.Creatures.arugalsvoidwalker.model)
 	check("new bosses are drawn by NPC id", ns.BossNpc.withermaw == 247195 and ns.BossNpc.infurnus == ns.BossNpc.magmatus)
 	-- a boss the game announces no fight for: killed like any creature, kept as a boss
 	M.wait(90) -- well after the last announced fight ended

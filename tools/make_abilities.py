@@ -238,7 +238,7 @@ MAX_CREATURE_SPELLS = 6
 
 def creature_lines(names, boss_keys):
     """Lua lines for ns.Creatures: level, rank, kind and spells of every creature
-    that lives in an instance, from the classic database. Bosses' spells are
+    that lives in an instance or is called up there, from the classic database. Bosses' spells are
     left to the boss lists."""
     path = os.path.join(ROOT, "refs", "classicdb", "creatures.json")
     if not os.path.exists(path):
@@ -246,7 +246,7 @@ def creature_lines(names, boss_keys):
     merged, ids = {}, []
     with open(path, encoding="utf-8") as f:
         for entry, c in json.load(f).items():
-            if not c["spawns"] or not c["name"]:
+            if not (c["spawns"] or c.get("summoned")) or not c["name"]:
                 continue
             ids.append((int(entry), c["name"]))
             m = merged.setdefault(key(c["name"]), {"name": c["name"], "lo": c["lo"], "hi": c["hi"],
@@ -327,7 +327,7 @@ def picture_lines(boss_names):
     with open(path, encoding="utf-8") as f:
         for c in json.load(f).values():
             if c["name"] and c.get("model"):
-                (placed if c["spawns"] else loose).setdefault(key(c["name"]), c["model"])
+                (placed if c["spawns"] or c.get("summoned") else loose).setdefault(key(c["name"]), c["model"])
     out, missing, done = [], [], set()
     # bosses new to Forever: no display id anywhere, but an NPC id to draw by
     # (tools/fetch_forever_npcs.py)

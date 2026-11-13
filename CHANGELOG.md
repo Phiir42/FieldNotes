@@ -54,6 +54,10 @@
   has it.
 - A page that fails to draw is kept for "/fn errors" instead of raising an
   error on screen.
+- Creatures that are called up in a fight rather than standing in the
+  dungeon (Arugal's Voidwalkers, Aku'mai Servants, drakonids, Hakkari
+  Minions and some 270 more) have their level, kind and portrait in the
+  bestiary.
 
 ## 0.2.0-beta.9
 
