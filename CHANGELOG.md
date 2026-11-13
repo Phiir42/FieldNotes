@@ -32,7 +32,7 @@
 - A boss whose name the game hid as the fight began is given its name when
   the fight ends, instead of staying "Unknown".
 - Item tooltips say where the journal noted an item and who carried it
-  ("Field Notes: found in The Deadmines, from Cookie, 2 times"), in your
+  ("Field Notes: found in the Deadmines, from Cookie, 2 times"), in your
   bags, chat links and loot rolls alike, and the reward of one of a
   dungeon's quests says which. Preferences → "Finds on item tooltips"
   turns it off.
@@ -101,9 +101,10 @@
 - Quests whose quarry stands outside a dungeon, by its way in, say so:
   Techbot, Mad Magglish, Magregan Deepshadow, the Common Hall chests of
   Uldaman, the Sapphires of Aku'Mai, the Shadowshards of Maraudon and the
-  Razorfen outside Razorfen Downs among
-  them. Uldaman Reagent Run names the Magenta Cap Clusters, and Kibler's
-  errands and Mother's Milk in Blackrock Spire whom they want.
+  Razorfen outside Razorfen Downs among them. Uldaman Reagent Run names the
+  Magenta Cap Clusters, and Kibler's errands and Mother's Milk in Blackrock
+  Spire whom they want; the Cap Clusters and the Spire Spider Eggs are
+  marked on the map.
 - Who gives a quest reads "the Sparklematic 5200" mid-sentence.
 - "Find OOX-17/TN!" and "Crystal in the Mountains" are no longer listed
   under Zul'Farrak and Razorfen Downs: what begins them drops all over.
