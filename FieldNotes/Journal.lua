@@ -183,10 +183,13 @@ end
 
 -- Parchment: the same sheet the maps are drawn on, lightened a little so
 -- ink reads well on it. light: 0 (as dark as the map sheet) to 1.
-local function Paper(parent, light)
+-- upright: the sheet is wider than tall, so a tall narrow pane shows it
+-- turned on its side instead of squeezed.
+local function Paper(parent, light, upright)
 	local t = parent:CreateTexture(nil, "BACKGROUND", nil, 0)
 	t:SetAllPoints()
 	t:SetTexture(ns.MAP_BLANK)
+	if upright then t:SetTexCoord(0, 1, 1, 1, 0, 0, 1, 0) end
 	local wash = parent:CreateTexture(nil, "BACKGROUND", nil, 1)
 	wash:SetAllPoints()
 	wash:SetColorTexture(1, 0.93, 0.78, light)
@@ -1235,7 +1238,7 @@ local function CreateJournal()
 	index.pane:SetPoint("TOPLEFT", 10, -28)
 	index.pane:SetPoint("BOTTOMLEFT", 10, 10)
 	index.pane:SetWidth(INDEX_W + 38)
-	Paper(index.pane, 0.16)
+	Paper(index.pane, 0.16, true)
 
 	page = CreateList("FieldNotesJournalPage", PAGE_W)
 	page.pane:SetPoint("TOPLEFT", index.pane, "TOPRIGHT", 6, 0)
