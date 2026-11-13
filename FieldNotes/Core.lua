@@ -6,7 +6,8 @@
 -- FieldNotesDB.instances[instanceID] = {
 --   name, kind ("party" | "raid"), first, last, visits, note,
 --   areas     = { { name, t }, ... }                 in discovery order
---   bosses    = { [encounterID] = { name, first, pulls, kills, wipes, best, lastKill, note } }
+--   bosses    = { [encounterID] = { name, first, pulls, kills, wipes, best, lastKill, deaths, note } }
+--               (a boss the game announces no fight for is filed under "n:<its name's key>")
 --   bossOrder = { encounterID, ... }
 --   mobs      = { [npcID] = { name, first, cls, type, lo, hi, skull, kills, melee,
 --                             fought, enc, spells = { [spellID or name] = spell }, order = { key, ... } } }
@@ -14,6 +15,10 @@
 --   loot      = { [itemID] = { link, first, n, npc, enc } }
 --   lootOrder = { itemID, ... }
 --   log       = { { t, text }, ... }                 the diary, oldest first
+--   runs      = { { t, last, who, level, kills, deaths, finds }, ... }   each visit, oldest first
+--   quests    = { [questID] = { title, level } }     quests learned from the quest log
+--   charted   = { [id] = true }                      what has been sketched or inked in already
+--   deaths, note
 -- }
 local ADDON, ns = ...
 FieldNotes = ns

@@ -647,6 +647,36 @@ local function OverviewPage(lines, id, inst)
 		}
 	end
 
+	-- each visit: when, for how long, and what came of it (kept since 0.2.0-beta.10)
+	local runs = inst.runs or {}
+	if #runs > 0 then
+		H2(lines, "Visits")
+		local who = {}
+		for _, r in ipairs(runs) do
+			if r.who then who[r.who] = true end
+		end
+		local many = next(who) and next(who, next(who)) -- more than one character went
+		for i = #runs, math.max(1, #runs - 9), -1 do
+			local r = runs[i]
+			local t = {}
+			local mins = math.floor(((r.last or r.t) - r.t) / 60 + 0.5)
+			if mins >= 60 then
+				local h, m = math.floor(mins / 60), mins % 60
+				t[#t + 1] = Plural(h, "hour", "hours") .. (m > 0 and (" " .. Plural(m, "minute", "minutes")) or "")
+			elseif mins > 0 then
+				t[#t + 1] = Plural(mins, "minute", "minutes")
+			end
+			if many and r.who then t[#t + 1] = r.who end
+			if r.level then t[#t + 1] = "level " .. r.level end
+			local did = {}
+			if (r.kills or 0) > 0 then did[#did + 1] = Plural(r.kills, "foe", "foes") .. " of note defeated" end
+			if (r.deaths or 0) > 0 then did[#did + 1] = "fell " .. (r.deaths == 1 and "once" or (r.deaths .. " times")) end
+			if (r.finds or 0) > 0 then did[#did + 1] = Plural(r.finds, "find", "finds") end
+			if #did > 0 then t[#t + 1] = table.concat(did, ", ") end
+			Body(lines, date("%d %b %Y, %H:%M", r.t) .. (#t > 0 and (FADED_HEX .. "  " .. table.concat(t, "; ") .. ".|r") or ""), 8)
+		end
+	end
+
 	H2(lines, "Diary")
 	local day
 	local log = inst.log

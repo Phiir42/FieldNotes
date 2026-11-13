@@ -25,8 +25,9 @@ you walk, the creatures you fight, the bosses you face and what they drop.
 - **Spoils** – every item of note found in the dungeon and who carried it.
   Shift-click a line to link the item in chat. An item's tooltip, wherever
   you see it, says where the journal noted it.
-- **Diary** – a dated log of each visit, and a box on every page for notes of
-  your own.
+- **Diary** – a dated log of each visit, the quests taken up and handed in,
+  a summary of every visit (how long, at what level, what came of it), and
+  a box on every page for notes of your own.
 
 Maps ship for the 26 classic dungeons and raids (Ragefire Chasm to Naxxramas)
 and for the nine new Forever dungeons. The new dungeons' maps are painted from
@@ -107,7 +108,8 @@ you can:
   map did or did not show;
 - best of all, your saved journal:
   `WTF\Account\<you>\SavedVariables\FieldNotes.lua` (it holds only what the
-  journal recorded: dungeon, creature and item names, and your own notes).
+  journal recorded: dungeon, creature and item names, your characters'
+  names and levels on each visit, and your own notes).
 
 Saved journals from the new Forever dungeons are especially useful: the room
 names and creatures recorded there are what the missing maps will be built from.

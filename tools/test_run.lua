@@ -539,6 +539,8 @@ step("every page of the journal", function()
 		and inst.bosses["n:cookie"].kills == 1 and inst.mobs["n:Cookie"].enc == "n:cookie")
 	M.fire("CHAT_MSG_COMBAT_XP_GAIN", "Cookie dies, you gain 120 experience.")
 	check("and its later kills are counted", inst.bosses["n:cookie"].kills == 2 and inst.mobs["n:Cookie"].enc == "n:cookie")
+	M.fire("CHAT_MSG_LOOT", "Friend receives loot: " .. item(5197, "Cookie's Tenderizer") .. ".")
+	check("loot seen in chat just after it falls is its", inst.loot[5197] and inst.loot[5197].enc == "n:cookie")
 	M.wait(1)
 	open("The Deadmines")
 	check("it has a page of its own", open("Cookie") and pageText():find("2 victories", 1, true))
@@ -619,6 +621,13 @@ step("leave and return", function()
 	M.fire("PLAYER_ENTERING_WORLD")
 	M.wait(3)
 	check("second visit counted", inst.visits == 2)
+	check("each visit is kept with what came of it", inst.runs and #inst.runs == 2 and inst.runs[1].kills >= 2
+		and (inst.runs[1].finds or 0) >= 3 and (inst.runs[1].deaths or 0) >= 1 and inst.runs[1].last > inst.runs[1].t
+		and (inst.runs[2].kills or 0) == 0)
+	M.slash("")
+	check("the dungeon's page lists its visits", pageText():find("Visits", 1, true)
+		and pageText():find("foes of note defeated", 1, true))
+	M.slash("")
 	local said = #M.chat
 	M.fire("QUEST_ACCEPTED", 2040)
 	check("inside the dungeon a quest taken up is announced", #M.chat == said + 1

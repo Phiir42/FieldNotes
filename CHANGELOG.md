@@ -32,6 +32,11 @@
   at the top, then those still to be taken up, and those done last, each
   under its own heading. A quest you are too young for says from what
   level it can be taken up.
+- A dungeon's first page lists your visits: when, for how long, at what
+  level, and what came of each (foes defeated, falls, finds). Kept from
+  this version on.
+- Loot seen only in chat just after a boss the game announces no fight for
+  (Cookie, Lorgus Jett) is now credited to that boss, as for any other.
 
 ## 0.2.0-beta.9
 

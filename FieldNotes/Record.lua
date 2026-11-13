@@ -41,6 +41,28 @@ local function Tally(what)
 	d[what] = (d[what] or 0) + 1
 end
 
+-- The visit under way (inst.runs, newest last): when it began and was last
+-- seen to go on, who went, and what came of it. what: "kills", "deaths" or
+-- "finds", counted one more.
+local RUNS_MAX = 20
+local function Visit(what)
+	local runs = cur and cur.runs
+	local r = runs and runs[#runs]
+	if not r then return end
+	r.last = time()
+	if what then r[what] = (r[what] or 0) + 1 end
+end
+
+local function NewVisit(inst)
+	inst.runs = inst.runs or {}
+	local level = UnitLevel and UnitLevel("player")
+	local who = UnitName and UnitName("player")
+	if issecret(level) or type(level) ~= "number" or level < 1 then level = nil end
+	if issecret(who) or type(who) ~= "string" or who == "" then who = nil end
+	inst.runs[#inst.runs + 1] = { t = time(), last = time(), level = level, who = who }
+	if #inst.runs > RUNS_MAX then table.remove(inst.runs, 1) end
+end
+
 ---------------------------------------------------------------------------
 -- Creatures and their abilities
 ---------------------------------------------------------------------------
@@ -233,6 +255,7 @@ ns:On("CHAT_MSG_COMBAT_XP_GAIN", function(msg)
 	if m.enc and not encounter then m.enc = nil end
 	m.xp = true
 	m.kills = (m.kills or 0) + 1
+	Visit()
 	if not encounter then ns:NamedBoss(cur, m, true) end
 	ns:Changed()
 end)
@@ -302,6 +325,8 @@ function ns:NamedBoss(inst, m, live)
 		m.enc = id
 		if live then
 			b.kills, b.pulls, b.lastKill = b.kills + 1, b.pulls + 1, time()
+			lastKill = { id = id, t = GetTime() }
+			Visit("kills")
 		end
 		return
 	end
@@ -316,7 +341,12 @@ function ns:NamedBoss(inst, m, live)
 	}
 	inst.bossOrder[#inst.bossOrder + 1] = id
 	m.enc = id
-	if live then ns:Log(inst, ("Defeated %s."):format(m.name)) end
+	if live then
+		-- loot seen only in chat just after is this boss's, as for any other
+		lastKill = { id = id, t = GetTime() }
+		Visit("kills")
+		ns:Log(inst, ("Defeated %s."):format(m.name))
+	end
 end
 
 ns:On("ENCOUNTER_START", function(id, name)
@@ -347,6 +377,7 @@ ns:On("ENCOUNTER_END", function(id, name, _, _, success)
 		b.kills = b.kills + 1
 		b.lastKill = time()
 		lastKill = { id = id, t = GetTime() }
+		Visit("kills")
 		if started then
 			local took = GetTime() - started
 			if not b.best or took < b.best then b.best = took end
@@ -365,6 +396,7 @@ end)
 ns:On("PLAYER_DEAD", function()
 	if not cur then return end
 	cur.deaths = (cur.deaths or 0) + 1
+	Visit("deaths")
 	local b = encounter and cur.bosses[encounter.id]
 	local area = cur.areas[#cur.areas]
 	if b then
@@ -423,6 +455,7 @@ local function AddLoot(link, guid)
 		ns:Log(cur, ("Found %s."):format(link))
 	end
 	it.n = it.n + 1
+	Visit("finds")
 	local npc = NpcID(guid)
 	if npc then
 		-- An opened corpse says exactly whose the item was, and overrules any
@@ -503,6 +536,7 @@ end)
 ---------------------------------------------------------------------------
 local function CheckArea()
 	if not cur then return end
+	Visit()
 	local name = GetSubZoneText()
 	if issecret(name) then return end
 	if not name or name == "" then name = GetMinimapZoneText() end
@@ -535,14 +569,19 @@ local function CheckInstance()
 			local now = time()
 			if now - (inst.last or 0) > VISIT_GAP then
 				inst.visits = inst.visits + 1
+				NewVisit(inst)
 				ns:Log(inst, inst.visits == 1 and ("Set foot in %s for the first time."):format(name)
 					or ("Returned to %s."):format(name))
+			elseif not (inst.runs and inst.runs[1]) then
+				NewVisit(inst) -- a visit begun before visits were kept
 			end
 			inst.last = now
+			Visit()
 			ns:Changed()
 		end
 		CheckArea()
 	elseif cur then
+		Visit()
 		cur.last = time()
 		cur, ns.current, ns.currentID = nil, nil, nil
 		encounter = nil
