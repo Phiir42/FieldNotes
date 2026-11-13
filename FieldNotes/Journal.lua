@@ -620,11 +620,34 @@ local function TitlePage(lines)
 	Faded(lines, "\nInside a dungeon the map key opens the journal's map of it. \"/fn help\" lists the commands.")
 end
 
+-- Whether the character is saved to the instance, as the game's raid
+-- information tells it: when the lockout ends, and how far it has got.
+local function Lockout(id, inst)
+	if not (GetNumSavedInstances and GetSavedInstanceInfo) then return end
+	local found
+	pcall(function()
+		for i = 1, GetNumSavedInstances() do
+			local name, _, reset, _, locked, _, _, _, _, difficulty, total, done, _, mapID = GetSavedInstanceInfo(i)
+			if locked and type(reset) == "number" and reset > 0
+				and (mapID == id or (type(name) == "string" and ns:AreaKey(name) == ns:AreaKey(inst.name))) then
+				found = { ends = time() + reset, total = total, done = done, difficulty = difficulty }
+			end
+		end
+	end)
+	return found
+end
+
 local function OverviewPage(lines, id, inst)
 	H1(lines, inst.name)
 	Faded(lines, ("%s. First entered %s, %s."):format(inst.kind == "raid" and "Raid" or "Dungeon",
 		ns:Day(inst.first), Plural(inst.visits, "visit", "visits"))
 		.. ((inst.deaths or 0) > 0 and (" Fallen here " .. (inst.deaths == 1 and "once" or (inst.deaths .. " times")) .. ".") or ""))
+	local saved = Lockout(id, inst)
+	if saved then
+		Faded(lines, ("Saved to it until %s%s."):format(date("%a %d %b, %H:%M", saved.ends),
+			(type(saved.total) == "number" and saved.total > 0 and type(saved.done) == "number")
+				and (" (" .. saved.done .. " of " .. saved.total .. " foes defeated)") or ""))
+	end
 
 	H2(lines, "Halls and chambers")
 	if #inst.areas == 0 then Faded(lines, "Nothing noted yet.") end
@@ -2159,7 +2182,12 @@ local function CreateJournal()
 	notes:SetPoint("BOTTOMRIGHT", -28, 6)
 
 	ApplyLook()
-	frame:SetScript("OnShow", function() ns:Sound("open") Refresh() end)
+	frame:SetScript("OnShow", function()
+		ns:Sound("open")
+		-- lockouts as they stand now (UPDATE_INSTANCE_INFO brings them)
+		if RequestRaidInfo then pcall(RequestRaidInfo) end
+		Refresh()
+	end)
 	frame:SetScript("OnHide", function() ns:Sound("close") end)
 end
 
@@ -2198,6 +2226,9 @@ if type(ToggleWorldMap) == "function" then
 end
 
 ns:On("FN_DATA", function() Refresh() end)
+ns:On("UPDATE_INSTANCE_INFO", function()
+	if frame and frame:IsShown() and sel.kind == "overview" then ns:Changed() end
+end)
 -- spell descriptions arrive a moment after they are first asked for
 ns:On("SPELL_TEXT_UPDATE", function() if frame and frame:IsShown() then ns:Changed() end end)
 -- quests taken up, moved along, or handed in while the journal lies open;

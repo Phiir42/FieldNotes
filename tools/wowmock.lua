@@ -232,6 +232,15 @@ function UnitCreatureType() return "Humanoid" end
 function UnitIsDead(t) local u = U(t) return u and u.dead or false end
 function UnitAffectingCombat() return M.combat end
 
+-- lockouts: { { name, reset (s left), total, done, mapID }, ... }
+M.saved = {}
+function GetNumSavedInstances() return #M.saved end
+function GetSavedInstanceInfo(i)
+	local l = M.saved[i]
+	return l.name, 1, l.reset, 1, true, false, 0, true, 40, "Normal", l.total, l.done, false, l.mapID
+end
+function RequestRaidInfo() M.fire("UPDATE_INSTANCE_INFO") end
+
 -- loot
 M.loot = {}    -- { { link, guid }, ... }
 function GetNumLootItems() return #M.loot end

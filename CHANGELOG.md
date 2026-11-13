@@ -41,6 +41,9 @@
   fights beside), and whether you carry them; click one for the Quests
   page. A creature in the bestiary says which unfinished quests want it.
 - The minimap button's tooltip says how far the place you are in has got.
+- A raid or dungeon you are saved to says so on its first page: until
+  when, and how many of its foes are down, as the game's raid information
+  has it.
 - A page that fails to draw is kept for "/fn errors" instead of raising an
   error on screen.
 
