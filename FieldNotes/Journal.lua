@@ -30,6 +30,25 @@ local function Font(name)
 	return _G[name] or GameFontNormal
 end
 
+-- Your own note on one entry of a page (a creature, an item, a hall): click
+-- the entry and the notes box under the page writes on it instead of on the
+-- page as a whole. Turning to another page puts the box back.
+local noteOn   -- { entry = the saved table that gets .note, name = what to call it }
+
+local function WriteOn(entry, name)
+	noteOn = { entry = entry, name = name }
+	Refresh()
+	if notes and notes.edit then notes.edit:SetFocus() end
+end
+
+local NOTE_TIP = "Click to write your own note on this."
+
+local function NoteLine(lines, entry, indent)
+	if entry.note then
+		lines[#lines + 1] = { text = FADED_HEX .. "My note:|r " .. entry.note, indent = indent or 8 }
+	end
+end
+
 ---------------------------------------------------------------------------
 -- A scrolling list of lines. list:Set({ line, ... }); a line is a table:
 --   text, font, color, indent, gap (space above), rule (underline),
@@ -201,7 +220,7 @@ local function Paper(parent, light, upright)
 	local wash = parent:CreateTexture(nil, "BACKGROUND", nil, 1)
 	wash:SetAllPoints()
 	wash:SetColorTexture(1, 0.93, 0.78, light)
-	return wash
+	return wash, t
 end
 
 -- A parchment pane with a scrolling list inside it.
@@ -325,10 +344,14 @@ end
 -- page, which has its own list).
 local function MobLines(lines, m, showName, lore)
 	if showName then
-		lines[#lines + 1] = { text = m.name, font = "GameFontNormal", gap = 10 }
+		lines[#lines + 1] = {
+			text = m.name, font = "GameFontNormal", gap = 10, tip = NOTE_TIP,
+			selected = noteOn and noteOn.entry == m, click = function() WriteOn(m, m.name) end,
+		}
 	end
 	local tag = MobTag(m)
 	if tag ~= "" then Faded(lines, tag) end
+	if showName then NoteLine(lines, m) end
 	if not m.fought then
 		Faded(lines, "Seen, but not yet fought.")
 		return
@@ -381,8 +404,10 @@ local function LootLines(lines, inst, filter, showFrom)
 			local sub = (from and ("From " .. from .. ", ") or "") .. "found " .. (it.n == 1 and "once" or (it.n .. " times")) .. "."
 			if from then sub = sub:sub(1, 1):upper() .. sub:sub(2) else sub = "F" .. sub:sub(2) end
 			lines[#lines + 1] = {
-				text = it.link .. "\n" .. FADED_HEX .. sub .. "|r",
+				text = it.link .. "\n" .. FADED_HEX .. sub .. "|r" .. (it.note and ("\n" .. FADED_HEX .. "My note:|r " .. it.note) or ""),
 				icon = ItemIcon(id), iconSize = 26, indent = 8, gap = 4, link = it.link, ink = Ink(inst, "item:" .. id),
+				selected = noteOn and noteOn.entry == it,
+				click = function() WriteOn(it, it.link:match("%[(.-)%]") or "this find") end,
 			}
 		end
 	end
@@ -390,6 +415,7 @@ local function LootLines(lines, inst, filter, showFrom)
 end
 
 local function Select(inst, kind, key)
+	noteOn = nil
 	if inst ~= sel.inst or kind ~= sel.kind or key ~= sel.key then ns:Sound("page") end
 	sel.inst, sel.kind, sel.key = inst, kind, key
 	Refresh()
@@ -412,6 +438,10 @@ local function OverviewPage(lines, id, inst)
 	for _, a in ipairs(inst.areas) do
 		Body(lines, a.name, 8)
 		lines[#lines].ink = Ink(inst, "area:" .. a.name)
+		lines[#lines].tip = NOTE_TIP
+		lines[#lines].selected = noteOn and noteOn.entry == a
+		lines[#lines].click = function() WriteOn(a, a.name) end
+		NoteLine(lines, a, 20)
 	end
 
 	H2(lines, "Adversaries")
@@ -514,6 +544,9 @@ end
 local function IsBoss(inst, m)
 	if m.enc then return true end
 	local key = ns:AreaKey(m.name)
+	-- nor do friends who only spoke up during a fight (noted by older versions)
+	local lore = ns.Creatures[key]
+	if lore and lore.friend and not m.kills then return true end
 	if ns.AbilitiesByName[key] then return true end
 	for _, b in pairs(inst.bosses) do
 		if ns:AreaKey(b.name) == key then return true end
@@ -551,6 +584,8 @@ local function CreateCanvas()
 	local blank = canvas:CreateTexture(nil, "BACKGROUND")
 	blank:SetAllPoints()
 	blank:SetTexture(ns.MAP_BLANK)
+	blank:SetAlpha(ns.db.settings.alpha or 1)
+	canvas.blank = blank
 	canvas.cache = {}  -- [piece or floor] = { texture, ... }, made on first use
 	canvas.shown = {}
 	canvas.marks = {}  -- boss markers, reused
@@ -1125,6 +1160,7 @@ end
 ---------------------------------------------------------------------------
 local function NotesTarget(inst)
 	if not inst then return end
+	if noteOn then return noteOn.entry, noteOn.name end
 	local b = sel.kind == "boss" and inst.bosses[sel.key]
 	if b then return b, b.name end
 	return inst, inst.name
@@ -1159,6 +1195,7 @@ local function CreateNotes(parent)
 		if user and box.target then
 			local text = self:GetText()
 			box.target.note = text ~= "" and text or nil
+			ns:Changed() -- a note on an entry also shows on the page
 		end
 	end)
 	-- keep the cursor line in view
@@ -1194,6 +1231,7 @@ Refresh = function()
 	if not (frame and frame:IsShown()) then return end
 	local inst = sel.inst and ns.db.instances[sel.inst]
 	if not inst then
+		noteOn = nil
 		sel.inst, sel.kind, sel.key = nil, sel.kind == "settings" and "settings" or nil, nil
 	elseif sel.kind == "boss" and not inst.bosses[sel.key] then
 		sel.kind, sel.key = "overview", nil
@@ -1302,9 +1340,22 @@ ApplyLook = function()
 	if not frame then return end
 	local s = ns.db.settings
 	local light = s.paper or 0.34
-	if page.wash then page.wash:SetColorTexture(1, 0.93, 0.78, light) end
-	if index.wash then index.wash:SetColorTexture(1, 0.93, 0.78, light * 0.47) end
-	frame:SetAlpha(s.alpha or 1)
+	-- See-through means the paper and the window behind it, not the writing:
+	-- the layers under the text are each thinned, and the window's own dark
+	-- backdrop is taken away, or stacked together they would stay solid.
+	local a = s.alpha or 1
+	if page.wash then
+		page.wash:SetColorTexture(1, 0.93, 0.78, light * a)
+		page.paper:SetAlpha(a)
+	end
+	if index.wash then
+		index.wash:SetColorTexture(1, 0.93, 0.78, light * 0.47 * a)
+		index.paper:SetAlpha(a)
+	end
+	if canvas and canvas.blank then canvas.blank:SetAlpha(a) end
+	for _, bg in ipairs({ frame.Bg, frame.Inset and frame.Inset.Bg }) do
+		if type(bg) == "table" and bg.SetShown then bg:SetShown(a >= 1) end
+	end
 end
 
 local function CreateJournal()
@@ -1396,12 +1447,12 @@ local function CreateJournal()
 	index.pane:SetPoint("TOPLEFT", 10, -28)
 	index.pane:SetPoint("BOTTOMLEFT", 10, 10)
 	index.pane:SetWidth(INDEX_W + 38)
-	index.wash = Paper(index.pane, 0.16, true)
+	index.wash, index.paper = Paper(index.pane, 0.16, true)
 
 	page = CreateList("FieldNotesJournalPage", PAGE_W)
 	page.pane:SetPoint("TOPLEFT", index.pane, "TOPRIGHT", 6, 0)
 	page.pane:SetPoint("BOTTOMRIGHT", -10, 10)
-	page.wash = Paper(page.pane, 0.34)
+	page.wash, page.paper = Paper(page.pane, 0.34)
 	page.sf:SetPoint("BOTTOMRIGHT", -28, NOTES_H + 14)
 
 	notes = CreateNotes(page.pane)

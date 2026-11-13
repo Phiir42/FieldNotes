@@ -176,7 +176,8 @@ def creature_lines(names, boss_keys):
                 continue
             ids.append((int(entry), c["name"]))
             m = merged.setdefault(key(c["name"]), {"name": c["name"], "lo": c["lo"], "hi": c["hi"],
-                                                    "rank": 0, "type": c["type"], "spells": []})
+                                                    "rank": 0, "type": c["type"], "spells": [], "friend": True})
+            m["friend"] = m["friend"] and bool(c.get("npc"))
             m["lo"], m["hi"] = min(m["lo"], c["lo"]), max(m["hi"], c["hi"])
             m["rank"] = max(m["rank"], c["rank"] if c["rank"] in RANKS else 0)
             m["spells"] += c["spells"]
@@ -197,6 +198,8 @@ def creature_lines(names, boss_keys):
         if m["type"] in TYPES:
             fields.append('type = "%s"' % TYPES[m["type"]])
         fields.append("spells = { %s }" % ", ".join(map(str, spells[:MAX_CREATURE_SPELLS])))
+        if m["friend"]:
+            fields.append("friend = true")  # every creature of this name is one you talk to
         out.append('C["%s"] = { %s } -- %s' % (k, ", ".join(fields), m["name"]))
     out += ["", "-- Creature names by NPC id: a looted corpse shows its id but not its name"]
     out += ['I[%d] = "%s"' % (entry, name.replace("\\", "").replace('"', '\\"')) for entry, name in sorted(ids)]

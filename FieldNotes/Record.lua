@@ -196,7 +196,9 @@ local function Heard(_, sender)
 	-- Friends speak in a fight too (escorts, captives). In the old dungeons
 	-- only the creatures known to live there are taken for enemies; in new
 	-- ones nothing is known, so every speaker is.
-	local known = ns.Creatures[key] or type(ns.currentID) ~= "number" or ns.currentID > 1000
+	local lore = ns.Creatures[key]
+	if lore and lore.friend then return end -- someone you talk to, not fight
+	local known = lore or type(ns.currentID) ~= "number" or ns.currentID > 1000
 	local m = known and Mob("n:" .. sender, sender)
 	if not known then
 		for _, old in pairs(cur.mobs) do
@@ -226,6 +228,9 @@ ns:On("CHAT_MSG_COMBAT_XP_GAIN", function(msg)
 	local m = Mob("n:" .. name, name)
 	if not m then return end
 	Fought(m)
+	-- filed with a boss because it was first met in that fight, but here it is
+	-- killed on its own: it is one of the place's creatures after all
+	if m.enc and not encounter then m.enc = nil end
 	m.xp = true
 	m.kills = (m.kills or 0) + 1
 	ns:Changed()

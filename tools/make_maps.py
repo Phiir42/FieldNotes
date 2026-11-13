@@ -474,6 +474,18 @@ def creature_rooms(dungeon, splits, per_sheet=False):
             if not real:
                 continue
             first = real[0]
+            # Only ever earlier than the definition says, never later: where
+            # levels lie over one another (a ship's decks) a spawn point can
+            # fall on a later room than the creature is really met in.
+            said = None
+            for g, other in enumerate(floors):
+                keyed = next((a for a in other["areas"] if area_key(a) == k),
+                             next((t for a, t in other.get("aliases", {}).items() if area_key(a) == k), None))
+                if keyed in other["areas"]:
+                    said = (g, order[g].index(keyed) + 1)
+                    break
+            if said and said <= first and not per_sheet:
+                continue
             want = {first[0]: first[1]}
             if per_sheet:
                 want = {}
@@ -481,7 +493,10 @@ def creature_rooms(dungeon, splits, per_sheet=False):
                     here = sum(v for r, v in hits.items() if r[0] == g)
                     mine = sorted(r[1] for r, v in hits.items() if r[0] == g and v >= max(1, ROOM_SHARE * here))
                     if mine:
-                        want[g] = mine[0]
+                        keyed = next((a for a in floors[g]["areas"] if area_key(a) == k),
+                                     next((t for a, t in floors[g].get("aliases", {}).items() if area_key(a) == k), None))
+                        was = order[g].index(keyed) + 1 if keyed in floors[g]["areas"] else None
+                        want[g] = min(mine[0], was) if was else mine[0]
             # A later sheet too, only when the earlier one ends in the same room
             # (the room drawn on both): otherwise finding it "on the later
             # sheet" would wrongly complete the earlier one.

@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.2.0-beta.5 – not yet released
+
+- Your own notes on single entries: click a creature in the bestiary, an item
+  in the spoils or a hall on a dungeon's first page, and the notes box writes
+  on that entry; the note shows under it.
+- "See-through" now thins the paper and the window behind it and leaves the
+  writing solid.
+- Shadowfang Keep's later sheets and the Deadmines docks follow the order of
+  real runs, so the map no longer runs ahead there.
+- Friendly characters (captives, quest givers) are never filed as creatures,
+  and trash first met during a boss fight returns to the bestiary once it is
+  killed on its own.
+
+
 ## 0.2.0-beta.4
 
 - Maps for the eight new Forever dungeons that had none: Blackmaw Hold, The

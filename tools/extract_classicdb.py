@@ -90,7 +90,9 @@ def main():
     for r in data[t]:
         creatures[num(r[e])] = {"name": r[nm], "rank": num(r[rk]), "lo": num(r[col(t, "MinLevel")]),
                                 "hi": num(r[col(t, "MaxLevel")]), "type": num(r[col(t, "CreatureType")]),
-                                "spells": [], "spawns": []}
+                                "spells": [], "spawns": [],
+                                # gossip, quest giver, vendor...: someone to talk to, not to fight
+                                "npc": num(r[col(t, "NpcFlags")]) if "NpcFlags" in cols[t] else 0}
         if sl is not None and num(r[sl]):
             spell_list_of[num(r[e])] = num(r[sl])
 
