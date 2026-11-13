@@ -180,9 +180,11 @@ SlashCmdList["FIELDNOTES"] = function(msg)
 		ns:MapTest(arg ~= "" and arg or nil)
 	elseif cmd == "quality" then
 		if tonumber(arg) then s.minQuality = math.max(0, math.min(5, math.floor(tonumber(arg)))) end
-		local QUALITY = { [0] = "poor", "common", "uncommon", "rare", "epic", "legendary" }
-		ns:Print("noting %s items and better (quality %d; 0 poor, 1 common, 2 uncommon, 3 rare, 4 epic, 5 legendary)%s.",
-			QUALITY[s.minQuality] or "all", s.minQuality, tonumber(arg) and "" or ". \"/fn quality <0-5>\" changes it")
+		local QUALITY = { "common", "uncommon", "rare", "epic", "legendary" }
+		local what = QUALITY[s.minQuality]
+		ns:Print("noting %s (quality %d; 0 poor, 1 common, 2 uncommon, 3 rare, 4 epic, 5 legendary)%s.",
+			what and (what .. (s.minQuality < 5 and " items and better" or " items")) or "every item",
+			s.minQuality, tonumber(arg) and "" or ". \"/fn quality <0-5>\" changes it")
 	else
 		ns:Print("version %s. Commands:", ns.VERSION)
 		print("  /fn  -  open or close the journal")
