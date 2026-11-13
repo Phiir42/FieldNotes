@@ -325,6 +325,15 @@ step("every page of the journal", function()
 	open("Bestiary")
 	check("bestiary lists the craftsman", pageText():find("Goblin Craftsman", 1, true))
 	check("bestiary shows shipped level", pageText():find("level 18-19", 1, true))
+	-- quests of the dungeon
+	check("quests page opens", open("Quests (5)"))
+	check("quests are listed with where they lead", pageText():find("The Defias Brotherhood", 1, true)
+		and pageText():find("Look for Edwin VanCleef.", 1, true))
+	M.questsOn[166], M.questsOn[2040], M.questsDone[214] = true, true, true
+	open("The Deadmines") open("Quests (5)")
+	check("quests show whether you carry or finished them", pageText():find("level 22, in your log", 1, true)
+		and pageText():find("level 17, done", 1, true))
+	check("the other side's quests are left out", #ns.Quests[43] > 0 and not pageText():find("Hamuul Runetotem", 1, true))
 	check("spoils opens", open("Spoils"))
 	check("spoils lists loot", pageText():find("Stonemason Cloak", 1, true))
 	check("the notes box went back to the dungeon on turning the page", pageText():find("My notes on The Deadmines", 1, true))
@@ -334,15 +343,22 @@ step("every page of the journal", function()
 	check("map opens", open("Map"))
 	check("map page text", pageText():find("What you have charted", 1, true))
 	-- a boss marker for the boss that was faced, and it leads to its page
-	local marks = 0
+	local marks, quests, lit = 0, 0, 0
 	for _, f in ipairs(M.frames) do
 		if f.__kind == "Button" and f.__shown and rawget(f, "go") then
-			marks = marks + 1
+			if rawget(f, "name"):find("here", 1, true) then
+				quests = quests + 1
+				if not rawget(f, "note"):find("Not in your log", 1, true) then lit = lit + 1 end
+			else
+				marks = marks + 1
+			end
 			if f.__scripts.OnEnter then f.__scripts.OnEnter(f) end
 			if f.__scripts.OnLeave then f.__scripts.OnLeave(f) end
 		end
 	end
 	check("one boss marker on the map (found " .. marks .. ")", marks == 1)
+	check("the map marks where quests lead (found " .. quests .. ")", quests >= 1)
+	check("a quest you carry is marked as such", lit >= 1)
 	-- the parts shown for the first time are being sketched in
 	local function drawing()
 		local n = 0

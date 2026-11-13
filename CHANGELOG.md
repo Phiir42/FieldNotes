@@ -4,6 +4,13 @@
 
 - Portraits for the bosses of the dungeons new to Forever (82 of them),
   drawn from the creature itself by its id.
+- Quests: each dungeon and raid has a Quests page listing the quests that
+  lead into it (your side's only), what each asks, who to look for, and
+  whether you carry it or have finished it. 363 quests across 34 instances,
+  the nine dungeons new to Forever among them.
+- Quests on the map: a mark where each unfinished quest leads (the boss's
+  place, or the room its creatures keep), brighter for quests in your log.
+  It can be turned off in Preferences.
 
 ## 0.2.0-beta.7
 

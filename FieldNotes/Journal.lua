@@ -743,6 +743,106 @@ local function CreateCanvas()
 	canvas:SetScript("OnHide", function() SketchDone() end)
 end
 
+---------------------------------------------------------------------------
+-- Quests: the errands that lead into a dungeon (Quests.lua), with whether you
+-- carry or have finished each, and on the map a mark where each one leads.
+---------------------------------------------------------------------------
+local QUEST_ICON = "Interface\\GossipFrame\\AvailableQuestIcon"
+local SKULL_ICON = "Interface\\TargetingFrame\\UI-TargetingFrame-Skull"
+
+-- "done", "log" (you carry it) or nil
+local function QuestState(id)
+	local q = C_QuestLog
+	if q and q.IsQuestFlaggedCompleted then
+		local ok, done = pcall(q.IsQuestFlaggedCompleted, id)
+		if ok and done then return "done" end
+	end
+	if q and q.IsOnQuest then
+		local ok, on = pcall(q.IsOnQuest, id)
+		if ok and on then return "log" end
+	elseif GetQuestLogIndexByID then
+		local ok, i = pcall(GetQuestLogIndexByID, id)
+		if ok and type(i) == "number" and i > 0 then return "log" end
+	end
+end
+
+-- The quests of a dungeon that your side is offered.
+local function QuestsOf(id)
+	local side = UnitFactionGroup and UnitFactionGroup("player")
+	side = side == "Alliance" and "A" or side == "Horde" and "H" or nil
+	local t = {}
+	for _, q in ipairs(ns.Quests and ns.Quests[id] or {}) do
+		if not q[5] or not side or q[5] == side then t[#t + 1] = q end
+	end
+	return t
+end
+
+local function QuestsPage(lines, id, inst)
+	H1(lines, "Quests")
+	local quests = QuestsOf(id)
+	if #quests == 0 then
+		Body(lines, "\nNo errands are known to lead here.")
+		return
+	end
+	Faded(lines, "Errands that lead into " .. inst.name .. ". The map marks where each one takes you.")
+	for _, q in ipairs(quests) do
+		local state = QuestState(q[1])
+		local tag = {}
+		if q[3] > 0 then tag[#tag + 1] = "level " .. q[3] end
+		if state == "done" then tag[#tag + 1] = "done" elseif state == "log" then tag[#tag + 1] = "in your log" end
+		lines[#lines + 1] = {
+			text = (state == "done" and DONE or OPEN) .. q[2] .. FADED_HEX .. "  " .. table.concat(tag, ", ") .. "|r",
+			font = "GameFontNormal", gap = 10,
+		}
+		if q[6] ~= "" then Body(lines, q[6], 8) end
+		if q[7] then Faded(lines, "Look for " .. table.concat(q[7], ", ") .. ".", 8) end
+	end
+end
+
+-- Marks for the map sheet shown: one where each unfinished quest leads, at
+-- the boss's place or in the middle of the room its creatures keep. Quests
+-- that lead to the same spot share a mark.
+local function QuestMarks(id, floor, marks)
+	if ns.db.settings.questMarks == false then return end
+	local spots, order = {}, {}
+	for _, q in ipairs(QuestsOf(id)) do
+		local state = QuestState(q[1])
+		for _, who in ipairs(state ~= "done" and q[7] or {}) do
+			local k = ns:AreaKey(who)
+			local x, y
+			for _, spot in ipairs(floor.bosses or {}) do
+				if ns:AreaKey(spot.name) == k then x, y = spot.x, spot.y end
+			end
+			local piece = not x and floor.areas[k]
+			if piece then x, y = piece.x + piece.w / 2, piece.y + piece.h / 2 end
+			if x then
+				local at = math.floor(x) .. ":" .. math.floor(y)
+				local s = spots[at]
+				if not s then
+					s = { x = x, y = y, notes = {}, seen = {} }
+					spots[at], order[#order + 1] = s, s
+				end
+				if not s.seen[q[1]] then
+					s.seen[q[1]] = { title = q[2], who = {} }
+					s.notes[#s.notes + 1] = s.seen[q[1]]
+				end
+				table.insert(s.seen[q[1]].who, who)
+				if state == "log" then s.log = true end
+			end
+		end
+	end
+	for _, s in ipairs(order) do
+		local t = {}
+		for _, n in ipairs(s.notes) do t[#t + 1] = n.title .. ": look for " .. table.concat(n.who, ", ") .. "." end
+		marks[#marks + 1] = {
+			x = s.x, y = s.y, dx = 10, dy = 10, icon = QUEST_ICON, alpha = s.log and 1 or 0.65,
+			name = #s.notes == 1 and "A quest leads here" or "Quests lead here",
+			note = table.concat(t, "\n") .. (s.log and "" or "\nNot in your log."),
+			go = function() Select(id, "quests") end,
+		}
+	end
+end
+
 -- A skull where a boss you have faced stands; click it for the boss's page.
 local function Mark(i)
 	local b = canvas.marks[i]
@@ -752,7 +852,8 @@ local function Mark(i)
 		b:SetFrameLevel(canvas:GetFrameLevel() + 5)
 		local icon = b:CreateTexture(nil, "OVERLAY")
 		icon:SetAllPoints()
-		icon:SetTexture("Interface\\TargetingFrame\\UI-TargetingFrame-Skull")
+		icon:SetTexture(SKULL_ICON)
+		b.icon = icon
 		b:SetHighlightTexture("Interface\\Minimap\\UI-Minimap-ZoomButton-Highlight", "ADD")
 		b:SetScript("OnEnter", function(self)
 			GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
@@ -761,7 +862,7 @@ local function Mark(i)
 			GameTooltip:Show()
 		end)
 		b:SetScript("OnLeave", function() GameTooltip:Hide() end)
-		b:SetScript("OnClick", function(self) self.go() end)
+		b:SetScript("OnClick", function(self) if self.go then self.go() end end)
 		canvas.marks[i] = b
 	end
 	return b
@@ -968,8 +1069,9 @@ local function DrawMap(sheet)
 		local b = Mark(i)
 		b.name, b.note, b.go = mark.name, mark.note, mark.go
 		b:ClearAllPoints()
-		b:SetPoint("CENTER", canvas, "TOPLEFT", mark.x * sx, -mark.y * sy)
-		b:SetAlpha(1)
+		b:SetPoint("CENTER", canvas, "TOPLEFT", mark.x * sx + (mark.dx or 0), -mark.y * sy + (mark.dy or 0))
+		b:SetAlpha(mark.alpha or 1)
+		b.icon:SetTexture(mark.icon or SKULL_ICON)
 		local size = ns.db.settings.markSize or 18
 		b:SetSize(size, size)
 		b:Show()
@@ -1103,6 +1205,7 @@ local function MapPage(lines, id, inst)
 			end
 		end
 	end
+	QuestMarks(id, shown.floor, shown.marks)
 	lines[#lines + 1] = { text = "", gap = 6, space = MAP_H, map = shown }
 
 	local loose = {}
@@ -1150,6 +1253,7 @@ local TOGGLES = {
 	{ "announce", "Notes in chat", "A chat line when something new is written down." },
 	{ "sketch", "Sketch new things in", "New parts of a map are drawn in, new entries fade onto the page." },
 	{ "sound", "Sounds", "The book opening and closing, pages turning." },
+	{ "questMarks", "Quests on the map", "Marks where a dungeon's quests lead, even in parts not yet charted." },
 	{ "mapKey", "Map key opens the journal", "Inside a dungeon, where the game's own map is empty." },
 	{ "button", "Minimap button", "" },
 }
@@ -1303,6 +1407,12 @@ local function IndexLines()
 					click = function() Select(id, "map") end,
 				}
 			end
+			if #QuestsOf(id) > 0 then
+				lines[#lines + 1] = {
+					text = ("Quests (%d)"):format(#QuestsOf(id)), font = "GameFontNormalSmall", indent = 10,
+					selected = sel.kind == "quests", click = function() Select(id, "quests") end,
+				}
+			end
 			lines[#lines + 1] = {
 				text = ("Bestiary (%d)"):format(Count(inst.mobs, function(m) return IsBoss(inst, m) end)),
 				font = "GameFontNormalSmall", indent = 10, selected = sel.kind == "bestiary",
@@ -1419,6 +1529,8 @@ Refresh = function()
 		BossPage(lines, inst, sel.key)
 	elseif sel.kind == "map" then
 		MapPage(lines, sel.inst, inst)
+	elseif sel.kind == "quests" then
+		QuestsPage(lines, sel.inst, inst)
 	elseif sel.kind == "bestiary" then
 		BestiaryPage(lines, inst)
 	elseif sel.kind == "spoils" then

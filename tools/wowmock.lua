@@ -205,6 +205,12 @@ function UnitName(t) local u = U(t) if not u then return end return u.player and
 function UnitIsPlayer(t) local u = U(t) return u and u.player or false end
 function UnitPlayerControlled(t) local u = U(t) return u and u.player or false end
 function UnitCanAttack(_, t) local u = U(t) return u and not u.player or false end
+M.questsDone, M.questsOn = {}, {}
+C_QuestLog = {
+	IsQuestFlaggedCompleted = function(id) return M.questsDone[id] or false end,
+	IsOnQuest = function(id) return M.questsOn[id] or false end,
+}
+function UnitFactionGroup() return "Alliance", "Alliance" end
 function UnitLevel(t) local u = U(t) return u and u.level or 0 end
 function UnitClassification() return "elite" end
 function UnitCreatureType() return "Humanoid" end
