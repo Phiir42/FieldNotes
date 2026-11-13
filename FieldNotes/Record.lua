@@ -306,7 +306,7 @@ local function Cast(how, unit, _, spellID)
 	Tally("cast spell shown")
 	local name = C_Spell and C_Spell.GetSpellName and C_Spell.GetSpellName(spellID)
 	if not name and GetSpellInfo then name = GetSpellInfo(spellID) end
-	if not name or issecret(name) or name == "" then return end
+	if issecret(name) or not name or name == "" then return end
 	Fought(m)
 	local s = Spell(m, spellID, name)
 	if how and not s[how] then

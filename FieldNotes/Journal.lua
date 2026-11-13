@@ -1147,7 +1147,7 @@ local function QuestsPage(lines, id, inst)
 	-- be taken up (yours to take before those you are too young for), and the
 	-- ones done last; otherwise in the order of their level
 	local level = UnitLevel and UnitLevel("player")
-	if type(level) ~= "number" or level < 1 then level = nil end
+	if (issecretvalue and issecretvalue(level)) or type(level) ~= "number" or level < 1 then level = nil end
 	local rows = {}
 	for i, q in ipairs(quests) do
 		local state = QuestState(q[1])
