@@ -128,12 +128,13 @@
 - Baron Aquanis in Blackfathom Deeps (summoned at the Fathom Stone, with no
   encounter of the game's) lists his own Frost Nova and Frostbolt, not the
   Depth Charge and Bubble Beam of the Season of Discovery raid's Baron.
-- "/fn find" also searches the diaries ("/fn find fell": every time you fell
-  in battle, and where), after everything else it finds; and the known
-  abilities of the bosses you have beaten and the creatures you have met
-  ("/fn find frostbolt"), and the quests that send you after what you
-  searched for ("/fn find ravager": Deviate Hides, Deviate Eradication) or
-  that the one searched for gives ("/fn find nalpak").
+- "/fn find" looks through more of the journal:
+  - the diaries, listed after everything else ("/fn find fell": every time
+    you fell in battle, and where);
+  - the known abilities of the bosses you have beaten and the creatures you
+    have met ("/fn find frostbolt");
+  - the quests that send you after a creature ("/fn find ravager": Deviate
+    Hides, Deviate Eradication), and those someone gives ("/fn find nalpak").
 - "/fn find <words>" typed before the journal had been opened once since
   logging in raised a Lua error; it opens the search page now.
 - Known abilities no longer list a fight's hidden workings: "Kirtonos
