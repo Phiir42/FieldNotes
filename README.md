@@ -26,7 +26,8 @@ you walk, the creatures you fight, the bosses you face and what they drop.
   finished one is handed in. Quests you carry come first, those done last.
 - **Spoils** – every item of note found in the dungeon and who carried it.
   Shift-click a line to link the item in chat. An item's tooltip, wherever
-  you see it, says where the journal noted it.
+  you see it, says where the journal noted it and who carried it, and
+  which dungeon quest it rewards or begins.
 - **Diary** – a dated log of each visit, the quests taken up and handed in,
   a summary of every visit (how long, at what level, with whom, what came
   of it), and
