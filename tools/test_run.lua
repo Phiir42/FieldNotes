@@ -220,6 +220,18 @@ step("notices and deaths", function()
 	slip:Click()
 	check("clicking a notice opens the journal", FieldNotesJournal:IsShown() and not slip:IsShown())
 	M.slash("")
+	-- moving it
+	M.slash("notices move")
+	check("a sample is held on screen", slip:IsShown())
+	for _ = 1, 400 do M.wait(0.05) slip.__scripts.OnUpdate(slip, 0.05) end
+	check("the sample does not fade", slip:IsShown())
+	slip.__scripts.OnDragStart(slip)
+	slip.__scripts.OnDragStop(slip)
+	check("where it was dropped is remembered", ns.db.noticePos and ns.db.noticePos[3] == 40 and ns.db.noticePos[4] == -60)
+	slip:Click()
+	check("clicking the sample only puts it away", not slip:IsShown() and not FieldNotesJournal:IsShown())
+	M.slash("notices reset")
+	check("reset forgets the place", ns.db.noticePos == nil)
 end)
 
 step("every page of the journal", function()

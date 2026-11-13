@@ -97,6 +97,7 @@ function Object:GetScrollChild() return self.__child end
 function Object:SetScrollChild(child) self.__child = child end
 function Object:NumLines() return 1 end
 function Object:IsMouseOver() return false end
+function Object:GetPoint() return "TOPLEFT", UIParent, "TOPLEFT", 40, -60 end
 function Object:IsProtected() return false end
 function Object:HasFocus() return false end
 function Object:AddMessage(text) M.chat[#M.chat + 1] = tostring(text) end

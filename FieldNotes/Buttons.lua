@@ -142,6 +142,8 @@ SlashCmdList["FIELDNOTES"] = function(msg)
 	elseif cmd == "mapkey" then
 		s.mapKey = not s.mapKey
 		ns:Print("the map key %s inside dungeons.", s.mapKey and "opens the journal" or "opens the game's map")
+	elseif cmd == "notices" and (arg == "move" or arg == "reset") then
+		ns:PlaceNotice(arg == "reset")
 	elseif cmd == "notices" then
 		s.notices = not s.notices
 		ns:Print("on-screen notes for new entries %s.", s.notices and "on" or "off")
@@ -164,7 +166,7 @@ SlashCmdList["FIELDNOTES"] = function(msg)
 		print("  /fn button  -  show or hide the minimap button")
 		print("  /fn debug  -  what the game has let the journal read, and what it hid")
 		print("  /fn mapkey  -  whether the map key opens the journal inside dungeons")
-		print("  /fn notices  -  a slip of parchment on screen when something new is written down")
+		print("  /fn notices [move | reset]  -  a slip of parchment on screen when something new is written down; drag it to move it")
 		print("  /fn sound  -  the journal's sounds")
 		print("  /fn sketch  -  whether new parts of a map are sketched in or simply appear")
 		print("  /fn maptest [instance id | off]  -  preview a map, three more areas each time")

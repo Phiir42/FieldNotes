@@ -58,6 +58,7 @@ opens straight to the map.
 | `/fn button` | show or hide the minimap button |
 | `/fn mapkey` | whether the map key opens the journal inside dungeons |
 | `/fn notices` | the slip of parchment shown on screen when something new is written down, on/off |
+| `/fn notices move` | hold a sample on screen so you can drag it where notes should appear (`reset` puts it back) |
 | `/fn sound` | the journal's sounds, on/off |
 | `/fn sketch` | whether new parts of a map are sketched in or simply appear |
 | `/fn maptest [instance id \| off]` | preview a shipped map without going there |

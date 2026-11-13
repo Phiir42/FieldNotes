@@ -7,7 +7,7 @@
   after its room. New entries on the other pages (areas, bosses, bestiary,
   spoils, abilities) fade in the same way. `/fn sketch` turns this off.
 - A slip of parchment shows on screen when something new is written down;
-  click it to open the journal (`/fn notices`).
+  click it to open the journal, drag it to move it (`/fn notices move`).
 - The journal opens, closes and turns pages with sound (`/fn sound`).
 - Your own deaths are written in the diary.
 - The map key works in combat.

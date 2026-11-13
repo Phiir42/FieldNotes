@@ -1,7 +1,8 @@
 -- Notices: when something new is written in the journal, a slip of parchment
 -- shows near the top of the screen for a few seconds with what was written.
--- Click it to open the journal. "/fn notices" turns them off (chat lines are
--- separate: "/fn announce"). Also the journal's few sounds ("/fn sound").
+-- Click it to open the journal; drag it to where you want notes to appear
+-- ("/fn notices move" holds one on screen to drag, "/fn notices reset" puts it
+-- back). "/fn notices" turns them off (chat lines are separate: "/fn announce"). Also the journal's few sounds ("/fn sound").
 local _, ns = ...
 
 local WIDTH, HEIGHT = 300, 36
@@ -12,12 +13,41 @@ local ICON = "Interface\\Icons\\INV_Misc_Book_09"
 local slip
 local queue = {}
 local showing    -- { t0 = GetTime() it appeared, hold = seconds to stay }
+local placing    -- true while a sample is held on screen to be dragged
+local dragging
+
+local function Place()
+	local pos = ns.db and ns.db.noticePos
+	slip:ClearAllPoints()
+	if pos then
+		slip:SetPoint(pos[1], UIParent, pos[2], pos[3], pos[4])
+	else
+		slip:SetPoint("TOP", UIParent, "TOP", 0, -150)
+	end
+end
 
 local function Create()
 	slip = CreateFrame("Button", "FieldNotesNotice", UIParent)
 	slip:SetSize(WIDTH, HEIGHT)
-	slip:SetPoint("TOP", UIParent, "TOP", 0, -150)
+	Place()
 	slip:SetFrameStrata("MEDIUM")
+	slip:SetClampedToScreen(true)
+	slip:SetMovable(true)
+	slip:RegisterForDrag("LeftButton")
+	slip:SetScript("OnDragStart", function()
+		dragging = true
+		slip:SetAlpha(1)
+		slip:StartMoving()
+	end)
+	slip:SetScript("OnDragStop", function()
+		slip:StopMovingOrSizing()
+		dragging = nil
+		-- remember where it was dropped
+		local point, _, rel, x, y = slip:GetPoint(1)
+		if point then ns.db.noticePos = { point, rel or point, x or 0, y or 0 } end
+		Place()
+		if showing then showing.t0 = GetTime() - FADE_IN end -- stay a while where it was put
+	end)
 	local edge = slip:CreateTexture(nil, "BACKGROUND")
 	edge:SetAllPoints()
 	edge:SetColorTexture(0.25, 0.16, 0.07, 0.9)
@@ -38,11 +68,13 @@ local function Create()
 	slip.text:SetJustifyH("LEFT")
 	slip.text:SetWordWrap(false)
 	slip:SetScript("OnClick", function()
+		local sample = placing
 		slip:Hide()
+		if sample then return end
 		if not (FieldNotesJournal and FieldNotesJournal:IsShown()) then ns:ToggleJournal() end
 	end)
 	slip:SetScript("OnHide", function()
-		showing = nil
+		showing, placing, dragging = nil, nil, nil
 		slip:SetScript("OnUpdate", nil)
 		for i = #queue, 1, -1 do queue[i] = nil end
 	end)
@@ -52,6 +84,10 @@ end
 local Next
 
 local function Tick()
+	if dragging or placing then
+		slip:SetAlpha(1)
+		return
+	end
 	local t = GetTime() - showing.t0
 	local hold = showing.hold
 	if t < FADE_IN then
@@ -83,6 +119,22 @@ function ns:Notice(text)
 	queue[#queue + 1] = text
 	while #queue > QUEUE_MAX do table.remove(queue, 1) end
 	if not showing then Next() end
+end
+
+-- Hold a sample on screen to be dragged into place; clicking it puts it away.
+function ns:PlaceNotice(reset)
+	if not slip then Create() end
+	if reset then
+		self.db.noticePos = nil
+		Place()
+		self:Print("on-screen notes are back in their usual place.")
+		return
+	end
+	for i = #queue, 1, -1 do queue[i] = nil end
+	queue[1] = "Drag this where notes should show. Click when done."
+	Next()
+	placing = true
+	slip:SetAlpha(1)
 end
 
 ---------------------------------------------------------------------------
