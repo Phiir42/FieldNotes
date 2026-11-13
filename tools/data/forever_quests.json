@@ -92,7 +92,8 @@
   {"id": 92753, "title": "Destruction in Deadmines", "side": "A", "level": 18, "min": 9, "text": "Find the hidden forge in the Deadmines and plant the Extra-Destructive Explosives beside it, then meet Alba Fairmoon at the exit.", "who": ["Gilnid"], "from": "Alba Fairmoon in Sentinel Hill"}
  ],
  "Blackfathom Deeps": [
-  {"id": 95042, "title": "Seeking the Kor Gem", "side": "H", "level": 25, "min": 20, "class": 2, "text": "Bring back a Corrupted Kor Gem from the Blackfathom naga.", "from": "Ulric Frostveil at Zoram'gar Outpost"}
+  {"id": 95042, "title": "Seeking the Kor Gem", "side": "H", "level": 25, "min": 20, "class": 2, "text": "Bring back a Corrupted Kor Gem from the Blackfathom naga.", "from": "Ulric Frostveil at Zoram'gar Outpost"},
+  {"id": 95036, "title": "A Moon-Kissed Blade", "side": "H", "level": 25, "min": 20, "class": 2, "text": "Bring Trevan Rol his Weapon Notes, Whitestone Oak Lumber, an Enchanted Silver Ingot and a Purified Kor Gem.", "from": "Lumina Windsinger at the Sepulcher", "note": "The Kor Gem comes from the Blackfathom naga: see Seeking the Kor Gem."}
  ],
  "Razorfen Kraul": [
   {"id": 96264, "title": "Elemental Aid", "side": "A", "level": 33, "min": 30, "class": 64, "text": "Defeat Charlga Razorflank and take the Tattered Note on the quilboar's plans.", "who": ["Charlga Razorflank"], "from": "Veyric Thunderhame in the Arathi Highlands"}

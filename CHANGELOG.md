@@ -19,12 +19,16 @@
 - A quest ready to hand in inside the dungeon marks who to take it to.
 - More quests: those that begin from an item a boss drops (Baron Aquanis),
   those whose quarry is summoned, a class's own quests (shown to that class
-  only), and twelve quests Forever added to the old dungeons. 448 quests
+  only), and thirteen quests Forever added to the old dungeons. 449 quests
   across 37 instances.
 - A quest that moves along while you are inside a dungeon is written down
   under it, whatever the game files it under.
 - Baron Aquanis is marked at the Fathom Stone, where he rises when the
   Fathom Core is taken, and his quests say so.
+- A quest you hold no longer says who gives it, and one that is ready no
+  longer says what to look for.
+- Rewards the game has not shown you yet are asked for, so their names
+  fill in.
 
 ## 0.2.0-beta.8
 

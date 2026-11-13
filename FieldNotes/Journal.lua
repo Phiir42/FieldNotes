@@ -902,24 +902,32 @@ local function QuestsPage(lines, id, inst)
 		if q[6] ~= "" then Body(lines, q[6], 8) end
 		if #progress > 0 then Faded(lines, "So far: " .. table.concat(progress, "; ") .. ".", 8) end
 		if ready and q.to then Faded(lines, "Hand it in to " .. q.to .. ", inside.", 8) end
-		if q[7] then Faded(lines, "Look for " .. table.concat(q[7], ", ") .. ".", 8) end
+		if q[7] and not ready then Faded(lines, "Look for " .. table.concat(q[7], ", ") .. ".", 8) end
 		-- where it comes from, until it is done
 		if state ~= "done" then
 			local how
-			if q.item then
+			-- (how to come by it, only until you have it)
+			if state == "log" then
+			elseif q.item then
 				how = "Begins with " .. q.item
 			elseif q.from then
 				how = "Given by " .. q.from .. (q.inside and ", inside" or "")
 			end
-			if q.after then how = how and (how .. "; follows " .. q.after) or ("Follows " .. q.after) end
+			if q.after and state ~= "log" then how = how and (how .. "; follows " .. q.after) or ("Follows " .. q.after) end
 			if how then Faded(lines, how .. ".", 8) end
-			if q.note then Faded(lines, q.note, 8) end
+			if q.note and not ready then Faded(lines, q.note, 8) end
 			-- and what it pays
 			local function Rewards(ids, label)
 				if not ids then return end
 				Faded(lines, label, 8)
 				for _, item in ipairs(ids) do
-					local ok, name, link = pcall(GetItemInfo, item)
+					-- the game may not have the item to hand: ask for it, and the
+					-- page is written again when it comes (GET_ITEM_INFO_RECEIVED)
+					local ask = GetItemInfo or (C_Item and C_Item.GetItemInfo)
+					local ok, name, link = pcall(ask, item)
+					if not (ok and name) and C_Item and C_Item.RequestLoadItemDataByID then
+						pcall(C_Item.RequestLoadItemDataByID, item)
+					end
 					lines[#lines + 1] = {
 						text = ok and (link or name) or "Something not yet seen",
 						icon = ItemIcon(item), iconSize = 18, indent = 16, link = "item:" .. item,
