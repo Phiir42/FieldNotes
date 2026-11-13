@@ -363,6 +363,9 @@ step("every page of the journal", function()
 	open("The Deadmines") open("Bestiary")
 	check("bestiary entries have portraits", #portraits() >= 2)
 	do -- a creature new to Forever: known by its NPC id alone
+		local shipped = ns.Creatures.blackmawdruid
+		check("creatures new to Forever ship with their NPC id", shipped and shipped.npc == 258516
+			and shipped.cls == "elite" and shipped.type == "Humanoid" and not shipped.model)
 		ns.Creatures.blackmawdruid = { lo = 60, hi = 60, cls = "elite", type = "Humanoid", spells = {}, npc = 258516 }
 		inst.mobs["n:Blackmaw Druid"] = { name = "Blackmaw Druid", first = time(), kills = 1, spells = {}, order = {} }
 		table.insert(inst.mobOrder, "n:Blackmaw Druid")
@@ -373,7 +376,7 @@ step("every page of the journal", function()
 			and pageText():find("Elite humanoid, level 60, slain 1", 1, true))
 		inst.mobs["n:Blackmaw Druid"] = nil
 		table.remove(inst.mobOrder)
-		ns.Creatures.blackmawdruid = nil
+		ns.Creatures.blackmawdruid = shipped
 		open("Spoils") open("Bestiary")
 	end
 	ns.db.settings.pictures = "off"

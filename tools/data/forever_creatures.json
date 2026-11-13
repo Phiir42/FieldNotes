@@ -1,0 +1,2470 @@
+{
+ "Abbot Schuncke": {
+  "hi": 53,
+  "lo": 53,
+  "npc": 271742,
+  "rank": 1,
+  "type": 7
+ },
+ "Abomination": {
+  "npc": 276781,
+  "rank": 1,
+  "type": 6
+ },
+ "Abyssal Bubble": {
+  "npc": 260150,
+  "rank": 1,
+  "type": 10
+ },
+ "Ados": {
+  "hi": 32,
+  "lo": 32,
+  "npc": 271338,
+  "rank": 1,
+  "type": 4
+ },
+ "Aerie Gryphon": {
+  "npc": 271332,
+  "rank": 1,
+  "type": 1
+ },
+ "Aggor the Young": {
+  "hi": 11,
+  "lo": 11,
+  "npc": 275666,
+  "rank": 1,
+  "type": 5
+ },
+ "Aisarra Nightmeadow": {
+  "hi": 63,
+  "lo": 63,
+  "npc": 264797,
+  "rank": 1,
+  "type": 7
+ },
+ "Al'Akir the Windlord": {
+  "npc": 253574,
+  "rank": 1,
+  "type": 7
+ },
+ "Alcaz Chaplain": {
+  "npc": 255262,
+  "rank": 1,
+  "type": 7
+ },
+ "Alcaz Jailer": {
+  "npc": 271784,
+  "rank": 1,
+  "type": 7
+ },
+ "Alliance Knight-Captain": {
+  "npc": 275116,
+  "rank": 1,
+  "type": 7
+ },
+ "Altairus": {
+  "npc": 251461,
+  "rank": 1,
+  "type": 2
+ },
+ "Ancient Crocolisk": {
+  "npc": 277860,
+  "rank": 1,
+  "type": 1
+ },
+ "Arcane Anomaly": {
+  "npc": 245999,
+  "rank": 1,
+  "type": 4
+ },
+ "Arcane Echo": {
+  "npc": 246992,
+  "rank": 1,
+  "type": 4
+ },
+ "Arcane Elemental": {
+  "npc": 246888,
+  "rank": 1,
+  "type": 4
+ },
+ "Arcane Manaling": {
+  "npc": 246893,
+  "rank": 1,
+  "type": 4
+ },
+ "Arcane Sentry": {
+  "hi": 55,
+  "lo": 30,
+  "npc": 275164,
+  "rank": 1,
+  "type": 4
+ },
+ "Arcane Servitor": {
+  "npc": 255369,
+  "rank": 1,
+  "type": 4
+ },
+ "Arcane Wraith": {
+  "npc": 268389,
+  "rank": 1,
+  "type": 4
+ },
+ "Arcanic Enigma": {
+  "npc": 246016,
+  "rank": 1,
+  "type": 4
+ },
+ "Ardin Grassman": {
+  "npc": 262681,
+  "rank": 1,
+  "type": 7
+ },
+ "Atrexis the Grave Knight": {
+  "npc": 247126,
+  "rank": 1,
+  "type": 7
+ },
+ "Awakened Fel Ash Slime": {
+  "npc": 264306,
+  "rank": 1,
+  "type": 10
+ },
+ "Ayessa Dawnsinger": {
+  "npc": 251968,
+  "rank": 1,
+  "type": 7
+ },
+ "Azuregos": {
+  "npc": 278779,
+  "rank": 1,
+  "type": 2
+ },
+ "Azurepetal Flayer": {
+  "npc": 261774,
+  "rank": 1,
+  "type": 4
+ },
+ "Azurepetal Sporecaller": {
+  "npc": 261968,
+  "rank": 1,
+  "type": 4
+ },
+ "Azurepetal Trapper": {
+  "npc": 261770,
+  "rank": 1,
+  "type": 4
+ },
+ "Baron Marinous": {
+  "hi": 21,
+  "lo": 21,
+  "npc": 270294,
+  "rank": 1,
+  "type": 4
+ },
+ "Bethra'zel": {
+  "hi": 60,
+  "lo": 60,
+  "npc": 263394,
+  "rank": 1,
+  "type": 3
+ },
+ "Bjork": {
+  "npc": 256097,
+  "rank": 1,
+  "type": 6
+ },
+ "Blackmaw Behemoth": {
+  "npc": 247207,
+  "rank": 1,
+  "type": 1
+ },
+ "Blackmaw Berserker": {
+  "npc": 247237,
+  "rank": 1,
+  "type": 7
+ },
+ "Blackmaw Champion": {
+  "hi": 55,
+  "lo": 55,
+  "npc": 255394,
+  "rank": 1,
+  "type": 7
+ },
+ "Blackmaw Druid": {
+  "npc": 258516,
+  "rank": 1,
+  "type": 7
+ },
+ "Blackmaw Headhunter": {
+  "npc": 250027,
+  "rank": 1,
+  "type": 7
+ },
+ "Blackmaw Shaman": {
+  "npc": 258508,
+  "rank": 1,
+  "type": 7
+ },
+ "Blackmaw Spearfisher": {
+  "npc": 258152,
+  "rank": 1,
+  "type": 7
+ },
+ "Blackmaw Thrall": {
+  "hi": 55,
+  "lo": 55,
+  "npc": 250023,
+  "rank": 1,
+  "type": 7
+ },
+ "Blackthorne Courier": {
+  "hi": 60,
+  "lo": 60,
+  "npc": 264508,
+  "rank": 1,
+  "type": 7
+ },
+ "Blackthorne Outrunner": {
+  "hi": 60,
+  "lo": 60,
+  "npc": 275173,
+  "rank": 1,
+  "type": 7
+ },
+ "Blackthorne Priest": {
+  "hi": 60,
+  "lo": 60,
+  "npc": 275174,
+  "rank": 1,
+  "type": 7
+ },
+ "Blademaster Kaijo": {
+  "hi": 42,
+  "lo": 42,
+  "npc": 263071,
+  "rank": 1,
+  "type": 7
+ },
+ "Bladetooth Frenzy": {
+  "npc": 250187,
+  "rank": 1,
+  "type": 1
+ },
+ "Blazeroar": {
+  "npc": 255702,
+  "rank": 1,
+  "type": 2
+ },
+ "Blazing Elemental": {
+  "npc": 250106,
+  "rank": 1,
+  "type": 1
+ },
+ "Blistered Ooze": {
+  "npc": 271751,
+  "rank": 1,
+  "type": 10
+ },
+ "Bloodsail Castaway": {
+  "npc": 258821,
+  "rank": 1,
+  "type": 7
+ },
+ "Bloodsail Sorcerer": {
+  "npc": 258822,
+  "rank": 1,
+  "type": 7
+ },
+ "Bloodstarved Frenzy": {
+  "npc": 268834,
+  "rank": 1,
+  "type": 1
+ },
+ "Bolt": {
+  "npc": 262081,
+  "rank": 1,
+  "type": 1
+ },
+ "Bonesnout the Unbroken": {
+  "npc": 247198,
+  "rank": 1,
+  "type": 6
+ },
+ "Borook Gallfist": {
+  "hi": 61,
+  "lo": 61,
+  "npc": 263647,
+  "rank": 1,
+  "type": 7
+ },
+ "Bossman Toof": {
+  "npc": 264773,
+  "rank": 1,
+  "type": 7
+ },
+ "Boulder Bully": {
+  "npc": 252169,
+  "rank": 1,
+  "type": 4
+ },
+ "Bound Elemental": {
+  "npc": 268321,
+  "rank": 1,
+  "type": 4
+ },
+ "Brelinda McFarry": {
+  "hi": 55,
+  "lo": 55,
+  "npc": 275273,
+  "rank": 1,
+  "type": 7
+ },
+ "Brinescale Explorer": {
+  "npc": 258799,
+  "rank": 1,
+  "type": 7
+ },
+ "Brinescale Priestess": {
+  "npc": 260096,
+  "rank": 1,
+  "type": 7
+ },
+ "Brinescale Sorceress": {
+  "npc": 258804,
+  "rank": 1,
+  "type": 7
+ },
+ "Broodmother Valraxx": {
+  "hi": 30,
+  "lo": 30,
+  "npc": 264082,
+  "rank": 1,
+  "type": 1
+ },
+ "Broodwidow": {
+  "npc": 250619,
+  "rank": 1,
+  "type": 1
+ },
+ "Bryanna Embreeze": {
+  "hi": 55,
+  "lo": 55,
+  "npc": 263569,
+  "rank": 1,
+  "type": 7
+ },
+ "Cadaver": {
+  "npc": 250621,
+  "rank": 1,
+  "type": 6
+ },
+ "Cady Lloydriel": {
+  "hi": 53,
+  "lo": 53,
+  "npc": 269695,
+  "rank": 1,
+  "type": 7
+ },
+ "Captain Dreadrise": {
+  "npc": 260042,
+  "rank": 1,
+  "type": 7
+ },
+ "Captive Fire Elemental": {
+  "npc": 275049,
+  "rank": 1,
+  "type": 4
+ },
+ "Carnage": {
+  "hi": 30,
+  "lo": 30,
+  "npc": 271336,
+  "rank": 1,
+  "type": 1
+ },
+ "Cavalry Scout Alturin": {
+  "hi": 45,
+  "lo": 45,
+  "npc": 257079,
+  "rank": 1,
+  "type": 7
+ },
+ "Celastrus the Bitter": {
+  "hi": 56,
+  "lo": 56,
+  "npc": 249051,
+  "rank": 1,
+  "type": 4
+ },
+ "Celegosa": {
+  "npc": 247972,
+  "rank": 1,
+  "type": 2
+ },
+ "Champion of the Deep": {
+  "npc": 258797,
+  "rank": 1,
+  "type": 6
+ },
+ "Chasm Crawler": {
+  "npc": 258818,
+  "rank": 1,
+  "type": 1
+ },
+ "Chasm Strider": {
+  "npc": 258805,
+  "rank": 1,
+  "type": 4
+ },
+ "Chogg'Zac": {
+  "hi": 41,
+  "lo": 41,
+  "npc": 256899,
+  "rank": 1,
+  "type": 7
+ },
+ "Chol'aruk": {
+  "hi": 20,
+  "lo": 20,
+  "npc": 267307,
+  "rank": 1,
+  "type": 7
+ },
+ "Chub'chob": {
+  "hi": 45,
+  "lo": 45,
+  "npc": 257059,
+  "rank": 1,
+  "type": 7
+ },
+ "Churning Elemental": {
+  "npc": 258819,
+  "rank": 1,
+  "type": 4
+ },
+ "Cinder": {
+  "npc": 261974,
+  "rank": 1,
+  "type": 1
+ },
+ "Clawbert": {
+  "npc": 247996,
+  "rank": 1,
+  "type": 7
+ },
+ "Clugfist": {
+  "hi": 50,
+  "lo": 50,
+  "npc": 255829,
+  "rank": 1,
+  "type": 7
+ },
+ "Commander Folkar": {
+  "npc": 260386,
+  "rank": 1,
+  "type": 7
+ },
+ "Corpsefeeder": {
+  "hi": 45,
+  "lo": 41,
+  "npc": 253394,
+  "rank": 1,
+  "type": 1
+ },
+ "Crazed Darkhound": {
+  "npc": 273822,
+  "rank": 1,
+  "type": 1
+ },
+ "Creeg Bothunk": {
+  "hi": 55,
+  "lo": 55,
+  "npc": 263570,
+  "rank": 1,
+  "type": 7
+ },
+ "Creeping Sludge": {
+  "npc": 262682,
+  "rank": 1,
+  "type": 10
+ },
+ "Croaky": {
+  "hi": 11,
+  "lo": 11,
+  "npc": 248278,
+  "rank": 1,
+  "type": 7
+ },
+ "Crushfist Bloodbreaker": {
+  "npc": 251618,
+  "rank": 1,
+  "type": 7
+ },
+ "Daewyn Songblade": {
+  "npc": 262465,
+  "rank": 1,
+  "type": 7
+ },
+ "Dark Caster": {
+  "npc": 255072,
+  "rank": 1,
+  "type": 6
+ },
+ "Dark Iron Engineer": {
+  "npc": 263397,
+  "rank": 1,
+  "type": 7
+ },
+ "Dark Iron Looter": {
+  "npc": 263396,
+  "rank": 1,
+  "type": 7
+ },
+ "Dark Iron Summoner": {
+  "npc": 263438,
+  "rank": 1,
+  "type": 7
+ },
+ "Dark Rider": {
+  "npc": 250628,
+  "rank": 1,
+  "type": 7
+ },
+ "Darkspear Elite": {
+  "hi": 55,
+  "lo": 55,
+  "npc": 269454,
+  "rank": 1,
+  "type": 7
+ },
+ "Dead Orc": {
+  "hi": 55,
+  "lo": 55,
+  "npc": 264663,
+  "rank": 1,
+  "type": 7
+ },
+ "Deathless Guardian": {
+  "npc": 260213,
+  "rank": 1,
+  "type": 6
+ },
+ "Deathless Marrow": {
+  "npc": 260202,
+  "rank": 1,
+  "type": 4
+ },
+ "Deathless Sorcerer": {
+  "npc": 260214,
+  "rank": 1,
+  "type": 6
+ },
+ "Deathless Watcher": {
+  "npc": 268477,
+  "rank": 1,
+  "type": 6
+ },
+ "Deathulus": {
+  "npc": 251615,
+  "rank": 1,
+  "type": 6
+ },
+ "Deckard": {
+  "npc": 254085,
+  "rank": 1,
+  "type": 7
+ },
+ "Deep Widow": {
+  "npc": 256040,
+  "rank": 1,
+  "type": 1
+ },
+ "Deepscar Brute": {
+  "hi": 62,
+  "lo": 62,
+  "npc": 274258,
+  "rank": 1,
+  "type": 7
+ },
+ "Deepscar Yeti": {
+  "npc": 274259,
+  "rank": 1,
+  "type": 7
+ },
+ "Defias Bounty Hunter": {
+  "npc": 255309,
+  "rank": 1,
+  "type": 7
+ },
+ "Defias Mercenary": {
+  "npc": 271780,
+  "rank": 1,
+  "type": 7
+ },
+ "Defias Truthfinder": {
+  "npc": 255271,
+  "rank": 1,
+  "type": 7
+ },
+ "Depraved Owlbeast": {
+  "npc": 258264,
+  "rank": 1,
+  "type": 1
+ },
+ "Devilsaur": {
+  "npc": 261749,
+  "rank": 1,
+  "type": 1
+ },
+ "Diemetradon": {
+  "npc": 261771,
+  "rank": 1,
+  "type": 1
+ },
+ "Direhorn Matriarch": {
+  "npc": 262127,
+  "rank": 1,
+  "type": 1
+ },
+ "Donald Armstrong": {
+  "hi": 53,
+  "lo": 53,
+  "npc": 270571,
+  "rank": 1,
+  "type": 7
+ },
+ "Doomguard": {
+  "hi": 59,
+  "lo": 58,
+  "npc": 249236,
+  "rank": 1,
+  "type": 3
+ },
+ "Doomguard Xarkul": {
+  "npc": 267439,
+  "rank": 1,
+  "type": 3
+ },
+ "Dragonmaw Infiltrator": {
+  "hi": 30,
+  "lo": 29,
+  "npc": 271346,
+  "rank": 1,
+  "type": 7
+ },
+ "Dragonmaw Reclaimer": {
+  "hi": 30,
+  "lo": 29,
+  "npc": 271351,
+  "rank": 1,
+  "type": 7
+ },
+ "Dragonmaw Saboteur": {
+  "npc": 275045,
+  "rank": 1,
+  "type": 7
+ },
+ "Dragonmaw Soulbinder": {
+  "hi": 30,
+  "lo": 29,
+  "npc": 271348,
+  "rank": 1,
+  "type": 7
+ },
+ "Dragonmaw Thaumaturgist": {
+  "npc": 275046,
+  "rank": 1,
+  "type": 7
+ },
+ "Dragonmaw Warder": {
+  "npc": 275044,
+  "rank": 1,
+  "type": 7
+ },
+ "Drowned Hexxer": {
+  "npc": 258794,
+  "rank": 1,
+  "type": 6
+ },
+ "Drowned Spirit": {
+  "npc": 263229,
+  "rank": 1,
+  "type": 6
+ },
+ "Duke Anvillaxx": {
+  "hi": 13,
+  "lo": 13,
+  "npc": 256617,
+  "rank": 1,
+  "type": 4
+ },
+ "Durgen Dirgehammer": {
+  "npc": 261319,
+  "rank": 1,
+  "type": 7
+ },
+ "Dwarf Excavator": {
+  "npc": 261603,
+  "rank": 1,
+  "type": 7
+ },
+ "Dwarf Miner": {
+  "npc": 261385,
+  "rank": 1,
+  "type": 7
+ },
+ "Earthen Ring Shaman": {
+  "npc": 257862,
+  "rank": 1,
+  "type": 7
+ },
+ "Eastgrotto Dweller": {
+  "npc": 262300,
+  "rank": 1,
+  "type": 1
+ },
+ "Eastgrotto Gorilla": {
+  "npc": 262299,
+  "rank": 1,
+  "type": 1
+ },
+ "Eastgrotto Silverback": {
+  "npc": 262301,
+  "rank": 1,
+  "type": 1
+ },
+ "Elaadrin Evengale": {
+  "npc": 252475,
+  "rank": 1,
+  "type": 7
+ },
+ "Elder Bramblesnap": {
+  "npc": 248765,
+  "rank": 1,
+  "type": 7
+ },
+ "Elder Crocolisk": {
+  "hi": 27,
+  "lo": 27,
+  "npc": 260797,
+  "rank": 1,
+  "type": 1
+ },
+ "Elder Shaman Bloodmane": {
+  "npc": 247209,
+  "rank": 1,
+  "type": 1
+ },
+ "Elmpaw": {
+  "hi": 12,
+  "lo": 12,
+  "npc": 248299,
+  "rank": 1,
+  "type": 1
+ },
+ "Emberleaf Flayer": {
+  "npc": 262188,
+  "rank": 1,
+  "type": 10
+ },
+ "Emberleaf Germinator": {
+  "npc": 262190,
+  "rank": 1,
+  "type": 10
+ },
+ "Emberleaf Scorcher": {
+  "npc": 262191,
+  "rank": 1,
+  "type": 10
+ },
+ "Emerald Flayer": {
+  "npc": 262164,
+  "rank": 1,
+  "type": 10
+ },
+ "Emerald Harvester": {
+  "npc": 262168,
+  "rank": 1,
+  "type": 10
+ },
+ "Emerald Overgrowth": {
+  "npc": 262166,
+  "rank": 1,
+  "type": 10
+ },
+ "Enraged Apparition": {
+  "npc": 263389,
+  "rank": 1,
+  "type": 6
+ },
+ "Ethereal Bear": {
+  "npc": 249065,
+  "rank": 1,
+  "type": 4
+ },
+ "Executioner Morg": {
+  "hi": 46,
+  "lo": 46,
+  "npc": 256891,
+  "rank": 1,
+  "type": 7
+ },
+ "Executor Asharell": {
+  "npc": 270451,
+  "rank": 1,
+  "type": 7
+ },
+ "Faldrim Anvilmar": {
+  "npc": 261306,
+  "rank": 1,
+  "type": 6
+ },
+ "Fallen Berserker": {
+  "npc": 250656,
+  "rank": 1,
+  "type": 6
+ },
+ "Fallen Mage": {
+  "npc": 255066,
+  "rank": 1,
+  "type": 6
+ },
+ "Fallen Necromancer": {
+  "npc": 255964,
+  "rank": 1,
+  "type": 6
+ },
+ "Fallen Warrior": {
+  "npc": 255069,
+  "rank": 1,
+  "type": 6
+ },
+ "Fel Ancient": {
+  "npc": 246003,
+  "rank": 1,
+  "type": 5
+ },
+ "Felfire Imp": {
+  "npc": 247249,
+  "rank": 1,
+  "type": 3
+ },
+ "Feral Spirit": {
+  "npc": 248218,
+  "rank": 1,
+  "type": 4
+ },
+ "Feral Timbermaw Boar": {
+  "npc": 250072,
+  "rank": 1,
+  "type": 1
+ },
+ "Firemane Guard": {
+  "npc": 255965,
+  "rank": 1,
+  "type": 2
+ },
+ "Flesh Golem": {
+  "npc": 255109,
+  "rank": 1,
+  "type": 6
+ },
+ "Fragmented Sentry": {
+  "npc": 246664,
+  "rank": 1,
+  "type": 9
+ },
+ "Fraxinus": {
+  "hi": 60,
+  "lo": 60,
+  "npc": 248366,
+  "rank": 1,
+  "type": 10
+ },
+ "Frostseeker": {
+  "npc": 269005,
+  "rank": 1,
+  "type": 2
+ },
+ "Frozen Servitor": {
+  "npc": 255367,
+  "rank": 1,
+  "type": 4
+ },
+ "Fyrenz Vishonar": {
+  "npc": 273057,
+  "rank": 1,
+  "type": 7
+ },
+ "Gargoyle": {
+  "npc": 276784,
+  "rank": 1,
+  "type": 6
+ },
+ "Geenkle": {
+  "npc": 278222,
+  "rank": 1,
+  "type": 7
+ },
+ "Geosculptor Yip": {
+  "hi": 7,
+  "lo": 7,
+  "npc": 248474,
+  "rank": 1,
+  "type": 7
+ },
+ "Ghansurok": {
+  "npc": 264867,
+  "rank": 1,
+  "type": 1
+ },
+ "Ghostly Attendant": {
+  "npc": 265002,
+  "rank": 1,
+  "type": 6
+ },
+ "Ghostmaw": {
+  "hi": 42,
+  "lo": 42,
+  "npc": 263380,
+  "rank": 1,
+  "type": 1
+ },
+ "Ghoul": {
+  "npc": 250627,
+  "rank": 1,
+  "type": 6
+ },
+ "Giant Infernal": {
+  "npc": 276806,
+  "rank": 1,
+  "type": 3
+ },
+ "Goaz Warder": {
+  "hi": 32,
+  "lo": 32,
+  "npc": 270892,
+  "rank": 1,
+  "type": 4
+ },
+ "Gold Rustboot": {
+  "npc": 278185,
+  "rank": 1,
+  "type": 7
+ },
+ "Golm": {
+  "hi": 32,
+  "lo": 32,
+  "npc": 271462,
+  "rank": 1,
+  "type": 4
+ },
+ "Gretchen Mayberry": {
+  "hi": 55,
+  "lo": 55,
+  "npc": 257087,
+  "rank": 1,
+  "type": 7
+ },
+ "Grimroot": {
+  "hi": 60,
+  "lo": 60,
+  "npc": 264333,
+  "rank": 1,
+  "type": 4
+ },
+ "Griswold": {
+  "npc": 253277,
+  "rank": 1,
+  "type": 7
+ },
+ "Grot Pondskipper": {
+  "npc": 260438,
+  "rank": 1,
+  "type": 7
+ },
+ "Gruga Bloodblade": {
+  "hi": 61,
+  "lo": 61,
+  "npc": 263645,
+  "rank": 1,
+  "type": 7
+ },
+ "Hacktooth": {
+  "npc": 259595,
+  "rank": 1,
+  "type": 7
+ },
+ "Hailspite": {
+  "npc": 269213,
+  "rank": 1,
+  "type": 5
+ },
+ "Halikor": {
+  "hi": 12,
+  "lo": 12,
+  "npc": 266852,
+  "rank": 1,
+  "type": 1
+ },
+ "Hallin": {
+  "npc": 259093,
+  "rank": 1,
+  "type": 7
+ },
+ "Head Scratcher": {
+  "npc": 251199,
+  "rank": 1,
+  "type": 1
+ },
+ "High Magistrate Vel": {
+  "npc": 248764,
+  "rank": 1,
+  "type": 7
+ },
+ "Highborne Spirit": {
+  "hi": 21,
+  "lo": 21,
+  "npc": 273642,
+  "rank": 1,
+  "type": 6
+ },
+ "Highland Creeper": {
+  "npc": 260807,
+  "rank": 1,
+  "type": 4
+ },
+ "Highland Horror": {
+  "hi": 28,
+  "lo": 28,
+  "npc": 260808,
+  "rank": 1,
+  "type": 4
+ },
+ "Highland Lurker": {
+  "hi": 29,
+  "lo": 28,
+  "npc": 260804,
+  "rank": 1,
+  "type": 1
+ },
+ "Highland Snapper": {
+  "npc": 260810,
+  "rank": 1,
+  "type": 1
+ },
+ "Horde Legionnaire": {
+  "npc": 275107,
+  "rank": 1,
+  "type": 7
+ },
+ "Howling Ravager": {
+  "npc": 258322,
+  "rank": 1,
+  "type": 1
+ },
+ "Hyjal Sentinel": {
+  "npc": 279414,
+  "rank": 1,
+  "type": 7
+ },
+ "Ice Elemental": {
+  "hi": 62,
+  "lo": 62,
+  "npc": 274257,
+  "rank": 1,
+  "type": 4
+ },
+ "Icemaw": {
+  "npc": 269004,
+  "rank": 1,
+  "type": 2
+ },
+ "Impaan the Imprisoner": {
+  "npc": 247206,
+  "rank": 1,
+  "type": 3
+ },
+ "Infernal": {
+  "npc": 278863,
+  "rank": 1,
+  "type": 3
+ },
+ "Ironhide Ravasaur": {
+  "npc": 261786,
+  "rank": 1,
+  "type": 1
+ },
+ "James Battlewing": {
+  "hi": 61,
+  "lo": 61,
+  "npc": 263349,
+  "rank": 1,
+  "type": 7
+ },
+ "Jank": {
+  "npc": 278184,
+  "rank": 1,
+  "type": 7
+ },
+ "Jereman": {
+  "npc": 278025,
+  "rank": 1,
+  "type": 1
+ },
+ "Johun \"Punchy\" Dillas": {
+  "hi": 60,
+  "lo": 60,
+  "npc": 249234,
+  "rank": 1,
+  "type": 7
+ },
+ "Julia Mallard": {
+  "npc": 257300,
+  "rank": 1,
+  "type": 7
+ },
+ "Ka'ya Speartusk": {
+  "npc": 261026,
+  "rank": 1,
+  "type": 7
+ },
+ "Katerina the Cleaner": {
+  "npc": 257016,
+  "rank": 1,
+  "type": 7
+ },
+ "Keenclaw": {
+  "npc": 272280,
+  "rank": 1,
+  "type": 1
+ },
+ "Kirin Tor Guard": {
+  "npc": 256259,
+  "rank": 1,
+  "type": 7
+ },
+ "Kirin Tor Necromancer": {
+  "npc": 269134,
+  "rank": 1,
+  "type": 7
+ },
+ "Knight Jaston Valarias": {
+  "npc": 265696,
+  "rank": 1,
+  "type": 6
+ },
+ "Kog'thug the Brave": {
+  "hi": 43,
+  "lo": 43,
+  "npc": 253527,
+  "rank": 1,
+  "type": 7
+ },
+ "Komuk": {
+  "hi": 45,
+  "lo": 45,
+  "npc": 259056,
+  "rank": 1,
+  "type": 7
+ },
+ "Krek the Noxious": {
+  "hi": 42,
+  "lo": 42,
+  "npc": 263615,
+  "rank": 1,
+  "type": 1
+ },
+ "Krol'dok Brute": {
+  "npc": 258687,
+  "rank": 1,
+  "type": 7
+ },
+ "Krol'dok Centurion": {
+  "npc": 257885,
+  "rank": 1,
+  "type": 7
+ },
+ "Krol'dok Shaman": {
+  "npc": 257888,
+  "rank": 1,
+  "type": 7
+ },
+ "Kronk": {
+  "hi": 42,
+  "lo": 42,
+  "npc": 258491,
+  "rank": 1,
+  "type": 7
+ },
+ "Legashi Plaguebringer": {
+  "npc": 268864,
+  "rank": 1,
+  "type": 3
+ },
+ "Legashi Ritualist": {
+  "npc": 258668,
+  "rank": 1,
+  "type": 3
+ },
+ "Legashi Satyr": {
+  "npc": 272307,
+  "rank": 1,
+  "type": 3
+ },
+ "Legashi Slayer": {
+  "npc": 255347,
+  "rank": 1,
+  "type": 3
+ },
+ "Legashi Subjugator": {
+  "npc": 247235,
+  "rank": 1,
+  "type": 3
+ },
+ "Legashi Summoner": {
+  "npc": 247248,
+  "rank": 1,
+  "type": 3
+ },
+ "Lesser Stone Golem": {
+  "npc": 263466,
+  "rank": 1,
+  "type": 4
+ },
+ "Lightgorged Whelp": {
+  "hi": 61,
+  "lo": 61,
+  "npc": 245070,
+  "rank": 1,
+  "type": 2
+ },
+ "Living Blaze": {
+  "npc": 272318,
+  "rank": 1,
+  "type": 4
+ },
+ "Living Monstrosity": {
+  "npc": 250689,
+  "rank": 1,
+  "type": 6
+ },
+ "Loren Ravenlock": {
+  "hi": 60,
+  "lo": 60,
+  "npc": 268044,
+  "rank": 1,
+  "type": 7
+ },
+ "Maerion Thaelemaches": {
+  "hi": 60,
+  "lo": 60,
+  "npc": 267097,
+  "rank": 1,
+  "type": 7
+ },
+ "Magmatus": {
+  "npc": 261316,
+  "rank": 1,
+  "type": 4
+ },
+ "Magram Necrokhan": {
+  "hi": 45,
+  "lo": 45,
+  "npc": 253274,
+  "rank": 1,
+  "type": 7
+ },
+ "Makrura Snapper": {
+  "npc": 258897,
+  "rank": 1,
+  "type": 1
+ },
+ "Malevolent Mirage": {
+  "hi": 42,
+  "lo": 42,
+  "npc": 269756,
+  "rank": 1,
+  "type": 4
+ },
+ "Mana Devourer": {
+  "npc": 246008,
+  "rank": 1,
+  "type": 3
+ },
+ "Mana Echo": {
+  "npc": 246600,
+  "rank": 1,
+  "type": 4
+ },
+ "Mana Wraith": {
+  "npc": 246931,
+  "rank": 1,
+  "type": 4
+ },
+ "Mana-Rich Frenzy": {
+  "npc": 268462,
+  "rank": 1,
+  "type": 1
+ },
+ "Mangled Cadaver": {
+  "npc": 250623,
+  "rank": 1,
+  "type": 6
+ },
+ "Marsh Skulker": {
+  "npc": 274715,
+  "rank": 1,
+  "type": 1
+ },
+ "Mayena Earthseeker": {
+  "hi": 60,
+  "lo": 60,
+  "npc": 263445,
+  "rank": 1,
+  "type": 7
+ },
+ "Menacing Ravager": {
+  "hi": 63,
+  "lo": 63,
+  "npc": 267081,
+  "rank": 1,
+  "type": 7
+ },
+ "Min'loth the Serpent": {
+  "npc": 260243,
+  "rank": 1,
+  "type": 7
+ },
+ "Mindless Horror": {
+  "npc": 255068,
+  "rank": 1,
+  "type": 6
+ },
+ "Mindless Undead": {
+  "npc": 250649,
+  "rank": 1,
+  "type": 6
+ },
+ "Mistmantle Prowler": {
+  "hi": 60,
+  "lo": 60,
+  "npc": 276246,
+  "rank": 1,
+  "type": 7
+ },
+ "Modr": {
+  "hi": 32,
+  "lo": 32,
+  "npc": 271460,
+  "rank": 1,
+  "type": 4
+ },
+ "Mog'thar": {
+  "hi": 43,
+  "lo": 43,
+  "npc": 258626,
+  "rank": 1,
+  "type": 7
+ },
+ "Molten Servitor": {
+  "npc": 255366,
+  "rank": 1,
+  "type": 4
+ },
+ "Monocuglare": {
+  "npc": 251620,
+  "rank": 1,
+  "type": 3
+ },
+ "Mordent Evenshade": {
+  "hi": 60,
+  "lo": 60,
+  "npc": 253471,
+  "rank": 1,
+  "type": 7
+ },
+ "Mukomonji": {
+  "hi": 62,
+  "lo": 62,
+  "npc": 262306,
+  "rank": 1,
+  "type": 7
+ },
+ "Mulara": {
+  "hi": 42,
+  "lo": 42,
+  "npc": 253713,
+  "rank": 1,
+  "type": 7
+ },
+ "Muln Earthfury": {
+  "npc": 256620,
+  "rank": 1,
+  "type": 7
+ },
+ "Murkborn Elemental": {
+  "npc": 265026,
+  "rank": 1,
+  "type": 4
+ },
+ "Nanaya": {
+  "npc": 261809,
+  "rank": 1,
+  "type": 5
+ },
+ "Nar'gurk": {
+  "npc": 258964,
+  "rank": 1,
+  "type": 7
+ },
+ "Nascent Pylon Protector": {
+  "hi": 43,
+  "lo": 43,
+  "npc": 276401,
+  "rank": 1,
+  "type": 4
+ },
+ "Nelanna Keeneye": {
+  "npc": 266861,
+  "rank": 1,
+  "type": 7
+ },
+ "Neru": {
+  "hi": 32,
+  "lo": 32,
+  "npc": 271458,
+  "rank": 1,
+  "type": 4
+ },
+ "Nightveiled Rotheap": {
+  "hi": 32,
+  "lo": 31,
+  "npc": 270589,
+  "rank": 1,
+  "type": 4
+ },
+ "Nimsy": {
+  "hi": 6,
+  "lo": 6,
+  "npc": 248464,
+  "rank": 1,
+  "type": 7
+ },
+ "Nizook Boof": {
+  "hi": 55,
+  "lo": 55,
+  "npc": 275276,
+  "rank": 1,
+  "type": 7
+ },
+ "Noxious Flayer": {
+  "npc": 272321,
+  "rank": 1,
+  "type": 4
+ },
+ "Nuara Tremorhoof": {
+  "hi": 60,
+  "lo": 60,
+  "npc": 272633,
+  "rank": 1,
+  "type": 7
+ },
+ "Oghma": {
+  "npc": 277691,
+  "rank": 1,
+  "type": 7
+ },
+ "Oil Slime": {
+  "npc": 271749,
+  "rank": 1,
+  "type": 10
+ },
+ "Old Fire-Eye": {
+  "hi": 25,
+  "lo": 25,
+  "npc": 259897,
+  "rank": 1,
+  "type": 7
+ },
+ "Old Rot-Chum": {
+  "hi": 42,
+  "lo": 42,
+  "npc": 257001,
+  "rank": 1,
+  "type": 7
+ },
+ "Ombassa": {
+  "hi": 41,
+  "lo": 41,
+  "npc": 263315,
+  "rank": 1,
+  "type": 1
+ },
+ "Onyxian Lair Guard": {
+  "npc": 267197,
+  "rank": 1,
+  "type": 2
+ },
+ "Outcast Necrokhan": {
+  "hi": 45,
+  "lo": 45,
+  "npc": 253275,
+  "rank": 1,
+  "type": 7
+ },
+ "Outraged Pillager": {
+  "hi": 23,
+  "lo": 23,
+  "npc": 268623,
+  "rank": 1,
+  "type": 7
+ },
+ "Overlord Kilgar": {
+  "hi": 46,
+  "lo": 46,
+  "npc": 256881,
+  "rank": 1,
+  "type": 7
+ },
+ "Overlord Mugg": {
+  "npc": 258968,
+  "rank": 1,
+  "type": 7
+ },
+ "Overseer Wrex": {
+  "npc": 255391,
+  "rank": 1,
+  "type": 7
+ },
+ "Phantasm": {
+  "npc": 246990,
+  "rank": 1,
+  "type": 4
+ },
+ "Pherry Leftee": {
+  "hi": 61,
+  "lo": 61,
+  "npc": 263644,
+  "rank": 1,
+  "type": 7
+ },
+ "Plague Ghoul": {
+  "npc": 250630,
+  "rank": 1,
+  "type": 6
+ },
+ "Plated Stegodon": {
+  "npc": 261785,
+  "rank": 1,
+  "type": 1
+ },
+ "Primeval Elemental": {
+  "npc": 263886,
+  "rank": 1,
+  "type": 7
+ },
+ "Profane Necromancer": {
+  "npc": 263196,
+  "rank": 1,
+  "type": 6
+ },
+ "Purified Horror": {
+  "npc": 272320,
+  "rank": 1,
+  "type": 4
+ },
+ "Pylon Protector": {
+  "hi": 61,
+  "lo": 61,
+  "npc": 252695,
+  "rank": 1,
+  "type": 4
+ },
+ "Quickpetal Entangler": {
+  "npc": 262200,
+  "rank": 1,
+  "type": 10
+ },
+ "Quickpetal Flayer": {
+  "npc": 262197,
+  "rank": 1,
+  "type": 10
+ },
+ "Quickpetal Lasher": {
+  "npc": 261780,
+  "rank": 1,
+  "type": 10
+ },
+ "Quolga the Wise": {
+  "hi": 42,
+  "lo": 42,
+  "npc": 255678,
+  "rank": 1,
+  "type": 7
+ },
+ "Ragged Ghoul": {
+  "npc": 250622,
+  "rank": 1,
+  "type": 6
+ },
+ "Ragged Traveler": {
+  "npc": 249240,
+  "rank": 1,
+  "type": 7
+ },
+ "Ranthor the Severer": {
+  "npc": 261363,
+  "rank": 1,
+  "type": 7
+ },
+ "Rath'mael": {
+  "npc": 250657,
+  "rank": 1,
+  "type": 6
+ },
+ "Ravasaur Assassin": {
+  "npc": 262115,
+  "rank": 1,
+  "type": 1
+ },
+ "Ravasaur Hunter": {
+  "npc": 253214,
+  "rank": 1,
+  "type": 1
+ },
+ "Ravasaur Matriarch": {
+  "npc": 253215,
+  "rank": 1,
+  "type": 1
+ },
+ "Ravasaur Trapper": {
+  "npc": 262685,
+  "rank": 1,
+  "type": 1
+ },
+ "Ravenous Shark": {
+  "hi": 63,
+  "lo": 63,
+  "npc": 267072,
+  "rank": 1,
+  "type": 1
+ },
+ "Razormane Berserker": {
+  "hi": 19,
+  "lo": 18,
+  "npc": 267314,
+  "rank": 1,
+  "type": 7
+ },
+ "Razormane Flesheater": {
+  "hi": 19,
+  "lo": 18,
+  "npc": 267308,
+  "rank": 1,
+  "type": 7
+ },
+ "Red Drake": {
+  "hi": 60,
+  "lo": 60,
+  "npc": 271446,
+  "rank": 1,
+  "type": 2
+ },
+ "Relic Guardian": {
+  "npc": 260326,
+  "rank": 1,
+  "type": 4
+ },
+ "Renegade Conjurer": {
+  "npc": 255364,
+  "rank": 1,
+  "type": 7
+ },
+ "Rhahk'Zor": {
+  "npc": 274298,
+  "rank": 1,
+  "type": 7
+ },
+ "Riding Gryphon": {
+  "npc": 259094,
+  "rank": 1,
+  "type": 1
+ },
+ "Riding Wolf": {
+  "npc": 262065,
+  "rank": 1,
+  "type": 1
+ },
+ "Rimblat Earthshatter": {
+  "hi": 60,
+  "lo": 60,
+  "npc": 262492,
+  "rank": 1,
+  "type": 7
+ },
+ "Riptear": {
+  "hi": 13,
+  "lo": 13,
+  "npc": 276020,
+  "rank": 1,
+  "type": 6
+ },
+ "Risen Sentry": {
+  "npc": 258792,
+  "rank": 1,
+  "type": 6
+ },
+ "Risen Terror": {
+  "npc": 255065,
+  "rank": 1,
+  "type": 6
+ },
+ "Rugbul Boomfirst": {
+  "hi": 61,
+  "lo": 61,
+  "npc": 263646,
+  "rank": 1,
+  "type": 7
+ },
+ "Rugged Traveler": {
+  "npc": 249239,
+  "rank": 1,
+  "type": 7
+ },
+ "Sairuh Maryla": {
+  "hi": 28,
+  "lo": 28,
+  "npc": 256273,
+  "rank": 1,
+  "type": 7
+ },
+ "Saltscale Prophet": {
+  "npc": 258856,
+  "rank": 1,
+  "type": 7
+ },
+ "Saltseer Coroner": {
+  "npc": 260353,
+  "rank": 1,
+  "type": 7
+ },
+ "Saltseer Cultist": {
+  "npc": 259981,
+  "rank": 1,
+  "type": 7
+ },
+ "Saltseer Manhunter": {
+  "npc": 259987,
+  "rank": 1,
+  "type": 7
+ },
+ "Saltseer Murderer": {
+  "npc": 259979,
+  "rank": 1,
+  "type": 7
+ },
+ "Saltseer Porter": {
+  "npc": 268439,
+  "rank": 1,
+  "type": 7
+ },
+ "Saltspine": {
+  "npc": 260322,
+  "rank": 1,
+  "type": 1
+ },
+ "Saturated Remnant": {
+  "npc": 247001,
+  "rank": 1,
+  "type": 4
+ },
+ "Savage Felhound": {
+  "npc": 268787,
+  "rank": 1,
+  "type": 3
+ },
+ "Scarlet Commander Mograine": {
+  "npc": 245507,
+  "rank": 1,
+  "type": 7
+ },
+ "Scorching Elemental": {
+  "npc": 272319,
+  "rank": 1,
+  "type": 4
+ },
+ "Scoutmaster Vargas": {
+  "hi": 42,
+  "lo": 42,
+  "npc": 260211,
+  "rank": 1,
+  "type": 7
+ },
+ "Sean Guardoff": {
+  "hi": 61,
+  "lo": 61,
+  "npc": 263643,
+  "rank": 1,
+  "type": 7
+ },
+ "Seeking Remnant": {
+  "npc": 247003,
+  "rank": 1,
+  "type": 4
+ },
+ "Seeping Slime": {
+  "npc": 262684,
+  "rank": 1,
+  "type": 10
+ },
+ "Sergeant Tobin Wheeldon": {
+  "npc": 265697,
+  "rank": 1,
+  "type": 6
+ },
+ "Sergeant Ulka": {
+  "hi": 55,
+  "lo": 55,
+  "npc": 260383,
+  "rank": 1,
+  "type": 7
+ },
+ "Shade of Naxxramas": {
+  "hi": 61,
+  "lo": 61,
+  "npc": 245490,
+  "rank": 1,
+  "type": 6
+ },
+ "Shade of the Archmage": {
+  "npc": 246020,
+  "rank": 1,
+  "type": 4
+ },
+ "Shadetooth": {
+  "npc": 260325,
+  "rank": 1,
+  "type": 1
+ },
+ "Shadowhide Bully": {
+  "npc": 258038,
+  "rank": 1,
+  "type": 7
+ },
+ "Shadowhide Curseweaver": {
+  "npc": 258040,
+  "rank": 1,
+  "type": 7
+ },
+ "Shen'dralas Protector": {
+  "hi": 60,
+  "lo": 60,
+  "npc": 255759,
+  "rank": 1,
+  "type": 6
+ },
+ "Shinyfinder Narf": {
+  "hi": 3,
+  "lo": 3,
+  "npc": 248362,
+  "rank": 1,
+  "type": 7
+ },
+ "Shrieking Banshee": {
+  "npc": 250620,
+  "rank": 1,
+  "type": 6
+ },
+ "Skeletal Mage": {
+  "npc": 250624,
+  "rank": 1,
+  "type": 6
+ },
+ "Skeletal Necromancer": {
+  "npc": 257075,
+  "rank": 1,
+  "type": 6
+ },
+ "Skeletal Soldier": {
+  "npc": 250626,
+  "rank": 1,
+  "type": 6
+ },
+ "Skeletal Warder": {
+  "npc": 255070,
+  "rank": 1,
+  "type": 6
+ },
+ "Skeleton": {
+  "npc": 271904,
+  "rank": 1,
+  "type": 6
+ },
+ "Skylord Omnuron": {
+  "npc": 254131,
+  "rank": 1,
+  "type": 7
+ },
+ "Slavecrusher Grox": {
+  "npc": 258966,
+  "rank": 1,
+  "type": 7
+ },
+ "Slavering Hound": {
+  "npc": 255267,
+  "rank": 1,
+  "type": 1
+ },
+ "Smoldering Burn": {
+  "npc": 251971,
+  "rank": 1,
+  "type": 10
+ },
+ "Snargl": {
+  "hi": 40,
+  "lo": 40,
+  "npc": 255906,
+  "rank": 1,
+  "type": 7
+ },
+ "Snarlfang": {
+  "npc": 259283,
+  "rank": 1,
+  "type": 1
+ },
+ "Snowtalon": {
+  "npc": 262297,
+  "rank": 1,
+  "type": 1
+ },
+ "Snufflesnout": {
+  "hi": 44,
+  "lo": 44,
+  "npc": 258595,
+  "rank": 1,
+  "type": 7
+ },
+ "Spectral Citizen": {
+  "npc": 255279,
+  "rank": 1,
+  "type": 6
+ },
+ "Spectral Frostwyrm": {
+  "npc": 255691,
+  "rank": 1,
+  "type": 6
+ },
+ "Spider": {
+  "npc": 250484,
+  "rank": 1,
+  "type": 1
+ },
+ "Spiked Stegodon": {
+  "npc": 261784,
+  "rank": 1,
+  "type": 1
+ },
+ "Spirit Wolf": {
+  "npc": 276530,
+  "rank": 1,
+  "type": 4
+ },
+ "Steamwheedle Enforcer": {
+  "hi": 55,
+  "lo": 55,
+  "npc": 275087,
+  "rank": 1,
+  "type": 7
+ },
+ "Stegodon Young": {
+  "npc": 262117,
+  "rank": 1,
+  "type": 1
+ },
+ "Stone Guardian": {
+  "npc": 272317,
+  "rank": 1,
+  "type": 4
+ },
+ "Stone Warden": {
+  "npc": 261778,
+  "rank": 1,
+  "type": 4
+ },
+ "Stone Watcher": {
+  "npc": 250629,
+  "rank": 1,
+  "type": 6
+ },
+ "Stormheart": {
+  "hi": 30,
+  "lo": 30,
+  "npc": 270094,
+  "rank": 1,
+  "type": 1
+ },
+ "Strashaz Enchantress": {
+  "npc": 255373,
+  "rank": 1,
+  "type": 7
+ },
+ "Strashaz Soldier": {
+  "npc": 255995,
+  "rank": 1,
+  "type": 7
+ },
+ "Subdued Dragonspawn": {
+  "hi": 34,
+  "lo": 34,
+  "npc": 271373,
+  "rank": 1,
+  "type": 2
+ },
+ "Suffused Treant": {
+  "npc": 247016,
+  "rank": 1,
+  "type": 4
+ },
+ "Sunderbark": {
+  "npc": 248709,
+  "rank": 1,
+  "type": 10
+ },
+ "Super Hogger": {
+  "npc": 278256,
+  "rank": 1,
+  "type": 7
+ },
+ "Surging Elemental": {
+  "npc": 250159,
+  "rank": 1,
+  "type": 1
+ },
+ "Swiftwind": {
+  "npc": 272279,
+  "rank": 1,
+  "type": 1
+ },
+ "Tamed Shriekling": {
+  "npc": 250924,
+  "rank": 1,
+  "type": 1
+ },
+ "Tar Crawler": {
+  "npc": 261781,
+  "rank": 1,
+  "type": 4
+ },
+ "Tar Hunter": {
+  "npc": 261782,
+  "rank": 1,
+  "type": 4
+ },
+ "Tar Lurker": {
+  "npc": 261773,
+  "rank": 1,
+  "type": 4
+ },
+ "Tar Ooze": {
+  "npc": 271750,
+  "rank": 1,
+  "type": 10
+ },
+ "Tar Walker": {
+  "npc": 261779,
+  "rank": 1,
+  "type": 4
+ },
+ "Tarantula": {
+  "npc": 250488,
+  "rank": 1,
+  "type": 1
+ },
+ "Tempest Elemental": {
+  "npc": 250089,
+  "rank": 1,
+  "type": 1
+ },
+ "Terrorhowl": {
+  "npc": 259285,
+  "rank": 1,
+  "type": 1
+ },
+ "Thaddeus Brillyard": {
+  "hi": 53,
+  "lo": 53,
+  "npc": 269699,
+  "rank": 1,
+  "type": 7
+ },
+ "The Abandoned": {
+  "npc": 250631,
+  "rank": 1,
+  "type": 6
+ },
+ "The Baron": {
+  "npc": 250660,
+  "rank": 1,
+  "type": 6
+ },
+ "The Horror": {
+  "npc": 251103,
+  "rank": 1,
+  "type": 4
+ },
+ "The Questioner": {
+  "npc": 256236,
+  "rank": 1,
+  "type": 7
+ },
+ "Thera Duskwhisper": {
+  "npc": 268606,
+  "rank": 1,
+  "type": 7
+ },
+ "Theramore Elite": {
+  "hi": 55,
+  "lo": 55,
+  "npc": 269453,
+  "rank": 1,
+  "type": 7
+ },
+ "Thicket Hunter": {
+  "npc": 260801,
+  "rank": 1,
+  "type": 1
+ },
+ "Thicket Lurker": {
+  "npc": 260800,
+  "rank": 1,
+  "type": 1
+ },
+ "Thicket Matriarch": {
+  "npc": 260802,
+  "rank": 1,
+  "type": 1
+ },
+ "Thunderaan": {
+  "npc": 278857,
+  "rank": 1,
+  "type": 4
+ },
+ "Thunderhoof": {
+  "npc": 261812,
+  "rank": 1,
+  "type": 1
+ },
+ "Thunderstomp Stegodon": {
+  "npc": 261783,
+  "rank": 1,
+  "type": 1
+ },
+ "Tidemistress Ca'zass": {
+  "npc": 255997,
+  "rank": 1,
+  "type": 7
+ },
+ "Titanosaur": {
+  "npc": 253201,
+  "rank": 1,
+  "type": 1
+ },
+ "Tormented Soul": {
+  "npc": 263390,
+  "rank": 1,
+  "type": 6
+ },
+ "Treant": {
+  "npc": 275929,
+  "rank": 1,
+  "type": 4
+ },
+ "Trula Verpon": {
+  "npc": 274985,
+  "rank": 1,
+  "type": 7
+ },
+ "Tunk": {
+  "npc": 259256,
+  "rank": 1,
+  "type": 7
+ },
+ "Twilight Commander Zarmok": {
+  "npc": 258972,
+  "rank": 1,
+  "type": 7
+ },
+ "Twilight Enforcer": {
+  "hi": 45,
+  "lo": 45,
+  "npc": 256800,
+  "rank": 1,
+  "type": 7
+ },
+ "Twilight Grunt": {
+  "npc": 258042,
+  "rank": 1,
+  "type": 7
+ },
+ "Twilight Lieutenant": {
+  "npc": 258104,
+  "rank": 1,
+  "type": 7
+ },
+ "Twilight Outrider": {
+  "npc": 258102,
+  "rank": 1,
+  "type": 7
+ },
+ "Twilight Warlock": {
+  "npc": 258100,
+  "rank": 1,
+  "type": 7
+ },
+ "Tyranosaur": {
+  "npc": 261750,
+  "rank": 1,
+  "type": 1
+ },
+ "Ukorsbane": {
+  "hi": 8,
+  "lo": 8,
+  "npc": 266851,
+  "rank": 1,
+  "type": 1
+ },
+ "Umarak": {
+  "hi": 45,
+  "lo": 45,
+  "npc": 253066,
+  "rank": 1,
+  "type": 7
+ },
+ "Unbound Spirit": {
+  "npc": 247231,
+  "rank": 1,
+  "type": 4
+ },
+ "Undying Offering": {
+  "npc": 263899,
+  "rank": 1,
+  "type": 6
+ },
+ "Ungarl": {
+  "npc": 248561,
+  "rank": 1,
+  "type": 7
+ },
+ "Unstable Sentinel": {
+  "npc": 246017,
+  "rank": 1,
+  "type": 4
+ },
+ "Valiant Watcher": {
+  "npc": 266878,
+  "rank": 1,
+  "type": 7
+ },
+ "Var'Taka": {
+  "npc": 258924,
+  "rank": 1,
+  "type": 7
+ },
+ "Varrox Bleakhoof": {
+  "npc": 247234,
+  "rank": 1,
+  "type": 3
+ },
+ "Ve'han Talongrasp": {
+  "hi": 60,
+  "lo": 60,
+  "npc": 267182,
+  "rank": 1,
+  "type": 7
+ },
+ "Vek'zol": {
+  "npc": 247015,
+  "rank": 1,
+  "type": 3
+ },
+ "Venom Lurker": {
+  "npc": 250735,
+  "rank": 1,
+  "type": 1
+ },
+ "Venomridge": {
+  "npc": 261813,
+  "rank": 1,
+  "type": 1
+ },
+ "Venture Co. Clearclutter": {
+  "hi": 12,
+  "lo": 12,
+  "npc": 272173,
+  "rank": 1,
+  "type": 9
+ },
+ "Veteran of the Third War": {
+  "npc": 255038,
+  "rank": 1,
+  "type": 6
+ },
+ "Viktor the Vile": {
+  "npc": 256035,
+  "rank": 1,
+  "type": 6
+ },
+ "Virulent Blood of Agamaggan": {
+  "npc": 255669,
+  "rank": 1,
+  "type": 10
+ },
+ "Vitrix": {
+  "npc": 272561,
+  "rank": 1,
+  "type": 1
+ },
+ "Voracious": {
+  "npc": 278858,
+  "rank": 1,
+  "type": 4
+ },
+ "Vulgara the Insatiable": {
+  "hi": 8,
+  "lo": 8,
+  "npc": 254589,
+  "rank": 1,
+  "type": 1
+ },
+ "Wailing Banshee": {
+  "npc": 250650,
+  "rank": 1,
+  "type": 6
+ },
+ "War Handler Ashka": {
+  "npc": 259281,
+  "rank": 1,
+  "type": 7
+ },
+ "Warbringer Construct": {
+  "npc": 278644,
+  "rank": 1,
+  "type": 4
+ },
+ "Warden": {
+  "npc": 266880,
+  "rank": 1,
+  "type": 7
+ },
+ "Weeshald Rustboot": {
+  "npc": 278210,
+  "rank": 1,
+  "type": 7
+ },
+ "Whispering Horror": {
+  "hi": 13,
+  "lo": 11,
+  "npc": 260396,
+  "rank": 1,
+  "type": 6
+ },
+ "Wind": {
+  "npc": 277865,
+  "rank": 1,
+  "type": 4
+ },
+ "Windshaper Shaman": {
+  "npc": 278209,
+  "rank": 1,
+  "type": 7
+ },
+ "Witherbeard": {
+  "hi": 60,
+  "lo": 60,
+  "npc": 249052,
+  "rank": 1,
+  "type": 4
+ },
+ "Witherfang": {
+  "npc": 250483,
+  "rank": 1,
+  "type": 1
+ },
+ "Withermaw": {
+  "npc": 247195,
+  "rank": 1,
+  "type": 1
+ },
+ "Woodpaw Alpha": {
+  "npc": 278796,
+  "rank": 1,
+  "type": 7
+ },
+ "Woodpaw Mongrel": {
+  "npc": 278799,
+  "rank": 1,
+  "type": 7
+ },
+ "Woodpaw Mystic": {
+  "npc": 278798,
+  "rank": 1,
+  "type": 7
+ },
+ "Woodwyrd": {
+  "hi": 60,
+  "lo": 60,
+  "npc": 254674,
+  "rank": 1,
+  "type": 6
+ },
+ "Xander Salsbury": {
+  "npc": 272525,
+  "rank": 1,
+  "type": 7
+ },
+ "Xethorr the Wicked": {
+  "hi": 12,
+  "lo": 12,
+  "npc": 272116,
+  "rank": 1,
+  "type": 3
+ },
+ "Yashiro": {
+  "hi": 60,
+  "lo": 60,
+  "npc": 267121,
+  "rank": 1,
+  "type": 7
+ },
+ "Zalfan Moonshadow": {
+  "npc": 268423,
+  "rank": 1,
+  "type": 7
+ },
+ "Zarla Ober": {
+  "npc": 255707,
+  "rank": 1,
+  "type": 7
+ },
+ "Zavirax": {
+  "npc": 259021,
+  "rank": 1,
+  "type": 3
+ },
+ "Ze'flaera": {
+  "npc": 277690,
+  "rank": 1,
+  "type": 2
+ },
+ "Zin'aka": {
+  "npc": 263742,
+  "rank": 1,
+  "type": 1
+ },
+ "Zul'Alai": {
+  "npc": 258905,
+  "rank": 1,
+  "type": 6
+ }
+}

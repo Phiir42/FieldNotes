@@ -74,6 +74,10 @@
   game calls "Geilhast") instead of "From the halls"; journals that already
   hold them are put right. The same goes for any boss whose fight is named
   otherwise than the creature.
+- The creatures of the new Forever dungeons (Blackmaw Druids, Alcaz
+  Jailers, Drowned Hexxers, Krol'dok Brutes, Ravasaur Hunters and some 440
+  more) have a portrait and their kind in the bestiary, from Wowhead's
+  listing. Their levels mostly stay blank: those dungeons scale.
 - Portraits for Ezra Grimm, Hans and Greta, the Ravasaur Hunters and two
   more bosses that had none.
 - Creatures called up as pets (BFD's Voidwalker Minions) no longer show

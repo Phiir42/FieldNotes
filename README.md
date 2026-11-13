@@ -146,7 +146,9 @@ Field Notes is free software under the GNU General Public License, version 2
 or (at your option) any later version; see [LICENSE](LICENSE).
 
 Creature and ability data is derived from the
-[cmangos classic database](https://github.com/cmangos/classic-db) (GPL), the
+[cmangos classic database](https://github.com/cmangos/classic-db) (GPL),
+[Wowhead](https://www.wowhead.com/forever)'s listings for the creatures new to
+Forever, the
 retail dungeon journal tables published by [wago.tools](https://wago.tools),
 and the spell lists tracked by the BigWigs and LittleWigs boss modules.
 
