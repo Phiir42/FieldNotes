@@ -326,7 +326,7 @@ step("every page of the journal", function()
 	check("bestiary lists the craftsman", pageText():find("Goblin Craftsman", 1, true))
 	check("bestiary shows shipped level", pageText():find("level 18-19", 1, true))
 	-- quests of the dungeon
-	check("quests page opens", open("Quests (6)"))
+	check("quests page opens", open("Quests (7)"))
 	check("quests are listed with where they lead", pageText():find("The Defias Brotherhood", 1, true)
 		and pageText():find("Look for Edwin VanCleef.", 1, true))
 	M.questsOn[166], M.questsOn[2040], M.questsDone[214] = true, true, true
@@ -339,15 +339,30 @@ step("every page of the journal", function()
 		{ title = "A New Errand", questID = 99001, level = 19 },
 	}
 	M.questsOn[99001] = true
-	open("The Deadmines") open("Quests (7)")
+	open("The Deadmines") open("Quests (8)")
+	do -- a class's own quests are for that class only
+		local paladin, shown = 0, 0
+		for _, q in ipairs(ns.Quests[48]) do if q.class == 2 then paladin = paladin + 1 end end
+		check("class quests are in the data", paladin >= 1)
+	end
 	check("quests show what they pay", pageText():find("Reward, one of:", 1, true) and pageText():find("Item 6087", 1, true))
 	check("quests say who gives them", pageText():find("Given by Gryan Stoutmantle", 1, true))
 	check("a quest in the log shows how far along it is", pageText():find("So far: 0/1 Head of VanCleef.", 1, true))
 	check("a quest the log files under the dungeon is written down", pageText():find("A New Errand", 1, true)
 		and not pageText():find("Elsewhere", 1, true) and inst.quests[99001].title == "A New Errand")
 	M.questLog = {}
-	open("The Deadmines") open("Quests (7)")
+	open("The Deadmines") open("Quests (8)")
 	check("and stays written down once it has left the log", pageText():find("A New Errand", 1, true))
+	-- a quest filed elsewhere that moves along in here is this dungeon's too
+	M.questLog = { { title = "Westfall", isHeader = true }, { title = "Stepping Stones", questID = 99002, level = 20 } }
+	M.questsOn[99002] = true
+	M.questGoals[99002] = { { text = "0/3 Stones", finished = false } }
+	M.fire("QUEST_LOG_UPDATE")
+	check("a quest filed elsewhere is not this dungeon's yet", not inst.quests[99002])
+	M.questGoals[99002] = { { text = "1/3 Stones", finished = false } }
+	M.fire("QUEST_LOG_UPDATE") M.wait(1)
+	check("until it moves along while you are inside", inst.quests[99002] and inst.quests[99002].title == "Stepping Stones")
+	M.questLog = {}
 	check("quests show whether you carry or finished them", pageText():find("level 22, in your quest log", 1, true)
 		and pageText():find("level 17, done", 1, true))
 	check("the other side's quests are left out", #ns.Quests[43] > 0 and not pageText():find("Hamuul Runetotem", 1, true))

@@ -14,6 +14,15 @@
 - Bosses the game announces no fight for (Lorgus Jett in Blackfathom Deeps)
   get a page and a skull on the map once killed; they used to show nowhere.
   Kills already noted are made good.
+- A quest target that may be in one of several places (Lorgus Jett) is
+  marked at every one of them.
+- A quest ready to hand in inside the dungeon marks who to take it to.
+- More quests: those that begin from an item a boss drops (Baron Aquanis),
+  those whose quarry is summoned, a class's own quests (shown to that class
+  only), and twelve quests Forever added to the old dungeons. 448 quests
+  across 37 instances.
+- A quest that moves along while you are inside a dungeon is written down
+  under it, whatever the game files it under.
 
 ## 0.2.0-beta.8
 

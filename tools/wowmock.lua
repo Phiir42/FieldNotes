@@ -214,6 +214,7 @@ C_QuestLog = {
 	GetQuestObjectives = function(id) return M.questGoals[id] end,
 }
 function UnitFactionGroup() return "Alliance", "Alliance" end
+function UnitClass() return "Warrior", "WARRIOR", 1 end
 function UnitLevel(t) local u = U(t) return u and u.level or 0 end
 function UnitClassification() return "elite" end
 function UnitCreatureType() return "Humanoid" end

@@ -519,9 +519,10 @@ def quest_places(dungeon, splits):
     """Where the things quests send you to stand on each sheet: creatures to
     kill or loot and chests to open, from their spawn points
     (refs/classicdb/quest_spots.json, written by make_quests.py; boss_points
-    must have run). -> [ {name: (x, y)} per floor ]. A thing that stands in
-    several places is marked at the middle one on the sheet that holds most of
-    them."""
+    must have run). -> [ {name: [(x, y), ...]} per floor ]. A thing that may be
+    in one of a few places (a boss with several possible spots) is given every
+    one of them, on every sheet; one that stands all over (the trash of a
+    wing) only the middle one on the sheet that holds most of them."""
     global _quest_spots
     if _quest_spots is None:
         path = os.path.join(ROOT, "refs", "classicdb", "quest_spots.json")
@@ -530,8 +531,11 @@ def quest_places(dungeon, splits):
     bounds = _boss_data[2]
     out = [{} for _ in floors]
     for name, pts in _quest_spots.get(str(inst), {}).items():
-        on = {}
+        hits = []  # per point: the sheets it falls on the drawing of, as (f, x, y)
         for wx, wy, _z in pts:
+            mine = []
+            near = None  # a point just off the drawing (a ledge, a pool): the sheet whose drawing is closest
+            hit = False
             for f, floor in enumerate(floors):
                 b = bounds.get((floor.get("uimap"), inst))
                 if not b:
@@ -541,13 +545,44 @@ def quest_places(dungeon, splits):
                 if not (3 < x < W - 3 and 3 < y < H - 3):
                     continue
                 drawn = max((float(a[y - 3:y + 4, x - 3:x + 4].mean()) for n, a in splits[f][1]
-                             if n not in ("decor", "start")), default=0)
+                             if n != "decor"), default=0)
                 if drawn > 0.3:
-                    on.setdefault(f, []).append((x, y))
-        if on:
+                    mine.append((f, x, y))
+                    hit = True
+                    continue
+                around = max((float(a[max(0, y - 30):y + 31, max(0, x - 30):x + 31].mean()) for n, a in splits[f][1]
+                              if n != "decor"), default=0)
+                if around > 0.05 and (near is None or around > near[0]):
+                    near = (around, f, x, y)
+            if not hit and near:
+                mine.append(near[1:])
+            if mine:
+                hits.append(mine)
+        # Sheets lie over one another, so a point can fall on several: each
+        # point goes to one sheet, the one that holds most of the name's points.
+        count = {}
+        for mine in hits:
+            for f, _x, _y in mine:
+                count[f] = count.get(f, 0) + 1
+        on = {}
+        for mine in hits:
+            f, x, y = max(mine, key=lambda h: (count[h[0]], -h[0]))
+            on.setdefault(f, []).append((x, y))
+        if not on:
+            continue
+        # points a step apart are one place
+        apart = {}
+        for f, here in on.items():
+            for x, y in here:
+                if not any(abs(x - px) < 25 and abs(y - py) < 25 for px, py in apart.setdefault(f, [])):
+                    apart[f].append((x, y))
+        if sum(len(v) for v in apart.values()) <= 5:
+            for f, here in apart.items():
+                out[f][name] = here
+        else:
             f = max(on, key=lambda k: len(on[k]))
             here = sorted(on[f])
-            out[f][name] = here[len(here) // 2]
+            out[f][name] = [here[len(here) // 2]]
     return out
 
 
@@ -652,7 +687,8 @@ def main():
             if places[f - 1]:
                 # where quests lead: a creature's or a chest's own spot, for the map's quest marks
                 out.append("\tfloor.places = { %s }" % ", ".join(
-                    "[key(%s)] = { %d, %d }" % (lua_str(n), x, y) for n, (x, y) in sorted(places[f - 1].items())))
+                    "[key(%s)] = { %s }" % (lua_str(n), ", ".join("{ %d, %d }" % p for p in pts))
+                    for n, pts in sorted(places[f - 1].items())))
             if dungeon.get("path"):
                 out.append("\tfloor.path = true")
                 if dungeon["path"] == "sheets":

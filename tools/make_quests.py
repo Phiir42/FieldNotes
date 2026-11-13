@@ -79,7 +79,8 @@ def main():
 
     tables = read_tables(("quest_template", "creature_loot_template", "gameobject_template", "gameobject",
                           "gameobject_loot_template", "creature_questrelation", "gameobject_questrelation",
-                          "item_template", "creature_template"))
+                          "item_template", "creature_template", "creature_involvedrelation",
+                          "gameobject_involvedrelation"))
     cols, data = tables["quest_template"]
     col = cols.index
     # who to look for: the creatures a quest asks you to kill, and those that
@@ -131,12 +132,32 @@ def main():
         if o and o["name"]:
             givers.setdefault(x.num(r[rcols.index("quest")]),
                               (o["name"], {sp[0] for sp in o["spawns"]}, [sp[1:] for sp in o["spawns"]]))
+    takers = {}  # who each quest is handed in to
+    rcols, rdata = tables["creature_involvedrelation"]
+    for r in rdata:
+        who = x.num(r[rcols.index("id")])
+        if names_of.get(who):
+            spawns = creatures.get(who, {}).get("spawns", [])
+            takers.setdefault(x.num(r[rcols.index("quest")]),
+                              (names_of[who], {sp[0] for sp in spawns}, [sp[1:] for sp in spawns]))
+    rcols, rdata = tables["gameobject_involvedrelation"]
+    for r in rdata:
+        o = objects.get(x.num(r[rcols.index("id")]))
+        if o and o["name"]:
+            takers.setdefault(x.num(r[rcols.index("quest")]),
+                              (o["name"], {sp[0] for sp in o["spawns"]}, [sp[1:] for sp in o["spawns"]]))
     icols, idata = tables["item_template"]
-    starts = {}
+    starts, start_item = {}, {}
     for r in idata:
         begins = x.num(r[icols.index("startquest")])
         if begins:
             starts.setdefault(begins, plain(r[icols.index("name")]))
+            start_item.setdefault(begins, x.num(r[icols.index("entry")]))
+    # the game's list of boss fights: which instance each boss belongs to
+    fights = {}
+    for e in m.table("DungeonEncounter", m.FOREVER):
+        if int(e["MapID"]) in instance:
+            fights.setdefault(norm(e["Name_lang"]), int(e["MapID"]))
     titles = {x.num(r[col("entry")]): plain(r[col("Title")]) for r in data}
     spots = {}  # {map: {name: [[x, y, z], ...]}}: where each thing named stands, for the map marks
 
@@ -157,7 +178,21 @@ def main():
                 found += [creatures[c] for c in has if c in creatures]
             for lootid in holds.get(item, ()):
                 found += [objects[e] for e in chests.get(lootid, [])]
-        return [(c["name"], c["spawns"]) for c in found if c["name"]]
+        # ...and whoever drops the item that begins it
+        begun_by = start_item.get(x.num(r[col("entry")]))
+        if begun_by:
+            found += [creatures[c] for c in carriers.get(begun_by, [])[:12] if c in creatures]
+        out = []
+        for c in found:
+            if not c["name"]:
+                continue
+            spawns = c["spawns"]
+            # a boss that is summoned stands nowhere in the database: the
+            # game's own list of fights says which dungeon it belongs to
+            if not spawns and norm(c["name"]) in fights:
+                spawns = [[fights[norm(c["name"])]]]
+            out.append((c["name"], spawns))
+        return out
 
     def targets(r, mp):
         names = []
@@ -165,7 +200,7 @@ def main():
             here = [sp[1:] for sp in spawns if sp[0] == mp]
             if here and name not in names:
                 names.append(name)
-                spots.setdefault(mp, {}).setdefault(name, []).extend(here)
+                spots.setdefault(mp, {}).setdefault(name, []).extend(p for p in here if len(p) == 3)
         return names[:4]
 
     def home(r):
@@ -188,7 +223,12 @@ def main():
         if mp not in instance or not title or JUNK.search(title):
             continue
         # not the class sets, profession recipes and turn-ins done over and over
-        if x.num(r[col("RequiredClasses")]) or x.num(r[col("RequiredSkill")]) or x.num(r[col("SpecialFlags")]) & 1:
+        if x.num(r[col("RequiredSkill")]) or x.num(r[col("SpecialFlags")]) & 1:
+            continue
+        # a class's own quests are kept for that class (not the raid armour
+        # sets: those are handed in over and over)
+        classes = x.num(r[col("RequiredClasses")])
+        if classes and maps[mp].get("InstanceType") == "2":
             continue
         races = x.num(r[col("RequiredRaces")])
         side = "A" if races and not races & HORDE else "H" if races and not races & ALLIANCE else None
@@ -197,6 +237,8 @@ def main():
             "min": x.num(r[col("MinLevel")]), "side": side, "text": plain(r[col("Objectives")]),
             "who": targets(r, mp)})
         q = by_map[mp][-1]
+        if classes:
+            q["class"] = classes
         giver = givers.get(q["id"])
         if q["id"] in starts:
             q["item"] = starts[q["id"]]
@@ -204,6 +246,10 @@ def main():
             q["from"], q["inside"] = plain(giver[0]), mp in giver[1]
             if q["inside"]:  # where they stand, for the map
                 spots.setdefault(mp, {}).setdefault(giver[0], []).extend(giver[2])
+        taker = takers.get(q["id"])
+        if taker and mp in taker[1]:  # handed in inside the dungeon itself: worth knowing, and marking
+            q["to"] = plain(taker[0])
+            spots.setdefault(mp, {}).setdefault(taker[0], []).extend(taker[2])
         # what it pays: the items you choose one of, and those you get regardless
         q["pick"] = [i for i in (x.num(r[col("RewChoiceItemId%d" % n)]) for n in range(1, 7)) if i]
         q["get"] = [i for i in (x.num(r[col("RewItemId%d" % n)]) for n in range(1, 5)) if i]
@@ -227,6 +273,8 @@ def main():
         "--   who: the creatures and objects to look for (to kill, or that hold what is asked for)",
         "--   from: who hands the quest out (inside = true: they stand in the dungeon itself);",
         "--   item: the item that begins it instead; after: the quest it follows",
+        "--   to: who it is handed in to, where they stand inside the dungeon",
+        "--   class: a mask of the classes it is offered to (bit = class id - 1), where not all",
         "--   pick: item ids of the rewards you choose one of; get: those you are given regardless",
         "local _, ns = ...",
         "",
@@ -242,13 +290,15 @@ def main():
         for q in quests:
             total += 1
             who = ", { %s }" % ", ".join(lua_string(w) for w in q["who"]) if q.get("who") else ""
-            if not who and any(q.get(k) for k in ("from", "item", "after")):
+            if not who and any(q.get(k) for k in ("from", "item", "after", "to")):
                 who = ", nil"
-            for k in ("from", "item", "after"):
+            for k in ("from", "item", "after", "to"):
                 if q.get(k):
                     who += ", %s = %s" % (k, lua_string(q[k]))
             if q.get("inside"):
                 who += ", inside = true"
+            if q.get("class"):
+                who = (who or ", nil") + ", class = %d" % q["class"]
             for k in ("pick", "get"):
                 if q.get(k):
                     if not who:

@@ -748,6 +748,7 @@ end
 -- carry or have finished each, and on the map a mark where each one leads.
 ---------------------------------------------------------------------------
 local QUEST_ICON = "Interface\\GossipFrame\\AvailableQuestIcon"
+local TURNIN_ICON = "Interface\\GossipFrame\\ActiveQuestIcon"
 local SKULL_ICON = "Interface\\TargetingFrame\\UI-TargetingFrame-Skull"
 
 -- "done", "log" (you carry it) or nil
@@ -815,11 +816,16 @@ end
 local function QuestsOf(id)
 	local side = UnitFactionGroup and UnitFactionGroup("player")
 	side = side == "Alliance" and "A" or side == "Horde" and "H" or nil
+	-- a class's own quests only for that class (q.class: a bit per class id)
+	local classID = UnitClass and select(3, UnitClass("player"))
+	local mine = type(classID) == "number" and 2 ^ (classID - 1) or nil
 	local t = {}
 	local have = {}
 	for _, q in ipairs(ns.Quests and ns.Quests[id] or {}) do
 		have[q[1]] = true
-		if not q[5] or not side or q[5] == side then t[#t + 1] = q end
+		if (not q[5] or not side or q[5] == side) and (not q.class or not mine or math.floor(q.class / mine) % 2 == 1) then
+			t[#t + 1] = q
+		end
 	end
 	local inst = ns.db.instances[id]
 	if inst then
@@ -842,6 +848,33 @@ local function QuestsOf(id)
 	end
 	return t
 end
+
+-- A quest that moves along while you stand inside a dungeon belongs to that
+-- dungeon, whatever the game files it under: it is written down there, unless
+-- the journal already knows it (here or under another dungeon).
+local shipped        -- [quest id] = true for every quest in Quests.lua
+local progressSeen = {}
+ns:On("QUEST_LOG_UPDATE", function()
+	local inst = ns.current
+	if not shipped then
+		shipped = {}
+		for _, list in pairs(ns.Quests or {}) do
+			for _, q in ipairs(list) do shipped[q[1]] = true end
+		end
+	end
+	local changed
+	for _, q in ipairs(LogQuests()) do
+		local now = table.concat((QuestProgress(q.id)), "|")
+		local was = progressSeen[q.id]
+		progressSeen[q.id] = now
+		if inst and was and was ~= now and not shipped[q.id] and not (inst.quests and inst.quests[q.id]) then
+			inst.quests = inst.quests or {}
+			inst.quests[q.id] = { title = q.title, level = q.level }
+			changed = true
+		end
+	end
+	if changed then ns:Changed() end
+end)
 
 local function QuestsPage(lines, id, inst)
 	H1(lines, "Quests")
@@ -868,6 +901,7 @@ local function QuestsPage(lines, id, inst)
 		}
 		if q[6] ~= "" then Body(lines, q[6], 8) end
 		if #progress > 0 then Faded(lines, "So far: " .. table.concat(progress, "; ") .. ".", 8) end
+		if ready and q.to then Faded(lines, "Hand it in to " .. q.to .. ", inside.", 8) end
 		if q[7] then Faded(lines, "Look for " .. table.concat(q[7], ", ") .. ".", 8) end
 		-- where it comes from, until it is done
 		if state ~= "done" then
@@ -909,45 +943,63 @@ local function QuestMarks(id, floor, marks)
 		end
 		return 0, 0
 	end
+	-- Where someone or something stands on this sheet: every place it may be
+	-- in where it has a few (a boss that turns up in one of several spots),
+	-- else the boss's mark, its own spot, or the middle of the room it keeps.
+	-- Also: whether those are places it only may be in.
+	local places = floor.places or {}
+	local function Spots(name)
+		local k = ns:AreaKey(name)
+		local pts = places[k]
+		if pts and #pts > 1 then return pts, true end
+		for _, spot in ipairs(floor.bosses or {}) do
+			if ns:AreaKey(spot.name) == k then return { { spot.x, spot.y } } end
+		end
+		if pts then return pts end
+		local piece = floor.areas[k]
+		if piece then return { { piece.x + piece.w / 2, piece.y + piece.h / 2 } } end
+		return {}
+	end
+	local function Open() Select(id, "quests") end
+
 	local spots, order = {}, {}
 	for _, q in ipairs(QuestsOf(id)) do
 		local state = QuestState(q[1])
 		-- nothing left to look for once every objective is met
 		local ready = state == "log" and select(2, QuestProgress(q[1]))
 		for _, who in ipairs(state ~= "done" and not ready and q[7] or {}) do
-			local k = ns:AreaKey(who)
-			local x, y
-			for _, spot in ipairs(floor.bosses or {}) do
-				if ns:AreaKey(spot.name) == k then x, y = spot.x, spot.y end
-			end
-			-- its own spot where the map has one, else the middle of its room
-			local spot = not x and floor.places and floor.places[k]
-			if spot then x, y = spot[1], spot[2] end
-			local piece = not x and floor.areas[k]
-			if piece then x, y = piece.x + piece.w / 2, piece.y + piece.h / 2 end
-			if x then
-				local at = math.floor(x) .. ":" .. math.floor(y)
+			local pts, maybe = Spots(who)
+			for _, p in ipairs(pts) do
+				local at = math.floor(p[1]) .. ":" .. math.floor(p[2])
 				local s = spots[at]
 				if not s then
-					s = { x = x, y = y, notes = {}, seen = {} }
+					s = { x = p[1], y = p[2], notes = {}, seen = {} }
 					spots[at], order[#order + 1] = s, s
 				end
 				if not s.seen[q[1]] then
 					s.seen[q[1]] = { title = q[2], who = {} }
 					s.notes[#s.notes + 1] = s.seen[q[1]]
 				end
-				table.insert(s.seen[q[1]].who, who)
+				table.insert(s.seen[q[1]].who, who .. (maybe and " (may be here, or at another of its marks)" or ""))
 				if state == "log" then s.log = true end
 			end
 		end
 		-- a quest not yet taken up, handed out inside: where its giver stands
-		local giver = not state and q.inside and q.from and floor.places and floor.places[ns:AreaKey(q.from)]
+		local giver = not state and q.inside and q.from and Spots(q.from)[1]
 		if giver then
 			local dx, dy = Beside(giver[1], giver[2], -1)
 			marks[#marks + 1] = {
 				x = giver[1], y = giver[2], dx = dx, dy = dy, icon = QUEST_ICON, alpha = 0.65,
-				name = "A quest is given here", note = q[2] .. ": given by " .. q.from .. ".",
-				go = function() Select(id, "quests") end,
+				name = "A quest is given here", note = q[2] .. ": given by " .. q.from .. ".", go = Open,
+			}
+		end
+		-- and one that is ready, handed in inside: where to take it
+		local taker = ready and q.to and Spots(q.to)[1]
+		if taker then
+			local dx, dy = Beside(taker[1], taker[2], -1)
+			marks[#marks + 1] = {
+				x = taker[1], y = taker[2], dx = dx, dy = dy, icon = TURNIN_ICON,
+				name = "A quest is handed in here", note = q[2] .. ": hand it in to " .. q.to .. ".", go = Open,
 			}
 		end
 	end
@@ -958,8 +1010,7 @@ local function QuestMarks(id, floor, marks)
 		marks[#marks + 1] = {
 			x = s.x, y = s.y, dx = dx, dy = dy, icon = QUEST_ICON, alpha = s.log and 1 or 0.65,
 			name = #s.notes == 1 and "A quest leads here" or "Quests lead here",
-			note = table.concat(t, "\n") .. (s.log and "" or "\nNot in your log."),
-			go = function() Select(id, "quests") end,
+			note = table.concat(t, "\n") .. (s.log and "" or "\nNot in your log."), go = Open,
 		}
 	end
 end

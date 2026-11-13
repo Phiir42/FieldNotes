@@ -87,5 +87,33 @@
   {"id": 95928, "title": "Crystalline Elements", "side": "H", "level": 60, "min": 55, "text": "Bring one each of the Moist, Charged, Noxious and Fiery Crystals to Mayena Earthseeker."},
   {"id": 97049, "title": "Essence of Seeping Slimes", "side": "H", "level": 60, "min": 55, "text": "Gather 8 Seeping Slime Essence."},
   {"id": 95926, "title": "The Dark Crystal", "side": "H", "level": 60, "min": 55, "text": "Gather a Drained Crystal Fragment near the Achromatic Crystal."}
+ ],
+ "Deadmines": [
+  {"id": 92753, "title": "Destruction in Deadmines", "side": "A", "level": 18, "min": 9, "text": "Find the hidden forge in the Deadmines and plant the Extra-Destructive Explosives beside it, then meet Alba Fairmoon at the exit.", "who": ["Gilnid"], "from": "Alba Fairmoon in Sentinel Hill"}
+ ],
+ "Blackfathom Deeps": [
+  {"id": 95042, "title": "Seeking the Kor Gem", "side": "H", "level": 25, "min": 20, "class": 2, "text": "Bring back a Corrupted Kor Gem from the Blackfathom naga.", "from": "Ulric Frostveil at Zoram'gar Outpost"}
+ ],
+ "Razorfen Kraul": [
+  {"id": 96264, "title": "Elemental Aid", "side": "A", "level": 33, "min": 30, "class": 64, "text": "Defeat Charlga Razorflank and take the Tattered Note on the quilboar's plans.", "who": ["Charlga Razorflank"], "from": "Veyric Thunderhame in the Arathi Highlands"}
+ ],
+ "Scarlet Monastery": [
+  {"id": 96800, "title": "Past Due", "side": "A", "level": 38, "min": 30, "text": "Retrieve the book The Lost Magic of the Runemasters from the Scarlet Monastery library.", "who": ["Arcanist Doan"], "from": "Magus Olvek in the Alterac Mountains"}
+ ],
+ "Razorfen Downs": [
+  {"id": 96773, "title": "The Coldbringer's Eye", "side": "A", "level": 41, "min": 34, "text": "Recover The Coldbringer's Eye from the lair of Amnennar the Coldbringer.", "who": ["Amnennar the Coldbringer"], "from": "Archmage Lan'dalock in the Alterac Mountains"},
+  {"id": 97196, "title": "The Coldbringer's Eye", "side": "H", "level": 41, "min": 34, "text": "Recover The Coldbringer's Eye from the lair of Amnennar the Coldbringer.", "who": ["Amnennar the Coldbringer"], "from": "Sutara Plainstalker in Mulgore"},
+  {"id": 93604, "title": "Agamaggan's Blood", "side": null, "level": 45, "min": 35, "text": "Get the Virulent Blood of Agamaggan inside Razorfen Downs and bring it to Kog'thug the Brave in Desolace."}
+ ],
+ "Zul'Farrak": [
+  {"id": 96770, "title": "The Witch Doctor's Head", "side": "A", "level": 46, "min": 39, "text": "Kill Witch Doctor Zum'rah and bring back his head.", "who": ["Witch Doctor Zum'rah"], "from": "Archmage Lan'dalock in the Alterac Mountains"},
+  {"id": 96775, "title": "Zum'rah's Head", "side": "H", "level": 46, "min": 42, "text": "Kill Witch Doctor Zum'rah and bring his head to Mazu'kon in Mulgore.", "who": ["Witch Doctor Zum'rah"], "from": "Mazu'kon in Mulgore"}
+ ],
+ "Maraudon": [
+  {"id": 93404, "title": "Rot and Regret", "side": null, "level": 49, "min": 35, "text": "Fetch a Vial of Earth Song Water from Maraudon for Woodwyrd in Desolace."},
+  {"id": 96776, "title": "An'she's Radiance", "side": "H", "level": 51, "min": 43, "text": "Recover the crystal An'she's Radiance from the top of a giant-guarded chamber past the Earth Song Falls."}
+ ],
+ "Blackrock Depths": [
+  {"id": 97197, "title": "Fragment of the Firelands", "side": "H", "level": 55, "min": 46, "text": "Recover a Fragment of the Firelands from Blackrock Depths.", "from": "Alaana Stormwalker in Mulgore"}
  ]
 }
