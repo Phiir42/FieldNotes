@@ -132,7 +132,7 @@
   logging in raised a Lua error; it opens the search page now.
 - Known abilities no longer list a fight's hidden workings: "Kirtonos
   Gargoyle Passive" on every Scholomance boss, "Shade of Eranikus Passive
-  Visual".
+  Visual", Heigan's "Plague Wave Controller", "Reset Gothik Event".
 - "/fn quality" alone says which items are being noted, instead of listing
   every command.
 - A dungeon whose halls the game never names (Shadowfang Keep) no longer
