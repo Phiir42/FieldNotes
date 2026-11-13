@@ -695,6 +695,8 @@ A[3310] = { 1304473, 17228, 1303266 } -- Lyn the Ignored: Curse of Thorns, Shado
 N["lyntheignored"] = A[3310]
 A[3311] = { 1303266, 1303264, 6713, 3391, 12057 } -- Atrexis the Grave Knight: Raise Dead, Unholy Frenzy, Disarm, Thrash, Strike
 N["atrexisthegraveknight"] = A[3311]
+A[3312] = { 1303458, 1293451 } -- Mana Wraith: Reflection Field, Tortured
+N["manawraith"] = A[3312]
 A[3303] = { 1241523, 1303598, 1303599, 1241506, 1304398, 1303350 } -- Shade of the Archmage: Bounding Mana, Mass Polymorph, Evocation, Arcane Bolt, Arcane Explosion, Slow
 N["shadeofthearchmage"] = A[3303]
 
@@ -715,6 +717,10 @@ N["minloththeserpent"] = A[3479]
 -- Blackmaw Hold
 A[3315] = { 1302780 } -- Withermaw: Writhing Mass
 N["withermaw"] = A[3315]
+A[3316] = { 1243312, 1243067, 1243089 } -- Impaan the Imprisoner: Imps!!, Improvised Shadowbolt, Improper Shadowbolt
+N["impaantheimprisoner"] = A[3316]
+A[3327] = { 1245324, 1245338, 1245883 } -- Elder Shaman Bloodmane: Chain Lightning, Feral Spirit, Purge
+N["eldershamanbloodmane"] = A[3327]
 A[3322] = { 1277364, 1277406 } -- Bonesnout the Unbroken: Desecration, Profane Bulwark
 N["bonesnouttheunbroken"] = A[3322]
 A[3334] = { 1246453 } -- Varrox Bleakhoof: Crimson Wrest
@@ -723,8 +729,16 @@ A[3336] = { 1247237 } -- Unbound Spirit: Profane Protection
 N["unboundspirit"] = A[3336]
 
 -- Alcaz Prison
+A[3403] = { 9128, 16856 } -- Overseer Wrex: Battle Shout, Mortal Strike
+N["overseerwrex"] = A[3403]
+A[3410] = { 8398, 15532, 1271375 } -- Tidemistress Ca'zass: Frostbolt Volley, Frost Nova, Blizzard
+N["tidemistresscazass"] = A[3410]
 A[3418] = { 29230, 28874 } -- Katerina the Cleaner: Immune All, Consumption
 N["katerinathecleaner"] = A[3418]
+A[3415] = { 12054, 17620 } -- The Questioner: Rend, Drain Life
+N["questioner"] = A[3415]
+A[3409] = { 9573, 18399, 12466, 1271604, 1271593, 15716, 3391, 1275847 } -- Blazeroar: Flame Breath, Flamestrike, Fireball, Searing Scales, Fear, Enrage, Thrash, Reveal Form
+N["blazeroar"] = A[3409]
 
 -- Excavation Site: Wetlands
 A[3480] = { 1316382, 3604, 16495 } -- Saltspine: Dust Storm, Tendon Rip, Fatal Bite
@@ -741,6 +755,10 @@ A[3353] = { 3358 } -- Witherfang: Leech Poison
 N["witherfang"] = A[3353]
 A[3357] = { 14907, 1266011, 6136 } -- The Abandoned: Frost Nova, Life Drain, Chilled
 N["abandoned"] = A[3357]
+A[3355] = { 17307, 5568, 1326990 } -- The Butcher: Knockout, Trample, Mind Blast
+N["butcher"] = A[3355]
+A[3408] = { 5532, 9080, 7165 } -- Lordaeron Captain: Cleave, Hamstring, Battle Stance
+N["lordaeroncaptain"] = A[3408]
 A[3411] = { 3358 } -- Viktor the Vile: Leech Poison
 N["viktorthevile"] = A[3411]
 A[3412] = { 1301635, 14099 } -- Bjork: Anti-Magic Shield, Mighty Blow

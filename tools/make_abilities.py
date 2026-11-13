@@ -165,6 +165,21 @@ ATTESTED_BY_NAME = {
     "Magmatus": [1293228, 11970],                        # Combust, Fire Nova (Hall of Thanes; the client's Infurnus)
     "Deathless Marrow": [1283034, 1283081, 1283086, 1283073],
 }
+# Bosses no guide covers yet, from the ability list Wowhead datamined for the
+# boss's NPC (www.wowhead.com/forever/npc=ID, its "Abilities" tab). The Dazed
+# every melee creature carries (1604) is left out. Used only where nothing
+# above has the fight.
+WOWHEAD = {
+    "Overseer Wrex": [9128, 16856],                      # Battle Shout, Mortal Strike (npc 255391)
+    "Tidemistress Ca'zass": [8398, 15532, 1271375],      # Frostbolt Volley, Frost Nova, Blizzard (255997)
+    "The Questioner": [12054, 17620],                    # Rend, Drain Life (256236)
+    "Blazeroar": [9573, 18399, 12466, 1271604, 1271593, 15716, 3391, 1275847],  # Flame Breath, Flamestrike, Fireball, Searing Scales, Fear, Enrage, Thrash, Reveal Form (255702)
+    "Mana Wraith": [1303458, 1293451],                   # Reflection Field, Tortured (246931)
+    "Impaan the Imprisoner": [1243312, 1243067, 1243089],  # Imps!!, Improvised Shadowbolt, Improper Shadowbolt (247206)
+    "Elder Shaman Bloodmane": [1245324, 1245338, 1245883],  # Chain Lightning, Feral Spirit, Purge (247209)
+    "The Butcher": [17307, 5568, 1326990],               # Knockout, Trample, Mind Blast (The Baron, 250660)
+    "Lordaeron Captain": [5532, 9080, 7165],             # Cleave, Hamstring, Battle Stance (255699)
+}
 ATTESTED["Infurnus"] = ATTESTED_BY_NAME["Magmatus"]
 ATTESTED_BY_NAME["War Handler Ashka"] = ATTESTED["Handler Ashka"]
 ATTESTED_BY_NAME["Overlord Mugg"] = ATTESTED["Overseer Mugg"]
@@ -414,7 +429,7 @@ def main():
         if name in ATTESTED:  # a new boss: a classic creature of a like name is someone else
             raw = ATTESTED[name]
         if not any(names.get(sp) for sp in raw):
-            raw = ATTESTED_IF_EMPTY.get(name, [])
+            raw = ATTESTED_IF_EMPTY.get(name, []) or WOWHEAD.get(name, [])
         spells, used = [], set()
         for sp in raw:
             label = names.get(sp)
