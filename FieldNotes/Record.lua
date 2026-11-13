@@ -233,6 +233,7 @@ ns:On("CHAT_MSG_COMBAT_XP_GAIN", function(msg)
 	if m.enc and not encounter then m.enc = nil end
 	m.xp = true
 	m.kills = (m.kills or 0) + 1
+	if not encounter then ns:NamedBoss(cur, m, true) end
 	ns:Changed()
 end)
 ns:On("CHAT_MSG_MONSTER_YELL", Heard)
@@ -280,6 +281,37 @@ local function Boss(id, name)
 		ns:Log(cur, ("Faced %s for the first time."):format(b.name))
 	end
 	return b
+end
+
+-- A boss the game announces no fight for: one the addon knows by name (it has
+-- a list of abilities), killed like any creature. It is given a boss's place
+-- all the same, filed under its name instead of an encounter's number.
+-- live: a kill just now (else: making good what older notes hold).
+function ns:NamedBoss(inst, m, live)
+	if not (m.kills and m.kills > 0 and ns.AbilitiesByName) then return end
+	local key = ns:AreaKey(m.name)
+	if not ns.AbilitiesByName[key] then return end
+	local id = "n:" .. key
+	local b = inst.bosses[id]
+	if b then
+		m.enc = id
+		if live then
+			b.kills, b.pulls, b.lastKill = b.kills + 1, b.pulls + 1, time()
+		end
+		return
+	end
+	-- not one the game did announce: by its name, or (where the fight goes by
+	-- another name than the creature) by having died as that fight ended
+	local at = live and time() or m.fought or 0
+	for _, other in pairs(inst.bosses) do
+		if ns:AreaKey(other.name) == key or math.abs((other.lastKill or 0) - at) < 60 then return end
+	end
+	inst.bosses[id] = {
+		name = m.name, first = m.first or at, pulls = m.kills, kills = m.kills, wipes = 0, lastKill = at,
+	}
+	inst.bossOrder[#inst.bossOrder + 1] = id
+	m.enc = id
+	if live then ns:Log(inst, ("Defeated %s."):format(m.name)) end
 end
 
 ns:On("ENCOUNTER_START", function(id, name)
@@ -522,6 +554,11 @@ local function Tidy()
 				inst.loot[id] = nil
 				table.remove(inst.lootOrder, i)
 			end
+		end
+		-- bosses killed without the game announcing the fight, noted by older
+		-- versions as creatures that then showed nowhere
+		for _, m in pairs(inst.mobs) do
+			if not m.enc then ns:NamedBoss(inst, m) end
 		end
 	end
 end

@@ -11,6 +11,9 @@
   keeps up with the quest log while it lies open.
 - Quest marks sit exactly on their spot, stepping aside only for a boss's
   skull.
+- Bosses the game announces no fight for (Lorgus Jett in Blackfathom Deeps)
+  get a page and a skull on the map once killed; they used to show nowhere.
+  Kills already noted are made good.
 
 ## 0.2.0-beta.8
 

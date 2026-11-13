@@ -472,6 +472,17 @@ step("every page of the journal", function()
 	end
 	check("group fights name their members", #ns.Company.twinemperors == 2 and ns.Pictures.nefarian)
 	check("new bosses are drawn by NPC id", ns.BossNpc.withermaw == 247195 and ns.BossNpc.infurnus == ns.BossNpc.magmatus)
+	-- a boss the game announces no fight for: killed like any creature, kept as a boss
+	M.wait(90) -- well after the last announced fight ended
+	M.fire("CHAT_MSG_COMBAT_XP_GAIN", "Cookie dies, you gain 120 experience.")
+	M.wait(1)
+	check("a known boss killed without an encounter becomes a boss", inst.bosses["n:cookie"]
+		and inst.bosses["n:cookie"].kills == 1 and inst.mobs["n:Cookie"].enc == "n:cookie")
+	M.fire("CHAT_MSG_COMBAT_XP_GAIN", "Cookie dies, you gain 120 experience.")
+	check("and its later kills are counted", inst.bosses["n:cookie"].kills == 2 and inst.mobs["n:Cookie"].enc == "n:cookie")
+	M.wait(1)
+	open("The Deadmines")
+	check("it has a page of its own", open("Cookie") and pageText():find("2 victories", 1, true))
 	M.slash("sketch")
 	-- hover and click every visible row
 	for _, kind in ipairs({ "The Deadmines", "Rhahk'Zor", "Bestiary", "Spoils", "Map" }) do
