@@ -1896,10 +1896,21 @@ local function SearchPage(lines, query)
 			.. (at + #query + 40 < #note and "..." or "")
 		Hit("\"" .. bit .. "\"", "your note on " .. on .. (place and (", " .. ns:The(place)) or ""), go)
 	end
+	local diary = {} -- the diary's lines, written last: the rest is likelier what was meant
 	for _, id in ipairs(Places()) do
 		local inst = ns.db.instances[id]
 		local place = inst.name
 		local function Go(kind, key) return function() Select(id, kind, key) end end
+		-- (not "Found ...": the finds themselves are searched below)
+		for i = #inst.log, 1, -1 do
+			local t, text = inst.log[i][1], inst.log[i][2]
+			if Has(text) and not text:find("^Found ") then
+				diary[#diary + 1] = { text, "in the diary of " .. ns:The(place) .. ", " .. ns:Day(t), function()
+					wholeDiary[inst] = true -- (it may be one of the earlier entries)
+					Select(id, "overview")
+				end }
+			end
+		end
 		if Has(place) then Hit(place, inst.kind == "raid" and "a raid" or "a dungeon", Go("overview")) end
 		Note(inst.note, place, nil, Go("overview"))
 		for _, a in ipairs(inst.areas) do
@@ -1940,6 +1951,7 @@ local function SearchPage(lines, query)
 			end
 		end
 	end
+	for _, d in ipairs(diary) do Hit(d[1], d[2], d[3]) end
 	if n == 0 then
 		Body(lines, "\nNothing in the journal holds those words.")
 	elseif n > FOUND_MAX then

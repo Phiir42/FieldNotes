@@ -770,6 +770,8 @@ step("leave and return", function()
 		and pageText():find("foes of note defeated", 1, true) and pageText():find("with Brann and Thrall", 1, true))
 	M.slash("find thrall")
 	check("a search finds who went with you", pageText():find("went with you into the Deadmines", 1, true))
+	M.slash("find set foot")
+	check("a search finds the diary's lines", pageText():find("in the diary of the Deadmines", 1, true))
 	M.slash("")
 	local said = #M.chat
 	M.fire("QUEST_ACCEPTED", 2040)
