@@ -168,15 +168,23 @@ def main():
     spells = summoning_spells()
     summoned = {e for e in scripted_creatures() if e in creatures and not creatures[e]["spawns"]}
     todo = [e for e, c in creatures.items() if c["spawns"]] + sorted(summoned)
+    summoners = {}  # creature entry: who calls it up
     while todo:
         e = todo.pop()
         for s in creatures[e]["spells"]:
             calls.setdefault(e, []).extend(spells.get(s, []))
         for other in calls.get(e, []):
-            if other in creatures and not creatures[other]["spawns"] and other not in summoned:
-                summoned.add(other)
-                todo.append(other)
+            if other in creatures and not creatures[other]["spawns"]:
+                summoners.setdefault(other, set()).add(e)
+                if other not in summoned:
+                    summoned.add(other)
+                    todo.append(other)
     for e in summoned:
+        # a pet or guardian takes its level from whoever calls it up, not from
+        # its record (Voidwalker Minion: 47 on record, 25 in Blackfathom Deeps)
+        c, near = creatures[e], [creatures[s] for s in summoners.get(e, ()) if creatures[s]["lo"]]
+        if near and not any(n["lo"] - 5 <= c["hi"] and c["lo"] <= n["hi"] + 5 for n in near):
+            c["lo"] = c["hi"] = 0
         # not the unseen helpers scripts call up (spawn points, kill credit...)
         if not re.search(r"\(DND\)|Trigger|Kill Credit|Spawner|Spawn Point|GM can see", creatures[e]["name"]):
             creatures[e]["summoned"] = True
