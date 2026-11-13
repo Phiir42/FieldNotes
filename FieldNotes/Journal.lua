@@ -869,6 +869,17 @@ local function QuestsPage(lines, id, inst)
 		if q[6] ~= "" then Body(lines, q[6], 8) end
 		if #progress > 0 then Faded(lines, "So far: " .. table.concat(progress, "; ") .. ".", 8) end
 		if q[7] then Faded(lines, "Look for " .. table.concat(q[7], ", ") .. ".", 8) end
+		-- where it comes from, until it is done
+		if state ~= "done" then
+			local how
+			if q.item then
+				how = "Begins with " .. q.item
+			elseif q.from then
+				how = "Given by " .. q.from .. (q.inside and ", inside" or "")
+			end
+			if q.after then how = how and (how .. "; follows " .. q.after) or ("Follows " .. q.after) end
+			if how then Faded(lines, how .. ".", 8) end
+		end
 	end
 end
 

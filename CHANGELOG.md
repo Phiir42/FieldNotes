@@ -17,6 +17,8 @@
   Core), and the map marks the very spot where the game's data gives one.
 - Quests your log files under a dungeon that the journal had not heard of
   are written down and kept.
+- Each quest says who gives it (and whether they stand inside the dungeon),
+  the item that begins it, and the quest it follows.
 
 ## 0.2.0-beta.7
 

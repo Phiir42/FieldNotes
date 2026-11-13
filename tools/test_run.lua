@@ -340,6 +340,7 @@ step("every page of the journal", function()
 	}
 	M.questsOn[99001] = true
 	open("The Deadmines") open("Quests (7)")
+	check("quests say who gives them", pageText():find("Given by Gryan Stoutmantle", 1, true))
 	check("a quest in the log shows how far along it is", pageText():find("So far: 0/1 Head of VanCleef.", 1, true))
 	check("a quest the log files under the dungeon is written down", pageText():find("A New Errand", 1, true)
 		and not pageText():find("Elsewhere", 1, true) and inst.quests[99001].title == "A New Errand")
