@@ -83,6 +83,7 @@ function Object:GetStringHeight()
 	return 14 * (lines + 1)
 end
 function Object:GetStringWidth() return 6 * #self.__text end
+function Object:GetUnboundedStringWidth() return 6 * #self.__text end
 function Object:GetCenter() return 500, 400 end
 function Object:GetLeft() return 400 end
 function Object:GetRight() return 600 end

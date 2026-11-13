@@ -146,6 +146,8 @@
   the like.
 - A quest begun by an item shows the item as the game's link: hover it for
   its tooltip, shift-click to link it ("Begins with [Glowing Shard]").
+- The slip of parchment on screen widens to fit a long line ("Took up the
+  quest ...") instead of cutting it short.
 - "/fn quality" alone says which items are being noted, instead of listing
   every command.
 - A dungeon whose halls the game never names (Shadowfang Keep) no longer

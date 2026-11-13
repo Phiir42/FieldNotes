@@ -267,6 +267,13 @@ step("notices and deaths", function()
 		if slip.__scripts.OnUpdate then slip.__scripts.OnUpdate(slip, 0.05) end
 	end
 	check("notices fade away when all are shown", not slip:IsShown() and not slip.__scripts.OnUpdate)
+	ns:Notice("Took up the quest \"A Long Errand With A Very Long Name Indeed\".")
+	check("a long notice widens the slip to fit", slip:IsShown() and slip.__w > 300 and slip.__w <= 560)
+	ns:Notice("Short.")
+	for _ = 1, 600 do
+		M.wait(0.05)
+		if slip.__scripts.OnUpdate then slip.__scripts.OnUpdate(slip, 0.05) end
+	end
 	M.slash("notices")
 	M.fire("PLAYER_DEAD")
 	check("no notice when turned off", not slip:IsShown() and inst.deaths == deaths + 2)

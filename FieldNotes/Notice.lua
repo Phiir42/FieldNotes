@@ -6,6 +6,7 @@
 local _, ns = ...
 
 local WIDTH, HEIGHT = 300, 36
+local WIDTH_MAX = 560   -- a longer line is cut short
 local FADE_IN, HOLD, FADE_OUT = 0.35, 3.2, 1.0
 local QUEUE_MAX = 6      -- older notes are dropped when more than this wait
 local ICON = "Interface\\Icons\\INV_Misc_Book_09"
@@ -56,6 +57,7 @@ local function Create()
 	paper:SetPoint("BOTTOMRIGHT", -1, 1)
 	paper:SetTexture(ns.MAP_BLANK)
 	paper:SetTexCoord(0, 1, 0.3, 0.3 + 0.5 * HEIGHT / WIDTH) -- a strip of the sheet, unstretched
+	slip.paper = paper
 	local wash = slip:CreateTexture(nil, "BORDER", nil, 1)
 	wash:SetAllPoints(paper)
 	wash:SetColorTexture(1, 0.93, 0.78, 0.34)
@@ -112,6 +114,14 @@ Next = function()
 	-- with more waiting, each stays a shorter while
 	showing = { t0 = GetTime(), hold = #queue > 0 and HOLD / 2 or HOLD }
 	slip.text:SetText(text)
+	-- wide enough for the whole line (it is not wrapped), within reason
+	local ok, w = pcall(function() return slip.text:GetUnboundedStringWidth() end)
+	if not ok then ok, w = pcall(function() return slip.text:GetStringWidth() end) end
+	if ok and type(w) == "number" then
+		local width = math.max(WIDTH, math.min(WIDTH_MAX, w + 50))
+		slip:SetWidth(width)
+		slip.paper:SetTexCoord(0, 1, 0.3, 0.3 + 0.5 * HEIGHT / width) -- (still unstretched)
+	end
 	slip:SetAlpha(0)
 	slip:Show()
 	slip:SetScript("OnUpdate", Tick)
