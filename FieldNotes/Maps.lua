@@ -2230,16 +2230,17 @@ do
 	floor.areas[key("Rethilgore the Cell Keeper")] = floor.areas[key("Rethilgore")]
 	floor.areas[key("Sorcerer Ashcrombe")] = floor.areas[key("Rethilgore")]
 	floor.areas[key("Deathstalker Adamant")] = floor.areas[key("Rethilgore")]
+	floor.areas[key("Shadowfang Whitescalp")] = floor.areas[key("Rethilgore")]
+	floor.areas[key("Bleak Worg")] = floor.areas[key("Rethilgore")]
 	floor.areas[key("The Courtyard")] = { mask = DIR .. "shadowfang-keep-1-02", x = 328, y = 224, w = 276, h = 283 }
 	floor.areas[key("The Courtyard")].n = 2
 	floor.areas["#2"] = floor.areas[key("The Courtyard")]
 	floor.count = floor.count + 1
 	floor.areas[key("Courtyard")] = floor.areas[key("The Courtyard")]
-	floor.areas[key("Shadowfang Whitescalp")] = floor.areas[key("The Courtyard")]
 	floor.areas[key("Shadowfang Moonwalker")] = floor.areas[key("The Courtyard")]
-	floor.areas[key("Bleak Worg")] = floor.areas[key("The Courtyard")]
 	floor.areas[key("Slavering Worg")] = floor.areas[key("The Courtyard")]
 	floor.areas[key("Deathstalker Vincent")] = floor.areas[key("The Courtyard")]
+	floor.areas[key("Haunted Servitor")] = floor.areas[key("The Courtyard")]
 	floor.areas[key("Fel Steed")] = { mask = DIR .. "shadowfang-keep-1-03", x = 192, y = 104, w = 254, h = 250 }
 	floor.areas[key("Fel Steed")].n = 3
 	floor.areas["#3"] = floor.areas[key("Fel Steed")]
@@ -2250,16 +2251,20 @@ do
 	floor.areas[key("Shadowfang Wolfguard")] = { mask = DIR .. "shadowfang-keep-1-04", x = 40, y = 245, w = 259, h = 415 }
 	floor.areas[key("Shadowfang Wolfguard")].n = 4
 	floor.areas["#4"] = floor.areas[key("Shadowfang Wolfguard")]
+	floor.areas[key("Shadowfang Wolfguard")].g = 2
 	floor.count = floor.count + 1
+	floor.areas[key("Shadowfang Darksoul")] = floor.areas[key("Shadowfang Wolfguard")]
 	floor.areas[key("Wolfguard Worg")] = floor.areas[key("Shadowfang Wolfguard")]
 	floor.areas[key("Commander Springvale")] = { mask = DIR .. "shadowfang-keep-1-05", x = 198, y = 294, w = 234, h = 253 }
 	floor.areas[key("Commander Springvale")].n = 5
 	floor.areas["#5"] = floor.areas[key("Commander Springvale")]
+	floor.areas[key("Commander Springvale")].g = 2
 	floor.count = floor.count + 1
 	floor.areas[key("Wailing Guardsman")] = floor.areas[key("Commander Springvale")]
 	floor.areas[key("Tormented Officer")] = floor.areas[key("Commander Springvale")]
 	floor.bosses = { { name = "Rethilgore", x = 663, y = 475 }, { name = "Commander Springvale", x = 281, y = 399 } }
 	floor.path = true
+	floor.alone = true
 	ns.Maps[33][1] = floor
 end
 do
@@ -2271,7 +2276,6 @@ do
 	floor.count = floor.count + 1
 	floor.areas[key("Razorclaw")] = floor.areas[key("Razorclaw the Butcher")]
 	floor.areas[key("The Kitchen")] = floor.areas[key("Razorclaw the Butcher")]
-	floor.areas[key("Haunted Servitor")] = floor.areas[key("Razorclaw the Butcher")]
 	floor.areas[key("Shadowfang Glutton")] = { mask = DIR .. "shadowfang-keep-2-02", x = 245, y = 212, w = 244, h = 255 }
 	floor.areas[key("Shadowfang Glutton")].n = 2
 	floor.areas["#2"] = floor.areas[key("Shadowfang Glutton")]
@@ -2284,6 +2288,7 @@ do
 	floor.count = floor.count + 1
 	floor.bosses = { { name = "Razorclaw the Butcher", x = 481, y = 193 }, { name = "Baron Silverlaine", x = 305, y = 517 } }
 	floor.path = true
+	floor.alone = true
 	ns.Maps[33][2] = floor
 end
 do
@@ -2293,7 +2298,6 @@ do
 	floor.areas[key("Shadowfang Ragetooth")].n = 1
 	floor.areas["#1"] = floor.areas[key("Shadowfang Ragetooth")]
 	floor.count = floor.count + 1
-	floor.areas[key("Shadowfang Darksoul")] = floor.areas[key("Shadowfang Ragetooth")]
 	floor.areas[key("The Wall Walk")] = { mask = DIR .. "shadowfang-keep-3-02", x = 377, y = 192, w = 447, h = 339 }
 	floor.areas[key("The Wall Walk")].n = 2
 	floor.areas["#2"] = floor.areas[key("The Wall Walk")]
@@ -2311,6 +2315,7 @@ do
 	floor.count = floor.count + 1
 	floor.bosses = { { name = "Odo the Blindwatcher", x = 552, y = 515 } }
 	floor.path = true
+	floor.alone = true
 	ns.Maps[33][3] = floor
 end
 do
@@ -2338,6 +2343,7 @@ do
 	floor.areas[key("Lupine Delusion")] = floor.areas[key("Lupine Horror")]
 	floor.bosses = { { name = "Fenrus the Devourer", x = 575, y = 289 } }
 	floor.path = true
+	floor.alone = true
 	ns.Maps[33][4] = floor
 end
 do
@@ -2355,6 +2361,7 @@ do
 	floor.areas[key("Lord Walden's Chamber")] = floor.areas[key("Archmage Arugal")]
 	floor.bosses = { { name = "Wolf Master Nandos", x = 592, y = 356 }, { name = "Archmage Arugal", x = 640, y = 134 } }
 	floor.path = true
+	floor.alone = true
 	ns.Maps[33][5] = floor
 end
 do
@@ -2365,6 +2372,7 @@ do
 	floor.areas["#1"] = floor.areas[key("Lower Observatory")]
 	floor.count = floor.count + 1
 	floor.path = true
+	floor.alone = true
 	ns.Maps[33][6] = floor
 end
 do
@@ -2375,6 +2383,7 @@ do
 	floor.areas["#1"] = floor.areas[key("Upper Observatory")]
 	floor.count = floor.count + 1
 	floor.path = true
+	floor.alone = true
 	ns.Maps[33][7] = floor
 end
 -- stratholme

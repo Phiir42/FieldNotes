@@ -801,12 +801,17 @@ local function MapPage(lines, id, inst)
 	-- the pieces found on each floor, and areas the map has no place for
 	-- a piece is found by walking into its area, or by fighting someone who lives there
 	local floors = ns.Maps[id]
-	local known = {}
-	for _, a in ipairs(inst.areas) do known[#known + 1] = a.name end
-	for _, b in pairs(inst.bosses) do known[#known + 1] = b.name end
-	for _, m in pairs(inst.mobs) do
-		if m.fought then known[#known + 1] = m.name end
+	local known, when = {}, {}  -- when: the last time each was met, to open on the sheet you are on
+	local function Know(name, t)
+		known[#known + 1] = name
+		when[name] = math.max(when[name] or 0, t or 0)
 	end
+	for _, a in ipairs(inst.areas) do Know(a.name, a.t) end
+	for _, b in pairs(inst.bosses) do Know(b.name, b.lastKill or b.first) end
+	for _, m in pairs(inst.mobs) do
+		if m.fought then Know(m.name, m.fought) end
+	end
+	local latest = {}  -- [sheet] = the last time anything on it was met
 	local sheets, placed = {}, {}
 	local seenOn = {}
 	for f, floor in ipairs(floors) do
@@ -817,6 +822,7 @@ local function MapPage(lines, id, inst)
 			if piece then
 				placed[name] = true
 				seen[piece] = true
+				latest[f] = math.max(latest[f] or 0, when[name])
 			end
 		end
 	end
@@ -865,7 +871,12 @@ local function MapPage(lines, id, inst)
 	for _, sh in ipairs(sheets) do
 		if sh.f == sel.key then shown = sh end
 	end
-	shown = shown or sheets[1]
+	if not shown then
+		-- no sheet chosen: the one you were last on
+		for _, sh in ipairs(sheets) do
+			if not shown or (latest[sh.f] or 0) > (latest[shown.f] or 0) then shown = sh end
+		end
+	end
 	if not shown then
 		Body(lines, "\nNothing charted yet.")
 		return
@@ -874,7 +885,7 @@ local function MapPage(lines, id, inst)
 	if #sheets > 1 then
 		for _, sh in ipairs(sheets) do
 			lines[#lines + 1] = {
-				text = SHEET[sh.f] or ("Sheet " .. sh.f), font = "GameFontNormalSmall",
+				text = SHEET[sh.f] or ("Sheet " .. sh.f), font = "GameFontNormal",
 				selected = sh == shown, gap = sh == sheets[1] and 6 or 0,
 				click = function() Select(id, "map", sh.f) end,
 			}

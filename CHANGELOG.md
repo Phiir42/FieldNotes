@@ -7,6 +7,9 @@
   of the journal window.
 - Spoils are listed under the boss that carried them, then the rest.
 - The journal remembers where you dragged it.
+- Shadowfang Keep no longer uncovers rooms before you reach them.
+- The map opens on the sheet you were last on, so boss marks on later sheets
+  are not missed.
 - A darker parchment look: the pages use the same sheet as the maps, with
   dark brown ink and red-brown headings.
 
