@@ -194,5 +194,6 @@ SlashCmdList["FIELDNOTES"] = function(msg)
 		print("  /fn sketch  -  whether new parts of a map are sketched in or simply appear")
 		print("  /fn maptest [instance id | off]  -  preview a map, three more areas each time")
 		print("  /fn errors  -  anything that went wrong, for reporting")
+		print("  /fn version  -  the installed version")
 	end
 end
