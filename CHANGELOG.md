@@ -19,6 +19,9 @@
   wings are taken in any order, and each is uncovered on its own.
 - Uldaman: reaching the Map Chamber no longer uncovers Dig Two, the dead
   end where the Lost Dwarves wait.
+- Temple of Ahn'Qiraj: the way down into the Vault of C'Thun, which the
+  game gives no name the journal could hear, is uncovered once the Twin
+  Emperors are faced; it stayed blank before.
 - The journal opened outside a dungeon no longer says its pages are blank
   when they are not: it opens on a contents page listing every place
   written about, with how far each has got. "Contents" at the top of the

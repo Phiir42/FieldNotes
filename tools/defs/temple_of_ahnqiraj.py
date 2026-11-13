@@ -91,6 +91,11 @@ MAP = {
             },
             "aliases": {
                 "The Vault of C'Thun": "Vault of C'Thun",
+                # the way down to the vault opens behind the emperors: the game
+                # names no place on it, so it is uncovered once they are faced
+                "Twin Emperors": "Vault of C'Thun",
+                "Emperor Vek'lor": "Vault of C'Thun",
+                "Emperor Vek'nilash": "Vault of C'Thun",
                 "Eye Tentacle": "Eye of C'Thun",
                 "Claw Tentacle": "Eye of C'Thun",
                 "Giant Eye Tentacle": "C'Thun",

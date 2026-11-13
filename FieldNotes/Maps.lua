@@ -3064,6 +3064,9 @@ do
 	floor.areas["#1"] = floor.areas[key("Vault of C'Thun")]
 	floor.count = floor.count + 1
 	floor.areas[key("The Vault of C'Thun")] = floor.areas[key("Vault of C'Thun")]
+	floor.areas[key("Twin Emperors")] = floor.areas[key("Vault of C'Thun")]
+	floor.areas[key("Emperor Vek'lor")] = floor.areas[key("Vault of C'Thun")]
+	floor.areas[key("Emperor Vek'nilash")] = floor.areas[key("Vault of C'Thun")]
 	floor.areas[key("Eye of C'Thun")] = { mask = DIR .. "temple-of-ahnqiraj-3-02", x = 350, y = 244, w = 422, h = 410 }
 	floor.areas[key("Eye of C'Thun")].n = 2
 	floor.areas["#2"] = floor.areas[key("Eye of C'Thun")]
