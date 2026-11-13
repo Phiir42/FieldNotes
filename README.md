@@ -124,6 +124,9 @@ tools/defs/        one map definition per dungeon (see tools/defs/BRIEF.md)
 
 - `python tools/test_addon.py` loads the addon into Lua 5.1 against a mock of
   the game client and plays a dungeon run through it (needs `pip install lupa`).
+- `python tools/test_runs.py` replays real runs (`tools/data/runs.json`, taken
+  from testers' saved journals) against the maps and fails if a sheet now
+  uncovers at another moment than before.
 - `python tools/package.py` builds `dist/FieldNotes-<version>.zip`.
 - `python tools/make_maps.py` and `python tools/make_abilities.py` rebuild the
   generated data. They need reference material that is not in this repository
