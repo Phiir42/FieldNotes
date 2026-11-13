@@ -885,6 +885,7 @@ do
 	floor.areas[key("Mr. Smite")].n = 3
 	floor.areas["#3"] = floor.areas[key("Mr. Smite")]
 	floor.count = floor.count + 1
+	floor.areas[key("Goblin Shipbuilder")] = floor.areas[key("Mr. Smite")]
 	floor.areas[key("Captain Greenskin")] = { mask = DIR .. "deadmines-2-04", x = 564, y = 5, w = 252, h = 439 }
 	floor.areas[key("Captain Greenskin")].n = 4
 	floor.areas["#4"] = floor.areas[key("Captain Greenskin")]
@@ -895,6 +896,7 @@ do
 	floor.areas["#5"] = floor.areas[key("Edwin VanCleef")]
 	floor.count = floor.count + 1
 	floor.areas[key("Defias Blackguard")] = floor.areas[key("Edwin VanCleef")]
+	floor.areas[key("Goblin Shipbuilder")] = floor.areas["#2"]
 	floor.areas[key("Defias Blackguard")] = floor.areas["#3"]
 	floor.areas[key("Captain Greenskin")] = floor.areas["#5"]
 	floor.bosses = { { name = "Gilnid", x = 125, y = 507 }, { name = "Captain Greenskin", x = 609, y = 250 }, { name = "Mr. Smite", x = 553, y = 169 }, { name = "Cookie", x = 678, y = 268 }, { name = "Edwin VanCleef", x = 609, y = 300 } }

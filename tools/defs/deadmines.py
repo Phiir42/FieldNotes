@@ -54,6 +54,7 @@ MAP = {
                 "Defias Squallshaper": "Ironclad Cove",
                 "Defias Henchman": "Ironclad Cove",
                 "Defias Companion": "Ironclad Cove",
+                "Goblin Shipbuilder": "Mr. Smite",  # met after Smite and before Cookie on a real run
                 "Cookie": "Captain Greenskin",
                 "Defias Blackguard": "Edwin VanCleef",
             },
