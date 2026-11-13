@@ -125,6 +125,9 @@
   Depth Charge and Bubble Beam of the Season of Discovery raid's Baron.
 - "/fn quality" alone says which items are being noted, instead of listing
   every command.
+- A dungeon whose halls the game never names (Shadowfang Keep) no longer
+  says "Nothing noted yet" under "Halls and chambers" once you have been
+  through it: it says the map is charted by the foes you meet.
 
 ## 0.2.0-beta.9
 

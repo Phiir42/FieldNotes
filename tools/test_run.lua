@@ -788,6 +788,8 @@ step("every shipped map draws, area by area", function()
 end)
 
 step("a full run of every dungeon with a map", function()
+	local unnamed, sub = nil, M.subzone
+	M.subzone = nil -- the game names no hall: only the foes chart the map
 	-- walk in, face each marked boss, look at the map: no errors, markers match
 	for id, floors in pairs(ns.Maps) do
 		if type(id) == "number" and id ~= 36 then
@@ -815,9 +817,15 @@ step("a full run of every dungeon with a map", function()
 				end
 			end
 			open("Dungeon " .. id)
+			local inst = ns.db.instances[id]
+			if inst and #inst.areas == 0 and #inst.bossOrder > 0 then
+				unnamed = unnamed or pageText():find("The game has named none of them", 1, true)
+			end
 			M.slash("")
 		end
 	end
+	check("a dungeon whose halls the game never names says so", unnamed)
+	M.subzone = sub
 end)
 
 step("a dungeon the addon has no map or lore for", function()

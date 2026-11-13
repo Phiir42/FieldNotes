@@ -681,7 +681,11 @@ local function OverviewPage(lines, id, inst)
 	end
 
 	H2(lines, "Halls and chambers")
-	if #inst.areas == 0 then Faded(lines, "Nothing noted yet.") end
+	if #inst.areas == 0 then
+		-- some dungeons (Shadowfang Keep) never say the name of a hall
+		Faded(lines, (#inst.bossOrder > 0 and ns.Maps[id]) and
+			"The game has named none of them; the map is charted by the foes you meet." or "Nothing noted yet.")
+	end
 	for _, a in ipairs(inst.areas) do
 		Body(lines, a.name, 8)
 		lines[#lines].ink = Ink(inst, "area:" .. a.name)
