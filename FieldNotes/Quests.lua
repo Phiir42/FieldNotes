@@ -592,7 +592,7 @@ Q[2994] = {
 	{ 95309, "No Orc Left Behind", 53, 48, "H", "Find Commander Folkar in the cells beneath the keep and free him, for Sergeant Ulka outside.", { "Commander Folkar" }, from = "Sergeant Ulka, outside the prison", note = "He is chained in the cells inside the prison." },
 	{ 96772, "The Dragon's Journal", 53, 46, "A", "Recover Zarla's Journal from Blazeroar.", { "Blazeroar" } },
 	{ 95454, "The Honor of the Kor'kron", 53, 48, "H", "Find the captive Varian Wrynn for Commander Folkar.", { "Perfumed Note" }, from = "Commander Folkar", note = "Varian is not there: a note lies on the floor of the hidden room behind Blazeroar.", inside = true },
-	{ 96335, "The Man in the Iron Chains", 53, 48, nil, "Take the Alcaz Shackle Key from The Questioner.", { "The Questioner" } },
+	{ 96335, "The Man in the Iron Chains", 53, 48, nil, "Take the Alcaz Shackle Key from the Questioner.", { "The Questioner" } },
 	{ 95483, "Thrall Needs to Know", 53, 48, "H", "Carry word of Varian Wrynn's fate to Thrall in Orgrimmar." },
 }
 
