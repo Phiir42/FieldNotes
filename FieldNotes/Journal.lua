@@ -1918,7 +1918,7 @@ local function SearchPage(lines, query)
 		for i = #inst.log, 1, -1 do
 			local t, text = inst.log[i][1], inst.log[i][2]
 			if Has(text) and not text:find("^Found ") then
-				diary[#diary + 1] = { text, "in the diary of " .. ns:The(place) .. ", " .. ns:Day(t), function()
+				diary[#diary + 1] = { text, "in the diary of " .. ns:The(place) .. ", " .. date("%d %b %Y, %H:%M", t), function()
 					wholeDiary[inst] = true -- (it may be one of the earlier entries)
 					Select(id, "overview")
 				end }
