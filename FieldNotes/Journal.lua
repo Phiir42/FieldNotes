@@ -1991,6 +1991,8 @@ local function SearchPage(lines, query)
 					Hit(q[2], "a quest of " .. ns:The(place) .. ", given by " .. ns:The(q.from), Go("quests"))
 				elseif not found and Has(q.to) then
 					Hit(q[2], "a quest of " .. ns:The(place) .. ", handed in to " .. ns:The(q.to) .. " inside", Go("quests"))
+				elseif not found and Has(q.note) then
+					Hit(q[2], "a quest of " .. ns:The(place) .. ": " .. q.note, Go("quests"))
 				end
 			end
 			Note(inst.questNotes and inst.questNotes[q[1]] and inst.questNotes[q[1]].note, q[2], place, Go("quests"))
