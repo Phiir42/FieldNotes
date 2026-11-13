@@ -15,6 +15,7 @@ ns.Quests = Q
 
 -- Shadowfang Keep
 Q[33] = {
+	{ 95036, "A Moon-Kissed Blade", 25, 20, "H", "Bring Trevan Rol his Weapon Notes, Whitestone Oak Lumber, an Enchanted Silver Ingot and a Purified Kor Gem.", { "Archmage Arugal" }, from = "Lumina Windsinger at the Sepulcher", note = "The Enchanted Silver Ingot lies on a table beside Archmage Arugal. The lumber is in the Deadmines, the Kor Gem at Blackfathom Deeps.", class = 2 },
 	{ 1098, "Deathstalkers in Shadowfang", 25, 18, "H", "Find the Deathstalker Adamant and Deathstalker Vincent.", nil, from = "High Executor Hadrec", to = "Deathstalker Vincent", get = { 3324 } },
 	{ 1013, "The Book of Ur", 26, 16, "H", "Bring the Book of Ur to Keeper Bel'dugur at the Apothecarium in the Undercity.", { "The Book of Ur" }, from = "Keeper Bel'dugur", pick = { 6335, 4534 } },
 	{ 1014, "Arugal Must Die", 27, 18, "H", "Kill Arugal and bring his head to Dalar Dawnweaver at the Sepulcher.", { "Archmage Arugal" }, from = "Dalar Dawnweaver", get = { 6414 } },
@@ -40,6 +41,7 @@ Q[36] = {
 	{ 166, "The Defias Brotherhood", 22, 14, "A", "Kill Edwin VanCleef and bring his head to Gryan Stoutmantle.", { "Edwin VanCleef" }, from = "Gryan Stoutmantle", pick = { 6087, 2041, 2042 } },
 	{ 1654, "The Test of Righteousness", 22, 20, "A", "Using Jordan's Weapon Notes, find some Whitestone Oak Lumber, Bailor's Refined Ore Shipment, Jordan's Smithing Hammer, and a Kor Gem, and return them to Jordan Stilwell in Ironforge.", { "Goblin Woodcarver" }, from = "Jordan Stilwell", class = 2 },
 	{ 373, "The Unsent Letter", 22, 16, "A", "Deliver the Letter to the City Architect to Baros Alexston in Stormwind.", { "Edwin VanCleef" }, item = "An Unsent Letter" },
+	{ 95036, "A Moon-Kissed Blade", 25, 20, "H", "Bring Trevan Rol his Weapon Notes, Whitestone Oak Lumber, an Enchanted Silver Ingot and a Purified Kor Gem.", { "Goblin Woodcarver" }, from = "Lumina Windsinger at the Sepulcher", note = "The Whitestone Oak Lumber comes from here. The ingot is in Shadowfang Keep, the Kor Gem at Blackfathom Deeps.", class = 2 },
 }
 
 -- Wailing Caverns
@@ -78,8 +80,8 @@ Q[48] = {
 	{ 971, "Knowledge in the Deeps", 23, 10, "A", "Bring the Lorgalis Manuscript to Gerrig Bonegrip in the Forlorn Cavern in Ironforge.", { "Pitted Iron Chest" }, from = "Gerrig Bonegrip", get = { 6743 } },
 	{ 1198, "In Search of Thaelrid", 24, 18, "A", "Seek out Argent Guard Thaelrid in Blackfathom Deeps.", nil, from = "Dawnwatcher Shaedlass", to = "Argent Guard Thaelrid" },
 	{ 1275, "Researching the Corruption", 24, 18, "A", "Gershala Nightwhisper in Auberdine wants 8 Corrupt Brain stems.", { "Blackfathom Myrmidon", "Blackfathom Sea Witch", "Fallenroot Hellcaller", "Fallenroot Shadowstalker" }, from = "Gershala Nightwhisper", pick = { 7003, 7004 } },
-	{ 95036, "A Moon-Kissed Blade", 25, 20, "H", "Bring Trevan Rol his Weapon Notes, Whitestone Oak Lumber, an Enchanted Silver Ingot and a Purified Kor Gem.", nil, from = "Lumina Windsinger at the Sepulcher", note = "The Kor Gem comes from the Blackfathom naga: see Seeking the Kor Gem.", class = 2 },
-	{ 95042, "Seeking the Kor Gem", 25, 20, "H", "Bring back a Corrupted Kor Gem from the Blackfathom naga.", nil, from = "Ulric Frostveil at Zoram'gar Outpost", class = 2 },
+	{ 95036, "A Moon-Kissed Blade", 25, 20, "H", "Bring Trevan Rol his Weapon Notes, Whitestone Oak Lumber, an Enchanted Silver Ingot and a Purified Kor Gem.", nil, from = "Lumina Windsinger at the Sepulcher", note = "Only the Kor Gem comes from here (see Seeking the Kor Gem). The lumber is from the Goblin Woodcarvers of the Deadmines, the ingot from a table beside Archmage Arugal in Shadowfang Keep.", class = 2 },
+	{ 95042, "Seeking the Kor Gem", 25, 20, "H", "Bring back a Corrupted Kor Gem from the Blackfathom naga.", { "Blackfathom Tide Priestess", "Blackfathom Oracle" }, from = "Ulric Frostveil at Zoram'gar Outpost", note = "These naga are in the caves before the dungeon's entrance, not inside. The Purified Kor Gem this pays is wanted for A Moon-Kissed Blade.", class = 2 },
 	{ 1199, "Twilight Falls", 25, 20, "A", "Bring 10 Twilight Pendants to Argent Guard Manados in Darnassus.", { "Twilight Elementalist", "Twilight Shadowmage", "Twilight Loreseeker", "Twilight Aquamancer" }, from = "Argent Guard Manados", get = { 6998, 7000 } },
 	{ 6565, "Allegiance to the Old Gods", 26, 17, "H", "Kill Lorgus Jett in Blackfathom Deeps and then return to Je'neu Sancrea in Ashenvale.", { "Lorgus Jett" }, from = "Je'neu Sancrea", pick = { 17694, 17695 } },
 	{ 6921, "Amongst the Ruins", 27, 21, "H", "Bring the Fathom Core to Je'neu Sancrea at Zoram'gar Outpost, Ashenvale.", { "Fathom Stone" }, from = "Je'neu Sancrea", note = "Taking the Fathom Core from the Fathom Stone calls up Baron Aquanis." },
@@ -508,10 +510,10 @@ Q[2959] = {
 	{ 92456, "A Green Sample", 33, 24, "A", "Collect a Fel Infused Blossom from the fel garden for Shylamiir in Stormwind.", { "Fel Ancient" }, from = "Shylamiir in Stormwind" },
 	{ 92458, "Heart of Disruption", 33, 24, "A", "Bring back an Arcane Mote from the Shade of the Archmage in Dalaran.", { "Shade of the Archmage" }, from = "the Image of Archmage Modera at the Dalaran sewer gate" },
 	{ 96984, "Heart of Disruption", 33, 24, "H", "Bring an Arcane Mote from the Shade of the Archmage to Magus Wordeen Voidglare in Tarren Mill.", { "Shade of the Archmage" }, from = "the Image of Archmage Modera at the Dalaran sewer gate" },
-	{ 96987, "Opportunistic Education", 33, 24, "H", "Bring the book The Founding of Dalaran to Rexxie Copperclutch near the sewer entrance.", nil, from = "Rexxie Copperclutch near the sewer entrance" },
-	{ 92489, "Power Overwhelming", 33, 24, "A", "High Sorcerer Andromath in Stormwind wants the Arcanic Enigma destroyed.", nil, from = "High Sorcerer Andromath in Stormwind" },
-	{ 96988, "Source of Power", 33, 24, "H", "Collect 6 Cracked Sentry Cores from Fragmented Sentries for Doctor Martin Felben in the Undercity.", nil, from = "Doctor Martin Felben in the Undercity" },
-	{ 92457, "Starving Arcane", 33, 24, "A", "Kill 8 Seeking Remnants, 8 Saturated Remnants and 8 Mana Echoes for the Image of Archmage Modera outside Dalaran.", nil, from = "the Image of Archmage Modera outside Dalaran" },
+	{ 96987, "Opportunistic Education", 33, 24, "H", "Bring the book The Founding of Dalaran to Rexxie Copperclutch near the sewer entrance.", { "The Founding of Dalaran" }, from = "Rexxie Copperclutch near the sewer entrance", note = "A book to pick up, not a drop: past the portal room, in the bookshelves on the back wall of the Atrium of Fortune." },
+	{ 92489, "Power Overwhelming", 33, 24, "A", "High Sorcerer Andromath in Stormwind wants the Arcanic Enigma destroyed.", { "Mana Elemental" }, from = "High Sorcerer Andromath in Stormwind", note = "The creature itself is named the Arcanic Enigma; it walks the Path of Renewal in the north-east of the streets, with two Mana Phantoms." },
+	{ 96988, "Source of Power", 33, 24, "H", "Collect 6 Cracked Sentry Cores from Fragmented Sentries for Doctor Martin Felben in the Undercity.", { "Fragmented Sentry" }, from = "Doctor Martin Felben in the Undercity", note = "On the streets, around the Magus Commerce Exchange. Some lie broken and are simply searched; a visit holds a dozen or so." },
+	{ 92457, "Starving Arcane", 33, 24, "A", "Kill 8 Seeking Remnants, 8 Saturated Remnants and 8 Mana Echoes for the Image of Archmage Modera outside Dalaran.", { "Seeking Remnant", "Saturated Remnant", "Mana Echo" }, from = "the Image of Archmage Modera outside Dalaran", note = "They roam the streets above the sewers. One visit may not hold enough of them." },
 	{ 96986, "The Grave Knight", 33, 24, "H", "Melisara in Tarren Mill wants Atrexis the Grave Knight killed in the sewers.", { "Atrexis the Grave Knight" }, from = "Melisara in Tarren Mill" },
 }
 
@@ -520,8 +522,8 @@ Q[2970] = {
 	{ 95776, "The Only Good Brinescale...", 38, 30, "H", "Kill Var'Taka.", { "Var'Taka" }, from = "Commander Aggro'gosh in Grom'gol" },
 	{ 96774, "Ancient Gurubashi Idol", 40, 30, "H", "Bring the Ancient Gurubashi Idol from Deathless Marrow to Mazu'kon in Mulgore.", { "Deathless Guardians" }, from = "Mazu'kon in Mulgore" },
 	{ 97130, "Ancient Gurubashi Secrets", 40, 34, "A", "Recover the Ancient Gurubashi Idol from Deathless Marrow.", { "Deathless Guardians" }, from = "Archmage Timear in the Alterac Mountains" },
-	{ 95788, "Magics of the Drowned City", 40, 30, "A", "Collect 5 I'lalai Fetishes from the trolls inside." },
-	{ 95789, "Shady Saltseers", 40, 34, nil, "Collect 10 Voodoo-Infused Artifacts from the Saltseer pirates.", nil, from = "Krazek in Stranglethorn" },
+	{ 95788, "Magics of the Drowned City", 40, 30, "A", "Collect 5 I'lalai Fetishes from the trolls inside.", { "Risen Sentry", "Profane Necromancer" } },
+	{ 95789, "Shady Saltseers", 40, 34, nil, "Collect 10 Voodoo-Infused Artifacts from the Saltseer pirates.", { "Saltseer Manhunter", "Saltseer Coroner" }, from = "Krazek in Stranglethorn", note = "The pirates of Captain Dreadrise's crew." },
 	{ 95787, "Take Two With Water", 40, 30, "A", "Make rubbings of the four Tablets of I'lalai.", nil, from = "Loremaster Dibbs in Southshore" },
 	{ 95775, "The Drowned City", 40, 30, "H", "Make rubbings of the four tablets.", nil, from = "Kin'weelay in Grom'gol" },
 	{ 95791, "The Saltseer Captain", 40, 34, nil, "Kill Captain Dreadrise and 3 Saltseer Coroners.", { "Captain Dreadrise" }, from = "Krazek in Stranglethorn" },
@@ -543,37 +545,37 @@ Q[2994] = {
 	{ 96381, "A Bit of Wet Work", 53, 48, "A", "Kill 15 Strashaz Soldiers and 8 Strashaz Enchantresses and bring Tidemistress Ca'zass's head to Sully McCleary.", { "Tidemistress Ca'zass" } },
 	{ 96332, "A Little Payback", 53, 48, "H", "Kill 15 Strashaz Soldiers and 8 Strashaz Enchantresses and bring Tidemistress Ca'zass's head to Sergeant Ulka.", { "Tidemistress Ca'zass" } },
 	{ 96334, "Blood Red Bandanas", 53, 48, "H", "Collect 8 Blood Red Bandanas from the human guards." },
-	{ 96337, "More Valuable Than Gold", 53, 48, nil, "Use Mason Connery's note to find his hidden treasure.", nil, item = "Mason Connery's note" },
-	{ 95309, "No Orc Left Behind", 53, 48, "H", "Find Commander Folkar in the cells beneath the keep and free him, for Sergeant Ulka outside.", nil, from = "Sergeant Ulka, outside the prison" },
+	{ 96337, "More Valuable Than Gold", 53, 48, nil, "Use Mason Connery's note to find his hidden treasure.", nil, item = "Mason Connery's note", note = "The treasure is not in the prison: it is under a loose floorboard upstairs in the inn at Moonbrook, Westfall." },
+	{ 95309, "No Orc Left Behind", 53, 48, "H", "Find Commander Folkar in the cells beneath the keep and free him, for Sergeant Ulka outside.", { "Commander Folkar" }, from = "Sergeant Ulka, outside the prison", note = "He is chained in the cells inside the prison." },
 	{ 96772, "The Dragon's Journal", 53, 46, "A", "Recover Zarla's Journal from Blazeroar.", { "Blazeroar" } },
-	{ 95454, "The Honor of the Kor'kron", 53, 48, "H", "Find the captive Varian Wrynn for Commander Folkar.", nil, from = "Commander Folkar", inside = true },
+	{ 95454, "The Honor of the Kor'kron", 53, 48, "H", "Find the captive Varian Wrynn for Commander Folkar.", { "Perfumed Note" }, from = "Commander Folkar", note = "Varian is not there: a note lies on the floor of the hidden room behind Blazeroar.", inside = true },
 	{ 96335, "The Man in the Iron Chains", 53, 48, nil, "Take the Alcaz Shackle Key from The Questioner.", { "The Questioner" } },
 	{ 95483, "Thrall Needs to Know", 53, 48, "H", "Carry word of Varian Wrynn's fate to Thrall in Orgrimmar." },
 }
 
 -- Excavation Site: Wetlands
 Q[2998] = {
-	{ 98815, "Highland Hides", 28, 24, "A", "Bring 4 Thicket Raptor Hides to James Halloran in Menethil Harbor.", nil, from = "James Halloran in Menethil Harbor" },
-	{ 95697, "Changing Tastes", 31, 24, "H", "Bring 4 Thicket Raptor Meat to Borstan in Orgrimmar.", nil, from = "Borstan in Orgrimmar" },
+	{ 98815, "Highland Hides", 28, 24, "A", "Bring 4 Thicket Raptor Hides to James Halloran in Menethil Harbor.", { "Thicket Hunter", "Thicket Lurker", "Thicket Matriarch" }, from = "James Halloran in Menethil Harbor", note = "The raptors of Stalker's Thicket, after Saltspine." },
+	{ 95697, "Changing Tastes", 31, 24, "H", "Bring 4 Thicket Raptor Meat to Borstan in Orgrimmar.", { "Thicket Hunter", "Thicket Lurker", "Thicket Stalker" }, from = "Borstan in Orgrimmar", note = "The raptors of Stalker's Thicket, after Saltspine." },
 	{ 95664, "Elder Knowledge", 31, 24, "H", "Take the Titan Relic from the Relic Guardian to Bashana Runetotem in Thunder Bluff.", { "Relic Guardian" }, item = "the Titan Relic, from the Relic Guardian" },
-	{ 95795, "Fallen in the Fen", 31, 24, "A", "Bring news of Daewyn Songblade, whose body lies inside, to Dorin in Lakeshire.", nil, from = "Daewyn Songblade's body", inside = true },
-	{ 95809, "Heartwoven", 31, 24, "A", "Return from Ardin Grassman, inside the dig, to Caitlin in Menethil Harbor.", nil, from = "Ardin Grassman", inside = true },
+	{ 95795, "Fallen in the Fen", 31, 24, "A", "Bring news of Daewyn Songblade, whose body lies inside, to Dorin in Lakeshire.", { "Daewyn Songblade" }, from = "Daewyn Songblade's body", note = "His body lies in a tent in the Dragonmaw camp at the Lost Dig Site, shortly after Shadetooth.", inside = true },
+	{ 95809, "Heartwoven", 31, 24, "A", "Return from Ardin Grassman, inside the dig, to Caitlin in Menethil Harbor.", { "Ardin Grassman" }, from = "Ardin Grassman", note = "He is on a wooden platform beside the Relic Guardian's arena, at the Site of the Guardian.", inside = true },
 	{ 95646, "Horrors in the Highland", 31, 24, "A", "Kill the Highland Horror and bring its rootcore to Rethiel the Greenwarden in the Wetlands.", { "Highland Horror" }, from = "Rethiel the Greenwarden in the Wetlands" },
 	{ 95810, "Lost Relic Carry", 31, 24, "A", "Carry the Titan Relic from the Relic Guardian to Prospector Whelgar.", { "Relic Guardian" }, item = "the Titan Relic, from the Relic Guardian" },
-	{ 95647, "Lost in the Thicket Things", 31, 24, "A", "Find Ardin Grassman inside the dig for Caitlin Grassman in Menethil Harbor.", nil, from = "Caitlin Grassman in Menethil Harbor" },
-	{ 95682, "Open the Maw", 31, 24, "H", "Kill 2 Dragonmaw Saboteurs and 4 Warders and take the Dragonmaw Dispatch from a Thaumaturgist, for the Deathstalker Agent in the Wetlands.", nil, from = "the Deathstalker Agent in the Wetlands" },
-	{ 95772, "Songblade Search", 31, 24, "A", "Find Daewyn Songblade inside for his brother Dorin in Lakeshire.", nil, from = "Dorin Songblade in Lakeshire" },
+	{ 95647, "Lost in the Thicket Things", 31, 24, "A", "Find Ardin Grassman inside the dig for Caitlin Grassman in Menethil Harbor.", { "Ardin Grassman" }, from = "Caitlin Grassman in Menethil Harbor", note = "He is on a wooden platform beside the Relic Guardian's arena, at the Site of the Guardian." },
+	{ 95682, "Open the Maw", 31, 24, "H", "Kill 2 Dragonmaw Saboteurs and 4 Warders and take the Dragonmaw Dispatch from a Thaumaturgist, for the Deathstalker Agent in the Wetlands.", { "Dragonmaw Saboteur", "Dragonmaw Warder", "Dragonmaw Thaumaturgist" }, from = "the Deathstalker Agent in the Wetlands", note = "The Dragonmaw camp at the Lost Dig Site, between Shadetooth and the Highland Horror." },
+	{ 95772, "Songblade Search", 31, 24, "A", "Find Daewyn Songblade inside for his brother Dorin in Lakeshire.", { "Daewyn Songblade" }, from = "Dorin Songblade in Lakeshire", note = "His body lies in a tent in the Dragonmaw camp at the Lost Dig Site, shortly after Shadetooth." },
 }
 
 -- Ruins of Lordaeron
 Q[2999] = {
-	{ 95250, "Abominable Creatures", 21, 16, "A", "Bring the Head of the Baron to Captain Truman, just inside the entrance.", nil, from = "Captain Truman, just inside the entrance", inside = true },
-	{ 97288, "Unending Torment", 21, 16, "H", "Deliver the Abominable Head, dropped by the Baron, to Master Apothecary Faranell in the Undercity.", nil, item = "the Abominable Head, dropped by the Baron" },
+	{ 95250, "Abominable Creatures", 21, 16, "A", "Bring the Head of the Baron to Captain Truman, just inside the entrance.", { "The Butcher" }, from = "Captain Truman, just inside the entrance", note = "The abomination itself is named the Baron; he keeps the arena in King's Alley.", inside = true },
+	{ 97288, "Unending Torment", 21, 16, "H", "Deliver the Abominable Head, dropped by the Baron, to Master Apothecary Faranell in the Undercity.", { "The Butcher" }, item = "the Abominable Head, dropped by the Baron", note = "The abomination itself is named the Baron; he keeps the arena in King's Alley. Everyone loots a head of their own." },
 	{ 92401, "A Frightened Request", 22, 15, "H", "Find out what became of Edward Heartweaver for Tabitha Heartweaver in Silverpine; his body lies near Rath'mael.", { "Rath'mael" }, from = "Tabitha Heartweaver in Silverpine" },
-	{ 95195, "Bloodied Insignia", 22, 16, "A", "Collect 10 Bloodied Insignias for General Marcus Jonathan in Stormwind.", nil, item = "a Bloodied Insignia, found inside" },
-	{ 95189, "Crest of Lordaeron", 22, 16, "A", "Deliver the Crest of Lordaeron, found inside, to Lady Dena Kennedy in Stormwind.", nil, item = "the Crest of Lordaeron, found inside" },
-	{ 95204, "Crest of Lordaeron", 22, 16, "H", "Deliver the Crest of Lordaeron, found inside, to Oran Snakewrithe in the Undercity.", nil, item = "the Crest of Lordaeron, found inside" },
-	{ 92421, "Light's Justice", 22, 15, "H", "Collect 25 Intact Limbs from the undead inside for Morbin Lightbane in the Undercity.", nil, from = "Morbin Lightbane in the Undercity" },
+	{ 95195, "Bloodied Insignia", 22, 16, "A", "Collect 10 Bloodied Insignias for General Marcus Jonathan in Stormwind.", nil, item = "a Bloodied Insignia, found inside", note = "The insignias drop from the undead throughout the ruins." },
+	{ 95189, "Crest of Lordaeron", 22, 16, "A", "Deliver the Crest of Lordaeron, found inside, to Lady Dena Kennedy in Stormwind.", nil, item = "the Crest of Lordaeron, found inside", note = "The crest hangs in one of about five places, a different one each visit: behind the banshee's crypt door by the fountain, in and behind the towers on Bjork's round, atop the tower by the spiders, or atop the tower after The Abandoned." },
+	{ 95204, "Crest of Lordaeron", 22, 16, "H", "Deliver the Crest of Lordaeron, found inside, to Oran Snakewrithe in the Undercity.", nil, item = "the Crest of Lordaeron, found inside", note = "The crest hangs in one of about five places, a different one each visit: behind the banshee's crypt door by the fountain, in and behind the towers on Bjork's round, atop the tower by the spiders, or atop the tower after The Abandoned." },
+	{ 92421, "Light's Justice", 22, 15, "H", "Collect 25 Intact Limbs from the undead inside for Morbin Lightbane in the Undercity.", nil, from = "Morbin Lightbane in the Undercity", note = "The limbs drop from the undead throughout the ruins, often several from one." },
 	{ 92415, "Remember That I Love You", 22, 15, "A", "Deliver the blood-stained letter found near Rath'mael to Orphan Matron Nightingale in Stormwind.", { "Rath'mael" }, item = "a blood-stained letter, found near Rath'mael" },
 	{ 95216, "The New Plague", 22, 16, "H", "Bring the Highly Toxic Strain from Witherfang to Theodore Griffs in the Undercity.", { "Witherfang" }, from = "Theodore Griffs in the Undercity" },
 	{ 92422, "The Wrath of Rath'mael", 22, 15, "H", "Kill Rath'mael and report back to Deathguard Kristof in Brill.", { "Rath'mael" }, from = "Deathguard Kristof in Brill" },
@@ -582,30 +584,30 @@ Q[2999] = {
 -- The Shaper's Terrace
 Q[3001] = {
 	{ 95928, "Crystalline Elements", 60, 55, "H", "Bring one each of the Moist, Charged, Noxious and Fiery Crystals to Mayena Earthseeker." },
-	{ 97049, "Essence of Seeping Slimes", 60, 55, "H", "Gather 8 Seeping Slime Essence." },
-	{ 95925, "Mapping the Way Forward", 60, 55, "A", "Visit the landmarks and fill in the explorer's map at each." },
+	{ 97049, "Essence of Seeping Slimes", 60, 55, "H", "Gather 8 Seeping Slime Essence.", { "Seeping Slime" }, note = "The slimes live in the pools by the Achromatic Crystal." },
+	{ 95925, "Mapping the Way Forward", 60, 55, "A", "Visit the landmarks and fill in the explorer's map at each.", nil, note = "The landmarks: the Pillar of Assimilation, the Achromatic Crystal, the Western Gates, the Regrowth Vestibule and the Unearthed Stone Watcher." },
 	{ 95924, "Panic at the Digsite", 60, 55, "A", "Kill Venomridge, Ravasaur Matriarchs and Ironhide Ravasaurs.", { "Venomridge" } },
 	{ 95926, "The Dark Crystal", 60, 55, "H", "Gather a Drained Crystal Fragment near the Achromatic Crystal." },
 }
 
 -- Krol'dok Stronghold
 Q[3039] = {
-	{ 94973, "Krol'dok Moulding", 41, 38, "H", "Find someone in Rog'mar who knows about the moulding looted inside.", nil, item = "the Krol'dok Moulding, looted inside" },
-	{ 94980, "Krol'dok Moulding", 41, 38, "A", "Find someone in Farholde Keep who knows about the moulding looted inside.", nil, item = "the Krol'dok Moulding, looted inside" },
+	{ 94973, "Krol'dok Moulding", 41, 38, "H", "Find someone in Rog'mar who knows about the moulding looted inside.", { "Tunk" }, item = "the Krol'dok Moulding, looted inside", note = "Tunk, an ogre smith on the path up the hill, carries the moulding." },
+	{ 94980, "Krol'dok Moulding", 41, 38, "A", "Find someone in Farholde Keep who knows about the moulding looted inside.", { "Tunk" }, item = "the Krol'dok Moulding, looted inside", note = "Tunk, an ogre smith on the path up the hill, carries the moulding." },
 	{ 94975, "A Token of Vengeance", 42, 38, "H", "Collect 15 Cultist Ears from the Twilight's Hammer inside." },
 	{ 94983, "Twilight Mementos", 42, 38, "A", "Collect 8 bangles from the Twilight's Hammer cultists inside.", nil, from = "Sergeant Riftan in the Riverglades" },
 	{ 94972, "Tome of Twilight", 44, 39, "H", "Recover the Tome of Twilight from Nar'gurk.", { "Nar'gurk" } },
 	{ 94984, "Tome of Twilight", 44, 39, "A", "Kill Nar'gurk and recover the Tome of Twilight for Ashe Amberhall in Farholde Keep.", { "Nar'gurk" }, from = "Ashe Amberhall in Farholde Keep" },
 	{ 94968, "Eye of Mugg", 45, 40, "H", "Bring the Eye of Mugg to Krom'rosh in the Riverglades as proof the leader is dead.", { "Overseer Mugg" }, from = "Krom'rosh in the Riverglades" },
 	{ 94982, "Eye of Mugg", 45, 40, "A", "Bring the Eye of Mugg to Commander Brant in the Riverglades as proof the leader is dead.", { "Overseer Mugg" }, from = "Commander Brant in the Riverglades" },
-	{ 96771, "Vengeance of the Highborne", 45, 37, "A", "Kill Zalfan Moonshadow." },
+	{ 96771, "Vengeance of the Highborne", 45, 37, "A", "Kill Zalfan Moonshadow.", { "Zalfan Moonshadow" }, note = "He stands on the way up the hill, after Tunk the ogre smith and before the long wooden bridge." },
 }
 
 -- The Hall of Thanes
 Q[3065] = {
 	{ 96395, "An Ancient Grudge", 15, 10, nil, "Lay the spirit of Faldrim Anvilmar to rest for the Ghostly Attendant inside.", { "Faldrim Anvilmar" }, from = "the Ghostly Attendant", inside = true },
-	{ 96403, "Important Heirlooms", 15, 10, nil, "Collect 8 Dwarven Heirlooms for Thom Filch in Ironforge.", nil, from = "Thom Filch in Ironforge" },
-	{ 96394, "The Restless Dead", 15, 10, "A", "Kill 15 Enraged Apparitions and 10 Tormented Souls for Afadra Dunwall in Ironforge.", nil, from = "Afadra Dunwall in Ironforge" },
+	{ 96403, "Important Heirlooms", 15, 10, nil, "Collect 8 Dwarven Heirlooms for Thom Filch in Ironforge.", nil, from = "Thom Filch in Ironforge", note = "The heirlooms lie in urns and chests along the way; the vaults of the last room, the Reliquary of Kings, hold enough for a whole party." },
+	{ 96394, "The Restless Dead", 15, 10, "A", "Kill 15 Enraged Apparitions and 10 Tormented Souls for Afadra Dunwall in Ironforge.", { "Enraged Apparition", "Tormented Soul" }, from = "Afadra Dunwall in Ironforge", note = "The ghosts haunt the first chambers, around the first tomb." },
 	{ 96393, "Old Ironforge Incursion", 16, 9, "A", "Kill Durgen Dirgehammer and bring back his head for Earthseer Farsen in Dun Morogh.", { "Durgen Dirgehammer" }, from = "Earthseer Farsen in Dun Morogh" },
 	{ 98423, "The Treaty of Understanding", 16, 9, "A", "Bring the stone tablet from the vault behind the last room to King Magni Bronzebeard.", { "Durgen Dirgehammer" }, from = "a stone tablet in the vault behind the last room", inside = true },
 }

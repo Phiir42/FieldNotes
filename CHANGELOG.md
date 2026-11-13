@@ -2,6 +2,13 @@
 
 ## 0.2.0-beta.10 – not yet released
 
+- The quests Forever added say where to look: which creatures carry what
+  is wanted, or where it lies, for 31 quests that only named the errand
+  (the Kor Gem's naga, the Crest of Lordaeron's hiding places, the book in
+  Dalaran, Tunk's moulding and more).
+- A Moon-Kissed Blade is listed under each dungeon one of its pieces comes
+  from: the Deadmines, Shadowfang Keep and Blackfathom Deeps.
+
 ## 0.2.0-beta.9
 
 - Quests show what they pay: the items to choose from and those given
