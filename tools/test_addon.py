@@ -52,7 +52,7 @@ GameTooltip.GetItem = function() return "Rockslicer", "|cff1eff00|Hitem:872:::::
 GameTooltip:ClearLines()
 hook(GameTooltip)
 local text = table.concat(GameTooltip.__lines or {}, "\n")
-if not text:find("found in The Deadmines", 1, true) then return "no line on the tooltip: " .. text end
+if not text:find("found in the Deadmines", 1, true) then return "no line on the tooltip: " .. text end
 GameTooltip.GetItem = function() return nil, nil end
 hook(GameTooltip)
 '''

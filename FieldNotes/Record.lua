@@ -606,8 +606,8 @@ local function CheckInstance()
 			if now - (inst.last or 0) > VISIT_GAP then
 				inst.visits = inst.visits + 1
 				NewVisit(inst)
-				ns:Log(inst, inst.visits == 1 and ("Set foot in %s for the first time."):format(name)
-					or ("Returned to %s."):format(name))
+				ns:Log(inst, inst.visits == 1 and ("Set foot in %s for the first time."):format(ns:The(name))
+					or ("Returned to %s."):format(ns:The(name)))
 			else
 				-- the same visit goes on, unless it was begun before visits were
 				-- kept, or by another character

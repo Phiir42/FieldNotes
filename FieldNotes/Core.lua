@@ -176,6 +176,20 @@ function ns:Log(inst, text, quiet)
 	self:Changed()
 end
 
+-- A place's name as it goes in the middle of a sentence: "the Deadmines",
+-- "the Drowned City", "Blackfathom Deeps".
+local THE = {
+	deadmines = true, wailingcaverns = true, stormwindstockade = true, scarletmonastery = true,
+	sunkentemple = true, ruinsofahnqiraj = true, cityofdalaran = true, ruinsoflordaeron = true,
+	templeofatalhakkar = true,
+}
+function ns:The(name)
+	if type(name) ~= "string" then return name end
+	if name:find("^The ") then return "the" .. name:sub(4) end
+	if THE[name:lower():gsub("[^%w]", "")] then return "the " .. name end
+	return name
+end
+
 function ns:Clock(sec)
 	sec = math.floor(sec + 0.5)
 	return ("%d:%02d"):format(sec / 60, sec % 60)

@@ -749,7 +749,7 @@ local function OverviewPage(lines, id, inst)
 
 	lines[#lines + 1] = {
 		text = "Tear these pages out", font = "GameFontNormalSmall", color = FADED, gap = 24,
-		tip = "Erase everything noted about " .. inst.name .. ".",
+		tip = "Erase everything noted about " .. ns:The(inst.name) .. ".",
 		click = function() StaticPopup_Show("FIELDNOTES_TEAR", inst.name, nil, id) end,
 	}
 end
@@ -881,7 +881,7 @@ end
 
 local function BestiaryPage(lines, id, inst)
 	H1(lines, "Bestiary")
-	Faded(lines, "The creatures of " .. inst.name .. ".")
+	Faded(lines, "The creatures of " .. ns:The(inst.name) .. ".")
 	local any
 	for _, npc in ipairs(inst.mobOrder) do
 		local m = inst.mobs[npc]
@@ -1133,7 +1133,7 @@ local function QuestsPage(lines, id, inst)
 		Body(lines, "\nNo errands are known to lead here.")
 		return
 	end
-	Faded(lines, "Errands that lead into " .. inst.name .. ". The map marks where each one takes you.")
+	Faded(lines, "Errands that lead into " .. ns:The(inst.name) .. ". The map marks where each one takes you.")
 	-- those you carry first (ready to hand in before the rest), then those to
 	-- be taken up (yours to take before those you are too young for), and the
 	-- ones done last; otherwise in the order of their level
@@ -1564,7 +1564,7 @@ local SHEET = { "First sheet", "Second sheet", "Third sheet", "Fourth sheet", "F
 
 local function MapPage(lines, id, inst)
 	H1(lines, "Map")
-	Faded(lines, "What you have charted of " .. inst.name .. ".")
+	Faded(lines, "What you have charted of " .. ns:The(inst.name) .. ".")
 
 	-- the pieces found on each floor, and areas the map has no place for
 	-- a piece is found by walking into its area, or by fighting someone who lives there
@@ -1692,7 +1692,7 @@ end
 
 local function SpoilsPage(lines, inst)
 	H1(lines, "Spoils")
-	Faded(lines, "What has been found in " .. inst.name .. ". Shift-click to link an item.")
+	Faded(lines, "What has been found in " .. ns:The(inst.name) .. ". Shift-click to link an item.")
 	if #inst.lootOrder == 0 then
 		Body(lines, "\nNothing found yet.")
 		return
@@ -1858,7 +1858,7 @@ local function SearchPage(lines, query)
 		local from = math.max(1, at - 30)
 		local bit = (from > 1 and "..." or "") .. note:sub(from, at + #query + 40):gsub("\n", " ")
 			.. (at + #query + 40 < #note and "..." or "")
-		Hit("\"" .. bit .. "\"", "your note on " .. on .. (place and (", " .. place) or ""), go)
+		Hit("\"" .. bit .. "\"", "your note on " .. on .. (place and (", " .. ns:The(place)) or ""), go)
 	end
 	for _, id in ipairs(Places()) do
 		local inst = ns.db.instances[id]
@@ -1867,31 +1867,31 @@ local function SearchPage(lines, query)
 		if Has(place) then Hit(place, inst.kind == "raid" and "a raid" or "a dungeon", Go("overview")) end
 		Note(inst.note, place, nil, Go("overview"))
 		for _, a in ipairs(inst.areas) do
-			if Has(a.name) then Hit(a.name, "a hall of " .. place, Go("overview")) end
+			if Has(a.name) then Hit(a.name, "a hall of " .. ns:The(place), Go("overview")) end
 			Note(a.note, a.name, place, Go("overview"))
 		end
 		for _, eid in ipairs(inst.bossOrder) do
 			local b = inst.bosses[eid]
 			if Has(b.name) then
-				Hit(b.name, "a foe of note in " .. place .. (b.kills > 0 and ", defeated" or ""), Go("boss", eid))
+				Hit(b.name, "a foe of note in " .. ns:The(place) .. (b.kills > 0 and ", defeated" or ""), Go("boss", eid))
 			end
 			Note(b.note, b.name, place, Go("boss", eid))
 		end
 		for _, npc in ipairs(inst.mobOrder) do
 			local m = inst.mobs[npc]
 			if not IsBoss(inst, m) then
-				if Has(m.name) then Hit(m.name, "a creature of " .. place, Go("bestiary")) end
+				if Has(m.name) then Hit(m.name, "a creature of " .. ns:The(place), Go("bestiary")) end
 				Note(m.note, m.name, place, Go("bestiary"))
 			end
 		end
 		for _, item in ipairs(inst.lootOrder) do
 			local it = inst.loot[item]
 			local name = it.link:match("%[(.-)%]") or ""
-			if Has(name) then Hit(it.link, "found in " .. place, Go("spoils"), it.link) end
+			if Has(name) then Hit(it.link, "found in " .. ns:The(place), Go("spoils"), it.link) end
 			Note(it.note, name, place, Go("spoils"))
 		end
 		for _, q in ipairs(QuestsOf(id)) do
-			if Has(q[2]) then Hit(q[2], "a quest of " .. place, Go("quests")) end
+			if Has(q[2]) then Hit(q[2], "a quest of " .. ns:The(place), Go("quests")) end
 			Note(inst.questNotes and inst.questNotes[q[1]] and inst.questNotes[q[1]].note, q[2], place, Go("quests"))
 		end
 		-- the visits someone went on with you
@@ -1899,7 +1899,7 @@ local function SearchPage(lines, query)
 			local r = inst.runs[i]
 			for _, name in ipairs(r.with or {}) do
 				if Has(name) then
-					Hit(name, "went with you into " .. place .. " on " .. date("%d %b %Y", r.t), Go("overview"))
+					Hit(name, "went with you into " .. ns:The(place) .. " on " .. date("%d %b %Y", r.t), Go("overview"))
 				end
 			end
 		end

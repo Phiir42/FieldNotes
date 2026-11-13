@@ -71,6 +71,8 @@
   otherwise than the creature.
 - Creatures called up as pets (BFD's Voidwalker Minions) no longer show
   the level of a namesake elsewhere.
+- Places read as they are said: "errands that lead into the Deadmines",
+  "set foot in the Wailing Caverns".
 
 ## 0.2.0-beta.9
 
