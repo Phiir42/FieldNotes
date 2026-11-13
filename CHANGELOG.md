@@ -7,6 +7,8 @@
   of the journal window.
 - Spoils are listed under the boss that carried them, then the rest.
 - The journal remembers where you dragged it.
+- A darker parchment look: the pages use the same sheet as the maps, with
+  dark brown ink and red-brown headings.
 
 ## 0.2.0-beta.2
 

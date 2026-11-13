@@ -8,9 +8,12 @@ local NOTES_H = 86
 local MAP_W = PAGE_W
 local MAP_H = math.floor(PAGE_W * 668 / 1002 + 0.5)
 
-local INK = { 0.20, 0.12, 0.05 }
-local FADED = { 0.45, 0.34, 0.20 }
-local FADED_HEX = "|cff735733"
+-- The palette of the game's own journals: tan parchment, dark brown ink,
+-- headings in a deep red-brown.
+local INK = { 0.16, 0.08, 0.02 }
+local FADED = { 0.36, 0.23, 0.08 }
+local FADED_HEX = "|cff5c3b14"
+local TITLE = { 0.34, 0.09, 0.02 }
 local QUESTION = "Interface\\Icons\\INV_Misc_QuestionMark"
 local DONE = "|TInterface\\RaidFrame\\ReadyCheck-Ready:12|t "
 local OPEN = "|TInterface\\RaidFrame\\ReadyCheck-Waiting:12|t "
@@ -111,7 +114,7 @@ local function NewRow(list)
 	local row = CreateFrame("Button", nil, list.child)
 	row.mark = row:CreateTexture(nil, "BACKGROUND")
 	row.mark:SetAllPoints()
-	row.mark:SetColorTexture(0.35, 0.22, 0.08, 0.20)
+	row.mark:SetColorTexture(0.25, 0.13, 0.03, 0.28)
 	row.icon = row:CreateTexture(nil, "ARTWORK")
 	row.icon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
 	row.text = row:CreateFontString(nil, "ARTWORK", "GameFontNormal")
@@ -119,13 +122,13 @@ local function NewRow(list)
 	row.text:SetJustifyV("TOP")
 	row.text:SetWordWrap(true)
 	row.rule = row:CreateTexture(nil, "ARTWORK")
-	row.rule:SetColorTexture(0.35, 0.24, 0.12, 0.55)
+	row.rule:SetColorTexture(0.28, 0.15, 0.04, 0.7)
 	row.rule:SetHeight(1)
 	row.rule:SetPoint("BOTTOMLEFT")
 	row.rule:SetPoint("BOTTOMRIGHT")
 	local hl = row:CreateTexture(nil, "HIGHLIGHT")
 	hl:SetAllPoints()
-	hl:SetColorTexture(0.35, 0.22, 0.08, 0.12)
+	hl:SetColorTexture(0.25, 0.13, 0.03, 0.14)
 	row:SetScript("OnEnter", RowEnter)
 	row:SetScript("OnLeave", RowLeave)
 	row:SetScript("OnClick", RowClick)
@@ -178,10 +181,15 @@ local function ListSet(list, lines)
 	list.child:SetHeight(math.max(y, 1))
 end
 
-local function Paper(parent, shade)
-	local t = parent:CreateTexture(nil, "BACKGROUND")
+-- Parchment: the same sheet the maps are drawn on, lightened a little so
+-- ink reads well on it. light: 0 (as dark as the map sheet) to 1.
+local function Paper(parent, light)
+	local t = parent:CreateTexture(nil, "BACKGROUND", nil, 0)
 	t:SetAllPoints()
-	t:SetColorTexture(0.90 * shade, 0.83 * shade, 0.68 * shade, 1)
+	t:SetTexture(ns.MAP_BLANK)
+	local wash = parent:CreateTexture(nil, "BACKGROUND", nil, 1)
+	wash:SetAllPoints()
+	wash:SetColorTexture(1, 0.93, 0.78, light)
 end
 
 -- A parchment pane with a scrolling list inside it.
@@ -205,11 +213,11 @@ local SCHOOL = { [1] = "physical", [2] = "holy", [4] = "fire", [8] = "nature", [
 local RANK = { elite = "Elite", rareelite = "Rare elite", rare = "Rare", worldboss = "Boss" }
 
 local function H1(lines, text)
-	lines[#lines + 1] = { text = text, font = "QuestTitleFont" }
+	lines[#lines + 1] = { text = text, font = "QuestTitleFont", color = TITLE }
 end
 
 local function H2(lines, text)
-	lines[#lines + 1] = { text = text, font = "GameFontNormalLarge", rule = true, gap = 14 }
+	lines[#lines + 1] = { text = text, font = "GameFontNormalLarge", rule = true, gap = 14, color = TITLE }
 end
 
 local function Body(lines, text, indent)
@@ -1070,7 +1078,7 @@ local function CreateNotes(parent)
 	local box = CreateFrame("Frame", nil, parent)
 	box:SetHeight(NOTES_H)
 	local line = box:CreateTexture(nil, "ARTWORK")
-	line:SetColorTexture(0.35, 0.24, 0.12, 0.55)
+	line:SetColorTexture(0.28, 0.15, 0.04, 0.7)
 	line:SetHeight(1)
 	line:SetPoint("TOPLEFT")
 	line:SetPoint("TOPRIGHT")
@@ -1227,12 +1235,12 @@ local function CreateJournal()
 	index.pane:SetPoint("TOPLEFT", 10, -28)
 	index.pane:SetPoint("BOTTOMLEFT", 10, 10)
 	index.pane:SetWidth(INDEX_W + 38)
-	Paper(index.pane, 0.93)
+	Paper(index.pane, 0.16)
 
 	page = CreateList("FieldNotesJournalPage", PAGE_W)
 	page.pane:SetPoint("TOPLEFT", index.pane, "TOPRIGHT", 6, 0)
 	page.pane:SetPoint("BOTTOMRIGHT", -10, 10)
-	Paper(page.pane, 1)
+	Paper(page.pane, 0.34)
 	page.sf:SetPoint("BOTTOMRIGHT", -28, NOTES_H + 14)
 
 	notes = CreateNotes(page.pane)
