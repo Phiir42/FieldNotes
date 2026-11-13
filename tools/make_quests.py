@@ -110,7 +110,7 @@ def main():
     tables = read_tables(("quest_template", "creature_loot_template", "gameobject_template", "gameobject",
                           "gameobject_loot_template", "creature_questrelation", "gameobject_questrelation",
                           "item_template", "creature_template", "creature_involvedrelation",
-                          "gameobject_involvedrelation", "creature", "creature_spawn_entry", "areatrigger_teleport"))
+                          "gameobject_involvedrelation", "creature", "creature_spawn_entry", "gameobject_spawn_entry", "areatrigger_teleport"))
     cols, data = tables["quest_template"]
     col = cols.index
     # where every creature stands, outdoors too (creatures.json keeps only the
@@ -160,12 +160,19 @@ def main():
     for r in gdata:
         objects[x.num(r[gcols.index("entry")])] = {"name": r[gcols.index("name")], "type": x.num(r[gcols.index("type")]),
                                                    "loot": x.num(r[gcols.index("data1")]), "spawns": []}
+    # a spawn point may hold one of several kinds (gameobject_spawn_entry: the
+    # Magenta Cap Clusters, the Spire Spider Eggs): each of them may be there
+    pcols, pdata = tables["gameobject_spawn_entry"]
+    kinds = {}
+    for r in pdata:
+        kinds.setdefault(x.num(r[pcols.index("guid")]), []).append(x.num(r[pcols.index("entry")]))
     scols, sdata = tables["gameobject"]
     for r in sdata:
-        o = objects.get(x.num(r[scols.index("id")]))
-        if o:
-            o["spawns"].append([x.num(r[scols.index("map")]), round(float(r[scols.index("position_x")]), 1),
-                                round(float(r[scols.index("position_y")]), 1), round(float(r[scols.index("position_z")]), 1)])
+        at = [x.num(r[scols.index("map")]), round(float(r[scols.index("position_x")]), 1),
+              round(float(r[scols.index("position_y")]), 1), round(float(r[scols.index("position_z")]), 1)]
+        for entry in kinds.get(x.num(r[scols.index("guid")]), [x.num(r[scols.index("id")])]):
+            if entry in objects:
+                objects[entry]["spawns"].append(at)
     ocols, oloot = tables["gameobject_loot_template"]
     holds = {}
     for r in oloot:
