@@ -133,7 +133,9 @@ def main():
     kept = {}
     for entry, c in creatures.items():
         c["spells"] = list(dict.fromkeys(c["spells"]))
-        if c["spells"] or c["spawns"]:
+        # elites and bosses are kept even with neither: a scripted boss is
+        # summoned and casts from code, but its picture is still wanted
+        if c["spells"] or c["spawns"] or (c["rank"] and c["model"]):
             kept[entry] = c
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(kept, f)

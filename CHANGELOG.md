@@ -3,8 +3,10 @@
 ## 0.2.0-beta.6 – not yet released
 
 - Portraits for bosses that are summoned or step out of another creature
-  (Sneed, Mutanus, Ragnaros and some forty more); Sneed's page also pictures
-  his shredder.
+  (Sneed, Mutanus, Nefarian, Ragnaros and some forty more); Sneed's page also
+  pictures his shredder.
+- Fights against a company (the Twin Emperors, the Four Horsemen, the Seven,
+  the Lost Dwarves...) picture each member by name.
 
 ## 0.2.0-beta.5
 

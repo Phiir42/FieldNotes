@@ -215,6 +215,21 @@ def creature_lines(names, boss_keys):
 COMPANY = {
     "Sneed": ["Sneed's Shredder"],
 }
+# Encounters named for a company rather than a creature: each member is pictured
+# by name, and no one stands for the whole.
+GROUPS = {
+    "The Lost Dwarves": ["Baelog", 'Eric "The Swift"', "Olaf"],
+    "Atal'ai Defenders": ["Gasher", "Loro", "Hukku", "Zolo", "Zul'Lor", "Mijan"],
+    "Dreamscythe and Weaver": ["Dreamscythe", "Weaver"],
+    "Jammal'an and Ogom": ["Jammal'an the Prophet", "Ogom the Wretched"],
+    "Morphaz and Hazzas": ["Morphaz", "Hazzas"],
+    "The Vault": ["Warder Stilgiss", "Verek"],
+    "The Seven": ["Doom'rel", "Seeth'rel", "Gloom'rel", "Dope'rel", "Hate'rel", "Vile'rel", "Anger'rel"],
+    "Edge of Madness": ["Gri'lek", "Hazza'rah", "Renataki", "Wushoolay"],
+    "Silithid Royalty": ["Princess Yauj", "Vem", "Lord Kri"],
+    "Twin Emperors": ["Emperor Vek'lor", "Emperor Vek'nilash"],
+    "The Four Horsemen": ["Highlord Mograine", "Thane Korth'azz", "Lady Blaumeux", "Sir Zeliek"],
+}
 
 
 def picture_lines(boss_names):
@@ -230,20 +245,30 @@ def picture_lines(boss_names):
             if c["name"] and c.get("model"):
                 (placed if c["spawns"] else loose).setdefault(key(c["name"]), c["model"])
     out, missing, done = [], [], set()
-    for name in boss_names:
+
+    def picture(name, aliases=()):
         k = key(name)
         if k in done or k in placed:
-            continue
+            return
         done.add(k)
         model = loose.get(k)
-        for alias in ALIASES.get(name, []):
+        for alias in aliases:
             model = model or placed.get(key(alias)) or loose.get(key(alias))
         if model:
             out.append('P["%s"] = %d -- %s' % (k, model, name))
         else:
             missing.append(name)
-    for name, others in sorted(COMPANY.items()):
-        out.append('W["%s"] = { %s }' % (key(name), ", ".join('"%s"' % o for o in others)))
+
+    company = dict(COMPANY)
+    for name in boss_names:
+        if name in GROUPS:
+            company[name] = GROUPS[name]
+        else:
+            picture(name, ALIASES.get(name, []))
+    for name, others in sorted(company.items()):
+        for other in others:
+            picture(other)
+        out.append('W["%s"] = { %s }' % (key(name), ", ".join('"%s"' % o.replace('"', '\\"') for o in others)))
     return out, missing
 
 
