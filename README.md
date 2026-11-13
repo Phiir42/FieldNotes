@@ -4,9 +4,10 @@ A dungeon journal for **World of Warcraft: Forever** that starts blank and fills
 in as you play. Nothing is shown until your character has seen it: the halls
 you walk, the creatures you fight, the bosses you face and what they drop.
 
-> **Beta.** This is an early test build. Most of it has only been played
-> through the first half of the Deadmines. Expect rough edges, and please
-> report them (see [Reporting problems](#reporting-problems)).
+> **Beta.** This is an early test build. It has been played through the
+> Deadmines, the Wailing Caverns, Shadowfang Keep and Blackfathom Deeps;
+> the rest is built from data and not yet played. Expect rough edges, and
+> please report them (see [Reporting problems](#reporting-problems)).
 
 ## What it does
 
