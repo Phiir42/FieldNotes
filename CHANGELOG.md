@@ -148,8 +148,11 @@
   its tooltip, shift-click to link it ("Begins with [Glowing Shard]").
 - The slip of parchment on screen widens to fit a long line ("Took up the
   quest ...") instead of cutting it short.
-- "/fn quality" alone says which items are being noted, instead of listing
-  every command.
+- "/fn quality" alone says which items are being noted ("noting uncommon
+  items and better"), instead of listing every command.
+- The minimap button's tooltip reads "The Deadmines: 7 foes of note
+  defeated, 27 finds", as the contents page does.
+- Past ten visits, a dungeon's page says how many earlier ones there are.
 - A dungeon whose halls the game never names (Shadowfang Keep) no longer
   says "Nothing noted yet" under "Halls and chambers" once you have been
   through it: it says the map is charted by the foes you meet.
