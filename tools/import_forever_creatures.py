@@ -78,6 +78,8 @@ def spells(src):
 
 
 def main():
+    if len(sys.argv) < 2:
+        sys.exit("usage: import_forever_creatures.py <file> [rank] | --spells <file>")
     if sys.argv[1] == "--spells":
         return spells(sys.argv[2])
     src = sys.argv[1]

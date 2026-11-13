@@ -167,8 +167,8 @@ ATTESTED_BY_NAME = {
 }
 # Bosses no guide covers yet, from the ability list Wowhead datamined for the
 # boss's NPC (www.wowhead.com/forever/npc=ID, its "Abilities" tab). The Dazed
-# every melee creature carries (1604) is left out. Used only where nothing
-# above has the fight.
+# every melee creature carries (1604) is left out. Taken over any classic
+# creature of a like name, as ATTESTED is.
 WOWHEAD = {
     "Overseer Wrex": [9128, 16856],                      # Battle Shout, Mortal Strike (npc 255391)
     "Tidemistress Ca'zass": [8398, 15532, 1271375],      # Frostbolt Volley, Frost Nova, Blizzard (255997)
@@ -428,10 +428,10 @@ def main():
             scripted += script_for(key(alias), scripts)
         # scripts also name the fight's stage machinery: leave that out
         raw += [sp for sp in scripted if not MACHINERY.search(names.get(sp, ""))]
-        if name in ATTESTED:  # a new boss: a classic creature of a like name is someone else
-            raw = ATTESTED[name]
+        if name in ATTESTED or name in WOWHEAD:  # a new boss: a classic creature of a like name is someone else
+            raw = ATTESTED.get(name) or WOWHEAD[name]
         if not any(names.get(sp) for sp in raw):
-            raw = ATTESTED_IF_EMPTY.get(name, []) or WOWHEAD.get(name, [])
+            raw = ATTESTED_IF_EMPTY.get(name, [])
         spells, used = [], set()
         for sp in raw:
             label = names.get(sp)

@@ -110,25 +110,35 @@ def main():
     tables = read_tables(("quest_template", "creature_loot_template", "gameobject_template", "gameobject",
                           "gameobject_loot_template", "creature_questrelation", "gameobject_questrelation",
                           "item_template", "creature_template", "creature_involvedrelation",
-                          "gameobject_involvedrelation", "creature", "areatrigger_teleport"))
+                          "gameobject_involvedrelation", "creature", "creature_spawn_entry", "areatrigger_teleport"))
     cols, data = tables["quest_template"]
     col = cols.index
     # where every creature stands, outdoors too (creatures.json keeps only the
     # instances), and where each instance's way out puts you: just outside its
     # way in
     ccols, cdata = tables["creature"]
+    ecols, edata = tables["creature_spawn_entry"]
+    entries = {}  # spawn points that hold one of several kinds
+    for r in edata:
+        entries.setdefault(x.num(r[ecols.index("guid")]), []).append(x.num(r[ecols.index("entry")]))
     outdoors = {}
     for r in cdata:
-        outdoors.setdefault(x.num(r[ccols.index("id")]), []).append(
-            [x.num(r[ccols.index("map")])] + [float(r[ccols.index("position_" + a)]) for a in "xyz"])
+        at = [x.num(r[ccols.index("map")])] + [float(r[ccols.index("position_" + a)]) for a in "xyz"]
+        for who in entries.get(x.num(r[ccols.index("guid")]), [x.num(r[ccols.index("id")])]):
+            outdoors.setdefault(who, []).append(at)
     acols, adata = tables["areatrigger_teleport"]
     doors = {}
     for r in adata:
-        to, name = x.num(r[acols.index("target_map")]), norm(r[acols.index("name")])
-        if to not in CONTINENTS or " to " in r[acols.index("name")]:  # (not a teleporter to elsewhere)
+        to, label = x.num(r[acols.index("target_map")]), r[acols.index("name")]
+        if to not in CONTINENTS or " to " in label:  # (not a teleporter to elsewhere)
             continue
+        # "Deadmines - Exiting", "Blackfathom Deeps Instance Start", "The Barrens - Wailing Caverns"
+        # "Maraudon Purple - Exiting", "Altar of Atal'Hakkar (Sunken Temple) - Exiting": each
+        # part of the name is matched from its start, not anywhere inside
+        parts = [norm(p) for p in re.split(r" - |,|\(|\)", label)]
         for mp in instance:
-            if norm(maps[mp]["MapName_lang"]) in name:
+            here = norm(maps[mp]["MapName_lang"])
+            if here and any(p.startswith(here) for p in parts):
                 doors.setdefault(mp, []).append([to] + [float(r[acols.index("target_position_" + a)]) for a in "xyz"])
     # who to look for: the creatures a quest asks you to kill, and those that
     # carry what it asks you to bring; only ones that live in that instance
@@ -138,9 +148,10 @@ def main():
     carriers, chance = {}, {}
     for r in loot:
         item, entry = x.num(r[lcols.index("item")]), x.num(r[lcols.index("entry")])
+        if x.num(r[lcols.index("mincountOrRef")]) < 0:  # a reference to another table, not an item
+            continue
         carriers.setdefault(item, []).append(entry)
-        if x.num(r[lcols.index("mincountOrRef")]) > 0:  # (not a reference to another table)
-            chance[item, entry] = abs(float(r[lcols.index("ChanceOrQuestChance")] or 0))
+        chance[item, entry] = abs(float(r[lcols.index("ChanceOrQuestChance")] or 0))
 
     # ...and the things it is found in: chests and the like (objects), by what
     # they hold, and objects the quest has you use
@@ -373,8 +384,8 @@ def main():
         elif len(every) > 1:
             rest = [named(m) for m in every if m != mp]
             q["note"] = "The rest of what it asks for is found in %s." % " and ".join(rest)
-        elif not q["who"] and outside(r, mp):
-            q["note"] = "Look for %s outside, near the way in." % listed(outside(r, mp)[:3])
+        elif not q["who"] and (out := outside(r, mp)):
+            q["note"] = "Look for %s outside, near the way in." % listed(out[:3])
         giver = givers.get(q["id"])
         if q["id"] in starts:
             q["item"] = starts[q["id"]]
