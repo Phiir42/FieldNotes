@@ -153,9 +153,18 @@ step("creatures: experience, speech, corpses", function()
 	-- one noted by an earlier version is taken out on the next loading screen
 	inst.loot[10978] = { link = item(10978, "Small Glimmering Shard"), first = 1, n = 1 }
 	inst.lootOrder[#inst.lootOrder + 1] = 10978
+	-- and a boss noted before falls to it were counted: its diary says
+	inst.bosses[99901] = { name = "Old Foe", kills = 1, pulls = 2, wipes = 1, first = 1 }
+	inst.log[#inst.log + 1] = { 2, "Fell in battle against Old Foe." }
+	inst.log[#inst.log + 1] = { 3, "Fell in battle against Old Foe." }
 	M.fire("PLAYER_ENTERING_WORLD")
 	M.wait(3)
 	check("old disenchanting entries are removed", not inst.loot[10978] and inst.lootOrder[#inst.lootOrder] ~= 10978)
+	check("falls to a boss noted before they were counted come from the diary", inst.bosses[99901].deaths == 2)
+	inst.bosses[99901] = nil
+	for i = #inst.log, 1, -1 do
+		if inst.log[i][2] == "Fell in battle against Old Foe." then table.remove(inst.log, i) end
+	end
 	M.fire("CHAT_MSG_LOOT", "Friend receives loot: " .. item(3002, "Stacked Thing") .. "x3.")
 	check("a stack someone received is loot", inst.loot[3002] ~= nil)
 	-- a captive calling out in a fight is not a creature fought

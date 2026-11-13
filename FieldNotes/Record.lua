@@ -662,6 +662,17 @@ local function Tidy()
 		for _, m in pairs(inst.mobs) do
 			if not m.enc then ns:NamedBoss(inst, m) end
 		end
+		-- falls to a boss were counted from 0.2.0-beta.10 on: before, only the
+		-- diary says so
+		for _, b in pairs(inst.bosses) do
+			if b.deaths == nil then
+				local line, n = ("Fell in battle against %s."):format(b.name), 0
+				for _, e in ipairs(inst.log) do
+					if e[2] == line then n = n + 1 end
+				end
+				b.deaths = n
+			end
+		end
 	end
 	if changed then ns:Changed() end -- (item tooltips are written from the loot)
 end
