@@ -523,6 +523,8 @@ step("every page of the journal", function()
 	M.wait(1)
 	open("The Deadmines")
 	check("Sneed has a page", open("Sneed"))
+	check("a boss's page names the quests that send you after it, or its company",
+		pageText():find("Underground Assault|cff5c3b14  in your quest log", 1, true))
 	do
 		local keys = table.concat(portraits(), " ")
 		check("a summoned boss has a portrait", keys:find("d7125", 1, true))
@@ -719,6 +721,25 @@ step("a dungeon the addon has no map or lore for", function()
 	check("trash is in the bestiary, adds are not", pageText():find("Maw Lurker", 1, true)
 		and not pageText():find("Maw Spawn", 1, true))
 	open("Spoils")
+	M.slash("")
+end)
+
+step("creatures a quest wants", function()
+	M.instance = { name = "Wailing Caverns", kind = "party", id = 43 }
+	M.fire("PLAYER_ENTERING_WORLD")
+	M.wait(3)
+	M.questsOn[1487] = true
+	M.fire("CHAT_MSG_COMBAT_XP_GAIN", "Deviate Ravager dies, you gain 85 experience.")
+	M.fire("CHAT_MSG_COMBAT_XP_GAIN", "Deviate Crocolisk dies, you gain 85 experience.")
+	M.wait(1)
+	M.slash("")
+	open("Bestiary")
+	check("a creature says which quests want it", pageText():find("Wanted for Deviate Eradication (in your quest log).", 1, true)
+		and pageText():find("Wanted for Crocolisk Hunting.", 1, true))
+	M.questsDone[385] = true
+	open("Spoils") open("Bestiary")
+	check("but not for quests done", not pageText():find("Wanted for Crocolisk Hunting", 1, true))
+	M.questsOn[1487], M.questsDone[385] = nil, nil
 	M.slash("")
 end)
 

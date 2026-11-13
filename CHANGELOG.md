@@ -37,6 +37,9 @@
   this version on.
 - Loot seen only in chat just after a boss the game announces no fight for
   (Cookie, Lorgus Jett) is now credited to that boss, as for any other.
+- A boss's page lists the quests that send you after it (or after those it
+  fights beside), and whether you carry them; click one for the Quests
+  page. A creature in the bestiary says which unfinished quests want it.
 - The minimap button's tooltip says how far the place you are in has got.
 - A page that fails to draw is kept for "/fn errors" instead of raising an
   error on screen.

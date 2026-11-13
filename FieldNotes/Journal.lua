@@ -23,6 +23,7 @@ local canvas          -- the map sheet, a child of the page's scroll area
 local sel = {}         -- inst (instanceID), kind ("overview" | "boss" | "map" | "bestiary" | "spoils"), key
 local shownKey         -- the page last drawn, to reset scrolling when it changes
 local Refresh
+local QuestsAfter     -- (inst id, name) -> the quests that send you after someone of that name
 local ApplySize     -- sets the window's size and place from the settings
 local ApplyLook     -- sets its paper and opacity
 
@@ -462,8 +463,8 @@ local function MobTag(m)
 end
 
 -- lore: also write in what is known of it from elsewhere (not on a boss's
--- page, which has its own list).
-local function MobLines(lines, m, showName, lore, npc)
+-- page, which has its own list). wanted: a line on the quests that want it.
+local function MobLines(lines, m, showName, lore, npc, wanted)
 	if showName then
 		lines[#lines + 1] = {
 			text = m.name, font = "GameFontNormal", gap = 10, tip = NOTE_TIP,
@@ -481,6 +482,7 @@ local function MobLines(lines, m, showName, lore, npc)
 		Faded(lines, tag)
 	end
 	if showName then NoteLine(lines, m) end
+	if wanted then Faded(lines, wanted, 8) end
 	if not m.fought then
 		Faded(lines, "Seen, but not yet fought.")
 		return
@@ -697,7 +699,7 @@ local function OverviewPage(lines, id, inst)
 	}
 end
 
-local function BossPage(lines, inst, eid)
+local function BossPage(lines, id, inst, eid)
 	local b = inst.bosses[eid]
 	H1(lines, b.name)
 	local t = { "First faced " .. ns:Day(b.first), Plural(b.pulls, "attempt", "attempts") }
@@ -776,6 +778,28 @@ local function BossPage(lines, inst, eid)
 		end
 	end
 
+	-- the quests that send you after it, or after anyone it fights beside
+	local after, seen = {}, {}
+	for _, name in ipairs({ b.name, unpack(ns.Company[ns:AreaKey(b.name)] or {}) }) do
+		for _, w in ipairs(QuestsAfter(id, name)) do
+			if not seen[w.q[1]] then
+				seen[w.q[1]] = true
+				after[#after + 1] = w
+			end
+		end
+	end
+	if #after > 0 then
+		H2(lines, "Quests")
+		for _, w in ipairs(after) do
+			local state = w.state == "done" and "done" or w.state == "log" and (w.ready and "ready to hand in" or "in your quest log")
+				or "not yet taken up"
+			lines[#lines + 1] = {
+				text = (w.state == "done" and DONE or OPEN) .. w.q[2] .. FADED_HEX .. "  " .. state .. "|r",
+				indent = 8, tip = "Click for the dungeon's quests.", click = function() Select(id, "quests") end,
+			}
+		end
+	end
+
 	H2(lines, "Spoils")
 	local any = LootLines(lines, inst, function(it)
 		local m = it.npc and inst.mobs[it.npc]
@@ -800,7 +824,7 @@ function IsBoss(inst, m)
 	return false
 end
 
-local function BestiaryPage(lines, inst)
+local function BestiaryPage(lines, id, inst)
 	H1(lines, "Bestiary")
 	Faded(lines, "The creatures of " .. inst.name .. ".")
 	local any
@@ -809,7 +833,14 @@ local function BestiaryPage(lines, inst)
 		if not IsBoss(inst, m) then
 			any = true
 			local from = #lines + 1
-			MobLines(lines, m, true, true, npc)
+			-- the quests still wanting it, those you carry marked
+			local wanted = {}
+			for _, w in ipairs(QuestsAfter(id, m.name)) do
+				if w.state ~= "done" and not w.ready then
+					wanted[#wanted + 1] = w.q[2] .. (w.state == "log" and " (in your quest log)" or "")
+				end
+			end
+			MobLines(lines, m, true, true, npc, #wanted > 0 and ("Wanted for " .. table.concat(wanted, ", ") .. ".") or nil)
 			local ink = Ink(inst, "beast:" .. ns:AreaKey(m.name))
 			for i = from, #lines do lines[i].ink = ink end
 		end
@@ -944,6 +975,21 @@ local function QuestsOf(id)
 		end
 	end
 	return t
+end
+
+QuestsAfter = function(id, name)
+	local k, out = ns:AreaKey(name), {}
+	for _, q in ipairs(QuestsOf(id)) do
+		for _, who in ipairs(q[7] or {}) do
+			if ns:AreaKey(who) == k then
+				local state = QuestState(q[1])
+				local ready = state == "log" and select(2, QuestProgress(q[1]))
+				out[#out + 1] = { q = q, state = state, ready = ready }
+				break
+			end
+		end
+	end
+	return out
 end
 
 -- A quest that moves along while you stand inside a dungeon belongs to that
@@ -1876,13 +1922,13 @@ local function Draw()
 	elseif not inst then
 		if next(ns.db.instances) then TitlePage(lines) else BlankPage(lines) end
 	elseif sel.kind == "boss" then
-		BossPage(lines, inst, sel.key)
+		BossPage(lines, sel.inst, inst, sel.key)
 	elseif sel.kind == "map" then
 		MapPage(lines, sel.inst, inst)
 	elseif sel.kind == "quests" then
 		QuestsPage(lines, sel.inst, inst)
 	elseif sel.kind == "bestiary" then
-		BestiaryPage(lines, inst)
+		BestiaryPage(lines, sel.inst, inst)
 	elseif sel.kind == "spoils" then
 		SpoilsPage(lines, inst)
 	else
