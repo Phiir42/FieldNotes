@@ -27,7 +27,7 @@ ACTION_CAST = 11  # EventAI ACTION_T_CAST: param1 is the spell
 ACTION_SUMMON = 12  # EventAI ACTION_T_SUMMON: param1 is the creature
 ACTION_SUMMON_ID = 32  # EventAI ACTION_T_SUMMON_ID: param1 is the creature
 SPELL_EFFECTS = os.path.join(ROOT, "refs", "tables", "wowf", "SpellEffect.csv")
-SUMMON_EFFECTS = {28, 41, 42, 56, 112}  # summon, wild, guardian, pet, demon
+SUMMON_EFFECTS = {28, 56}  # summon, summon pet (the client's own numbering)
 SCRIPTS = os.path.join(ROOT, "refs", "cmangos", "mangos-classic", "src", "game", "AI", "ScriptDevAI", "scripts")
 
 

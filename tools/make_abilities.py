@@ -254,7 +254,8 @@ def creature_lines(names, boss_keys):
                                                     "model": c.get("model", 0)})
             m["model"] = m["model"] or c.get("model", 0)
             m["friend"] = m["friend"] and bool(c.get("npc"))
-            m["lo"], m["hi"] = min(m["lo"], c["lo"]), max(m["hi"], c["hi"])
+            if c["lo"]:  # (a summoned pet's level, unknown, is 0: it does not count)
+                m["lo"], m["hi"] = min(m["lo"] or c["lo"], c["lo"]), max(m["hi"], c["hi"])
             m["rank"] = max(m["rank"], c["rank"] if c["rank"] in RANKS else 0)
             m["spells"] += c["spells"]
     out = []

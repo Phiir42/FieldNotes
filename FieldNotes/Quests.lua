@@ -369,7 +369,7 @@ Q[309] = {
 	{ 8515, "The Alliance Needs Thick Leather!", 60, 44, nil, "Bring 10 Thick Leather to Marta Finespindle at the Military Ward in Ironforge.", { "Razzashi Cobra" }, from = "Marta Finespindle", get = { 21436, 21512 } },
 	{ 8183, "The Heart of Hakkar", 60, 58, nil, "Bring the Heart of Hakkar to Molthor on Yojamba Isle.", { "Hakkar" }, item = "Heart of Hakkar", pick = { 19948, 19950, 19949 } },
 	{ 8590, "The Horde Needs Thick Leather!", 60, 54, nil, "Bring 10 Thick Leather to Sergeant Umala at the Valley of Spirits in Orgrimmar.", { "Razzashi Cobra" }, from = "Sergeant Umala", get = { 21438, 21512 } },
-	{ 9023, "The Perfect Poison", 60, 60, nil, "Dirk Thunderwood at Cenarion Hold wants you to bring him Venoxis's Venom Sac and Kurinnaxx's Venom Sac.", { "High Priest Venoxis" }, from = "Dirk Thunderwood", note = "The rest of what it asks for is found in Ruins of Ahn'Qiraj.", pick = { 22378, 22379, 22377, 22348, 22347, 22380 } },
+	{ 9023, "The Perfect Poison", 60, 60, nil, "Dirk Thunderwood at Cenarion Hold wants you to bring him Venoxis's Venom Sac and Kurinnaxx's Venom Sac.", { "High Priest Venoxis" }, from = "Dirk Thunderwood", note = "The rest of what it asks for is found in the Ruins of Ahn'Qiraj.", pick = { 22378, 22379, 22377, 22348, 22347, 22380 } },
 }
 
 -- Stratholme

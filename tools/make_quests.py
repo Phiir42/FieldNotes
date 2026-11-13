@@ -30,6 +30,9 @@ NOTES = {
     6921: "Taking the Fathom Core from the Fathom Stone calls up Baron Aquanis.",
 }
 
+# Places that take "the" mid-sentence: the same list as ns:The in Core.lua.
+THE = {"deadmines", "wailingcaverns", "stormwindstockade", "scarletmonastery", "sunkentemple",
+       "ruinsofahnqiraj", "cityofdalaran", "ruinsoflordaeron", "templeofatalhakkar"}
 # Who to look for, where the database cannot tell (summoned, or handled by a
 # script), by quest id.
 WHO = {
@@ -264,8 +267,11 @@ def main():
 
     by_map = {}
     def named(mp):
+        """A place's name mid-sentence, as ns:The (Core.lua) writes it."""
         name = maps[mp]["MapName_lang"]
-        return ("the " + name) if name in ("Deadmines",) else name
+        if name.startswith("The "):
+            return "the" + name[3:]
+        return ("the " + name) if re.sub(r"[^a-z0-9]", "", name.lower()) in THE else name
 
     for r, mp, every in ((r, mp, every) for r in data for every in [places(r)] for mp in every):
         title = r[col("Title")]

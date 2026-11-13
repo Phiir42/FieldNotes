@@ -610,6 +610,14 @@ step("every page of the journal", function()
 	M.fire("CHAT_MSG_COMBAT_XP_GAIN", "Gelihast dies, you gain 300 experience.")
 	check("a boss whose fight goes by another name is filed with that fight",
 		inst.mobs["n:Gelihast"] and inst.mobs["n:Gelihast"].enc == 2914 and not inst.bosses["n:gelihast"])
+	-- another fight won within the minute: its own creature is its own, not the one before
+	M.wait(5)
+	M.fire("ENCOUNTER_START", 2915, "Lady Sarevess", 1, 5)
+	M.wait(10)
+	M.fire("ENCOUNTER_END", 2915, "Lady Sarevess", 1, 5, 1)
+	M.fire("CHAT_MSG_COMBAT_XP_GAIN", "Lady Sarevess dies, you gain 300 experience.")
+	check("a boss killed just after another is filed with its own fight",
+		inst.mobs["n:Lady Sarevess"] and inst.mobs["n:Lady Sarevess"].enc == 2915)
 	M.wait(1)
 	open("The Deadmines")
 	check("and its page takes the creature for the boss itself", open("Geilhast")
