@@ -1756,7 +1756,7 @@ local TOGGLES = {
 	{ "questMarks", "Quests on the map", "Marks where a dungeon's quests lead, even in parts not yet charted." },
 	{ "itemTips", "Finds on item tooltips", "An item's tooltip says where the journal noted it, and who carried it." },
 	{ "mapKey", "Map key opens the journal", "Inside a dungeon, where the game's own map is empty." },
-	{ "button", "Minimap button", "" },
+	{ "button", "Minimap button", "Opens the journal. Drag it around the minimap's edge to move it." },
 }
 local QUALITIES = { [0] = "Everything", "Common and better", "Uncommon and better", "Rare and better", "Epic and better" }
 local TEXT_SIZES = { { 0.9, "Small text" }, { 1, "Usual text" }, { 1.15, "Large text" }, { 1.3, "Larger text" } }
