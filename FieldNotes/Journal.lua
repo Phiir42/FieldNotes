@@ -248,6 +248,19 @@ end
 local SCHOOL = { [1] = "physical", [2] = "holy", [4] = "fire", [8] = "nature", [16] = "frost", [32] = "shadow", [64] = "arcane" }
 local RANK = { elite = "Elite", rareelite = "Rare elite", rare = "Rare", worldboss = "Boss" }
 
+-- A sentence's full stop, unless it already ends on one ("...; follows The
+-- Isle of Dread!")
+local function Stop(text)
+	return text:find("[%.!?]$") and text or (text .. ".")
+end
+
+-- Names listed mid-sentence: "look for the Prophet Skeram, Viscidus"
+local function Names(list)
+	local t = {}
+	for i, name in ipairs(list) do t[i] = ns:The(name) end
+	return table.concat(t, ", ")
+end
+
 local function H1(lines, text)
 	lines[#lines + 1] = { text = text, font = "QuestTitleFont", color = TITLE }
 end
@@ -907,7 +920,7 @@ local function BestiaryPage(lines, id, inst)
 				end
 			end
 			for _, title in ipairs(later) do wanted[#wanted + 1] = title end
-			MobLines(lines, m, true, true, npc, #wanted > 0 and ("Wanted for " .. table.concat(wanted, ", ") .. ".") or nil)
+			MobLines(lines, m, true, true, npc, #wanted > 0 and Stop("Wanted for " .. table.concat(wanted, ", ")) or nil)
 			local ink = Ink(inst, "beast:" .. ns:AreaKey(m.name))
 			for i = from, #lines do lines[i].ink = ink end
 		end
@@ -1200,7 +1213,7 @@ local function QuestsPage(lines, id, inst)
 		if q[6] ~= "" then Body(lines, q[6], 8) end
 		if #progress > 0 then Faded(lines, "So far: " .. table.concat(progress, "; ") .. ".", 8) end
 		if ready and q.to then Faded(lines, "Hand it in to " .. ns:The(q.to) .. ", inside.", 8) end
-		if q[7] and not ready then Faded(lines, "Look for " .. table.concat(q[7], ", ") .. ".", 8) end
+		if q[7] and not ready then Faded(lines, Stop("Look for " .. Names(q[7])), 8) end
 		-- where it comes from, until it is done
 		if state ~= "done" then
 			local how
@@ -1212,7 +1225,7 @@ local function QuestsPage(lines, id, inst)
 				how = "Given by " .. ns:The(q.from) .. (q.inside and ", inside" or "")
 			end
 			if q.after and state ~= "log" then how = how and (how .. "; follows " .. q.after) or ("Follows " .. q.after) end
-			if how then Faded(lines, how .. ".", 8) end
+			if how then Faded(lines, Stop(how), 8) end
 			if q.note and not ready then Faded(lines, q.note, 8) end
 			-- and what it pays
 			local function Rewards(ids, label)
@@ -1291,7 +1304,7 @@ local function QuestMarks(id, floor, marks)
 					s.seen[q[1]] = { title = q[2], who = {} }
 					s.notes[#s.notes + 1] = s.seen[q[1]]
 				end
-				table.insert(s.seen[q[1]].who, who .. (maybe and " (may be here, or at another of its marks)" or ""))
+				table.insert(s.seen[q[1]].who, ns:The(who) .. (maybe and " (may be here, or at another of its marks)" or ""))
 				if state == "log" then s.log = true end
 			end
 		end
@@ -1301,7 +1314,7 @@ local function QuestMarks(id, floor, marks)
 			local dx, dy = Beside(giver[1], giver[2], -1)
 			marks[#marks + 1] = {
 				x = giver[1], y = giver[2], dx = dx, dy = dy, icon = QUEST_ICON, alpha = 0.65,
-				name = "A quest is given here", note = q[2] .. ": given by " .. ns:The(q.from) .. ".", go = Open,
+				name = "A quest is given here", note = Stop(q[2] .. ": given by " .. ns:The(q.from)), go = Open,
 			}
 		end
 		-- and one that is ready, handed in inside: where to take it
@@ -1310,13 +1323,13 @@ local function QuestMarks(id, floor, marks)
 			local dx, dy = Beside(taker[1], taker[2], -1)
 			marks[#marks + 1] = {
 				x = taker[1], y = taker[2], dx = dx, dy = dy, icon = TURNIN_ICON,
-				name = "A quest is handed in here", note = q[2] .. ": hand it in to " .. ns:The(q.to) .. ".", go = Open,
+				name = "A quest is handed in here", note = Stop(q[2] .. ": hand it in to " .. ns:The(q.to)), go = Open,
 			}
 		end
 	end
 	for _, s in ipairs(order) do
 		local t = {}
-		for _, n in ipairs(s.notes) do t[#t + 1] = n.title .. ": look for " .. table.concat(n.who, ", ") .. "." end
+		for _, n in ipairs(s.notes) do t[#t + 1] = Stop(n.title .. ": look for " .. table.concat(n.who, ", ")) end
 		local dx, dy = Beside(s.x, s.y, 1)
 		marks[#marks + 1] = {
 			x = s.x, y = s.y, dx = dx, dy = dy, icon = QUEST_ICON, alpha = s.log and 1 or 0.65,
