@@ -18,4 +18,5 @@ Maps.lua
 Abilities.lua
 Quests.lua
 Journal.lua
+Tooltip.lua
 Buttons.lua

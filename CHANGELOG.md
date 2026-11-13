@@ -22,6 +22,10 @@
   it.
 - A boss whose name the game hid as the fight began is given its name when
   the fight ends, instead of staying "Unknown".
+- Item tooltips say where the journal noted an item and who carried it
+  ("Field Notes: found in The Deadmines, from Cookie, 2 times"), in your
+  bags, chat links and loot rolls alike. Preferences → "Finds on item
+  tooltips" turns it off.
 
 ## 0.2.0-beta.9
 

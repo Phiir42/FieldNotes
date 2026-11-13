@@ -257,6 +257,8 @@ step("preferences page", function()
 	check("preferences page opens", FieldNotesJournal:IsShown() and pageText():find("Click a line to change it", 1, true))
 	check("sound toggles by clicking", open("Sounds") and ns.db.settings.sound == false)
 	check("and back", open("Sounds") and ns.db.settings.sound == true)
+	check("item tooltips toggle by clicking", open("Finds on item tooltips") and ns.db.settings.itemTips == false)
+	open("Finds on item tooltips")
 	check("minimap button hides by clicking", open("Minimap button") and not FieldNotesMinimapButton:IsShown())
 	open("Minimap button")
 	check("pictures in colour by clicking", open("In true colour") and ns.db.settings.pictures == "colour")
@@ -383,6 +385,27 @@ step("every page of the journal", function()
 	check("clicking an item turns the notes box to it", open("Stonemason Cloak") and pageText():find("My notes on Stonemason Cloak", 1, true))
 	check("spoils are grouped under the boss and the halls", pageText():find("From the halls", 1, true)
 		and pageText():find("From Goblin Craftsman", 1, true))
+	-- an item's tooltip anywhere says where it was found
+	do
+		local tip = M.itemTooltip(1930)
+		check("an item's tooltip says where it was found", tip:find("Field Notes:", 1, true)
+			and tip:find("found in The Deadmines, from Goblin Craftsman.", 1, true))
+		check("and a boss's find names the boss", M.itemTooltip(872):find("from Rhahk'Zor", 1, true))
+		check("an item never found says nothing", not M.itemTooltip(123456):find("Field Notes", 1, true))
+		local hovered = 0
+		for _, f in ipairs(M.frames) do
+			if f.__kind == "Button" and f.__shown and rawget(f, "line") and f.line.link == inst.loot[1930].link then
+				M.itemTooltip(1930) -- the tooltip holds the line from before
+				f.__scripts.OnEnter(f)
+				hovered = hovered + 1
+			end
+		end
+		check("the spoils page's own tooltips do not repeat it", hovered == 1
+			and not table.concat(GameTooltip.__lines or {}, "\n"):find("Field Notes", 1, true))
+		ns.db.settings.itemTips = false
+		check("turned off, tooltips say nothing", not M.itemTooltip(1930):find("Field Notes", 1, true))
+		ns.db.settings.itemTips = true
+	end
 	check("map opens", open("Map"))
 	check("map page text", pageText():find("What you have charted", 1, true))
 	-- a boss marker for the boss that was faced, and it leads to its page

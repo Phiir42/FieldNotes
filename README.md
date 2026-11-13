@@ -23,7 +23,8 @@ you walk, the creatures you fight, the bosses you face and what they drop.
   where each one takes you, where one is handed out inside, and where a
   finished one is handed in.
 - **Spoils** – every item of note found in the dungeon and who carried it.
-  Shift-click a line to link the item in chat.
+  Shift-click a line to link the item in chat. An item's tooltip, wherever
+  you see it, says where the journal noted it.
 - **Diary** – a dated log of each visit, and a box on every page for notes of
   your own.
 

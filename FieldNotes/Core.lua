@@ -37,6 +37,7 @@ ns.DEFAULTS = {
 	paper = 0.34,      -- how light the page is (0 as dark as the map sheet)
 	alpha = 1,         -- how solid the window is
 	questMarks = true, -- where quests lead, marked on the map
+	itemTips = true,   -- an item's tooltip says where the journal noted it
 	markSize = 18,     -- boss marks on the map
 	full = false,      -- the journal fills the screen
 	scale = 1,         -- size of the journal window

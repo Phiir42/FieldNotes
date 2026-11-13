@@ -62,7 +62,10 @@ local function RowEnter(self)
 	GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
 	local ok
 	if l.link then
+		-- the page itself says where it was found: not again on its tooltip
+		ns.ownTip = true
 		ok = pcall(GameTooltip.SetHyperlink, GameTooltip, l.link)
+		ns.ownTip = nil
 	elseif type(l.spell) == "number" and GameTooltip.SetSpellByID then
 		ok = pcall(GameTooltip.SetSpellByID, GameTooltip, l.spell)
 	end
@@ -1504,6 +1507,7 @@ local TOGGLES = {
 	{ "sketch", "Sketch new things in", "New parts of a map are drawn in, new entries fade onto the page." },
 	{ "sound", "Sounds", "The book opening and closing, pages turning." },
 	{ "questMarks", "Quests on the map", "Marks where a dungeon's quests lead, even in parts not yet charted." },
+	{ "itemTips", "Finds on item tooltips", "An item's tooltip says where the journal noted it, and who carried it." },
 	{ "mapKey", "Map key opens the journal", "Inside a dungeon, where the game's own map is empty." },
 	{ "button", "Minimap button", "" },
 }

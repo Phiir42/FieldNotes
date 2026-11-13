@@ -102,6 +102,17 @@ function Object:GetPoint() return "TOPLEFT", UIParent, "TOPLEFT", 40, -60 end
 function Object:IsProtected() return false end
 function Object:HasFocus() return false end
 function Object:AddMessage(text) M.chat[#M.chat + 1] = tostring(text) end
+-- an item link shown on a tooltip: addons are told of it (see TooltipDataProcessor)
+function Object:SetHyperlink(link)
+	self.__lines = {}
+	local id = type(link) == "string" and tonumber(link:match("item:(%d+)"))
+	if id then
+		for _, fn in ipairs(M.tooltipCalls[0] or {}) do fn(self, { id = id }) end
+	end
+end
+-- tooltips keep their lines, so a test can read them
+function Object:AddLine(text) self.__lines = self.__lines or {}; self.__lines[#self.__lines + 1] = tostring(text) end
+function Object:ClearLines() self.__lines = {} end
 function Object:Click() if self.__scripts.OnClick then self.__scripts.OnClick(self, "LeftButton") end end
 
 object_mt = {
@@ -247,6 +258,23 @@ C_Spell = {
 }
 C_AddOns = { GetAddOnMetadata = function(_, field) return field == 'Version' and 'test' or nil end }
 C_TooltipInfo = { GetHyperlink = function() return nil end }
+-- addons are told of each item tooltip after the game has filled it in
+Enum = { TooltipDataType = { Item = 0, Unit = 2 } }
+M.tooltipCalls = {}
+TooltipDataProcessor = {
+	AddTooltipPostCall = function(kind, fn)
+		M.tooltipCalls[kind] = M.tooltipCalls[kind] or {}
+		table.insert(M.tooltipCalls[kind], fn)
+	end,
+}
+-- show an item's tooltip as the game would: its own lines, then the addons'
+function M.itemTooltip(id, tip)
+	tip = tip or GameTooltip
+	tip:ClearLines()
+	tip:AddLine("Item " .. id)
+	for _, fn in ipairs(M.tooltipCalls[Enum.TooltipDataType.Item] or {}) do fn(tip, { id = id, type = 0 }) end
+	return table.concat(tip.__lines, "\n")
+end
 
 -- anything else the addon reaches for is noted, so the test can report it
 setmetatable(_G, { __index = function(_, k) M.missing[k] = true end })
