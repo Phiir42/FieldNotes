@@ -1028,6 +1028,8 @@ local function QuestsOf(id)
 	return t
 end
 
+ns.QuestsOf = QuestsOf
+
 QuestsAfter = function(id, name)
 	local k, out = ns:AreaKey(name), {}
 	for _, q in ipairs(QuestsOf(id)) do

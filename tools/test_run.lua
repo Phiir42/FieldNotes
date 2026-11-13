@@ -441,6 +441,7 @@ step("every page of the journal", function()
 			and tip:find("found in The Deadmines, from Goblin Craftsman.", 1, true))
 		check("and a boss's find names the boss", M.itemTooltip(872):find("from Rhahk'Zor", 1, true))
 		check("an item never found says nothing", not M.itemTooltip(123456):find("Field Notes", 1, true))
+		check("a quest's reward says whose it is", M.itemTooltip(6087):find("a reward of \"The Defias Brotherhood\" (The Deadmines).", 1, true))
 		local hovered = 0
 		for _, f in ipairs(M.frames) do
 			if f.__kind == "Button" and f.__shown and rawget(f, "line") and f.line.link == inst.loot[1930].link then

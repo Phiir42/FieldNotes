@@ -35,7 +35,29 @@ local function Index()
 	return found
 end
 
-ns:On("FN_DATA", function() found = nil end)
+-- [item id] = { { inst = record, q = quest }, ... }: the rewards of the quests of
+-- the places with a page, for your side and class (as on their Quests pages)
+local rewards
+
+local function Rewards()
+	if rewards then return rewards end
+	rewards = {}
+	for id, inst in pairs(ns.db.instances) do
+		if id ~= "maptest" and ns.QuestsOf then
+			for _, q in ipairs(ns.QuestsOf(id)) do
+				for _, list in ipairs({ q.pick or {}, q.get or {} }) do
+					for _, item in ipairs(list) do
+						rewards[item] = rewards[item] or {}
+						table.insert(rewards[item], { inst = inst, q = q })
+					end
+				end
+			end
+		end
+	end
+	return rewards
+end
+
+ns:On("FN_DATA", function() found, rewards = nil, nil end)
 
 -- Who carried it: the boss it is credited to (as on the Spoils page), else
 -- the creature.
@@ -49,8 +71,7 @@ end
 -- The lines for an item, as the tooltip shows them; nil if it was never noted.
 function ns:FoundLines(item)
 	if not (self.db and type(item) == "number") then return end
-	local list = Index()[item]
-	if not list then return end
+	local list = Index()[item] or {}
 	local out = {}
 	for i, f in ipairs(list) do
 		if i > PLACES_MAX then
@@ -62,7 +83,12 @@ function ns:FoundLines(item)
 		out[#out + 1] = "found in " .. f.inst.name .. (from and (", from " .. from) or "")
 			.. (f.it.n > 1 and (", " .. f.it.n .. " times") or "") .. "."
 	end
-	return out
+	-- and the quests that give it
+	for i, r in ipairs(Rewards()[item] or {}) do
+		if i > PLACES_MAX then break end
+		out[#out + 1] = ("a reward of \"%s\" (%s)."):format(r.q[2], r.inst.name)
+	end
+	if #out > 0 then return out end
 end
 
 local function Add(tooltip, item)

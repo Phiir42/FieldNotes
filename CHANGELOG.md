@@ -25,8 +25,9 @@
   the fight ends, instead of staying "Unknown".
 - Item tooltips say where the journal noted an item and who carried it
   ("Field Notes: found in The Deadmines, from Cookie, 2 times"), in your
-  bags, chat links and loot rolls alike. Preferences → "Finds on item
-  tooltips" turns it off.
+  bags, chat links and loot rolls alike, and the reward of one of a
+  dungeon's quests says which. Preferences → "Finds on item tooltips"
+  turns it off.
 - Taking up or handing in a quest that leads into a dungeon goes in that
   dungeon's diary (quietly, when you are elsewhere).
 - The Quests page puts the quests you carry first, those ready to hand in
