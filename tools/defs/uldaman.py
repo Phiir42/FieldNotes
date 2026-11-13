@@ -8,6 +8,10 @@ MAP = {
             "uimap": 230,
             "decor": [(545, 50, 935, 128), (690, 128, 1002, 440), (712, 440, 1002, 630)],
             "start": [(682, 485), (655, 485)],
+            # Dig Two (the Lost Dwarves) is a dead end off the Hall of the
+            # Keepers: reaching the Map Chamber does not mean you went there
+            "roads": [["Hall of the Keepers", "Map Chamber", "Stonevault Cave Lurker", "Echomok Cavern", "Temple Hall",
+                       "Dig Three", "The Stone Vault", "Hall of the Crafters"], ["Dig Two"]],
             "areas": {
                 "Hall of the Keepers": [(600, 485), (548, 430), (650, 430), (548, 540), (645, 545), (597, 412), (530, 485), (600, 440), (600, 530)],
                 "Dig Two": [(585, 615), (527, 617), (572, 583)],

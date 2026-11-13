@@ -3246,6 +3246,7 @@ do
 	floor.areas[key("Dig Two")] = { mask = DIR .. "uldaman-1-02", x = 473, y = 537, w = 193, h = 131 }
 	floor.areas[key("Dig Two")].n = 2
 	floor.areas["#2"] = floor.areas[key("Dig Two")]
+	floor.areas[key("Dig Two")].g = 2
 	floor.count = floor.count + 1
 	floor.areas[key("Baelog")] = floor.areas[key("Dig Two")]
 	floor.areas[key("Eric \"The Swift\"")] = floor.areas[key("Dig Two")]
