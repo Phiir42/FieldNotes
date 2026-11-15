@@ -4,18 +4,23 @@
 # walled basin west of the river, and the sheet shows only that (crop in
 # tools/draw_minimap_sheet.py). Areas are keyed by the instance's sub-zone names, with
 # bosses as aliases.
-# PLACED IN GAME: the entrance (matched against the in-game minimap on arrival) and the
-# Lost Marsh (the pond with docks, Marsh Crocolisks and Saltspine).
-# STILL A GUESS from the terrain and the encounter order: the other three areas.
+# PLACED IN GAME (in-game minimap screenshots matched against the instance's minimap):
+# the entrance, Saltspine (in the pond with the docks) and Shadetooth (at the pond's west
+# outlet, with the Thicket raptors), so the Thicket is the stream valley running west.
+# STILL A GUESS from the terrain and the encounter order: the Lost Dig Site (the square
+# dig with bones at the valley's west end) and the Site of the Guardian (the ruins with a
+# stone ring in the north).
 MAP = {'instance': 2998,
  'slug': 'excavation-site-wetlands',
+ 'bosses': {'Saltspine': (1, 516, 394), 'Shadetooth': (1, 478, 424)},
  'floors': [{'art': 'excavation-site-wetlands',
              'decor': [],
              'start': [(725, 290), (765, 305), (805, 320)],
-             'areas': {'Lost Marsh': [(550, 370), (520, 340), (600, 360), (560, 420), (700, 430), (650, 300), (760, 590)],
-                       "Stalker's Thicket": [(560, 230), (480, 250), (430, 320), (620, 200)],
-                       'Lost Dig Site': [(340, 140), (380, 90), (300, 200), (410, 170), (300, 300)],
-                       'Site of the Guardian': [(228, 412), (300, 440), (380, 420), (390, 510), (250, 500)]},
+             'areas': {'Lost Marsh': [(550, 370), (520, 340), (600, 360), (560, 420), (700, 430), (650, 300),
+                                      (760, 590), (560, 230), (620, 200)],
+                       "Stalker's Thicket": [(440, 410), (380, 400), (340, 440), (400, 500), (330, 510)],
+                       'Lost Dig Site': [(228, 412), (250, 480), (180, 440), (120, 520), (260, 300)],
+                       'Site of the Guardian': [(340, 140), (380, 90), (300, 200), (410, 170), (470, 250)]},
              'aliases': {'Saltspine': 'Lost Marsh',
                          'Shadetooth': "Stalker's Thicket",
                          'Highland Horror': 'Lost Dig Site',
