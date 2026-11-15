@@ -2,6 +2,9 @@
 
 ## 0.2.0-beta.10 – not yet released
 
+- Excavation Site: the map was a sheet of the whole Wetlands; it now shows
+  only the walled basin the dungeon is, freshly painted, and the way in is
+  drawn from the moment you arrive.
 - Inside a dungeon, Shift and the map key opens the game's own world map
   rather than the journal, and a key can be bound to "Open the game's world
   map" (Keybindings → AddOns → Field Notes). Closing the game's map with the

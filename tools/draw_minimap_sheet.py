@@ -34,10 +34,9 @@ SHEETS = {
                            "mask": [(610, 0), (750, 25), (800, 250), (720, 370), (600, 420), (570, 590), (420, 668),
                                     (205, 660), (195, 530), (225, 310), (390, 235), (510, 140)]},
     "the-shapers-terrace": {"crop": (-128, 512, 2176, 2048), "mask": None},
-    # without the stray tiles top left and the snow (Dun Morogh, outside) bottom left
-    "excavation-site-wetlands": {"crop": (486, 510, 3544, 2548),
-                                 "mask": [(190, 20), (1002, 20), (1002, 668), (440, 668), (440, 485), (0, 485),
-                                          (0, 185), (190, 185)]},
+    # The instance's minimap is a whole stretch of the Wetlands; the dungeon is
+    # only the walled basin west of the river (Whelgar's dig), placed in game.
+    "excavation-site-wetlands": {"crop": (740, 1080, 2135, 2010), "mask": None},
 }
 MARGIN = 34  # the parchment's own border: nothing is drawn on it
 

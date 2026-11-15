@@ -1,35 +1,21 @@
 # Excavation Site: Wetlands (a Forever dungeon). The game has no map sheet for it, so the sheet
-# is tools/art/excavation-site-wetlands.png, drawn by tools/draw_minimap_sheet.py from the
-# instance's minimap. Areas are keyed by the instance's sub-zone names, with bosses as aliases.
-# WHERE each name sits on the sheet is a GUESS from the terrain and the
-# encounter order: check in game and move the seeds.
+# is tools/art/excavation-site-wetlands.png, painted by tools/codex_sheet.py from the
+# instance's minimap. That minimap is a whole stretch of the Wetlands; the dungeon is the
+# walled basin west of the river, and the sheet shows only that (crop in
+# tools/draw_minimap_sheet.py). Areas are keyed by the instance's sub-zone names, with
+# bosses as aliases.
+# PLACED IN GAME: the entrance (matched against the in-game minimap on arrival) and the
+# Lost Marsh (the pond with docks, Marsh Crocolisks and Saltspine).
+# STILL A GUESS from the terrain and the encounter order: the other three areas.
 MAP = {'instance': 2998,
  'slug': 'excavation-site-wetlands',
  'floors': [{'art': 'excavation-site-wetlands',
              'decor': [],
-             'areas': {'Lost Marsh': [(350, 130),
-                                      (500, 150),
-                                      (250, 200),
-                                      (580, 300),
-                                      (600, 420),
-                                      (250, 90),
-                                      (480, 60),
-                                      (700, 80),
-                                      (880, 120)],
-                       "Stalker's Thicket": [(300, 300),
-                                             (200, 350),
-                                             (400, 400),
-                                             (120, 420),
-                                             (300, 430),
-                                             (430, 280),
-                                             (100, 280)],
-                       'Lost Dig Site': [(790, 360), (700, 300), (880, 400), (800, 250), (900, 280), (930, 200)],
-                       'Site of the Guardian': [(560, 560),
-                                                (470, 590),
-                                                (650, 500),
-                                                (760, 560),
-                                                (880, 560),
-                                                (700, 620)]},
+             'start': [(725, 290), (765, 305), (805, 320)],
+             'areas': {'Lost Marsh': [(550, 370), (520, 340), (600, 360), (560, 420), (700, 430), (650, 300), (760, 590)],
+                       "Stalker's Thicket": [(560, 230), (480, 250), (430, 320), (620, 200)],
+                       'Lost Dig Site': [(340, 140), (380, 90), (300, 200), (410, 170), (300, 300)],
+                       'Site of the Guardian': [(228, 412), (300, 440), (380, 420), (390, 510), (250, 500)]},
              'aliases': {'Saltspine': 'Lost Marsh',
                          'Shadetooth': "Stalker's Thicket",
                          'Highland Horror': 'Lost Dig Site',
