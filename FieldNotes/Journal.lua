@@ -1777,7 +1777,7 @@ local TOGGLES = {
 	{ "sound", "Sounds", "The book opening and closing, pages turning." },
 	{ "questMarks", "Quests on the map", "Marks where a dungeon's quests lead, even in parts not yet charted." },
 	{ "itemTips", "Finds on item tooltips", "An item's tooltip says where the journal noted it, and who carried it." },
-	{ "mapKey", "Map key opens the journal", "Inside a dungeon, where the game's own map is empty." },
+	{ "mapKey", "Map key opens the journal", "Inside a dungeon, where the game's own map is empty. Shift and the map key opens the game's map." },
 	{ "button", "Minimap button", "Opens the journal. Drag it around the minimap's edge to move it." },
 }
 local QUALITIES = { [0] = "Everything", "Common and better", "Uncommon and better", "Rare and better", "Epic and better" }
@@ -2478,9 +2478,22 @@ end
 
 -- Inside a dungeon the game's own map has nothing to show, so the map key
 -- opens the journal's map of the dungeon instead ("/fn mapkey" turns this off).
+-- Holding Shift, or the "game's world map" key binding, gets the game's map.
+local gameMap, mapClosed
+function ns:OpenGameMap()
+	gameMap = true
+	ToggleWorldMap()
+	gameMap = false
+end
 if type(ToggleWorldMap) == "function" then
+	if WorldMapFrame then
+		WorldMapFrame:HookScript("OnHide", function() mapClosed = GetTime() end)
+	end
 	hooksecurefunc("ToggleWorldMap", function()
+		if gameMap or IsShiftKeyDown() then return end
 		if not (ns.db and ns.db.settings.mapKey and ns.currentID) then return end
+		-- the key just closed the game's map: leave the journal be
+		if WorldMapFrame and not WorldMapFrame:IsShown() and mapClosed == GetTime() then return end
 		if WorldMapFrame and WorldMapFrame:IsShown() then
 			-- mid-fight, leave the game's map alone only if it is a protected panel
 			if InCombatLockdown() and WorldMapFrame.IsProtected and WorldMapFrame:IsProtected() then return end

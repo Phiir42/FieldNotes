@@ -122,6 +122,7 @@ end
 ---------------------------------------------------------------------------
 BINDING_HEADER_FIELDNOTES = "Field Notes"
 BINDING_NAME_FIELDNOTES_TOGGLE = "Open or close the journal"
+BINDING_NAME_FIELDNOTES_GAMEMAP = "Open the game's world map, even in a dungeon"
 
 SLASH_FIELDNOTES1 = "/fn"
 SLASH_FIELDNOTES2 = "/fieldnotes"

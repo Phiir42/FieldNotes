@@ -168,6 +168,8 @@ function StaticPopup_Show(which, text, _, data)
 end
 function time() return M.clock end
 function GetTime() return M.now end
+M.shift = false
+function IsShiftKeyDown() return M.shift end
 date = os.date
 format = string.format
 strlower, strupper, strfind, strmatch, strsub, strlen, gsub, strrep = string.lower, string.upper, string.find,

@@ -2,6 +2,10 @@
 
 ## 0.2.0-beta.10 – not yet released
 
+- Inside a dungeon, Shift and the map key opens the game's own world map
+  rather than the journal, and a key can be bound to "Open the game's world
+  map" (Keybindings → AddOns → Field Notes). Closing the game's map with the
+  map key no longer opens the journal in its place.
 - The quests Forever added say where to look: which creatures carry what
   is wanted, or where it lies, for 31 quests that only named the errand
   (the Kor Gem's naga, the Crest of Lordaeron's hiding places, the book in

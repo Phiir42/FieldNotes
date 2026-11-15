@@ -2,4 +2,7 @@
 	<Binding name="FIELDNOTES_TOGGLE" category="ADDONS">
 		FieldNotes:ToggleJournal()
 	</Binding>
+	<Binding name="FIELDNOTES_GAMEMAP" category="ADDONS">
+		FieldNotes:OpenGameMap()
+	</Binding>
 </Bindings>
