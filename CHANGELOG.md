@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.0-beta.10 – not yet released
+## 0.2.0-beta.10
 
 - Excavation Site: the map was a sheet of the whole Wetlands; it now shows
   only the walled basin the dungeon is, freshly painted, and the way in is
