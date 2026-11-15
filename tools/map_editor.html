@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Field Notes map editor</title>
+<style>
+  :root { --bg: #1d1a16; --panel: #2a251f; --ink: #eadfc8; --faded: #a8987a; --line: #4a4033; --gold: #e0b94f; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.4 system-ui, sans-serif; display: flex; height: 100vh; }
+  #side { width: 300px; flex: none; background: var(--panel); border-right: 1px solid var(--line); padding: 12px; overflow-y: auto; }
+  #main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+  #bar { padding: 8px 12px; border-bottom: 1px solid var(--line); display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  #wrap { flex: 1; overflow: auto; padding: 12px; }
+  canvas { display: block; cursor: crosshair; image-rendering: auto; }
+  h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--faded); margin: 16px 0 6px; }
+  select, button { font: inherit; background: #3a3229; color: var(--ink); border: 1px solid var(--line); border-radius: 4px; padding: 4px 8px; }
+  button:hover { border-color: var(--gold); }
+  button.primary { background: #5a4520; border-color: var(--gold); }
+  .item { display: flex; align-items: center; gap: 8px; padding: 4px 6px; border-radius: 4px; cursor: pointer; border: 1px solid transparent; }
+  .item:hover { background: #352e26; }
+  .item.on { border-color: var(--gold); background: #3d3428; }
+  .sw { width: 14px; height: 14px; border-radius: 3px; flex: none; border: 1px solid #0006; }
+  .count { margin-left: auto; color: var(--faded); font-size: 12px; }
+  .help { color: var(--faded); font-size: 12px; }
+  .help b { color: var(--ink); font-weight: 600; }
+  #status { white-space: pre-wrap; font-size: 12px; color: var(--faded); margin-top: 8px; }
+  label { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--faded); }
+  .tabs button.on { border-color: var(--gold); }
+</style>
+</head>
+<body>
+<div id="side">
+  <select id="slug" style="width:100%"></select>
+  <h2>Areas</h2>
+  <div id="areas"></div>
+  <h2>Bosses</h2>
+  <div id="bosses"></div>
+  <h2>How to</h2>
+  <div class="help">
+    Each area is the part of the sheet <b>nearest one of its points</b>.<br>
+    Pick an area, then <b>click</b> to add a point.<br>
+    <b>Drag</b> a point to move it; <b>right-click</b> it to remove it.<br>
+    Pick a boss, then <b>click</b> where it stands (or drag its mark).<br>
+    <b>Ctrl+Z</b> undoes.<br>
+    Only drawn parts of the sheet are ever shown in game; the shading shows the whole share.
+  </div>
+  <div style="display:flex; gap:8px; margin-top:16px">
+    <button id="save" class="primary">Save</button>
+    <button id="build">Build and install</button>
+  </div>
+  <div id="status"></div>
+</div>
+<div id="main">
+  <div id="bar">
+    <span class="tabs" id="floors"></span>
+    <label>Shading <input id="alpha" type="range" min="0" max="80" value="35"></label>
+    <label><input id="onlysel" type="checkbox"> Only the chosen area</label>
+    <label>Zoom <input id="zoom" type="range" min="60" max="200" value="100"></label>
+  </div>
+  <div id="wrap"><canvas id="cv" width="1002" height="668"></canvas></div>
+</div>
+<script>
+const COLORS = ["#e8e8e8", "#e8823a", "#5b7fe0", "#e04a6a", "#c060d8", "#4fbf8f", "#d8c040", "#40b8d8", "#a07050", "#80c040", "#d070a0", "#7080a0"];
+const W = 1002, H = 668, HIT = 9;
+let data = null, fl = 0, sel = { kind: "area", name: "start" }, img = new Image(), dirty = false;
+let drag = null, history = [], overlay = null, moved = {};
+const cv = document.getElementById("cv"), ctx = cv.getContext("2d");
+const $ = id => document.getElementById(id);
+
+function floor() { return data.floors[fl]; }
+function names() { return ["start", ...Object.keys(floor().areas)]; }
+function pts(name) { return name === "start" ? floor().start : floor().areas[name]; }
+function color(name) { return COLORS[names().indexOf(name) % COLORS.length]; }
+function snapshot() {
+  history.push(JSON.stringify({ floors: data.floors, moved }));
+  if (history.length > 200) history.shift();
+  dirty = true;
+}
+function status(t) { $("status").textContent = t; }
+
+async function loadList() {
+  const r = await (await fetch("/api/list")).json();
+  $("slug").innerHTML = r.slugs.map(s => `<option>${s}</option>`).join("");
+  if (r.first && r.slugs.includes(r.first)) $("slug").value = r.first;
+  await loadMap($("slug").value);
+}
+async function loadMap(slug) {
+  data = await (await fetch("/api/map?slug=" + encodeURIComponent(slug))).json();
+  fl = 0; history = []; moved = {}; dirty = false; sel = { kind: "area", name: "start" };
+  status("");
+  showFloor();
+}
+function showFloor() {
+  $("floors").innerHTML = data.floors.length > 1
+    ? data.floors.map((f, i) => `<button data-f="${i}" class="${i === fl ? "on" : ""}">Sheet ${i + 1}</button>`).join(" ") : "";
+  img = new Image();
+  img.onload = () => { overlay = null; draw(); };
+  img.src = "/img?path=" + encodeURIComponent(floor().image) + "&t=" + Date.now();
+  lists();
+}
+$("floors").onclick = e => { if (e.target.dataset.f) { fl = +e.target.dataset.f; showFloor(); } };
+
+function lists() {
+  const al = $("areas");
+  al.innerHTML = names().map(n => {
+    const aliases = Object.entries(floor().aliases || {}).filter(([, t]) => t === n).map(([a]) => a);
+    const label = n === "start" ? "Way in (shown on arrival)" : n;
+    return `<div class="item ${sel.kind === "area" && sel.name === n ? "on" : ""}" data-a="${n}">
+      <span class="sw" style="background:${color(n)}"></span><span>${label}${aliases.length ? `<br><small style="color:var(--faded)">${aliases.join(", ")}</small>` : ""}</span>
+      <span class="count">${pts(n).length}</span></div>`;
+  }).join("");
+  $("bosses").innerHTML = floor().bosses.map(b =>
+    `<div class="item ${sel.kind === "boss" && sel.name === b.name ? "on" : ""}" data-b="${b.name}">
+      <span class="sw" style="background:#c22">✕</span><span>${b.name}</span>
+      <span class="count">${b.pinned || moved[b.name] ? "placed" : "guessed"}</span></div>`).join("")
+    || `<div class="help">No bosses on this sheet.</div>`;
+}
+$("areas").onclick = e => { const it = e.target.closest("[data-a]"); if (it) { sel = { kind: "area", name: it.dataset.a }; overlay = null; lists(); draw(); } };
+$("bosses").onclick = e => { const it = e.target.closest("[data-b]"); if (it) { sel = { kind: "boss", name: it.dataset.b }; lists(); draw(); } };
+
+// the area shares: every pixel goes to the nearest point (as tools/make_maps.py does)
+function computeOverlay() {
+  const S = 3, w = Math.ceil(W / S), h = Math.ceil(H / S);
+  const seeds = [];
+  names().forEach(n => pts(n).forEach(p => seeds.push([p[0], p[1], n])));
+  const off = document.createElement("canvas"); off.width = w; off.height = h;
+  const o = off.getContext("2d"), id = o.createImageData(w, h);
+  const rgb = {};
+  names().forEach(n => { const c = color(n); rgb[n] = [1, 3, 5].map(i => parseInt(c.substr(i, 2), 16)); });
+  const only = $("onlysel").checked && sel.kind === "area" ? sel.name : null;
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+    const px = x * S + 1, py = y * S + 1;
+    let best = Infinity, owner = null;
+    for (const s of seeds) { const d = (s[0] - px) ** 2 + (s[1] - py) ** 2; if (d < best) { best = d; owner = s[2]; } }
+    const i = (y * w + x) * 4;
+    if (!owner || (only && owner !== only)) { id.data[i + 3] = 0; continue; }
+    const c = rgb[owner]; id.data[i] = c[0]; id.data[i + 1] = c[1]; id.data[i + 2] = c[2]; id.data[i + 3] = 255;
+  }
+  o.putImageData(id, 0, 0);
+  overlay = off;
+}
+
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+  if (img.complete && img.naturalWidth) ctx.drawImage(img, 0, 0, W, H);
+  if (!overlay) computeOverlay();
+  ctx.globalAlpha = $("alpha").value / 100;
+  ctx.imageSmoothingEnabled = false;
+  ctx.drawImage(overlay, 0, 0, W, H);
+  ctx.imageSmoothingEnabled = true;
+  ctx.globalAlpha = 1;
+  for (const n of names()) {
+    const mine = sel.kind === "area" && sel.name === n;
+    for (const p of pts(n)) {
+      ctx.beginPath(); ctx.arc(p[0], p[1], mine ? 6 : 4, 0, 7);
+      ctx.fillStyle = color(n); ctx.fill();
+      ctx.lineWidth = mine ? 2 : 1; ctx.strokeStyle = mine ? "#fff" : "#000"; ctx.stroke();
+    }
+  }
+  ctx.font = "bold 13px system-ui";
+  for (const b of floor().bosses) {
+    const on = sel.kind === "boss" && sel.name === b.name;
+    ctx.strokeStyle = "#000"; ctx.lineWidth = 5;
+    cross(b.x, b.y); ctx.strokeStyle = on ? "#ffd84a" : "#e02020"; ctx.lineWidth = 3; cross(b.x, b.y);
+    ctx.lineWidth = 3; ctx.strokeStyle = "#000"; ctx.strokeText(b.name, b.x + 10, b.y + 5);
+    ctx.fillStyle = on ? "#ffd84a" : "#fff"; ctx.fillText(b.name, b.x + 10, b.y + 5);
+  }
+}
+function cross(x, y) { ctx.beginPath(); ctx.moveTo(x - 7, y - 7); ctx.lineTo(x + 7, y + 7); ctx.moveTo(x + 7, y - 7); ctx.lineTo(x - 7, y + 7); ctx.stroke(); }
+
+function at(e) {
+  const r = cv.getBoundingClientRect();
+  return [Math.round((e.clientX - r.left) * W / r.width), Math.round((e.clientY - r.top) * H / r.height)];
+}
+function hit(x, y) {
+  for (const b of floor().bosses) if (Math.abs(b.x - x) < HIT && Math.abs(b.y - y) < HIT) return { boss: b };
+  let best = null, bd = HIT * HIT;
+  for (const n of names()) pts(n).forEach((p, i) => {
+    const d = (p[0] - x) ** 2 + (p[1] - y) ** 2;
+    if (d <= bd) { bd = d; best = { area: n, i }; }
+  });
+  return best;
+}
+cv.addEventListener("contextmenu", e => e.preventDefault());
+cv.addEventListener("mousedown", e => {
+  const [x, y] = at(e), h = hit(x, y);
+  if (e.button === 2) {
+    if (h && h.area !== undefined) { snapshot(); pts(h.area).splice(h.i, 1); overlay = null; lists(); draw(); }
+    return;
+  }
+  snapshot();
+  if (h && h.boss) { drag = { boss: h.boss }; sel = { kind: "boss", name: h.boss.name }; lists(); return; }
+  if (h && h.area !== undefined) { drag = { area: h.area, i: h.i }; return; }
+  if (sel.kind === "area") {
+    pts(sel.name).push([x, y]); drag = { area: sel.name, i: pts(sel.name).length - 1 };
+    overlay = null; lists(); draw();
+  } else {
+    const b = floor().bosses.find(b => b.name === sel.name);
+    if (b) { b.x = x; b.y = y; moved[b.name] = [fl + 1, x, y]; drag = { boss: b }; lists(); draw(); }
+  }
+});
+window.addEventListener("mousemove", e => {
+  if (!drag) return;
+  let [x, y] = at(e); x = Math.max(0, Math.min(W - 1, x)); y = Math.max(0, Math.min(H - 1, y));
+  if (drag.boss) { drag.boss.x = x; drag.boss.y = y; moved[drag.boss.name] = [fl + 1, x, y]; }
+  else { pts(drag.area)[drag.i] = [x, y]; overlay = null; }
+  draw();
+});
+window.addEventListener("mouseup", () => { if (drag) { drag = null; lists(); } });
+window.addEventListener("keydown", e => {
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "z" && history.length) {
+    const s = JSON.parse(history.pop()); data.floors = s.floors; moved = s.moved; overlay = null; lists(); draw();
+  }
+});
+$("alpha").oninput = draw;
+$("onlysel").onchange = () => { overlay = null; draw(); };
+$("zoom").oninput = () => { cv.style.width = (W * $("zoom").value / 100) + "px"; };
+$("slug").onchange = async () => {
+  if (dirty && !confirm("Leave without saving?")) return;
+  await loadMap($("slug").value);
+};
+async function post(path, body) {
+  const r = await fetch(path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+  return r.json();
+}
+async function doSave() {
+  const r = await post("/api/save", {
+    slug: data.slug,
+    floors: data.floors.map(f => ({ start: f.start, areas: f.areas })),
+    moved,
+  });
+  status(r.message); if (r.ok) dirty = false;
+  return r.ok;
+}
+$("save").onclick = doSave;
+$("build").onclick = async () => {
+  if (!(await doSave())) return;
+  status("Building… (about a minute)");
+  $("build").disabled = true;
+  const r = await post("/api/build", { slug: data.slug });
+  $("build").disabled = false;
+  status(r.message);
+};
+window.addEventListener("beforeunload", e => { if (dirty) { e.preventDefault(); e.returnValue = ""; } });
+loadList();
+</script>
+</body>
+</html>
