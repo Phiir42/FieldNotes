@@ -25,6 +25,16 @@ ART = os.path.join(ROOT, "tools", "art")
 ROUGH = 45     # colour distance from the page-edge paper that is surely dungeon
 NEAR, FAR = 9, 24  # distance from the paper around: below NEAR is paper, above FAR is drawing
 FEATHER = 1.5  # px of soft edge
+# Sheets whose pale ground is floor, not paper: everything inside the dungeon's
+# outline is kept, so open ground (marsh, clearings) does not show as holes.
+FILL = {"excavation-site-wetlands"}
+
+
+def fill_holes(on):
+    """on: bool array -> on, plus every region it encloses (not reached from the page edge)."""
+    im = Image.fromarray(np.pad(on, 1).astype(np.uint8) * 255)
+    ImageDraw.floodfill(im, (0, 0), 128)
+    return (np.asarray(im)[1:-1, 1:-1] != 128)
 
 
 def settle(slug, blank):
@@ -68,6 +78,9 @@ def settle(slug, blank):
     mask = gauss(np.asarray(Image.fromarray((mask * 255).astype(np.uint8)).filter(ImageFilter.MaxFilter(3))) / 255.0,
                  FEATHER)[..., None]
     mask = np.clip(mask * 1.5, 0, 1)
+    if slug in FILL:
+        held = fill_holes(mask[..., 0] > 0.5).astype(np.float32)
+        mask = np.maximum(mask, gauss(held, FEATHER)[..., None])
     dungeon = (mask[..., 0] > 0.5) * 255
     # carry the painting from its paper's tone to the blank sheet's
     shifted = np.clip(P + (gauss(B, 60) - local), 0, 255)
@@ -77,6 +90,8 @@ def settle(slug, blank):
     # pale floors between walls belong to it, without the faint drift around
     solid = Image.fromarray(((d > FAR) * 255).astype(np.uint8))
     solid = solid.filter(ImageFilter.MaxFilter(13)).filter(ImageFilter.MinFilter(9)).filter(ImageFilter.GaussianBlur(2))
+    if slug in FILL:
+        solid = Image.fromarray(fill_holes(np.asarray(solid) > 127).astype(np.uint8) * 255)
     solid.save(os.path.join(ART, slug + "-mask.png"))
     print("%s: dungeon covers %.0f%% of the sheet" % (slug, 100 * (dungeon > 0).mean()))
 
