@@ -1108,28 +1108,28 @@ ns.Maps[2998] = {}
 do
 	local floor = { cols = 2, tile = 512, tiles = { DIR .. "excavation-site-wetlands-1-t1", DIR .. "excavation-site-wetlands-1-t2", DIR .. "excavation-site-wetlands-1-t3", DIR .. "excavation-site-wetlands-1-t4" }, areas = {}, count = 0 }
 	floor.decor = { mask = DIR .. "excavation-site-wetlands-1-decor", x = 0, y = 0, w = 1002, h = 668 }
-	floor.start = { mask = DIR .. "excavation-site-wetlands-1-start", x = 665, y = 129, w = 307, h = 352 }
+	floor.start = { mask = DIR .. "excavation-site-wetlands-1-start", x = 664, y = 129, w = 308, h = 352 }
 	floor.areas[key("Lost Marsh")] = { mask = DIR .. "excavation-site-wetlands-1-01", x = 422, y = 34, w = 505, h = 634 }
 	floor.areas[key("Lost Marsh")].n = 1
 	floor.areas["#1"] = floor.areas[key("Lost Marsh")]
 	floor.count = floor.count + 1
 	floor.areas[key("Saltspine")] = floor.areas[key("Lost Marsh")]
-	floor.areas[key("Stalker's Thicket")] = { mask = DIR .. "excavation-site-wetlands-1-02", x = 224, y = 276, w = 326, h = 392 }
+	floor.areas[key("Stalker's Thicket")] = { mask = DIR .. "excavation-site-wetlands-1-02", x = 224, y = 276, w = 410, h = 392 }
 	floor.areas[key("Stalker's Thicket")].n = 2
 	floor.areas["#2"] = floor.areas[key("Stalker's Thicket")]
 	floor.count = floor.count + 1
 	floor.areas[key("Shadetooth")] = floor.areas[key("Stalker's Thicket")]
-	floor.areas[key("Lost Dig Site")] = { mask = DIR .. "excavation-site-wetlands-1-03", x = 0, y = 183, w = 385, h = 485 }
+	floor.areas[key("Lost Dig Site")] = { mask = DIR .. "excavation-site-wetlands-1-03", x = 0, y = 0, w = 385, h = 668 }
 	floor.areas[key("Lost Dig Site")].n = 3
 	floor.areas["#3"] = floor.areas[key("Lost Dig Site")]
 	floor.count = floor.count + 1
 	floor.areas[key("Highland Horror")] = floor.areas[key("Lost Dig Site")]
-	floor.areas[key("Site of the Guardian")] = { mask = DIR .. "excavation-site-wetlands-1-04", x = 135, y = 0, w = 410, h = 343 }
+	floor.areas[key("Site of the Guardian")] = { mask = DIR .. "excavation-site-wetlands-1-04", x = 168, y = 0, w = 469, h = 343 }
 	floor.areas[key("Site of the Guardian")].n = 4
 	floor.areas["#4"] = floor.areas[key("Site of the Guardian")]
 	floor.count = floor.count + 1
 	floor.areas[key("Relic Guardian")] = floor.areas[key("Site of the Guardian")]
-	floor.bosses = { { name = "Saltspine", x = 516, y = 394 }, { name = "Shadetooth", x = 478, y = 424 }, { name = "Relic Guardian", x = 410, y = 170 }, { name = "Highland Horror", x = 228, y = 412 } }
+	floor.bosses = { { name = "Saltspine", x = 516, y = 394 }, { name = "Shadetooth", x = 478, y = 424 }, { name = "Relic Guardian", x = 410, y = 170 }, { name = "Highland Horror", x = 180, y = 440 } }
 	ns.Maps[2998][1] = floor
 end
 -- gnomeregan
