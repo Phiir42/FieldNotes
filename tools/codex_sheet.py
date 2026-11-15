@@ -28,7 +28,7 @@ ABOUT = {
     "ruins-of-lordaeron": ("the ruined walled capital of Lordaeron: streets and courtyards around a domed palace", "zul-farrak-1"),
     "kroldok-stronghold": ("an ogre stronghold of stone towers and walls winding up a hillside", "zul-farrak-1"),
     "the-shapers-terrace": ("a titan garden: plains, tar pits, crystal springs and rocky highlands", "zul-farrak-1"),
-    "excavation-site-wetlands": ("a marshy basin ringed by rocky hills: a pond with wooden docks, a dig site with bones and a square excavation, raptor thickets and a stone arena", "zul-farrak-1"),
+    "excavation-site-wetlands": ("a marshy valley between rocky hills: a pond with wooden docks, a winding stream valley, and a dig site with bones and a square excavation", "zul-farrak-1"),
 }
 PROMPT = """Generate one image with your image generation tool. Do not write code.
 
