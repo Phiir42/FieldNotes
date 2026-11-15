@@ -6,13 +6,14 @@
 # bosses as aliases.
 # PLACED IN GAME (in-game minimap screenshots matched against the instance's minimap):
 # the entrance, Saltspine (in the pond with the docks) and Shadetooth (at the pond's west
-# outlet, with the Thicket raptors), so the Thicket is the stream valley running west.
+# outlet, with the Thicket raptors), so the Thicket is the stream valley running west, and
+# the Highland Horror (on the south edge of the square dig at the valley's west end).
 # STILL A GUESS from the terrain and the encounter order: the Lost Dig Site (the square
 # dig with bones at the valley's west end) and the Site of the Guardian (the ruins with a
 # stone ring in the north).
 MAP = {'instance': 2998,
  'slug': 'excavation-site-wetlands',
- 'bosses': {'Saltspine': (1, 516, 394), 'Shadetooth': (1, 478, 424)},
+ 'bosses': {'Saltspine': (1, 516, 394), 'Shadetooth': (1, 478, 424), 'Highland Horror': (1, 242, 478)},
  'floors': [{'art': 'excavation-site-wetlands',
              'decor': [],
              'start': [(725, 290), (765, 305), (805, 320)],

@@ -1129,7 +1129,7 @@ do
 	floor.areas["#4"] = floor.areas[key("Site of the Guardian")]
 	floor.count = floor.count + 1
 	floor.areas[key("Relic Guardian")] = floor.areas[key("Site of the Guardian")]
-	floor.bosses = { { name = "Saltspine", x = 516, y = 394 }, { name = "Shadetooth", x = 478, y = 424 }, { name = "Relic Guardian", x = 470, y = 250 }, { name = "Highland Horror", x = 180, y = 440 } }
+	floor.bosses = { { name = "Saltspine", x = 516, y = 394 }, { name = "Shadetooth", x = 478, y = 424 }, { name = "Highland Horror", x = 242, y = 478 }, { name = "Relic Guardian", x = 470, y = 250 } }
 	ns.Maps[2998][1] = floor
 end
 -- gnomeregan
