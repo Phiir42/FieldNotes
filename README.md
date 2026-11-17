@@ -140,6 +140,9 @@ tools/defs/        one map definition per dungeon (see tools/defs/BRIEF.md)
 - `python tools/test_runs.py` replays real runs (`tools/data/runs.json`, taken
   from testers' saved journals) against the maps and fails if a sheet now
   uncovers at another moment than before.
+- `python tools/test_editor.py` checks that the map editor
+  (`python tools/map_editor.py`) saves a definition without losing its layout
+  or comments.
 - `python tools/package.py` builds `dist/FieldNotes-<version>.zip`.
 - `python tools/make_maps.py` and `python tools/make_abilities.py` rebuild the
   generated data. They need reference material that is not in this repository

@@ -89,3 +89,21 @@ order with `python tools/check_routes.py <slug>`.
 `python tools/check_map_names.py` lists areas none of whose names the game
 ever reports (not a sub-zone, boss or known creature): such an area stays
 blank. Give it a boss or creature alias.
+
+## Checking the bosses and quests
+
+`python tools/check_skulls.py` matches the skulls painted on the game's sheets
+and lists any boss marked a little beside one. Pin it on the skull with
+`"bosses": {"Name": (sheet, x, y)}` once its spawn is seen to be in the same
+room (the sheets are a later client's, and some skulls are for bosses that
+stand elsewhere in the old world); one that should stay where it is goes in
+the check's list of exceptions with the reason. A real run (the user's saved
+journal, `tools/replay_journal.py`) outranks both the spawn data and the
+painted skulls: Forever has moved some creatures.
+
+`python tools/check_quest_marks.py` lists quest targets with no spot on their
+dungeon's map; they get no quest mark.
+
+`"world"` on a floor names the uiMapID whose world bounds place spawns on it,
+where `"uimap"` (the art) is registered to another instance (Scholomance's
+sheets are retail's remade Scholomance, drawn the same as classic's).
