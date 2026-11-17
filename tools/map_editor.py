@@ -10,7 +10,7 @@ drag its mark) to say where it stands. Save writes tools/defs/<slug>.py;
 "Build and install" then rebuilds FieldNotes/Maps.lua and its textures and
 copies the addon into the game's AddOns folder.
 """
-import glob, http.server, importlib.util, json, os, pprint, re, shutil, subprocess, sys, threading, urllib.parse, webbrowser
+import ast, glob, http.server, importlib.util, json, os, re, shutil, subprocess, sys, threading, urllib.parse, webbrowser
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEFS = os.path.join(ROOT, "tools", "defs")
@@ -84,25 +84,104 @@ def map_info(slug):
     return {"slug": slug, "instance": MAP["instance"], "floors": floors}
 
 
+def seeds(pts):
+    return "[%s]" % ", ".join("(%d, %d)" % (int(x), int(y)) for x, y in pts)
+
+
+def patched(text, data):
+    """The definition's source with the edited values written over the old
+    ones in place, so its layout and comments stay as they are."""
+    text = text.lstrip("﻿")
+    tree = ast.parse(text)
+    lines = text.splitlines(keepends=True)
+    # ast counts columns in bytes of UTF-8: positions are worked out, and the
+    # text spliced, in bytes
+    starts = [0]
+    for line in lines:
+        starts.append(starts[-1] + len(line.encode("utf-8")))
+
+    def at(node, end=False):
+        return starts[(node.end_lineno if end else node.lineno) - 1] + (node.end_col_offset if end else node.col_offset)
+
+    edits = []  # (start, end, new text)
+
+    def entries(d):
+        return {k.value: v for k, v in zip(d.keys, d.values) if isinstance(k, ast.Constant)}
+
+    def indent_of(node):
+        line = lines[node.lineno - 1]
+        return line[:len(line) - len(line.lstrip())]
+
+    MAP = next(n.value for n in tree.body if isinstance(n, ast.Assign) and n.targets[0].id == "MAP")
+    top = entries(MAP)
+    # A definition may add seeds in code after its literal (Blackrock Spire
+    # spreads some over bare ground): those are left out of what is written,
+    # or the code would add them a second time.
+    run = {}
+    exec(compile(text, "<definition>", "exec"), run)
+    for f, (floor, edit) in enumerate(zip(top["floors"].elts, data["floors"])):
+        made = run["MAP"]["floors"][f]["areas"]
+        for name, node in entries(entries(floor)["areas"]).items():
+            try:
+                written = [tuple(p) for p in ast.literal_eval(node)]
+            except ValueError:
+                continue
+            extra = {tuple(p) for p in made.get(name, []) if tuple(p) not in written}
+            if name in edit["areas"]:
+                edit["areas"][name] = [p for p in edit["areas"][name] if tuple(p) not in extra]
+    for floor, edit in zip(top["floors"].elts, data["floors"]):
+        fields = entries(floor)
+        if "start" in fields:
+            node = fields["start"]
+            edits.append((at(node), at(node, True), seeds(edit["start"])))
+        elif edit["start"]:
+            first = floor.keys[0]
+            edits.append((at(first), at(first), '"start": %s,\n%s' % (seeds(edit["start"]), indent_of(first))))
+        areas = fields["areas"]
+        old = entries(areas)
+        if set(old) == set(edit["areas"]):
+            for name, node in old.items():
+                edits.append((at(node), at(node, True), seeds(edit["areas"][name])))
+        else:  # areas named anew: the whole block is written again
+            pad = indent_of(areas.keys[0]) if areas.keys else "    "
+            body = "".join("%s%r: %s,\n" % (pad, n, seeds(p)) for n, p in edit["areas"].items())
+            edits.append((at(areas), at(areas, True), "{\n" + body + pad[:-4] + "}"))
+    if data.get("moved"):
+        moved = {n: "(%d, %d, %d)" % tuple(int(v) for v in pin) for n, pin in data["moved"].items()}
+        if "bosses" in top:
+            pins = top["bosses"]
+            old = entries(pins)
+            for name, node in old.items():
+                if name in moved:
+                    edits.append((at(node), at(node, True), moved.pop(name)))
+            if moved:
+                last = pins.values[-1] if pins.values else None
+                pad = indent_of(pins.keys[-1]) if pins.keys else "        "
+                add = "".join(",\n%s%r: %s" % (pad, n, v) for n, v in moved.items())
+                if last is not None:
+                    edits.append((at(last, True), at(last, True), add))
+                else:
+                    edits.append((at(pins), at(pins, True), "{" + add.lstrip(",\n").strip() + "}"))
+        else:
+            key = MAP.keys[list(top).index("instance")]
+            value = MAP.values[list(top).index("instance")]
+            pad = indent_of(key)
+            body = ", ".join("%r: %s" % (n, v) for n, v in moved.items())
+            edits.append((at(value, True) + 1, at(value, True) + 1, "\n%s'bosses': {%s}," % (pad, body)))
+    raw = text.encode("utf-8")
+    for start, end, new in sorted(edits, reverse=True):
+        raw = raw[:start] + new.encode("utf-8") + raw[end:]
+    text = raw.decode("utf-8")
+    ast.parse(text)  # still a definition
+    return text
+
+
 def save(data):
     slug = data["slug"]
     path = def_path(slug)
-    text = open(path, encoding="utf-8").read()
-    head = text[:text.index("MAP = ")]
-    MAP = load_def(slug)
-    for floor, edit in zip(MAP["floors"], data["floors"]):
-        if edit["start"]:
-            floor["start"] = [tuple(p) for p in edit["start"]]
-        else:
-            floor.pop("start", None)
-        floor["areas"] = {name: [tuple(p) for p in pts] for name, pts in edit["areas"].items()}
-    if data.get("moved"):
-        pins = dict(MAP.get("bosses", {}))
-        for name, (f, x, y) in data["moved"].items():
-            pins[name] = (int(f), int(x), int(y))
-        MAP["bosses"] = pins
+    text = patched(open(path, encoding="utf-8").read(), data)
     with open(path, "w", encoding="utf-8", newline="\n") as fh:
-        fh.write(head + "MAP = " + pprint.pformat(MAP, width=110, sort_dicts=False) + "\n")
+        fh.write(text)
     return "Saved " + os.path.relpath(path, ROOT)
 
 
