@@ -49,6 +49,8 @@ MAP = {
                 "Razorfen Totemic": "Overlord Ramtusk",
                 "Razorfen Beast Trainer": "Overlord Ramtusk",
                 "Quilguard Champion": "Overlord Ramtusk",
+                # (Forever's own; a real run met it between the Champion and Ramtusk)
+                "Razorfen Earthbreaker": "Aggem Thorncurse",
                 "Rotting Agam'ar": "Roogug",
                 "Raging Agam'ar": "Roogug",
                 "Razorfen Beastmaster": "Agathelos the Raging",

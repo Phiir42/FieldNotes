@@ -1136,21 +1136,37 @@ do
 	floor.areas[key("Lost Marsh")].n = 1
 	floor.areas["#1"] = floor.areas[key("Lost Marsh")]
 	floor.count = floor.count + 1
+	floor.areas[key("Highland Snapper")] = floor.areas[key("Lost Marsh")]
+	floor.areas[key("Highland Tortoise")] = floor.areas[key("Lost Marsh")]
+	floor.areas[key("Elder Crocolisk")] = floor.areas[key("Lost Marsh")]
+	floor.areas[key("Young Crocolisk")] = floor.areas[key("Lost Marsh")]
+	floor.areas[key("Marsh Skulker")] = floor.areas[key("Lost Marsh")]
+	floor.areas[key("Marsh Crocolisk")] = floor.areas[key("Lost Marsh")]
 	floor.areas[key("Saltspine")] = floor.areas[key("Lost Marsh")]
 	floor.areas[key("Stalker's Thicket")] = { mask = DIR .. "excavation-site-wetlands-1-02", x = 165, y = 156, w = 338, h = 306 }
 	floor.areas[key("Stalker's Thicket")].n = 2
 	floor.areas["#2"] = floor.areas[key("Stalker's Thicket")]
 	floor.count = floor.count + 1
+	floor.areas[key("Thicket Hunter")] = floor.areas[key("Stalker's Thicket")]
+	floor.areas[key("Thicket Lurker")] = floor.areas[key("Stalker's Thicket")]
+	floor.areas[key("Young Riptooth")] = floor.areas[key("Stalker's Thicket")]
+	floor.areas[key("Thicket Matriarch")] = floor.areas[key("Stalker's Thicket")]
 	floor.areas[key("Shadetooth")] = floor.areas[key("Stalker's Thicket")]
 	floor.areas[key("Lost Dig Site")] = { mask = DIR .. "excavation-site-wetlands-1-03", x = 0, y = 151, w = 252, h = 350 }
 	floor.areas[key("Lost Dig Site")].n = 3
 	floor.areas["#3"] = floor.areas[key("Lost Dig Site")]
 	floor.count = floor.count + 1
+	floor.areas[key("Dragonmaw Warder")] = floor.areas[key("Lost Dig Site")]
+	floor.areas[key("Dragonmaw Saboteur")] = floor.areas[key("Lost Dig Site")]
+	floor.areas[key("Dragonmaw Thaumaturgist")] = floor.areas[key("Lost Dig Site")]
+	floor.areas[key("Thicket Stalker")] = floor.areas[key("Lost Dig Site")]
+	floor.areas[key("Highland Lurker")] = floor.areas[key("Lost Dig Site")]
 	floor.areas[key("Highland Horror")] = floor.areas[key("Lost Dig Site")]
 	floor.areas[key("Site of the Guardian")] = { mask = DIR .. "excavation-site-wetlands-1-04", x = 0, y = 0, w = 1002, h = 668 }
 	floor.areas[key("Site of the Guardian")].n = 4
 	floor.areas["#4"] = floor.areas[key("Site of the Guardian")]
 	floor.count = floor.count + 1
+	floor.areas[key("Highland Spider")] = floor.areas[key("Site of the Guardian")]
 	floor.areas[key("Relic Guardian")] = floor.areas[key("Site of the Guardian")]
 	floor.bosses = { { name = "Saltspine", x = 531, y = 313 }, { name = "Shadetooth", x = 402, y = 339 }, { name = "Relic Guardian", x = 367, y = 483 }, { name = "Highland Horror", x = 128, y = 275 } }
 	ns.Maps[2998][1] = floor
@@ -2142,6 +2158,7 @@ do
 	floor.areas["#3"] = floor.areas[key("Aggem Thorncurse")]
 	floor.count = floor.count + 1
 	floor.areas[key("Razorfen Quilguard")] = floor.areas[key("Aggem Thorncurse")]
+	floor.areas[key("Razorfen Earthbreaker")] = floor.areas[key("Aggem Thorncurse")]
 	floor.areas[key("Death Speaker Jargba")] = { mask = DIR .. "razorfen-kraul-1-04", x = 337, y = 167, w = 255, h = 424 }
 	floor.areas[key("Death Speaker Jargba")].n = 4
 	floor.areas["#4"] = floor.areas[key("Death Speaker Jargba")]
