@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.2.0-beta.11
+
+- Bosses on the maps stand on the skulls painted there where they had been
+  a little beside them: Razorfen Kraul (Aggem Thorncurse, Agathelos the
+  Raging), Blackfathom Deeps (Lady Sarevess, Gelihast, Old Serra'kis),
+  Ragefire Chasm (Jergosh), Razorfen Downs (Amnennar), Scarlet Monastery
+  (Thalnos, Loksey), the Stockade (Targorr), Stratholme (Baron Rivendare)
+  and Zul'Gurub (Hakkar).
+- Bosses retail's journal put somewhere else than they stand in the old
+  world are marked where they stand: Kresh in the stream of the Wailing
+  Caverns (meeting him now opens that stretch of the map), Houndmaster Grebmar by the Ring of Law and Phalanx on the road
+  outside the Grim Guzzler in Blackrock Depths, Hydromancer Velratha at the
+  pool and Theka the Martyr on the path in Zul'Farrak.
+
 ## 0.2.0-beta.10
 
 - Excavation Site: the map was a sheet of the whole Wetlands; it now shows
