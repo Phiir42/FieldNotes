@@ -2890,13 +2890,13 @@ do
 	floor.areas[key("Grand Crusader Dathrohan")] = floor.areas[key("The Crimson Throne")]
 	floor.areas[key("Balnazzar")] = floor.areas[key("The Crimson Throne")]
 	floor.areas[key("The Unforgiven")] = floor.areas["#4"]
-	floor.areas[key("Hearthsinger Forresten")] = floor.areas["#1"]
+	floor.areas[key("Hearthsinger Forresten")] = floor.areas["#2"]
 	floor.areas[key("Timmy the Cruel")] = floor.areas["#2"]
 	floor.areas[key("Postmaster Malown")] = floor.areas["#1"]
 	floor.areas[key("Cannon Master Willey")] = floor.areas["#8"]
 	floor.areas[key("Malor the Zealous")] = floor.areas["#6"]
 	floor.areas[key("Skul")] = floor.areas["#4"]
-	floor.bosses = { { name = "The Unforgiven", x = 736, y = 136 }, { name = "Hearthsinger Forresten", x = 606, y = 218 }, { name = "Timmy the Cruel", x = 496, y = 120 }, { name = "Balnazzar", x = 205, y = 546 }, { name = "Postmaster Malown", x = 559, y = 457 }, { name = "Cannon Master Willey", x = 36, y = 335 }, { name = "Malor the Zealous", x = 305, y = 267 }, { name = "Archivist Galford", x = 272, y = 502 }, { name = "Crimson Hammersmith", x = 255, y = 265 }, { name = "Skul", x = 816, y = 292 }, { name = "Stonespine", x = 830, y = 120 } }
+	floor.bosses = { { name = "The Unforgiven", x = 736, y = 136 }, { name = "Hearthsinger Forresten", x = 599, y = 178 }, { name = "Timmy the Cruel", x = 496, y = 120 }, { name = "Balnazzar", x = 205, y = 546 }, { name = "Postmaster Malown", x = 559, y = 457 }, { name = "Cannon Master Willey", x = 36, y = 335 }, { name = "Malor the Zealous", x = 305, y = 267 }, { name = "Archivist Galford", x = 272, y = 502 }, { name = "Crimson Hammersmith", x = 255, y = 265 }, { name = "Skul", x = 816, y = 292 }, { name = "Stonespine", x = 830, y = 120 } }
 	floor.places = { [key("Archivist Galford")] = { { 272, 502 } }, [key("Cannon Master Willey")] = { { 36, 335 } }, [key("Crimson Gallant")] = { { 239, 458 } }, [key("Crimson Guardsman")] = { { 273, 295 } }, [key("Ghostly Citizen")] = { { 737, 391 } }, [key("Hearthsinger Forresten")] = { { 849, 303 }, { 853, 183 }, { 641, 165 }, { 599, 178 } }, [key("Jarien")] = { { 204, 548 } }, [key("Mangled Cadaver")] = { { 644, 488 } }, [key("Patchwork Horror")] = { { 828, 214 }, { 599, 354 }, { 602, 213 } }, [key("Ravaged Cadaver")] = { { 677, 171 } }, [key("Scarlet Archive")] = { { 276, 500 } }, [key("Sothos")] = { { 204, 548 } }, [key("Spectral Citizen")] = { { 623, 397 } }, [key("Unfinished Painting")] = { { 275, 509 } } }
 	ns.Maps[329][1] = floor
 end

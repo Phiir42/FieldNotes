@@ -54,9 +54,20 @@ def main():
     for name in ("Maps.lua", "Quests.lua"):
         load(io.open(os.path.join(ROOT, "FieldNotes", name), encoding="utf-8").read(), "@" + name)("FieldNotes", ns)
     rows = list(load(LUA, "@check")(ns).values())
+    # Forever's own dungeons (drawn on sheets of our own, "art") have no classic
+    # data behind them: their creatures are placed from real runs only.
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import make_maps
+    forever = {d["instance"] for d in make_maps.definitions() if any("art" in f for f in d["floors"])}
+    waiting = [r for r in rows if int(r.split("\t")[0]) in forever]
+    rows = [r for r in rows if r not in waiting]
     for row in rows:
         print("  ".join(row.split("\t")))
-    print("%d quest target(s) with no spot on the map" % len(rows))
+    if "-v" in sys.argv:
+        for row in waiting:
+            print("  (waits on a run)  " + "  ".join(row.split("\t")))
+    print("%d quest target(s) with no spot on the map, and %d in Forever's own dungeons that wait on a"
+          " real run (-v lists them)" % (len(rows), len(waiting)))
     sys.exit(1 if rows else 0)
 
 

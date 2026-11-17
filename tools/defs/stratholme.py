@@ -1,7 +1,11 @@
 MAP = {
     "instance": 329,
     # on the skulls painted on the sheet, which agree with where the classic data puts them
-    "bosses": {"Baron Rivendare": (2, 391, 136)},
+    "bosses": {"Baron Rivendare": (2, 391, 136),
+               # turns up at one of four spots (classic data); retail's mark was none of
+               # them: the nearest, the first the data lists (where you stood as he fell
+               # takes over if he is met elsewhere, see BossSpot in Journal.lua)
+               "Hearthsinger Forresten": (1, 599, 178)},
     "slug": "stratholme",
     "floors": [
         {

@@ -102,7 +102,12 @@ journal, `tools/replay_journal.py`) outranks both the spawn data and the
 painted skulls: Forever has moved some creatures.
 
 `python tools/check_quest_marks.py` lists quest targets with no spot on their
-dungeon's map; they get no quest mark.
+dungeon's map; they get no quest mark (those in Forever's own dungeons wait on
+a real run, and are only listed with -v). A boss summoned for a quest is
+placed at its summoning trigger ("<Name> Trigger" in the classic data).
+
+`python tools/check_boss_marks.py` lists boss fights with no mark on the map,
+beyond the ones known to have none.
 
 `"world"` on a floor names the uiMapID whose world bounds place spawns on it,
 where `"uimap"` (the art) is registered to another instance (Scholomance's

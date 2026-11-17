@@ -36,6 +36,13 @@ def reportable():
     return names
 
 
+# Areas that stay blank on purpose, with why.
+BLANK = {
+    "Lower Observatory": "Shadowfang Keep's retail sheet: no classic boss stands there, and the old keep has no such hall",
+    "Upper Observatory": "as the Lower Observatory",
+}
+
+
 def main():
     known = reportable()
     bad = 0
@@ -49,13 +56,18 @@ def main():
             for area in floor.get("areas", {}):
                 names = [area] + [a for a, to in aliases.items() if to == area]
                 if not any(m.key(n) in known for n in names):
+                    if area in BLANK:
+                        if "-v" in sys.argv:
+                            print("%s: %r is blank on purpose: %s" % (sheet, area, BLANK[area]))
+                        continue
                     bad += 1
                     print("%s: %r has no name the game reports" % (sheet, area))
             if "--aliases" in sys.argv:
                 for a in aliases:
                     if m.key(a) not in known:
                         print("%s: alias %r is never reported" % (sheet, a))
-    print(bad, "areas nothing uncovers")
+    print(bad, "areas nothing uncovers (and %d blank on purpose: -v lists them)" % len(BLANK))
+    sys.exit(1 if bad else 0)
 
 
 if __name__ == "__main__":
