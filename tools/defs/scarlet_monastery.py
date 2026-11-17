@@ -1,5 +1,7 @@
 MAP = {
     "instance": 189,
+    # on the skulls painted on the sheet, which agree with where the classic data puts them
+    "bosses": {"Bloodmage Thalnos": (1, 243, 375), "Houndmaster Loksey": (2, 294, 563)},
     "slug": "scarlet-monastery",
     "path": "sheets",  # each sheet is one road of its own, areas in the order you pass through them
     "creatures": "auto",  # file creatures by their spawn points (see make_maps.creature_rooms)

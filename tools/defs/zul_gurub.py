@@ -1,5 +1,7 @@
 MAP = {
     "instance": 309,
+    # on the skulls painted on the sheet, which agree with where the classic data puts them
+    "bosses": {"Hakkar": (1, 499, 265)},
     "slug": "zul-gurub",
     "floors": [
         {

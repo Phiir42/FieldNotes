@@ -9,7 +9,9 @@ MAP = {
     "in_order": True,
     # Baron Aquanis stands nowhere: he rises where the Fathom Core is taken from
     # the Fathom Stone (the stone's own spot on the second sheet).
-    "bosses": {"Baron Aquanis": (2, 415, 504)},
+    # Sarevess, Gelihast and Old Serra'kis on the skulls painted on the sheets
+    "bosses": {"Baron Aquanis": (2, 415, 504), "Lady Sarevess": (1, 113, 265), "Gelihast": (1, 544, 380),
+               "Geilhast": "Gelihast", "Old Serra'kis": (3, 589, 203)},
     "floors": [
         {
             "ref": "blackfathom-deeps-1",

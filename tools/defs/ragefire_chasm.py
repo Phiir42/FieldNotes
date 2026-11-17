@@ -1,5 +1,7 @@
 MAP = {
     "instance": 389,
+    # on the skulls painted on the sheet, which agree with where the classic data puts them
+    "bosses": {"Jergosh the Invoker": (1, 343, 546)},
     "slug": "ragefire-chasm",
     "path": True,  # one road: areas are listed in the order you pass through them
     "floors": [

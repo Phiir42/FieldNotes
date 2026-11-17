@@ -1,5 +1,7 @@
 MAP = {
     "instance": 129,
+    # on the skulls painted on the sheet, which agree with where the classic data puts them
+    "bosses": {"Amnennar the Coldbringer": (1, 444, 403)},
     "slug": "razorfen-downs",
     "path": True,  # one road: areas are listed in the order you pass through them
     "floors": [
