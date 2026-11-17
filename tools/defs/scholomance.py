@@ -8,11 +8,21 @@ MAP = {
         "Ras Frostwhisperer": (4, 405, 540),
         "Kormok": (4, 405, 470),
         "Darkmaster Gandling": (4, 670, 195),
+        # on the skulls of the rooms the classic data puts them in (at the rooms' far ends)
+        "Instructor Malicia": (3, 727, 470),
+        "Lorekeeper Polkelt": (3, 724, 148),
+        "Doctor Theolen Krastinov": (3, 889, 307),
+        "Lady Illucia Barov": (4, 673, 101),
+        "Lord Alexei Barov": (4, 793, 199),
+        "The Ravenian": (4, 675, 323),
     },
+    # (the sheets are retail's art for the remade Scholomance, the same drawing as
+    # classic's 306-309, whose world bounds place what stands here)
     "floors": [
         {
             "ref": "scholomance-1",
             "uimap": 476,
+            "world": 306,
             "decor": [(235, 35, 810, 128)],
             "start": [(388, 435), (420, 365), (500, 365), (570, 365), (500, 300), (500, 430), (300, 320), (300, 420)],
             "areas": {
@@ -27,6 +37,7 @@ MAP = {
         {
             "ref": "scholomance-2",
             "uimap": 477,
+            "world": 307,
             "decor": [(455, 565, 960, 650), (650, 110, 960, 500)],
             "areas": {
                 "Chamber of Summoning": [(430, 88), (480, 170), (530, 170), (430, 170), (600, 172), (480, 215)],
@@ -57,6 +68,7 @@ MAP = {
         {
             "ref": "scholomance-3",
             "uimap": 478,
+            "world": 308,
             "decor": [(150, 10, 645, 64), (150, 35, 240, 95), (575, 35, 700, 84)],
             "areas": {
                 "Jandice Barov": [(400, 135), (310, 135), (490, 135), (545, 97), (400, 80)],
@@ -86,6 +98,7 @@ MAP = {
         {
             "ref": "scholomance-4",
             "uimap": 479,
+            "world": 309,
             "decor": [(85, 12, 640, 110), (40, 160, 250, 560)],
             "areas": {
                 "Headmaster's Study": [(675, 200), (650, 170), (700, 230)],

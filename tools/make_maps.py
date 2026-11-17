@@ -12,6 +12,9 @@ instance map ID (8th return of GetInstanceInfo), "slug": file name stem,
 image in refs/ (tools/grid.py draws one with a coordinate grid). A floor has:
   ref      the reference image name in refs/ (without .png)
   uimap    the floor's retail uiMapID, to look up its map tile file IDs
+  world    where uimap is registered to another instance than this one (retail's
+           remade Scholomance): the uiMapID of the same drawing for this
+           instance, whose world bounds place spawns and where you stand
   art      instead of ref and uimap, for a sheet the game does not have: the
            name of a drawn sheet in tools/art/ (without .png, 1002x668, drawn
            on the same parchment). Its art is shipped with the addon.
@@ -302,7 +305,7 @@ def boss_points(dungeon, splits):
         if spot:
             hits = {}
             for f, floor in enumerate(floors):
-                b = bounds.get((floor.get("uimap"), inst))
+                b = bounds.get((floor.get("world", floor.get("uimap")), inst))
                 if b:
                     x = (b[3] - spot[1]) / (b[3] - b[1]) * W
                     y = (b[2] - spot[0]) / (b[2] - b[0]) * H
@@ -337,7 +340,7 @@ def boss_points(dungeon, splits):
     for f, floor in enumerate(floors):
         if not floor.get("hub"):
             continue
-        b = bounds.get((floor.get("uimap"), inst))
+        b = bounds.get((floor.get("world", floor.get("uimap")), inst))
         for name in names.get(inst, []):
             if any(mark[0] == name for mark in out[f]) or fixed.get(name, 0) is None:
                 continue
@@ -472,7 +475,7 @@ def creature_rooms(dungeon, splits, per_sheet=False):
         for _, wx, wy, z in pts:
             mine = []
             for f, floor in enumerate(floors):
-                b = bounds.get((floor.get("uimap"), inst))
+                b = bounds.get((floor.get("world", floor.get("uimap")), inst))
                 if not b:
                     continue
                 x = round((b[3] - wy) / (b[3] - b[1]) * W)
@@ -576,7 +579,7 @@ def quest_places(dungeon, splits):
             near = None  # a point just off the drawing (a ledge, a pool): the sheet whose drawing is closest
             hit = False
             for f, floor in enumerate(floors):
-                b = bounds.get((floor.get("uimap"), inst))
+                b = bounds.get((floor.get("world", floor.get("uimap")), inst))
                 if not b:
                     continue
                 x = round((b[3] - wy) / (b[3] - b[1]) * W)
@@ -666,7 +669,7 @@ def main():
                 out.append("\tlocal floor = { cols = %d, tiles = { %s }, areas = {}, count = 0 }"
                            % (cols, ", ".join(map(str, ids))))
                 # the game's map of this sheet: where you stood, read in game, is placed by it
-                out.append("\tfloor.uimap = %d" % floor["uimap"])
+                out.append("\tfloor.uimap = %d" % floor.get("world", floor["uimap"]))
             n, seen, numbers = 0, [], {}
             for name, alpha in pieces:
                 special = name in ("decor", "start")

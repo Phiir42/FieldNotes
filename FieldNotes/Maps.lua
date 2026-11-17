@@ -2466,7 +2466,7 @@ end
 ns.Maps[289] = {}
 do
 	local floor = { cols = 4, tiles = { 448178, 448182, 448183, 448184, 448185, 448186, 448187, 448188, 448189, 448179, 448180, 448181 }, areas = {}, count = 0 }
-	floor.uimap = 476
+	floor.uimap = 306
 	floor.decor = { mask = DIR .. "scholomance-1-decor", x = 224, y = 16, w = 590, h = 120 }
 	floor.start = { mask = DIR .. "scholomance-1-start", x = 196, y = 242, w = 456, h = 259 }
 	floor.areas[key("The Reliquary")] = { mask = DIR .. "scholomance-1-01", x = 550, y = 94, w = 345, h = 439 }
@@ -2476,11 +2476,12 @@ do
 	floor.areas[key("Risen Guard")] = floor.areas[key("The Reliquary")]
 	floor.areas[key("Scholomance Neophyte")] = floor.areas[key("The Reliquary")]
 	floor.areas[key("Scholomance Acolyte")] = floor.areas[key("The Reliquary")]
+	floor.places = { [key("The Deed to Southshore")] = { { 854, 295 } } }
 	ns.Maps[289][1] = floor
 end
 do
 	local floor = { cols = 4, tiles = { 448190, 448194, 448195, 448196, 448197, 448198, 448199, 448200, 448201, 448191, 448192, 448193 }, areas = {}, count = 0 }
-	floor.uimap = 477
+	floor.uimap = 307
 	floor.decor = { mask = DIR .. "scholomance-2-decor", x = 451, y = 76, w = 538, h = 586 }
 	floor.areas[key("Chamber of Summoning")] = { mask = DIR .. "scholomance-2-01", x = 334, y = 29, w = 332, h = 251 }
 	floor.areas[key("Chamber of Summoning")].n = 1
@@ -2519,12 +2520,13 @@ do
 	floor.areas[key("Scholomance Handler")] = floor.areas[key("The Viewing Room")]
 	floor.areas[key("Plagued Hatchling")] = floor.areas[key("The Viewing Room")]
 	floor.areas[key("Kirtonos")] = floor.areas["#2"]
-	floor.bosses = { { name = "Kirtonos", x = 497, y = 60 }, { name = "Marduk Blackpool", x = 505, y = 490 }, { name = "Rattlegore", x = 330, y = 530 }, { name = "Vectus", x = 505, y = 490 } }
+	floor.bosses = { { name = "Kirtonos", x = 497, y = 60 }, { name = "Marduk Blackpool", x = 444, y = 426 }, { name = "Rattlegore", x = 318, y = 457 }, { name = "Vectus", x = 483, y = 442 } }
+	floor.places = { [key("Plagued Hatchling")] = { { 330, 455 } }, [key("Rattlegore")] = { { 318, 457 } }, [key("Risen Construct")] = { { 350, 436 } }, [key("The Deed to Tarren Mill")] = { { 328, 370 } }, [key("Vectus")] = { { 483, 442 } } }
 	ns.Maps[289][2] = floor
 end
 do
 	local floor = { cols = 4, tiles = { 448202, 448206, 448207, 448208, 448209, 448210, 448211, 448212, 448213, 448203, 448204, 448205 }, areas = {}, count = 0 }
-	floor.uimap = 478
+	floor.uimap = 308
 	floor.decor = { mask = DIR .. "scholomance-3-decor", x = 137, y = 1, w = 567, h = 368 }
 	floor.areas[key("Jandice Barov")] = { mask = DIR .. "scholomance-3-01", x = 151, y = 0, w = 499, h = 231 }
 	floor.areas[key("Jandice Barov")].n = 1
@@ -2564,12 +2566,15 @@ do
 	floor.count = floor.count + 1
 	floor.areas[key("Lorekeeper Polkelt")] = floor.areas[key("The Coven")]
 	floor.areas[key("Diseased Ghoul")] = floor.areas[key("The Coven")]
-	floor.bosses = { { name = "Doctor Theolen Krastinov", x = 880, y = 305 }, { name = "Instructor Malicia", x = 720, y = 150 }, { name = "Jandice Barov", x = 400, y = 135 }, { name = "Lorekeeper Polkelt", x = 725, y = 470 } }
+	floor.areas[key("Instructor Malicia")] = floor.areas["#6"]
+	floor.areas[key("Lorekeeper Polkelt")] = floor.areas["#4"]
+	floor.bosses = { { name = "Doctor Theolen Krastinov", x = 889, y = 307 }, { name = "Instructor Malicia", x = 727, y = 470 }, { name = "Lorekeeper Polkelt", x = 724, y = 148 }, { name = "Jandice Barov", x = 544, y = 97 } }
+	floor.places = { [key("Doctor Theolen Krastinov")] = { { 957, 307 } }, [key("Instructor Malicia")] = { { 729, 540 } }, [key("Jandice Barov")] = { { 544, 97 } }, [key("Lady Illucia Barov")] = { { 722, 102 } }, [key("Remains of Eva Sarkhoff")] = { { 905, 271 } }, [key("Remains of Lucien Sarkhoff")] = { { 922, 348 } }, [key("Risen Bonewarder")] = { { 717, 146 }, { 724, 197 } }, [key("The Deed to Caer Darrow")] = { { 946, 299 } } }
 	ns.Maps[289][3] = floor
 end
 do
 	local floor = { cols = 4, tiles = { 448214, 448218, 448219, 448220, 448221, 448222, 448223, 448224, 448225, 448215, 448216, 448217 }, areas = {}, count = 0 }
-	floor.uimap = 479
+	floor.uimap = 309
 	floor.decor = { mask = DIR .. "scholomance-4-decor", x = 34, y = 8, w = 610, h = 552 }
 	floor.areas[key("Headmaster's Study")] = { mask = DIR .. "scholomance-4-01", x = 540, y = 94, w = 223, h = 192 }
 	floor.areas[key("Headmaster's Study")].n = 1
@@ -2606,7 +2611,8 @@ do
 	floor.areas[key("Splintered Skeleton")] = floor.areas[key("The Laboratory")]
 	floor.areas[key("Ras Frostwhisperer")] = floor.areas["#5"]
 	floor.areas[key("Kormok")] = floor.areas["#5"]
-	floor.bosses = { { name = "Darkmaster Gandling", x = 670, y = 195 }, { name = "Ras Frostwhisperer", x = 405, y = 540 }, { name = "Kormok", x = 405, y = 470 }, { name = "Lady Illucia Barov", x = 672, y = 100 }, { name = "Lord Alexei Barov", x = 795, y = 198 }, { name = "The Ravenian", x = 675, y = 320 } }
+	floor.bosses = { { name = "Darkmaster Gandling", x = 670, y = 195 }, { name = "Lady Illucia Barov", x = 673, y = 101 }, { name = "Lord Alexei Barov", x = 793, y = 199 }, { name = "Ras Frostwhisperer", x = 405, y = 540 }, { name = "The Ravenian", x = 675, y = 323 }, { name = "Kormok", x = 405, y = 470 } }
+	floor.places = { [key("Frostwhisper's Embalming Fluid")] = { { 438, 576 } }, [key("Ras Frostwhisper")] = { { 407, 590 } }, [key("The Deed to Brill")] = { { 374, 574 } } }
 	ns.Maps[289][4] = floor
 end
 -- shadowfang-keep
