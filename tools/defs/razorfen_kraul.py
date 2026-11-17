@@ -3,7 +3,10 @@ MAP = {
     "slug": "razorfen-kraul",
     "path": True,  # one road: areas are listed in the order you pass through them
     # on the skulls painted on the sheet (the spawn data puts them a little beside)
-    "bosses": {"Aggem Thorncurse": (1, 807, 346), "Agathelos the Raging": (1, 79, 455)},
+    "bosses": {"Aggem Thorncurse": (1, 807, 346), "Agathelos the Raging": (1, 79, 455),
+               # where the classic data puts him (retail has him by Jargba); a real run met him
+               # after Ramtusk and before the bats, as here
+               "Roogug": (1, 649, 281)},
     "floors": [
         {
             "ref": "razorfen-kraul-1",
@@ -27,11 +30,15 @@ MAP = {
                 "Razorfen Defender": "Roogug",
                 "Razorfen Servitor": "Roogug",
                 "Razorfen Quilguard": "Aggem Thorncurse",
-                "Razorfen Warden": "Aggem Thorncurse",
-                "Death's Head Priest": "Aggem Thorncurse",
-                "Agam'ar": "Aggem Thorncurse",
+                # met on a real run half an hour before Jargba, though the classic data has the
+                # priests out west by Charlga: Forever has moved them
+                "Razorfen Warden": "Roogug",
+                "Death's Head Priest": "Roogug",
+                # the boars roam the whole warren; a real run met them two minutes in,
+                # on the edge of the first stretch
+                "Agam'ar": "Roogug",
                 "Death's Head Sage": "Death Speaker Jargba",
-                "Death's Head Seer": "Death Speaker Jargba",
+                "Death's Head Seer": "Roogug",
                 "Razorfen Handler": "Death Speaker Jargba",
                 "Tamed Hyena": "Death Speaker Jargba",
                 "Ward Guardian": "Death Speaker Jargba",
@@ -42,10 +49,10 @@ MAP = {
                 "Razorfen Totemic": "Overlord Ramtusk",
                 "Razorfen Beast Trainer": "Overlord Ramtusk",
                 "Quilguard Champion": "Overlord Ramtusk",
-                "Rotting Agam'ar": "Agathelos the Raging",
-                "Raging Agam'ar": "Agathelos the Raging",
+                "Rotting Agam'ar": "Roogug",
+                "Raging Agam'ar": "Roogug",
                 "Razorfen Beastmaster": "Agathelos the Raging",
-                "Blood of Agamaggan": "Agathelos the Raging",
+                "Blood of Agamaggan": "Roogug",
                 "Earthcaller Halmgar": "Agathelos the Raging",
                 "Kraul Bat": "Blind Hunter",
                 "Greater Kraul Bat": "Blind Hunter",
