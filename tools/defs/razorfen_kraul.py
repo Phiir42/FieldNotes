@@ -2,6 +2,8 @@ MAP = {
     "instance": 47,
     "slug": "razorfen-kraul",
     "path": True,  # one road: areas are listed in the order you pass through them
+    # on the skulls painted on the sheet (the spawn data puts them a little beside)
+    "bosses": {"Aggem Thorncurse": (1, 807, 346), "Agathelos the Raging": (1, 79, 455)},
     "floors": [
         {
             "ref": "razorfen-kraul-1",

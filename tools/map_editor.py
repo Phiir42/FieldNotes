@@ -52,7 +52,7 @@ def shipped_bosses(instance):
     end = text.find("\nns.Maps[", start + 10)
     block = text[start:end if end > 0 else len(text)]
     out = {}
-    for m in re.finditer(r"floor\.bosses = \{(.*?)\}\n\tns\.Maps\[\d+\]\[(\d+)\]", block, re.S):
+    for m in re.finditer(r"floor\.bosses = \{(.*?)\}\n(?:\t[^\n]*\n)*?\tns\.Maps\[\d+\]\[(\d+)\]", block, re.S):
         out[int(m.group(2))] = [(n, int(x), int(y)) for n, x, y in
                                 re.findall(r'name = "((?:[^"\\]|\\.)*)", x = (\d+), y = (\d+)', m.group(1))]
     return out

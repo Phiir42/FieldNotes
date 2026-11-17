@@ -2152,12 +2152,12 @@ do
 	floor.areas[key("Greater Kraul Bat")] = floor.areas["#5"]
 	floor.areas[key("Death's Head Adept")] = floor.areas["#1"]
 	floor.areas[key("Roogug")] = floor.areas["#2"]
-	floor.areas[key("Charlga Razorflank")] = floor.areas["#7"]
 	floor.areas[key("Aggem Thorncurse")] = floor.areas["#1"]
+	floor.areas[key("Agathelos the Raging")] = floor.areas["#6"]
+	floor.areas[key("Charlga Razorflank")] = floor.areas["#7"]
 	floor.areas[key("Death Speaker Jargba")] = floor.areas["#2"]
 	floor.areas[key("Overlord Ramtusk")] = floor.areas["#3"]
-	floor.areas[key("Agathelos the Raging")] = floor.areas["#6"]
-	floor.bosses = { { name = "Roogug", x = 874, y = 274 }, { name = "Charlga Razorflank", x = 220, y = 208 }, { name = "Aggem Thorncurse", x = 810, y = 364 }, { name = "Death Speaker Jargba", x = 881, y = 277 }, { name = "Overlord Ramtusk", x = 570, y = 199 }, { name = "Agathelos the Raging", x = 112, y = 483 } }
+	floor.bosses = { { name = "Roogug", x = 874, y = 274 }, { name = "Aggem Thorncurse", x = 807, y = 346 }, { name = "Agathelos the Raging", x = 79, y = 455 }, { name = "Charlga Razorflank", x = 220, y = 208 }, { name = "Death Speaker Jargba", x = 881, y = 277 }, { name = "Overlord Ramtusk", x = 570, y = 199 } }
 	floor.places = { [key("Blueleaf Tuber")] = { { 505, 259 } }, [key("Charlga Razorflank")] = { { 265, 217 } }, [key("Death's Head Adept")] = { { 692, 323 } }, [key("Greater Kraul Bat")] = { { 95, 309 } }, [key("Heralath Fallowbrook")] = { { 367, 222 } }, [key("Kraul Bat")] = { { 128, 270 } }, [key("Quilguard Champion")] = { { 424, 351 } }, [key("Razorfen Defender")] = { { 752, 289 } }, [key("Razorfen Quilguard")] = { { 719, 430 }, { 627, 469 }, { 666, 465 }, { 561, 474 }, { 558, 416 } }, [key("Willix the Importer")] = { { 364, 211 } } }
 	floor.path = true
 	ns.Maps[47][1] = floor
