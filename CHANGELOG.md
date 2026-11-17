@@ -30,6 +30,12 @@
 - Quest objectives that arrive a moment after logging in no longer file an
   outside quest under the dungeon you are in.
 - The notes box follows the journal to the dungeon it opens on.
+- A note slip caught by Alt-Z or a cinematic fades out as usual once the
+  interface comes back, instead of staying on screen half faded.
+- The journal stays where it was left when its size is changed in the
+  preferences.
+- `/fn maptest` with no number goes on with the map being tested, and each
+  run uncovers three new pieces.
 
 ## 0.2.0-beta.11
 

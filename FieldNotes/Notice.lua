@@ -80,6 +80,9 @@ local function Create()
 		if not (FieldNotesJournal and FieldNotesJournal:IsShown()) then ns:ToggleJournal() end
 	end)
 	slip:SetScript("OnHide", function()
+		-- hidden only with the whole interface (Alt-Z, a cinematic): it goes on
+		-- where it left off when that comes back
+		if slip:IsShown() then return end
 		showing, placing, dragging = nil, nil, nil
 		slip:SetScript("OnUpdate", nil)
 		for i = #queue, 1, -1 do queue[i] = nil end

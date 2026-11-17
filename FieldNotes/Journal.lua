@@ -2315,10 +2315,13 @@ ApplySize = function()
 		frame:SetScale(FitScale())
 		frame:SetPoint("CENTER")
 	else
-		frame:SetScale(math.max(SCALE_MIN, math.min(s.scale or 1, FitScale())))
+		local scale = math.max(SCALE_MIN, math.min(s.scale or 1, FitScale()))
+		frame:SetScale(scale)
 		local pos = ns.db.journalPos
 		if pos then
-			frame:SetPoint(pos[1], UIParent, pos[2], pos[3], pos[4])
+			-- where it was left on screen, at whatever size it is now
+			local k = (pos[5] or scale) / scale
+			frame:SetPoint(pos[1], UIParent, pos[2], pos[3] * k, pos[4] * k)
 		else
 			frame:SetPoint("CENTER")
 		end
@@ -2380,7 +2383,8 @@ local function CreateJournal()
 		end
 		-- remember where the journal was left
 		local point, _, rel, x, y = self:GetPoint(1)
-		if point then ns.db.journalPos = { point, rel or point, x or 0, y or 0 } end
+		-- (with the scale it was at: offsets are in the frame's own units)
+		if point then ns.db.journalPos = { point, rel or point, x or 0, y or 0, self:GetScale() } end
 	end)
 
 	-- The corner grip: drag it to make the whole journal larger or smaller.
@@ -2420,7 +2424,7 @@ local function CreateJournal()
 		grip:SetScript("OnUpdate", nil)
 		local sc = Resize()
 		ns.db.settings.scale = sc
-		ns.db.journalPos = { "TOPLEFT", "BOTTOMLEFT", grip.left / sc, grip.top / sc }
+		ns.db.journalPos = { "TOPLEFT", "BOTTOMLEFT", grip.left / sc, grip.top / sc, sc }
 		Refresh()
 	end)
 
@@ -2550,8 +2554,9 @@ end
 local TEST = "maptest"
 
 function ns:MapTest(arg)
-	local id = tonumber(arg) or 230
 	local inst = self.db.instances[TEST]
+	-- (no number: go on with the map being tested)
+	local id = tonumber(arg) or (inst and inst.testOf) or 230
 	if arg == "off" or not self.Maps[id] then
 		self.Maps[TEST] = nil
 		self:Forget(TEST)
@@ -2574,11 +2579,24 @@ function ns:MapTest(arg)
 			end
 		end
 		table.sort(names)
-		for _, a in ipairs(inst.areas) do have[a.name] = true end
+		-- (several names are one piece: three new pieces, not three names)
+		local function pieces(name)
+			local out = {}
+			for _, floor in ipairs(self.Maps[id]) do
+				if floor.areas[name] then out[#out + 1] = floor.areas[name] end
+			end
+			return out
+		end
+		for _, a in ipairs(inst.areas) do
+			for _, p in ipairs(pieces(a.name)) do have[p] = true end
+		end
 		local added = 0
 		for _, name in ipairs(names) do
-			if not have[name] and added < 3 then
+			local new
+			for _, p in ipairs(pieces(name)) do new = new or not have[p] end
+			if new and added < 3 then
 				inst.areas[#inst.areas + 1] = { name = name, t = time() }
+				for _, p in ipairs(pieces(name)) do have[p] = true end
 				added = added + 1
 			end
 		end
