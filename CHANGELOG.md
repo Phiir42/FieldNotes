@@ -1,5 +1,32 @@
 # Changelog
 
+## 0.2.0-beta.12 – not yet released
+
+- Where you stand as a boss falls is noted, if the game tells addons inside
+  a dungeon (`/fn debug` now counts whether it does, and which map it
+  names). A boss the map has nowhere, or somewhere else, is then marked
+  where you stood.
+- Razorfen Kraul checked on a real run: Roogug is marked where he stands
+  in the old world, between Ramtusk and the bats, and the boars, priests,
+  seers and wardens near the way in no longer open half the map early.
+- Scholomance's map places its creatures, bosses and quest targets where
+  they stand: Instructor Malicia in the Coven and Lorekeeper Polkelt in the
+  Hall of Secrets (they were the other way round), Rattlegore in the Great
+  Ossuary, Marduk Blackpool and Vectus in the Viewing Room, and the deeds,
+  remains and embalming fluid the quests ask for.
+- Plugger Spazzring stands on the Grim Guzzler's skull.
+- A /reload or reconnect after a long stretch in halls already known no
+  longer starts a second visit.
+- Creatures that once gave experience are counted from their corpses again
+  once they no longer do (grey, or at the top level).
+- A death is placed in the hall you are in, not the last one found.
+- A boss fight whose end the game hides is over all the same, and one
+  whose start was missed (a /reload in the middle) counts as a try.
+- Loot is read in languages whose wording numbers its placeholders.
+- Quest objectives that arrive a moment after logging in no longer file an
+  outside quest under the dungeon you are in.
+- The notes box follows the journal to the dungeon it opens on.
+
 ## 0.2.0-beta.11
 
 - Bosses on the maps stand on the skulls painted there where they had been
