@@ -1,5 +1,7 @@
 MAP = {
     "instance": 43,
+    # where the classic data puts them (retail's journal has them elsewhere)
+    "bosses": {"Kresh": (1, 258, 298)},
     "slug": "wailing-caverns",
     "floors": [
         {

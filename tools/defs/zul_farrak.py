@@ -1,5 +1,7 @@
 MAP = {
     "instance": 209,
+    # where the classic data puts them (retail's journal has them elsewhere)
+    "bosses": {"Hydromancer Velratha": (1, 290, 269), "Theka the Martyr": (1, 555, 198)},
     "slug": "zul-farrak",
     "floors": [
         {
