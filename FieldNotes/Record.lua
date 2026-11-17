@@ -26,6 +26,10 @@ local lastKill   -- { id = encounterID, t = GetTime() }
 local lootSeen = {}  -- [corpseGUID .. itemID] = true: counted this session
 local lootTime = {}  -- [itemID] = GetTime() it was last counted
 local slain = {}     -- [corpseGUID] = true: kill counted this session
+local xpKills = {}   -- [creature record] = { GetTime(), ... }: kills counted from
+                     -- experience lines whose corpses have not been seen yet
+local XP_CORPSE = 300 -- how long after its experience line a corpse is that kill's
+local here           -- the sub-zone you are in, while in a dungeon
 
 local function NpcID(guid)
 	if issecret(guid) or not guid then return end
@@ -72,6 +76,9 @@ local function Visit(what)
 	local r = runs and runs[#runs]
 	if not r then return end
 	r.last = time()
+	-- (the place too: coming back to it after a /reload within the hour is the
+	-- same visit, however long since the last new hall or fight)
+	cur.last = r.last
 	if what then r[what] = (r[what] or 0) + 1 end
 end
 
@@ -186,8 +193,15 @@ local function Slain(guid)
 	if not m then return end
 	slain[guid] = true
 	Fought(m)
-	-- kills are counted from experience messages when those name the creature
-	if not m.xp then m.kills = (m.kills or 0) + 1 end
+	-- A kill an experience line has counted already is not counted again by
+	-- its corpse; one that gave none (grey, or at the top level) is.
+	local pending, now = xpKills[m], GetTime()
+	while pending and pending[1] and now - pending[1] > XP_CORPSE do table.remove(pending, 1) end
+	if pending and pending[1] then
+		table.remove(pending, 1)
+	else
+		m.kills = (m.kills or 0) + 1
+	end
 	ns:Changed()
 end
 
@@ -302,7 +316,8 @@ ns:On("CHAT_MSG_COMBAT_XP_GAIN", function(msg)
 	-- filed with a boss because it was first met in that fight, but here it is
 	-- killed on its own: it is one of the place's creatures after all
 	if m.enc and not encounter then m.enc = nil end
-	m.xp = true
+	xpKills[m] = xpKills[m] or {}
+	table.insert(xpKills[m], GetTime())
 	m.kills = (m.kills or 0) + 1
 	Visit()
 	if not encounter then ns:NamedBoss(cur, m, true) end
@@ -440,12 +455,15 @@ ns:On("ENCOUNTER_START", function(id, name)
 end)
 
 ns:On("ENCOUNTER_END", function(id, name, _, _, success)
+	if cur and issecret(id) then encounter = nil end -- whichever fight it was, it is over
 	if not cur or issecret(id) or not id or type(id) == "boolean" or type(id) == "table" then return end
 	if issecret(name) or type(name) ~= "string" or name == "" then name = nil end
 	if issecret(success) then success = nil end
 	local b = Boss(id, name)
 	local started = encounter and encounter.id == id and encounter.t
 	encounter = nil
+	-- a fight whose start was missed (a /reload in the middle) was still a try
+	if not started then b.pulls = b.pulls + 1 end
 	if success == 1 or success == true then
 		b.kills = b.kills + 1
 		b.lastKill = time()
@@ -473,12 +491,11 @@ ns:On("PLAYER_DEAD", function()
 	cur.deaths = (cur.deaths or 0) + 1
 	Visit("deaths")
 	local b = encounter and cur.bosses[encounter.id]
-	local area = cur.areas[#cur.areas]
 	if b then
 		b.deaths = (b.deaths or 0) + 1
 		ns:Log(cur, ("Fell in battle against %s."):format(ns:The(b.name)))
-	elseif area then
-		ns:Log(cur, ("Fell in battle in %s."):format(ns:The(area.name)))
+	elseif here then
+		ns:Log(cur, ("Fell in battle in %s."):format(ns:The(here)))
 	else
 		ns:Log(cur, "Fell in battle.")
 	end
@@ -585,7 +602,8 @@ local function IsLootLine(msg)
 		lootPatterns = {}
 		for _, fmt in ipairs({ LOOT_ITEM_SELF, LOOT_ITEM_SELF_MULTIPLE, LOOT_ITEM, LOOT_ITEM_MULTIPLE }) do
 			if type(fmt) == "string" then
-				local pat = fmt:gsub("([%(%)%.%+%-%*%?%[%]%^%$])", "%%%1")
+				-- (numbered placeholders, "%1$s", as some languages' wordings have)
+				local pat = fmt:gsub("%%%d%$", "%%"):gsub("([%(%)%.%+%-%*%?%[%]%^%$])", "%%%1")
 					:gsub("%%%d?%$?s", ".+"):gsub("%%%d?%$?d", "%%d+")
 				lootPatterns[#lootPatterns + 1] = "^" .. pat .. "$"
 			end
@@ -617,6 +635,7 @@ local function CheckArea()
 	if not name or name == "" then name = GetMinimapZoneText() end
 	if issecret(name) then return end
 	if not name or name == "" or ns:AreaKey(name) == ns:AreaKey(cur.name) then return end
+	here = name
 	for _, a in ipairs(cur.areas) do
 		if a.name == name then return end
 	end
@@ -640,7 +659,7 @@ local function CheckInstance()
 		end
 		if cur ~= inst then
 			cur, ns.current, ns.currentID = inst, inst, id
-			encounter, lastKill = nil, nil
+			encounter, lastKill, here = nil, nil, nil
 			local now = time()
 			if now - (inst.last or 0) > VISIT_GAP then
 				inst.visits = inst.visits + 1

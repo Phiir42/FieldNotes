@@ -1106,7 +1106,8 @@ ns:On("QUEST_LOG_UPDATE", function()
 		local now = table.concat((QuestProgress(q.id)), "|")
 		local was = progressSeen[q.id]
 		progressSeen[q.id] = now
-		if inst and was and was ~= now and not shipped[q.id] and not (inst.quests and inst.quests[q.id]) then
+		-- (objectives that arrive a moment after logging in are not progress)
+		if inst and was and was ~= "" and was ~= now and not shipped[q.id] and not (inst.quests and inst.quests[q.id]) then
 			inst.quests = inst.quests or {}
 			inst.quests[q.id] = { title = q.title, level = q.level }
 			changed = true
@@ -2489,6 +2490,7 @@ function ns:ToggleJournal(page)
 	-- open on the dungeon you are standing in
 	if self.currentID and (page or not sel.inst or sel.inst ~= self.currentID) then
 		sel.inst, sel.kind, sel.key = self.currentID, page or "overview", nil
+		noteOn = nil -- (the notes box is the new page's, not a hall of the last one)
 	end
 	frame:Show()
 end

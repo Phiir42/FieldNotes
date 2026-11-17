@@ -1018,6 +1018,47 @@ step("mistakes are caught and kept for reporting", function()
 	M.slash("")
 end)
 
+step("halls walked back to, kills without experience, fights half seen", function()
+	M.instance = { name = "Wailing Caverns", kind = "party", id = 43 }
+	M.fire("PLAYER_ENTERING_WORLD")
+	M.wait(3)
+	local wc = ns.db.instances[43]
+	-- dying in a hall found earlier is dying there, not in the last one found
+	M.subzone = "Hall A"; M.fire("ZONE_CHANGED")
+	M.subzone = "Hall B"; M.fire("ZONE_CHANGED")
+	M.subzone = "Hall A"; M.fire("ZONE_CHANGED")
+	M.fire("PLAYER_DEAD")
+	check("a death is placed in the hall you are in", wc.log[#wc.log][2] == "Fell in battle in Hall A.")
+	-- one kill heard of by its experience, then two corpses: the first is that
+	-- kill's, the second (grey by now: no experience) one more
+	ns.CreatureNames[90001] = "Test Beast"
+	M.fire("CHAT_MSG_COMBAT_XP_GAIN", "Test Beast dies, you gain 50 experience.")
+	M.loot = { { link = nil, guid = CREATURE:format(90001, 2) } }; M.fire("LOOT_OPENED")
+	M.loot = { { link = nil, guid = CREATURE:format(90001, 3) } }; M.fire("LOOT_OPENED")
+	M.loot = {}
+	local beast
+	for _, m in pairs(wc.mobs) do if m.name == "Test Beast" then beast = m end end
+	check("kills that give no experience still count (found " .. tostring(beast and beast.kills) .. ")",
+		beast and beast.kills == 2)
+	-- a fight whose start was missed is still a try
+	M.fire("ENCOUNTER_END", 585, "Lady Anacondra", 1, 5, 1)
+	check("a win whose start was missed counts a try", wc.bosses[585].pulls == 1 and wc.bosses[585].kills == 1)
+	-- a fight whose end the game hides is over all the same
+	M.fire("ENCOUNTER_START", 586, "Lord Cobrahn", 1, 5)
+	M.fire("ENCOUNTER_END", M.Secret(), M.Secret(), 1, 5, M.Secret())
+	M.fire("PLAYER_DEAD")
+	check("a hidden fight's end ends the fight", wc.log[#wc.log][2] == "Fell in battle in Hall A.")
+	-- objectives that arrive a moment after logging in are not progress made here
+	M.questLog = { { title = "Outdoor Errand", level = 20, questID = 99999 } }
+	M.questGoals[99999] = { { text = "", finished = false } }
+	M.fire("QUEST_LOG_UPDATE")
+	M.questGoals[99999] = { { text = "0/10 Wolf Pelts", finished = false } }
+	M.fire("QUEST_LOG_UPDATE")
+	check("a quest's late objectives do not file it here", not (wc.quests and wc.quests[99999]))
+	M.questLog, M.questGoals[99999] = {}, nil
+	M.subzone = ""
+end)
+
 step("tearing pages out", function()
 	M.instance = { name = "The Deadmines", kind = "party", id = 36 }
 	M.fire("PLAYER_ENTERING_WORLD")
