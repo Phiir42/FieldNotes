@@ -15,6 +15,10 @@
   Ossuary, Marduk Blackpool and Vectus in the Viewing Room, and the deeds,
   remains and embalming fluid the quests ask for.
 - Plugger Spazzring stands on the Grim Guzzler's skull.
+- Excavation Site: its creatures are filed where a real run met them, so
+  the quests that want Thicket beasts or Dragonmaw are marked on the map,
+  and the open ground the game calls the Wetlands is no longer listed as a
+  hall left off the map.
 - A /reload or reconnect after a long stretch in halls already known no
   longer starts a second visit.
 - Creatures that once gave experience are counted from their corpses again
