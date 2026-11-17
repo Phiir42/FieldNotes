@@ -460,10 +460,21 @@ def creature_rooms(dungeon, splits, per_sheet=False):
     hubs = {f for f, floor in enumerate(floors) if floor.get("hub")}
     levels = dungeon.get("_levels", {})
 
+    def road_of(f, n):
+        name = order[f][n - 1]
+        return next((i for i, r in enumerate(floors[f].get("roads", [])) if name in r), None)
+
     def level_of(mine, z):
         # A point on the drawing of several levels is on the level whose bosses
         # stand nearest its height; a hub sheet, showing the whole place, keeps
         # it as well. Where a level's height is unknown, every sheet keeps it.
+        # Where a hub sheet splits the place into roads (Naxxramas' quarters),
+        # a point the hub puts on one road is not on another road's sheet,
+        # though that sheet's drawing reaches over it at its edge.
+        hub = next((h for h in mine if h[0] in hubs and road_of(*h) is not None), None)
+        if hub:
+            road = floors[hub[0]]["roads"][road_of(*hub)]
+            mine = [h for h in mine if h[0] in hubs or order[h[0]][h[1] - 1] in road]
         flat = [h for h in mine if h[0] not in hubs]
         if len(flat) < 2 or not all(h[0] in levels for h in flat):
             return mine
@@ -530,6 +541,15 @@ def creature_rooms(dungeon, splits, per_sheet=False):
                                      next((t for a, t in floors[g].get("aliases", {}).items() if area_key(a) == k), None))
                         was = order[g].index(keyed) + 1 if keyed in floors[g]["areas"] else None
                         want[g] = min(mine[0], was) if was else mine[0]
+                # Off a sheet the definition puts it on only when its points are
+                # on another (non-hub) sheet: points that merely miss a sheet's
+                # drawing at its edge say nothing; a hub, the whole place, keeps it.
+                elsewhere = any(r[0] not in hubs for r in hits)
+                for g in range(len(floors)):
+                    keyed = next((a for a in floors[g]["areas"] if area_key(a) == k),
+                                 next((t for a, t in floors[g].get("aliases", {}).items() if area_key(a) == k), None))
+                    if g not in want and keyed in floors[g]["areas"] and (g in hubs or not elsewhere):
+                        want[g] = order[g].index(keyed) + 1
                 if dungeon.get("in_order"):
                     for g in range(len(floors)):
                         keyed = next((a for a in floors[g]["areas"] if area_key(a) == k),

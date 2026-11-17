@@ -19,6 +19,13 @@
   uncover the hall they live in when you kill one. On one-road maps they
   go under the first hall they stand in, and elsewhere only when nearly
   all of them stand in one.
+- Naxxramas: creatures that stand near the edge of a quarter no longer
+  uncover a neighbouring quarter's entrance (Shades of Naxxramas and
+  Skeletal Smiths in the Construct Quarter, ghouls and slimes in the
+  Arachnid one), and Embalming Slimes, Death Lords and Risen Deathknights
+  uncover their halls again.
+- Blackwing Lair: Broodlord Lashlayer's hall goes by his name, not the
+  Death Talon Hatchers', who are met long before it.
 - Plugger Spazzring stands on the Grim Guzzler's skull.
 - Bosses summoned for a quest are marked where they are summoned: Mor
   Grayhoof, Isalien, Jarien and Sothos for Lord Valthalak's amulet, and

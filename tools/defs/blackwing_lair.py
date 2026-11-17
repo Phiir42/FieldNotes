@@ -1,27 +1,6 @@
 BANNER = [(225, 0, 790, 98)]
 BANNER1 = [(305, 0, 705, 72), (225, 35, 328, 105), (700, 35, 790, 95)]
 
-SUPPRESSION = {
-    "Suppression Room": "Halls of Strife",
-    "Corrupted Red Whelp": "Halls of Strife",
-    "Corrupted Green Whelp": "Halls of Strife",
-    "Corrupted Blue Whelp": "Halls of Strife",
-    "Corrupted Bronze Whelp": "Halls of Strife",
-    "Blackwing Taskmaster": "Halls of Strife",
-}
-
-LABS = {
-    "Blackwing Technician": "Crimson Laboratories",
-    "Blackwing Warlock": "Crimson Laboratories",
-    "Blackwing Spellbinder": "Crimson Laboratories",
-    "Death Talon Overseer": "Crimson Laboratories",
-    "Death Talon Flamescale": "Crimson Laboratories",
-    "Death Talon Seether": "Crimson Laboratories",
-    "Death Talon Wyrmkin": "Crimson Laboratories",
-    "Death Talon Captain": "Crimson Laboratories",
-    "Master Elemental Shaper Krixix": "Crimson Laboratories",
-}
-
 MAP = {
     "instance": 469,
     "slug": "blackwing-lair",
@@ -48,6 +27,16 @@ MAP = {
                 "Death Talon Dragonspawn": "Dragonmaw Garrison",
                 "Vaelastrasz the Corrupt": "Shadow Wing Lair",
                 "Shadowwing Lair": "Shadow Wing Lair",
+                # each creature under the first hall its spawn points lie in (classic data)
+                "Death Talon Hatcher": "Dragonmaw Garrison",
+                "Corrupted Red Whelp": "Dragonmaw Garrison",
+                "Corrupted Green Whelp": "Dragonmaw Garrison",
+                "Corrupted Blue Whelp": "Dragonmaw Garrison",
+                "Corrupted Bronze Whelp": "Dragonmaw Garrison",
+                "Blackwing Taskmaster": "Dragonmaw Garrison",
+                "Blackwing Warlock": "Shadow Wing Lair",
+                "Death Talon Overseer": "Shadow Wing Lair",
+                "Death Talon Wyrmguard": "Shadow Wing Lair",
             },
         },
         {
@@ -59,13 +48,21 @@ MAP = {
                                      (370, 215)],
                 "Halls of Strife": [(300, 300), (270, 270), (330, 350), (250, 330), (270, 410),
                                     (349, 385), (380, 440), (350, 480), (400, 520), (430, 570)],
-                "Death Talon Hatcher": [(500, 350), (480, 400), (540, 440), (590, 500), (520, 480),
+                "Broodlord Lashlayer": [(500, 350), (480, 400), (540, 440), (590, 500), (520, 480),
                                         (530, 550)],
             },
-            "aliases": dict(SUPPRESSION, **{
+            "aliases": {
+                "Suppression Room": "Halls of Strife",
                 "Vaelastrasz the Corrupt": "Shadow Wing Lair",
-                "Broodlord Lashlayer": "Death Talon Hatcher",
-            }),
+                "Blackwing Technician": "Shadow Wing Lair",
+                "Blackwing Warlock": "Shadow Wing Lair",
+                "Death Talon Overseer": "Shadow Wing Lair",
+                "Death Talon Wyrmguard": "Shadow Wing Lair",
+                "Death Talon Flamescale": "Halls of Strife",
+                "Death Talon Seether": "Halls of Strife",
+                "Death Talon Wyrmkin": "Halls of Strife",
+                "Death Talon Captain": "Halls of Strife",
+            },
         },
         {
             "ref": "blackwing-lair-3",
@@ -79,10 +76,14 @@ MAP = {
                 "Crimson Laboratories": [(240, 220), (290, 270), (340, 290), (320, 245), (215, 205)],
                 "Ebonroc": [(345, 140), (300, 160), (330, 190), (400, 120), (270, 130)],
             },
-            "aliases": dict(SUPPRESSION, **dict(LABS, **{
-                "Death Talon Hatcher": "Halls of Strife",
-                "Death Talon Wyrmguard": "Firemaw",
-            })),
+            "aliases": {
+                "Suppression Room": "Halls of Strife",
+                "Blackwing Warlock": "Firemaw",
+                "Blackwing Spellbinder": "Firemaw",
+                "Death Talon Overseer": "Firemaw",
+                "Death Talon Wyrmguard": "Ebonroc",
+                "Master Elemental Shaper Krixix": "Crimson Laboratories",
+            },
         },
         {
             "ref": "blackwing-lair-4",
@@ -97,7 +98,11 @@ MAP = {
                 "Nefarian's Lair": [(703, 485), (640, 430), (700, 380), (780, 450), (800, 520),
                                     (700, 580), (620, 520), (570, 490), (650, 600), (705, 352)],
             },
-            "aliases": dict(LABS, **{
+            "aliases": {
+                "Blackwing Warlock": "Crimson Laboratories",
+                "Death Talon Overseer": "Crimson Laboratories",
+                "Death Talon Wyrmguard": "Flamegor",
+                "Master Elemental Shaper Krixix": "Crimson Laboratories",
                 "Nefarian": "Nefarian's Lair",
                 "Lord Victor Nefarius": "Nefarian's Lair",
                 "Nefarians Lair": "Nefarian's Lair",
@@ -109,7 +114,7 @@ MAP = {
                 "Chromatic Drakonid": "Nefarian's Lair",
                 "Bone Construct": "Nefarian's Lair",
                 "Chromaggus' Lair": "Chromaggus",
-            }),
+            },
         },
     ],
 }

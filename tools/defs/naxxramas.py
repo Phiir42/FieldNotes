@@ -6,13 +6,13 @@ CONSTRUCT = {
     "Bile Retcher": "The Construct Quarter",
     "Sludge Belcher": "The Construct Quarter",
     "Embalming Slime": "The Construct Quarter",
-    "Living Monstrosity": "Patchwerk",
-    "Mad Scientist": "Patchwerk",
-    "Surgical Assistant": "Patchwerk",
+    "Living Monstrosity": "The Construct Quarter",
+    "Mad Scientist": "The Construct Quarter",
+    "Surgical Assistant": "The Construct Quarter",
     "Stitched Spewer": "Grobbulus",
     "Fallout Slime": "Grobbulus",
     "Grobbulus Cloud": "Grobbulus",
-    "Toxic Tunnel": "Gluth",
+    "Toxic Tunnel": "The Construct Quarter",
     "Zombie Chow": "Gluth",
     "Stalagg": "Thaddius",
     "Feugen": "Thaddius",
@@ -36,8 +36,8 @@ ARACHNID = {
     "Tomb Horror": "Grand Widow Faerlina",
     "Maexxna's Nest": "Maexxna",
     "Maexxna Spiderling": "Maexxna",
-    "Crypt Reaver": "Maexxna",
-    "Infectious Skitterer": "Maexxna",
+    "Crypt Reaver": "The Arachnid Quarter",
+    "Infectious Skitterer": "The Arachnid Quarter",
 }
 
 MILITARY = {
@@ -49,10 +49,10 @@ MILITARY = {
     "Death Touched Warrior": "The Military Quarter",
     "Doom Touched Warrior": "The Military Quarter",
     "Deathknight Understudy": "Instructor Razuvious",
-    "Shade of Naxxramas": "Gothik the Harvester",
-    "Necro Knight": "Gothik the Harvester",
-    "Skeletal Smith": "Gothik the Harvester",
-    "Bony Construct": "Gothik the Harvester",
+    "Shade of Naxxramas": "The Military Quarter",
+    "Necro Knight": "The Military Quarter",
+    "Skeletal Smith": "The Military Quarter",
+    "Bony Construct": "The Military Quarter",
     "Unrelenting Trainee": "Gothik the Harvester",
     "Unrelenting Deathknight": "Gothik the Harvester",
     "Unrelenting Rider": "Gothik the Harvester",
@@ -66,7 +66,7 @@ MILITARY = {
     "Lady Blaumeux": "The Four Horsemen",
     "Sir Zeliek": "The Four Horsemen",
     "The Horsemen's Assembly": "The Four Horsemen",
-    "Deathknight Cavalier": "The Four Horsemen",
+    "Deathknight Cavalier": "Instructor Razuvious",
     "Death Lord": "The Four Horsemen",
 }
 
@@ -81,7 +81,7 @@ PLAGUE = {
     "Mutated Grub": "Heigan the Unclean",
     "Plague Beast": "Heigan the Unclean",
     "Plagued Bat": "Heigan the Unclean",
-    "Frenzied Bat": "Heigan the Unclean",
+    "Frenzied Bat": "The Plague Quarter",
     "Eye Stalk": "Loatheb",
     "Rotting Maggot": "Loatheb",
     "Diseased Maggot": "Loatheb",
@@ -103,6 +103,14 @@ FROSTWYRM = {
 ALL = {}
 for group in (CONSTRUCT, ARACHNID, MILITARY, PLAGUE):
     ALL.update(group)
+# On the hub some are met sooner than on their quarter's own sheet, whose
+# drawing stops short of where they stand.
+ALL.update({
+    "Deathknight Cavalier": "The Military Quarter",
+    "Death Lord": "The Military Quarter",
+    "Mutated Grub": "Noth the Plaguebringer",
+    "Plagued Bat": "Noth the Plaguebringer",
+})
 
 MAP = {
     "instance": 533,

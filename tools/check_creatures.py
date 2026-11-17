@@ -12,9 +12,8 @@ one here shows what it would change if it were.
 
 The corrections are written into the definitions' aliases, so what is left
 is deliberate: rooms named after their creature (Earthborer, Blind Hunter),
-which the generator re-points, and dungeons whose aliases are built in code
-(Blackwing Lair, Naxxramas), where the generator keeps doing it. Creatures
-no definition names are filed by unnamed_rooms in make_maps.py.
+which the generator re-points (marked so in the output). Creatures no
+definition names are filed by unnamed_rooms in make_maps.py.
 
 Needs refs/ (map tiles, tables, classicdb/creatures.json); see make_maps.py.
 """
@@ -36,8 +35,10 @@ def main():
         print("%s: %d changes" % (d["slug"], sum(map(len, moved.values()))))
         for f, rows in sorted(moved.items()):
             for name, room in rows:
-                print("    sheet %d  %-30s -> %s" % (
-                    f + 1, name, "room %d (%s)" % (room, order[f][room - 1]) if room else "not on this sheet"))
+                own = m.area_key(name) in {m.area_key(a) for a in order[f]}
+                print("    sheet %d  %-30s -> %s%s" % (
+                    f + 1, name, "room %d (%s)" % (room, order[f][room - 1]) if room else "not on this sheet",
+                    "  (a room's own name: re-pointed by the generator)" if own else ""))
 
 
 if __name__ == "__main__":
