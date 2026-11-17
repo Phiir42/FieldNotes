@@ -14,6 +14,11 @@
   Hall of Secrets (they were the other way round), Rattlegore in the Great
   Ossuary, Marduk Blackpool and Vectus in the Viewing Room, and the deeds,
   remains and embalming fluid the quests ask for.
+- Creatures no map named before (Anvilrage Reservists, Flame Imps,
+  Hakkari, Atal'ai, Stratholme's ghouls and some forty more) now
+  uncover the hall they live in when you kill one. On one-road maps they
+  go under the first hall they stand in, and elsewhere only when nearly
+  all of them stand in one.
 - Plugger Spazzring stands on the Grim Guzzler's skull.
 - Bosses summoned for a quest are marked where they are summoned: Mor
   Grayhoof, Isalien, Jarien and Sothos for Lord Valthalak's amulet, and

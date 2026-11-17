@@ -554,6 +554,83 @@ def creature_rooms(dungeon, splits, per_sheet=False):
     return out
 
 
+MOSTLY = 0.8  # an unnamed creature is filed only where this share of its spawn points lie
+NOT_MET = ("Trigger", "Spell Marker", "Generator", "Dummy", "Target", "Spawner", "Bunny",
+           "The Lich King", "The Master's Eye", "Arcane Feedback")
+
+
+def unnamed_rooms(dungeon, splits):
+    """Rooms for the hostile creatures of an instance that its definition does
+    not name at all (Anvilrage Reservists, Druids of the Fang): from their
+    spawn points (classic database), so meeting them uncovers where they live.
+    Cautious, since a wrong room uncovers the map early: a spawn point that
+    falls on the drawing of more than one sheet counts for none; a creature is
+    filed only when MOSTLY of its points are on one sheet, and there under the
+    earliest room it really lives in on a one-road sheet, else only under a
+    room that holds MOSTLY of them. Critters, friendly folk (NPC flags) and
+    triggers are left out. -> {floor index: [(name, room number)]}"""
+    path = os.path.join(ROOT, "refs", "classicdb", "creatures.json")
+    if not os.path.exists(path):
+        return {}
+    inst, floors = dungeon["instance"], dungeon["floors"]
+    bounds = _boss_data[2]
+    named = set()
+    for floor in floors:
+        named |= {area_key(a) for a in floor["areas"]} | {area_key(a) for a in floor.get("aliases", {})}
+    named |= {area_key(n) for n in dungeon.get("bosses", {})}
+    named |= {area_key(n) for n in _boss_data[3].get(inst, [])}
+    order = [list(f["areas"]) for f in floors]
+    out, seen = {}, set()
+    for c in json.load(open(path, encoding="utf-8")).values():
+        name = c["name"]
+        k = area_key(name or "")
+        if (not name or k in named or k in seen or c.get("npc") or c.get("type") == 8 or not c.get("lo")
+                or any(w in name for w in NOT_MET)):
+            continue
+        pts = [sp for sp in c["spawns"] if sp[0] == inst]
+        if not pts:
+            continue
+        seen.add(k)
+        hits = []  # (sheet, room number) per spawn point that lands on one sheet only
+        for _, wx, wy, _z in pts:
+            mine = []
+            for f, floor in enumerate(floors):
+                b = bounds.get((floor.get("world", floor.get("uimap")), inst))
+                if not b:
+                    continue
+                x = round((b[3] - wy) / (b[3] - b[1]) * W)
+                y = round((b[2] - wx) / (b[2] - b[0]) * H)
+                if not (3 < x < W - 3 and 3 < y < H - 3):
+                    continue
+                best = max(((float(a[y - 3:y + 4, x - 3:x + 4].mean()), n) for n, a in splits[f][1]
+                            if n in floor["areas"]), default=(0, None))
+                if best[0] > 0.3:
+                    mine.append((f, order[f].index(best[1]) + 1))
+            if len(mine) == 1:
+                hits.append(mine[0])
+        if not hits:
+            continue
+        sheets = {}
+        for f, _ in hits:
+            sheets[f] = sheets.get(f, 0) + 1
+        f, n = max(sheets.items(), key=lambda s: s[1])
+        if n < MOSTLY * len(pts):
+            continue
+        rooms = {}
+        for g, r in hits:
+            if g == f:
+                rooms[r] = rooms.get(r, 0) + 1
+        if dungeon.get("path") and not floors[f].get("roads"):
+            room = min(r for r, v in rooms.items() if v >= max(1, ROOM_SHARE * n))
+        else:
+            r, v = max(rooms.items(), key=lambda x: x[1])
+            if v < MOSTLY * n:
+                continue
+            room = r
+        out.setdefault(f, []).append((name, room))
+    return out
+
+
 _quest_spots = None
 
 
@@ -655,6 +732,9 @@ def main():
             moved = creature_rooms(dungeon, splits)
         elif dungeon.get("creatures") == "auto":
             moved = creature_rooms(dungeon, splits, per_sheet=True)
+        moved = {f: list(v) for f, v in moved.items()}
+        for f, found in unnamed_rooms(dungeon, splits).items():
+            moved.setdefault(f, []).extend(found)
         for f, floor in enumerate(dungeon["floors"], 1):
             floor["bosses"] = bosses[f - 1]
             img, pieces = splits[f - 1]

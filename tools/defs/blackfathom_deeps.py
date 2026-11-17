@@ -31,8 +31,8 @@ MAP = {
                 "Drowned Sacellum": "The Drowned Sacellum",
                 "Skittering Crustacean": "The Drowned Sacellum",
                 "Snapping Crustacean": "The Drowned Sacellum",
-                "Murkshallow Snapclaw": "Ghamoo-ra",
-                "Aku'mai Fisher": "Ghamoo-ra",
+                "Murkshallow Snapclaw": "The Drowned Sacellum",
+                "Aku'mai Fisher": "Lady Sarevess",
                 "Pool of Ask'ar": "The Pool of Ask'ar",
                 "Blackfathom Sea Witch": "The Pool of Ask'ar",
                 "Blackfathom Myrmidon": "The Pool of Ask'ar",
@@ -41,13 +41,15 @@ MAP = {
                 "Domina": "Lady Sarevess",
                 "Shrine of Gelihast": "Gelihast",
                 "Murkshallow Softshell": "Gelihast",
-                "Blindlight Murloc": "Gelihast",
+                "Blindlight Murloc": "The Drowned Sacellum",
                 "Blindlight Muckdweller": "Gelihast",
                 "Blindlight Oracle": "Gelihast",
                 "Subjugator Kor'ul": "Gelihast",
                 # met in the tunnel before Gelihast on a real run, though the
                 # classic spawn points have the acolytes in the Moonshrine only
                 "Twilight Acolyte": "Ghamoo-ra",
+                "Fallenroot Hellcaller": "Ghamoo-ra",
+                "Fallenroot Shadowstalker": "The Pool of Ask'ar",
             },
         },
         {
@@ -62,8 +64,6 @@ MAP = {
             },
             "aliases": {
                 "Fallenroot Rogue": "Fallenroot Satyr",
-                "Fallenroot Shadowstalker": "Fallenroot Satyr",
-                "Fallenroot Hellcaller": "Fallenroot Satyr",
                 "Twilight Reaver": "Fallenroot Satyr",
                 "Lorgus Jett": "Moonshrine Ruins",
                 "Twilight Aquamancer": "Moonshrine Ruins",
@@ -79,6 +79,7 @@ MAP = {
                 "Akumais Lair": "Aku'mai's Lair",
                 "Aku'mai Servant": "Aku'mai's Lair",
                 "Morridune": "Aku'mai's Lair",
+                "Deep Pool Threshfin": "Moonshrine Ruins",
             },
         },
         {
@@ -92,7 +93,6 @@ MAP = {
             "aliases": {
                 "Forgotten Pool": "The Forgotten Pool",
                 "Old Serra'kis": "The Forgotten Pool",
-                "Deep Pool Threshfin": "The Forgotten Pool",
                 "Thruk": "The Forgotten Pool",
             },
         },

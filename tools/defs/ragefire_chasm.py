@@ -22,8 +22,8 @@ MAP = {
             },
             "aliases": {
                 "Ragefire Shaman": "Ragefire Trogg",
-                "Searing Blade Enforcer": "Searing Blade Cultist",
-                "Searing Blade Warlock": "Searing Blade Cultist",
+                "Searing Blade Enforcer": "Molten Elemental",
+                "Searing Blade Warlock": "Taragaman the Hungerer",
                 "Zelemar the Wrathful": "Jergosh the Invoker",
             },
         },

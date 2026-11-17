@@ -10,6 +10,12 @@ those corrections without building anything. For dungeons that are not
 one-road ("path": True) the generator leaves the definition alone, so naming
 one here shows what it would change if it were.
 
+The corrections are written into the definitions' aliases, so what is left
+is deliberate: rooms named after their creature (Earthborer, Blind Hunter),
+which the generator re-points, and dungeons whose aliases are built in code
+(Blackwing Lair, Naxxramas), where the generator keeps doing it. Creatures
+no definition names are filed by unnamed_rooms in make_maps.py.
+
 Needs refs/ (map tiles, tables, classicdb/creatures.json); see make_maps.py.
 """
 import sys
