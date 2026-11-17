@@ -665,6 +665,8 @@ def main():
                 ids, cols = tiles(floor["uimap"])
                 out.append("\tlocal floor = { cols = %d, tiles = { %s }, areas = {}, count = 0 }"
                            % (cols, ", ".join(map(str, ids))))
+                # the game's map of this sheet: where you stood, read in game, is placed by it
+                out.append("\tfloor.uimap = %d" % floor["uimap"])
             n, seen, numbers = 0, [], {}
             for name, alpha in pieces:
                 special = name in ("decor", "start")

@@ -1299,6 +1299,9 @@ local function QuestMarks(id, floor, marks)
 		local k = ns:AreaKey(name)
 		local pts = places[k]
 		if pts and #pts > 1 then return pts, true end
+		for _, m in ipairs(marks) do
+			if m.id == "boss:" .. k then return { { m.x, m.y } } end
+		end
 		for _, spot in ipairs(floor.bosses or {}) do
 			if ns:AreaKey(spot.name) == k then return { { spot.x, spot.y } } end
 		end
@@ -1610,6 +1613,23 @@ end
 
 local SHEET = { "First sheet", "Second sheet", "Third sheet", "Fourth sheet", "Fifth sheet", "Sixth sheet" }
 
+-- Where a boss is marked on a sheet: its mark there (drawn on the skull the
+-- sheet shows), unless where you stood as it fell (b.at, see Record's Where:
+-- only where the game tells) is out of a fight's reach of that mark, or it has
+-- no mark; then there. Nothing on a sheet other than the one it fell on.
+local REACH = 60
+local function BossSpot(floors, floor, b, spot)
+	local at, mine = b.at
+	for _, fl in ipairs(at and floors or {}) do
+		if fl.uimap and fl.uimap == at.m then mine = fl end
+	end
+	if not mine then return spot end -- (a map of the game's none of these sheets is)
+	if mine ~= floor then return nil end
+	local x, y = at.x * ns.MAP_REF_W, at.y * ns.MAP_REF_H
+	if spot and (spot.x - x) ^ 2 + (spot.y - y) ^ 2 <= REACH ^ 2 then return spot end
+	return { x = x, y = y }
+end
+
 local function MapPage(lines, id, inst)
 	H1(lines, "Map")
 	Faded(lines, "What you have charted of " .. ns:The(inst.name) .. ".")
@@ -1711,19 +1731,22 @@ local function MapPage(lines, id, inst)
 	inst.charted = inst.charted or {}
 	shown.charted = inst.charted
 	shown.marks = {}
-	for _, spot in ipairs(shown.floor.bosses or {}) do
-		local key = ns:AreaKey(spot.name)
-		for eid, b in pairs(inst.bosses) do
-			if ns:AreaKey(b.name) == key then
-				shown.marks[#shown.marks + 1] = {
-					x = spot.x, y = spot.y, name = b.name, id = "boss:" .. key,
-					note = (b.kills > 0 and ("Defeated " .. Times(b.kills)
-						.. (b.best and (", swiftest in " .. ns:Clock(b.best)) or "") .. ".")
-						or "Faced, not yet defeated.") .. " Click for its page.",
-					go = function() Select(id, "boss", eid) end,
-				}
-				break
-			end
+	for _, eid in ipairs(inst.bossOrder) do
+		local b = inst.bosses[eid]
+		local key = ns:AreaKey(b.name)
+		local spot
+		for _, s in ipairs(shown.floor.bosses or {}) do
+			if ns:AreaKey(s.name) == key then spot = s break end
+		end
+		spot = BossSpot(floors, shown.floor, b, spot)
+		if spot then
+			shown.marks[#shown.marks + 1] = {
+				x = spot.x, y = spot.y, name = b.name, id = "boss:" .. key,
+				note = (b.kills > 0 and ("Defeated " .. Times(b.kills)
+					.. (b.best and (", swiftest in " .. ns:Clock(b.best)) or "") .. ".")
+					or "Faced, not yet defeated.") .. " Click for its page.",
+				go = function() Select(id, "boss", eid) end,
+			}
 		end
 	end
 	QuestMarks(id, shown.floor, shown.marks)

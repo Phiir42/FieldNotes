@@ -235,9 +235,16 @@ step("a boss: wipe, then kill", function()
 	M.fire("LOOT_OPENED")
 	check("loot on the boss's corpse is the boss's", inst.loot[5187] and inst.loot[5187].enc == 2741)
 	M.loot = {}
-	-- an encounter the addon has no data for
+	check("where you stood is not noted when the game keeps it", b.at == nil
+		and (ns.db.debug["your position hidden (map 291)"] or 0) >= 1)
+	-- an encounter the addon has no data for, where the game tells where you stand
+	M.position = { m = 291, x = 0.25, y = 0.5 }
 	M.fire("ENCOUNTER_START", 99999, "Someone New", 1, 5)
 	M.fire("ENCOUNTER_END", 99999, "Someone New", 1, 5, 1)
+	M.position = nil
+	local nb = inst.bosses[99999]
+	check("where you stood as a boss fell is noted", nb and nb.at and nb.at.m == 291 and nb.at.x == 0.25
+		and ns.db.debug["your position shown (map 291)"] == 1)
 	M.fire("ENCOUNTER_END", 88888, nil, 1, 5, 1)
 	-- one whose name the game hides as it begins, and gives at its end;
 	-- falling in it counts against it
@@ -544,7 +551,9 @@ step("every page of the journal", function()
 			if f.__scripts.OnLeave then f.__scripts.OnLeave(f) end
 		end
 	end
-	check("one boss marker on the map (found " .. marks .. ")", marks == 1)
+	-- Rhahk'Zor on the sheet's own mark; Someone New, whom the sheet does not
+	-- know, where you stood as it fell
+	check("two boss markers on the map (found " .. marks .. ")", marks == 2)
 	do
 		local said
 		for _, f in ipairs(M.frames) do

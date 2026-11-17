@@ -41,6 +41,28 @@ local function Tally(what)
 	d[what] = (d[what] or 0) + 1
 end
 
+-- Where you stand: the game's map you are on and your place on it (0 to 1
+-- across and down), or nothing where the game keeps it from addons, as it may
+-- inside dungeons (counted for /fn debug, with the map's number).
+local function Where()
+	if not (C_Map and C_Map.GetBestMapForUnit and C_Map.GetPlayerMapPosition) then return end
+	local ok, map = pcall(C_Map.GetBestMapForUnit, "player")
+	if not ok or issecret(map) or type(map) ~= "number" then
+		Tally("your map hidden")
+		return
+	end
+	local pos, x, y
+	ok, pos = pcall(C_Map.GetPlayerMapPosition, map, "player")
+	if ok and pos and not issecret(pos) and pos.GetXY then x, y = pos:GetXY() end
+	if issecret(x) or issecret(y) or type(x) ~= "number" or type(y) ~= "number" or (x == 0 and y == 0) then
+		Tally("your position hidden (map " .. map .. ")")
+		return
+	end
+	Tally("your position shown (map " .. map .. ")")
+	return { m = map, x = x, y = y }
+end
+ns.Where = Where
+
 -- The visit under way (inst.runs, newest last): when it began and was last
 -- seen to go on, who went, and what came of it. what: "kills", "deaths" or
 -- "finds", counted one more.
@@ -360,6 +382,7 @@ function ns:NamedBoss(inst, m, live)
 		m.enc = id
 		if live then
 			b.kills, b.pulls, b.lastKill = b.kills + 1, b.pulls + 1, time()
+			b.at = b.at or Where()
 			lastKill = { id = id, t = GetTime() }
 			Visit("kills")
 		end
@@ -387,6 +410,7 @@ function ns:NamedBoss(inst, m, live)
 	end
 	inst.bosses[id] = {
 		name = m.name, first = m.first or at, pulls = m.kills, kills = m.kills, wipes = 0, lastKill = at,
+		at = live and Where() or nil,
 	}
 	inst.bossOrder[#inst.bossOrder + 1] = id
 	m.enc = id
@@ -427,6 +451,8 @@ ns:On("ENCOUNTER_END", function(id, name, _, _, success)
 		b.lastKill = time()
 		lastKill = { id = id, t = GetTime() }
 		Visit("kills")
+		-- where you stood as it fell: near enough where it is fought
+		b.at = b.at or Where()
 		if started then
 			local took = GetTime() - started
 			if not b.best or took < b.best then b.best = took end

@@ -208,6 +208,17 @@ function GetInstanceInfo()
 end
 function IsInInstance() return M.instance ~= nil, M.instance and M.instance.kind or "none" end
 function GetSubZoneText() return M.subzone end
+-- where the character stands on the game's map: kept from addons inside
+-- dungeons (as on the standard clients) unless a test sets M.position = { m, x, y }
+M.position = nil
+C_Map = {
+	GetBestMapForUnit = function() return M.position and M.position.m or 291 end,
+	GetPlayerMapPosition = function(map)
+		local p = M.position
+		if not p or p.m ~= map then return nil end
+		return { GetXY = function() return p.x, p.y end }
+	end,
+}
 function GetMinimapZoneText() return M.subzone end
 
 -- units: hostile creatures are secret, like the Forever client

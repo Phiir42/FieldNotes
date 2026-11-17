@@ -62,6 +62,7 @@ end
 ns.Maps[48] = {}
 do
 	local floor = { cols = 4, tiles = { 447578, 447582, 447583, 447584, 447585, 447586, 447587, 447588, 447589, 447579, 447580, 447581 }, areas = {}, count = 0 }
+	floor.uimap = 221
 	floor.decor = { mask = DIR .. "blackfathom-deeps-1-decor", x = 246, y = 0, w = 755, h = 636 }
 	floor.start = { mask = DIR .. "blackfathom-deeps-1-start", x = 240, y = 0, w = 408, h = 160 }
 	floor.areas[key("The Drowned Sacellum")] = { mask = DIR .. "blackfathom-deeps-1-01", x = 348, y = 48, w = 399, h = 332 }
@@ -119,6 +120,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 447590, 447594, 447595, 447596, 447597, 447598, 447599, 447600, 447601, 447591, 447592, 447593 }, areas = {}, count = 0 }
+	floor.uimap = 222
 	floor.decor = { mask = DIR .. "blackfathom-deeps-2-decor", x = 212, y = 5, w = 779, h = 524 }
 	floor.areas[key("Fallenroot Satyr")] = { mask = DIR .. "blackfathom-deeps-2-01", x = 216, y = 5, w = 278, h = 425 }
 	floor.areas[key("Fallenroot Satyr")].n = 1
@@ -167,6 +169,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 447602, 447606, 447607, 447608, 447609, 447610, 447611, 447612, 447613, 447603, 447604, 447605 }, areas = {}, count = 0 }
+	floor.uimap = 223
 	floor.decor = { mask = DIR .. "blackfathom-deeps-3-decor", x = 212, y = 5, w = 589, h = 102 }
 	floor.areas[key("The Forgotten Pool")] = { mask = DIR .. "blackfathom-deeps-3-01", x = 181, y = 5, w = 622, h = 663 }
 	floor.areas[key("The Forgotten Pool")].n = 1
@@ -222,6 +225,7 @@ end
 ns.Maps[230] = {}
 do
 	local floor = { cols = 4, tiles = { 447638, 447642, 447643, 447644, 447645, 447646, 447647, 447648, 447649, 447639, 447640, 447641 }, areas = {}, count = 0 }
+	floor.uimap = 242
 	floor.decor = { mask = DIR .. "blackrock-depths-1-decor", x = 212, y = 5, w = 760, h = 457 }
 	floor.start = { mask = DIR .. "blackrock-depths-1-start", x = 260, y = 409, w = 205, h = 233 }
 	floor.areas[key("Detention Block")] = { mask = DIR .. "blackrock-depths-1-01", x = 368, y = 451, w = 206, h = 217 }
@@ -257,6 +261,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 447650, 447654, 447655, 447656, 447657, 447658, 447659, 447660, 447661, 447651, 447652, 447653 }, areas = {}, count = 0 }
+	floor.uimap = 243
 	floor.decor = { mask = DIR .. "blackrock-depths-2-decor", x = 4, y = 6, w = 575, h = 538 }
 	floor.areas[key("The Lyceum")] = { mask = DIR .. "blackrock-depths-2-01", x = 542, y = 0, w = 207, h = 201 }
 	floor.areas[key("The Lyceum")].n = 1
@@ -333,6 +338,7 @@ end
 ns.Maps[229] = {}
 do
 	local floor = { cols = 4, tiles = { 447662, 447666, 447667, 447668, 447669, 447670, 447671, 447672, 447673, 447663, 447664, 447665 }, areas = {}, count = 0 }
+	floor.uimap = 250
 	floor.decor = { mask = DIR .. "blackrock-spire-1-decor", x = 197, y = 0, w = 803, h = 602 }
 	floor.areas[key("Tazz'Alor")] = { mask = DIR .. "blackrock-spire-1-01", x = 258, y = 312, w = 447, h = 313 }
 	floor.areas[key("Tazz'Alor")].n = 1
@@ -380,6 +386,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 447674, 447678, 447679, 447680, 447681, 447682, 447683, 447684, 447685, 447675, 447676, 447677 }, areas = {}, count = 0 }
+	floor.uimap = 251
 	floor.decor = { mask = DIR .. "blackrock-spire-2-decor", x = 197, y = 0, w = 631, h = 95 }
 	floor.areas[key("Hordemar City")] = { mask = DIR .. "blackrock-spire-2-01", x = 202, y = 34, w = 626, h = 470 }
 	floor.areas[key("Hordemar City")].n = 1
@@ -410,6 +417,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 447686, 447690, 447691, 447692, 447693, 447694, 447695, 447696, 447697, 447687, 447688, 447689 }, areas = {}, count = 0 }
+	floor.uimap = 252
 	floor.decor = { mask = DIR .. "blackrock-spire-3-decor", x = 197, y = 0, w = 631, h = 95 }
 	floor.areas[key("Mok'Doom")] = { mask = DIR .. "blackrock-spire-3-01", x = 202, y = 75, w = 312, h = 550 }
 	floor.areas[key("Mok'Doom")].n = 1
@@ -446,6 +454,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 447698, 447702, 447703, 447704, 447705, 447706, 447707, 447708, 447709, 447699, 447700, 447701 }, areas = {}, count = 0 }
+	floor.uimap = 253
 	floor.decor = { mask = DIR .. "blackrock-spire-4-decor", x = 197, y = 0, w = 763, h = 518 }
 	floor.start = { mask = DIR .. "blackrock-spire-4-start", x = 319, y = 223, w = 103, h = 108 }
 	floor.areas[key("Hall of Blackhand")] = { mask = DIR .. "blackrock-spire-4-01", x = 202, y = 75, w = 240, h = 394 }
@@ -500,6 +509,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 447710, 447714, 447715, 447716, 447717, 447718, 447719, 447720, 447721, 447711, 447712, 447713 }, areas = {}, count = 0 }
+	floor.uimap = 254
 	floor.decor = { mask = DIR .. "blackrock-spire-5-decor", x = 5, y = 0, w = 823, h = 645 }
 	floor.areas[key("Bloodaxe Veteran")] = { mask = DIR .. "blackrock-spire-5-01", x = 88, y = 34, w = 740, h = 544 }
 	floor.areas[key("Bloodaxe Veteran")].n = 1
@@ -535,6 +545,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 447722, 447726, 447727, 447728, 447729, 447730, 447731, 447732, 447733, 447723, 447724, 447725 }, areas = {}, count = 0 }
+	floor.uimap = 255
 	floor.decor = { mask = DIR .. "blackrock-spire-6-decor", x = 197, y = 0, w = 805, h = 668 }
 	floor.areas[key("Hall of Binding")] = { mask = DIR .. "blackrock-spire-6-01", x = 202, y = 75, w = 162, h = 174 }
 	floor.areas[key("Hall of Binding")].n = 1
@@ -596,6 +607,7 @@ end
 ns.Maps[469] = {}
 do
 	local floor = { cols = 4, tiles = { 447770, 447774, 447775, 447776, 447777, 447778, 447779, 447780, 447781, 447771, 447772, 447773 }, areas = {}, count = 0 }
+	floor.uimap = 287
 	floor.decor = { mask = DIR .. "blackwing-lair-1-decor", x = 221, y = 0, w = 760, h = 668 }
 	floor.start = { mask = DIR .. "blackwing-lair-1-start", x = 407, y = 459, w = 158, h = 197 }
 	floor.areas[key("Dragonmaw Garrison")] = { mask = DIR .. "blackwing-lair-1-01", x = 249, y = 208, w = 367, h = 447 }
@@ -630,6 +642,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 447782, 447786, 447787, 447788, 447789, 447790, 447791, 447792, 447793, 447783, 447784, 447785 }, areas = {}, count = 0 }
+	floor.uimap = 288
 	floor.decor = { mask = DIR .. "blackwing-lair-2-decor", x = 213, y = 0, w = 754, h = 609 }
 	floor.areas[key("Shadow Wing Lair")] = { mask = DIR .. "blackwing-lair-2-01", x = 247, y = 82, w = 331, h = 297 }
 	floor.areas[key("Shadow Wing Lair")].n = 1
@@ -670,6 +683,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 447794, 447798, 447799, 447800, 447801, 447802, 447803, 447804, 447805, 447795, 447796, 447797 }, areas = {}, count = 0 }
+	floor.uimap = 289
 	floor.decor = { mask = DIR .. "blackwing-lair-3-decor", x = 221, y = 0, w = 740, h = 588 }
 	floor.areas[key("Halls of Strife")] = { mask = DIR .. "blackwing-lair-3-01", x = 296, y = 365, w = 370, h = 287 }
 	floor.areas[key("Halls of Strife")].n = 1
@@ -729,6 +743,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 447806, 447810, 447811, 447812, 447813, 447814, 447815, 447816, 447817, 447807, 447808, 447809 }, areas = {}, count = 0 }
+	floor.uimap = 290
 	floor.decor = { mask = DIR .. "blackwing-lair-4-decor", x = 212, y = 8, w = 749, h = 381 }
 	floor.areas[key("Crimson Laboratories")] = { mask = DIR .. "blackwing-lair-4-01", x = 101, y = 236, w = 261, h = 236 }
 	floor.areas[key("Crimson Laboratories")].n = 1
@@ -821,6 +836,7 @@ end
 ns.Maps[36] = {}
 do
 	local floor = { cols = 4, tiles = { 449591, 449595, 449596, 449597, 449598, 449599, 449600, 449601, 449602, 449592, 449593, 449594 }, areas = {}, count = 0 }
+	floor.uimap = 291
 	floor.decor = { mask = DIR .. "deadmines-1-decor", x = 328, y = 5, w = 655, h = 445 }
 	floor.start = { mask = DIR .. "deadmines-1-start", x = 207, y = 45, w = 240, h = 100 }
 	floor.areas[key("Defias Miner")] = { mask = DIR .. "deadmines-1-01", x = 163, y = 88, w = 252, h = 320 }
@@ -864,6 +880,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 449603, 449607, 449608, 449609, 449610, 449611, 449612, 449613, 449614, 449604, 449605, 449606 }, areas = {}, count = 0 }
+	floor.uimap = 292
 	floor.decor = { mask = DIR .. "deadmines-2-decor", x = 301, y = 5, w = 701, h = 663 }
 	floor.areas[key("Goblin Foundry")] = { mask = DIR .. "deadmines-2-01", x = 24, y = 334, w = 268, h = 310 }
 	floor.areas[key("Goblin Foundry")].n = 1
@@ -908,6 +925,7 @@ end
 ns.Maps[429] = {}
 do
 	local floor = { cols = 4, tiles = { 449508, 449512, 449513, 449514, 449515, 449516, 449517, 449518, 449519, 449509, 449510, 449511 }, areas = {}, count = 0 }
+	floor.uimap = 235
 	floor.decor = { mask = DIR .. "dire-maul-1-decor", x = 321, y = 9, w = 654, h = 407 }
 	floor.start = { mask = DIR .. "dire-maul-1-start", x = 600, y = 534, w = 217, h = 134 }
 	floor.areas[key("Gordok Commons")] = { mask = DIR .. "dire-maul-1-01", x = 532, y = 399, w = 306, h = 257 }
@@ -953,6 +971,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 449520, 449524, 449525, 449526, 449527, 449528, 449529, 449530, 449531, 449521, 449522, 449523 }, areas = {}, count = 0 }
+	floor.uimap = 236
 	floor.decor = { mask = DIR .. "dire-maul-2-decor", x = 231, y = 0, w = 578, h = 94 }
 	floor.start = { mask = DIR .. "dire-maul-2-start", x = 865, y = 243, w = 124, h = 351 }
 	floor.areas[key("Capital Gardens")] = { mask = DIR .. "dire-maul-2-01", x = 493, y = 25, w = 467, h = 622 }
@@ -988,6 +1007,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 449532, 449536, 449537, 449538, 449539, 449540, 449541, 449542, 449543, 449533, 449534, 449535 }, areas = {}, count = 0 }
+	floor.uimap = 237
 	floor.decor = { mask = DIR .. "dire-maul-3-decor", x = 221, y = 0, w = 583, h = 98 }
 	floor.areas[key("Illyanna Ravenoak")] = { mask = DIR .. "dire-maul-3-01", x = 239, y = 156, w = 230, h = 318 }
 	floor.areas[key("Illyanna Ravenoak")].n = 1
@@ -1015,6 +1035,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 449544, 449548, 449549, 449550, 449551, 449552, 449553, 449554, 449555, 449545, 449546, 449547 }, areas = {}, count = 0 }
+	floor.uimap = 238
 	floor.decor = { mask = DIR .. "dire-maul-4-decor", x = 226, y = 32, w = 584, h = 636 }
 	floor.areas[key("Prison of Immol'thar")] = { mask = DIR .. "dire-maul-4-01", x = 83, y = 60, w = 558, h = 607 }
 	floor.areas[key("Prison of Immol'thar")].n = 1
@@ -1042,6 +1063,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 449556, 449560, 449561, 449562, 449563, 449564, 449565, 449566, 449567, 449557, 449558, 449559 }, areas = {}, count = 0 }
+	floor.uimap = 239
 	floor.decor = { mask = DIR .. "dire-maul-5-decor", x = 321, y = 14, w = 661, h = 646 }
 	floor.start = { mask = DIR .. "dire-maul-5-start", x = 26, y = 184, w = 196, h = 444 }
 	floor.areas[key("Warpwood Quarter")] = { mask = DIR .. "dire-maul-5-01", x = 37, y = 85, w = 373, h = 543 }
@@ -1078,6 +1100,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 449568, 449572, 449573, 449574, 449575, 449576, 449577, 449578, 449579, 449569, 449570, 449571 }, areas = {}, count = 0 }
+	floor.uimap = 240
 	floor.decor = { mask = DIR .. "dire-maul-6-decor", x = 212, y = 0, w = 587, h = 102 }
 	floor.areas[key("Conservatory")] = { mask = DIR .. "dire-maul-6-01", x = 173, y = 256, w = 391, h = 407 }
 	floor.areas[key("Conservatory")].n = 1
@@ -1136,6 +1159,7 @@ end
 ns.Maps[90] = {}
 do
 	local floor = { cols = 4, tiles = { 449580, 449584, 449585, 449586, 449587, 449588, 449589, 449590, 449627, 449581, 449582, 449583 }, areas = {}, count = 0 }
+	floor.uimap = 226
 	floor.decor = { mask = DIR .. "gnomeregan-1-decor", x = 15, y = 4, w = 701, h = 633 }
 	floor.start = { mask = DIR .. "gnomeregan-1-start", x = 561, y = 56, w = 157, h = 216 }
 	floor.areas[key("The Clockwerk Run")] = { mask = DIR .. "gnomeregan-1-01", x = 331, y = 0, w = 387, h = 317 }
@@ -1187,6 +1211,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 449628, 449632, 449633, 449634, 449635, 449636, 449637, 449638, 449639, 449629, 449630, 449631 }, areas = {}, count = 0 }
+	floor.uimap = 227
 	floor.decor = { mask = DIR .. "gnomeregan-2-decor", x = 0, y = 0, w = 718, h = 404 }
 	floor.areas[key("Viscous Fallout")] = { mask = DIR .. "gnomeregan-2-01", x = 591, y = 87, w = 297, h = 374 }
 	floor.areas[key("Viscous Fallout")].n = 1
@@ -1234,6 +1259,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 449640, 449644, 449645, 449646, 449647, 449648, 449649, 449650, 449651, 449641, 449642, 449643 }, areas = {}, count = 0 }
+	floor.uimap = 228
 	floor.decor = { mask = DIR .. "gnomeregan-3-decor", x = 296, y = 5, w = 422, h = 397 }
 	floor.areas[key("Launch Bay")] = { mask = DIR .. "gnomeregan-3-01", x = 156, y = 58, w = 267, h = 327 }
 	floor.areas[key("Launch Bay")].n = 1
@@ -1272,6 +1298,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 449652, 449656, 449657, 449658, 449659, 449660, 449661, 449662, 449663, 449653, 449654, 449655 }, areas = {}, count = 0 }
+	floor.uimap = 229
 	floor.decor = { mask = DIR .. "gnomeregan-4-decor", x = 296, y = 5, w = 677, h = 444 }
 	floor.areas[key("Engineering Labs")] = { mask = DIR .. "gnomeregan-4-01", x = 564, y = 400, w = 253, h = 242 }
 	floor.areas[key("Engineering Labs")].n = 1
@@ -1332,6 +1359,7 @@ end
 ns.Maps[349] = {}
 do
 	local floor = { cols = 4, tiles = { 449676, 449680, 449681, 449682, 449683, 449684, 449685, 449686, 449687, 449677, 449678, 449679 }, areas = {}, count = 0 }
+	floor.uimap = 280
 	floor.decor = { mask = DIR .. "maraudon-1-decor", x = 0, y = 0, w = 992, h = 668 }
 	floor.start = { mask = DIR .. "maraudon-1-start", x = 554, y = 0, w = 372, h = 511 }
 	floor.areas[key("The Noxious Hollow")] = { mask = DIR .. "maraudon-1-01", x = 294, y = 0, w = 318, h = 364 }
@@ -1391,6 +1419,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 449688, 449692, 449693, 449694, 449695, 449696, 449697, 449698, 449699, 449689, 449690, 449691 }, areas = {}, count = 0 }
+	floor.uimap = 281
 	floor.decor = { mask = DIR .. "maraudon-2-decor", x = 311, y = 5, w = 678, h = 635 }
 	floor.areas[key("Celebras the Cursed")] = { mask = DIR .. "maraudon-2-01", x = 167, y = 0, w = 255, h = 182 }
 	floor.areas[key("Celebras the Cursed")].n = 1
@@ -1440,6 +1469,7 @@ end
 ns.Maps[409] = {}
 do
 	local floor = { cols = 4, tiles = { 448058, 448062, 448063, 448064, 448065, 448066, 448067, 448068, 448069, 448059, 448060, 448061 }, areas = {}, count = 0 }
+	floor.uimap = 232
 	floor.decor = { mask = DIR .. "molten-core-1-decor", x = 25, y = 21, w = 977, h = 617 }
 	floor.start = { mask = DIR .. "molten-core-1-start", x = 88, y = 2, w = 289, h = 217 }
 	floor.areas[key("Molten Giant")] = { mask = DIR .. "molten-core-1-01", x = 299, y = 0, w = 342, h = 273 }
@@ -1516,6 +1546,7 @@ end
 ns.Maps[533] = {}
 do
 	local floor = { cols = 4, tiles = { 252466, 252470, 252471, 252472, 252473, 252474, 252475, 252476, 252477, 252467, 252468, 252469 }, areas = {}, count = 0 }
+	floor.uimap = 162
 	floor.decor = { mask = DIR .. "naxxramas-1-decor", x = 0, y = 0, w = 1002, h = 668 }
 	floor.areas[key("The Construct Quarter")] = { mask = DIR .. "naxxramas-1-01", x = 337, y = 333, w = 583, h = 335 }
 	floor.areas[key("The Construct Quarter")].n = 1
@@ -1570,6 +1601,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 252478, 252482, 252483, 252484, 252485, 252486, 252487, 252488, 252489, 252479, 252480, 252481 }, areas = {}, count = 0 }
+	floor.uimap = 163
 	floor.decor = { mask = DIR .. "naxxramas-2-decor", x = 0, y = 0, w = 1002, h = 668 }
 	floor.areas[key("The Arachnid Quarter")] = { mask = DIR .. "naxxramas-2-01", x = 127, y = 301, w = 369, h = 367 }
 	floor.areas[key("The Arachnid Quarter")].n = 1
@@ -1616,6 +1648,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 252490, 252494, 252495, 252496, 252497, 252498, 252499, 252500, 252501, 252491, 252492, 252493 }, areas = {}, count = 0 }
+	floor.uimap = 164
 	floor.decor = { mask = DIR .. "naxxramas-3-decor", x = 0, y = 0, w = 1002, h = 668 }
 	floor.areas[key("The Military Quarter")] = { mask = DIR .. "naxxramas-3-01", x = 438, y = 0, w = 415, h = 282 }
 	floor.areas[key("The Military Quarter")].n = 1
@@ -1675,6 +1708,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 252502, 252506, 252507, 252508, 252509, 252510, 252511, 252512, 252513, 252503, 252504, 252505 }, areas = {}, count = 0 }
+	floor.uimap = 165
 	floor.decor = { mask = DIR .. "naxxramas-4-decor", x = 0, y = 0, w = 1002, h = 668 }
 	floor.areas[key("The Plague Quarter")] = { mask = DIR .. "naxxramas-4-01", x = 160, y = 0, w = 275, h = 364 }
 	floor.areas[key("The Plague Quarter")].n = 1
@@ -1718,6 +1752,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 252514, 252518, 252519, 252520, 252521, 252522, 252523, 252524, 252525, 252515, 252516, 252517 }, areas = {}, count = 0 }
+	floor.uimap = 166
 	floor.decor = { mask = DIR .. "naxxramas-5-decor", x = 0, y = 0, w = 1002, h = 668 }
 	floor.start = { mask = DIR .. "naxxramas-5-start", x = 439, y = 242, w = 182, h = 181 }
 	floor.areas[key("The Construct Quarter")] = { mask = DIR .. "naxxramas-5-01", x = 15, y = 27, w = 519, h = 356 }
@@ -1902,6 +1937,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 255178, 255182, 255183, 255184, 255185, 255186, 255187, 255188, 255189, 255179, 255180, 255181 }, areas = {}, count = 0 }
+	floor.uimap = 167
 	floor.decor = { mask = DIR .. "naxxramas-6-decor", x = 0, y = 0, w = 1002, h = 668 }
 	floor.areas[key("Sapphiron")] = { mask = DIR .. "naxxramas-6-01", x = 306, y = 161, w = 523, h = 507 }
 	floor.areas[key("Sapphiron")].n = 1
@@ -1928,6 +1964,7 @@ end
 ns.Maps[249] = {}
 do
 	local floor = { cols = 4, tiles = { 448070, 448074, 448075, 448076, 448077, 448078, 448079, 448080, 448081, 448071, 448072, 448073 }, areas = {}, count = 0 }
+	floor.uimap = 248
 	floor.decor = { mask = DIR .. "onyxias-lair-1-decor", x = 14, y = 0, w = 789, h = 641 }
 	floor.start = { mask = DIR .. "onyxias-lair-1-start", x = 154, y = 36, w = 429, h = 235 }
 	floor.areas[key("Onyxian Warder")] = { mask = DIR .. "onyxias-lair-1-01", x = 348, y = 170, w = 423, h = 498 }
@@ -1951,6 +1988,7 @@ end
 ns.Maps[389] = {}
 do
 	local floor = { cols = 4, tiles = { 449736, 449740, 449741, 449742, 449743, 449744, 449745, 449746, 449747, 449737, 449738, 449739 }, areas = {}, count = 0 }
+	floor.uimap = 213
 	floor.decor = { mask = DIR .. "ragefire-chasm-1-decor", x = 1, y = 13, w = 603, h = 632 }
 	floor.start = { mask = DIR .. "ragefire-chasm-1-start", x = 462, y = 10, w = 256, h = 117 }
 	floor.areas[key("Ragefire Trogg")] = { mask = DIR .. "ragefire-chasm-1-01", x = 553, y = 24, w = 194, h = 225 }
@@ -2003,6 +2041,7 @@ end
 ns.Maps[129] = {}
 do
 	local floor = { cols = 4, tiles = { 448094, 448098, 448099, 448100, 448101, 448102, 448103, 448104, 448105, 448095, 448096, 448097 }, areas = {}, count = 0 }
+	floor.uimap = 300
 	floor.decor = { mask = DIR .. "razorfen-downs-1-decor", x = 236, y = 6, w = 706, h = 657 }
 	floor.start = { mask = DIR .. "razorfen-downs-1-start", x = 203, y = 11, w = 122, h = 219 }
 	floor.areas[key("Death's Head Geomancer")] = { mask = DIR .. "razorfen-downs-1-01", x = 204, y = 5, w = 358, h = 380 }
@@ -2071,6 +2110,7 @@ end
 ns.Maps[47] = {}
 do
 	local floor = { cols = 4, tiles = { 448106, 448110, 448111, 448112, 448113, 448114, 448115, 448116, 448117, 448107, 448108, 448109 }, areas = {}, count = 0 }
+	floor.uimap = 301
 	floor.decor = { mask = DIR .. "razorfen-kraul-1-decor", x = 54, y = 4, w = 762, h = 657 }
 	floor.start = { mask = DIR .. "razorfen-kraul-1-start", x = 600, y = 485, w = 178, h = 135 }
 	floor.areas[key("Roogug")] = { mask = DIR .. "razorfen-kraul-1-01", x = 474, y = 275, w = 438, h = 304 }
@@ -2166,6 +2206,7 @@ end
 ns.Maps[509] = {}
 do
 	local floor = { cols = 4, tiles = { 449748, 449752, 449753, 449754, 449755, 449756, 449757, 449758, 449759, 449749, 449750, 449751 }, areas = {}, count = 0 }
+	floor.uimap = 247
 	floor.decor = { mask = DIR .. "ruins-of-ahnqiraj-1-decor", x = 0, y = 0, w = 962, h = 668 }
 	floor.start = { mask = DIR .. "ruins-of-ahnqiraj-1-start", x = 530, y = 46, w = 175, h = 111 }
 	floor.areas[key("Scarab Terrace")] = { mask = DIR .. "ruins-of-ahnqiraj-1-01", x = 451, y = 0, w = 364, h = 318 }
@@ -2277,6 +2318,7 @@ end
 ns.Maps[189] = {}
 do
 	local floor = { cols = 4, tiles = { 449760, 449764, 449765, 449766, 449767, 449768, 449769, 449770, 449771, 449761, 449762, 449763 }, areas = {}, count = 0 }
+	floor.uimap = 302
 	floor.decor = { mask = DIR .. "scarlet-monastery-1-decor", x = 64, y = 5, w = 892, h = 524 }
 	floor.start = { mask = DIR .. "scarlet-monastery-1-start", x = 708, y = 394, w = 223, h = 194 }
 	floor.areas[key("Chamber of Atonement")] = { mask = DIR .. "scarlet-monastery-1-01", x = 606, y = 299, w = 264, h = 188 }
@@ -2311,6 +2353,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 449772, 449776, 449777, 449778, 449779, 449780, 449781, 449782, 449783, 449773, 449774, 449775 }, areas = {}, count = 0 }
+	floor.uimap = 303
 	floor.decor = { mask = DIR .. "scarlet-monastery-2-decor", x = 81, y = 0, w = 691, h = 610 }
 	floor.start = { mask = DIR .. "scarlet-monastery-2-start", x = 66, y = 29, w = 282, h = 218 }
 	floor.areas[key("Huntsman's Cloister")] = { mask = DIR .. "scarlet-monastery-2-01", x = 157, y = 215, w = 301, h = 341 }
@@ -2352,6 +2395,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 449784, 449788, 449789, 449790, 449791, 449792, 449793, 449794, 449795, 449785, 449786, 449787 }, areas = {}, count = 0 }
+	floor.uimap = 304
 	floor.decor = { mask = DIR .. "scarlet-monastery-3-decor", x = 42, y = 6, w = 682, h = 658 }
 	floor.start = { mask = DIR .. "scarlet-monastery-3-start", x = 575, y = 543, w = 112, h = 125 }
 	floor.areas[key("Training Grounds")] = { mask = DIR .. "scarlet-monastery-3-01", x = 600, y = 454, w = 207, h = 196 }
@@ -2390,6 +2434,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 449796, 449800, 449801, 449802, 449803, 449804, 449805, 449806, 449807, 449797, 449798, 449799 }, areas = {}, count = 0 }
+	floor.uimap = 305
 	floor.decor = { mask = DIR .. "scarlet-monastery-4-decor", x = 5, y = 0, w = 799, h = 668 }
 	floor.start = { mask = DIR .. "scarlet-monastery-4-start", x = 379, y = 532, w = 278, h = 129 }
 	floor.areas[key("Chapel Gardens")] = { mask = DIR .. "scarlet-monastery-4-01", x = 372, y = 251, w = 342, h = 414 }
@@ -2425,6 +2470,7 @@ end
 ns.Maps[289] = {}
 do
 	local floor = { cols = 4, tiles = { 448178, 448182, 448183, 448184, 448185, 448186, 448187, 448188, 448189, 448179, 448180, 448181 }, areas = {}, count = 0 }
+	floor.uimap = 476
 	floor.decor = { mask = DIR .. "scholomance-1-decor", x = 224, y = 16, w = 590, h = 120 }
 	floor.start = { mask = DIR .. "scholomance-1-start", x = 196, y = 242, w = 456, h = 259 }
 	floor.areas[key("The Reliquary")] = { mask = DIR .. "scholomance-1-01", x = 550, y = 94, w = 345, h = 439 }
@@ -2438,6 +2484,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 448190, 448194, 448195, 448196, 448197, 448198, 448199, 448200, 448201, 448191, 448192, 448193 }, areas = {}, count = 0 }
+	floor.uimap = 477
 	floor.decor = { mask = DIR .. "scholomance-2-decor", x = 451, y = 76, w = 538, h = 586 }
 	floor.areas[key("Chamber of Summoning")] = { mask = DIR .. "scholomance-2-01", x = 334, y = 29, w = 332, h = 251 }
 	floor.areas[key("Chamber of Summoning")].n = 1
@@ -2481,6 +2528,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 448202, 448206, 448207, 448208, 448209, 448210, 448211, 448212, 448213, 448203, 448204, 448205 }, areas = {}, count = 0 }
+	floor.uimap = 478
 	floor.decor = { mask = DIR .. "scholomance-3-decor", x = 137, y = 1, w = 567, h = 368 }
 	floor.areas[key("Jandice Barov")] = { mask = DIR .. "scholomance-3-01", x = 151, y = 0, w = 499, h = 231 }
 	floor.areas[key("Jandice Barov")].n = 1
@@ -2525,6 +2573,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 448214, 448218, 448219, 448220, 448221, 448222, 448223, 448224, 448225, 448215, 448216, 448217 }, areas = {}, count = 0 }
+	floor.uimap = 479
 	floor.decor = { mask = DIR .. "scholomance-4-decor", x = 34, y = 8, w = 610, h = 552 }
 	floor.areas[key("Headmaster's Study")] = { mask = DIR .. "scholomance-4-01", x = 540, y = 94, w = 223, h = 192 }
 	floor.areas[key("Headmaster's Study")].n = 1
@@ -2568,6 +2617,7 @@ end
 ns.Maps[33] = {}
 do
 	local floor = { cols = 4, tiles = { 448226, 448230, 448231, 448232, 448233, 448234, 448235, 448236, 448237, 448227, 448228, 448229 }, areas = {}, count = 0 }
+	floor.uimap = 310
 	floor.decor = { mask = DIR .. "shadowfang-keep-1-decor", x = 216, y = 8, w = 782, h = 590 }
 	floor.start = { mask = DIR .. "shadowfang-keep-1-start", x = 552, y = 205, w = 219, h = 281 }
 	floor.areas[key("Rethilgore")] = { mask = DIR .. "shadowfang-keep-1-01", x = 524, y = 333, w = 247, h = 227 }
@@ -2616,6 +2666,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 448238, 448242, 448243, 448244, 448245, 448246, 448247, 448248, 448249, 448239, 448240, 448241 }, areas = {}, count = 0 }
+	floor.uimap = 311
 	floor.decor = { mask = DIR .. "shadowfang-keep-2-decor", x = 221, y = 32, w = 779, h = 633 }
 	floor.areas[key("Razorclaw the Butcher")] = { mask = DIR .. "shadowfang-keep-2-01", x = 331, y = 22, w = 327, h = 373 }
 	floor.areas[key("Razorclaw the Butcher")].n = 1
@@ -2640,6 +2691,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 448298, 448302, 448303, 448304, 448305, 448306, 448307, 448308, 448309, 448299, 448300, 448301 }, areas = {}, count = 0 }
+	floor.uimap = 316
 	floor.decor = { mask = DIR .. "shadowfang-keep-3-decor", x = 28, y = 1, w = 924, h = 373 }
 	floor.areas[key("Odo the Blindwatcher")] = { mask = DIR .. "shadowfang-keep-3-01", x = 450, y = 322, w = 302, h = 346 }
 	floor.areas[key("Odo the Blindwatcher")].n = 1
@@ -2669,6 +2721,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 448250, 448254, 448255, 448256, 448257, 448258, 448259, 448260, 448261, 448251, 448252, 448253 }, areas = {}, count = 0 }
+	floor.uimap = 312
 	floor.decor = { mask = DIR .. "shadowfang-keep-4-decor", x = 0, y = 1, w = 804, h = 651 }
 	floor.areas[key("Son of Arugal")] = { mask = DIR .. "shadowfang-keep-4-01", x = 504, y = 1, w = 303, h = 553 }
 	floor.areas[key("Son of Arugal")].n = 1
@@ -2697,6 +2750,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 448286, 448290, 448291, 448292, 448293, 448294, 448295, 448296, 448297, 448287, 448288, 448289 }, areas = {}, count = 0 }
+	floor.uimap = 315
 	floor.decor = { mask = DIR .. "shadowfang-keep-5-decor", x = 39, y = 1, w = 765, h = 530 }
 	floor.areas[key("Wolf Master Nandos")] = { mask = DIR .. "shadowfang-keep-5-01", x = 366, y = 269, w = 321, h = 391 }
 	floor.areas[key("Wolf Master Nandos")].n = 1
@@ -2716,6 +2770,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 448262, 448266, 448267, 448268, 448269, 448270, 448271, 448272, 448273, 448263, 448264, 448265 }, areas = {}, count = 0 }
+	floor.uimap = 313
 	floor.decor = { mask = DIR .. "shadowfang-keep-6-decor", x = 7, y = 1, w = 800, h = 642 }
 	floor.areas[key("Lower Observatory")] = { mask = DIR .. "shadowfang-keep-6-01", x = 292, y = 95, w = 472, h = 549 }
 	floor.areas[key("Lower Observatory")].n = 1
@@ -2727,6 +2782,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 448274, 448278, 448279, 448280, 448281, 448282, 448283, 448284, 448285, 448275, 448276, 448277 }, areas = {}, count = 0 }
+	floor.uimap = 314
 	floor.decor = { mask = DIR .. "shadowfang-keep-7-decor", x = 216, y = 1, w = 747, h = 407 }
 	floor.areas[key("Upper Observatory")] = { mask = DIR .. "shadowfang-keep-7-01", x = 292, y = 95, w = 419, h = 485 }
 	floor.areas[key("Upper Observatory")].n = 1
@@ -2740,6 +2796,7 @@ end
 ns.Maps[329] = {}
 do
 	local floor = { cols = 4, tiles = { 448322, 448326, 448327, 448328, 448329, 448330, 448331, 448332, 448333, 448323, 448324, 448325 }, areas = {}, count = 0 }
+	floor.uimap = 317
 	floor.decor = { mask = DIR .. "stratholme-1-decor", x = 281, y = 5, w = 448, h = 547 }
 	floor.start = { mask = DIR .. "stratholme-1-start", x = 386, y = 465, w = 508, h = 203 }
 	floor.areas[key("King's Square")] = { mask = DIR .. "stratholme-1-01", x = 457, y = 138, w = 403, h = 400 }
@@ -2825,6 +2882,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 448334, 448338, 448339, 448340, 448341, 448342, 448343, 448344, 448345, 448335, 448336, 448337 }, areas = {}, count = 0 }
+	floor.uimap = 318
 	floor.decor = { mask = DIR .. "stratholme-2-decor", x = 0, y = 161, w = 444, h = 463 }
 	floor.start = { mask = DIR .. "stratholme-2-start", x = 605, y = 519, w = 114, h = 122 }
 	floor.areas[key("Elders' Square")] = { mask = DIR .. "stratholme-2-01", x = 345, y = 344, w = 395, h = 302 }
@@ -2885,6 +2943,7 @@ end
 ns.Maps[109] = {}
 do
 	local floor = { cols = 4, tiles = { 452514, 452518, 452519, 452520, 452521, 452522, 452523, 452524, 452525, 452515, 452516, 452517 }, areas = {}, count = 0 }
+	floor.uimap = 220
 	floor.decor = { mask = DIR .. "sunken-temple-1-decor", x = 211, y = 0, w = 606, h = 94 }
 	floor.start = { mask = DIR .. "sunken-temple-1-start", x = 341, y = 42, w = 390, h = 177 }
 	floor.areas[key("Pit of Sacrifice")] = { mask = DIR .. "sunken-temple-1-01", x = 369, y = 179, w = 268, h = 255 }
@@ -2963,6 +3022,7 @@ end
 ns.Maps[531] = {}
 do
 	local floor = { cols = 4, tiles = { 450110, 450114, 450115, 450116, 450117, 450118, 450119, 450120, 450121, 450111, 450112, 450113 }, areas = {}, count = 0 }
+	floor.uimap = 319
 	floor.decor = { mask = DIR .. "temple-of-ahnqiraj-1-decor", x = 212, y = 5, w = 587, h = 112 }
 	floor.areas[key("The Hive Undergrounds")] = { mask = DIR .. "temple-of-ahnqiraj-1-01", x = 309, y = 6, w = 272, h = 219 }
 	floor.areas[key("The Hive Undergrounds")].n = 1
@@ -3035,6 +3095,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 450122, 450126, 450127, 450128, 450129, 450130, 450131, 450132, 450133, 450123, 450124, 450125 }, areas = {}, count = 0 }
+	floor.uimap = 320
 	floor.decor = { mask = DIR .. "temple-of-ahnqiraj-2-decor", x = 0, y = 5, w = 803, h = 632 }
 	floor.start = { mask = DIR .. "temple-of-ahnqiraj-2-start", x = 389, y = 62, w = 362, h = 195 }
 	floor.areas[key("The Temple Gates")] = { mask = DIR .. "temple-of-ahnqiraj-2-01", x = 176, y = 6, w = 462, h = 525 }
@@ -3059,6 +3120,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 450134, 450138, 450139, 450140, 450141, 450142, 450143, 450144, 450145, 450135, 450136, 450137 }, areas = {}, count = 0 }
+	floor.uimap = 321
 	floor.decor = { mask = DIR .. "temple-of-ahnqiraj-3-decor", x = 39, y = 5, w = 764, h = 587 }
 	floor.areas[key("Vault of C'Thun")] = { mask = DIR .. "temple-of-ahnqiraj-3-01", x = 274, y = 6, w = 464, h = 379 }
 	floor.areas[key("Vault of C'Thun")].n = 1
@@ -3200,6 +3262,7 @@ end
 ns.Maps[34] = {}
 do
 	local floor = { cols = 4, tiles = { 455959, 455963, 455964, 455965, 455966, 455967, 455968, 455969, 455970, 455960, 455961, 455962 }, areas = {}, count = 0 }
+	floor.uimap = 225
 	floor.decor = { mask = DIR .. "the-stockade-1-decor", x = 296, y = 5, w = 420, h = 109 }
 	floor.start = { mask = DIR .. "the-stockade-1-start", x = 388, y = 394, w = 228, h = 236 }
 	floor.areas[key("Defias Prisoner")] = { mask = DIR .. "the-stockade-1-01", x = 378, y = 181, w = 245, h = 252 }
@@ -3239,6 +3302,7 @@ end
 ns.Maps[70] = {}
 do
 	local floor = { cols = 4, tiles = { 448430, 448434, 448435, 448436, 448437, 448438, 448439, 448440, 448441, 448431, 448432, 448433 }, areas = {}, count = 0 }
+	floor.uimap = 230
 	floor.decor = { mask = DIR .. "uldaman-1-decor", x = 541, y = 30, w = 461, h = 638 }
 	floor.start = { mask = DIR .. "uldaman-1-start", x = 612, y = 427, w = 116, h = 134 }
 	floor.areas[key("Hall of the Keepers")] = { mask = DIR .. "uldaman-1-01", x = 472, y = 269, w = 256, h = 362 }
@@ -3336,6 +3400,7 @@ do
 end
 do
 	local floor = { cols = 4, tiles = { 448442, 448446, 448447, 448448, 448449, 448450, 448451, 448452, 448453, 448443, 448444, 448445 }, areas = {}, count = 0 }
+	floor.uimap = 231
 	floor.decor = { mask = DIR .. "uldaman-2-decor", x = 7, y = 30, w = 944, h = 614 }
 	floor.areas[key("Hall of the Crafters")] = { mask = DIR .. "uldaman-2-01", x = 439, y = 214, w = 304, h = 305 }
 	floor.areas[key("Hall of the Crafters")].n = 1
@@ -3365,6 +3430,7 @@ end
 ns.Maps[43] = {}
 do
 	local floor = { cols = 4, tiles = { 448454, 448458, 448459, 448460, 448461, 448462, 448463, 448464, 448465, 448455, 448456, 448457 }, areas = {}, count = 0 }
+	floor.uimap = 279
 	floor.decor = { mask = DIR .. "wailing-caverns-1-decor", x = 71, y = 14, w = 931, h = 654 }
 	floor.start = { mask = DIR .. "wailing-caverns-1-start", x = 374, y = 299, w = 157, h = 160 }
 	floor.areas[key("Screaming Gully")] = { mask = DIR .. "wailing-caverns-1-01", x = 213, y = 109, w = 385, h = 351 }
@@ -3431,6 +3497,7 @@ end
 ns.Maps[209] = {}
 do
 	local floor = { cols = 4, tiles = { 449820, 449824, 449825, 449826, 449827, 449828, 449829, 449830, 449831, 449821, 449822, 449823 }, areas = {}, count = 0 }
+	floor.uimap = 219
 	floor.decor = { mask = DIR .. "zul-farrak-1-decor", x = 0, y = 6, w = 1002, h = 662 }
 	floor.start = { mask = DIR .. "zul-farrak-1-start", x = 177, y = 444, w = 779, h = 224 }
 	floor.areas[key("Sandfury Axe Thrower")] = { mask = DIR .. "zul-farrak-1-01", x = 78, y = 293, w = 800, h = 281 }
@@ -3501,6 +3568,7 @@ end
 ns.Maps[309] = {}
 do
 	local floor = { cols = 4, tiles = { 515607, 515611, 515612, 515613, 515614, 515615, 515616, 515617, 515618, 515608, 515609, 515610 }, areas = {}, count = 0 }
+	floor.uimap = 233
 	floor.decor = { mask = DIR .. "zul-gurub-1-decor", x = 0, y = 0, w = 1002, h = 668 }
 	floor.start = { mask = DIR .. "zul-gurub-1-start", x = 99, y = 157, w = 275, h = 370 }
 	floor.areas[key("Altar of Hir'eek")] = { mask = DIR .. "zul-gurub-1-01", x = 205, y = 310, w = 262, h = 349 }
