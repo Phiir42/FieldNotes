@@ -1136,6 +1136,7 @@ do
 	floor.areas[key("Lost Marsh")].n = 1
 	floor.areas["#1"] = floor.areas[key("Lost Marsh")]
 	floor.count = floor.count + 1
+	floor.areas[key("Wetlands")] = floor.areas[key("Lost Marsh")]
 	floor.areas[key("Highland Snapper")] = floor.areas[key("Lost Marsh")]
 	floor.areas[key("Highland Tortoise")] = floor.areas[key("Lost Marsh")]
 	floor.areas[key("Elder Crocolisk")] = floor.areas[key("Lost Marsh")]

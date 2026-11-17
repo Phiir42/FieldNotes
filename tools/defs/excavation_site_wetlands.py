@@ -42,7 +42,8 @@ MAP = {'instance': 2998,
                                                 (100, 560),
                                                 (40, 180)]},
              # creatures by where a real run first met them (14 Nov)
-             'aliases': {'Highland Snapper': 'Lost Marsh', 'Highland Tortoise': 'Lost Marsh',
+             # (the game names the open ground between the parts after the zone)
+             'aliases': {'Wetlands': 'Lost Marsh', 'Highland Snapper': 'Lost Marsh', 'Highland Tortoise': 'Lost Marsh',
                          'Elder Crocolisk': 'Lost Marsh', 'Young Crocolisk': 'Lost Marsh',
                          'Marsh Skulker': 'Lost Marsh', 'Marsh Crocolisk': 'Lost Marsh',
                          'Thicket Hunter': "Stalker's Thicket", 'Thicket Lurker': "Stalker's Thicket",
