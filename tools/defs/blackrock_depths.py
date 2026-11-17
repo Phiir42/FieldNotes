@@ -1,7 +1,7 @@
 MAP = {
     "instance": 230,
     # where the classic data puts them (retail's journal has them elsewhere)
-    "bosses": {"Houndmaster Grebmar": (1, 496, 412), "Phalanx": (2, 534, 434)},
+    "bosses": {"Houndmaster Grebmar": (1, 496, 412), "Phalanx": (2, 534, 434), "Plugger Spazzring": (2, 498, 424)},
     "slug": "blackrock-depths",
     "floors": [
         {
