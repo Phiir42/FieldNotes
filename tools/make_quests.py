@@ -268,13 +268,22 @@ def main():
             groups.append([creatures[c] for c in has if c in creatures])
         return groups
 
+    # A boss summoned with an item (Lord Valthalak's amulet) is summoned by an
+    # unseen trigger creature that does have a spawn point: "Mor Grayhoof
+    # Trigger", "Jarien and Sothos Trigger".
+    triggers = {}
+    for c in creatures.values():
+        if c["name"] and c["name"].endswith(" Trigger") and c["spawns"]:
+            for who in c["name"][:-len(" Trigger")].split(" and "):
+                triggers.setdefault(norm(who), c["spawns"])
+
     def sources(r, wide=False):
         """-> [(name, spawns)] of the creatures and objects a quest sends you to."""
         out = []
         for c in (c for group in wants(r, wide) for c in group):
             if not c["name"]:
                 continue
-            spawns = c["spawns"]
+            spawns = c["spawns"] or triggers.get(norm(c["name"]), [])
             # a boss that is summoned stands nowhere in the database: the
             # game's own list of fights says which dungeon it belongs to
             if not spawns and norm(c["name"]) in fights:

@@ -15,6 +15,9 @@
   Ossuary, Marduk Blackpool and Vectus in the Viewing Room, and the deeds,
   remains and embalming fluid the quests ask for.
 - Plugger Spazzring stands on the Grim Guzzler's skull.
+- Bosses summoned for a quest are marked where they are summoned: Mor
+  Grayhoof, Isalien, Jarien and Sothos for Lord Valthalak's amulet, and
+  Theldren, whom "The Challenge" now names, in the Ring of Law.
 - Excavation Site: its creatures are filed where a real run met them, so
   the quests that want Thicket beasts or Dragonmaw are marked on the map,
   and the open ground the game calls the Wetlands is no longer listed as a
