@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.0-beta.12 – not yet released
+## 0.2.0-beta.12
 
 - Where you stand as a boss falls is noted, if the game tells addons inside
   a dungeon (`/fn debug` now counts whether it does, and which map it
