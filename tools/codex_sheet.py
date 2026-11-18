@@ -24,7 +24,6 @@ ABOUT = {
     "the-hall-of-thanes": ("a dwarven hall of stone chambers below, opening onto snowy mountain ledges above", "scarlet-monastery-2"),
     "the-drowned-city": ("a ruined troll temple city on the sea bed: stone courts around an octagonal pool, with rocky paths", "zul-farrak-1"),
     "blackmaw-hold": ("a furbolg hold: forest clearings and rocky dens under a snowy ridge", "zul-farrak-1"),
-    "city-of-dalaran": ("the walled mage city of Dalaran: domed towers around a central plaza", "zul-farrak-1"),
     "ruins-of-lordaeron": ("the ruined walled capital of Lordaeron: streets and courtyards around a domed palace", "zul-farrak-1"),
     "kroldok-stronghold": ("an ogre stronghold of stone towers and walls winding up a hillside", "zul-farrak-1"),
     "the-shapers-terrace": ("a titan garden: plains, tar pits, crystal springs and rocky highlands", "zul-farrak-1"),

@@ -150,7 +150,7 @@ def tiles(ui_map):
 def split(floor, blank):
     """-> (original RGB, [(key, alpha array)]) with keys 'decor', 'start' or an area name."""
     img = load_art(floor["art"], blank) if "art" in floor else load(floor["ref"])
-    drawing = (np.abs(img - blank).max(axis=2) > THRESHOLD).astype(np.float32)
+    drawing = (np.abs(img - blank).max(axis=2) > floor.get("threshold", THRESHOLD)).astype(np.float32)
     drawing = drawing * (blur(drawing, 4) > 0.18)  # drop stray specks of noise
     if floor.get("art") in ART_MASKS:
         drawing = np.maximum(drawing, (ART_MASKS[floor["art"]] > 0.5).astype(np.float32))
@@ -376,6 +376,53 @@ def boss_points(dungeon, splits):
             if spot:
                 levels.setdefault(f, []).append(spot[2])
     return out
+
+
+def own_paper(img, pieces, blank):
+    """A blank for a sheet on paper of its own tone (Wrath's Dalaran sheets are
+    lighter than the dungeon sheets the common blank is made from): the sheet
+    itself, with its drawing filled in from the paper around it and given the
+    common blank's grain, so a hidden part shows the same paper as the rest of
+    the page."""
+    hide = np.zeros(img.shape[:2], np.float32)
+    for name, alpha in pieces:
+        if name != "decor":
+            hide = np.maximum(hide, alpha)
+    hide = (grow((hide > 0.02).astype(np.float32), 6) > 0)
+    # paper to take the colour from: not the drawing, the page's burnt edge,
+    # nor the decoration (banner, clouds)
+    src = img.astype(np.float32)
+    inside = np.zeros(hide.shape, bool)
+    inside[45:-45, 45:-45] = True
+    clean = inside.copy()
+    for name, alpha in pieces:
+        if name == "decor":
+            clean &= alpha < 0.02
+    # where a sheet's areas reach over most of the page, paper is also known by
+    # its colour: that of a band just inside the page's edge
+    band = clean.copy()
+    band[110:-110, 110:-110] = False
+    tone = np.median(src[band], axis=0)
+    like = np.sqrt(((src - tone) ** 2).sum(axis=2)) < 35
+    keep = ((clean & ~hide) | (inside & like)).astype(np.float32)
+    src = img.astype(np.float32)
+    # the paper's colour around each pixel, near where there is paper near,
+    # from further off where not, and the page's mean paper where none is in reach
+    mean = (src * keep[..., None]).sum(axis=(0, 1)) / max(keep.sum(), 1)
+    fill = np.broadcast_to(mean, src.shape).astype(np.float32)
+    for r in (250, 120, 50):
+        k = np.asarray(Image.fromarray((keep * 255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(r))).astype(np.float32) / 255
+        tone = np.dstack([np.asarray(Image.fromarray((src[..., c] * keep).clip(0, 255).astype(np.uint8))
+                                     .filter(ImageFilter.GaussianBlur(r))).astype(np.float32) for c in range(3)])
+        tone = tone / np.maximum(k, 1e-3)[..., None]
+        w = np.clip(k / 0.25, 0, 1)[..., None]
+        fill = fill * (1 - w) + tone * w
+    grain = blank.astype(np.float32) - np.dstack(
+        [np.asarray(Image.fromarray(blank[..., c].astype(np.uint8)).filter(ImageFilter.GaussianBlur(12))).astype(np.float32)
+         for c in range(3)])
+    soft = blur(hide.astype(np.float32), 6)[..., None]
+    out = src * (1 - soft) + (fill + grain) * soft
+    return out.clip(0, 255).astype(np.int16)
 
 
 def lua_piece(tex, box):
@@ -744,7 +791,18 @@ def main():
             continue
         out.append("-- " + slug)
         out.append("ns.Maps[%d] = {}" % dungeon["instance"])
-        splits = [split(floor, blank) for floor in dungeon["floors"]]
+        splits, papers = [], []
+        for floor in dungeon["floors"]:
+            img, pieces = split(floor, blank)
+            paper = blank
+            if floor.get("paper"):
+                # the drawing is told from the sheet's own paper, not the common
+                # blank: found once roughly, then again against the paper so found
+                paper = own_paper(img, pieces, blank)
+                img, pieces = split(floor, paper)
+                paper = own_paper(img, pieces, blank)
+            splits.append((img, pieces))
+            papers.append(paper)
         bosses = boss_points(dungeon, splits)
         places = quest_places(dungeon, splits)
         moved = {}
@@ -770,6 +828,12 @@ def main():
                            % (cols, ", ".join(map(str, ids))))
                 # the game's map of this sheet: where you stood, read in game, is placed by it
                 out.append("\tfloor.uimap = %d" % floor.get("world", floor["uimap"]))
+            paper = papers[f - 1]
+            if floor.get("paper"):
+                if write:
+                    Image.fromarray(paper.astype(np.uint8)).resize(BLANK, Image.LANCZOS).save(
+                        os.path.join(OUT, base + "-paper.tga"))
+                out.append('\tfloor.blank = DIR .. "%s-paper"' % base)
             n, seen, numbers = 0, [], {}
             for name, alpha in pieces:
                 special = name in ("decor", "start")
@@ -841,7 +905,7 @@ def main():
             out.append("end")
             print(f"{base}: {n} areas, {len(ids)} tiles")
             if preview or only:
-                write_preview(base, img, blank, seen)
+                write_preview(base, img, paper, seen)
                 write_cells(base, img, floor, seen)
     if not write:
         return

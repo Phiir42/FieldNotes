@@ -1540,6 +1540,8 @@ end
 
 local function DrawMap(sheet)
 	local floor = sheet.floor
+	-- a sheet on other paper than the dungeon sheets (Wrath's Dalaran) brings its own blank
+	canvas.blank:SetTexture(floor.blank or ns.MAP_BLANK)
 	-- another sheet: whatever was being drawn is simply finished
 	if canvas.animFloor ~= floor then SketchDone() end
 	canvas.animFloor = floor
