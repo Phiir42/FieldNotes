@@ -757,33 +757,46 @@ do
 	floor.count = floor.count + 1
 	floor.areas[key("Krasus' Landing")] = floor.areas[key("Arcane Anomaly")]
 	floor.areas[key("Mana Wraith")] = floor.areas[key("Arcane Anomaly")]
+	floor.areas[key("Saturated Remnant")] = floor.areas[key("Arcane Anomaly")]
+	floor.areas[key("Mana Stalker")] = floor.areas[key("Arcane Anomaly")]
+	floor.areas[key("Seeking Remnant")] = floor.areas[key("Arcane Anomaly")]
+	floor.areas[key("Phantasm")] = floor.areas[key("Arcane Anomaly")]
 	floor.areas[key("Mana Devourer")] = { mask = DIR .. "city-of-dalaran-1-02", x = 524, y = 315, w = 282, h = 353 }
 	floor.areas[key("Mana Devourer")].n = 2
 	floor.areas["#2"] = floor.areas[key("Mana Devourer")]
 	floor.count = floor.count + 1
 	floor.areas[key("The Violet Hold")] = floor.areas[key("Mana Devourer")]
+	floor.areas[key("Suffused Treant")] = floor.areas[key("Mana Devourer")]
+	floor.areas[key("Arcane Echo")] = floor.areas[key("Mana Devourer")]
+	floor.areas[key("Mana Echo")] = floor.areas[key("Mana Devourer")]
+	floor.areas[key("Mana Phantom")] = floor.areas[key("Mana Devourer")]
 	floor.areas[key("Fel Grove")] = { mask = DIR .. "city-of-dalaran-1-03", x = 360, y = 225, w = 286, h = 203 }
 	floor.areas[key("Fel Grove")].n = 3
 	floor.areas["#3"] = floor.areas[key("Fel Grove")]
 	floor.count = floor.count + 1
 	floor.areas[key("Fel Ancient")] = floor.areas[key("Fel Grove")]
 	floor.areas[key("Runeweaver Square")] = floor.areas[key("Fel Grove")]
-	floor.areas[key("Atrexis the Grave Knight")] = floor.areas[key("Fel Grove")]
 	floor.areas[key("The Eventide")] = { mask = DIR .. "city-of-dalaran-1-04", x = 377, y = 367, w = 222, h = 301 }
 	floor.areas[key("The Eventide")].n = 4
 	floor.areas["#4"] = floor.areas[key("The Eventide")]
 	floor.count = floor.count + 1
+	floor.areas[key("Arcane Manaling")] = floor.areas[key("The Eventide")]
 	floor.areas[key("The Silver Enclave")] = { mask = DIR .. "city-of-dalaran-1-05", x = 199, y = 309, w = 255, h = 359 }
 	floor.areas[key("The Silver Enclave")].n = 5
 	floor.areas["#5"] = floor.areas[key("The Silver Enclave")]
 	floor.count = floor.count + 1
 	floor.areas[key("A Hero's Welcome")] = floor.areas[key("The Silver Enclave")]
+	floor.areas[key("The Atrium of Fortune")] = floor.areas[key("The Silver Enclave")]
+	floor.areas[key("Tempered Tomes")] = floor.areas[key("The Silver Enclave")]
 	floor.areas[key("Unstable Sentinel")] = { mask = DIR .. "city-of-dalaran-1-06", x = 247, y = 115, w = 272, h = 233 }
 	floor.areas[key("Unstable Sentinel")].n = 6
 	floor.areas["#6"] = floor.areas[key("Unstable Sentinel")]
 	floor.count = floor.count + 1
 	floor.areas[key("Magus Commerce Exchange")] = floor.areas[key("Unstable Sentinel")]
 	floor.areas[key("Trade District")] = floor.areas[key("Unstable Sentinel")]
+	floor.areas[key("Presage Plaza")] = floor.areas[key("Unstable Sentinel")]
+	floor.areas[key("Archival Exhibit")] = floor.areas[key("Unstable Sentinel")]
+	floor.areas[key("Antonidas' Antiquities")] = floor.areas[key("Unstable Sentinel")]
 	floor.areas[key("Mana Elemental")] = { mask = DIR .. "city-of-dalaran-1-07", x = 243, y = 0, w = 339, h = 208 }
 	floor.areas[key("Mana Elemental")].n = 7
 	floor.areas["#7"] = floor.areas[key("Mana Elemental")]
@@ -791,36 +804,53 @@ do
 	floor.areas[key("Arcanic Enigma")] = floor.areas[key("Mana Elemental")]
 	floor.areas[key("Path of Renewal")] = floor.areas[key("Mana Elemental")]
 	floor.areas[key("Antonidas Memorial")] = floor.areas[key("Mana Elemental")]
-	floor.areas[key("Lyn the Ignored")] = { mask = DIR .. "city-of-dalaran-1-08", x = 487, y = 0, w = 334, h = 336 }
-	floor.areas[key("Lyn the Ignored")].n = 8
-	floor.areas["#8"] = floor.areas[key("Lyn the Ignored")]
+	floor.areas[key("Sunreaver's Sanctuary")] = { mask = DIR .. "city-of-dalaran-1-08", x = 487, y = 0, w = 334, h = 336 }
+	floor.areas[key("Sunreaver's Sanctuary")].n = 8
+	floor.areas["#8"] = floor.areas[key("Sunreaver's Sanctuary")]
 	floor.count = floor.count + 1
-	floor.areas[key("Sunreaver's Sanctuary")] = floor.areas[key("Lyn the Ignored")]
+	floor.areas[key("Fragmented Sentry")] = floor.areas[key("Sunreaver's Sanctuary")]
+	floor.areas[key("Arcane Elemental")] = floor.areas[key("Sunreaver's Sanctuary")]
+	floor.areas[key("Mana Fiend")] = floor.areas[key("Sunreaver's Sanctuary")]
 	floor.areas[key("Shade of the Archmage")] = { mask = DIR .. "city-of-dalaran-1-09", x = 0, y = 0, w = 381, h = 515 }
 	floor.areas[key("Shade of the Archmage")].n = 9
 	floor.areas["#9"] = floor.areas[key("Shade of the Archmage")]
 	floor.count = floor.count + 1
+	floor.areas[key("The Purple Parlor")] = floor.areas[key("Shade of the Archmage")]
 	floor.areas[key("The Violet Citadel")] = floor.areas[key("Shade of the Archmage")]
-	floor.bosses = { { name = "Arcane Anomaly", x = 697, y = 302 }, { name = "Fel Ancient", x = 497, y = 321 }, { name = "Mana Devourer", x = 628, y = 426 }, { name = "Mana Elemental", x = 471, y = 142 }, { name = "Unstable Sentinel", x = 397, y = 213 }, { name = "Shade of the Archmage", x = 242, y = 259 }, { name = "Lyn the Ignored", x = 582, y = 179 }, { name = "Atrexis the Grave Knight", x = 506, y = 343 }, { name = "Mana Wraith", x = 716, y = 284 } }
+	floor.bosses = { { name = "Arcane Anomaly", x = 697, y = 302 }, { name = "Fel Ancient", x = 497, y = 321 }, { name = "Mana Devourer", x = 628, y = 426 }, { name = "Mana Elemental", x = 471, y = 142 }, { name = "Unstable Sentinel", x = 397, y = 213 }, { name = "Shade of the Archmage", x = 242, y = 259 }, { name = "Mana Wraith", x = 716, y = 284 } }
 	ns.Maps[2959][1] = floor
 end
 do
 	local floor = { cols = 4, tiles = { 237732, 237736, 237737, 237738, 237739, 237740, 237741, 237742, 237743, 237733, 237734, 237735 }, areas = {}, count = 0 }
 	floor.uimap = 126
 	floor.blank = DIR .. "city-of-dalaran-2-paper"
-	floor.decor = { mask = DIR .. "city-of-dalaran-2-decor", x = 22, y = 0, w = 826, h = 655 }
+	floor.decor = { mask = DIR .. "city-of-dalaran-2-decor", x = 22, y = 0, w = 825, h = 655 }
 	floor.start = { mask = DIR .. "city-of-dalaran-2-start", x = 43, y = 332, w = 291, h = 266 }
-	floor.areas[key("The Underbelly")] = { mask = DIR .. "city-of-dalaran-2-01", x = 84, y = 0, w = 751, h = 597 }
+	floor.areas[key("The Underbelly")] = { mask = DIR .. "city-of-dalaran-2-01", x = 84, y = 14, w = 751, h = 582 }
 	floor.areas[key("The Underbelly")].n = 1
 	floor.areas["#1"] = floor.areas[key("The Underbelly")]
 	floor.count = floor.count + 1
 	floor.areas[key("Sewer")] = floor.areas[key("The Underbelly")]
 	floor.areas[key("Circle of Wills")] = floor.areas[key("The Underbelly")]
-	floor.areas[key("Cantrips & Crows")] = { mask = DIR .. "city-of-dalaran-2-02", x = 196, y = 260, w = 372, h = 377 }
-	floor.areas[key("Cantrips & Crows")].n = 2
-	floor.areas["#2"] = floor.areas[key("Cantrips & Crows")]
+	floor.areas[key("Atrexis the Grave Knight")] = floor.areas[key("The Underbelly")]
+	floor.areas[key("Kirin Tor Necromancer")] = floor.areas[key("The Underbelly")]
+	floor.areas[key("Fallen Mage")] = floor.areas[key("The Underbelly")]
+	floor.areas[key("Dark Caster")] = floor.areas[key("The Underbelly")]
+	floor.areas[key("Risen Terror")] = floor.areas[key("The Underbelly")]
+	floor.areas[key("Mindless Horror")] = floor.areas[key("The Underbelly")]
+	floor.areas[key("Lyn the Ignored")] = { mask = DIR .. "city-of-dalaran-2-02", x = 457, y = 0, w = 340, h = 244 }
+	floor.areas[key("Lyn the Ignored")].n = 2
+	floor.areas["#2"] = floor.areas[key("Lyn the Ignored")]
+	floor.count = floor.count + 1
+	floor.areas[key("Sewer Fiend")] = floor.areas[key("Lyn the Ignored")]
+	floor.areas[key("Cantrips & Crows")] = { mask = DIR .. "city-of-dalaran-2-03", x = 196, y = 260, w = 372, h = 377 }
+	floor.areas[key("Cantrips & Crows")].n = 3
+	floor.areas["#3"] = floor.areas[key("Cantrips & Crows")]
 	floor.count = floor.count + 1
 	floor.areas[key("The Cantrips and Crows Tavern")] = floor.areas[key("Cantrips & Crows")]
+	floor.areas[key("Skeletal Warder")] = floor.areas[key("Cantrips & Crows")]
+	floor.areas[key("Fallen Warrior")] = floor.areas[key("Cantrips & Crows")]
+	floor.bosses = { { name = "Lyn the Ignored", x = 582, y = 179 }, { name = "Atrexis the Grave Knight", x = 506, y = 343 } }
 	ns.Maps[2959][2] = floor
 end
 -- deadmines

@@ -5,12 +5,14 @@
 - City of Dalaran's map is the game's own painted map of Dalaran, and the
   sewers have a page of their own, the Underbelly, uncovered as you walk
   through the Sewer, the Underbelly and Cantrips & Crows.
-- Its bosses are marked where they stand: the Arcane Anomaly on Krasus'
-  Landing, the Fel Ancient and Atrexis in Runeweaver Square, the Mana
-  Devourer by the Violet Hold, the Arcanic Enigma at the Antonidas
-  Memorial, Lyn in the Sunreaver quarter, the Unstable Sentinel at the
-  Magus Commerce Exchange and the Shade in the Violet Citadel. The Mana
-  Wraith no longer uncovers the Violet Citadel.
+- Its bosses are marked where they stand: Atrexis by the Circle of Wills
+  and Lyn at the north-east pipe, down in the Underbelly; the Arcane
+  Anomaly on Krasus' Landing, the Fel Ancient in Runeweaver Square, the
+  Mana Devourer by the Violet Hold, the Arcanic Enigma at the Antonidas
+  Memorial, the Unstable Sentinel at the Magus Commerce Exchange and the
+  Shade in the Violet Citadel. The Mana Wraith no longer uncovers the
+  Violet Citadel, and the creatures and corners met along the way uncover
+  the part of the city they are in.
 
 ## 0.2.0-beta.12
 

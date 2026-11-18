@@ -12,19 +12,23 @@
 # 275.1, 303.2, yaw 75; Northrend: 5824.9, 667.0, yaw 141) and onto the sheet
 # by uiMap 125's bounds. Checked by laying sheet 125 over the instance's
 # minimap that way: the streets meet. The "Mana Elemental" encounter is the
-# Arcanic Enigma (Path of Renewal). The points have no height, so a boss under
-# the streets would show on the street sheet above its spot: all are put on the
-# streets, where every one of them lands on a drawn place (Atrexis's spot is
-# also over the Circle of Wills; a run's sub-zones would settle it).
+# Arcanic Enigma (Path of Renewal). The points have no height; which level a
+# boss is on comes from a real run (18 Nov 2026): in by the Sewer gate,
+# Cantrips & Crows, the Underbelly, Atrexis (Circle of Wills) and Lyn (the
+# north-east pipe) below; then up into Dalaran by the Sunreaver quarter, the
+# Mana Wraiths and the Anomaly on Krasus' Landing, the Violet Hold, Runeweaver
+# Square, the Eventide and the Silver Enclave, the Path of Renewal, and the
+# Sentinel and the Shade by the Violet Citadel. The creatures are filed by the
+# same run.
 MAP = {'instance': 2959,
  'slug': 'city-of-dalaran',
  'bosses': {'Arcane Anomaly': (1, 697, 302),
             'Mana Wraith': (1, 716, 284),
             'Fel Ancient': (1, 497, 321),
-            'Atrexis the Grave Knight': (1, 506, 343),
+            'Atrexis the Grave Knight': (2, 506, 343),
             'Mana Devourer': (1, 628, 426),
             'Mana Elemental': (1, 471, 142),
-            'Lyn the Ignored': (1, 582, 179),
+            'Lyn the Ignored': (2, 582, 179),
             'Unstable Sentinel': (1, 397, 213),
             'Shade of the Archmage': (1, 242, 259)},
  'floors': [{'ref': 'city-of-dalaran-city',
@@ -44,7 +48,7 @@ MAP = {'instance': 2959,
                        'Unstable Sentinel': [(420, 230), (360, 190), (400, 270), (465, 200), (375, 250), (330, 230),
                                              (300, 190)],
                        'Mana Elemental': [(460, 120), (520, 110), (410, 100), (480, 160), (440, 70), (360, 120)],
-                       'Lyn the Ignored': [(580, 175), (610, 110), (660, 150), (690, 215), (540, 200), (610, 250),
+                       "Sunreaver's Sanctuary": [(580, 175), (610, 110), (660, 150), (690, 215), (540, 200), (610, 250),
                                            (660, 90), (730, 180)],
                        'Shade of the Archmage': [(240, 305), (190, 280), (240, 370), (240, 230), (300, 330),
                                                  (165, 330), (200, 420), (250, 160)]},
@@ -53,14 +57,31 @@ MAP = {'instance': 2959,
                          'The Violet Hold': 'Mana Devourer',
                          'Fel Ancient': 'Fel Grove',
                          'Runeweaver Square': 'Fel Grove',
-                         'Atrexis the Grave Knight': 'Fel Grove',
                          "A Hero's Welcome": 'The Silver Enclave',
                          'Magus Commerce Exchange': 'Unstable Sentinel',
                          'Trade District': 'Unstable Sentinel',
                          'Arcanic Enigma': 'Mana Elemental',
                          'Path of Renewal': 'Mana Elemental',
                          'Antonidas Memorial': 'Mana Elemental',
-                         "Sunreaver's Sanctuary": 'Lyn the Ignored',
+                         # the first streets out of the sewers
+                         'Fragmented Sentry': "Sunreaver's Sanctuary",
+                         'Arcane Elemental': "Sunreaver's Sanctuary",
+                         'Mana Fiend': "Sunreaver's Sanctuary",
+                         'Saturated Remnant': 'Arcane Anomaly',
+                         'Mana Stalker': 'Arcane Anomaly',
+                         'Seeking Remnant': 'Arcane Anomaly',
+                         'Phantasm': 'Arcane Anomaly',
+                         'Suffused Treant': 'Mana Devourer',
+                         'Arcane Echo': 'Mana Devourer',
+                         'Mana Echo': 'Mana Devourer',
+                         'Mana Phantom': 'Mana Devourer',
+                         'Arcane Manaling': 'The Eventide',
+                         'The Atrium of Fortune': 'The Silver Enclave',
+                         'Tempered Tomes': 'The Silver Enclave',
+                         'Presage Plaza': 'Unstable Sentinel',
+                         'Archival Exhibit': 'Unstable Sentinel',
+                         "Antonidas' Antiquities": 'Unstable Sentinel',
+                         'The Purple Parlor': 'Shade of the Archmage',
                          'The Violet Citadel': 'Shade of the Archmage'}},
             # The sewers: entered by the Sewer gate at the end of the long
             # south-west pipe (where the building's "Sewer" group lies).
@@ -72,9 +93,19 @@ MAP = {'instance': 2959,
              'start': [(165, 505), (205, 465), (245, 425)],
              'areas': {'The Underbelly': [(480, 250), (430, 330), (560, 300), (500, 400), (600, 250), (380, 220),
                                           (560, 430), (450, 180), (490, 297), (590, 360), (250, 285), (320, 275),
-                                          (610, 90), (560, 160), (670, 330), (630, 320)],
+                                          (670, 330), (630, 320)],
+                       'Lyn the Ignored': [(582, 179), (560, 160), (610, 90), (630, 70)],
                        'Cantrips & Crows': [(335, 385), (345, 345), (400, 405), (400, 455), (450, 470),
                                             (370, 330), (290, 360)]},
              'aliases': {'Sewer': 'The Underbelly',
                          'The Cantrips and Crows Tavern': 'Cantrips & Crows',
-                         'Circle of Wills': 'The Underbelly'}}]}
+                         'Skeletal Warder': 'Cantrips & Crows',
+                         'Fallen Warrior': 'Cantrips & Crows',
+                         'Circle of Wills': 'The Underbelly',
+                         'Atrexis the Grave Knight': 'The Underbelly',
+                         'Kirin Tor Necromancer': 'The Underbelly',
+                         'Fallen Mage': 'The Underbelly',
+                         'Dark Caster': 'The Underbelly',
+                         'Risen Terror': 'The Underbelly',
+                         'Mindless Horror': 'The Underbelly',
+                         'Sewer Fiend': 'Lyn the Ignored'}}]}
