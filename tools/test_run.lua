@@ -714,6 +714,27 @@ step("every page of the journal", function()
 	M.slash("")
 end)
 
+step("the map key opens both maps", function()
+	check("journal closed", not FieldNotesJournal:IsShown())
+	check("both maps is the default", ns.db.settings.mapBoth == true)
+	ToggleWorldMap()
+	check("map key opens the journal and the game's map", FieldNotesJournal:IsShown() and WorldMapFrame:IsShown())
+	check("the journal is on the map page", pageText():find("What you have charted", 1, true))
+	ToggleWorldMap()
+	check("map key closes them both", not FieldNotesJournal:IsShown() and not WorldMapFrame:IsShown())
+	FieldNotes:ToggleJournal()
+	ToggleWorldMap()
+	check("with the journal already open the key opens the game's map and keeps the journal", FieldNotesJournal:IsShown() and WorldMapFrame:IsShown())
+	ToggleWorldMap()
+	M.shift = true
+	ToggleWorldMap()
+	M.shift = false
+	check("shift and the map key opens the game's map alone", WorldMapFrame:IsShown() and not FieldNotesJournal:IsShown())
+	ToggleWorldMap()
+	check("all closed", not FieldNotesJournal:IsShown() and not WorldMapFrame:IsShown())
+	ns.db.settings.mapBoth = false
+end)
+
 step("the map key", function()
 	check("journal closed", not FieldNotesJournal:IsShown())
 	ToggleWorldMap()
@@ -743,6 +764,7 @@ step("the map key", function()
 	ToggleWorldMap()
 	check("the map key still opens the journal", FieldNotesJournal:IsShown())
 	ToggleWorldMap()
+	ns.db.settings.mapBoth = true
 end)
 
 step("minimap button and compartment", function()

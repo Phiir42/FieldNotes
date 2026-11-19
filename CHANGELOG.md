@@ -13,6 +13,9 @@
   Shade in the Violet Citadel. The Mana Wraith no longer uncovers the
   Violet Citadel, and the creatures and corners met along the way uncover
   the part of the city they are in.
+- Inside a dungeon the map key opens the journal's map and the game's map
+  together. Turn off "Game's map opens too" in Preferences to have the
+  journal take the game's map's place, as before.
 
 ## 0.2.0-beta.12
 

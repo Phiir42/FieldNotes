@@ -14,8 +14,8 @@ you walk, the creatures you fight, the bosses you face and what they drop.
 - **Map** – a parchment sheet for each dungeon that is uncovered room by room
   as you reach it, drawn in the game's own dungeon-map art. Bosses you have
   faced are marked with a skull; click one for its page. Inside a dungeon the
-  map key (`M`) opens this map instead of the game's empty one; Shift-`M`
-  still opens the game's map.
+  map key (`M`) opens this map together with the game's own; Shift-`M`
+  opens the game's map alone.
 - **Bosses** – a page per boss: attempts, victories, defeats, your fastest
   kill, its abilities (written in once you have beaten it), the quests that
   send you after it, and its loot set against your victories.
@@ -62,10 +62,11 @@ and survives updates.
 
 Open the journal with the minimap button, `/fn`, or a key of your choice
 (Options → Keybindings → AddOns → Field Notes). Inside a dungeon, the map key
-opens straight to the map. Hold Shift with the map key for the game's own
-map, or bind a key to "Open the game's world map" in the same place; to keep
-the game's map on the map key always, turn off "Map key opens the journal"
-in Preferences.
+opens the journal's map and the game's map together (turn off "Game's map
+opens too" in Preferences for the journal alone). Hold Shift with the map key
+for the game's own map only, or bind a key to "Open the game's world map" in
+the same place; to keep the game's map on the map key always, turn off "Map
+key opens the journal" in Preferences.
 
 | Command | |
 | --- | --- |

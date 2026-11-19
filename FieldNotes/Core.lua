@@ -50,6 +50,7 @@ ns.DEFAULTS = {
 	scale = 1,         -- size of the journal window
 	sketch = true,     -- newly charted parts of a map are sketched in, not just shown
 	mapKey = true,     -- inside a dungeon, the map key opens the journal's map
+	mapBoth = true,    -- ... together with the game's map (false: in its place)
 }
 
 ---------------------------------------------------------------------------
