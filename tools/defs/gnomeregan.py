@@ -8,8 +8,9 @@ MAP = {
             "uimap": 226,
             "decor": [(385, 8, 625, 68), (300, 8, 455, 113), (625, 8, 712, 62), (640, 62, 665, 80), (665, 62, 712, 106), (5, 110, 283, 640)],
             "start": [(643, 185), (645, 140), (620, 205)],
-            # the Clean Zone and Grubbis are a side branch off the main road
-            "roads": [["The Clockwerk Run", "The Hall of Gears", "The Dormitory"], ["The Clean Zone", "Grubbis"]],
+            # the Clean Zone and Grubbis are side branches of their own: a real run (2026-11-18) reached
+            # Grubbis from the Hall of Gears before the Dormitory, and the Clean Zone only after it
+            "roads": [["The Clockwerk Run", "The Hall of Gears", "The Dormitory"], ["The Clean Zone"], ["Grubbis"]],
             "areas": {
                 "The Clockwerk Run": [(490, 82), (560, 88), (620, 100), (590, 240), (570, 255)],
                 "The Hall of Gears": [(495, 280), (495, 340), (410, 330), (590, 330), (500, 420), (430, 260), (560, 395), (440, 395), (540, 250)],
@@ -23,6 +24,7 @@ MAP = {
                 "Hall of Gears": "The Hall of Gears",
                 "Caverndeep Burrower": "The Hall of Gears",
                 "Caverndeep Looter": "The Hall of Gears",
+                "Irradiated Pillager": "The Hall of Gears",  # met on entering the hall, long before the fallout below
                 "Blastmaster Emi Shortfuse": "Grubbis",
                 "Chomper": "Grubbis",
                 "Caverndeep Invader": "Grubbis",
@@ -44,8 +46,9 @@ MAP = {
             "uimap": 227,
             "decor": [(300, 8, 712, 110), (130, 95, 550, 265), (550, 195, 558, 250), (360, 262, 505, 360), (285, 262, 360, 315), (505, 262, 530, 285), (455, 350, 505, 400)],
             "areas": {
-                "Viscous Fallout": [(760, 310), (745, 362), (720, 250), (810, 250), (700, 340), (820, 360), (770, 400), (650, 295)],
+                # the run came down through the Dormitory and met the fallout after it
                 "The Dormitory": [(765, 488), (730, 460), (830, 460), (780, 530), (720, 530), (840, 530), (640, 420), (670, 455)],
+                "Viscous Fallout": [(760, 310), (745, 362), (720, 250), (810, 250), (700, 340), (820, 360), (770, 400), (650, 295)],
                 "Mobile Alert System": [(560, 290), (540, 360), (530, 430), (460, 440), (410, 440), (590, 320)],
                 "Launch Bay": [(245, 407), (240, 330), (130, 400), (130, 500), (240, 570), (330, 520), (345, 400), (170, 450), (380, 570), (420, 545), (300, 340)],
                 "Electrocutioner 6000": [(242, 452), (215, 445), (255, 480)],
@@ -54,7 +57,6 @@ MAP = {
                 "Irradiated Horror": "Viscous Fallout",
                 "Irradiated Slime": "Viscous Fallout",
                 "Irradiated Invader": "Viscous Fallout",
-                "Irradiated Pillager": "Viscous Fallout",
                 "Corrosive Lurker": "Viscous Fallout",
                 "Dormitory": "The Dormitory",
                 "Leprous Technician": "The Dormitory",
@@ -68,6 +70,7 @@ MAP = {
                 "Leprous Machinesmith": "Mobile Alert System",
                 "Mechanized Guardian": "Launch Bay",
                 "Mechano-Tank": "Launch Bay",
+                "Peacekeeper Security Suit": "Launch Bay",
                 "Electrocutioner": "Electrocutioner 6000",
             },
         },
@@ -75,6 +78,8 @@ MAP = {
             "ref": "gnomeregan-3",
             "uimap": 228,
             "decor": [(300, 8, 712, 110), (478, 283, 558, 380), (462, 365, 548, 398)],
+            # the tunnel to the back door is a road of its own: coming in that way shows nothing else
+            "roads": [["Launch Bay", "Mechano-Flamewalker", "Engineering Labs", "Crowd Pummeler 9-60"], ["Dark Iron Ambassador"]],
             "areas": {
                 "Launch Bay": [(275, 187), (270, 120), (200, 190), (345, 190), (270, 255), (235, 320), (330, 285)],
                 "Mechano-Flamewalker": [(390, 320), (440, 295), (340, 370), (365, 410), (350, 300)],
@@ -87,11 +92,11 @@ MAP = {
                 "Mechano-Frostwalker": "Mechano-Flamewalker",
                 "Arcane Nullifier X-21": "Mechano-Flamewalker",
                 "Mechano-Tank": "Engineering Labs",
-                "Peacekeeper Security Suit": "Engineering Labs",
+                "Peacekeeper Security Suit": "Launch Bay",  # fought before the Electrocutioner
+                "Leprous Machinesmith": "Engineering Labs",  # fought on entering the labs
                 "Crowd Pummeler": "Crowd Pummeler 9-60",
-                "Leprous Machinesmith": "Dark Iron Ambassador",
-                "Mobile Alert System": "Dark Iron Ambassador",
                 "Workshop": "Dark Iron Ambassador",
+                "Workshop Entrance": "Dark Iron Ambassador",
             },
         },
         {
@@ -108,11 +113,11 @@ MAP = {
                 "Mekgineer Thermaplugg": "Tinkers' Court",
                 "Tinker's Court": "Tinkers' Court",
                 "Walking Bomb": "Tinkers' Court",
+                "Dark Iron Land Mine": "Dark Iron Agent",
                 "Mechano-Tank": "Engineering Labs",
                 "Mechano-Flamewalker": "Engineering Labs",
                 "Mechano-Frostwalker": "Engineering Labs",
                 "Arcane Nullifier X-21": "Engineering Labs",
-                "Peacekeeper Security Suit": "Engineering Labs",
             },
         },
     ],

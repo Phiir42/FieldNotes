@@ -13,6 +13,17 @@
   Shade in the Violet Citadel. The Mana Wraith no longer uncovers the
   Violet Citadel, and the creatures and corners met along the way uncover
   the part of the city they are in.
+- Gnomeregan checked on a real run: the Clean Zone and Grubbis' tunnel
+  uncover each on its own, the lower Dormitory before the fallout beyond
+  it, and the Engineering Labs sheet hall by hall (a Mobile Alert System
+  or a Leprous Machinesmith opened all of it). Irradiated Pillagers and
+  Peacekeeper Security Suits no longer open a level not yet reached, and
+  the tunnel to the back door is uncovered by the Workshop Entrance.
+- Razorfen Downs checked on a real run: the game calls the way in "Spiral
+  of Thorns" as well, which uncovered the map as far as the spiral within
+  minutes. The spiral now waits for Glutton or the dead that guard it, and
+  Battle Boar Horrors no longer open the Caller's Chamber.
+- Scarlet Monastery checked on a real run; its map already followed it.
 - Inside a dungeon the map key opens the journal's map and the game's map
   together. Turn off "Game's map opens too" in Preferences to have the
   journal take the game's map's place, as before.

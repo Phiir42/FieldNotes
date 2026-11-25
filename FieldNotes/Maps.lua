@@ -1214,6 +1214,7 @@ do
 	floor.areas[key("Hall of Gears")] = floor.areas[key("The Hall of Gears")]
 	floor.areas[key("Caverndeep Burrower")] = floor.areas[key("The Hall of Gears")]
 	floor.areas[key("Caverndeep Looter")] = floor.areas[key("The Hall of Gears")]
+	floor.areas[key("Irradiated Pillager")] = floor.areas[key("The Hall of Gears")]
 	floor.areas[key("The Clean Zone")] = { mask = DIR .. "gnomeregan-1-03", x = 267, y = 344, w = 202, h = 185 }
 	floor.areas[key("The Clean Zone")].n = 3
 	floor.areas["#3"] = floor.areas[key("The Clean Zone")]
@@ -1224,7 +1225,7 @@ do
 	floor.areas[key("Grubbis")] = { mask = DIR .. "gnomeregan-1-04", x = 542, y = 349, w = 308, h = 199 }
 	floor.areas[key("Grubbis")].n = 4
 	floor.areas["#4"] = floor.areas[key("Grubbis")]
-	floor.areas[key("Grubbis")].g = 2
+	floor.areas[key("Grubbis")].g = 3
 	floor.count = floor.count + 1
 	floor.areas[key("Blastmaster Emi Shortfuse")] = floor.areas[key("Grubbis")]
 	floor.areas[key("Chomper")] = floor.areas[key("Grubbis")]
@@ -1252,18 +1253,9 @@ do
 	local floor = { cols = 4, tiles = { 449628, 449632, 449633, 449634, 449635, 449636, 449637, 449638, 449639, 449629, 449630, 449631 }, areas = {}, count = 0 }
 	floor.uimap = 227
 	floor.decor = { mask = DIR .. "gnomeregan-2-decor", x = 0, y = 0, w = 718, h = 404 }
-	floor.areas[key("Viscous Fallout")] = { mask = DIR .. "gnomeregan-2-01", x = 591, y = 87, w = 297, h = 374 }
-	floor.areas[key("Viscous Fallout")].n = 1
-	floor.areas["#1"] = floor.areas[key("Viscous Fallout")]
-	floor.count = floor.count + 1
-	floor.areas[key("Irradiated Horror")] = floor.areas[key("Viscous Fallout")]
-	floor.areas[key("Irradiated Slime")] = floor.areas[key("Viscous Fallout")]
-	floor.areas[key("Irradiated Invader")] = floor.areas[key("Viscous Fallout")]
-	floor.areas[key("Irradiated Pillager")] = floor.areas[key("Viscous Fallout")]
-	floor.areas[key("Corrosive Lurker")] = floor.areas[key("Viscous Fallout")]
-	floor.areas[key("The Dormitory")] = { mask = DIR .. "gnomeregan-2-02", x = 567, y = 342, w = 326, h = 238 }
-	floor.areas[key("The Dormitory")].n = 2
-	floor.areas["#2"] = floor.areas[key("The Dormitory")]
+	floor.areas[key("The Dormitory")] = { mask = DIR .. "gnomeregan-2-01", x = 567, y = 342, w = 326, h = 238 }
+	floor.areas[key("The Dormitory")].n = 1
+	floor.areas["#1"] = floor.areas[key("The Dormitory")]
 	floor.count = floor.count + 1
 	floor.areas[key("Dormitory")] = floor.areas[key("The Dormitory")]
 	floor.areas[key("Leprous Technician")] = floor.areas[key("The Dormitory")]
@@ -1272,6 +1264,14 @@ do
 	floor.areas[key("Holdout Warrior")] = floor.areas[key("The Dormitory")]
 	floor.areas[key("Holdout Medic")] = floor.areas[key("The Dormitory")]
 	floor.areas[key("Holdout Technician")] = floor.areas[key("The Dormitory")]
+	floor.areas[key("Viscous Fallout")] = { mask = DIR .. "gnomeregan-2-02", x = 591, y = 87, w = 297, h = 374 }
+	floor.areas[key("Viscous Fallout")].n = 2
+	floor.areas["#2"] = floor.areas[key("Viscous Fallout")]
+	floor.count = floor.count + 1
+	floor.areas[key("Irradiated Horror")] = floor.areas[key("Viscous Fallout")]
+	floor.areas[key("Irradiated Slime")] = floor.areas[key("Viscous Fallout")]
+	floor.areas[key("Irradiated Invader")] = floor.areas[key("Viscous Fallout")]
+	floor.areas[key("Corrosive Lurker")] = floor.areas[key("Viscous Fallout")]
 	floor.areas[key("Mobile Alert System")] = { mask = DIR .. "gnomeregan-2-03", x = 336, y = 193, w = 321, h = 319 }
 	floor.areas[key("Mobile Alert System")].n = 3
 	floor.areas["#3"] = floor.areas[key("Mobile Alert System")]
@@ -1285,12 +1285,13 @@ do
 	floor.count = floor.count + 1
 	floor.areas[key("Mechanized Guardian")] = floor.areas[key("Launch Bay")]
 	floor.areas[key("Mechano-Tank")] = floor.areas[key("Launch Bay")]
+	floor.areas[key("Peacekeeper Security Suit")] = floor.areas[key("Launch Bay")]
 	floor.areas[key("Electrocutioner 6000")] = { mask = DIR .. "gnomeregan-2-05", x = 171, y = 378, w = 161, h = 168 }
 	floor.areas[key("Electrocutioner 6000")].n = 5
 	floor.areas["#5"] = floor.areas[key("Electrocutioner 6000")]
 	floor.count = floor.count + 1
 	floor.areas[key("Electrocutioner")] = floor.areas[key("Electrocutioner 6000")]
-	floor.areas[key("Alarm-a-bomb 2600")] = floor.areas["#2"]
+	floor.areas[key("Alarm-a-bomb 2600")] = floor.areas["#1"]
 	floor.bosses = { { name = "Viscous Fallout", x = 761, y = 311 }, { name = "Electrocutioner 6000", x = 244, y = 457 } }
 	floor.places = { [key("Artificial Extrapolator")] = { { 326, 518 } }, [key("Caverndeep Burrower")] = { { 768, 216 } }, [key("Caverndeep Reaver")] = { { 798, 451 } }, [key("Irradiated Pillager")] = { { 757, 341 } }, [key("Kernobee")] = { { 856, 432 } } }
 	floor.path = true
@@ -1306,6 +1307,7 @@ do
 	floor.areas["#1"] = floor.areas[key("Launch Bay")]
 	floor.count = floor.count + 1
 	floor.areas[key("Mechanized Guardian")] = floor.areas[key("Launch Bay")]
+	floor.areas[key("Peacekeeper Security Suit")] = floor.areas[key("Launch Bay")]
 	floor.areas[key("Mechano-Flamewalker")] = { mask = DIR .. "gnomeregan-3-02", x = 258, y = 229, w = 298, h = 236 }
 	floor.areas[key("Mechano-Flamewalker")].n = 2
 	floor.areas["#2"] = floor.areas[key("Mechano-Flamewalker")]
@@ -1317,7 +1319,7 @@ do
 	floor.areas["#3"] = floor.areas[key("Engineering Labs")]
 	floor.count = floor.count + 1
 	floor.areas[key("Mechano-Tank")] = floor.areas[key("Engineering Labs")]
-	floor.areas[key("Peacekeeper Security Suit")] = floor.areas[key("Engineering Labs")]
+	floor.areas[key("Leprous Machinesmith")] = floor.areas[key("Engineering Labs")]
 	floor.areas[key("Crowd Pummeler 9-60")] = { mask = DIR .. "gnomeregan-3-04", x = 386, y = 531, w = 112, h = 99 }
 	floor.areas[key("Crowd Pummeler 9-60")].n = 4
 	floor.areas["#4"] = floor.areas[key("Crowd Pummeler 9-60")]
@@ -1326,10 +1328,10 @@ do
 	floor.areas[key("Dark Iron Ambassador")] = { mask = DIR .. "gnomeregan-3-05", x = 512, y = 287, w = 392, h = 237 }
 	floor.areas[key("Dark Iron Ambassador")].n = 5
 	floor.areas["#5"] = floor.areas[key("Dark Iron Ambassador")]
+	floor.areas[key("Dark Iron Ambassador")].g = 2
 	floor.count = floor.count + 1
-	floor.areas[key("Leprous Machinesmith")] = floor.areas[key("Dark Iron Ambassador")]
-	floor.areas[key("Mobile Alert System")] = floor.areas[key("Dark Iron Ambassador")]
 	floor.areas[key("Workshop")] = floor.areas[key("Dark Iron Ambassador")]
+	floor.areas[key("Workshop Entrance")] = floor.areas[key("Dark Iron Ambassador")]
 	floor.bosses = { { name = "Crowd Pummeler 9-60", x = 433, y = 590 } }
 	floor.places = { [key("Leprous Assistant")] = { { 368, 249 } } }
 	floor.path = true
@@ -1348,11 +1350,11 @@ do
 	floor.areas[key("Mechano-Flamewalker")] = floor.areas[key("Engineering Labs")]
 	floor.areas[key("Mechano-Frostwalker")] = floor.areas[key("Engineering Labs")]
 	floor.areas[key("Arcane Nullifier X-21")] = floor.areas[key("Engineering Labs")]
-	floor.areas[key("Peacekeeper Security Suit")] = floor.areas[key("Engineering Labs")]
 	floor.areas[key("Dark Iron Agent")] = { mask = DIR .. "gnomeregan-4-02", x = 221, y = 266, w = 416, h = 334 }
 	floor.areas[key("Dark Iron Agent")].n = 2
 	floor.areas["#2"] = floor.areas[key("Dark Iron Agent")]
 	floor.count = floor.count + 1
+	floor.areas[key("Dark Iron Land Mine")] = floor.areas[key("Dark Iron Agent")]
 	floor.areas[key("Tinkers' Court")] = { mask = DIR .. "gnomeregan-4-03", x = 189, y = 7, w = 251, h = 348 }
 	floor.areas[key("Tinkers' Court")].n = 3
 	floor.areas["#3"] = floor.areas[key("Tinkers' Court")]
@@ -2059,6 +2061,8 @@ do
 	floor.areas[key("Death's Head Cultist")] = floor.areas[key("Death's Head Geomancer")]
 	floor.areas[key("Razorfen Battleguard")] = floor.areas[key("Death's Head Geomancer")]
 	floor.areas[key("Withered Reaver")] = floor.areas[key("Death's Head Geomancer")]
+	floor.areas[key("Spiral of Thorns")] = floor.areas[key("Death's Head Geomancer")]
+	floor.areas[key("Battle Boar Horror")] = floor.areas[key("Death's Head Geomancer")]
 	floor.areas[key("Boneflayer Ghoul")] = floor.areas[key("Death's Head Geomancer")]
 	floor.areas[key("Skeletal Frostweaver")] = floor.areas[key("Death's Head Geomancer")]
 	floor.areas[key("Splinterbone Centurion")] = floor.areas[key("Death's Head Geomancer")]
@@ -2083,14 +2087,13 @@ do
 	floor.areas["#4"] = floor.areas[key("The Bone Pile")]
 	floor.count = floor.count + 1
 	floor.areas[key("Mordresh Fire Eye")] = floor.areas[key("The Bone Pile")]
-	floor.areas[key("Spiral of Thorns")] = { mask = DIR .. "razorfen-downs-1-05", x = 174, y = 239, w = 466, h = 359 }
-	floor.areas[key("Spiral of Thorns")].n = 5
-	floor.areas["#5"] = floor.areas[key("Spiral of Thorns")]
+	floor.areas[key("Glutton")] = { mask = DIR .. "razorfen-downs-1-05", x = 174, y = 239, w = 466, h = 359 }
+	floor.areas[key("Glutton")].n = 5
+	floor.areas["#5"] = floor.areas[key("Glutton")]
 	floor.count = floor.count + 1
-	floor.areas[key("Glutton")] = floor.areas[key("Spiral of Thorns")]
-	floor.areas[key("Ragglesnout")] = floor.areas[key("Spiral of Thorns")]
-	floor.areas[key("Thorn Eater Ghoul")] = floor.areas[key("Spiral of Thorns")]
-	floor.areas[key("Splinterbone Warrior")] = floor.areas[key("Spiral of Thorns")]
+	floor.areas[key("Ragglesnout")] = floor.areas[key("Glutton")]
+	floor.areas[key("Thorn Eater Ghoul")] = floor.areas[key("Glutton")]
+	floor.areas[key("Splinterbone Warrior")] = floor.areas[key("Glutton")]
 	floor.areas[key("Amnennar the Coldbringer")] = { mask = DIR .. "razorfen-downs-1-06", x = 345, y = 290, w = 199, h = 219 }
 	floor.areas[key("Amnennar the Coldbringer")].n = 6
 	floor.areas["#6"] = floor.areas[key("Amnennar the Coldbringer")]
@@ -2098,7 +2101,6 @@ do
 	floor.areas[key("Frost Spectre")] = floor.areas[key("Amnennar the Coldbringer")]
 	floor.areas[key("Skeletal Shadowcaster")] = floor.areas[key("Amnennar the Coldbringer")]
 	floor.areas[key("Splinterbone Captain")] = floor.areas[key("Amnennar the Coldbringer")]
-	floor.areas[key("Battle Boar Horror")] = floor.areas["#2"]
 	floor.areas[key("Death's Head Necromancer")] = floor.areas["#1"]
 	floor.areas[key("Splinterbone Skeleton")] = floor.areas["#4"]
 	floor.areas[key("Lady Falther'ess")] = floor.areas["#3"]
