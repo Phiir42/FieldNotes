@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.0-beta.13 – not yet released
+## 0.2.0-beta.13
 
 - City of Dalaran's map is the game's own painted map of Dalaran, and the
   sewers have a page of their own, the Underbelly, uncovered as you walk
