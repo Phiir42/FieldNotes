@@ -9,31 +9,19 @@ WMOAreaTable), a boss fight (DungeonEncounter) or a creature it has met.
 An alias no one reports is harmless (see tools/defs/BRIEF.md); an area with
 none stays blank unless it is the entrance or a one-road dungeon reaches past
 it.
+
+Runs without refs/ too (see tools/game_names.py).
 """
 import glob
 import importlib.util
-import json
 import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import make_abilities as m  # noqa: E402
+from game_names import reportable  # noqa: E402  (the client's tables, or their copy in tools/data)
 
 ROOT = m.ROOT
-
-
-def reportable():
-    names = {m.key(r["AreaName_lang"]) for r in m.table("AreaTable", m.FOREVER)}
-    names |= {m.key(r["AreaName_lang"]) for r in m.table("WMOAreaTable", m.FOREVER) if r.get("AreaName_lang")}
-    names |= {m.key(e["Name_lang"]) for e in m.table("DungeonEncounter", m.FOREVER)}
-    with open(os.path.join(ROOT, "refs", "classicdb", "creatures.json"), encoding="utf-8") as f:
-        names |= {m.key(c["name"]) for c in json.load(f).values() if c["name"]}
-    for extra in ("forever_creatures.json", "forever_npcs.json"):
-        path = os.path.join(ROOT, "tools", "data", extra)
-        if os.path.exists(path):
-            with open(path, encoding="utf-8") as f:
-                names |= {m.key(n) for n in json.load(f)}
-    return names
 
 
 # Areas that stay blank on purpose, with why.

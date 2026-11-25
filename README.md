@@ -148,6 +148,13 @@ tools/defs/        one map definition per dungeon (see tools/defs/BRIEF.md)
 - `python tools/test_editor.py` checks that the map editor
   (`python tools/map_editor.py`) saves a definition without losing its layout
   or comments.
+- `python tools/check_quest_marks.py`, `check_boss_marks.py` and
+  `check_map_names.py` look for quest targets and bosses with no spot on
+  their map and for parts of a map nothing can uncover. They run with the
+  tests on GitHub, from a copy of the game's names in `tools/data/`
+  (`python tools/game_names.py` refreshes it). `check_skulls.py`,
+  `check_creatures.py` and `check_routes.py` read the map art under `refs/`
+  and run only where that is at hand.
 - `python tools/package.py` builds `dist/FieldNotes-<version>.zip`.
 - `python tools/make_maps.py` and `python tools/make_abilities.py` rebuild the
   generated data. They need reference material that is not in this repository

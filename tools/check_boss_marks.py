@@ -12,7 +12,7 @@ put it in KNOWN with the reason.
 import sys
 
 import make_maps as m
-from make_abilities import table as forever_table, FOREVER
+from game_names import encounters
 from map_editor import shipped_bosses
 
 # Fights with no mark, on purpose.
@@ -27,9 +27,7 @@ WAITING = {"the-shapers-terrace": "Forever's own; its minimap and a run will pla
 
 def main():
     verbose = "-v" in sys.argv
-    names = {}
-    for r in forever_table("DungeonEncounter", FOREVER):
-        names.setdefault(int(r["MapID"]), set()).add(r["Name_lang"])
+    names = encounters()  # the client's own list, or its copy in tools/data (see game_names.py)
     bad = 0
     for d in m.definitions():
         marked = {n for floor in shipped_bosses(d["instance"]).values() for n, _, _ in floor}
